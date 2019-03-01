@@ -1,0 +1,45 @@
+{
+  "name": "laravel-gentelella",
+  "description": "The Laravel 5.4 framework with Gentelella template",
+  "keywords": [
+    "framework",
+    "laravel",
+    "laravel 5.4",
+    "gentelella",
+    "laravel-gentelella",
+    "template",
+    "bootstrap",
+    "responsive",
+    "admin",
+    "php",
+    "html",
+    "css"
+  ],
+  "main": "",
+  "authors": [
+    "FlorientR"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/FlorientR/laravel-gentelella",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "gentelella": "^1.4.0",
+    "datatables.net": "^1.10.19",
+    "datatables.net-bs": "^2.1.1",
+    "datatables.net-buttons": "^1.5.4",
+    "datatables.net-buttons-bs": "^1.5.4",
+    "datatables.net-responsive": "^2.2.3",
+    "datatables.net-responsive-bs": "^2.2.3",
+    "datatables.net-scroller": "^1.5.1",
+    "datatables.net-keytable": "^2.5.0",
+    "datatables.net-fixedheader": "^3.1.5",
+    "datatables.net-fixedheader-bs": "^3.1.5",
+    "datatables.net-scroller-bs": "^1.5.1"
+  }
+}
