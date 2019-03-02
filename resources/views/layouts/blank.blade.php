@@ -24,6 +24,8 @@
         <link href="{{ asset("vendor/bower_components/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css") }}" rel="stylesheet">
         <link href="{{ asset("vendor/bower_components/datatables.net-responsive-bs/css/responsive.bootstrap.min.css") }}" rel="stylesheet">
         <link href="{{ asset("vendor/bower_components/datatables.net-scroller-bs/css/scroller.bootstrap.min.css") }}" rel="stylesheet">
+        <link href="{{ asset("vendor/bower_components/orgchart/css/jquery.orgchart.css") }}" rel="stylesheet">
+        <link href="{{ asset("vendor/bower_components/orgchart/css/jquery.orgchart.min.css") }}" rel="stylesheet">
 
         <!-- Custom Theme Style -->
         <link href="{{ asset("public/css/gentelella.min.css") }}" rel="stylesheet">
@@ -64,6 +66,10 @@
         <script src="{{ asset("vendor/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js") }}"></script>
         <script src="{{ asset("vendor/bower_components/datatables.net-responsive-bs/js/responsive.bootstrap.js") }}"></script>
         <script src="{{ asset("vendor/bower_components/datatables.net-scroller/js/dataTables.scroller.min.js") }}"></script>
+        <script src="{{ asset("vendor/bower_components/orgchart/js/jquery.mockjax.min.js") }}"></script>
+        <script src="{{ asset("vendor/bower_components/orgchart/js/jquery.orgchart.js") }}"></script>
+        <script src="{{ asset("vendor/bower_components/orgchart/js/jquery.orgchart.min.js") }}"></script>
+        <script src="{{ asset("vendor/bower_components/orgchart/js/jquery.orgchart.min.js.map") }}"></script>
 
         <script src="{{ asset("public/js/custom.min.js") }}"></script>
         <script src="{{ asset("vendor/bower_components/moment/min/moment.min.js")}}"></script>
