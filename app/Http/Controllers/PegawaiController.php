@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Roles;
+use app\Pegawai;
+use app\KodeBagian;
 use Illuminate\Http\Request;
 
 class PegawaiController extends Controller
@@ -13,12 +15,20 @@ class PegawaiController extends Controller
 
     public function getCreate()
     {
-        return view('pegawai.create');
+        $roles= Roles::get();
+        
+
+        return view('pegawai.create',['roles'=>$roles]);
     }
 
     public function getStruktur()
     {
         return view('pegawai.struktur.index');
+    }
+
+    public function getProd05()
+    {
+        return view('pegawai.prod05.index');
     }
 
     public function getPecat()
@@ -38,5 +48,21 @@ class PegawaiController extends Controller
     public function getCreateResign()
     {
         return view('pegawai.resign.create');
+    }
+
+    //----------------------------USER----------------------------------
+    public function indexUser()
+    {
+        return view('pegawai.user.index');
+    }
+
+    public function getStrukturUser()
+    {
+        return view('pegawai.struktur.index');
+    }
+
+    public function getResignUser()
+    {
+        return view('pegawai.user.resign');
     }
 }

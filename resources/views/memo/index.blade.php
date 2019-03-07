@@ -33,8 +33,10 @@
 					</div>
 					<div class="x_content">
 						<div class="row">
-							<div class="col-sm-3 mail_list_column">
-								<button id="compose" class="btn btn-sm btn-success btn-block" type="button">COMPOSE</button>
+							<div class="col-sm-12 mail_list_column">
+								<div class="col-sm-3" style="padding-bottom: 20px;">
+									<button id="compose" class="btn btn-sm btn-success btn-block" type="button">COMPOSE</button>
+								</div>
 								<a href="#">
 									<div class="mail_list">
 										<div class="left">

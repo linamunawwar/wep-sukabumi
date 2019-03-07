@@ -69,7 +69,7 @@
         <script src="{{ asset("vendor/bower_components/orgchart/js/jquery.mockjax.min.js") }}"></script>
         <script src="{{ asset("vendor/bower_components/orgchart/js/jquery.orgchart.js") }}"></script>
         <script src="{{ asset("vendor/bower_components/orgchart/js/jquery.orgchart.min.js") }}"></script>
-        <script src="{{ asset("vendor/bower_components/orgchart/js/jquery.orgchart.min.js.map") }}"></script>
+        <!-- <script src="{{ asset("vendor/bower_components/orgchart/js/jquery.orgchart.min.js.map") }}"></script> -->
 
         <script src="{{ asset("public/js/custom.min.js") }}"></script>
         <script src="{{ asset("vendor/bower_components/moment/min/moment.min.js")}}"></script>

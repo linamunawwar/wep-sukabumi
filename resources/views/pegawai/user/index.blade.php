@@ -9,6 +9,13 @@ $kode = KodeBagian::all();
 @push('stylesheets')
     <!-- Example -->
     <!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
+    <style type="text/css">
+    	.data{
+    		padding: 6px 12px;
+    		font-size: 15px;
+    		margin: 0px;
+    	}
+    </style>
 @endpush
 
 @section('main_container')
@@ -19,7 +26,13 @@ $kode = KodeBagian::all();
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Tambah Data Pegawai</h2>
+						<div class="pull-left">
+							<a href="" class="btn btn-primary"><i class="fa fa-edit"></i>  Edit</a>
+						</div>
+						<div class="pull-right">
+							<a href="" class="btn btn-success"><i class="fa fa-download"></i>    Download CV</a>
+							<a href="" class="btn btn-success"><i class="fa fa-download"></i>    Download MCU</a>
+						</div>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
@@ -30,22 +43,17 @@ $kode = KodeBagian::all();
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Nama Karyawan <span class="required">*</span></label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="nama" name="nama" required="required" class="nama form-control col-md-7 col-xs-12">
+										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Nama Karyawan: <span class="required">*</span></label>
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<p class="data">{{Auth::user()->name}}</p>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="role"> Role <span class="required">*</span>:</label>
+										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="role"> Role: <span class="required">*</span>:</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<select class="form-control col-md-7 col-xs-12" required="required" name="role">
-												<option value="">Pilih Role</option>
-												@foreach($roles as $role)
-													<option value="{{$role->id}}">{{$role->name}}</option>
-												@endforeach
-											</select>
+											<p class="data">User</p>
 										</div>
 									</div>
 								</div>
@@ -53,9 +61,9 @@ $kode = KodeBagian::all();
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="gelar_depan">Gelar Depan <span class="required">*</span></label>
+										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="gelar_depan">Gelar Depan: <span class="required">*</span></label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="gelar_depan" name="gelar_depan"  class="form-control col-md-7 col-xs-12">
+											<p class="data">-</p>
 										</div>
 									</div>
 								</div>
@@ -63,14 +71,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12">Gender</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<div id="gender" class="btn-group" data-toggle="buttons">
-												<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-													<input type="radio" name="gender" value="male"> &nbsp; Male &nbsp;
-												</label>
-												<label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-													<input type="radio" name="gender" value="female"> Female
-												</label>
-											</div>
+											<p class="data">Male</p>
 										</div>
 									</div>
 								</div>
@@ -80,7 +81,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label for="gelar_blkg" class="control-label col-md-4 col-sm-4 col-xs-12">Gelar Belakang</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input id="gelar-blkg" class="form-control col-md-7 col-xs-12 gelar_blkg" type="text" name="gelar_blkg">
+											<p class="data">S.Kom</p>
 										</div>
 									</div>
 								</div>
@@ -88,7 +89,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="agama">Agama <span class="required">*</span></label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="agama" name="agama" required="required" class="agama form-control col-md-7 col-xs-12">
+											<p class="data">Islam</p>
 										</div>
 									</div>
 								</div>
@@ -98,7 +99,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label for="tempat_lahir" class="control-label col-md-4 col-sm-4 col-xs-12">Tempat Lahir</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input id="tempat_lahir" class="form-control col-md-7 col-xs-12 tempat-lahir" type="text" name="tempat_lahir">
+											<p class="data">Semarang</p>
 										</div>
 									</div>
 								</div>
@@ -106,7 +107,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="status_kawin">Status Perkawinan <span class="required">*</span></label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="status_kawin" name="status_kawin" required="required" class="status_kawin form-control col-md-7 col-xs-12">
+											<p class="data">Belum Kawin</p>
 										</div>
 									</div>
 								</div>
@@ -116,17 +117,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label for="tgl_lahir" class="control-label col-md-4 col-sm-4 col-xs-12">Tanggal Lahir *</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<fieldset>
-												<div class="control-group">
-													<div class="controls">
-														<div class="col-md-11 xdisplay_inputx form-group has-feedback">
-															<input type="text" class="form-control has-feedback-left" id="single_cal1" placeholder="Tanggal Lahir" name="tgl_lahir" aria-describedby="inputSuccess2Status">
-															<span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-												 			<span id="inputSuccess2Status" class="sr-only">(success)</span>
-														</div>
-													</div>
-												</div>
-											</fieldset>
+											<p class="data">22-02-1990</p>
 										</div>
 									</div>
 								</div>
@@ -134,7 +125,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label for="suami_istri" class="control-label col-md-4 col-sm-4 col-xs-12">Nama Suami / Istri</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input id="suami_istri" class="form-control col-md-7 col-xs-12 suami_istri-lahir" type="text" name="suami_istri">
+											<p class="data">-</p>
 										</div>
 									</div>
 								</div>
@@ -142,14 +133,9 @@ $kode = KodeBagian::all();
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="kode_bagian"> Kode Bagian <span class="required">*</span>:</label>
+										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nip">NIP <span class="required">*</span>:</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<select class="form-control col-md-7 col-xs-12" required="required">
-												<option value="">Pilih Kode Bagian</option>
-												@foreach($kode as $kd)
-													<option value="{{$kd->kode}}">{{$kd->description}}</option>
-												@endforeach
-											</select>
+											<p class="data">SA220290</p>
 										</div>
 									</div>
 								</div>
@@ -157,7 +143,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama_anak">Nama Anak <span class="required">*</span></label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<textarea id="nama_anak" name="nama_anak" required="required" class="nama form-control col-md-7 col-xs-12"></textarea>
+											<p class="data">-</p>
 										</div>
 									</div>
 								</div>
@@ -167,7 +153,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label for="alamat_tetap" class="control-label col-md-4 col-sm-4 col-xs-12">Alamat Rumah Tetap</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<textarea id="alamat_tetap" class="form-control col-md-7 col-xs-12 alamat_tetap" type="text" name="alamat_tetap"></textarea>
+											<p class="data">Jalan Plamongan Indah Blok D5 Semarang</p>
 										</div>
 									</div>
 								</div>
@@ -175,7 +161,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_telp">No. Telepon <span class="required">*</span></label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="no_telp" name="no_telp"  class="form-control col-md-7 col-xs-12">
+											<p class="data">-</p>
 										</div>
 									</div>
 								</div>
@@ -185,7 +171,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label for="alamat_sementara" class="control-label col-md-4 col-sm-4 col-xs-12">Alamat Rumah Sementara</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<textarea id="alamat_sementara" class="form-control col-md-7 col-xs-12 alamat_sementara" type="text" name="alamat_sementara"></textarea>
+											<p class="data">Perum Elok Asri Blok D5 Bekasi</p>
 										</div>
 									</div>
 								</div>
@@ -193,7 +179,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_hp">No. HP <span class="required">*</span></label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="no_hp" name="no_hp"  class="form-control col-md-7 col-xs-12">
+											<p class="data">08567553675</p>
 										</div>
 									</div>
 								</div>
@@ -203,7 +189,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="email_pribadi">Alamat Email Pribadi <span class="required">*</span></label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="email" id="email_pribadi" name="email_pribadi"  class="form-control col-md-7 col-xs-12">
+											<p class="data">pegawai1@gmail.com</p>
 										</div>
 									</div>
 								</div>
@@ -211,7 +197,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_fax">No. Faximile <span class="required">*</span></label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="no_fax" name="no_fax"  class="form-control col-md-7 col-xs-12">
+											<p class="data">-</p>
 										</div>
 									</div>
 								</div>
@@ -221,7 +207,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="email_kantor">Alamat Email Kantor <span class="required">*</span></label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="email" id="email_kantor" name="email_kantor"  class="form-control col-md-7 col-xs-12">
+											<p class="data">pegawai1@waskita.co.id</p>
 										</div>
 									</div>
 								</div>
@@ -237,13 +223,8 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama_bank">Nama Bank <span class="required">*</span></label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="nama_bank" name="nama_bank" required="required" class="nama_bank form-control col-md-7 col-xs-12">
+											<p class="data">BNI</p>
 										</div>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="control-label col-md-4 col-sm-4 col-xs-12">Asuransi Lainnya</label>
 									</div>
 								</div>
 							</div>
@@ -252,15 +233,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">No. Rekening <span class="required">*</span></label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="no_rek" name="no_rek"  class="form-control col-md-7 col-xs-12">
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="control-label col-md-4 col-sm-4 col-xs-12">Nama Asuransi</label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="nama_asuransi" name="nama_asuransi" class="nama_asuransi form-control col-md-7 col-xs-12">
+											<p class="data">027282497</p>
 										</div>
 									</div>
 								</div>
@@ -270,15 +243,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label for="npwp" class="control-label col-md-4 col-sm-4 col-xs-12">No. NPWP</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input id="npwp" class="form-control col-md-7 col-xs-12 npwp" type="text" name="npwp">
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nomor_asuransi">Nomor </label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="nomor_asuransi" name="nomor_asuransi" class="nomor_asuransi form-control col-md-7 col-xs-12">
+											<p class="data">84.661.833.4-847.000</p>
 										</div>
 									</div>
 								</div>
@@ -288,7 +253,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label for="jamsostek" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jamsostek</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input id="jamsostek" class="form-control col-md-7 col-xs-12 jamsostek" type="text" name="jamsostek">
+											<p class="data">98679642157</p>
 										</div>
 									</div>
 								</div>
@@ -298,7 +263,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label for="dplk" class="control-label col-md-4 col-sm-4 col-xs-12">No. DPLK</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="dplk" class="form-control col-md-7 col-xs-12 dplk" type="text" name="dplk">
+											<p class="data">-</p>
 										</div>
 									</div>
 								</div>
@@ -308,7 +273,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label for="jiwasraya" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jiwasraya</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="jiwasraya" class="form-control col-md-7 col-xs-12 jiwasraya" type="text" name="jiwasraya">
+											<p class="data">-</p>
 										</div>
 									</div>
 								</div>
@@ -333,21 +298,21 @@ $kode = KodeBagian::all();
 										<tbody>
 											<tr>
 												<td>1</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<td>SMA</td>
+												<td>SMA N 3 Semarang</td>
+												<td>Semarang</td>
+												<td>IPA</td>
+												<td> 12-05-2013</td>
+												<td>0382390823023</td>
 											</tr>
 											<tr>
 												<td>2</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<td>S1</td>
+												<td>Universitas Diponegoro</td>
+												<td>Semarang</td>
+												<td>Teknik Industri</td>
+												<td>14-08-2018</td>
+												<td>238292922245</td>
 											</tr>
 											<tr>
 												<td>3</td>
@@ -558,13 +523,6 @@ $kode = KodeBagian::all();
 								</div>
 							</div>
 							<div class="ln_solid"></div>
-							<div class="form-group">
-								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-									<button class="btn btn-primary" type="button">Cancel</button>
-									<button class="btn btn-primary" type="reset">Reset</button>
-									<button type="submit" class="btn btn-success">Submit</button>
-								</div>
-							</div>
 						</form>
 					</div>
 				</div>

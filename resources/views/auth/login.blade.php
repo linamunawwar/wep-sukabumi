@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>Gentellela Alela! | </title>
+    <link href="{{asset('public/img/Waskita.png')}}" rel='icon' type='image/x-icon'/>
+    <title>WEP - Becakayu 2A </title>
     
     <!-- Bootstrap -->
     <link href="{{ asset("public/css/bootstrap.min.css") }}" rel="stylesheet">
@@ -47,8 +48,8 @@
 					<br />
                         
 					<div>
-						<h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-						<p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+						<h1><img src="{{asset('public/img/Waskita-noback.png')}}" width="100px"><br><br> Waskita E-Project</h1>
+						<p>©2019 All Rights Reserved.</p>
 					</div>
 				</div>
 				{!! BootForm::close() !!}

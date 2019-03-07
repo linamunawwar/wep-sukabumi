@@ -33,45 +33,86 @@
                     </li>
                     <li><a><i class="fa fa-users"></i> Pegawai <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{url('/pegawai')}}">Data Pegawai</a></li>
-                            <li><a href="{{url('pegawai/struktur')}}">Struktur Pegawai</a></li>
-                            <li><a href="{{url('pegawai/pecat')}}">Pemecatan</a></li>
-                            <li><a href="{{url('pegawai/resign')}}">Pengajuan Resign</a></li>
+                            @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
+                                <li><a href="{{url('/pegawai')}}">Data Pegawai</a></li>
+                                <li><a href="{{url('pegawai/struktur')}}">Struktur Pegawai</a></li>
+                                <li><a href="{{url('pegawai/prod5')}}">PROD 05</a></li>
+                                <li><a href="{{url('pegawai/pecat')}}">Pemecatan</a></li>
+                                <li><a href="{{url('pegawai/resign')}}">Pengajuan Resign</a></li>
+                            @endif
+                            @if(Auth::user()->role_id == 2)
+                                <li><a href="{{url('/pegawai/user')}}">Data Pegawai</a></li>
+                                <li><a href="{{url('pegawai/user/struktur')}}">Struktur Pegawai</a></li>
+                                <li><a href="{{url('pegawai/user/resign')}}">Pengajuan Resign</a></li>
+                            @endif
+
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-sign-out"></i> Cuti / Ijin <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-sign-out"></i> Cuti / Izin <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#">Cuti</a></li>
-                            <li><a href="#">ijin</a></li>
+                             @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
+                                <li><a href="{{url('cuti')}}">Cuti</a></li>
+                                <li><a href="{{url('izin')}}">Izin</a></li>
+                            @endif
+                            @if(Auth::user()->role_id == 2)
+                                <li><a href="{{url('user/cuti')}}">Cuti</a></li>
+                                <li><a href="{{url('user/izin')}}">Izin</a></li>
+                                <li><a href="{{url('user/serah_tugas')}}">Penyerahan Tugas</a></li>
+                            @endif
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-money"></i>Gaji - Tunjangan <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="#"><i class="fa fa-money"></i>Data Gaji</a></li>
-                            <li><a href="#"><i class="fa fa-credit-card"></i>List Transfer</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="{{url('/memo')}}"><i class="fa fa-paper-plane"></i>Pesan Internal </a>
-                    </li>
-                    <li><a><i class="fa fa-envelope"></i>Disposisi <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="#">List Surat Masuk</a></li>
-                        </ul>
-                    </li>
+                     @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
+                        <li><a><i class="fa fa-money"></i>Gaji - Tunjangan <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{url('gaji')}}"><i class="fa fa-money"></i>Data Gaji</a></li>
+                                <li><a href="{{url('gaji/list_transfer')}}"><i class="fa fa-credit-card"></i>List Transfer</a></li>
+                            </ul>
+                         </li>
+                    @endif
+                    @if(Auth::user()->role_id == 2)
+                        <li><a><i class="fa fa-money"></i>Gaji - Tunjangan <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{url('user/gaji')}}"><i class="fa fa-money"></i>Data Gaji</a></li>
+                                <li><a href="{{url('user/gaji/slip_gaji')}}"><i class="fa fa-credit-card"></i>Pengajuan Slip Gaji</a></li>
+                            </ul>
+                        </li>
+                    @endif
+                    @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))    
+                        <li><a href="{{url('/memo')}}"><i class="fa fa-paper-plane"></i>Pesan Internal </a>
+                    @endif
+                    @if(Auth::user()->role_id == 2)
+                        <li><a href="{{url('/user/memo')}}"><i class="fa fa-paper-plane"></i>Pesan Internal </a></li>
+                    @endif   
+                    @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
+                        <li><a><i class="fa fa-envelope"></i>Disposisi <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="#">List Surat Masuk</a></li>
+                            </ul>
+                        </li>
+                    @endif
+
+                    @if(Auth::user()->role_id == 2)
+                        <li><a><i class="fa fa-envelope"></i>Disposisi <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="#">List Surat Masuk</a></li>
+                            </ul>
+                        </li>
+                    @endif
+
                     <li>
-                        <a href="javascript:void(0)">
+                        <a href="#">
                             <i class="fa fa-list-alt"></i>
                             Rencana Kebutuhan Pegawai
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a href="#">
                             <i class="fa fa-list"></i>
                             Form Kebutuhan Pelatihan
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)">
+                        <a href="#">
                             <i class="fa fa-gears"></i>
                             Peralatan Penunjang
                             <span class="label label-success pull-right">Flag</span>

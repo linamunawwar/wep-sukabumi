@@ -25,9 +25,11 @@
 								<tr>
 									<th>NIP</th>
 									<th>Nama</th>
-									<th>Jabatan</th>
-									<th>Mulai Tugas Di Proyek</th>
+									<th style="width: 15%;">Jabatan</th>
+									<th style="width: 15%;">Mulai Tugas Di Proyek</th>
 									<th>Gaji</th>
+									<th>Password</th>
+									<th>Download</th>
 									<th>Status</th>
 									<th>Action</th>
 								</tr>
@@ -39,6 +41,12 @@
 									<td>System Architect</td>
 									<td>2011/04/25</td>
 									<td>$320,800</td>
+									<td>hesnd7w</td>
+									<td>
+										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> CV </a>
+										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> MCU </a> 
+										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> PKWT </a>
+									</td>
 									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
 									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
@@ -48,7 +56,13 @@
 									<td>Accountant</td>
 									<td>2011/07/25</td>
 									<td>$170,750</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
+									<td>hske848</td>
+									<td>
+										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> CV </a>
+										 <a class="btn btn-success btn-xs"><i class="fa fa-download"></i> MCU </a>
+										 <a class="btn btn-success btn-xs"><i class="fa fa-download"></i> PKWT </a>
+									</td>
+									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
 									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
@@ -57,8 +71,13 @@
 									<td>Junior Technical Author</td>
 									<td>2009/01/12</td>
 									<td>$86,000</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
-									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td>dk08ehy</td>
+									<td>
+										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> CV </a> 
+										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a>
+									</td>
+									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
+									<td style="text-align: center;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
 									<td>QC150694</td>
@@ -66,6 +85,11 @@
 									<td>Senior Javascript Developer</td>
 									<td>2012/03/29</td>
 									<td>$433,060</td>
+									<td>sleur480</td>
+									<td>
+										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> CV </a> 
+										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a>
+									</td>
 									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
 									<td style="text-align: center;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
@@ -75,6 +99,12 @@
 									<td>Accountant</td>
 									<td>2008/11/28</td>
 									<td>$162,700</td>
+									<td>ksleo08</td>
+									<td>
+										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> CV </a> 
+										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a>
+										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> PKWT </a>
+									</td>
 									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
 									<td style="text-align: center;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
@@ -84,6 +114,11 @@
 									<td>Integration Specialist</td>
 									<td>2012/12/02</td>
 									<td>$372,000</td>
+									<td>po97htr</td>
+									<td>
+										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> CV </a> 
+										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a>
+									</td>
 									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
 									<td style="text-align: center;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
@@ -93,8 +128,13 @@
 									<td>Sales Assistant</td>
 									<td>2012/08/06</td>
 									<td>$137,500</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
-									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td>op09h76</td>
+									<td>
+										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> CV </a> 
+										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a>
+									</td>
+									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
+									<td style="text-align: center;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
 									<td>SA110695</td>
@@ -102,8 +142,13 @@
 									<td>Integration Specialist</td>
 									<td>2010/10/14</td>
 									<td>$327,900</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
-									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td>sft56ju</td>
+									<td>
+										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> CV </a> 
+										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a>
+									</td>
+									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
+									<td style="text-align: center;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
 									<td>PM110695</td>
@@ -111,6 +156,12 @@
 									<td>Javascript Developer</td>
 									<td>2009/09/15</td>
 									<td>$205,500</td>
+									<td>jskop09</td>
+									<td>
+										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> CV </a> 
+										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> MCU </a>
+										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> PKWT </a>
+									</td>
 									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
 									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
@@ -120,6 +171,12 @@
 									<td>Software Engineer</td>
 									<td>2008/12/13</td>
 									<td>$103,600</td>
+									<td>op09ju7</td>
+									<td>
+										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> CV </a> 
+										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> MCU </a>
+										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> PKWT </a>
+									</td>
 									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
 									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
@@ -129,7 +186,12 @@
 									<td>Office Manager</td>
 									<td>2008/12/19</td>
 									<td>$90,560</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
+									<td>io09uy6</td>
+									<td>
+										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> CV </a> 
+										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> MCU </a>
+									</td>
+									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
 									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
@@ -138,6 +200,11 @@
 									<td>Support Lead</td>
 									<td>2013/03/03</td>
 									<td>$342,000</td>
+									<td>op09hy6</td>
+									<td>
+										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> CV </a> 
+										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> MCU </a>
+									</td>
 									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
 									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
@@ -147,6 +214,11 @@
 									<td>Chief Executive Officer (CEO)</td>
 									<td>2009/10/09</td>
 									<td>$1,200,000</td>
+									<td>hjuyt78</td>
+									<td>
+										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> CV </a> 
+										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a>
+									</td>
 									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
 									<td style="text-align: center;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
