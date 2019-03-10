@@ -1,13 +1,13 @@
-<div class="col-md-3 left_col" style="width: 240px;">
+<div class="col-md-3 left_col" style="width: 240px; position: ;">
     <div class="left_col scroll-view">
-        <div class="navbar nav_title" style="border: 0;">
-            <a href="{{ url('/') }}" class="site_title"><img src="{{asset('public/img/Waskita.png')}}" width="40px" height="35px"> <span>WEP -  Becakayu 2A</span></a>
+        <div class="navbar nav_title" style="border: 0; background: #E7E7E7; width: 100%; margin-bottom: 10px;">
+            <a href="{{ url('/') }}" class="site_title"><img src="{{asset('public/img/Waskita-noback.png')}}" width="40px" height="25px"> <span style="color: #172D44 !important;">WEP -  Becakayu 2A</span></a>
         </div>
         
-        <div class="clearfix"></div>
+        <!-- <div class="clearfix"></div> -->
         
         <!-- menu profile quick info -->
-        <div class="profile">
+        <!-- <div class="profile">
             <div class="profile_pic">
                 <img src="{{ Gravatar::src(Auth::user()->email) }}" alt="Avatar of {{ Auth::user()->name }}" class="img-circle profile_img">
             </div>
@@ -15,9 +15,10 @@
                 <span>Welcome,</span>
                 <h2>{{ Auth::user()->name }}</h2>
             </div>
-        </div>
+        </div> -->
         <!-- /menu profile quick info -->
         
+        <br />
         <br />
         
         <!-- sidebar menu -->
@@ -82,49 +83,67 @@
                     @endif
                     @if(Auth::user()->role_id == 2)
                         <li><a href="{{url('/user/memo')}}"><i class="fa fa-paper-plane"></i>Pesan Internal </a></li>
-                    @endif   
+                    @endif
+
+
                     @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
-                        <li><a><i class="fa fa-envelope"></i>Disposisi <span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
-                                <li><a href="#">List Surat Masuk</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="{{url('spj')}}"><i class="fa fa-exchange"></i>SPJ</a></li>
                     @endif
 
                     @if(Auth::user()->role_id == 2)
+                         <li><a href="{{url('/user/spj')}}"><i class="fa fa-exchange"></i>SPJ</a></li>
+                    @endif
+
+                    @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
                         <li><a><i class="fa fa-envelope"></i>Disposisi <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="#">List Surat Masuk</a></li>
+                                <li><a href="{{url('surat_masuk')}}">List Surat Masuk</a></li>
+                                <li><a href="{{url('disposisi')}}">List Disposisi</a></li>
                             </ul>
                         </li>
                     @endif
 
+                    @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
                     <li>
-                        <a href="#">
+                        <a href="{{url('rkp')}}">
                             <i class="fa fa-list-alt"></i>
                             Rencana Kebutuhan Pegawai
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{url('pelatihan')}}">
                             <i class="fa fa-list"></i>
                             Form Kebutuhan Pelatihan
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{url('peralatan')}}">
                             <i class="fa fa-gears"></i>
                             Peralatan Penunjang
                             <span class="label label-success pull-right">Flag</span>
                         </a>
                     </li>
+                    @endif
+
+                    @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
                     <li>
-                        <a href="javascript:void(0)">
+                        <a href="{{url('arsip')}}">
                             <i class="fa fa-folder-open"></i>
                             Arsip Berkas
                             <span class="label label-success pull-right">Flag</span>
                         </a>
                     </li>
+                    @endif
+
+                    @if(Auth::user()->role_id == 2)
+                    <li>
+                        <a href="{{url('user/arsip')}}">
+                            <i class="fa fa-folder-open"></i>
+                            Arsip Berkas
+                            <span class="label label-success pull-right">Flag</span>
+                        </a>
+                    </li>
+                    @endif
 
                 </ul>
             </div>
