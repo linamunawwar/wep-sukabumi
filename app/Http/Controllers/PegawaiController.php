@@ -13,12 +13,30 @@ class PegawaiController extends Controller
         return view('pegawai.index');
     }
 
+    public function indexManager()
+    {
+        return view('pegawai.index_manager');
+    }
+
     public function getCreate()
     {
         $roles= Roles::get();
         
 
         return view('pegawai.create',['roles'=>$roles]);
+    }
+
+    public function getApproveAdmin()
+    {
+        return view('pegawai.approve_admin');
+    }
+
+    public function getEditCV()
+    {
+        $roles= Roles::get();
+        
+
+        return view('pegawai.cv',['roles'=>$roles]);
     }
 
     public function getStruktur()

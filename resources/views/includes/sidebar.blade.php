@@ -63,11 +63,7 @@
                         </ul>
                     </li>
                      @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
-                        <li><a><i class="fa fa-money"></i>Gaji - Tunjangan <span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
-                                <li><a href="{{url('gaji')}}"><i class="fa fa-money"></i>Data Gaji</a></li>
-                                <li><a href="{{url('gaji/list_transfer')}}"><i class="fa fa-credit-card"></i>List Transfer</a></li>
-                            </ul>
+                        <li><a href="{{url('gaji')}}"><i class="fa fa-money"></i>Gaji - Tunjangan </a>
                          </li>
                     @endif
                     @if(Auth::user()->role_id == 2)

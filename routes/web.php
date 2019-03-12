@@ -17,7 +17,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/', 'HomeController@index');
 
 	Route::get('/pegawai', 'PegawaiController@index');
+	Route::get('/pegawai/manager', 'PegawaiController@indexManager');
 	Route::get('/pegawai/create', 'PegawaiController@getCreate');
+	Route::get('/pegawai/approve_admin', 'PegawaiController@getApproveAdmin');
+	Route::get('/pegawai/edit_cv', 'PegawaiController@getEditCV');
 
 	Route::get('/pegawai/struktur', 'PegawaiController@getStruktur');
 

@@ -40,11 +40,6 @@
 					<span class="count_bottom"><i class="green">Need To be Approved</i></span>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
-					<span class="count_top"><i class="fa fa-envelope"></i> Disposisi Baru</span>
-					<div class="count">10</div>
-					<span class="count_bottom"><i class="green">Need To be processed</i></span>
-				</div>
-				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
 					<span class="count_top"><i class="fa fa-sign-out"></i> Rencana Kebutuhan Pegawai</span>
 					<div class="count green">6</div>
 					<span class="count_bottom"><i class="green">Need To be Approved</i></span>

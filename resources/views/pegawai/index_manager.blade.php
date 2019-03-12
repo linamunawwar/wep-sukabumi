@@ -14,9 +14,6 @@
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>Daftar Pegawai </h2>
-						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('pegawai/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
-						</ul>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
@@ -47,8 +44,8 @@
 										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> MCU </a> 
 										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> PKWT </a>
 									</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td style="text-align: center;"><span class="label label-success">Approved By Admin</span></td>
+									<td style="text-align: center;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
 									<td>SL170793</td>
@@ -62,8 +59,8 @@
 										 <a class="btn btn-success btn-xs"><i class="fa fa-download"></i> MCU </a>
 										 <a class="btn btn-success btn-xs"><i class="fa fa-download"></i> PKWT </a>
 									</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td style="text-align: center;"><span class="label label-success">Approved By Manager</span></td>
+									<td style="text-align: center;"><button class="btn btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
 									<td>HS1506795</td>
@@ -77,7 +74,7 @@
 										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a>
 									</td>
 									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: center;"><a href="{{url('pegawai/approve_admin')}}" class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</a></td>
+									<td style="text-align: center;"><button class="btn btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
 									<td>QC150694</td>
@@ -91,7 +88,7 @@
 										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a>
 									</td>
 									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: center;"><a href="{{url('pegawai/approve_admin')}}" class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</a></td>
+									<td style="text-align: center;"><button class="btn btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
 									<td>SL080695</td>
@@ -106,7 +103,7 @@
 										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> PKWT </a>
 									</td>
 									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: center;"><a href="{{url('pegawai/approve_admin')}}" class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</a></td>
+									<td style="text-align: center;"><button class="btn btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
 									<td>SO110695</td>
@@ -120,7 +117,7 @@
 										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a>
 									</td>
 									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: center;"><a href="{{url('pegawai/approve_admin')}}" class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</a></td>
+									<td style="text-align: center;"><button class="btn btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
 									<td>SO190292</td>
@@ -134,7 +131,7 @@
 										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a>
 									</td>
 									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: center;"><a href="{{url('pegawai/approve_admin')}}" class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</a></td>
+									<td style="text-align: center;"><button class="btn btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
 									<td>SA110695</td>
@@ -148,7 +145,7 @@
 										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a>
 									</td>
 									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: center;"><a href="{{url('pegawai/approve_admin')}}" class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</a></td>
+									<td style="text-align: center;"><button class="btn btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
 									<td>PM110695</td>
@@ -162,8 +159,8 @@
 										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> MCU </a>
 										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> PKWT </a>
 									</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td style="text-align: center;"><span class="label label-success">Approved By Admin</span></td>
+									<td style="text-align: center;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
 									<td>SO110695</td>
@@ -177,8 +174,8 @@
 										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> MCU </a>
 										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> PKWT </a>
 									</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td style="text-align: center;"><span class="label label-success">Approved By Admin</span></td>
+									<td style="text-align: center;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
 									<td>SL030695</td>
@@ -191,8 +188,8 @@
 										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> CV </a> 
 										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> MCU </a>
 									</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td style="text-align: center;"><span class="label label-success">Approved By Manager</span></td>
+									<td style="text-align: center;"><button class="btn btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
 									<td>SC310591</td>
@@ -205,8 +202,8 @@
 										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> CV </a> 
 										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> MCU </a>
 									</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td style="text-align: center;"><span class="label label-success">Approved By Manager</span></td>
+									<td style="text-align: center;"><button class="btn btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
 									<td>HS180693</td>
@@ -220,7 +217,7 @@
 										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a>
 									</td>
 									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: center;"><a href="{{url('pegawai/approve_admin')}}" class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</a></td>
+									<td style="text-align: center;"><button class="btn  btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 							</tbody>
 						</table>

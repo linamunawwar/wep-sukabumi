@@ -21,9 +21,9 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama Karyawan <span class="required">*</span></label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select>
+									<select class="form-control">
 										<option value="0">Pilih Karyawan</option>
-										<option value="SA150795">SA150795 - Tiger Nixon</option>
+										<option value="SA150795" selected="selected">SA150795 - Tiger Nixon</option>
 										<option value="SL170793">SL170793 - Garrett Winters</option>
 										<option value="HS1506795">HS1506795 - Cedric Kelly</option>
 									</select>
@@ -32,7 +32,13 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Alasan</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<textarea name="alasan"></textarea>
+									<textarea name="alasan" class="form-control" rows="5"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Pesangon</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input type="text" name="alasan" class="form-control" readonly="readonly" value="500.000">
 								</div>
 							</div>
 							

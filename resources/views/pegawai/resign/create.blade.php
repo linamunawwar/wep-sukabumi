@@ -21,10 +21,10 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama Karyawan <span class="required">*</span></label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select>
+									<select class="form-control">
 										<option value="0">Pilih Karyawan</option>
 										<option value="SA150795">SA150795 - Tiger Nixon</option>
-										<option value="SL170793">SL170793 - Garrett Winters</option>
+										<option value="SL170793" selected="selected">SL170793 - Garrett Winters</option>
 										<option value="HS1506795">HS1506795 - Cedric Kelly</option>
 									</select>
 								</div>
@@ -32,10 +32,25 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Alasan</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<textarea name="alasan"></textarea>
+									<textarea name="alasan" class="form-control"></textarea>
 								</div>
 							</div>
-							
+							<div class="form-group">
+									<label for="tgl_lahir" class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Terakhir Kerja * :</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<fieldset>
+											<div class="control-group">
+												<div class="controls">
+													<div class="col-md-11 xdisplay_inputx form-group has-feedback">
+														<input type="text" class="form-control has-feedback-left" id="single_cal1" placeholder="Tanggal Lahir" name="tgl_lahir" aria-describedby="inputSuccess2Status">
+														<span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+											 			<span id="inputSuccess2Status" class="sr-only">(success)</span>
+													</div>
+												</div>
+											</div>
+										</fieldset>
+									</div>
+								</div>
 							<div class="ln_solid"></div>
 							<div class="ln_solid"></div>
 							<div class="form-group">
