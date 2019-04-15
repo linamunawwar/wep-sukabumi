@@ -14,9 +14,6 @@
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>Rencana Kebutuhan Pegawai </h2>
-						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('rkp/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
-						</ul>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
@@ -31,70 +28,34 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td>Quality Control</td>
+									<td>Health & Saftey</td>
 									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
+									<td style="text-align: center;"><span class="label label-default">Not Approved </span></td>
+									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
 								</tr>
 								<tr>
 									<td>Quality Control</td>
 									<td>2011/04/25</td>
 									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
+									<td style="text-align: left;"> <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
+								</tr>
+								<tr>
+									<td>Quality Control</td>
+									<td>2011/04/25</td>
+									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
+									<td style="text-align: left;"> <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
 								</tr>
 								<tr>
 									<td>Site Operational</td>
 									<td>2011/04/25</td>
 									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>Site Commercial</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
+									<td style="text-align: left;"> <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
 								</tr>
 								<tr>
 									<td>Health & Safety</td>
 									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>Site Engineering</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>Site Engineering</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>Health & Safety</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>Site Logistic</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>Site Operational</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>Quality Control</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
+									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
+									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
 								</tr>
 							</tbody>
 						</table>

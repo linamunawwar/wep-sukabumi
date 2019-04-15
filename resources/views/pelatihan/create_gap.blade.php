@@ -48,7 +48,14 @@
 								<tbody>
 									<tr>
 										<td>1.</td>
-										<td><input type="text" name=""></td>
+										<td>
+											<select >
+												<option value="0">Pilih Karyawan</option>
+												<option value="SA150795" selected="selected">SA150795 - Tiger Nixon</option>
+												<option value="SL170793">SL170793 - Garrett Winters</option>
+												<option value="HS1506795">HS1506795 - Cedric Kelly</option>
+											</select>
+										</td>
 										<td><input type="text" name="" style="width: 50px;"></td>
 										<td><textarea rows="15" style="width: 250px;"></textarea></td>
 										<td><textarea rows="15" style="width: 250px;"></textarea></td>
@@ -57,7 +64,14 @@
 									</tr>
 									<tr>
 										<td>2.</td>
-										<td><input type="text" name=""></td>
+										<td>
+											<select >
+												<option value="0">Pilih Karyawan</option>
+												<option value="SA150795">SA150795 - Tiger Nixon</option>
+												<option value="SL170793">SL170793 - Garrett Winters</option>
+												<option value="HS1506795">HS1506795 - Cedric Kelly</option>
+											</select>
+										</td>
 										<td><input type="text" name="" style="width: 50px;"></td>
 										<td><textarea rows="15" style="width: 250px;"></textarea></td>
 										<td><textarea rows="15" style="width: 250px;"></textarea></td>

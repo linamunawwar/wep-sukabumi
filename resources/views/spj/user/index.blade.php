@@ -34,95 +34,58 @@
 								<tr>
 									<td>2011/04/25</td>
 									<td>800.000</td>
-									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>2011/04/25</td>
-									<td>250.000</td>
-									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td>Penggantian Biaya perjalanan dinas</td>
+									<td style="text-align: center;"><span class="label label-primary">Approved By Admin SDM</span></td>
+									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
 								</tr>
 								<tr>
 									<td>2011/04/25</td>
 									<td>870.000</td>
-									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td>Penggantian Biaya perjalanan dinas</td>
+									<td style="text-align: center;"><span class="label label-primary">Approved By Admin SDM</span></td>
+									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
 								</tr>
 								<tr>
 									<td>2011/04/25</td>
 									<td>800.000</td>
-									<td>Pengagantian Biaya perjalanan dinas</td>
+									<td>Penggantian Biaya perjalanan dinas</td>
 									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
 								</tr>
 								<tr>
 									<td>2011/04/25</td>
 									<td>500.000</td>
 									<td>Pengagantian Biaya perjalanan dinas</td>
 									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
 								</tr>
 								<tr>
 									<td>2011/04/25</td>
 									<td>800.000</td>
 									<td>Pengagantian Biaya perjalanan dinas</td>
 									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
 								</tr>
 								<tr>
 									<td>2011/04/25</td>
 									<td>800.000</td>
 									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
-								</tr>
-								<tr>
-									<td>2011/04/25</td>
-									<td>1.000.000</td>
-									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
-								</tr>
-								<tr>
-									<td>PM110695</td>
-									<td>Colleen Hurst</td>
-									<td>2011/04/25</td>
-									<td>900.000</td>
-									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button> <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>2011/04/25</td>
-									<td>800.000</td>
-									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button> <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
+									<td style="text-align: center;"><span class="label label-primary">Approved By Admin SDM</span></td>
+									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
 								</tr>
 								<tr>
 									<td>2011/04/25</td>
 									<td>200.000</td>
 									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
-								</tr>
-								<tr>
-									<td>2011/04/25</td>
-									<td>300.000</td>
-									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button> <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
+									<td style="text-align: center;"><span class="label label-primary">Approved By Admin SDM</span></td>
+									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
 								</tr>
 								<tr>
 									<td>2011/04/25</td>
 									<td>500.000</td>
 									<td>Pengagantian Biaya perjalanan dinas</td>
 									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
 								</tr>
 							</tbody>
 						</table>

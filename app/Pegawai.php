@@ -10,4 +10,9 @@ class Pegawai extends Model
     protected $table = "mst_pegawai";
 
     protected $fillable = ['nama','email','role_id'];
+
+    public function user()
+    {
+        return $this->hasOne('App\Models\User','pegawai_id','nip');
+    }
 }

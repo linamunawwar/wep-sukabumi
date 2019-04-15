@@ -8,28 +8,16 @@ use Illuminate\Http\Request;
 
 class PegawaiController extends Controller
 {
-    public function index()
-    {
-        return view('pegawai.index');
-    }
+    //----------------------------------------------------ADMIN---------------------------------------------
+    
+
 
     public function indexManager()
     {
         return view('pegawai.index_manager');
     }
 
-    public function getCreate()
-    {
-        $roles= Roles::get();
-        
-
-        return view('pegawai.create',['roles'=>$roles]);
-    }
-
-    public function getApproveAdmin()
-    {
-        return view('pegawai.approve_admin');
-    }
+   
 
     public function getEditCV()
     {
@@ -58,6 +46,10 @@ class PegawaiController extends Controller
     		return view('pegawai.pecat.create');
     }
 
+    public function pecatManager(){
+            return view('manager.pecat.index');
+    }
+
     public function getResign()
     {
         return view('pegawai.resign.index');
@@ -66,6 +58,10 @@ class PegawaiController extends Controller
     public function getCreateResign()
     {
         return view('pegawai.resign.create');
+    }
+
+    public function resignManager(){
+            return view('manager.resign.index');
     }
 
     //----------------------------USER----------------------------------

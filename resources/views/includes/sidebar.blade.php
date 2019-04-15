@@ -34,18 +34,36 @@
                     </li>
                     <li><a><i class="fa fa-users"></i> Pegawai <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
-                                <li><a href="{{url('/pegawai')}}">Data Pegawai</a></li>
-                                <li><a href="{{url('pegawai/struktur')}}">Struktur Pegawai</a></li>
-                                <li><a href="{{url('pegawai/prod5')}}">PROD 05</a></li>
-                                <li><a href="{{url('pegawai/pecat')}}">Pemecatan</a></li>
-                                <li><a href="{{url('pegawai/resign')}}">Pengajuan Resign</a></li>
+                            @if(Auth::user()->role_id == 1) 
+                                <li><a href="{{url('admin/pegawai')}}">Data Pegawai</a></li>
+                                <li><a href="{{url('admin/pegawai/struktur')}}">Struktur Pegawai</a></li>
+                                <li><a href="{{url('admin/pegawai/prod5')}}">PROD 05</a></li>
+                                <li><a href="{{url('admin/pegawai/pecat')}}">Pemecatan</a></li>
+                                <li><a href="{{url('admin/pegawai/resign')}}">Pengajuan Resign</a></li>
                             @endif
+
                             @if(Auth::user()->role_id == 2)
-                                <li><a href="{{url('/pegawai/user')}}">Data Pegawai</a></li>
-                                <li><a href="{{url('pegawai/user/struktur')}}">Struktur Pegawai</a></li>
-                                <li><a href="{{url('pegawai/user/resign')}}">Pengajuan Resign</a></li>
+                                <li><a href="{{url('user/pegawai')}}">Data Pegawai</a></li>
+                                <li><a href="{{url('user/pegawai/struktur')}}">Struktur Pegawai</a></li>
+                                <li><a href="{{url('user/pegawai/resign')}}">Pengajuan Resign</a></li>
                             @endif
+
+                            @if(Auth::user()->role_id == 3)
+                                <li><a href="{{url('manager/pegawai')}}">Data Pegawai</a></li>
+                                <li><a href="{{url('manager/pegawai/struktur')}}">Struktur Pegawai</a></li>
+                                <li><a href="{{url('manager/pegawai/prod5')}}">PROD 05</a></li>
+                                <li><a href="{{url('manager/pegawai/pecat')}}">Pemecatan</a></li>
+                                <li><a href="{{url('manager/pegawai/resign')}}">Pengajuan Resign</a></li>
+                            @endif 
+
+                            @if(Auth::user()->role_id == 4)
+                                <li><a href="{{url('pm/pegawai')}}">Data Pegawai</a></li>
+                                <li><a href="{{url('pm/pegawai/struktur')}}">Struktur Pegawai</a></li>
+                                <li><a href="{{url('pm/pegawai/prod5')}}">PROD 05</a></li>
+                                <li><a href="{{url('pm/pegawai/pecat')}}">Pemecatan</a></li>
+                                <li><a href="{{url('pm/pegawai/resign')}}">Pengajuan Resign</a></li>
+                            @endif
+                            
 
                         </ul>
                     </li>
@@ -100,6 +118,12 @@
                     @endif
 
                     @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
+                    <li>
+                        <a href="{{url('surat_keluar')}}">
+                            <i class="fa fa-envelope-o"></i>
+                            Surat Keluar
+                        </a>
+                    </li>
                     <li>
                         <a href="{{url('rkp')}}">
                             <i class="fa fa-list-alt"></i>

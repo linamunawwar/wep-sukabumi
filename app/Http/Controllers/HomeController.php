@@ -24,8 +24,27 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        //admin
+        if(Auth::user()->role_id == 1){
+            return view('admin.home_admin');
+        }
+        
+        //User
+        if(Auth::user()->role_id == 2){
+            $pegawai = Pegawai::find(Auth::user()->pegawai_id);
+            return view('user.home_user',['pegawai'=>$pegawai]);
+        }   
+
+        //Manager
+        if(Auth::user()->role_id == 3){
+            return view('manager.home_manager');
+        }
+
+        //Project Manager
+        if(Auth::user()->role_id == 4){
+            return view('pm.home_pm');
+        }
     }
 }

@@ -32,16 +32,11 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama Barang <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select class="form-control col-md-7 col-xs-12">
-										<option value="0">Pilih Barang</option>
-										<option value="SA150795">Sepeda Motor</option>
-										<option value="SL170793">Laptop</option>
-										<option value="HS1506795">PC</option>
-									</select>
+									<input type="text" class="form-control" name="">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="tanggal" class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal *:</label>
+								<label for="tanggal" class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Pinjam*:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<fieldset>
 										<div class="control-group">
@@ -54,12 +49,6 @@
 											</div>
 										</div>
 									</fieldset>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Durasi:</label>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="alasan" class="form-control col-md-7 col-xs-12">
 								</div>
 							</div>
 							

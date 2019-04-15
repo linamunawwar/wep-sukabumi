@@ -43,8 +43,7 @@
 									<td style="text-align: center;">
 										<button class="btn btn-default btn-xs"><i class="fa fa-edit"></i>  Edit</button>
 										<a class="btn btn-primary btn-xs" href="{{url('disposisi/monitor')}}"><i class="fa fa-eye"></i>  Monitor</a>
-										<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Form</button>
-										<button class="btn btn-success btn-xs"><i class="fa fa-folder"></i>  Arsip</button>
+										<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Arsip</button>
 									</td>
 								</tr>
 								<tr>
@@ -57,8 +56,7 @@
 									<td style="text-align: center;">
 										<button class="btn btn-default btn-xs"><i class="fa fa-edit"></i>  Edit</button>
 										<a href="{{url('disposisi/monitor')}}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i>  Monitor</a>
-										<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Form</button>
-										<button class="btn btn-success btn-xs"><i class="fa fa-folder"></i>  Arsip</button>
+										<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Arsip</button>
 									</td>
 								</tr>
 								<tr>
@@ -71,8 +69,7 @@
 									<td style="text-align: center;">
 										<button class="btn btn-default btn-xs"><i class="fa fa-edit"></i>  Edit</button>
 										<a href="{{url('disposisi/monitor')}}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i>  Monitor</a>
-										<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Form</button>
-										<button class="btn btn-success btn-xs"><i class="fa fa-folder"></i>  Arsip</button>
+										<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Arsip</button>
 									</td>
 								</tr>
 								<tr>
@@ -85,8 +82,7 @@
 									<td style="text-align: center;">
 										<button class="btn btn-default btn-xs"><i class="fa fa-edit"></i>  Edit</button>
 										<a href="{{url('disposisi/monitor')}}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i>  Monitor</a>
-										<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Form</button>
-										<button class="btn btn-success btn-xs"><i class="fa fa-folder"></i>  Arsip</button>
+										<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Arsip</button>
 									</td>
 								</tr>
 								<tr>
@@ -99,8 +95,7 @@
 									<td style="text-align: center;">
 										<button class="btn btn-default btn-xs"><i class="fa fa-edit"></i>  Edit</button>
 										<a href="{{url('disposisi/monitor')}}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i>  Monitor</a>
-										<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Form</button>
-										<button class="btn btn-success btn-xs"><i class="fa fa-folder"></i>  Arsip</button>
+										<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Arsip</button>
 									</td>
 								</tr>
 								<tr>
@@ -113,8 +108,7 @@
 									<td style="text-align: center;">
 										<button class="btn btn-default btn-xs"><i class="fa fa-edit"></i>  Edit</button>
 										<a href="{{url('disposisi/monitor')}}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i>  Monitor</a>
-										<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Form</button>
-										<button class="btn btn-success btn-xs"><i class="fa fa-folder"></i>  Arsip</button>
+										<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Arsip</button>
 									</td>
 								</tr>
 								<tr>
@@ -127,8 +121,7 @@
 									<td style="text-align: center;">
 										<button class="btn btn-default btn-xs"><i class="fa fa-edit"></i>  Edit</button>
 										<a href="{{url('disposisi/monitor')}}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i>  Monitor</a>
-										<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Form</button>
-										<button class="btn btn-success btn-xs"><i class="fa fa-folder"></i>  Arsip</button>
+										<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Arsip</button>
 									</td>
 								</tr>
 								<tr>
@@ -141,8 +134,7 @@
 									<td style="text-align: center;">
 										<button class="btn btn-default btn-xs"><i class="fa fa-edit"></i>  Edit</button>
 										<a href="{{url('disposisi/monitor')}}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i>  Monitor</a>
-										<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Form</button>
-										<button class="btn btn-success btn-xs"><i class="fa fa-folder"></i>  Arsip</button>
+										<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Arsip</button>
 									</td>
 								</tr>
 							</tbody>

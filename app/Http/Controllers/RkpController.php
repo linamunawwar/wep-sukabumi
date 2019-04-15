@@ -13,6 +13,16 @@ class RkpController extends Controller
 
     public function getCreate()
     {
-        return view('rkp.create');
+        return view('manager.rkp.create');
+    }
+
+     public function indexManager()
+    {
+        return view('manager.rkp.index');
+    }
+
+     public function indexPM()
+    {
+        return view('pm.rkp.index');
     }
 }

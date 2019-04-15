@@ -28,7 +28,7 @@
                     
 				<h1>Login Form</h1>
 			
-				{!! BootForm::email('email', 'Email', old('email'), ['placeholder' => 'Email', 'afterInput' => '<span>test</span>'] ) !!}
+				{!! BootForm::text('pegawai_id', 'ID Pegawai', old('email'), ['placeholder' => 'ID Pegawai', 'afterInput' => '<span>test</span>'] ) !!}
 			
 				{!! BootForm::password('password', 'Password', ['placeholder' => 'Password']) !!}
 				
@@ -40,10 +40,10 @@
 				<div class="clearfix"></div>
                     
 				<div class="separator">
-					<p class="change_link">New to site?
+					<!-- <p class="change_link">New to site?
 						<a href="{{ url('/register') }}" class="to_register"> Create Account </a>
 					</p>
-                        
+ -->                        
 					<div class="clearfix"></div>
 					<br />
                         

@@ -58,8 +58,8 @@
 							<table class="table table-bordered">
 								<tr>
 									<th rowspan="2">No.</th>
-									<th rowspan="2">Nama Pegawai</th>
-									<th rowspan="2">Jabatan</th>
+									<th rowspan="2" style="width: 100px;">Nama Pegawai</th>
+									<th rowspan="2" style="width: 80px;">Jabatan</th>
 									<th rowspan="2">Nama Pelatihan yang diusulkan</th>
 									<th colspan="4">Jadwal</th>
 								</tr>
@@ -73,8 +73,15 @@
 								<tbody>
 									<tr>
 										<td>1.</td>
-										<td><input type="text" name=""></td>
-										<td><input type="text" name="" style="width: 50px;"></td>
+										<td>
+											<select >
+												<option value="0">Pilih Karyawan</option>
+												<option value="SA150795" selected="selected">SA150795 - Tiger Nixon</option>
+												<option value="SL170793">SL170793 - Garrett Winters</option>
+												<option value="HS1506795">HS1506795 - Cedric Kelly</option>
+											</select>
+										</td>
+										<td><input type="text" name="" value="Staff Operational"></td>
 										<td><textarea rows="10" style="width: 250px;"></textarea></td>
 										<td><input type="text" name="" style="width: 30px;"></td>
 										<td><input type="text" name="" style="width: 30px;"></td>
@@ -83,8 +90,15 @@
 									</tr>
 									<tr>
 										<td>2.</td>
-										<td><input type="text" name=""></td>
-										<td><input type="text" name="" style="width: 50px;"></td>
+										<td>
+											<select >
+												<option value="0">Pilih Karyawan</option>
+												<option value="SA150795" >SA150795 - Tiger Nixon</option>
+												<option value="SL170793">SL170793 - Garrett Winters</option>
+												<option value="HS1506795">HS1506795 - Cedric Kelly</option>
+											</select>
+										</td>
+										<td><input type="text" name="" ></td>
 										<td><textarea rows="10" style="width: 250px;"></textarea></td>
 										<td><input type="text" name="" style="width: 30px;"></td>
 										<td><input type="text" name="" style="width: 30px;"></td>

@@ -37,4 +37,10 @@ class GajiController extends Controller
     {
         return view('gaji.user.create');
     }
+
+    //-------------------------MANAGER--------------
+    public function slipGajiManager()
+    {
+        return view('manager.gaji.index_slip');
+    }
 }

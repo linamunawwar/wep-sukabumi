@@ -1,6 +1,6 @@
 <!-- top navigation -->
 <div class="top_nav">
-    <div class="nav_menu" style="margin-left: 10px;">
+    <div class="nav_menu" style="margin-left: 10px; margin-bottom: 0px;">
         <nav>
             <div class="nav toggle">
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>

@@ -95,26 +95,7 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td>KAPRO</td>
-												<td>
-													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
-													<span class="label label-success">DONE</span>
-												</td>
-												<td>
-													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
-													<span class="label label-default">DONE</span>
-												</td>
-												<td>
-													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
-													<span class="label label-default">DONE</span>
-												</td>
-												<td>
-													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
-													<span class="label label-default">DONE</span>
-												</td>
-											</tr>
-											<tr>
-												<td>KALAP</td>
+												<td>PM</td>
 												<td>
 													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 													<span class="label label-success">DONE</span>
@@ -126,61 +107,58 @@
 													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
 												</td>
 												<td>
-													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
-													<span class="label label-default">DONE</span>
-												</td>
-											</tr>
-											<tr>
-												<td>KASIE LOGLAT</td>
-												<td>
-													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
-												</td>
-												<td>
-													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
-												</td>
-												<td>
-													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
-												</td>
-												<td>
 													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
 												</td>
 											</tr>
 											<tr>
-												<td>QUALITY CONTROL</td>
+												<td>SOM</td>
 												<td>
-													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
-													<span class="label label-success">DONE</span>
+													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
 												</td>
 												<td>
 													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 													<span class="label label-default">DONE</span>
 												</td>
 												<td>
+													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
+												</td>
+												<td>
+													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
+												</td>
+											</tr>
+											<tr>
+												<td>SLEM</td>
+												<td>
+													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
+												</td>
+												<td>
+													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
+												</td>
+												<td>
+													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
+												</td>
+												<td>
+													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
+												</td>
+											</tr>
+											<tr>
+												<td>QC</td>
+												<td>
+													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
+												</td>
+												<td>
+													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
+												</td>
+												<td>
 													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 													<span class="label label-default">DONE</span>
 												</td>
 												<td>
-													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
-													<span class="label label-default">DONE</span>
-												</td>
-											</tr>
-											<tr>
-												<td>KASIE TEKNIK</td>
-												<td>
-													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
-												</td>
-												<td>
-													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
-												</td>
-												<td>
-													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
-												</td>
-												<td>
 													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
 												</td>
 											</tr>
 											<tr>
-												<td>KASIE ADKON</td>
+												<td>SEM</td>
 												<td>
 													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
 												</td>
@@ -195,7 +173,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td>KASIE KSDM</td>
+												<td>SCM</td>
 												<td>
 													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
 												</td>
@@ -210,7 +188,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td>KASIE K3LP</td>
+												<td>SAM</td>
 												<td>
 													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
 												</td>
@@ -225,10 +203,24 @@
 												</td>
 											</tr>
 											<tr>
-												<td>HUMAS</td>
+												<td>HSE</td>
 												<td>
-													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
-													<span class="label label-success">DONE</span>
+													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
+												</td>
+												<td>
+													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
+												</td>
+												<td>
+													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
+												</td>
+												<td>
+													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
+												</td>
+											</tr>
+											<tr>
+												<td>HM</td>
+												<td>
+													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span> 
 												</td>
 												<td>
 													<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>

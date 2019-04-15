@@ -16,7 +16,6 @@
 						<h2>Daftar Gaji Pegawai </h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li><a href="{{url('gaji/create')}}"><button class="btn btn-primary"> <i class="fa fa-download"></i>  List Transfer</button></a></li>
-							<li><a href="{{url('gaji/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>

@@ -26,8 +26,8 @@
 									<th>NIP</th>
 									<th>Nama Pegawai</th>
 									<th>Nama Barang</th>
-									<th>Tanggal</th>
-									<th>Durasi</th>
+									<th>Tipe Barang</th>
+									<th>Tanggal Pinjam</th>
 									<th>Status</th>
 									<th>Action</th>
 								</tr>
@@ -37,8 +37,8 @@
 									<td>SA150795</td>
 									<td>Tiger Nixon</td>
 									<td>Motor</td>
+									<td>Kendaraan</td>
 									<td>2011/04/25</td>
-									<td>5 hari</td>
 									<td style="text-align: center;">
 										<span class="label label-success">Approved</span>
 										<span class="label label-success">Dikembalikan</span>
@@ -49,8 +49,8 @@
 									<td>SA150795</td>
 									<td>Tiger Nixon</td>
 									<td>Laptop</td>
+									<td>Elektronik</td>
 									<td>2011/04/25</td>
-									<td>5 hari</td>
 									<td style="text-align: center;">
 										<span class="label label-default">Approved</span>
 									</td>
@@ -60,8 +60,8 @@
 									<td>SA150795</td>
 									<td>Tiger Nixon</td>
 									<td>Motor</td>
+									<td>Kendaraan</td>
 									<td>2011/04/25</td>
-									<td>5 hari</td>
 									<td style="text-align: center;">
 										<span class="label label-success">Approved</span>
 										<span class="label label-success">Dipinjam</span>
@@ -72,8 +72,8 @@
 									<td>SA150795</td>
 									<td>Tiger Nixon</td>
 									<td>Motor</td>
+									<td>Kendaraan</td>
 									<td>2011/04/25</td>
-									<td>5 hari</td>
 									<td style="text-align: center;">
 										<span class="label label-success">Approved</span>
 										<span class="label label-success">Dikembalikan</span>
@@ -84,8 +84,8 @@
 									<td>SA150795</td>
 									<td>Tiger Nixon</td>
 									<td>Laptop</td>
+									<td>Elektronik</td>
 									<td>2011/04/25</td>
-									<td>5 hari</td>
 									<td style="text-align: center;">
 										<span class="label label-default">Approved</span>
 									</td>
@@ -95,8 +95,8 @@
 									<td>SA150795</td>
 									<td>Tiger Nixon</td>
 									<td>Motor</td>
+									<td>Kendaraan</td>
 									<td>2011/04/25</td>
-									<td>5 hari</td>
 									<td style="text-align: center;">
 										<span class="label label-success">Approved</span>
 										<span class="label label-success">Dipinjam</span>

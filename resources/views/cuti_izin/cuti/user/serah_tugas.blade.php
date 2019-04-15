@@ -33,10 +33,10 @@
 									<td>2011/04/25</td>
 									<td>5 hari</td>
 									<td >
-										<span class="label label-primary">Approved</span>
+										<span class="label label-primary">Approved By SDM</span>
 									</td>
 									<td style="text-align: left;">
-										<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>
+										<button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button>
 									</td>
 								</tr>
 								<tr>
@@ -44,7 +44,7 @@
 									<td>2011/07/25</td>
 									<td>5 hari</td>
 									<td>
-										<span class="label label-primary">Approved</span>
+										<span class="label label-primary">Approved By Penerima Tugas</span>
 									</td>
 									<td style="text-align: left;">
 										<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>
@@ -58,7 +58,7 @@
 										<span class="label label-default">Not Approved</span>
 									</td>
 									<td style="text-align: left;">
-										<button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button>
+										<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>
 									</td>
 								</tr>
 								<tr>
@@ -69,7 +69,7 @@
 										<span class="label label-default">Not Approved</span>
 									</td>
 									<td style="text-align: left;">
-										<button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button>
+										<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>
 									</td>
 								</tr>
 							</tbody>

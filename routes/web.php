@@ -16,6 +16,16 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/', 'HomeController@index');
 
+	Route::group(['prefix' => '/admin'], function () {
+		// Route::get('/', ['as' => 'users.countdown', 'uses' => 'HomeController@countdown']);
+		Route::get('/pegawai', 'admin\PegawaiController@index');
+		Route::get('/pegawai/create','admin\PegawaiController@getCreate');
+		Route::post('/pegawai/create','admin\PegawaiController@postCreate');
+		Route::get('/pegawai/edit/{id}','admin\PegawaiController@getEdit');
+		Route::post('/pegawai/edit/{id}','admin\PegawaiController@postEdit');
+		Route::get('/pegawai/struktur', 'admin\PegawaiController@getStruktur');
+		
+	});
 	Route::get('/pegawai', 'PegawaiController@index');
 	Route::get('/pegawai/manager', 'PegawaiController@indexManager');
 	Route::get('/pegawai/create', 'PegawaiController@getCreate');
@@ -51,9 +61,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/surat_masuk', 'DisposisiController@indexSuratMasuk');
 	Route::get('/surat_masuk/create', 'DisposisiController@getCreateSuratMasuk');
 
+
 	Route::get('/disposisi', 'DisposisiController@index');
 	Route::get('/disposisi/create', 'DisposisiController@getCreate');
 	Route::get('/disposisi/monitor', 'DisposisiController@getMonitor');
+
+	//---------------SURAT KELUAR-----------------------
+	Route::get('/surat_keluar', 'SuratKeluarController@index');
+	Route::get('/surat_keluar/create', 'SuratKeluarController@getCreate');
 
 	//--------------------RENCANA KEBUTUHAN PEGAWAI--------------------
 	Route::get('/rkp', 'RkpController@index');
@@ -100,5 +115,32 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/user/spj', 'SpjController@indexUser');
 	Route::get('/user/spj/create', 'SpjController@getCreateUser');
 
-	
+	//--------------------MANAGER-------------------------
+	Route::get('/manager/cuti', 'CutiController@indexManager');
+	Route::get('/manager/cuti/approve', 'CutiController@approveManager');
+
+	Route::get('/manager/pecat', 'PegawaiController@pecatManager');
+	Route::get('/manager/pecat/approve', 'PegawaiController@approvePecatManager');
+
+	Route::get('/manager/resign', 'PegawaiController@resignManager');
+	Route::get('/manager/resign/approve', 'PegawaiController@approveResignManager');
+
+	Route::get('/manager/slip_gaji', 'GajiController@slipGajiManager');
+	Route::get('/manager/slip_gaji/approve', 'GajiController@approveSlipGajiManager');
+
+	Route::get('/manager/disposisi', 'DisposisiController@indexManager');
+	Route::get('/manager/disposisi/proses', 'DisposisiController@prosesManager');
+
+	Route::get('/manager/rkp', 'RkpController@indexManager');
+	Route::get('/manager/rkp/create', 'RkpController@getCreate');
+
+	//--------------------PROJECT MANAGER-------------------------
+	Route::get('/pm/cuti', 'CutiController@indexPM');
+	Route::get('/pm/cuti/approve', 'CutiController@approvePM');
+
+	Route::get('/pm/disposisi', 'DisposisiController@indexPM');
+	Route::get('/pm/disposisi/proses', 'DisposisiController@prosesPM');
+
+	Route::get('/pm/rkp', 'RkpController@indexPM');
+	Route::get('/pm/rkp/detail', 'RkpController@getDetail');
 });

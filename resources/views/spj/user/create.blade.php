@@ -65,7 +65,22 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Alat Angkutan yang digunakan *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="nominal" class="form-control col-md-7 col-xs-12">
+									<div class="row">
+										<div class="col-md-4">
+											<input type="radio" name="nominal" > Pesawat Terbang
+										</div>
+										<div class="col-md-6">
+											<input type="radio" name="nominal" > Kereta Api / Bus / Travel
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-4">
+											<input type="radio" name="nominal" > Kendaraan Dinas
+										</div>
+										<div class="col-md-6">
+											<input type="radio" name="nominal" > Kendaraan Pribadi
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="form-group">
@@ -77,7 +92,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Keperluan *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<textarea name="keperluan" class="form-control col-md-7 col-xs-12" rows="5"></textarea>
+									<input type="text" name="keperluan" class="form-control col-md-7 col-xs-12">
 								</div>
 							</div>
 							<div class="form-group">

@@ -32,4 +32,27 @@ class DisposisiController extends Controller
     {
         return view('disposisi.monitoring');
     }
+
+    
+    public function indexManager()
+    {
+        return view('manager.disposisi.index');
+    }
+
+    public function prosesManager()
+    {
+        return view('manager.disposisi.proses');
+    }
+
+
+
+    public function indexPM()
+    {
+        return view('pm.disposisi.index');
+    }
+
+    public function prosesPM()
+    {
+        return view('pm.disposisi.proses');
+    }
 }

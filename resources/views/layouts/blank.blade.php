@@ -13,9 +13,10 @@
 
         <!-- Bootstrap -->
         <link href="{{ asset("public/css/bootstrap.min.css") }}" rel="stylesheet">
-        <link href="{{ asset("vendor/bower_components/daterangepicker/daterangepicker.css")}}" rel="stylesheet">
+        <!-- <link href="{{ asset("vendor/bower_components/daterangepicker/daterangepicker.css")}}" rel="stylesheet"> -->
+
         <link href="{{ asset("vendor/bower_components/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css")}}" rel="stylesheet">
-        <link href="{{ asset("public/css/custom.min.css") }}" rel="stylesheet">
+        
         <!-- Font Awesome -->
         <link href="{{ asset("public/css/font-awesome.min.css") }}" rel="stylesheet">
 
@@ -29,7 +30,8 @@
 
         <!-- Custom Theme Style -->
         <link href="{{ asset("public/css/gentelella.min.css") }}" rel="stylesheet">
-
+        <link href="{{ asset("public/css/custom.min.css") }}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{!!asset('public/js/datepicker/datepicker3.css')!!}">
         @stack('stylesheets')
 
     </head>
@@ -73,12 +75,14 @@
 
         <script src="{{ asset("public/js/custom.min.js") }}"></script>
         <script src="{{ asset("vendor/bower_components/moment/min/moment.min.js")}}"></script>
-        <script src="{{ asset("vendor/bower_components/daterangepicker/daterangepicker.js")}}"></script>
+        <!-- <script src="{{ asset("vendor/bower_components/daterangepicker/daterangepicker.js")}}"></script> -->
+        <script type="text/javascript" src="{!!asset('public/js/datepicker/bootstrap-datepicker.js')!!}"></script>
+        <script type="text/javascript" src="{!!asset('public/js/datepicker/bootstrap-datetimepicker-3.0.1.min.js')!!}"></script>
         <script src="{{ asset("vendor/bower_components/bootstrap-progressbar/bootstrap-progressbar.min.js")}}"></script>
         <script src="{{ asset("vendor/bower_components/chart.js/dist/Chart.min.js")}}"></script>
         <!-- Custom Theme Scripts -->
         <script src="{{ asset("public/js/gentelella.min.js") }}"></script>
-
+        
         @stack('scripts')
 
     </body>

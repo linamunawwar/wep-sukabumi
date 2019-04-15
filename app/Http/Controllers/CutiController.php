@@ -32,4 +32,31 @@ class CutiController extends Controller
     {
         return view('cuti_izin.cuti.user.serah_tugas');
     }
+
+//--------------------------MANAGER---------------------
+    public function indexManager()
+    {
+        return view('manager.cuti.index');
+    }
+
+    public function approveManager()
+    {
+        return view('manager.cuti.approve');
+    }
+
+    public function approveSDM()
+    {
+        return view('manager.cuti.approve_sdm');
+    }
+
+    //--------------------------MANAGER---------------------
+    public function indexPM()
+    {
+        return view('pm.cuti.index');
+    }
+
+    public function approvePM()
+    {
+        return view('pm.cuti.approve');
+    }
 }
