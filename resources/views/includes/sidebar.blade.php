@@ -1,28 +1,11 @@
-<div class="col-md-3 left_col" style="width: 240px; position: ;">
-    <div class="left_col scroll-view">
-        <div class="navbar nav_title" style="border: 0; background: #E7E7E7; width: 100%; margin-bottom: 10px;">
-            <a href="{{ url('/') }}" class="site_title"><img src="{{asset('public/img/Waskita-noback.png')}}" width="40px" height="25px"> <span style="color: #172D44 !important;">WEP -  Becakayu 2A</span></a>
+<div class="col-md-3 left_col" style="width: 240px; ">
+    <div class="left_col scroll-view" style="background: #00004E;">
+        <div class="navbar nav_title" style="border: 0; background: white; width: 100%; margin-bottom: 10px;">
+            <a href="{{ url('/') }}" class="site_title"><img src="{{asset('public/img/Waskita-noback.png')}}" width="40px" height="25px" style="color: white!important;"> <span style="color: #172D44 !important;">WEP -  Becakayu 2A</span></a>
         </div>
         
-        <!-- <div class="clearfix"></div> -->
-        
-        <!-- menu profile quick info -->
-        <!-- <div class="profile">
-            <div class="profile_pic">
-                <img src="{{ Gravatar::src(Auth::user()->email) }}" alt="Avatar of {{ Auth::user()->name }}" class="img-circle profile_img">
-            </div>
-            <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>{{ Auth::user()->name }}</h2>
-            </div>
-        </div> -->
-        <!-- /menu profile quick info -->
-        
-        <br />
-        <br />
-        
         <!-- sidebar menu -->
-        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu" style="background: #00004E;">
             <div class="menu_section">
                 <ul class="nav side-menu">
                     <li>
@@ -170,19 +153,18 @@
             
         </div>
         <!-- /sidebar menu -->
-        
         <!-- /menu footer buttons -->
-        <div class="sidebar-footer hidden-small" style="width: 238px;">
-            <a data-toggle="tooltip" data-placement="top" title="Settings">
+        <div class="sidebar-footer hidden-small" style="width: 240px;background: #00004E;">
+            <a data-toggle="tooltip" data-placement="top" title="Settings" style="background: #000030;">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
             </a>
-            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+            <a data-toggle="tooltip" data-placement="top" title="FullScreen" style="background: #000030;">
                 <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
             </a>
-            <a data-toggle="tooltip" data-placement="top" title="Lock">
+            <a data-toggle="tooltip" data-placement="top" title="Lock" style="background: #000030;">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
             </a>
-            <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ url('/logout') }}">
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ url('/logout') }}" style="background: #000030;">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
             </a>
         </div>

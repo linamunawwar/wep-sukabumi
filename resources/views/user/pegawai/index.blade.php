@@ -1,8 +1,21 @@
+<?php
+
+use App\KodeBagian;
+$kode = KodeBagian::all();
+
+?>
 @extends('layouts.blank')
 
 @push('stylesheets')
     <!-- Example -->
     <!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
+    <style type="text/css">
+    	.data{
+    		padding: 6px 12px;
+    		font-size: 15px;
+    		margin: 0px;
+    	}
+    </style>
 @endpush
 
 @section('main_container')
@@ -13,216 +26,550 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Daftar Pegawai </h2>
-						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('pegawai/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
-						</ul>
+						<div class="pull-left">
+							<a href="{{url('user/pegawai/edit_cv/'.Auth::user()->pegawai_id)}}" class="btn btn-primary"><i class="fa fa-edit"></i>  Edit CV</a>
+						</div>
+						<div class="pull-right">
+							<a href="" class="btn btn-success"><i class="fa fa-download"></i>    Download CV</a>
+							<a href="" class="btn btn-success"><i class="fa fa-download"></i>    Download MCU</a>
+						</div>
 						<div class="clearfix"></div>
 					</div>
-					<div class="x_content">
-						<table id="datatable" class="table table-striped table-bordered">
-							<thead>
-								<tr>
-									<th>NIP</th>
-									<th>Nama</th>
-									<th style="width: 15%;">Jabatan</th>
-									<th style="width: 15%;">Mulai Tugas Di Proyek</th>
-									<th>Gaji</th>
-									<th>Password</th>
-									<th>Action</th>
-									<th>Status</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>SA150795</td>
-									<td>Tiger Nixon</td>
-									<td>System Architect</td>
-									<td>2011/04/25</td>
-									<td>$320,800</td>
-									<td>hesnd7w</td>
-									<td>
-										<a class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit CV </a>
-										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> CV </a>
-										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> MCU </a> 
-										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> PKWT </a>
-									</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
-								</tr>
-								<tr>
-									<td>SL170793</td>
-									<td>Garrett Winters</td>
-									<td>Accountant</td>
-									<td>2011/07/25</td>
-									<td>$170,750</td>
-									<td>hske848</td>
-									<td>
-										<a class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit CV </a>
-										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> CV </a>
-										 <a class="btn btn-success btn-xs"><i class="fa fa-download"></i> MCU </a>
-										 <a class="btn btn-success btn-xs"><i class="fa fa-download"></i> PKWT </a>
-									</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
-								</tr>
-								<tr>
-									<td>HS1506795</td>
-									<td>Ashton Cox</td>
-									<td>Junior Technical Author</td>
-									<td>2009/01/12</td>
-									<td>$86,000</td>
-									<td>dk08ehy</td>
-									<td>
-										<a class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit CV </a>
-										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> CV </a> 
-										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a>
-									</td>
-									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: center;"><a href="{{url('pegawai/approve_admin')}}" class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</a></td>
-								</tr>
-								<tr>
-									<td>QC150694</td>
-									<td>Cedric Kelly</td>
-									<td>Senior Javascript Developer</td>
-									<td>2012/03/29</td>
-									<td>$433,060</td>
-									<td>sleur480</td>
-									<td>
-										<a class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit CV </a>
-										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> CV </a> 
-										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a>
-									</td>
-									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: center;"><a href="{{url('pegawai/approve_admin')}}" class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</a></td>
-								</tr>
-								<tr>
-									<td>SL080695</td>
-									<td>Airi Satou</td>
-									<td>Accountant</td>
-									<td>2008/11/28</td>
-									<td>$162,700</td>
-									<td>ksleo08</td>
-									<td>
-										<a class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit CV </a>
-										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> CV </a> 
-										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a>
-										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> PKWT </a>
-									</td>
-									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: center;"><a href="{{url('pegawai/approve_admin')}}" class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</a></td>
-								</tr>
-								<tr>
-									<td>SO110695</td>
-									<td>Brielle Williamson</td>
-									<td>Integration Specialist</td>
-									<td>2012/12/02</td>
-									<td>$372,000</td>
-									<td>po97htr</td>
-									<td>
-										<a class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit CV </a>
-										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> CV </a> 
-										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a>
-									</td>
-									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: center;"><a href="{{url('pegawai/approve_admin')}}" class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</a></td>
-								</tr>
-								<tr>
-									<td>SO190292</td>
-									<td>Herrod Chandler</td>
-									<td>Sales Assistant</td>
-									<td>2012/08/06</td>
-									<td>$137,500</td>
-									<td>op09h76</td>
-									<td>
-										<a class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit CV </a>
-										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> CV </a> 
-										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a>
-									</td>
-									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: center;"><a href="{{url('pegawai/approve_admin')}}" class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</a></td>
-								</tr>
-								<tr>
-									<td>SA110695</td>
-									<td>Rhona Davidson</td>
-									<td>Integration Specialist</td>
-									<td>2010/10/14</td>
-									<td>$327,900</td>
-									<td>sft56ju</td>
-									<td>
-										<a class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit CV </a>
-										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> CV </a> 
-										<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a>
-									</td>
-									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: center;"><a href="{{url('pegawai/approve_admin')}}" class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</a></td>
-								</tr>
-								<tr>
-									<td>PM110695</td>
-									<td>Colleen Hurst</td>
-									<td>Javascript Developer</td>
-									<td>2009/09/15</td>
-									<td>$205,500</td>
-									<td>jskop09</td>
-									<td>
-										<a class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit CV </a>
-										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> CV </a> 
-										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> MCU </a>
-										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> PKWT </a>
-									</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
-								</tr>
-								<tr>
-									<td>SO110695</td>
-									<td>Sonya Frost</td>
-									<td>Software Engineer</td>
-									<td>2008/12/13</td>
-									<td>$103,600</td>
-									<td>op09ju7</td>
-									<td>
-										<a class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit CV </a>
-										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> CV </a> 
-										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> MCU </a>
-										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> PKWT </a>
-									</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
-								</tr>
-								<tr>
-									<td>SL030695</td>
-									<td>Jena Gaines</td>
-									<td>Office Manager</td>
-									<td>2008/12/19</td>
-									<td>$90,560</td>
-									<td>io09uy6</td>
-									<td>
-										<a class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit CV </a>
-										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> CV </a> 
-										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> MCU </a>
-									</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
-								</tr>
-								<tr>
-									<td>SC310591</td>
-									<td>Quinn Flynn</td>
-									<td>Support Lead</td>
-									<td>2013/03/03</td>
-									<td>$342,000</td>
-									<td>op09hy6</td>
-									<td>
-										<a class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit CV </a>
-										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> CV </a> 
-										<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> MCU </a>
-									</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: center;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+					@if(Auth::user()->pegawai->is_new == 1)
+						<div class="x_content">
+							<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+								<div class="x_title">
+									<h4>Data Pribadi </h4>
+									<div class="alert alert-danger alert-dismissible fade in" role="alert">
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+										</button>
+										<strong>Akun Belum Diverifikasi!</strong> Harap Segera Lengkapi CV Anda. Silahkan Tekan Tombol Edit CV
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Nama Karyawan: <span class="required">*</span></label>
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<p class="data">{{Auth::user()->name}}</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-4 col-sm-4 col-xs-12">Gender</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<p class="data">Male</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="tgl_lahir" class="control-label col-md-4 col-sm-4 col-xs-12">Tanggal Lahir *</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<p class="data">22-02-1990</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nip">NIP <span class="required">*</span>:</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<p class="data">SA220290</p>
+									</div>
+								</div>
+								<div class="ln_solid"></div>
+							</form>
+						</div>
+					@else
+						<div class="x_content">
+							<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+								<div class="x_title">
+									<h4>Data Pribadi </h4>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Nama Karyawan: <span class="required">*</span></label>
+											<div class="col-md-4 col-sm-4 col-xs-12">
+												<p class="data">{{Auth::user()->name}}</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="role"> Role: <span class="required">*</span>:</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">User</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="gelar_depan">Gelar Depan: <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$pegawai->gelar_depan}}</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12">Gender</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												@if($pegawai->Gender == 'P')
+													<p class="data">Pria</p>
+												@else
+													<p class="data">Wanita</p>
+												@endif
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="gelar_blkg" class="control-label col-md-4 col-sm-4 col-xs-12">Gelar Belakang</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$pegawai->gelar_belakang}}</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="agama">Agama <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$pegawai->agama}}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="tempat_lahir" class="control-label col-md-4 col-sm-4 col-xs-12">Tempat Lahir</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$pegawai->tempat_lahir}}</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="status_kawin">Status Perkawinan <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$pegawai->status_kawin}}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="tgl_lahir" class="control-label col-md-4 col-sm-4 col-xs-12">Tanggal Lahir *</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{konversi_tanggal($pegawai->tanggal_lahir)}}</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="suami_istri" class="control-label col-md-4 col-sm-4 col-xs-12">Nama Suami / Istri</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$pegawai->suami_istri}}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nip">NIP <span class="required">*</span>:</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$pegawai->nip}}</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama_anak">Nama Anak <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$pegawai->anak}}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="alamat_tetap" class="control-label col-md-4 col-sm-4 col-xs-12">Alamat Rumah Tetap</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$pegawai->alamat_tetap}}</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_telp">No. Telepon <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$pegawai->telp}}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="alamat_sementara" class="control-label col-md-4 col-sm-4 col-xs-12">Alamat Rumah Sementara</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$pegawai->aamat_sementara}}</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_hp">No. HP <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$pegawai->hp}}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="email_pribadi">Alamat Email Pribadi <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$pegawai->email}}</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_fax">No. Faximile <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$pegawai->fax}}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="email_kantor">Alamat Email Kantor <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$pegawai->alamat_kantor}}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="ln_solid"></div>
+								<!-- ----------------------------------------------------- -->
+								<div class="x_title">
+									<h4>Data Bank & Asuransi </h4>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama_bank">Nama Bank <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$bank->nama_bank}}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">No. Rekening <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$bank->no_rekening}}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="npwp" class="control-label col-md-4 col-sm-4 col-xs-12">No. NPWP</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$bank->npwp}}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="jamsostek" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jamsostek</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$bank->jamsostek}}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="dplk" class="control-label col-md-4 col-sm-4 col-xs-12">No. DPLK</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$bank->dplk}}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="jiwasraya" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jiwasraya</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p class="data">{{$bank->jiwasraya}}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- ------------------------------------------------------------------------------------- -->
+								<div class="ln_solid"></div>
+								<div class="x_title">
+									<h4>Pendidikan Formal </h4>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<table class="table table-bordered">
+											<thead>
+												<th>No.</th>
+												<th>Jenjang</th>
+												<th>Asal Sekolah</th>
+												<th>Kota</th>
+												<th>Jurusan</th>
+												<th>Tanggal & Tahun Lulus</th>
+												<th>No. Ijazah</th>
+											</thead>
+											<tbody>
+												<tr>
+													<td>1</td>
+													<td>SMA</td>
+													<td>SMA N 3 Semarang</td>
+													<td>Semarang</td>
+													<td>IPA</td>
+													<td> 12-05-2013</td>
+													<td>0382390823023</td>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td>S1</td>
+													<td>Universitas Diponegoro</td>
+													<td>Semarang</td>
+													<td>Teknik Industri</td>
+													<td>14-08-2018</td>
+													<td>238292922245</td>
+												</tr>
+												<tr>
+													<td>3</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>4</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+
+								<!-- ------------------------------------------------------------------------------------- -->
+								<div class="ln_solid"></div>
+								<div class="x_title">
+									<h4>Data Sertifikat (Keahlian / Keterampilan) </h4>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<table class="table table-bordered">
+											<thead>
+												<th>No.</th>
+												<th>Tanggal Mulai</th>
+												<th>Tanggal Selesai</th>
+												<th>Sertifikat</th>
+												<th>No. Sertifikat</th>
+												<th>Institusi</th>
+											</thead>
+											<tbody>
+												<tr>
+													<td>1</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>3</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>4</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>5</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								
+								<!-- ------------------------------------------------------------------------------------- -->
+								<div class="ln_solid"></div>
+								<div class="x_title">
+									<h4>Data Pelatihan & Pengembangan </h4>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<table class="table table-bordered">
+											<thead>
+												<th>No.</th>
+												<th>Tanggal</th>
+												<th>Nama Pelatihan / Pengembangan</th>
+												<th>Tempat</th>
+												<th>Jumlah Jam / Hari</th>
+												<th>Penyelenggara</th>
+											</thead>
+											<tbody>
+												<tr>
+													<td>1</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>3</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>4</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>5</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+
+								<!-- ------------------------------------------------------------------------------------- -->
+								<div class="ln_solid"></div>
+								<div class="x_title">
+									<h4>Pengalaman Kerja di Luar Waskita Karya </h4>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<table class="table table-bordered">
+											<thead>
+												<th>No.</th>
+												<th>Tanggal Mulai</th>
+												<th>Tanggal Akhir</th>
+												<th>Nama Organisasi / Perusahaan</th>
+												<th>Jabatan</th>
+												<th>Keterangan</th>
+											</thead>
+											<tbody>
+												<tr>
+													<td>1</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>2</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>3</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>4</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>5</td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="ln_solid"></div>
+							</form>
+						</div>
+						
+					@endif
 				</div>
 			</div>
 		</div>

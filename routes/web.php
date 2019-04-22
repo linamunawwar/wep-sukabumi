@@ -23,14 +23,25 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/pegawai/create','admin\PegawaiController@postCreate');
 		Route::get('/pegawai/edit/{id}','admin\PegawaiController@getEdit');
 		Route::post('/pegawai/edit/{id}','admin\PegawaiController@postEdit');
+		Route::get('/pegawai/approve_admin', 'admin\PegawaiController@getApproveAdmin');
 		Route::get('/pegawai/struktur', 'admin\PegawaiController@getStruktur');
+
+		
+	});
+
+	Route::group(['prefix' => '/user'], function () {
+		// Route::get('/', ['as' => 'users.countdown', 'uses' => 'HomeController@countdown']);
+		Route::get('/pegawai', 'user\PegawaiController@index');
+		Route::get('/pegawai/edit_cv/{nip}', 'user\PegawaiController@getEditCV');
+		Route::post('/pegawai/edit_cv/{nip}','user\PegawaiController@postEditCV');
+		Route::get('/pegawai/struktur', 'user\PegawaiController@getStruktur');
 		
 	});
 	Route::get('/pegawai', 'PegawaiController@index');
 	Route::get('/pegawai/manager', 'PegawaiController@indexManager');
 	Route::get('/pegawai/create', 'PegawaiController@getCreate');
-	Route::get('/pegawai/approve_admin', 'PegawaiController@getApproveAdmin');
-	Route::get('/pegawai/edit_cv', 'PegawaiController@getEditCV');
+	
+	
 
 	Route::get('/pegawai/struktur', 'PegawaiController@getStruktur');
 

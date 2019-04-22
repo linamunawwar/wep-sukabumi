@@ -38,7 +38,7 @@
 
     <body class="nav-md">
         <div class="container body">
-            <div class="main_container">
+            <div class="main_container" style="background: #00004E;">
 
                 @include('includes/sidebar')
 

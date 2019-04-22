@@ -1,0 +1,80 @@
+<?php
+
+namespace App\Http\Controllers\user;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Roles;
+use App\Pegawai;
+use App\KodeBagian;
+use App\BankAsuransi;
+
+class PegawaiController extends Controller
+{
+	public function index()
+    {
+        $pegawai = Pegawai::where('nip',\Auth::user()->pegawai_id)->first();
+        $bank = BankAsuransi::where('nip',\Auth::user()->pegawai_id)->first();
+        return view('user.pegawai.index',['pegawai'=>$pegawai,'bank'=>$bank]);
+    }
+
+    public function getEditCV($nip)
+    {
+    	$pegawai = Pegawai::where('nip',$nip)->first();
+    	// dd($pegawai);
+        return view('user.pegawai.cv',['pegawai'=>$pegawai]);
+    }
+
+     public function postEditCV($nip)
+    {
+       $data = \Input::all();
+
+       $pegawai['nama'] = $data['nama'];
+       $pegawai['gelar_depan'] = $data['gelar_depan'];
+       $pegawai['gelar_belakang'] = $data['gelar_belakang'];
+       $pegawai['agama'] = $data['gelar_belakang'];
+       $pegawai['tempat_lahir'] = $data['tempat_lahir'];
+       $pegawai['status_kawin'] = $data['status_kawin'];
+       $pegawai['suami_istri'] = $data['suami_istri'];
+       $pegawai['alamat_tetap'] = $data['alamat_tetap'];
+       $pegawai['anak'] = $data['anak'];
+       $pegawai['alamat_sementara'] = $data['alamat_sementara'];
+       $pegawai['telp'] = $data['telp'];
+       $pegawai['hp'] = $data['hp'];
+       $pegawai['fax'] = $data['fax'];
+       $pegawai['email'] = $data['email'];
+       $pegawai['email_kantor'] = $data['email_kantor'];
+       $pegawai['nama_keluarga'] = $data['nama_keluarga'];
+       $pegawai['hub_keluarga'] = $data['hub_keluarga'];
+       $pegawai['alamat_keluarga'] = $data['alamat_keluarga'];
+       $pegawai['telp_keluarga'] = $data['telp_keluarga'];
+       $pegawai['is_new'] = 0;
+
+       $update = Pegawai::where('nip',$nip)->update($pegawai);
+
+       $bank = new BankAsuransi;
+       $bank->nip = $data['nip'];
+       $bank->nama_bank = $data['nama_bank'];
+       $bank->no_rekening = $data['no_rek'];
+       $bank->npwp = $data['npwp'];
+       $bank->jamsostek = $data['jamsostek'];
+       $bank->dplk = $data['dplk'];
+       $bank->jiwasraya = $data['jiwasraya'];
+       $bank->asuransi_lain = $data['nama_asuransi'];
+       $bank->nomor_lain = $data['nomor_asuransi'];
+
+       $bank->save();
+        
+       return view('user.pegawai.index',['pegawai'=>$pegawai]);
+    }
+
+    public function getStruktur()
+    {
+        return view('user.pegawai.struktur.index');
+    }
+
+    public function getResign()
+    {
+        return view('user.pegawai.resign');
+    }
+}

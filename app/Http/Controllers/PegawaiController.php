@@ -65,18 +65,5 @@ class PegawaiController extends Controller
     }
 
     //----------------------------USER----------------------------------
-    public function indexUser()
-    {
-        return view('pegawai.user.index');
-    }
-
-    public function getStrukturUser()
-    {
-        return view('pegawai.struktur.index');
-    }
-
-    public function getResignUser()
-    {
-        return view('pegawai.user.resign');
-    }
+    
 }

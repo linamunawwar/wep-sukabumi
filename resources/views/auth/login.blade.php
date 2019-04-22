@@ -27,7 +27,7 @@
 				{!! BootForm::open(['url' => url('/login'), 'method' => 'post']) !!}
                     
 				<h1>Login Form</h1>
-			
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				{!! BootForm::text('pegawai_id', 'ID Pegawai', old('email'), ['placeholder' => 'ID Pegawai', 'afterInput' => '<span>test</span>'] ) !!}
 			
 				{!! BootForm::password('password', 'Password', ['placeholder' => 'Password']) !!}
