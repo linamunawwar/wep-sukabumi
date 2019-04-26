@@ -67,11 +67,22 @@
 									<label class="control-label col-md-4 col-sm-4 col-xs-12" for="kode_bagian"> Bagian <span class="required">*</span>:</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
 										<select class="form-control col-md-7 col-xs-12" required="required" name="kode_bagian">
-											<?php $kode_bag = substr($pegawai->nip, 0, 2); ?>
 											<option value="">Pilih Bagian</option>
 											@foreach($kode as $kd)
-												 <?php $selected = ($kode_bag==$kd->kode) ?'selected':'';?>
+												 <?php $selected = ($pegawai->kode_bagian==$kd->kode) ?'selected':'';?>
 												<option value="{{$kd->kode}}" {{$selected}}>{{$kd->description}}</option>
+											@endforeach
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-4 col-sm-4 col-xs-12" for="kode_bagian"> Posisi <span class="required">*</span>:</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<select class="form-control col-md-7 col-xs-12" required="required" name="posisi_id">
+											<option value="">Pilih Posisi</option>
+											@foreach($posisi as $kd)
+												 <?php $selected = ($pegawai->posisi_id==$kd->id) ?'selected':'';?>
+												<option value="{{$kd->id}}" {{$selected}}>{{$kd->posisi}}</option>
 											@endforeach
 										</select>
 									</div>

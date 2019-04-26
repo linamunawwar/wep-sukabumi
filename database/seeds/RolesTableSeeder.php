@@ -34,6 +34,12 @@ class RolesTableSeeder extends Seeder
         ]);
         DB::table('roles')->insert([
             'id' => 4,
+            'name' => 'Manager SDM',
+            'description' => 'Manager SDM',
+            'created_at' => $date
+        ]);
+        DB::table('roles')->insert([
+            'id' => 5,
             'name' => 'Project Manager',
             'description' => 'Project Manager',
             'created_at' => $date

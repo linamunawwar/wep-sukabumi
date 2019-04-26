@@ -40,6 +40,7 @@
     "datatables.net-keytable": "^2.5.0",
     "datatables.net-fixedheader": "^3.1.5",
     "datatables.net-fixedheader-bs": "^3.1.5",
-    "datatables.net-scroller-bs": "^1.5.1"
+    "datatables.net-scroller-bs": "^1.5.1",
+    "select2": "~4.0"
   }
 }

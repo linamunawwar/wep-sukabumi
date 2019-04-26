@@ -17,44 +17,34 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama Karyawan <span class="required">*</span></label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select class="form-control">
-										<option value="0">Pilih Karyawan</option>
-										<option value="SA150795" selected="selected">SA150795 - Tiger Nixon</option>
-										<option value="SL170793">SL170793 - Garrett Winters</option>
-										<option value="HS1506795">HS1506795 - Cedric Kelly</option>
-									</select>
+									<input type="hidden" name="nip" value="{{$pecat->nip}}">
+									<input type="text" name="nama" readonly="readonly" value="{{$pecat->pegawai->nama}}" class="form-control">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Alasan</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<textarea name="alasan" class="form-control" rows="5"></textarea>
+									<textarea name="alasan" class="form-control" rows="5" readonly="readonly">{{$pecat->alasan}}</textarea>
 								</div>
 							</div>
 							<div class="form-group">
 									<label for="tgl_lahir" class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Terakhir Kerja * :</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<fieldset>
-											<div class="control-group">
-												<div class="controls">
-													<div class="col-md-11 xdisplay_inputx form-group has-feedback">
-														<input type="text" class="form-control has-feedback-left" id="single_cal1" placeholder="Tanggal Lahir" name="tgl_lahir" aria-describedby="inputSuccess2Status">
-														<span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-											 			<span id="inputSuccess2Status" class="sr-only">(success)</span>
-													</div>
-												</div>
-											</div>
-										</fieldset>
+										<div class='input-group date' id='datepicker' class="datepicker">
+											<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
+							                <input type='text' name='terakhir_kerja' class='form-control' required="required" placeholder="Terakhir Kerja" readonly="readonly" value="{{konversi_tanggal($pecat->terakhir_kerja)}}" />
+							            </div>
 									</div>
 								</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Pesangon</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="alasan" class="form-control" readonly="readonly" value="500.000">
+									<input type="text" name="pesangon" class="form-control" readonly="readonly" value="{{$pecat->pesangon}}">
 								</div>
 							</div>
 							
@@ -62,9 +52,8 @@
 							<div class="ln_solid"></div>
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-									<button class="btn btn-primary" type="button">Cancel</button>
-									<button class="btn btn-primary" type="reset">Reset</button>
-									<button type="submit" class="btn btn-success">Submit</button>
+									<button class="btn btn-primary" type="button">Back</button>
+									<button type="submit" class="btn btn-success">Verifikasi</button>
 								</div>
 							</div>
 						</form>
@@ -75,3 +64,15 @@
     </div>
     <!-- /page content -->
 @endsection
+@push('scripts')
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $('.pegawai').select2();
+
+		    $('#datepicker').datepicker({
+		        format: 'dd-mm-yyyy',
+		        autoclose: true
+	    	});
+		});
+	</script>
+@endpush

@@ -49,6 +49,7 @@ class PegawaiController extends Controller
        $pegawai['alamat_keluarga'] = $data['alamat_keluarga'];
        $pegawai['telp_keluarga'] = $data['telp_keluarga'];
        $pegawai['is_new'] = 0;
+       $pegawai['is_active'] = 0;
 
        $update = Pegawai::where('nip',$nip)->update($pegawai);
 

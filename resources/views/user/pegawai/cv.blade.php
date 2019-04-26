@@ -109,7 +109,16 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="status_kawin">Status Perkawinan <span class="required">*</span></label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="status_kawin" name="status_kawin" required="required" class="status_kawin form-control col-md-7 col-xs-12" value="{{$pegawai->status_kawin}}">
+											<?php $checked = ($pegawai->status_kawin == 'TK')? 'checked ': ''; ?>
+											<input type="radio" value="TK" name="status_kawin" {{$checked}}> Belum Kawin </br>
+											<?php $checked = ($pegawai->status_kawin == 'K0')? 'checked ': ''; ?>
+											<input type="radio" value="K0" name="status_kawin" {{$checked}}> Kawin </br>
+											<?php $checked = ($pegawai->status_kawin == 'K1')? 'checked ': ''; ?>
+											<input type="radio" value="K1" name="status_kawin" {{$checked}}> Kawin Anak 1 </br>
+											<?php $checked = ($pegawai->status_kawin == 'K2')? 'checked ': ''; ?>
+											<input type="radio" value="K2" name="status_kawin" {{$checked}}> Kawin Anak 2 </br>
+											<?php $checked = ($pegawai->status_kawin == 'K3')? 'checked ': ''; ?>
+											<input type="radio" value="K3" name="status_kawin" {{$checked}}> Kawin Anak 3 atau lebih </br>
 										</div>
 									</div>
 								</div>
@@ -259,7 +268,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama_bank">Nama Bank <span class="required">*</span></label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="nama_bank" name="nama_bank" required="required" class="nama_bank form-control col-md-7 col-xs-12">
+											<input type="text" id="nama_bank" name="nama_bank" required="required" class="nama_bank form-control col-md-7 col-xs-12" value="{{$bank->nama_bank}}">
 										</div>
 									</div>
 								</div>
@@ -274,7 +283,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">No. Rekening <span class="required">*</span></label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="no_rek" name="no_rek"  class="form-control col-md-7 col-xs-12">
+											<input type="text" id="no_rek" name="no_rek"  class="form-control col-md-7 col-xs-12" value="{{$bank->no_rekening}}">
 										</div>
 									</div>
 								</div>
@@ -282,7 +291,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12">Nama Asuransi</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="nama_asuransi" name="nama_asuransi" class="nama_asuransi form-control col-md-7 col-xs-12">
+											<input type="text" id="nama_asuransi" name="nama_asuransi" class="nama_asuransi form-control col-md-7 col-xs-12" value="{{$bank->asuransi_lain}}">
 										</div>
 									</div>
 								</div>
@@ -292,7 +301,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label for="npwp" class="control-label col-md-4 col-sm-4 col-xs-12">No. NPWP</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input id="npwp" class="form-control col-md-7 col-xs-12 npwp" type="text" name="npwp">
+											<input id="npwp" class="form-control col-md-7 col-xs-12 npwp" type="text" name="npwp" value="{{$bank->npwp}}">
 										</div>
 									</div>
 								</div>
@@ -300,7 +309,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nomor_asuransi">Nomor </label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="nomor_asuransi" name="nomor_asuransi" class="nomor_asuransi form-control col-md-7 col-xs-12">
+											<input type="text" id="nomor_asuransi" name="nomor_asuransi" class="nomor_asuransi form-control col-md-7 col-xs-12" value="{{$bank->nomor_lain}}">
 										</div>
 									</div>
 								</div>
@@ -310,7 +319,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label for="jamsostek" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jamsostek</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input id="jamsostek" class="form-control col-md-7 col-xs-12 jamsostek" type="text" name="jamsostek">
+											<input id="jamsostek" class="form-control col-md-7 col-xs-12 jamsostek" type="text" name="jamsostek" value="{{$bank->jamsostek}}">
 										</div>
 									</div>
 								</div>
@@ -320,7 +329,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label for="dplk" class="control-label col-md-4 col-sm-4 col-xs-12">No. DPLK</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="dplk" class="form-control col-md-7 col-xs-12 dplk" type="text" name="dplk">
+											<input type="text" id="dplk" class="form-control col-md-7 col-xs-12 dplk" type="text" name="dplk" value="{{$bank->dplk}}">
 										</div>
 									</div>
 								</div>
@@ -330,7 +339,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label for="jiwasraya" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jiwasraya</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="jiwasraya" class="form-control col-md-7 col-xs-12 jiwasraya" type="text" name="jiwasraya">
+											<input type="text" id="jiwasraya" class="form-control col-md-7 col-xs-12 jiwasraya" type="text" name="jiwasraya" value="{{$bank->jiwasraya}}">
 										</div>
 									</div>
 								</div>

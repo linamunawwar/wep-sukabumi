@@ -31,7 +31,7 @@
                                 <li><a href="{{url('user/pegawai/resign')}}">Pengajuan Resign</a></li>
                             @endif
 
-                            @if(Auth::user()->role_id == 3)
+                            @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 4)
                                 <li><a href="{{url('manager/pegawai')}}">Data Pegawai</a></li>
                                 <li><a href="{{url('manager/pegawai/struktur')}}">Struktur Pegawai</a></li>
                                 <li><a href="{{url('manager/pegawai/prod5')}}">PROD 05</a></li>
@@ -39,7 +39,7 @@
                                 <li><a href="{{url('manager/pegawai/resign')}}">Pengajuan Resign</a></li>
                             @endif 
 
-                            @if(Auth::user()->role_id == 4)
+                            @if(Auth::user()->role_id == 5)
                                 <li><a href="{{url('pm/pegawai')}}">Data Pegawai</a></li>
                                 <li><a href="{{url('pm/pegawai/struktur')}}">Struktur Pegawai</a></li>
                                 <li><a href="{{url('pm/pegawai/prod5')}}">PROD 05</a></li>
@@ -52,7 +52,7 @@
                     </li>
                     <li><a><i class="fa fa-sign-out"></i> Cuti / Izin <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                             @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
+                             @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))
                                 <li><a href="{{url('cuti')}}">Cuti</a></li>
                                 <li><a href="{{url('izin')}}">Izin</a></li>
                             @endif
@@ -63,7 +63,7 @@
                             @endif
                         </ul>
                     </li>
-                     @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
+                     @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))
                         <li><a href="{{url('gaji')}}"><i class="fa fa-money"></i>Gaji - Tunjangan </a>
                          </li>
                     @endif
@@ -75,7 +75,7 @@
                             </ul>
                         </li>
                     @endif
-                    @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))    
+                    @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))    
                         <li><a href="{{url('/memo')}}"><i class="fa fa-paper-plane"></i>Pesan Internal </a>
                     @endif
                     @if(Auth::user()->role_id == 2)
@@ -83,7 +83,7 @@
                     @endif
 
 
-                    @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
+                    @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))
                         <li><a href="{{url('spj')}}"><i class="fa fa-exchange"></i>SPJ</a></li>
                     @endif
 
@@ -100,7 +100,7 @@
                         </li>
                     @endif
 
-                    @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
+                    @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))
                     <li>
                         <a href="{{url('surat_keluar')}}">
                             <i class="fa fa-envelope-o"></i>
@@ -128,7 +128,7 @@
                     </li>
                     @endif
 
-                    @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
+                    @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))
                     <li>
                         <a href="{{url('arsip')}}">
                             <i class="fa fa-folder-open"></i>

@@ -40,7 +40,7 @@
 									<tr>
 										<td>{{$pegawai->nip}}</td>
 										<td>{{$pegawai->nama}}</td>
-										<td>System Architect</td>
+										<td>{{$pegawai->posisi->posisi}}</td>
 										<td>{{konversi_tanggal($pegawai->tanggal_masuk)}}</td>
 										<td>gaji</td>
 										<td>{{$pegawai->user->pass_asli}}</td>
@@ -48,32 +48,38 @@
 											@if($pegawai->is_new == 1)
 												<a class="btn btn-warning btn-xs" href="{{url('admin/pegawai/edit/'.$pegawai->id.'')}}"><i class="fa fa-edit"></i> Edit </a>
 											@else
-												<a class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit CV </a>
-												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> CV </a>
-												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> MCU </a> 
-												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i> PKWT </a>
+												<a class="btn btn-primary btn-xs" href="{{url('admin/pegawai/edit_cv/'.$pegawai->id.'')}}"><i class="fa fa-edit"></i> Edit CV </a>
+												@if($pegawai->is_active == 1)
+													<a class="btn btn-success btn-xs" href="{{url('pm/unduhcv/'.$pegawai->nip.'')}}"><i class="fa fa-download"></i> CV </a>
+													<a class="btn btn-success btn-xs" href="{{url('pm/unduhmcu/'.$pegawai->nip.'')}}"><i class="fa fa-download"></i> MCU </a> 
+													<a class="btn btn-success btn-xs" href="{{url('pm/unduhpkwt/'.$pegawai->nip.'')}}"><i class="fa fa-download"></i> PKWT </a>
+												@else
+													<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> CV </a>
+													<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a> 
+													<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> PKWT </a>
+												@endif
 											@endif
 												
 										</td>
 										<td style="text-align: center;">
-											@if($pegawai->is_verif == 0)
+											@if($pegawai->is_verif_admin == 0)
 												<span class="label label-default">Not Approved</span>
-											@elseif($pegawai->is_verif == 1)
+											@elseif(($pegawai->is_verif_admin == 1) && ($pegawai->is_verif_mngr == 0) && ($pegawai->is_verif_pm == 0))
 												<span class="label label-primary">Approved by Admin</span>
-											@elseif($pegawai->is_verif == 2)
+											@elseif(($pegawai->is_verif_mngr == 1) && ($pegawai->is_verif_pm == 0))
 												<span class="label label-primary">Approved by Admin</span>	
 												<span class="label label-success">Approved by Manager</span>
-											@elseif($pegawai->is_verif == 3)
+											@elseif($pegawai->is_verif_pm == 1)
 												<span class="label label-primary">Approved by Admin</span>	
 												<span class="label label-success">Approved by Manager</span>
 												<span class="label label-success">Approved by PM</span>
 											@endif
 										</td>
 										<td style="text-align: center;">
-											@if(($pegawai->is_new == 1) || ($pegawai->is_verif != 0))
+											@if(($pegawai->is_new == 1) || ($pegawai->is_verif_admin != 0))
 												<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>
-											@elseif(($pegawai->is_new == 0) && ($pegawai->is_verif == 0))
-												<button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button>
+											@elseif(($pegawai->is_new == 0) && ($pegawai->is_verif_admin == 0))
+												<a class="btn btn-success btn-xs" href="{{url('admin/pegawai/approve/'.$pegawai->id.'')}}"><i class="fa fa-check" ></i>  Approve</a>
 											@endif
 										</td>
 									</tr>

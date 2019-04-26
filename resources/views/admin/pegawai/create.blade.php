@@ -71,6 +71,17 @@
 									</div>
 								</div>
 								<div class="form-group">
+									<label class="control-label col-md-4 col-sm-4 col-xs-12" for="kode_bagian"> Posisi <span class="required">*</span>:</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<select class="form-control col-md-7 col-xs-12" required="required" name="posisi_id">
+											<option value="">Pilih Posisi</option>
+											@foreach($posisi as $kd)
+												<option value="{{$kd->id}}">{{$kd->posisi}}</option>
+											@endforeach
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
 									<label for="tgl_lahir" class="control-label col-md-4 col-sm-4 col-xs-12">Tanggal Masuk * :</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
 										<div class='input-group date' id='datepicker2' class="datepicker">

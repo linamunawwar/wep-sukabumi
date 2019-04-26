@@ -38,12 +38,12 @@ class HomeController extends Controller
         }   
 
         //Manager
-        if(Auth::user()->role_id == 3){
+        if(Auth::user()->role_id == 3 || Auth::user()->role_id == 4){
             return view('manager.home_manager');
         }
 
         //Project Manager
-        if(Auth::user()->role_id == 4){
+        if(Auth::user()->role_id == 5){
             return view('pm.home_pm');
         }
     }

@@ -23,32 +23,60 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/pegawai/create','admin\PegawaiController@postCreate');
 		Route::get('/pegawai/edit/{id}','admin\PegawaiController@getEdit');
 		Route::post('/pegawai/edit/{id}','admin\PegawaiController@postEdit');
-		Route::get('/pegawai/approve_admin', 'admin\PegawaiController@getApproveAdmin');
+		Route::get('/pegawai/edit_cv/{id}', 'admin\PegawaiController@getEditCV');
+		Route::post('/pegawai/edit_cv/{id}','admin\PegawaiController@postEditCV');
+		Route::get('/pegawai/approve/{id}', 'admin\PegawaiController@getApprove');
+		Route::post('/pegawai/approve/{id}', 'admin\PegawaiController@postApprove');
 		Route::get('/pegawai/struktur', 'admin\PegawaiController@getStruktur');
+
+		//pemecatan
+		Route::get('/pegawai/pecat', 'admin\PegawaiController@getPecat');
+		Route::get('/pegawai/pecat/create', 'admin\PegawaiController@getCreatePecat');
+		Route::post('/pegawai/pecat/create', 'admin\PegawaiController@postCreatePecat');
 
 		
 	});
 
 	Route::group(['prefix' => '/user'], function () {
-		// Route::get('/', ['as' => 'users.countdown', 'uses' => 'HomeController@countdown']);
 		Route::get('/pegawai', 'user\PegawaiController@index');
 		Route::get('/pegawai/edit_cv/{nip}', 'user\PegawaiController@getEditCV');
 		Route::post('/pegawai/edit_cv/{nip}','user\PegawaiController@postEditCV');
 		Route::get('/pegawai/struktur', 'user\PegawaiController@getStruktur');
 		
 	});
-	Route::get('/pegawai', 'PegawaiController@index');
-	Route::get('/pegawai/manager', 'PegawaiController@indexManager');
-	Route::get('/pegawai/create', 'PegawaiController@getCreate');
-	
+
+	Route::group(['prefix' => '/manager'], function () {
+		Route::get('/pegawai', 'manager\PegawaiController@index');
+		Route::get('/pegawai/approve/{id}', 'manager\PegawaiController@getApprove');
+		Route::post('/pegawai/approve/{id}', 'manager\PegawaiController@postApprove');
+		Route::get('/pegawai/struktur', 'manager\PegawaiController@getStruktur');
+
+		Route::get('/pegawai/pecat', 'manager\PegawaiController@getPecat');
+		Route::get('/pegawai/pecat/approve/{id}', 'manager\PegawaiController@getApprovePecat');
+		Route::post('/pegawai/pecat/approve/{id}', 'manager\PegawaiController@postApprovePecat');
+		Route::get('/pegawai/pecat/approve_sdm/{id}', 'manager\PegawaiController@getApprovePecatSDM');
+		Route::post('/pegawai/pecat/approve_sdm/{id}', 'manager\PegawaiController@postApprovePecatSDM');
+	});
+
+	Route::group(['prefix' => '/pm'], function () {
+		Route::get('/pegawai', 'pm\PegawaiController@index');
+		Route::get('/pegawai/approve/{id}', 'pm\PegawaiController@getApprove');
+		Route::post('/pegawai/approve/{id}', 'pm\PegawaiController@postApprove');
+		Route::get('/pegawai/struktur', 'pm\PegawaiController@getStruktur');
+
+		Route::get('/pegawai/pecat', 'pm\PegawaiController@getPecat');
+		Route::get('/pegawai/pecat/approve/{id}', 'pm\PegawaiController@getApprovePecat');
+		Route::post('/pegawai/pecat/approve/{id}', 'pm\PegawaiController@postApprovePecat');
+	});
+
+
 	
 
 	Route::get('/pegawai/struktur', 'PegawaiController@getStruktur');
 
 	Route::get('/pegawai/prod05', 'PegawaiController@getProd05');
 
-	Route::get('/pegawai/pecat', 'PegawaiController@getPecat');
-	Route::get('/pegawai/pecat/create', 'PegawaiController@getCreatePecat');
+	
 
 	Route::get('/pegawai/resign', 'PegawaiController@getResign');
 	Route::get('/pegawai/resign/create', 'PegawaiController@getCreateResign');

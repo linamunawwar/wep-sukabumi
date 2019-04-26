@@ -15,4 +15,14 @@ class Pegawai extends Model
     {
         return $this->hasOne('App\Models\User','pegawai_id','nip');
     }
+
+    public function posisi()
+    {
+        return $this->belongsTo('App\Posisi','posisi_id','id');
+    }
+
+    public function pecat()
+    {
+        return $this->hasOne('App\Pecat','nip','nip');
+    }
 }
