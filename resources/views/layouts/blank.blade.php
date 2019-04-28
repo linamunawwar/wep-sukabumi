@@ -28,6 +28,7 @@
         <link href="{{ asset("vendor/bower_components/orgchart/css/jquery.orgchart.css") }}" rel="stylesheet">
         <link href="{{ asset("vendor/bower_components/orgchart/css/jquery.orgchart.min.css") }}" rel="stylesheet">
         <link href="{{ asset("vendor/bower_components/select2/dist/css/select2.min.css") }}" rel="stylesheet" />
+        <link href="{{ asset("vendor/bower_components/nprogress/nprogress.css") }}" rel="stylesheet" />
 
         <!-- Custom Theme Style -->
         <link href="{{ asset("public/css/gentelella.min.css") }}" rel="stylesheet">
@@ -82,6 +83,8 @@
         <script type="text/javascript" src="{!!asset('public/js/datepicker/bootstrap-datetimepicker-3.0.1.min.js')!!}"></script>
         <script src="{{ asset("vendor/bower_components/bootstrap-progressbar/bootstrap-progressbar.min.js")}}"></script>
         <script src="{{ asset("vendor/bower_components/chart.js/dist/Chart.min.js")}}"></script>
+        <script src="{{ asset("vendor/bower_components/nprogress/nprogress.js")}}"></script>
+        <script src="{{ asset("public/js/jquery.smartWizard.js") }}"></script>
         <!-- Custom Theme Scripts -->
         <script src="{{ asset("public/js/gentelella.min.js") }}"></script>
         

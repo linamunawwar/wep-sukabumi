@@ -8,6 +8,8 @@ use App\Roles;
 use App\Pegawai;
 use App\KodeBagian;
 use App\BankAsuransi;
+use App\MCU;
+use App\MCUPegawai;
 
 class PegawaiController extends Controller
 {
@@ -20,9 +22,11 @@ class PegawaiController extends Controller
 
     public function getEditCV($nip)
     {
-    	$pegawai = Pegawai::where('nip',$nip)->first();
+      $pegawai = Pegawai::where('nip',$nip)->first();
+      $bank = BankAsuransi::where('nip',$nip)->first();
+    	$mcus = MCU::where('soft_delete','0')->get();
     	// dd($pegawai);
-        return view('user.pegawai.cv',['pegawai'=>$pegawai]);
+        return view('user.pegawai.cv',['pegawai'=>$pegawai,'bank'=>$bank,'mcus'=>$mcus]);
     }
 
      public function postEditCV($nip)
@@ -50,6 +54,15 @@ class PegawaiController extends Controller
        $pegawai['telp_keluarga'] = $data['telp_keluarga'];
        $pegawai['is_new'] = 0;
        $pegawai['is_active'] = 0;
+       $pegawai['is_verif_admin'] = 0;
+       $pegawai['verif_admin_by'] = '';
+       $pegawai['verify_admin_time'] = '';
+       $pegawai['is_verif_mngr'] = 0;
+       $pegawai['verif_mngr_by'] = '';
+       $pegawai['verify_mngr_time'] = '';
+       $pegawai['is_verif_pm'] = 0;
+       $pegawai['verif_pm_by'] = '';
+       $pegawai['verify_pm_time'] = '';
 
        $update = Pegawai::where('nip',$nip)->update($pegawai);
 
@@ -65,6 +78,28 @@ class PegawaiController extends Controller
        $bank->nomor_lain = $data['nomor_asuransi'];
 
        $bank->save();
+
+       $find_mcu = MCUPegawai::where('nip',$data['nip'])->first();
+
+       if($find_mcu){
+          $find_mcu = MCUPegawai::where('nip',$data['nip'])->update(['soft_delete'=>'1']);
+        }
+
+        $pernyataan = $data['pernyataan'];
+        $data_mcu = $data['mcu'];
+        
+        foreach ($data['mcu'] as $key => $mcu) {
+          $mcu = new MCUPegawai;
+          $mcu->nip = $data['nip'];
+          $mcu->pernyataan_id = $pernyataan[$key-1];
+          $mcu->nilai = $data_mcu[$key];
+          $mcu->user_id = \Auth::user()->id;
+          $mcu->role_id = \Auth::user()->role_id;
+
+          $mcu->save();
+        }
+          
+        
         
        return view('user.pegawai.index',['pegawai'=>$pegawai]);
     }

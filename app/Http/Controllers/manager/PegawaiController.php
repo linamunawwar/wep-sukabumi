@@ -10,6 +10,8 @@ use App\KodeBagian;
 use App\BankAsuransi;
 use App\Gaji;
 use App\Pecat;
+use App\MCU;
+use App\MCUPegawai;
 
 class PegawaiController extends Controller
 {
@@ -24,8 +26,9 @@ class PegawaiController extends Controller
         $pegawai = Pegawai::find($id);
         $bank= BankAsuransi::where('nip',$pegawai->nip)->first();
         $kode = KodeBagian::all();
+        $mcus = MCU::where('soft_delete','0')->get();
 
-        return view('manager.pegawai.approve_manager',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode]);
+        return view('manager.pegawai.approve_manager',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'mcus'=>$mcus]);
     }
 
     public function postApprove($id)

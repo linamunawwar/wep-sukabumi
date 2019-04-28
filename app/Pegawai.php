@@ -25,4 +25,9 @@ class Pegawai extends Model
     {
         return $this->hasOne('App\Pecat','nip','nip');
     }
+
+    public function mcuPegawai()
+    {
+        return $this->hasMany('App\MCUPegawai','nip','nip');
+    }
 }

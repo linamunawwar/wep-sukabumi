@@ -9,6 +9,8 @@ use App\BankAsuransi;
 use App\Gaji;
 use App\Posisi;
 use App\Pecat;
+use App\MCU;
+use App\MCUPegawai;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -160,8 +162,9 @@ class PegawaiController extends Controller
         $pegawai = Pegawai::find($id);
         $bank= BankAsuransi::where('nip',$pegawai->nip)->first();
         $kode = KodeBagian::all();
+        $mcus = MCU::where('soft_delete','0')->get();
 
-        return view('admin.pegawai.edit_cv',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode]);
+        return view('admin.pegawai.edit_cv',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'mcus'=>$mcus]);
     }
 
     public function postEditCV($id)
@@ -221,8 +224,9 @@ class PegawaiController extends Controller
         $pegawai = Pegawai::find($id);
         $bank= BankAsuransi::where('nip',$pegawai->nip)->first();
         $kode = KodeBagian::all();
+        $mcus = MCU::where('soft_delete','0')->get();
 
-        return view('admin.pegawai.approve_admin',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode]);
+        return view('admin.pegawai.approve_admin',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'mcus'=>$mcus]);
     }
 
     public function postApprove($id)
