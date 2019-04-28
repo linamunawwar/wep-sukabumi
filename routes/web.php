@@ -42,6 +42,10 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pegawai/edit_cv/{nip}', 'user\PegawaiController@getEditCV');
 		Route::post('/pegawai/edit_cv/{nip}','user\PegawaiController@postEditCV');
 		Route::get('/pegawai/struktur', 'user\PegawaiController@getStruktur');
+		Route::get('/pegawai/resign', 'user\PegawaiController@getResign');
+		Route::get('/pegawai/resign/create', 'user\PegawaiController@getCreateResign');
+		Route::post('/pegawai/resign/create', 'user\PegawaiController@postCreateResign');
+
 		
 	});
 
@@ -78,9 +82,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	
 
-	Route::get('/pegawai/resign', 'PegawaiController@getResign');
-	Route::get('/pegawai/resign/create', 'PegawaiController@getCreateResign');
-
+	
 	//--------------------CUTI----------------------
 	Route::get('/cuti', 'CutiController@index');
 	Route::get('/cuti/create', 'CutiController@getCreate');

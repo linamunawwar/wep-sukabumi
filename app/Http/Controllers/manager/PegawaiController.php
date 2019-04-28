@@ -26,9 +26,9 @@ class PegawaiController extends Controller
         $pegawai = Pegawai::find($id);
         $bank= BankAsuransi::where('nip',$pegawai->nip)->first();
         $kode = KodeBagian::all();
-        $mcus = MCU::where('soft_delete','0')->get();
+        $data_mcus = MCUPegawai::where('nip',$pegawai->nip)->where('soft_delete','0')->get();
 
-        return view('manager.pegawai.approve_manager',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'mcus'=>$mcus]);
+        return view('manager.pegawai.approve_manager',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'data_mcus'=>$data_mcus]);
     }
 
     public function postApprove($id)

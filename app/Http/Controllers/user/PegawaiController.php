@@ -10,6 +10,7 @@ use App\KodeBagian;
 use App\BankAsuransi;
 use App\MCU;
 use App\MCUPegawai;
+use App\Resign;
 
 class PegawaiController extends Controller
 {
@@ -25,8 +26,9 @@ class PegawaiController extends Controller
       $pegawai = Pegawai::where('nip',$nip)->first();
       $bank = BankAsuransi::where('nip',$nip)->first();
     	$mcus = MCU::where('soft_delete','0')->get();
+      $data_mcus = MCUPegawai::where('nip',$nip)->where('soft_delete','0')->get();
     	// dd($pegawai);
-        return view('user.pegawai.cv',['pegawai'=>$pegawai,'bank'=>$bank,'mcus'=>$mcus]);
+        return view('user.pegawai.cv',['pegawai'=>$pegawai,'bank'=>$bank,'mcus'=>$mcus,'data_mcus'=>$data_mcus]);
     }
 
      public function postEditCV($nip)
@@ -92,7 +94,7 @@ class PegawaiController extends Controller
           $mcu = new MCUPegawai;
           $mcu->nip = $data['nip'];
           $mcu->pernyataan_id = $pernyataan[$key-1];
-          $mcu->nilai = $data_mcu[$key];
+          $mcu->nilai = $mcu;
           $mcu->user_id = \Auth::user()->id;
           $mcu->role_id = \Auth::user()->role_id;
 
@@ -101,7 +103,7 @@ class PegawaiController extends Controller
           
         
         
-       return view('user.pegawai.index',['pegawai'=>$pegawai]);
+       return redirect('/user/pegawai');
     }
 
     public function getStruktur()
@@ -111,6 +113,38 @@ class PegawaiController extends Controller
 
     public function getResign()
     {
-        return view('user.pegawai.resign');
+        return view('user.pegawai.resign.index');
+    }
+
+    public function getCreateResign()
+    {
+        return view('user.pegawai.resign.create');
+    }
+
+    public function postCreateResign()
+    {
+        $data = \Input::all();
+
+        $resign = new Resign;
+        $resign->nip = $data['nip'];
+        $resign->alasan = $data['alasan'];
+        $terakhir_kerja = explode('-', $data['terakhir_kerja']);
+        $data['terakhir_kerja'] = $terakhir_kerja[2].'-'.$terakhir_kerja[1].'-'.$terakhir_kerja[0];
+        $resign->terakhir_kerja = $data['terakhir_kerja'];
+        $resign->user_id = \Auth::user()->id;
+        $resign->role_id = \Auth::user()->role_id;
+         $resign->is_verif_mngr = 0;
+         $resign->verif_mngr_by = '';
+         $resign->verify_mngr_time = '';
+         $resign->is_verif_sdm = 0;
+         $resign->verif_sdm_by = '';
+         $resign->verify_sdm_time = '';
+         $resign->is_verif_pm = 0;
+         $resign->verif_pm_by = '';
+         $resign->verify_pm_time = '';
+        
+        $resign->save();
+
+        return redirect('/user/pegawai/resign');
     }
 }

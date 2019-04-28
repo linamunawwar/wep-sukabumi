@@ -652,3 +652,29 @@ $kode = KodeBagian::all();
     </div>
     <!-- /page content -->
 @endsection
+@push('scripts')
+<script type="text/javascript">
+	console.log('af');
+	// $('.daterangepicker').daterangepicker({
+	//     singleDatePicker: true,
+	//     showDropdowns: true,
+	//     minYear: 1950,
+	//     maxYear: parseInt(moment().format('YYYY'),10)
+	//    });
+
+	$(document).ready(function(){
+      $('#datepicker').datepicker({
+        format: 'dd-mm-yyyy',
+        autoclose: true
+    	});
+      $('#datepicker2').datepicker({
+        format: 'dd-mm-yyyy',
+        autoclose: true
+    	});
+      $('.stepContainer').height('100%');
+
+      $( ".actionBar.buttonFinish" ).replaceWith( "<button type='submit' class='buttonFinish btn btn-default'>Finish</button>" );
+  	});
+
+</script>
+@endpush

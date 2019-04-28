@@ -679,19 +679,23 @@ $kode = KodeBagian::all();
 		                        		<th>Tidak</th>
 		                        	</thead>
 		                        	<tbody>
-		                        		@foreach($mcus as $key=>$mcu)
+		                        		<?php $i = 0;?>
+		                        		@foreach($data_mcus as $key=>$mcu)
 		                        			<tr>
-		                        				<td>{{$key+1}}</td>
-		                        				<td>{{$mcu->pernyataan}}
-		                        					<input type="hidden" name="pernyataan[]" value="{{$mcu->id}}">
+		                        				<td>{{$i+1}}</td>
+		                        				<td>{{$mcu->mcu->pernyataan}}
+		                        					<input type="hidden" name="pernyataan[]" value="{{$mcu->pernyataan_id}}">
 		                        				</td>
 		                        				<td>
-		                        					<input type="radio" name="mcu[{{$mcu->id}}]" value="1"> Ya
+		                        					<?php $checked = ($mcu->nilai == '1')? 'checked' : ''; ?>
+		                        					<input type="radio" name="mcu[{{$key}}]" value="1" {{$checked}}> Ya
 		                        				</td>
 		                        				<td>
-		                        					<input type="radio" name="mcu[{{$mcu->id}}]" value="0"> Tidak
+		                        					<?php $checked = ($mcu->nilai == '0')? 'checked' : ''; ?>
+		                        					<input type="radio" name="mcu[{{$key}}]" value="0" {{$checked}}> Tidak
 		                        				</td>
 		                        			</tr>
+		                        			<?php $i++; ?>
 		                        		@endforeach
 		                        	</tbody>
 		                        </table>

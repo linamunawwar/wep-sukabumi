@@ -17,16 +17,13 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							<input type="hidden" name="nip" value="{{\Auth::user()->pegawai_id}}">
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama Karyawan <span class="required">*</span></label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select class="form-control">
-										<option value="0">Pilih Karyawan</option>
-										<option value="SA150795">SA150795 - Tiger Nixon</option>
-										<option value="SL170793" selected="selected">SL170793 - Garrett Winters</option>
-										<option value="HS1506795">HS1506795 - Cedric Kelly</option>
-									</select>
+									<p class="form-control">{{\Auth::user()->name}}</p>
 								</div>
 							</div>
 							<div class="form-group">
@@ -36,22 +33,21 @@
 								</div>
 							</div>
 							<div class="form-group">
-									<label for="tgl_lahir" class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Terakhir Kerja * :</label>
-									<div class="col-md-6 col-sm-6 col-xs-12">
-										<fieldset>
-											<div class="control-group">
-												<div class="controls">
-													<div class="col-md-11 xdisplay_inputx form-group has-feedback">
-														<input type="text" class="form-control has-feedback-left" id="single_cal1" placeholder="Tanggal Lahir" name="tgl_lahir" aria-describedby="inputSuccess2Status">
-														<span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-											 			<span id="inputSuccess2Status" class="sr-only">(success)</span>
-													</div>
-												</div>
-											</div>
-										</fieldset>
-									</div>
+								<label for="tgl_lahir" class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Terakhir Kerja * :</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<div class='input-group date' id='datepicker' class="datepicker">
+										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
+						                <input type='text' name='terakhir_kerja' class='form-control' required="required" value="" placeholder="Terakhir Kerja" />
+						            </div>
 								</div>
-							<div class="ln_solid"></div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Surat Pengunduran Diri: </label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input type="file" name="surat_resign" class="form-control">
+									*Sudah di ttd direct manager
+								</div>
+							</div>
 							<div class="ln_solid"></div>
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -68,3 +64,22 @@
     </div>
     <!-- /page content -->
 @endsection
+@push('scripts')
+<script type="text/javascript">
+	console.log('af');
+	// $('.daterangepicker').daterangepicker({
+	//     singleDatePicker: true,
+	//     showDropdowns: true,
+	//     minYear: 1950,
+	//     maxYear: parseInt(moment().format('YYYY'),10)
+	//    });
+
+	$(document).ready(function(){
+      $('#datepicker').datepicker({
+        format: 'dd-mm-yyyy',
+        autoclose: true
+    	});
+  	});
+
+</script>
+@endpush
