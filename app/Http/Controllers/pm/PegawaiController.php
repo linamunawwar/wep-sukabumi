@@ -10,6 +10,7 @@ use App\KodeBagian;
 use App\BankAsuransi;
 use App\Gaji;
 use App\Pecat;
+use App\Resign;
 use App\MCU;
 use App\MCUPegawai;
 
@@ -69,5 +70,32 @@ class PegawaiController extends Controller
        $non_aktif = Pegawai::where('nip',$nip)->update(['is_active'=>0]);
 
        return redirect('/pm/pegawai/pecat');
+    }
+
+    public function getResign()
+    {
+      $resigns = Resign::get();
+
+      return view('pm.pegawai.resign.index',['resigns'=>$resigns]);
+    }
+
+    public function getApproveResign($id)
+    {
+        $resign = Resign::find($id);
+
+        return view('pm.pegawai.resign.approve',['resign'=>$resign]);
+    }
+
+    public function postApproveResign($id)
+    {
+      $nip = \Input::get('nip');
+       $resign['is_verif_pm'] = 1;
+       $resign['verif_pm_by'] = \Auth::user()->id;
+       $resign['verify_pm_time'] = date('Y-m-d H:i:s');
+
+       $update = Resign::where('nip',$nip)->update($resign);
+       $non_aktif = Pegawai::where('nip',$nip)->update(['is_active'=>0]);
+
+       return redirect('/pm/pegawai/resign');
     }
 }

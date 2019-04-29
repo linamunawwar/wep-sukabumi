@@ -9,6 +9,7 @@ use App\BankAsuransi;
 use App\Gaji;
 use App\Posisi;
 use App\Pecat;
+use App\Resign;
 use App\MCU;
 use App\MCUPegawai;
 use Illuminate\Support\Facades\Input;
@@ -359,5 +360,12 @@ class PegawaiController extends Controller
 
       return redirect('/admin/pegawai/pecat');
       
+    }
+
+    public function getResign()
+    {
+      $resigns = Resign::get();
+
+      return view('admin.pegawai.resign.index',['resigns'=>$resigns]);
     }
 }

@@ -10,6 +10,7 @@ use App\KodeBagian;
 use App\BankAsuransi;
 use App\Gaji;
 use App\Pecat;
+use App\Resign;
 use App\MCU;
 use App\MCUPegawai;
 
@@ -107,6 +108,72 @@ class PegawaiController extends Controller
          $update = Pecat::where('nip',$nip)->update($pecat);
       }
        return redirect('/manager/pegawai/pecat');
+    }
+
+    //----------------------------RESIGN--------------------------------
+    public function getResign()
+    {
+      if(\Auth::user()->pegawai->kode_bagian == 'SA'){
+        $resigns = Resign::get();
+      }else{
+        $resigns = Resign::whereHas('pegawai',function ($q){
+            $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
+        })->get();
+
+      }
+
+      return view('manager.pegawai.resign.index',['resigns'=>$resigns]);
+    }
+
+    public function getApproveResign($id)
+    {
+        $resign = Resign::find($id);
+
+        return view('manager.pegawai.resign.approve',['resign'=>$resign]);
+    }
+
+    public function postApproveResign($id)
+    {
+      $nip = \Input::get('nip');
+       $resign['is_verif_mngr'] = 1;
+       $resign['verif_mngr_by'] = \Auth::user()->id;
+       $resign['verify_mngr_time'] = date('Y-m-d H:i:s');
+
+       $update = Resign::where('nip',$nip)->update($resign);
+       
+       return redirect('/manager/pegawai/resign');
+    }
+
+    public function getApproveResignSDM($id)
+    {
+        $resign = Resign::find($id);
+
+        return view('manager.pegawai.resign.approve',['resign'=>$resign]);
+    }
+
+    public function postApproveResignSDM($id)
+    {
+      $nip = \Input::get('nip');
+      $pegawai = Pegawai::where('nip',$nip)->first();
+
+      if($pegawai->kode_bagian == 'SA'){
+        $resign['is_verif_mngr'] = 1;
+        $resign['verif_mngr_by'] = \Auth::user()->id;
+        $resign['verify_mngr_time'] = date('Y-m-d H:i:s');
+
+        $resign['is_verif_sdm'] = 1;
+        $resign['verif_sdm_by'] = \Auth::user()->id;
+        $resign['verify_sdm_time'] = date('Y-m-d H:i:s');
+
+        $update = Resign::where('nip',$nip)->update($resign);
+      }else{
+         $resign['is_verif_sdm'] = 1;
+         $resign['verif_sdm_by'] = \Auth::user()->id;
+         $resign['verify_sdm_time'] = date('Y-m-d H:i:s');
+
+         $update = Resign::where('nip',$nip)->update($resign);
+      }
+       return redirect('/manager/pegawai/resign');
     }
 
 }

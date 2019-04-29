@@ -113,7 +113,9 @@ class PegawaiController extends Controller
 
     public function getResign()
     {
-        return view('user.pegawai.resign.index');
+      $resigns = Resign::where('soft_delete',0)->get();
+      
+      return view('user.pegawai.resign.index',['resigns'=>$resigns]);
     }
 
     public function getCreateResign()

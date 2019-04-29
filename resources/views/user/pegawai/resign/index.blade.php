@@ -29,26 +29,33 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: center;"><button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  SPK</button></td>
-								</tr>
-								<tr>
-									<td>2011/07/25</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By Manager SDM</span></td>
-									<td style="text-align: center;"></td>
-								</tr>
-								<tr>
-									<td>2009/01/12</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By Manager SDM</span></td>
-									<td style="text-align: center;"></td>
-								</tr>
-								<tr>
-									<td>2012/03/29</td>
-									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: center;"></td>
-								</tr>
+								@foreach($resigns as $resign)
+									<tr>
+										<td>{{konversi_tanggal($resign->terakhir_kerja)}}</td>
+										<td>
+											@if($resign->is_verif_mngr== 0)
+												<span class="label label-default">Not Approved</span>
+											@elseif(($resign->is_verif_mngr == 1) && ($resign->is_verif_sdm == 0) && ($resign->is_verif_pm == 0))
+												<span class="label label-primary">Approved by Manager</span>
+											@elseif(($resign->is_verif_sdm == 1) && ($resign->is_verif_pm == 0))
+												<span class="label label-primary">Approved by Manager</span>	
+												<span class="label label-success">Approved by SDM</span>
+											@elseif($resign->is_verif_pm == 1)
+												<span class="label label-primary">Approved by Manager</span>	
+												<span class="label label-success">Approved by SDM</span>
+												<span class="label label-success">Approved by PM</span>
+											@endif
+										</td>
+										<td style="text-align: center;">
+											@if($resign->is_verif_pm == 1)
+												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  SPK</a>
+											@else
+												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  SPK</a>
+												<!-- <a class="btn btn-success btn-xs"><i class="fa fa-edit"></i>  Edit</a> -->
+											@endif
+										</td>
+									</tr>
+								@endforeach
 							</tbody>
 						</table>
 					</div>
