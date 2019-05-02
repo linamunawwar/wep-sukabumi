@@ -35,4 +35,19 @@ class Pegawai extends Model
     {
         return $this->hasMany('App\MCUPegawai','nip','nip');
     }
+
+    public function cuti()
+    {
+        return $this->hasOne('App\Cuti','nip','nip');
+    }
+
+    public function cutiPengganti()
+    {
+        return $this->hasOne('App\Cuti','nip','pengganti');
+    }
+
+    public function izin()
+    {
+        return $this->hasOne('App\Izin','nip','nip');
+    }
 }

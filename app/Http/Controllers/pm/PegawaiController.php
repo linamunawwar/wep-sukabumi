@@ -34,6 +34,8 @@ class PegawaiController extends Controller
 
     public function postApprove($id)
     {
+      date_default_timezone_set("Asia/Jakarta");
+
     	$nip = \Input::get('nip');
        $pegawai['is_active'] = 1;
        $pegawai['is_verif_pm'] = 1;
@@ -61,6 +63,8 @@ class PegawaiController extends Controller
 
     public function postApprovePecat($id)
     {
+      date_default_timezone_set("Asia/Jakarta");
+      
       $nip = \Input::get('nip');
        $pecat['is_verif_pm'] = 1;
        $pecat['verif_pm_by'] = \Auth::user()->id;

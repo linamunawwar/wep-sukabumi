@@ -18,7 +18,14 @@ class PegawaiController extends Controller
 {
     public function index()
     {
-    	 $pegawais= Pegawai::get();
+
+    	 // $pegawais= Pegawai::get();
+      if(\Auth::user()->pegawai->kode_bagian == 'SA'){
+        $pegawais = Pegawai::get();
+      }else{
+        $pegawais = Pegawai::where('kode_bagian', \Auth::user()->pegawai->kode_bagian)->get();
+
+      }
         return view('manager.pegawai.index',['pegawais'=>$pegawais]);
     }
 
@@ -68,6 +75,8 @@ class PegawaiController extends Controller
 
     public function postApprovePecat($id)
     {
+      date_default_timezone_set("Asia/Jakarta");
+      
       $nip = \Input::get('nip');
        $pecat['is_verif_mngr'] = 1;
        $pecat['verif_mngr_by'] = \Auth::user()->id;
@@ -89,6 +98,7 @@ class PegawaiController extends Controller
     {
       $nip = \Input::get('nip');
       $pegawai = Pegawai::where('nip',$nip)->first();
+      date_default_timezone_set("Asia/Jakarta");
 
       if($pegawai->kode_bagian == 'SA'){
         $pecat['is_verif_mngr'] = 1;

@@ -13,7 +13,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Daftar Cuti Pegawai </h2>
+						<h2>Daftar Pegawai Izin </h2>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
@@ -23,9 +23,9 @@
 									<th>NIP</th>
 									<th>Nama</th>
 									<th>Jabatan</th>
-									<th>Tanggal Cuti</th>
-									<th>Lama Cuti</th>
-									<th>Status Cuti</th>
+									<th>Tanggal Izin</th>
+									<th>Lama Izin</th>
+									<th>Status Izin</th>
 									<th>Action</th>
 								</tr>
 							</thead>
@@ -37,7 +37,7 @@
 									<td>2011/04/25</td>
 									<td>5 hari</td>
 									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > </td>
+									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
 								</tr>
 								<tr>
 									<td>SL170793</td>
@@ -45,7 +45,7 @@
 									<td>Accountant</td>
 									<td>2011/07/25</td>
 									<td>5 hari</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By SDM</span></td>
+									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
 									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
@@ -54,8 +54,8 @@
 									<td>Junior Technical Author</td>
 									<td>2009/01/12</td>
 									<td>7 hari</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By Penerima Tugas</span></td>
-									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
+									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
 									<td>QC150694</td>
@@ -64,7 +64,7 @@
 									<td>2012/03/29</td>
 									<td>14 hari</td>
 									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
 									<td>SL080695</td>
@@ -73,7 +73,7 @@
 									<td>2008/11/28</td>
 									<td>10 hari</td>
 									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
 									<td>SO110695</td>
@@ -82,7 +82,7 @@
 									<td>2012/12/02</td>
 									<td>15 hari</td>
 									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
 									<td>SO190292</td>
@@ -90,7 +90,7 @@
 									<td>Sales Assistant</td>
 									<td>2012/08/06</td>
 									<td>3 hari</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By SDM</span></td>
+									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
 									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
@@ -99,7 +99,7 @@
 									<td>Integration Specialist</td>
 									<td>2010/10/14</td>
 									<td>25 hari</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By SDM</span></td>
+									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
 									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
@@ -108,8 +108,8 @@
 									<td>Javascript Developer</td>
 									<td>2009/09/15</td>
 									<td>30 hari</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By Penerima Tugas</span></td>
-									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button> </td>
+									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
+									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button> <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
 								</tr>
 								<tr>
 									<td>SO110695</td>
@@ -117,8 +117,8 @@
 									<td>Software Engineer</td>
 									<td>2008/12/13</td>
 									<td>5 hari</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By Penerima Tugas</span></td>
-									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button> </td>
+									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
+									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button> <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
 								</tr>
 								<tr>
 									<td>SL030695</td>
@@ -126,7 +126,7 @@
 									<td>Office Manager</td>
 									<td>2008/12/19</td>
 									<td>7 hari</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By SDM</span></td>
+									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
 									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 								<tr>
@@ -135,8 +135,8 @@
 									<td>Support Lead</td>
 									<td>2013/03/03</td>
 									<td>14 hari</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By SDM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button> </td>
+									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
+									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button> <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
 								</tr>
 								<tr>
 									<td>HS180693</td>
@@ -145,7 +145,7 @@
 									<td>2009/10/09</td>
 									<td>10 hari</td>
 									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
+									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
 								</tr>
 							</tbody>
 						</table>

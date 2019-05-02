@@ -37,14 +37,14 @@
 								</div>
 							</div>
 							<div class="form-group">
-									<label for="tgl_lahir" class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Terakhir Kerja * :</label>
-									<div class="col-md-6 col-sm-6 col-xs-12">
-										<div class='input-group date' id='datepicker' class="datepicker">
-											<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
-							                <input type='text' value='' name='terakhir_kerja' class='form-control' required="required" placeholder="Terakhir Kerja" />
-							            </div>
-									</div>
+								<label for="tgl_lahir" class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Terakhir Kerja * :</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<div class='input-group date' id='datepicker' class="datepicker">
+										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
+						                <input type='text' value='' name='terakhir_kerja' class='form-control' required="required" placeholder="Terakhir Kerja" />
+						            </div>
 								</div>
+							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Pesangon</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">

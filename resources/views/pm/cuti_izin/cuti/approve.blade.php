@@ -17,11 +17,13 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">NIP <span class="required">*</span>:</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<p style="padding: 6px 12px; font-size: 15px;">SA150795</p>
+										<input type="hidden" name="nip" value="{{\Auth::user()->pegawai_id}}">
+										<p style="padding: 6px 12px; font-size: 15px;">{{\Auth::user()->pegawai_id}}</p>
 									</div>
 								</div>
 							<div class="form-group">
@@ -33,47 +35,50 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Jabatan <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<p style="padding: 6px 12px;">Staff Quality Control</p>
+									<p style="padding: 6px 12px;">{{Auth::user()->pegawai->posisi->posisi}}</p>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Maksud Cuti izin:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<p style="padding: 6px 12px; font-size: 15px;">Acara Keluarga</p>
+									<p style="padding: 6px 12px; font-size: 15px;">{{$cuti->alasan}}</p>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Alat Angkutan yang digunakan:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<p style="padding: 6px 12px; font-size: 15px;">Pesawat</p>
+									<p style="padding: 6px 12px; font-size: 15px;">{{$cuti->angkutan}}</p>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Penyerahan Tugas Kepada <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<p style="padding: 6px 12px; font-size: 15px;">SL170793 - Garrett Winters</p>
+									<p style="padding: 6px 12px; font-size: 15px;">{{$cuti->pengganti}} - {{$cuti->pegawaiPengganti->nama}}</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Keterangan <span class="required">*</span>:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<p style="padding: 6px 12px; font-size: 15px;">{{$cuti->ket_manager}}</p>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Keterangan tentang cuti / izin yang pernah dijalani <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<p style="padding: 6px 12px; font-size: 15px;"> - </p>
+									<p style="padding: 6px 12px; font-size: 15px;">{{$cuti->ket_sdm}}</p>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Catatan Tentang Cuti<span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="radio" style="padding: 6px 12px;"> Berkeberatan
-									<input type="radio" style="padding: 6px 12px;"> Tidak Berkeberatan
+									<input type="radio" style="padding: 6px 12px;" name="accept" value="0"> Berkeberatan
+									<input type="radio" style="padding: 6px 12px;" name="accept" value="1"> Tidak Berkeberatan
 								</div>
-							</div>
-							
-							<div class="ln_solid"></div>
+							</div>					
 							<div class="ln_solid"></div>
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 									<button class="btn btn-primary" type="button">Cancel</button>
-									<button class="btn btn-primary" type="reset">Tolak</button>
 									<button type="submit" class="btn btn-success">Approve</button>
 								</div>
 							</div>

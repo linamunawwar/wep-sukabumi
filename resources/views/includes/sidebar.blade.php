@@ -47,20 +47,32 @@
                                 <li><a href="{{url('pm/pegawai/resign')}}">Pengajuan Resign</a></li>
                             @endif
                             
-
                         </ul>
                     </li>
                     <li><a><i class="fa fa-sign-out"></i> Cuti / Izin <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                             @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))
-                                <li><a href="{{url('cuti')}}">Cuti</a></li>
-                                <li><a href="{{url('izin')}}">Izin</a></li>
+                            @if(Auth::user()->role_id == 1)
+                                <li><a href="{{url('admin/cuti')}}">Cuti</a></li>
+                                <li><a href="{{url('admin/izin')}}">Izin</a></li>
                             @endif
+
                             @if(Auth::user()->role_id == 2)
                                 <li><a href="{{url('user/cuti')}}">Cuti</a></li>
                                 <li><a href="{{url('user/izin')}}">Izin</a></li>
-                                <li><a href="{{url('user/serah_tugas')}}">Penyerahan Tugas</a></li>
+                                <li><a href="{{url('user/cuti/serah_tugas')}}">Penyerahan Tugas</a></li>
                             @endif
+
+                            @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 4)
+                                <li><a href="{{url('manager/cuti')}}">Cuti</a></li>
+                                <li><a href="{{url('manager/izin')}}">Izin</a></li>
+                            @endif
+
+                            @if(Auth::user()->role_id == 5)
+                                <li><a href="{{url('pm/cuti')}}">Cuti</a></li>
+                                <li><a href="{{url('pm/izin')}}">Izin</a></li>
+                            @endif
+
+
                         </ul>
                     </li>
                      @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))

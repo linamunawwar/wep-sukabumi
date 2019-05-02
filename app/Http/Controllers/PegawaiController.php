@@ -21,15 +21,7 @@ class PegawaiController extends Controller
             return view('manager.pecat.index');
     }
 
-    public function getResign()
-    {
-        return view('pegawai.resign.index');
-    }
-
-    public function getCreateResign()
-    {
-        return view('pegawai.resign.create');
-    }
+    
 
     public function resignManager(){
             return view('manager.resign.index');

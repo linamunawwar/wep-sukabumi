@@ -37,6 +37,11 @@ Route::group(['middleware' => 'auth'], function () {
 		//resign
 		Route::get('/pegawai/resign', 'admin\PegawaiController@getResign');
 
+		//cuti
+		Route::get('/cuti', 'admin\CutiController@index');
+		Route::get('/cuti/create', 'admin\CutiController@getCreate');
+		Route::post('/cuti/create', 'admin\CutiController@postCreate');
+
 		
 	});
 
@@ -48,6 +53,17 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pegawai/resign', 'user\PegawaiController@getResign');
 		Route::get('/pegawai/resign/create', 'user\PegawaiController@getCreateResign');
 		Route::post('/pegawai/resign/create', 'user\PegawaiController@postCreateResign');
+
+		//Cuti
+		Route::get('/cuti', 'user\CutiController@index');
+		Route::get('/cuti/create', 'user\CutiController@getCreate');
+		Route::post('/cuti/create', 'user\CutiController@postCreate');
+		Route::get('/cuti/serah_tugas', 'user\CutiController@getSerahTugas');
+		Route::get('/cuti/approve/{id}', 'user\CutiController@approveSerahTugas');
+
+		Route::get('/izin', 'user\IzinController@index');
+		Route::get('/izin/create', 'user\IzinController@getCreate');
+		Route::post('/izin/create', 'user\IzinController@postCreate');
 
 		
 	});
@@ -69,6 +85,16 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/pegawai/resign/approve/{id}', 'manager\PegawaiController@postApproveResign');
 		Route::get('/pegawai/resign/approve_sdm/{id}', 'manager\PegawaiController@getApproveResignSDM');
 		Route::post('/pegawai/resign/approve_sdm/{id}', 'manager\PegawaiController@postApproveResignSDM');
+
+		Route::get('/cuti', 'manager\CutiController@index');
+		Route::get('/cuti/approve/{id}', 'manager\CutiController@approve');
+		Route::post('/cuti/approve/{id}', 'manager\CutiController@postApprove');
+		Route::get('/cuti/approve_sdm/{id}', 'manager\CutiController@approveSDM');
+		Route::post('/cuti/approve_sdm/{id}', 'manager\CutiController@postApproveSDM');
+
+		Route::get('/izin', 'manager\IzinController@index');
+		Route::get('/izin/approve/{id}', 'manager\IzinController@approve');
+
 	});
 
 	Route::group(['prefix' => '/pm'], function () {
@@ -84,6 +110,10 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pegawai/resign', 'pm\PegawaiController@getResign');
 		Route::get('/pegawai/resign/approve/{id}', 'pm\PegawaiController@getApproveResign');
 		Route::post('/pegawai/resign/approve/{id}', 'pm\PegawaiController@postApproveResign');
+
+		Route::get('/cuti', 'pm\CutiController@index');
+		Route::get('/cuti/approve/{id}', 'pm\CutiController@approve');
+		Route::post('/cuti/approve/{id}', 'pm\CutiController@postApprove');
 	});
 
 
@@ -97,11 +127,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	
 	//--------------------CUTI----------------------
-	Route::get('/cuti', 'CutiController@index');
-	Route::get('/cuti/create', 'CutiController@getCreate');
-	//-------------------------IZIN--------------
-	Route::get('/izin', 'IzinController@index');
-	Route::get('/izin/create', 'IzinController@getCreate');
+	
 	//-------------------GAJI-----------------
 	Route::get('/gaji', 'GajiController@index');
 	Route::get('/gaji/create', 'GajiController@getCreate');
@@ -146,20 +172,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>USER<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-	//-----------------------PEGAWAI USER-------------------------
-	Route::get('/pegawai/user', 'PegawaiController@indexUser');
 
-	Route::get('/pegawai/user/struktur', 'PegawaiController@getStrukturUser');
-
-	Route::get('/pegawai/user/resign', 'PegawaiController@getResignUser');
-
-	//----------------------Cuti User ------------------
-	Route::get('/user/cuti', 'CutiController@indexUser');
-	Route::get('/user/cuti/create', 'CutiController@getCreateUser');
-	Route::get('/user/serah_tugas', 'CutiController@getSerahTugas');
 	//----------------------izin User ------------------
-	Route::get('/user/izin', 'IzinController@indexUser');
-	Route::get('/user/izin/create', 'IzinController@getCreateUser');
+	
 	//------------------------------GAJI USER-----------------------------------
 	Route::get('/user/gaji', 'GajiController@indexUser');
 	Route::get('/user/gaji/slip_gaji', 'GajiController@slipGaji');
@@ -170,14 +185,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/user/spj/create', 'SpjController@getCreateUser');
 
 	//--------------------MANAGER-------------------------
-	Route::get('/manager/cuti', 'CutiController@indexManager');
-	Route::get('/manager/cuti/approve', 'CutiController@approveManager');
+	
 
-	Route::get('/manager/pecat', 'PegawaiController@pecatManager');
-	Route::get('/manager/pecat/approve', 'PegawaiController@approvePecatManager');
-
-	Route::get('/manager/resign', 'PegawaiController@resignManager');
-	Route::get('/manager/resign/approve', 'PegawaiController@approveResignManager');
 
 	Route::get('/manager/slip_gaji', 'GajiController@slipGajiManager');
 	Route::get('/manager/slip_gaji/approve', 'GajiController@approveSlipGajiManager');
@@ -189,8 +198,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/manager/rkp/create', 'RkpController@getCreate');
 
 	//--------------------PROJECT MANAGER-------------------------
-	Route::get('/pm/cuti', 'CutiController@indexPM');
-	Route::get('/pm/cuti/approve', 'CutiController@approvePM');
 
 	Route::get('/pm/disposisi', 'DisposisiController@indexPM');
 	Route::get('/pm/disposisi/proses', 'DisposisiController@prosesPM');
