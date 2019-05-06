@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BankAsuransi extends Model
+class Spj extends Model
 {
     protected $connection = 'mysql';
-    protected $table = "mst_bank_asuransi";
+    protected $table = "tr_spj";
+
 
     public function pegawai()
     {

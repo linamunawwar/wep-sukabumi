@@ -13,18 +13,9 @@
 			<div class="col-md-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Inbox Design<small>User Mail</small></h2>
+						<h2>Pesan Internal</small></h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="#">Settings 1</a>
-									</li>
-									<li><a href="#">Settings 2</a>
-									</li>
-								</ul>
 							</li>
 							<li><a class="close-link"><i class="fa fa-close"></i></a>
 							</li>
@@ -32,99 +23,41 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
+						<div class="col-sm-3" style="padding-bottom: 20px;">
+							<a id="compose" class="btn btn-sm btn-success btn-block" href="{{url('admin/memo/create')}}">Pesan Baru</a>
+						</div>
 						<div class="row">
 							<div class="col-sm-12 mail_list_column">
-								<div class="col-sm-3" style="padding-bottom: 20px;">
-									<button id="compose" class="btn btn-sm btn-success btn-block" type="button">COMPOSE</button>
-								</div>
-								<a href="#">
-									<div class="mail_list">
-										<div class="left">
-											<i class="fa fa-circle"></i> <i class="fa fa-edit"></i>
-										</div>
-										<div class="right">
-											<h3>Dennis Mugo <small>3.00 PM</small></h3>
-											<p>Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
-										</div>
-									</div>
-								</a>
-								<a href="#">
-									<div class="mail_list">
-										<div class="left">
-											<i class="fa fa-star"></i>
-										</div>
-										<div class="right">
-											<h3>Jane Nobert <small>4.09 PM</small></h3>
-											<p><span class="badge">To</span> Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
-										</div>
-									</div>
-								</a>
-			 					<a href="#">
-									<div class="mail_list">
-										<div class="left">
-											<i class="fa fa-circle-o"></i><i class="fa fa-paperclip"></i>
-										</div>
-										<div class="right">
-											<h3>Musimbi Anne <small>4.09 PM</small></h3>
-											<p><span class="badge">CC</span> Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
-										</div>
-									</div>
-								</a>
-								<a href="#">
-									<div class="mail_list">
-										<div class="left">
-											<i class="fa fa-paperclip"></i>
-										</div>
-										<div class="right">
-											<h3>Jon Dibbs <small>4.09 PM</small></h3>
-											<p>Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
-										</div>
-									</div>
-								</a>
-								<a href="#">
-									<div class="mail_list">
-										<div class="left">
-											.
-										</div>
-										<div class="right">
-											<h3>Debbis & Raymond <small>4.09 PM</small></h3>
-											<p>Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
-										</div>
-									</div>
-								</a>
-								<a href="#">
-									<div class="mail_list">
-										<div class="left">
-										.
-										</div>
-										<div class="right">
-											<h3>Debbis & Raymond <small>4.09 PM</small></h3>
-											<p>Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
-										</div>
-									</div>
-								</a>
-								<a href="#">
-									<div class="mail_list">
-										<div class="left">
-											<i class="fa fa-circle"></i> <i class="fa fa-edit"></i>
-										</div>
-										<div class="right">
-											<h3>Dennis Mugo <small>3.00 PM</small></h3>
-											<p>Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
-										</div>
-									</div>
-								</a>
-								<a href="#">
-									<div class="mail_list">
-										<div class="left">
-											<i class="fa fa-star"></i>
-										</div>
-										<div class="right">
-											<h3>Jane Nobert <small>4.09 PM</small></h3>
-											<p>Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
-										</div>
-									</div>
-								</a>
+								<table style="width: 100%;">
+									@foreach($memos as $memo)
+										<tr>
+											<td>
+							 					<a href="{{url('user/memo/detail/'.$memo->memo->id.'')}}">
+													<div class="mail_list">
+														<div class="left" style="width: 0%;">
+															<i class="fa fa-circle"></i>
+														</div>
+														<div class="right">
+															<?php
+																$datetime = explode(' ',$memo->memo->waktu);
+															?>
+															@if($memo->viewed_at == '0000-00-00 00:00:00')
+																<h3>{{$memo->memo->judul}} <small>{{konversi_tanggal($datetime[0])}} {{$datetime[1]}}</small></h3>
+															@else
+																<p style="font-size: 15px; margin: 0 0 6px;">{{$memo->memo->judul}} <small style="float: right;color: #ADABAB; font-size: 11px;line-height: 20px;">{{konversi_tanggal($datetime[0])}} {{$datetime[1]}}</small></p>
+															@endif
+
+															@if($memo->memo->cc)
+																<p><span class="badge">CC</span> {{$memo->memo->cc}}</p>
+															@endif
+															<p style="display: inline-block;">{{trim_text($memo->memo->isi,150)}}</p>
+														</div>
+													</div>
+												</a>
+											</td>
+										</tr>
+									@endforeach
+								</table>
 							</div>
 						</div>
 					</div>

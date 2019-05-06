@@ -17,23 +17,23 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-							<div class="form-group">
-									<label class="control-label col-md-2 col-sm-2 col-xs-12" for="nama">NIP <span class="required">*</span>:</label>
-									<div class="col-md-6 col-sm-6 col-xs-12">
-										<p style="padding: 6px 12px; font-size: 15px;">SA150795</p>
-									</div>
-								</div>
+						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
 								<label class="control-label col-md-2 col-sm-2 col-xs-12" for="nama">Nama Karyawan <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<p style="padding: 6px 12px;">{{Auth::user()->name}}</p>
+									<select class="form-control pegawai" name="nip" required="required">
+										<option value="">Pilih Karyawan</option>
+										@foreach($pegawais as $pegawai)
+											<option value="{{$pegawai->nip}}">{{strtoupper($pegawai->nip)}} - {{$pegawai->nama}}</option>
+										@endforeach
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-2 col-sm-2 col-xs-12" for="periode">Periode <span class="required">*</span>:</label>
 								<div class="col-md-2 col-sm-2 col-xs-12">
-									<select class="form-control col-md-7 col-xs-12">
+									<select class="form-control col-md-7 col-xs-12 bulan" name="bulan" id="bulan">
 										<option value="01">Januari</option>
 										<option value="02">Februari</option>
 										<option value="03">Maret</option>
@@ -49,14 +49,22 @@
 									</select>
 								</div>
 								<div class="col-md-2 col-sm-2 col-xs-12">
-									<select class="form-control col-md-7 col-xs-12">
-										<option value="2019">2019</option>
-										<option value="2018">2018</option>
-										<option value="2017">2017</option>
-										<option value="2016">2016</option>
-										<option value="2015">2015</option>
-										<option value="2014">2014</option>
-									</select>
+									<?php
+									  // Sets the top option to be the current year. (IE. the option that is chosen by default).
+									  $currently_selected = date('Y'); 
+									  // Year to start available options at
+									  $earliest_year = $currently_selected - 5; 
+									  // Set your latest year you want in the range, in this case we use PHP to just set it to the current year.
+									  $latest_year = date('Y'); 
+
+									  print '<select class="form-control col-md-7 col-xs-12 tahun" name="tahun">';
+									  // Loops over each int[year] from current year, back to the $earliest_year [1950]
+									  foreach ( range( $latest_year, $earliest_year ) as $i ) {
+									    // Prints the option with the next year in range.
+									    print '<option value="'.$i.'"'.($i === $currently_selected ? ' selected="selected"' : '').'>'.$i.'</option>';
+									  }
+									  print '</select>';
+									  ?>
 								</div>
 							</div>
 							<div class="form-group">
@@ -83,3 +91,10 @@
     </div>
     <!-- /page content -->
 @endsection
+@push('scripts')
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $('.pegawai').select2();
+		});
+	</script>
+@endpush

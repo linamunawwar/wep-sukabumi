@@ -13,88 +13,69 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Slip Gaji </h2>
+						<h2>Pengajuan Slip Gaji </h2>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<div class="x_title">
-							<h4>Pendapatan </h4>
-							<div class="clearfix"></div>
-						</div>
-						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama Karyawan <span class="required">*</span>:</label>
+									<label class="control-label col-md-2 col-sm-2 col-xs-12" for="nama">NIP <span class="required">*</span>:</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<p style="padding: 6px 12px; font-size: 15px;">{{Auth::user()->pegawai_id}}</p>
+									</div>
+								</div>
+							<div class="form-group">
+								<label class="control-label col-md-2 col-sm-2 col-xs-12" for="nama">Nama Karyawan <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select class="form-control col-md-7 col-xs-12">
-										<option value="0">Pilih Karyawan</option>
-										<option value="SA150795">SA150795 - Tiger Nixon</option>
-										<option value="SL170793">SL170793 - Garrett Winters</option>
-										<option value="HS1506795">HS1506795 - Cedric Kelly</option>
+									<p style="padding: 6px 12px;">{{Auth::user()->name}}</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-2 col-sm-2 col-xs-12" for="periode">Periode <span class="required">*</span>:</label>
+								<div class="col-md-2 col-sm-2 col-xs-12">
+									<select class="form-control col-md-7 col-xs-12 bulan" name="bulan" id="bulan">
+										<option value="01">Januari</option>
+										<option value="02">Februari</option>
+										<option value="03">Maret</option>
+										<option value="04">April</option>
+										<option value="05">Mei</option>
+										<option value="06">Juni</option>
+										<option value="07">Juli</option>
+										<option value="08">Agustus</option>
+										<option value="09">September</option>
+										<option value="10">Oktober</option>
+										<option value="11">November</option>
+										<option value="12">Desember</option>
 									</select>
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Gaji Pokok:</label>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="komunikasi" class="form-control col-md-7 col-xs-12">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Tunjangan Komunikasi:</label>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="komunikasi" class="form-control col-md-7 col-xs-12">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Uang Makan:</label>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="makan" class="form-control col-md-7 col-xs-12">
-								</div>
-							</div>
-							<div class="ln_solid"></div>
-							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Lain - Lain</label>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Tunjangan Transportasi:</label>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="transportasi" class="form-control col-md-7 col-xs-12">
-								</div>
-							</div>
-							<div class="ln_solid"></div>
-							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Total Pendapatan:</label>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="transportasi" class="form-control col-md-7 col-xs-12" readonly="readonly">
-								</div>
-							</div>
-							<br>
-							<div class="x_title">
-								<h4>Pengeluaran </h4>
-								<div class="clearfix"></div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">PPh 21:</label>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="pph21" class="form-control col-md-7 col-xs-12">
-								</div>
-							</div>
-							<div class="ln_solid"></div>
-							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Total Potongan:</label>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="transportasi" class="form-control col-md-7 col-xs-12" readonly="readonly">
-								</div>
-							</div>
+								<div class="col-md-2 col-sm-2 col-xs-12">
+									<?php
+									  // Sets the top option to be the current year. (IE. the option that is chosen by default).
+									  $currently_selected = date('Y'); 
+									  // Year to start available options at
+									  $earliest_year = $currently_selected - 5; 
+									  // Set your latest year you want in the range, in this case we use PHP to just set it to the current year.
+									  $latest_year = date('Y'); 
 
+									  print '<select class="form-control col-md-7 col-xs-12 tahun" name="tahun">';
+									  // Loops over each int[year] from current year, back to the $earliest_year [1950]
+									  foreach ( range( $latest_year, $earliest_year ) as $i ) {
+									    // Prints the option with the next year in range.
+									    print '<option value="'.$i.'"'.($i === $currently_selected ? ' selected="selected"' : '').'>'.$i.'</option>';
+									  }
+									  print '</select>';
+									  ?>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-2 col-sm-2 col-xs-12" for="nama">Keperluan <span class="required">*</span>:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<textarea class="form-control" name="keperluan"></textarea>
+								</div>
+							</div>
 							
 							<div class="ln_solid"></div>
-							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Pendapatan Bersih:</label>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="transportasi" class="form-control col-md-7 col-xs-12" readonly="readonly">
-								</div>
-							</div>
 							<div class="ln_solid"></div>
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">

@@ -50,4 +50,29 @@ class Pegawai extends Model
     {
         return $this->hasOne('App\Izin','nip','nip');
     }
+
+    public function gaji()
+    {
+        return $this->hasOne('App\Gaji','nip','nip');
+    }
+
+    public function bank()
+    {
+        return $this->hasOne('App\BankAsuransi','nip','nip');
+    }
+
+    public function slipGaji()
+    {
+        return $this->hasMany('App\SlipGaji','nip','nip');
+    }
+
+    public function memoPegawai()
+    {
+        return $this->belongsToMany('App\MemoPegawai');
+    }
+    
+    public function spj()
+    {
+        return $this->hasMany('App\Spj','nip','nip');
+    }
 }

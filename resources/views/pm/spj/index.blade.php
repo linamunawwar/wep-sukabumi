@@ -13,15 +13,18 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Daftar Pengajuan SPJ </h2>
+						<h2>Daftar Pengajuan SPJ</h2>
+						<ul class="nav navbar-right panel_toolbox">
+							<li><a href="{{url('pm/spj/create')}}"><button class="btn btn-primary"> <i class="fa fa-plus"></i>  Tambah Data</button></a></li>
+						</ul>
+						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
 						<table id="datatable" class="table table-striped table-bordered">
 							<thead>
 								<tr>
-									<th>NIP</th>
-									<th>Nama</th>
-									<th>Tanggal</th>
+									<th>Tanggal Berangkat</th>
+									<th>Tanggal Pulang</th>
 									<th>Nominal</th>
 									<th>Keperluan</th>
 									<th>Status</th>
@@ -29,105 +32,27 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>SA150795</td>
-									<td>Tiger Nixon</td>
-									<td>2011/04/25</td>
-									<td>800.000</td>
-									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By Admin</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>SL170793</td>
-									<td>Garrett Winters</td>
-									<td>2011/04/25</td>
-									<td>250.000</td>
-									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>HS1506795</td>
-									<td>Ashton Cox</td>
-									<td>2011/04/25</td>
-									<td>870.000</td>
-									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>QC150694</td>
-									<td>Cedric Kelly</td>
-									<td>2011/04/25</td>
-									<td>800.000</td>
-									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
-								</tr>
-								<tr>
-									<td>SL080695</td>
-									<td>Airi Satou</td>
-									<td>2011/04/25</td>
-									<td>500.000</td>
-									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
-								</tr>
-								<tr>
-									<td>SO110695</td>
-									<td>Brielle Williamson</td>
-									<td>2011/04/25</td>
-									<td>800.000</td>
-									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button></td>
-								</tr>
-								<tr>
-									<td>SO190292</td>
-									<td>Herrod Chandler</td>
-									<td>2011/04/25</td>
-									<td>800.000</td>
-									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>SA110695</td>
-									<td>Rhona Davidson</td>
-									<td>2011/04/25</td>
-									<td>1.000.000</td>
-									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>PM110695</td>
-									<td>Colleen Hurst</td>
-									<td>2011/04/25</td>
-									<td>900.000</td>
-									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By Admin</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button> <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>SO110695</td>
-									<td>Sonya Frost</td>
-									<td>2011/04/25</td>
-									<td>800.000</td>
-									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By Admin</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button> <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>SL030695</td>
-									<td>Jena Gaines</td>
-									<td>2011/04/25</td>
-									<td>200.000</td>
-									<td>Pengagantian Biaya perjalanan dinas</td>
-									<td style="text-align: center;"><span class="label label-primary">Approved By Admin</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
+								@foreach($spjs as $spj)
+									<tr>
+										<td>{{konversi_tanggal($spj->tanggal_berangkat)}}</td>
+										<td>{{konversi_tanggal($spj->tanggal_pulang)}}</td>
+										<td>{{$spj->nominal}}</td>
+										<td>{{$spj->keperluan}}</td>
+										@if($spj->is_verif_sdm == 1)
+											<td style="text-align: center;"><span class="label label-success">Approved By Admin</span></td>
+											<td style="text-align: left;">
+												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
+											</td>
+										@else
+											<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
+											<td style="text-align: left;">
+												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</a>
+											</td>
+										@endif
+
+										
+									</tr>
+								@endforeach
 							</tbody>
 						</table>
 					</div>

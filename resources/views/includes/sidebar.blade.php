@@ -75,9 +75,14 @@
 
                         </ul>
                     </li>
-                     @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))
-                        <li><a href="{{url('gaji')}}"><i class="fa fa-money"></i>Gaji - Tunjangan </a>
-                         </li>
+                     @if(Auth::user()->role_id == 1)
+                        <li><a><i class="fa fa-money"></i>Gaji - Tunjangan <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{url('admin/gaji')}}"><i class="fa fa-money"></i>Data Gaji</a></li>
+                                <li><a href="{{url('admin/gaji/slip_gaji')}}"><i class="fa fa-credit-card"></i>Pengajuan Slip Gaji</a></li>
+                            </ul>
+                        </li>
+
                     @endif
                     @if(Auth::user()->role_id == 2)
                         <li><a><i class="fa fa-money"></i>Gaji - Tunjangan <span class="fa fa-chevron-down"></span></a>
@@ -87,6 +92,23 @@
                             </ul>
                         </li>
                     @endif
+                    @if(Auth::user()->role_id == 3)
+                        <li><a href="{{url('manager/gaji')}}"><i class="fa fa-money"></i>Gaji - Tunjangan </a>
+                         </li>
+                    @endif
+                    @if(Auth::user()->role_id == 4)
+                        <li><a><i class="fa fa-money"></i>Gaji - Tunjangan <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{url('manager/gaji')}}"><i class="fa fa-money"></i>Data Gaji</a></li>
+                                <li><a href="{{url('manager/gaji/slip_gaji')}}"><i class="fa fa-credit-card"></i>Pengajuan Slip Gaji</a></li>
+                            </ul>
+                        </li>
+                    @endif
+                    @if(Auth::user()->role_id == 5)
+                        <li><a href="{{url('pm/gaji')}}"><i class="fa fa-money"></i>Gaji - Tunjangan </a>
+                         </li>
+                    @endif
+
                     @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))    
                         <li><a href="{{url('/memo')}}"><i class="fa fa-paper-plane"></i>Pesan Internal </a>
                     @endif
@@ -95,12 +117,20 @@
                     @endif
 
 
-                    @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))
-                        <li><a href="{{url('spj')}}"><i class="fa fa-exchange"></i>SPJ</a></li>
+                    @if(Auth::user()->role_id == 1)
+                        <li><a href="{{url('admin/spj')}}"><i class="fa fa-exchange"></i>SPJ</a></li>
                     @endif
 
                     @if(Auth::user()->role_id == 2)
                          <li><a href="{{url('/user/spj')}}"><i class="fa fa-exchange"></i>SPJ</a></li>
+                    @endif
+
+                    @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
+                         <li><a href="{{url('/manager/spj')}}"><i class="fa fa-exchange"></i>SPJ</a></li>
+                    @endif
+
+                    @if(Auth::user()->role_id == 5)
+                         <li><a href="{{url('/pm/spj')}}"><i class="fa fa-exchange"></i>SPJ</a></li>
                     @endif
 
                     @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))

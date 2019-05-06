@@ -13,9 +13,9 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Daftar Pengajuan SPJ</h2>
+						<h2>Daftar Pengajuan Slip Gaji </h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('manager/spj/create')}}"><button class="btn btn-primary"> <i class="fa fa-plus"></i>  Tambah Data</button></a></li>
+							<li><a href="{{url('user/gaji/slip_gaji/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
@@ -23,34 +23,29 @@
 						<table id="datatable" class="table table-striped table-bordered">
 							<thead>
 								<tr>
-									<th>Tanggal Berangkat</th>
-									<th>Tanggal Pulang</th>
-									<th>Nominal</th>
-									<th>Keperluan</th>
-									<th>Status</th>
+									<th>Periode</th>
+									<th>Status </th>
 									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach($spjs as $spj)
+								@foreach($slip_gajis as $slip_gaji)
 									<tr>
-										<td>{{konversi_tanggal($spj->tanggal_berangkat)}}</td>
-										<td>{{konversi_tanggal($spj->tanggal_pulang)}}</td>
-										<td>{{$spj->nominal}}</td>
-										<td>{{$spj->keperluan}}</td>
-										@if($spj->is_verif_sdm == 1)
-											<td style="text-align: center;"><span class="label label-success">Approved By Admin</span></td>
-											<td style="text-align: left;">
+										<td>{{bulan($slip_gaji->bulan)}} {{$slip_gaji->tahun}}</td>
+										<td>
+											@if($slip_gaji->is_verif_sdm == 1)
+												<span class="label label-primary">Approved By Manager SDM</span>
+											@else
+												<span class="label label-default">Not Approved</span>
+											@endif
+										</td>
+										<td style="text-align: left;">
+											@if($slip_gaji->is_verif_sdm == 1)
 												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
-											</td>
-										@else
-											<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-											<td style="text-align: left;">
+											@else
 												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</a>
-											</td>
-										@endif
-
-										
+											@endif
+										</td>
 									</tr>
 								@endforeach
 							</tbody>

@@ -20,48 +20,37 @@
 						<table id="datatable" class="table table-striped table-bordered">
 							<thead>
 								<tr>
+									<th>NIP - Nama</th>
 									<th>Periode</th>
+									<th>Keperluan</th>
 									<th>Status </th>
 									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>Januari 2019</td>
-									<td>
-										<span class="label label-primary">Approved By Manager SDM</span>
-									</td>
-									<td style="text-align: left;">
-										<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>
-									</td>
-								</tr>
-								<tr>
-									<td>Desember 2018</td>
-									<td>
-										<span class="label label-primary">Approved By Manager SDM</span>
-									</td>
-									<td style="text-align: left;">
-										<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>
-									</td>
-								</tr>
-								<tr>
-									<td>November 2018</td>
-									<td>
-										<span class="label label-default">Not Approved</span>
-									</td>
-									<td style="text-align: left;">
-										<button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button>
-									</td>
-								</tr>
-								<tr>
-									<td>Oktober 2018</td>
-									<td>
-										<span class="label label-default">Not Approved</span>
-									</td>
-									<td style="text-align: left;">
-										<button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button>
-									</td>
-								</tr>
+								@foreach($slip_gajis as $slip_gaji)
+									<tr>
+										<td>{{$slip_gaji->nip}} - {{$slip_gaji->pegawai->nama}}</td>
+										<td>{{bulan($slip_gaji->bulan)}} {{$slip_gaji->tahun}}</td>
+										<td>{{$slip_gaji->keperluan}}</td>
+										<td>
+											@if($slip_gaji->is_verif_sdm == 1)
+												<span class="label label-primary">Approved By Manager SDM</span>
+											@else
+												<span class="label label-default">Not Approved</span>
+											@endif
+										</td>
+										<td style="text-align: left;">
+											@if($slip_gaji->is_verif_sdm == 1)
+												<a class="btn btn-dark btn-xs">Approve</a>
+												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
+											@else
+												<a class="btn btn-success btn-xs" href="{{'slip_gaji/approve/'.$slip_gaji->id.''}}">Approve</a>
+												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</a>
+											@endif
+										</td>
+									</tr>
+								@endforeach
 							</tbody>
 						</table>
 					</div>

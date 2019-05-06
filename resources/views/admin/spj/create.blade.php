@@ -17,47 +17,78 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							<div class="form-group">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">NIP <span class="required">*</span>:</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<p style="padding: 6px 12px; font-size: 15px;">{{Auth::user()->pegawai_id}}</p>
+									</div>
+								</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama Karyawan <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select class="form-control col-md-7 col-xs-12">
-										<option value="0">Pilih Karyawan</option>
-										<option value="SA150795">SA150795 - Tiger Nixon</option>
-										<option value="SL170793">SL170793 - Garrett Winters</option>
-										<option value="HS1506795">HS1506795 - Cedric Kelly</option>
-									</select>
+									<p style="padding: 6px 12px;">{{Auth::user()->name}}</p>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="tanggal" class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal *:</label>
+								<label for="tanggal" class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Berangkat *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<fieldset>
-										<div class="control-group">
-											<div class="controls">
-												<div class="col-md-11 xdisplay_inputx form-group has-feedback">
-													<input type="text" class="form-control has-feedback-left" id="single_cal1" placeholder="Tanggal" name="tanggal" aria-describedby="inputSuccess2Status">
-													<span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-										 			<span id="inputSuccess2Status" class="sr-only">(success)</span>
-												</div>
-											</div>
+									<div class='input-group date' id='datepicker' class="datepicker">
+										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
+						                <input type='text' value='' name='tanggal_berangkat' class='form-control' required="required" placeholder="" />
+						            </div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="tanggal" class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Pulang *:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<div class='input-group date' id='datepicker2' class="datepicker">
+										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
+						                <input type='text' value='' name='tanggal_pulang' class='form-control' required="required" />
+						            </div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Alat Angkutan yang digunakan *:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<div class="row">
+										<div class="col-md-4">
+											<input type="radio" id="angkutan" class="angkutan" name="angkutan" value="pesawat" > Pesawat Terbang
 										</div>
-									</fieldset>
+										<div class="col-md-6">
+											<input type="radio" id="angkutan" class="angkutan" name="angkutan" value="kereta"> Kereta Api / Bus / Travel
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-4">
+											<input type="radio" id="angkutan" class="angkutan" name="angkutan" value="dinas"> Kendaraan Dinas
+										</div>
+										<div class="col-md-6">
+											<input type="radio" id="angkutan" class="angkutan" name="angkutan" value="pribadi"> Kendaraan Pribadi
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Nominal *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="nominal" class="form-control col-md-7 col-xs-12">
+									<input type="text" name="nominal" class="form-control col-md-7 col-xs-12 nominal" readonly="readonly">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Keperluan *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<textarea name="keperluan" class="form-control col-md-7 col-xs-12" rows="5"></textarea>
+									<input type="text" name="keperluan" class="form-control col-md-7 col-xs-12">
 								</div>
 							</div>
-							
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Upload Surat Perintah *:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input type="file" name="nominal" class="form-control col-md-7 col-xs-12">
+									mohon mengupload bukti perintah
+								</div>
+							</div>
 							
 							<div class="ln_solid"></div>
 							<div class="ln_solid"></div>
@@ -76,3 +107,39 @@
     </div>
     <!-- /page content -->
 @endsection
+@push('scripts')
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $('.pegawai').select2();
+
+		    $('#datepicker').datepicker({
+		        format: 'dd-mm-yyyy',
+		        autoclose: true
+	    	});
+
+	    	$('#datepicker2').datepicker({
+		        format: 'dd-mm-yyyy',
+		        autoclose: true
+	    	});
+
+	    	$('input[type=radio][name=angkutan]').on('change', function() {
+			  var angkutan = $(this).val();
+			  console.log(angkutan);
+			  switch ($(this).val()) {
+				    case 'pesawat':
+				      $('.nominal').val(1000000);
+				      break;
+				    case 'kereta':
+				      $('.nominal').val(500000);
+				      break;
+				    case 'dinas':
+				      $('.nominal').val(100000);
+				      break;
+				    case 'pribadi':
+				      $('.nominal').val(100000);
+				      break;
+				  }
+			});
+		});
+	</script>
+@endpush

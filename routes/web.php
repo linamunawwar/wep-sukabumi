@@ -42,6 +42,29 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/cuti/create', 'admin\CutiController@getCreate');
 		Route::post('/cuti/create', 'admin\CutiController@postCreate');
 
+		//gaji
+		Route::get('/gaji', 'admin\GajiController@index');
+		Route::get('/gaji/create', 'admin\GajiController@getCreate');
+		Route::get('/gaji/list_transfer', 'admin\GajiController@getListTransfer');
+		Route::get('/gaji/edit/{id}', 'admin\GajiController@getEdit');
+		Route::post('/gaji/edit/{id}', 'admin\GajiController@postEdit');
+		Route::get('/gaji/slip_gaji', 'admin\GajiController@slipGaji');
+		Route::get('/gaji/slip_gaji/create', 'admin\GajiController@getSlipGajiCreate');
+		Route::post('/gaji/slip_gaji/create', 'admin\GajiController@postSlipGajiCreate');
+
+		//memo
+		Route::get('/memo', 'admin\MemoController@index');
+		Route::get('/memo/create', 'admin\MemoController@getCreate');
+		Route::post('/memo/create', 'admin\MemoController@postCreate');
+		Route::get('/memo/detail/{id}', 'admin\MemoController@getDetail');
+		Route::get('/memo/edit/{id}', 'admin\MemoController@getEdit');
+		Route::post('/memo/edit/{id}', 'admin\MemoController@postEdit');
+		Route::get('/memo/delete/{id}', 'admin\MemoController@getDelete');
+
+		Route::get('/spj', 'admin\SpjController@index');
+		Route::get('/spj/create', 'admin\SpjController@getCreate');
+		Route::post('/spj/create', 'admin\SpjController@postCreate');
+		Route::get('/spj/approve/{id}', 'admin\SpjController@getApprove');
 		
 	});
 
@@ -64,6 +87,21 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/izin', 'user\IzinController@index');
 		Route::get('/izin/create', 'user\IzinController@getCreate');
 		Route::post('/izin/create', 'user\IzinController@postCreate');
+
+		//gaji
+		Route::get('/gaji', 'user\GajiController@index');
+		Route::get('/gaji/slip_gaji', 'user\GajiController@slipGaji');
+		Route::get('/gaji/slip_gaji/create', 'user\GajiController@getSlipGajiCreate');
+		Route::post('/gaji/slip_gaji/create', 'user\GajiController@postSlipGajiCreate');
+
+		//memo
+		Route::get('/memo', 'user\MemoController@index');
+		Route::get('/memo/detail/{id}', 'user\MemoController@getDetail');
+
+		//spj
+		Route::get('/spj', 'user\SpjController@index');
+		Route::get('/spj/create', 'user\SpjController@getCreate');
+		Route::post('/spj/create', 'user\SpjController@postCreate');
 
 		
 	});
@@ -95,6 +133,20 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/izin', 'manager\IzinController@index');
 		Route::get('/izin/approve/{id}', 'manager\IzinController@approve');
 
+		//gaji
+		Route::get('/gaji', 'manager\GajiController@index');
+		Route::get('/gaji/slip_gaji', 'manager\GajiController@slipGaji');
+		Route::get('/gaji/slip_gaji/approve/{id}', 'manager\GajiController@approveSlipGaji');
+
+		//memo
+		Route::get('/memo', 'manager\MemoController@index');
+		Route::get('/memo/detail/{id}', 'manager\MemoController@getDetail');
+
+		//spj
+		Route::get('/spj', 'manager\SpjController@index');
+		Route::get('/spj/create', 'manager\SpjController@getCreate');
+		Route::post('/spj/create', 'manager\SpjController@postCreate');
+
 	});
 
 	Route::group(['prefix' => '/pm'], function () {
@@ -114,6 +166,16 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/cuti', 'pm\CutiController@index');
 		Route::get('/cuti/approve/{id}', 'pm\CutiController@approve');
 		Route::post('/cuti/approve/{id}', 'pm\CutiController@postApprove');
+
+		Route::get('/gaji', 'pm\GajiController@index');
+
+		Route::get('/memo', 'pm\MemoController@index');
+		Route::get('/memo/detail/{id}', 'pm\MemoController@getDetail');
+
+		//spj
+		Route::get('/spj', 'pm\SpjController@index');
+		Route::get('/spj/create', 'pm\SpjController@getCreate');
+		Route::post('/spj/create', 'pm\SpjController@postCreate');
 	});
 
 
@@ -129,14 +191,11 @@ Route::group(['middleware' => 'auth'], function () {
 	//--------------------CUTI----------------------
 	
 	//-------------------GAJI-----------------
-	Route::get('/gaji', 'GajiController@index');
-	Route::get('/gaji/create', 'GajiController@getCreate');
-	Route::get('/gaji/list_transfer', 'GajiController@getListTransfer');
+	
 	//---------------------SPJ----------------------------
-	Route::get('/spj', 'SpjController@index');
-	Route::get('/spj/create', 'SpjController@getCreate');
+	
 	//----------------------MEMO-----------
-	Route::get('/memo', 'MemoController@index');
+	
 	//-------------------------DISPOSISI----------------
 	Route::get('/surat_masuk', 'DisposisiController@indexSuratMasuk');
 	Route::get('/surat_masuk/create', 'DisposisiController@getCreateSuratMasuk');
@@ -172,24 +231,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>USER<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-
-	//----------------------izin User ------------------
 	
-	//------------------------------GAJI USER-----------------------------------
-	Route::get('/user/gaji', 'GajiController@indexUser');
-	Route::get('/user/gaji/slip_gaji', 'GajiController@slipGaji');
-	Route::get('/user/gaji/slip_gaji/create', 'GajiController@slipGajiCreate');
-
-	//----------------------Cuti User ------------------
-	Route::get('/user/spj', 'SpjController@indexUser');
-	Route::get('/user/spj/create', 'SpjController@getCreateUser');
-
-	//--------------------MANAGER-------------------------
-	
-
-
-	Route::get('/manager/slip_gaji', 'GajiController@slipGajiManager');
-	Route::get('/manager/slip_gaji/approve', 'GajiController@approveSlipGajiManager');
 
 	Route::get('/manager/disposisi', 'DisposisiController@indexManager');
 	Route::get('/manager/disposisi/proses', 'DisposisiController@prosesManager');
