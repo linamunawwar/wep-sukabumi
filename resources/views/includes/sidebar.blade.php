@@ -109,11 +109,17 @@
                          </li>
                     @endif
 
-                    @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))    
-                        <li><a href="{{url('/memo')}}"><i class="fa fa-paper-plane"></i>Pesan Internal </a>
+                    @if(Auth::user()->role_id == 1)
+                        <li><a href="{{url('admin/memo')}}"><i class="fa fa-paper-plane"></i>Pesan Internal </a>
                     @endif
                     @if(Auth::user()->role_id == 2)
                         <li><a href="{{url('/user/memo')}}"><i class="fa fa-paper-plane"></i>Pesan Internal </a></li>
+                    @endif
+                    @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
+                        <li><a href="{{url('manager/memo')}}"><i class="fa fa-paper-plane"></i>Pesan Internal </a>
+                    @endif
+                    @if(Auth::user()->role_id == 5)
+                        <li><a href="{{url('/pm/memo')}}"><i class="fa fa-paper-plane"></i>Pesan Internal </a></li>
                     @endif
 
 
@@ -133,11 +139,27 @@
                          <li><a href="{{url('/pm/spj')}}"><i class="fa fa-exchange"></i>SPJ</a></li>
                     @endif
 
-                    @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
+                    @if(Auth::user()->role_id == 1)
                         <li><a><i class="fa fa-envelope"></i>Disposisi <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="{{url('surat_masuk')}}">List Surat Masuk</a></li>
-                                <li><a href="{{url('disposisi')}}">List Disposisi</a></li>
+                                <li><a href="{{url('admin/surat_masuk')}}">List Surat Masuk</a></li>
+                                <li><a href="{{url('admin/disposisi')}}">List Disposisi</a></li>
+                            </ul>
+                        </li>
+                    @endif
+                    @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
+                        <li><a><i class="fa fa-envelope"></i>Disposisi <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{url('manager/surat_masuk')}}">List Surat Masuk</a></li>
+                                <li><a href="{{url('manager/disposisi')}}">List Disposisi</a></li>
+                            </ul>
+                        </li>
+                    @endif
+                    @if(Auth::user()->role_id == 5)
+                        <li><a><i class="fa fa-envelope"></i>Disposisi <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{url('pm/surat_masuk')}}">List Surat Masuk</a></li>
+                                <li><a href="{{url('pm/disposisi')}}">List Disposisi</a></li>
                             </ul>
                         </li>
                     @endif

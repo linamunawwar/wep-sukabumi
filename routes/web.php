@@ -61,10 +61,27 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/memo/edit/{id}', 'admin\MemoController@postEdit');
 		Route::get('/memo/delete/{id}', 'admin\MemoController@getDelete');
 
+		//spj
 		Route::get('/spj', 'admin\SpjController@index');
 		Route::get('/spj/create', 'admin\SpjController@getCreate');
 		Route::post('/spj/create', 'admin\SpjController@postCreate');
 		Route::get('/spj/approve/{id}', 'admin\SpjController@getApprove');
+
+		//disposisi
+		Route::get('/surat_masuk', 'admin\DisposisiController@indexSuratMasuk');
+		Route::get('/surat_masuk/create', 'admin\DisposisiController@getCreateSuratMasuk');
+		Route::post('/surat_masuk/create', 'admin\DisposisiController@postCreateSuratMasuk');
+		Route::get('/surat_masuk/edit/{id}', 'admin\DisposisiController@getEditSuratMasuk');
+		Route::post('/surat_masuk/edit/{id}', 'admin\DisposisiController@postEditSuratMasuk');
+		Route::get('/surat_masuk/delete/{id}', 'admin\DisposisiController@getDeleteSuratMasuk');
+
+		Route::get('/disposisi', 'admin\DisposisiController@index');
+		Route::get('/disposisi/create', 'admin\DisposisiController@getCreate');
+		Route::post('/disposisi/create', 'admin\DisposisiController@postCreate');
+		Route::get('/disposisi/edit/{id}', 'admin\DisposisiController@getEdit');
+		Route::post('/disposisi/edit/{id}', 'admin\DisposisiController@postEdit');
+		Route::get('/disposisi/delete/{id}', 'admin\DisposisiController@getDelete');
+		Route::get('/disposisi/monitor', 'admin\DisposisiController@getMonitor');
 		
 	});
 
@@ -147,6 +164,10 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/spj/create', 'manager\SpjController@getCreate');
 		Route::post('/spj/create', 'manager\SpjController@postCreate');
 
+		//disposisi
+		Route::get('/disposisi', 'manager\DisposisiController@indexManager');
+		Route::get('/disposisi/proses', 'manager\DisposisiController@prosesManager');
+
 	});
 
 	Route::group(['prefix' => '/pm'], function () {
@@ -176,6 +197,10 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/spj', 'pm\SpjController@index');
 		Route::get('/spj/create', 'pm\SpjController@getCreate');
 		Route::post('/spj/create', 'pm\SpjController@postCreate');
+
+		//disposisi
+		Route::get('/disposisi', 'pm\DisposisiController@index');
+		Route::get('/disposisi/proses/{id}', 'pm\DisposisiController@proses');
 	});
 
 
@@ -197,13 +222,10 @@ Route::group(['middleware' => 'auth'], function () {
 	//----------------------MEMO-----------
 	
 	//-------------------------DISPOSISI----------------
-	Route::get('/surat_masuk', 'DisposisiController@indexSuratMasuk');
-	Route::get('/surat_masuk/create', 'DisposisiController@getCreateSuratMasuk');
+	
 
 
-	Route::get('/disposisi', 'DisposisiController@index');
-	Route::get('/disposisi/create', 'DisposisiController@getCreate');
-	Route::get('/disposisi/monitor', 'DisposisiController@getMonitor');
+	
 
 	//---------------SURAT KELUAR-----------------------
 	Route::get('/surat_keluar', 'SuratKeluarController@index');
@@ -233,16 +255,14 @@ Route::group(['middleware' => 'auth'], function () {
 
 	
 
-	Route::get('/manager/disposisi', 'DisposisiController@indexManager');
-	Route::get('/manager/disposisi/proses', 'DisposisiController@prosesManager');
+	
 
 	Route::get('/manager/rkp', 'RkpController@indexManager');
 	Route::get('/manager/rkp/create', 'RkpController@getCreate');
 
 	//--------------------PROJECT MANAGER-------------------------
 
-	Route::get('/pm/disposisi', 'DisposisiController@indexPM');
-	Route::get('/pm/disposisi/proses', 'DisposisiController@prosesPM');
+	
 
 	Route::get('/pm/rkp', 'RkpController@indexPM');
 	Route::get('/pm/rkp/detail', 'RkpController@getDetail');

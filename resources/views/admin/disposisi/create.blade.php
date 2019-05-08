@@ -17,39 +17,33 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nomor Agenda <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="alasan" class="form-control col-md-7 col-xs-12" value="013/SM/WK/DIII/BCKY2A/IV/2019" readonly="readonly">
+									<input type="text" name="no_agenda" class="form-control col-md-7 col-xs-12" value="013/SM/WK/DIII/BCKY2A/IV/2019" readonly="readonly">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Pengirim <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="alasan" class="form-control col-md-7 col-xs-12">
+									<input type="text" name="pengirim" class="form-control col-md-7 col-xs-12">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Kepada <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="alasan" class="form-control col-md-7 col-xs-12">
+									<input type="text" name="kepada" class="form-control col-md-7 col-xs-12">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="tanggal" class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Terima *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<fieldset>
-										<div class="control-group">
-											<div class="controls">
-												<div class="col-md-11 xdisplay_inputx form-group has-feedback">
-													<input type="text" class="form-control has-feedback-left" id="single_cal1" placeholder="Tanggal" name="tanggal" aria-describedby="inputSuccess2Status">
-													<span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-										 			<span id="inputSuccess2Status" class="sr-only">(success)</span>
-												</div>
-											</div>
-										</div>
-									</fieldset>
+									<div class='input-group date' id='datepicker' class="datepicker">
+										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
+						                <input type='text' value='' name='tanggal_terima' class='form-control' required="required" />
+						            </div>
 								</div>
 							</div>
 							<div class="form-group">
@@ -61,31 +55,24 @@
 							<div class="form-group">
 								<label for="tanggal" class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Surat *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<fieldset>
-										<div class="control-group">
-											<div class="controls">
-												<div class="col-md-11 xdisplay_inputx form-group has-feedback">
-													<input type="text" class="form-control has-feedback-left" id="single_cal1" placeholder="Tanggal" name="tanggal" aria-describedby="inputSuccess2Status">
-													<span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-										 			<span id="inputSuccess2Status" class="sr-only">(success)</span>
-												</div>
-											</div>
-										</div>
-									</fieldset>
+									<div class='input-group date' id='datepicker2' class="datepicker">
+										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
+						                <input type='text' value='' name='tanggal_surat' class='form-control' required="required" />
+						            </div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Perihal:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<textarea name="alasan" class="form-control col-md-7 col-xs-12"></textarea>
+									<textarea name="perihal" class="form-control col-md-7 col-xs-12"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Sifat:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="radio" checked="" name="sifat" value="penting" style="margin: 12px;">Penting
-									<input type="radio" checked="" name="sifat" value="segera" style="margin: 12px;">Segera
-									<input type="radio" checked="" name="sifat" value="biasa" style="margin: 12px;">Biasa
+									<input type="radio" name="sifat" value="Penting" style="margin: 12px;">Penting
+									<input type="radio" name="sifat" value="Segera" style="margin: 12px;">Segera
+									<input type="radio" name="sifat" value="Biasa" style="margin: 12px;">Biasa
 
 								</div>
 							</div>
@@ -107,3 +94,19 @@
     </div>
     <!-- /page content -->
 @endsection
+@push('scripts')
+<script type="text/javascript">
+	$(document).ready(function(){
+      $('#datepicker').datepicker({
+        format: 'dd-mm-yyyy',
+        autoclose: true
+    	});
+
+      $('#datepicker2').datepicker({
+        format: 'dd-mm-yyyy',
+        autoclose: true
+    	});
+  	});
+
+</script>
+@endpush

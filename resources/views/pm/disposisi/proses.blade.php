@@ -17,55 +17,56 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
-											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Nomor Agenda <span class="required">*</span>:</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p class="data">SM/WK/II/12/2019</p>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Pengirim <span class="required">*</span>:</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p class="data">PD. Djembatan Masaa</p>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Kepada <span class="required">*</span>:</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p class="data">Kepala seksi Quality Control</p>
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="tanggal" class="control-label col-md-4 col-sm-4 col-xs-12">Tanggal Terima *:</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p class="data">2019/03/23</p>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Nomor Surat <span class="required">*</span>:</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p class="data">SM/WK/II/12/2019</p>
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="tanggal" class="control-label col-md-4 col-sm-4 col-xs-12">Tanggal Surat *:</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p class="data">2019/03/23</p>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-4 col-sm-4 col-xs-12">Perihal:</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p class="data">Penawaran barang</p>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-4 col-sm-4 col-xs-12">Sifat:</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p class="data">SEGERA</p>
-											</div>
-										</div>
+								<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Nomor Agenda <span class="required">*</span>:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<p class="data">{{$disposisi->no_agenda}}</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Pengirim <span class="required">*</span>:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<p class="data">{{$disposisi->pengirim}}</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Kepada <span class="required">*</span>:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<p class="data">{{$disposisi->kepada}}</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="tanggal" class="control-label col-md-4 col-sm-4 col-xs-12">Tanggal Terima *:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<p class="data">{{konversi_tanggal($disposisi->tanggal_terima)}}</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Nomor Surat <span class="required">*</span>:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<p class="data">{{$disposisi->no_surat}}</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="tanggal" class="control-label col-md-4 col-sm-4 col-xs-12">Tanggal Surat *:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<p class="data">{{konversi_tanggal($disposisi->tanggal_surat)}}</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-4 col-sm-4 col-xs-12">Perihal:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<p class="data">{{$disposisi->perihal}}</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-4 col-sm-4 col-xs-12">Sifat:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<p class="data">{{$disposisi->sifat}}</p>
+								</div>
+							</div>
 							<div class="ln_solid"></div>
 							<table class="table">
 								<thead>
@@ -78,66 +79,66 @@
 								<tbody>
 									<tr>
 										<td>PM</td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
+										<td><input type="radio" name="PM" class="checkbox" style="width: 50px; margin-left: 10px;" value="1"></td>
+										<td><input type="radio" name="PM" class="checkbox" style="width: 50px; margin-left: 10px;" value="2"></td>
+										<td><input type="radio" name="PM" class="checkbox" style="width: 50px; margin-left: 10px;" value="3"></td>
+										<td><input type="radio" name="PM" class="checkbox" style="width: 50px; margin-left: 10px;" value="4"></td>
 									</tr>
 									<tr>
 										<td>SOM</td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
+										<td><input type="radio" name="SOM" class="checkbox" style="width: 50px; margin-left: 10px;" value="1"></td>
+										<td><input type="radio" name="SOM" class="checkbox" style="width: 50px; margin-left: 10px;" value="2"></td>
+										<td><input type="radio" name="SOM" class="checkbox" style="width: 50px; margin-left: 10px;" value="3"></td>
+										<td><input type="radio" name="SOM" class="checkbox" style="width: 50px; margin-left: 10px;" value="4"></td>
 									</tr>
 									<tr>
-										<td>SLEM</td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
+										<td>SPLEM</td>
+										<td><input type="radio" name="SPLEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="1"></td>
+										<td><input type="radio" name="SPLEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="2"></td>
+										<td><input type="radio" name="SPLEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="3"></td>
+										<td><input type="radio" name="SPLEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="4"></td>
 									</tr>
 									<tr>
 										<td>QC</td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
+										<td><input type="radio" name="QC" class="checkbox" style="width: 50px; margin-left: 10px;" value="1"></td>
+										<td><input type="radio" name="QC" class="checkbox" style="width: 50px; margin-left: 10px;" value="2"></td>
+										<td><input type="radio" name="QC" class="checkbox" style="width: 50px; margin-left: 10px;" value="3"></td>
+										<td><input type="radio" name="QC" class="checkbox" style="width: 50px; margin-left: 10px;" value="4"></td>
 									</tr>
 									<tr>
 										<td>SEM</td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
+										<td><input type="radio" name="SEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="1"></td>
+										<td><input type="radio" name="SEM class="checkbox" style="width: 50px; margin-left: 10px;" value="2"></td>
+										<td><input type="radio" name="SEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="3"></td>
+										<td><input type="radio" name="SEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="4"></td>
 									</tr>
 									<tr>
-										<td>SCM</td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
+										<td>SCARM</td>
+										<td><input type="radio" name="SCARM" class="checkbox" style="width: 50px; margin-left: 10px;" value="1"></td>
+										<td><input type="radio" name="SCARM" class="checkbox" style="width: 50px; margin-left: 10px;" value="2"></td>
+										<td><input type="radio" name="SCARM" class="checkbox" style="width: 50px; margin-left: 10px;" value="3"></td>
+										<td><input type="radio" name="SCARM" class="checkbox" style="width: 50px; margin-left: 10px;" value="4"></td>
 									</tr>
 									<tr>
 										<td>SAM</td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
+										<td><input type="radio" name="SAM" class="checkbox" style="width: 50px; margin-left: 10px;" value="1"></td>
+										<td><input type="radio" name="SAM" class="checkbox" style="width: 50px; margin-left: 10px;" value="2"></td>
+										<td><input type="radio" name="SAM" class="checkbox" style="width: 50px; margin-left: 10px;" value="3"></td>
+										<td><input type="radio" name="SAM" class="checkbox" style="width: 50px; margin-left: 10px;" value="4"></td>
 									</tr>
 									<tr>
 										<td>HSE</td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
+										<td><input type="radio" name="HSE" class="checkbox" style="width: 50px; margin-left: 10px;" value="1"></td>
+										<td><input type="radio" name="HSE" class="checkbox" style="width: 50px; margin-left: 10px;" value="2"></td>
+										<td><input type="radio" name="HSE" class="checkbox" style="width: 50px; margin-left: 10px;" value="3"></td>
+										<td><input type="radio" name="HSE" class="checkbox" style="width: 50px; margin-left: 10px;" value="4"></td>
 									</tr>
 									<tr>
-										<td>HM</td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
-										<td><input type="radio" name="kapro[]" class="checkbox" style="width: 50px; margin-left: 10px;"></td>
+										<td>Public Relation</td>
+										<td><input type="radio" name="Public" class="checkbox" style="width: 50px; margin-left: 10px;" value="1"></td>
+										<td><input type="radio" name="Public" class="checkbox" style="width: 50px; margin-left: 10px;" value="2"></td>
+										<td><input type="radio" name="Public" class="checkbox" style="width: 50px; margin-left: 10px;" value="3"></td>
+										<td><input type="radio" name="Public" class="checkbox" style="width: 50px; margin-left: 10px;" value="4"></td>
 									</tr>
 								</tbody>
 							</table>

@@ -14,6 +14,9 @@
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>List Disposisi </h2>
+						<ul class="nav navbar-right panel_toolbox">
+							<li><a href="{{url('admin/disposisi/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
+						</ul>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
@@ -39,7 +42,10 @@
 										<td>{{$disposisi->sifat}}</td>
 										<td>{{$disposisi->perihal}}</td>
 										<td style="text-align: center;">
-											<a class="btn btn-primary btn-xs" href="{{url('pm/disposisi/proses/'.$disposisi->id.'')}}"><i class="fa fa-refresh"></i>  Proses</a>
+											<a class="btn btn-default btn-xs" href="{{url('admin/disposisi/edit/'.$disposisi->id.'')}}"><i class="fa fa-edit"></i>  Edit</a>
+											<a class="btn btn-danger btn-xs" href="{{url('admin/disposisi/delete/'.$disposisi->id.'')}}"><i class="fa fa-trash"></i>  Delete</a><br>
+											<a class="btn btn-primary btn-xs" href="{{url('admin/disposisi/monitor/'.$disposisi->id.'')}}"><i class="fa fa-eye"></i>  Monitor</a>
+											<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Arsip</a>
 										</td>
 									</tr>
 								@endforeach

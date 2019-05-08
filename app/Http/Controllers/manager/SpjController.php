@@ -16,6 +16,7 @@ class SpjController extends Controller
 
         return view('manager.spj.index',['spjs'=>$spjs]);
     }
+    
     public function getCreate()
     {
     	$pegawais = Pegawai::where('is_active',1)->get();
