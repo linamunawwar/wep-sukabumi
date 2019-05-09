@@ -22,7 +22,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nomor Surat <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="no_surat" class="form-control col-md-7 col-xs-12">
+									<input type="text" name="no_surat" class="form-control col-md-7 col-xs-12" value="{{$surat->no_surat}}">
 								</div>
 							</div>
 							<div class="form-group">
@@ -30,26 +30,26 @@
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<div class='input-group date' id='datepicker' class="datepicker">
 										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
-						                <input type='text' value='' name='tanggal_surat' class='form-control' required="required" />
+						                <input type='text' name='tanggal_surat' class='form-control' required="required" value='{{konversi_tanggal($surat->tanggal_surat)}}' />
 						            </div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Pengirim <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="pengirim" class="form-control col-md-7 col-xs-12">
+									<input type="text" name="pengirim" class="form-control col-md-7 col-xs-12" value="{{$surat->pengirim}}">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Kepada <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="kepada" class="form-control col-md-7 col-xs-12">
+									<input type="text" name="kepada" class="form-control col-md-7 col-xs-12" value="{{$surat->kepada}}">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Perihal:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<textarea name="perihal" class="form-control col-md-7 col-xs-12"></textarea>
+									<textarea name="perihal" class="form-control col-md-7 col-xs-12">{{$surat->perihal}}</textarea>
 								</div>
 							</div>
 							<div class="form-group">

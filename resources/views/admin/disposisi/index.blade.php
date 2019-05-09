@@ -44,8 +44,8 @@
 										<td style="text-align: center;">
 											<a class="btn btn-default btn-xs" href="{{url('admin/disposisi/edit/'.$disposisi->id.'')}}"><i class="fa fa-edit"></i>  Edit</a>
 											<a class="btn btn-danger btn-xs" href="{{url('admin/disposisi/delete/'.$disposisi->id.'')}}"><i class="fa fa-trash"></i>  Delete</a><br>
-											<a class="btn btn-primary btn-xs" href="{{url('admin/disposisi/monitor/'.$disposisi->id.'')}}"><i class="fa fa-eye"></i>  Monitor</a>
-											<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Arsip</a>
+											<a class="btn btn-primary btn-xs" href="{{url('admin/disposisi/monitoring/'.$disposisi->id.'')}}"><i class="fa fa-eye"></i>  Monitor</a>
+											<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
 										</td>
 									</tr>
 								@endforeach

@@ -81,8 +81,15 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/disposisi/edit/{id}', 'admin\DisposisiController@getEdit');
 		Route::post('/disposisi/edit/{id}', 'admin\DisposisiController@postEdit');
 		Route::get('/disposisi/delete/{id}', 'admin\DisposisiController@getDelete');
-		Route::get('/disposisi/monitor', 'admin\DisposisiController@getMonitor');
+		Route::get('/disposisi/monitoring/{id}', 'admin\DisposisiController@monitoring');
 		
+		//surat keluar
+		Route::get('/surat_keluar', 'admin\SuratKeluarController@index');
+		Route::get('/surat_keluar/create', 'admin\SuratKeluarController@getCreate');
+		Route::post('/surat_keluar/create', 'admin\SuratKeluarController@postCreate');
+		Route::get('/surat_keluar/edit/{id}', 'admin\SuratKeluarController@getEdit');
+		Route::post('/surat_keluar/edit/{id}', 'admin\SuratKeluarController@postEdit');
+		Route::get('/surat_keluar/delete/{id}', 'admin\SuratKeluarController@getDelete');
 	});
 
 	Route::group(['prefix' => '/user'], function () {
@@ -165,8 +172,11 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/spj/create', 'manager\SpjController@postCreate');
 
 		//disposisi
-		Route::get('/disposisi', 'manager\DisposisiController@indexManager');
-		Route::get('/disposisi/proses', 'manager\DisposisiController@prosesManager');
+		Route::get('/disposisi', 'manager\DisposisiController@index');
+		Route::get('/disposisi/proses/{id}', 'manager\DisposisiController@proses');
+		Route::post('/disposisi/proses/{id}', 'manager\DisposisiController@postProses');
+		Route::get('/disposisi/monitoring/{id}', 'manager\DisposisiController@monitoring');
+
 
 	});
 
@@ -201,6 +211,11 @@ Route::group(['middleware' => 'auth'], function () {
 		//disposisi
 		Route::get('/disposisi', 'pm\DisposisiController@index');
 		Route::get('/disposisi/proses/{id}', 'pm\DisposisiController@proses');
+		Route::post('/disposisi/proses/{id}', 'pm\DisposisiController@postProses');
+		Route::get('/disposisi/edit/{id}', 'pm\DisposisiController@getEdit');
+		Route::post('/disposisi/edit/{id}', 'pm\DisposisiController@postEdit');
+		Route::get('/disposisi/monitoring/{id}', 'pm\DisposisiController@monitoring');
+
 	});
 
 

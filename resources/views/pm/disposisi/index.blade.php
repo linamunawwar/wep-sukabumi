@@ -39,7 +39,15 @@
 										<td>{{$disposisi->sifat}}</td>
 										<td>{{$disposisi->perihal}}</td>
 										<td style="text-align: center;">
-											<a class="btn btn-primary btn-xs" href="{{url('pm/disposisi/proses/'.$disposisi->id.'')}}"><i class="fa fa-refresh"></i>  Proses</a>
+											@if(!$disposisi->note)
+												<a class="btn btn-primary btn-xs" href="{{url('pm/disposisi/proses/'.$disposisi->id.'')}}"><i class="fa fa-refresh"></i>  Proses</a>
+												<a class="btn btn-primary btn-xs" href="{{url('pm/disposisi/monitor/'.$disposisi->id.'')}}"><i class="fa fa-eye"></i>  Monitor</a>
+												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
+											@else
+												<a class="btn btn-default btn-xs" href="{{url('pm/disposisi/edit/'.$disposisi->id.'')}}"><i class="fa fa-edit"></i>  Edit</a>
+												<a class="btn btn-primary btn-xs" href="{{url('pm/disposisi/monitor/'.$disposisi->id.'')}}"><i class="fa fa-eye"></i>  Monitor</a>
+												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
+											@endif
 										</td>
 									</tr>
 								@endforeach

@@ -148,12 +148,7 @@
                         </li>
                     @endif
                     @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
-                        <li><a><i class="fa fa-envelope"></i>Disposisi <span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
-                                <li><a href="{{url('manager/surat_masuk')}}">List Surat Masuk</a></li>
-                                <li><a href="{{url('manager/disposisi')}}">List Disposisi</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="{{url('manager/disposisi')}}"><i class="fa fa-envelope"></i>List Disposisi</a></li>
                     @endif
                     @if(Auth::user()->role_id == 5)
                         <li><a><i class="fa fa-envelope"></i>Disposisi <span class="fa fa-chevron-down"></span></a>
@@ -163,14 +158,15 @@
                             </ul>
                         </li>
                     @endif
-
-                    @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))
-                    <li>
-                        <a href="{{url('surat_keluar')}}">
+                    @if(Auth::user()->role_id == 1)
+                     <li>
+                        <a href="{{url('admin/surat_keluar')}}">
                             <i class="fa fa-envelope-o"></i>
                             Surat Keluar
                         </a>
                     </li>
+                    @endif
+                    @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))
                     <li>
                         <a href="{{url('rkp')}}">
                             <i class="fa fa-list-alt"></i>

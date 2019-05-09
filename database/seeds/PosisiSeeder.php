@@ -224,7 +224,16 @@ class PosisiSeeder extends Seeder
         ]);	
 
         DB::table('mst_posisi')->insert([
-        	'id' => 24,
+            'id' => 24,
+            'kode' => 'SA',
+            'posisi' => 'Public Relation',
+            'parent' => '6',
+            'level' => '2',
+            'created_at' => $date
+        ]);
+
+        DB::table('mst_posisi')->insert([
+        	'id' => 25,
             'kode' => 'SA',
             'posisi' => 'General Affair',
             'parent' => '6',
@@ -233,7 +242,7 @@ class PosisiSeeder extends Seeder
         ]);	
 
         DB::table('mst_posisi')->insert([
-        	'id' => 25,
+        	'id' => 26,
             'kode' => 'SA',
             'posisi' => 'Secretary',
             'parent' => '6',
@@ -242,7 +251,7 @@ class PosisiSeeder extends Seeder
         ]);	
 
         DB::table('mst_posisi')->insert([
-        	'id' => 26,
+        	'id' => 27,
             'kode' => 'SA',
             'posisi' => 'Office Boy',
             'parent' => '6',
@@ -251,7 +260,7 @@ class PosisiSeeder extends Seeder
         ]);	
 
         DB::table('mst_posisi')->insert([
-        	'id' => 27,
+        	'id' => 28,
             'kode' => 'SA',
             'posisi' => 'Security',
             'parent' => '6',
@@ -260,7 +269,7 @@ class PosisiSeeder extends Seeder
         ]);	
 
         DB::table('mst_posisi')->insert([
-        	'id' => 28,
+        	'id' => 29,
             'kode' => 'SA',
             'posisi' => 'Driver',
             'parent' => '6',
@@ -270,7 +279,7 @@ class PosisiSeeder extends Seeder
 
         //-----------SITE LOGISTIC------------------
         DB::table('mst_posisi')->insert([
-        	'id' => 29,
+        	'id' => 30,
             'kode' => 'SL',
             'posisi' => 'Logistic',
             'parent' => '7',
@@ -279,7 +288,7 @@ class PosisiSeeder extends Seeder
         ]);	
 
         DB::table('mst_posisi')->insert([
-        	'id' => 30,
+        	'id' => 31,
             'kode' => 'SL',
             'posisi' => 'Equipment',
             'parent' => '7',
@@ -288,7 +297,7 @@ class PosisiSeeder extends Seeder
         ]);	
 
         DB::table('mst_posisi')->insert([
-        	'id' => 31,
+        	'id' => 32,
             'kode' => 'SL',
             'posisi' => 'ERP',
             'parent' => '29',
@@ -297,7 +306,7 @@ class PosisiSeeder extends Seeder
         ]);	
 
         DB::table('mst_posisi')->insert([
-        	'id' => 32,
+        	'id' => 33,
             'kode' => 'SL',
             'posisi' => 'Warehouse Staff',
             'parent' => '31',
@@ -306,7 +315,7 @@ class PosisiSeeder extends Seeder
         ]);	
 
         DB::table('mst_posisi')->insert([
-        	'id' => 33,
+        	'id' => 34,
             'kode' => 'SL',
             'posisi' => 'Electric',
             'parent' => '30',
@@ -316,7 +325,7 @@ class PosisiSeeder extends Seeder
 
         //------------SITE OPERATIONAL----------
         DB::table('mst_posisi')->insert([
-        	'id' => 34,
+        	'id' => 35,
             'kode' => 'SO',
             'posisi' => 'Project Controller',
             'parent' => '8',
@@ -325,7 +334,7 @@ class PosisiSeeder extends Seeder
         ]);
 
         DB::table('mst_posisi')->insert([
-        	'id' => 35,
+        	'id' => 36,
             'kode' => 'SO',
             'posisi' => 'Zona 1',
             'parent' => '8',
@@ -334,7 +343,7 @@ class PosisiSeeder extends Seeder
         ]);
 
         DB::table('mst_posisi')->insert([
-        	'id' => 36,
+        	'id' => 37,
             'kode' => 'SO',
             'posisi' => 'Zona 2 & 3',
             'parent' => '8',
@@ -343,7 +352,7 @@ class PosisiSeeder extends Seeder
         ]);
 
         DB::table('mst_posisi')->insert([
-        	'id' => 37,
+        	'id' => 38,
             'kode' => 'SO',
             'posisi' => 'Zona 4 & 5',
             'parent' => '8',
@@ -352,7 +361,7 @@ class PosisiSeeder extends Seeder
         ]);
 
         DB::table('mst_posisi')->insert([
-        	'id' => 38,
+        	'id' => 39,
             'kode' => 'SO',
             'posisi' => 'Drainage',
             'parent' => '8',
@@ -361,7 +370,7 @@ class PosisiSeeder extends Seeder
         ]);
 
         DB::table('mst_posisi')->insert([
-        	'id' => 39,
+        	'id' => 40,
             'kode' => 'SO',
             'posisi' => 'Rigid',
             'parent' => '8',
@@ -370,7 +379,7 @@ class PosisiSeeder extends Seeder
         ]);
 
         DB::table('mst_posisi')->insert([
-        	'id' => 40,
+        	'id' => 41,
             'kode' => 'SO',
             'posisi' => 'Pembesian',
             'parent' => '8',

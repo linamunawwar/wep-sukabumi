@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMstSuratMasukTable extends Migration
+class AddViewTrDisposisiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateMstSuratMasukTable extends Migration
      */
     public function up()
     {
-        Schema::create('mst_surat_masuk', function (Blueprint $table) {
+        Schema::create('mst_surat_keluar', function (Blueprint $table) {
             $table->increments('id');
             $table->string('no_surat');
             $table->string('pengirim');
@@ -36,6 +36,6 @@ class CreateMstSuratMasukTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mst_surat_masuk');
+        Schema::dropIfExists('mst_surat_keluar');
     }
 }

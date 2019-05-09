@@ -27,106 +27,38 @@
 									<th>Sifat</th>
 									<th>Perihal</th>
 									<th>Tugas</th>
-									<th style="width: 235px;">Action</th>
+									<th >Action</th>
+									<th>Status</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>SM/WK/II/12/2019</td>
-									<td>System Architect</td>
-									<td>System Architect</td>
-									<td>2019/02/18</td>
-									<td>Penting</td>
-									<td>System Architect</td>
-									<td>Mengetahui</td>
-									<td style="text-align: center;">
-										<a class="btn btn-primary btn-xs" href="{{url('manager/disposisi/proses')}}"><i class="fa fa-refresh"></i>  Proses</a>
-									</td>
-								</tr>
-								<tr>
-									<td>SM/WK/II/12/2019</td>
-									<td>System Architect</td>
-									<td>System Architect</td>
-									<td>2019/02/18</td>
-									<td>Segera</td>
-									<td>System Architect</td>
-									<td>Menyelesaikan</td>
-									<td style="text-align: center;">
-										<a class="btn btn-dark btn-xs" href="{{url('manager/disposisi/proses')}}"><i class="fa fa-refresh"></i>  Proses</a>
-									</td>
-								</tr>
-								<tr>
-									<td>SM/WK/II/12/2019</td>
-									<td>System Architect</td>
-									<td>Junior Technical Author</td>
-									<td>2019/02/18</td>
-									<td>Penting</td>
-									<td>Junior Technical Author</td>
-									<td>Mengetahui</td>
-									<td style="text-align: center;">
-										<a class="btn btn-dark btn-xs" href="{{url('manager/disposisi/proses')}}"><i class="fa fa-refresh"></i>  Proses</a>
-									</td>
-								</tr>
-								<tr>
-									<td>SM/WK/II/12/2019</td>
-									<td>System Architect</td>
-									<td>Junior Technical Author</td>
-									<td>2019/02/18</td>
-									<td>Biasa</td>
-									<td>Senior Javascript Developer</td>
-									<td>Memproses</td>
-									<td style="text-align: center;">
-										<a class="btn btn-primary btn-xs" href="{{url('manager/disposisi/proses')}}"><i class="fa fa-refresh"></i>  Proses</a>
-									</td>
-								</tr>
-								<tr>
-									<td>SM/WK/II/12/2019</td>
-									<td>System Architect</td>
-									<td>Junior Technical Author</td>
-									<td>2019/02/18</td>
-									<td>Segera</td>
-									<td>Integration Specialist</td>
-									<td>Memproses</td>
-									<td style="text-align: center;">
-										<a class="btn btn-primary btn-xs" href="{{url('manager/disposisi/proses')}}"><i class="fa fa-refresh"></i>  Proses</a>
-									</td>
-								</tr>
-								<tr>
-									<td>SM/WK/II/12/2019</td>
-									<td>System Architect</td>
-									<td>Junior Technical Author</td>
-									<td>2019/02/18</td>
-									<td>Penting</td>
-									<td>Office Manager</td>
-									<td>Memeriksa</td>
-									<td style="text-align: center;">
-										<a class="btn btn-primary btn-xs" href="{{url('manager/disposisi/proses')}}"><i class="fa fa-refresh"></i>  Proses</a>
-									</td>
-								</tr>
-								<tr>
-									<td>SM/WK/II/12/2019</td>
-									<td>System Architect</td>
-									<td>Junior Technical Author</td>
-									<td>2019/02/18</td>
-									<td>Biasa</td>
-									<td>Support Lead</td>
-									<td>Memproses</td>
-									<td style="text-align: center;">
-										<a class="btn btn-dark btn-xs" href="{{url('manager/disposisi/proses')}}"><i class="fa fa-refresh"></i>  Proses</a>
-									</td>
-								</tr>
-								<tr>
-									<td>SM/WK/II/12/2019</td>
-									<td>System Architect</td>
-									<td>Junior Technical Author</td>
-									<td>2019/02/18</td>
-									<td>Penting</td>
-									<td>Chief Executive Officer (CEO)</td>
-									<td>Memeriksa</td>
-									<td style="text-align: center;">
-										<a class="btn btn-primary btn-xs" href="{{url('manager/disposisi/proses')}}"><i class="fa fa-refresh"></i>  Proses</a>
-									</td>
-								</tr>
+								@foreach($disposisis as $disposisi)
+									<tr>
+										<td>{{$disposisi->no_agenda}}</td>
+										<td>{{$disposisi->pengirim}}</td>
+										<td>{{$disposisi->kepada}}</td>
+										<td>{{konversi_tanggal($disposisi->tanggal_terima)}}</td>
+										<td>{{$disposisi->sifat}}</td>
+										<td>{{$disposisi->perihal}}</td>
+										<td>{{$disposisi->tugas}}</td>
+										<td style="text-align: center;">
+											@if($disposisi->status != 1)
+												<a class="btn btn-warning btn-xs" href="{{url('manager/disposisi/proses/'.$disposisi->id.'')}}"><i class="fa fa-refresh"></i>  Proses</a>
+												<a class="btn btn-primary btn-xs" href="{{url('manager/disposisi/monitor/'.$disposisi->id.'')}}"><i class="fa fa-eye"></i>  Monitor</a>
+												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
+											@else
+												<a class="btn btn-dark btn-xs"><i class="fa fa-refresh"></i>  Proses</a>
+												<a class="btn btn-primary btn-xs" href="{{url('manager/disposisi/monitor/'.$disposisi->id.'')}}"><i class="fa fa-eye"></i>  Monitor</a>
+												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
+											@endif
+										</td>
+										<td>
+											@if($disposisi->status_akhir == 1)
+												<span class="label label-success">DONE</span>
+											@endif
+										</td>
+									</tr>
+								@endforeach
 							</tbody>
 						</table>
 					</div>

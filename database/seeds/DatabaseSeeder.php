@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(RolesTableSeeder::class);
         // $this->call(KodeBagianTableSeeder::class);
-        // $this->call(PosisiSeeder::class);
-        $this->call(MCUTableSeeder::class);
+        $this->call(PosisiSeeder::class);
+        // $this->call(MCUTableSeeder::class);
     }
 }

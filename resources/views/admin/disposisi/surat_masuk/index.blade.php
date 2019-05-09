@@ -34,7 +34,7 @@
 							<tbody>
 								@foreach($surats as $surat)
 									<tr>
-										<td>{{$surat->no_surat}}/td>
+										<td>{{$surat->no_surat}}</td>
 										<td>{{konversi_tanggal($surat->tanggal_surat)}}</td>
 										<td>{{$surat->pengirim}}</td>
 										<td>{{$surat->kepada}}</td>

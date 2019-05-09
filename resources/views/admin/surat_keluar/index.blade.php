@@ -15,7 +15,7 @@
 					<div class="x_title">
 						<h2>List Surat Keluar </h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('surat_keluar/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
+							<li><a href="{{url('admin/surat_keluar/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
@@ -25,59 +25,27 @@
 								<tr>
 									<th>Nomor Surat</th>
 									<th>Tanggal Surat</th>
+									<th>Pengirim</th>
+									<th>Kepada</th>
 									<th>Perihal</th>
 									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>SM/WK/II/12/2019</td>
-									<td>2019/02/18</td>
-									<td>System Architect</td>
-									<td style="text-align: center;"><button class="btn btn-default btn-xs"><i class="fa fa-edit"></i>  Edit</button> <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Surat</button></td>
-								</tr>
-								<tr>
-									<td>SM/WK/II/12/2019</td>
-									<td>2019/02/18</td>
-									<td>Accountant</td>
-									<td style="text-align: center;"><button class="btn btn-default btn-xs"><i class="fa fa-edit"></i>  Edit</button> <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Surat</button></td>
-								</tr>
-								<tr>
-									<td>SM/WK/II/12/2019</td>
-									<td>2019/02/18</td>
-									<td>Junior Technical Author</td>
-									<td style="text-align: center;"><button class="btn btn-default btn-xs"><i class="fa fa-edit"></i>  Edit</button> <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Surat</button></td>
-								</tr>
-								<tr>
-									<td>SM/WK/II/12/2019</td>
-									<td>2019/02/18</td>
-									<td>Senior Javascript Developer</td>
-									<td style="text-align: center;"><button class="btn btn-default btn-xs"><i class="fa fa-edit"></i>  Edit</button> <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Surat</button></td>
-								</tr>
-								<tr>
-									<td>SM/WK/II/12/2019</td>
-									<td>2019/02/18</td>
-									<td>Integration Specialist</td>
-									<td style="text-align: center;"><button class="btn btn-default btn-xs"><i class="fa fa-edit"></i>  Edit</button> <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Surat</button></td>
-								</tr>
-								<tr>
-									<td>SM/WK/II/12/2019</td>
-									<td>2019/02/18</td>
-									<td>Office Manager</td>
-									<td style="text-align: center;"><button class="btn btn-default btn-xs"><i class="fa fa-edit"></i>  Edit</button> <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Surat</button></td>
-								</tr>
-								<tr>
-									<td>SM/WK/II/12/2019</td>
-									<td>2019/02/18</td>
-									<td>Support Lead</td>
-									<td style="text-align: center;"><button class="btn btn-default btn-xs"><i class="fa fa-edit"></i>  Edit</button> <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Surat</button></td>
-								</tr>
-								<tr>
-									<td>SM/WK/II/12/2019</td>
-									<td>2019/02/18</td>
-									<td>Chief Executive Officer (CEO)</td>
-									<td style="text-align: center;"><button class="btn btn-default btn-xs"><i class="fa fa-edit"></i>  Edit</button> <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Surat</button></td>
-								</tr>
+								@foreach($surats as $surat)
+									<tr>
+										<td>{{$surat->no_surat}}</td>
+										<td>{{konversi_tanggal($surat->tanggal_surat)}}</td>
+										<td>{{$surat->pengirim}}</td>
+										<td>{{$surat->kepada}}</td>
+										<td>{{$surat->perihal}}</td>
+										<td style="text-align: center;">
+											<a class="btn btn-default btn-xs" href="{{url('admin/surat_keluar/edit/'.$surat->id.'')}}"><i class="fa fa-edit"></i>  Edit</a> 
+											<a class="btn btn-danger btn-xs" href="{{url('admin/surat_keluar/delete/'.$surat->id.'')}}"><i class="fa fa-trash"></i>  Delete</a> 
+											<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Surat</button>
+										</td>
+									</tr>
+								@endforeach
 							</tbody>
 						</table>
 					</div>

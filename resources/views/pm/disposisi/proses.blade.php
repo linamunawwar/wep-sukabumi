@@ -71,74 +71,74 @@
 							<table class="table">
 								<thead>
 									<th></th>
-									<th>Mengetahui</th>
-									<th>Menyelesaikan</th>
-									<th>Memproses</th>
-									<th>Memeriksa</th>
+									<th>Diketahui</th>
+									<th>Diselesaikan</th>
+									<th>Diproses</th>
+									<th>Diriksa</th>
 								</thead>
 								<tbody>
 									<tr>
 										<td>PM</td>
-										<td><input type="radio" name="PM" class="checkbox" style="width: 50px; margin-left: 10px;" value="1"></td>
-										<td><input type="radio" name="PM" class="checkbox" style="width: 50px; margin-left: 10px;" value="2"></td>
-										<td><input type="radio" name="PM" class="checkbox" style="width: 50px; margin-left: 10px;" value="3"></td>
-										<td><input type="radio" name="PM" class="checkbox" style="width: 50px; margin-left: 10px;" value="4"></td>
+										<td><input type="radio" name="PM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diketahui"></td>
+										<td><input type="radio" name="PM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diselesaikan"></td>
+										<td><input type="radio" name="PM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diproses"></td>
+										<td><input type="radio" name="PM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diperiksa"></td>
 									</tr>
 									<tr>
 										<td>SOM</td>
-										<td><input type="radio" name="SOM" class="checkbox" style="width: 50px; margin-left: 10px;" value="1"></td>
-										<td><input type="radio" name="SOM" class="checkbox" style="width: 50px; margin-left: 10px;" value="2"></td>
-										<td><input type="radio" name="SOM" class="checkbox" style="width: 50px; margin-left: 10px;" value="3"></td>
-										<td><input type="radio" name="SOM" class="checkbox" style="width: 50px; margin-left: 10px;" value="4"></td>
+										<td><input type="radio" name="SOM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diketahui"></td>
+										<td><input type="radio" name="SOM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diselesaikan"></td>
+										<td><input type="radio" name="SOM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diproses"></td>
+										<td><input type="radio" name="SOM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diperiksa"></td>
 									</tr>
 									<tr>
 										<td>SPLEM</td>
-										<td><input type="radio" name="SPLEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="1"></td>
-										<td><input type="radio" name="SPLEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="2"></td>
-										<td><input type="radio" name="SPLEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="3"></td>
-										<td><input type="radio" name="SPLEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="4"></td>
+										<td><input type="radio" name="SPLEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diketahui"></td>
+										<td><input type="radio" name="SPLEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diselesaikan"></td>
+										<td><input type="radio" name="SPLEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diproses"></td>
+										<td><input type="radio" name="SPLEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diperiksa"></td>
 									</tr>
 									<tr>
 										<td>QC</td>
-										<td><input type="radio" name="QC" class="checkbox" style="width: 50px; margin-left: 10px;" value="1"></td>
-										<td><input type="radio" name="QC" class="checkbox" style="width: 50px; margin-left: 10px;" value="2"></td>
-										<td><input type="radio" name="QC" class="checkbox" style="width: 50px; margin-left: 10px;" value="3"></td>
-										<td><input type="radio" name="QC" class="checkbox" style="width: 50px; margin-left: 10px;" value="4"></td>
+										<td><input type="radio" name="QC" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diketahui"></td>
+										<td><input type="radio" name="QC" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diselesaikan"></td>
+										<td><input type="radio" name="QC" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diproses"></td>
+										<td><input type="radio" name="QC" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diperiksa"></td>
 									</tr>
 									<tr>
 										<td>SEM</td>
-										<td><input type="radio" name="SEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="1"></td>
-										<td><input type="radio" name="SEM class="checkbox" style="width: 50px; margin-left: 10px;" value="2"></td>
-										<td><input type="radio" name="SEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="3"></td>
-										<td><input type="radio" name="SEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="4"></td>
+										<td><input type="radio" name="SEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diketahui"></td>
+										<td><input type="radio" name="SEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diselesaikan"></td>
+										<td><input type="radio" name="SEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diproses"></td>
+										<td><input type="radio" name="SEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diperiksa"></td>
 									</tr>
 									<tr>
 										<td>SCARM</td>
-										<td><input type="radio" name="SCARM" class="checkbox" style="width: 50px; margin-left: 10px;" value="1"></td>
-										<td><input type="radio" name="SCARM" class="checkbox" style="width: 50px; margin-left: 10px;" value="2"></td>
-										<td><input type="radio" name="SCARM" class="checkbox" style="width: 50px; margin-left: 10px;" value="3"></td>
-										<td><input type="radio" name="SCARM" class="checkbox" style="width: 50px; margin-left: 10px;" value="4"></td>
+										<td><input type="radio" name="SCARM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diketahui"></td>
+										<td><input type="radio" name="SCARM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diselesaikan"></td>
+										<td><input type="radio" name="SCARM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diproses"></td>
+										<td><input type="radio" name="SCARM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diperiksa"></td>
 									</tr>
 									<tr>
 										<td>SAM</td>
-										<td><input type="radio" name="SAM" class="checkbox" style="width: 50px; margin-left: 10px;" value="1"></td>
-										<td><input type="radio" name="SAM" class="checkbox" style="width: 50px; margin-left: 10px;" value="2"></td>
-										<td><input type="radio" name="SAM" class="checkbox" style="width: 50px; margin-left: 10px;" value="3"></td>
-										<td><input type="radio" name="SAM" class="checkbox" style="width: 50px; margin-left: 10px;" value="4"></td>
+										<td><input type="radio" name="SAM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diketahui"></td>
+										<td><input type="radio" name="SAM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diselesaikan"></td>
+										<td><input type="radio" name="SAM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diproses"></td>
+										<td><input type="radio" name="SAM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diperiksa"></td>
 									</tr>
 									<tr>
 										<td>HSE</td>
-										<td><input type="radio" name="HSE" class="checkbox" style="width: 50px; margin-left: 10px;" value="1"></td>
-										<td><input type="radio" name="HSE" class="checkbox" style="width: 50px; margin-left: 10px;" value="2"></td>
-										<td><input type="radio" name="HSE" class="checkbox" style="width: 50px; margin-left: 10px;" value="3"></td>
-										<td><input type="radio" name="HSE" class="checkbox" style="width: 50px; margin-left: 10px;" value="4"></td>
+										<td><input type="radio" name="HSE" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diketahui"></td>
+										<td><input type="radio" name="HSE" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diselesaikan"></td>
+										<td><input type="radio" name="HSE" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diproses"></td>
+										<td><input type="radio" name="HSE" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diperiksa"></td>
 									</tr>
 									<tr>
 										<td>Public Relation</td>
-										<td><input type="radio" name="Public" class="checkbox" style="width: 50px; margin-left: 10px;" value="1"></td>
-										<td><input type="radio" name="Public" class="checkbox" style="width: 50px; margin-left: 10px;" value="2"></td>
-										<td><input type="radio" name="Public" class="checkbox" style="width: 50px; margin-left: 10px;" value="3"></td>
-										<td><input type="radio" name="Public" class="checkbox" style="width: 50px; margin-left: 10px;" value="4"></td>
+										<td><input type="radio" name="Public" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diketahui"></td>
+										<td><input type="radio" name="Public" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diselesaikan"></td>
+										<td><input type="radio" name="Public" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diproses"></td>
+										<td><input type="radio" name="Public" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diperiksa"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -146,7 +146,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-1 col-sm-1 col-xs-12">Note :</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<textarea name="alasan" class="form-control col-md-7 col-xs-12" cols="15" rows="8"></textarea>
+									<textarea name="note" class="form-control col-md-7 col-xs-12" cols="15" rows="8" required="required"></textarea>
 								</div>
 							</div>
 
