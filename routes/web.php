@@ -37,6 +37,9 @@ Route::group(['middleware' => 'auth'], function () {
 		//resign
 		Route::get('/pegawai/resign', 'admin\PegawaiController@getResign');
 
+		//izin
+		Route::get('/izin', 'admin\IzinController@index');
+
 		//cuti
 		Route::get('/cuti', 'admin\CutiController@index');
 		Route::get('/cuti/create', 'admin\CutiController@getCreate');
@@ -90,6 +93,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/surat_keluar/edit/{id}', 'admin\SuratKeluarController@getEdit');
 		Route::post('/surat_keluar/edit/{id}', 'admin\SuratKeluarController@postEdit');
 		Route::get('/surat_keluar/delete/{id}', 'admin\SuratKeluarController@getDelete');
+
+		//rkp
+		Route::get('/rkp', 'admin\RkpController@index');
 	});
 
 	Route::group(['prefix' => '/user'], function () {
@@ -177,6 +183,10 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/disposisi/proses/{id}', 'manager\DisposisiController@postProses');
 		Route::get('/disposisi/monitoring/{id}', 'manager\DisposisiController@monitoring');
 
+		//rkp
+		Route::get('/rkp', 'manager\RkpController@index');
+		Route::get('/rkp/create', 'manager\RkpController@getCreate');
+
 
 	});
 
@@ -216,6 +226,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/disposisi/edit/{id}', 'pm\DisposisiController@postEdit');
 		Route::get('/disposisi/monitoring/{id}', 'pm\DisposisiController@monitoring');
 
+		//rkp
+		Route::get('/rkp', 'pm\RkpController@index');
+
 	});
 
 
@@ -227,28 +240,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 	
 
-	
-	//--------------------CUTI----------------------
-	
-	//-------------------GAJI-----------------
-	
-	//---------------------SPJ----------------------------
-	
-	//----------------------MEMO-----------
-	
-	//-------------------------DISPOSISI----------------
-	
-
-
-	
-
-	//---------------SURAT KELUAR-----------------------
-	Route::get('/surat_keluar', 'SuratKeluarController@index');
-	Route::get('/surat_keluar/create', 'SuratKeluarController@getCreate');
 
 	//--------------------RENCANA KEBUTUHAN PEGAWAI--------------------
-	Route::get('/rkp', 'RkpController@index');
-	Route::get('/rkp/create', 'RkpController@getCreate');
+	
 
 	//-------------------FORM PELATIHAN----------------------
 	Route::get('/pelatihan', 'PelatihanController@index');

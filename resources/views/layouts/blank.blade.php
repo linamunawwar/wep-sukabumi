@@ -76,7 +76,7 @@
         <!-- <script src="{{ asset("vendor/bower_components/orgchart/js/jquery.orgchart.min.js.map") }}"></script> -->
         <script src="{{ asset("vendor/bower_components/select2/dist/js/select2.min.js") }}"></script>
 
-        <script src="{{ asset("public/js/custom.min.js") }}"></script>
+        
         <script src="{{ asset("vendor/bower_components/moment/min/moment.min.js")}}"></script>
         <!-- <script src="{{ asset("vendor/bower_components/daterangepicker/daterangepicker.js")}}"></script> -->
         <script type="text/javascript" src="{!!asset('public/js/datepicker/bootstrap-datepicker.js')!!}"></script>
@@ -86,7 +86,8 @@
         <script src="{{ asset("vendor/bower_components/nprogress/nprogress.js")}}"></script>
         <script src="{{ asset("public/js/jquery.smartWizard.js") }}"></script>
         <!-- Custom Theme Scripts -->
-        <script src="{{ asset("public/js/gentelella.min.js") }}"></script>
+        <!-- <script src="{{ asset("public/js/gentelella.min.js") }}"></script> -->
+        <script src="{{ asset("public/js/custom.min.js") }}"></script>
         
         @stack('scripts')
 
