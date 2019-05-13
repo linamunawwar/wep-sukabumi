@@ -22,20 +22,28 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama Form <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="nama_form" class="form-control col-md-7 col-xs-12">
+									<input type="text" name="nama_form" class="form-control col-md-7 col-xs-12" value="{{$arsip->nama_form}}">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Bagian:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="checkbox" name="PM" > Project Manager <br>
-									<input type="checkbox" name="SO" > Site Operasional <br>
-									<input type="checkbox" name="SC" > Site Commercial <br>
-									<input type="checkbox" name="SA" > Site Administration <br>
-									<input type="checkbox" name="SE" > Site Engineering <br>
-									<input type="checkbox" name="SL" > Site Logistic <br>
-									<input type="checkbox" name="HS" > Health & Safety <br>
-									<input type="checkbox" name="QC" > Quality Control <br>
+									<?php $checked = ($arsip->PM == 'on')? 'checked' : ''; ?>
+									<input type="checkbox" name="PM" {{$checked}} > Project Manager <br>
+									<?php $checked = ($arsip->SO == 'on')? 'checked' : ''; ?>
+									<input type="checkbox" name="SO" {{$checked}}> Site Operasional <br>
+									<?php $checked = ($arsip->SC == 'on')? 'checked' : ''; ?>
+									<input type="checkbox" name="SC" {{$checked}}> Site Commercial <br>
+									<?php $checked = ($arsip->SA == 'on')? 'checked' : ''; ?>
+									<input type="checkbox" name="SA" {{$checked}}> Site Administration <br>
+									<?php $checked = ($arsip->SE == 'on')? 'checked' : ''; ?>
+									<input type="checkbox" name="SE" {{$checked}}> Site Engineering <br>
+									<?php $checked = ($arsip->SL == 'on')? 'checked' : ''; ?>
+									<input type="checkbox" name="SL" {{$checked}} > Site Logistic <br>
+									<?php $checked = ($arsip->HS == 'on')? 'checked' : ''; ?>
+									<input type="checkbox" name="HS" {{$checked}}> Health & Safety <br>
+									<?php $checked = ($arsip->QC == 'on')? 'checked' : ''; ?>
+									<input type="checkbox" name="QC" {{$checked}}> Quality Control <br>
 								</div>
 							</div>
 							<div class="form-group">

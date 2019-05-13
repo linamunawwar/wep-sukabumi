@@ -205,8 +205,20 @@
                             Form Kebutuhan Pelatihan
                         </a>
                     </li>
-                    <li>
-                        <a href="{{url('peralatan')}}">
+                    
+                    @endif
+                    @if(Auth::user()->role_id == 1)
+                        <li>
+                        <a href="{{url('admin/peralatan')}}">
+                            <i class="fa fa-gears"></i>
+                            Peralatan Penunjang
+                            <span class="label label-success pull-right">Flag</span>
+                        </a>
+                    </li>
+                    @endif
+                    @if(Auth::user()->role_id == 3)
+                        <li>
+                        <a href="{{url('manager/peralatan')}}">
                             <i class="fa fa-gears"></i>
                             Peralatan Penunjang
                             <span class="label label-success pull-right">Flag</span>
@@ -214,7 +226,7 @@
                     </li>
                     @endif
 
-                    @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))
+                    @if((Auth::user()->role_id == 2) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))
                     <li>
                         <a href="{{url('arsip')}}">
                             <i class="fa fa-folder-open"></i>
@@ -224,9 +236,9 @@
                     </li>
                     @endif
 
-                    @if(Auth::user()->role_id == 2)
+                    @if(Auth::user()->role_id == 1)
                     <li>
-                        <a href="{{url('user/arsip')}}">
+                        <a href="{{url('admin/arsip')}}">
                             <i class="fa fa-folder-open"></i>
                             Arsip Berkas
                             <span class="label label-success pull-right">Flag</span>

@@ -75,4 +75,9 @@ class Pegawai extends Model
     {
         return $this->hasMany('App\Spj','nip','nip');
     }
+
+    public function peralatan()
+    {
+        return $this->hasMany('App\Spj','nip','nip');
+    }
 }

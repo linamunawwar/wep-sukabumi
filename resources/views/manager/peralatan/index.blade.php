@@ -15,7 +15,7 @@
 					<div class="x_title">
 						<h2>Peminjaman Peralatan </h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('peralatan/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
+							<li><a href="{{url('admin/peralatan/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
@@ -28,81 +28,40 @@
 									<th>Nama Barang</th>
 									<th>Tipe Barang</th>
 									<th>Tanggal Pinjam</th>
+									<th>Tanggal Kembali</th>
 									<th>Status</th>
 									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>SA150795</td>
-									<td>Tiger Nixon</td>
-									<td>Motor</td>
-									<td>Kendaraan</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;">
-										<span class="label label-success">Approved</span>
-										<span class="label label-success">Dikembalikan</span>
-									</td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-dark btn-xs"><i class="fa fa-edit"></i>  Edit</button></td>
-								</tr>
-								<tr>
-									<td>SA150795</td>
-									<td>Tiger Nixon</td>
-									<td>Laptop</td>
-									<td>Elektronik</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;">
-										<span class="label label-default">Approved</span>
-									</td>
-									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-success btn-xs"><i class="fa fa-edit"></i>  Edit</button></td>
-								</tr>
-								<tr>
-									<td>SA150795</td>
-									<td>Tiger Nixon</td>
-									<td>Motor</td>
-									<td>Kendaraan</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;">
-										<span class="label label-success">Approved</span>
-										<span class="label label-success">Dipinjam</span>
-									</td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-success btn-xs"><i class="fa fa-edit"></i>  Edit</button></td>
-								</tr>
-								<tr>
-									<td>SA150795</td>
-									<td>Tiger Nixon</td>
-									<td>Motor</td>
-									<td>Kendaraan</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;">
-										<span class="label label-success">Approved</span>
-										<span class="label label-success">Dikembalikan</span>
-									</td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-dark btn-xs"><i class="fa fa-edit"></i>  Edit</button></td>
-								</tr>
-								<tr>
-									<td>SA150795</td>
-									<td>Tiger Nixon</td>
-									<td>Laptop</td>
-									<td>Elektronik</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;">
-										<span class="label label-default">Approved</span>
-									</td>
-									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-success btn-xs"><i class="fa fa-edit"></i>  Edit</button></td>
-								</tr>
-								<tr>
-									<td>SA150795</td>
-									<td>Tiger Nixon</td>
-									<td>Motor</td>
-									<td>Kendaraan</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;">
-										<span class="label label-success">Approved</span>
-										<span class="label label-success">Dipinjam</span>
-									</td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-success btn-xs"><i class="fa fa-edit"></i>  Edit</button></td>
-								</tr>
+								@foreach($alats as $alat)
+									<tr>
+										<td>{{$alat->nip}}</td>
+										<td>{{$alat->pegawai->nama}}</td>
+										<td>{{$alat->nama_barang}}</td>
+										<td>{{$alat->tipe_barang}}</td>
+										<td>{{konversi_tanggal($alat->tanggal_pinjam)}}</td>
+										<td>{{konversi_tanggal($alat->tanggal_kembali)}}</td>
+										<td style="text-align: center;">
+											@if($alat->is_verif_sdm == 1)
+												<span class="label label-primary">Approved</span>
+											@else
+												<span class="label label-default">Not Approved</span>
+											@endif
+											@if($alat->is_kembali == 1)
+												<span class="label label-success">Dikembalikan</span>
+											@endif
+										</td>
+										<td style="text-align: left;">
+											@if($alat->is_verif_sdm != 1)
+												<a href="{{'peralatan/approve/'.$alat->id.''}}" class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</a >
+											@else
+												<a class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</a >
+											@endif
+										</td>
+									</tr>
+								@endforeach
+								
 							</tbody>
 						</table>
 					</div>

@@ -15,7 +15,7 @@
 					<div class="x_title">
 						<h2>Arsip </h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('arsip/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
+							<li><a href="{{url('admin/arsip/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
@@ -29,33 +29,46 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>CV</td>
-									<td>Semua Bagian</td>
-									<td style="text-align: left;">
-										<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Form</button > 
-										<a href="{{url('pelatihan/edit_usulan')}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>  Edit</a>
-										<button class="btn btn-success btn-xs"><i class="fa fa-cancel"></i> Delete</button>
-									</td>
-								</tr>
-								<tr>
-									<td>Form Cuti</td>
-									<td>Semua Bagian</td>
-									<td style="text-align: left;">
-										<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Form</button > 
-										<a href="{{url('pelatihan/edit_usulan')}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>  Edit</a>
-										<button class="btn btn-success btn-xs"><i class="fa fa-cancel"></i> Delete</button>
-									</td>
-								</tr>
-								<tr>
-									<td>Form MCU</td>
-									<td>Semua Bagian</td>
-									<td style="text-align: left;">
-										<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Form</button > 
-										<a href="{{url('pelatihan/edit_usulan')}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>  Edit</a>
-										<button class="btn btn-success btn-xs"><i class="fa fa-cancel"></i> Delete</button>
-									</td>
-								</tr>
+								@foreach($arsips as $arsip)
+									<tr>
+										<td>{{$arsip->nama_form}}</td>
+										<td>
+											@if(($arsip->PM == 'on') && ($arsip->SO == 'on') && ($arsip->SC == 'on') && ($arsip->SA == 'on') && ($arsip->SE == 'on') && ($arsip->SL == 'on') && ($arsip->HS == 'on') && ($arsip->QC == 'on'))
+												Semua Bagian
+											@else
+												@if($arsip->PM == 'on')
+													PM
+												@endif
+												@if($arsip->SO == 'on')
+													SO
+												@endif
+												@if($arsip->SC == 'on')
+													SC
+												@endif
+												@if($arsip->SA == 'on')
+													SA
+												@endif
+												@if($arsip->SE == 'on')
+													SE
+												@endif
+												@if($arsip->SL == 'on')
+													SL
+												@endif
+												@if($arsip->HS == 'on')
+													HS
+												@endif
+												@if($arsip->QC == 'on')
+													QC
+												@endif
+											@endif
+										</td>
+										<td style="text-align: left;">
+											<a  href="{{url('/')}}/upload/arsip/{{$arsip->nama_file}}" class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Form</a >
+											<a href="{{url('admin/arsip/edit/'.$arsip->id.'')}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>  Edit</a>
+											<a href="{{url('admin/arsip/delete/'.$arsip->id.'')}}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>
+										</td>
+									</tr>
+								@endforeach
 							</tbody>
 						</table>
 					</div>

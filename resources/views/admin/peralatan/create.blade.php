@@ -17,38 +17,38 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama Karyawan <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select class="form-control col-md-7 col-xs-12">
-										<option value="0">Pilih Karyawan</option>
-										<option value="SA150795">SA150795 - Tiger Nixon</option>
-										<option value="SL170793">SL170793 - Garrett Winters</option>
-										<option value="HS1506795">HS1506795 - Cedric Kelly</option>
+									<select class="form-control pegawai" name="nip" required="required">
+										<option value="">Pilih Karyawan</option>
+										@foreach($pegawais as $pegawai)
+											<option value="{{$pegawai->nip}}">{{strtoupper($pegawai->nip)}} - {{$pegawai->nama}}</option>
+										@endforeach
 									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Tipe Barang <span class="required">*</span>:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input type="text" class="form-control" name="tipe_barang">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama Barang <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" class="form-control" name="">
+									<input type="text" class="form-control" name="nama_barang">
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="tanggal" class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Pinjam*:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<fieldset>
-										<div class="control-group">
-											<div class="controls">
-												<div class="col-md-11 xdisplay_inputx form-group has-feedback">
-													<input type="text" class="form-control has-feedback-left" id="single_cal1" placeholder="Tanggal" name="tanggal" aria-describedby="inputSuccess2Status">
-													<span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-										 			<span id="inputSuccess2Status" class="sr-only">(success)</span>
-												</div>
-											</div>
-										</div>
-									</fieldset>
+									<div class='input-group date' id='datepicker' class="datepicker">
+										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
+						                <input type='text' value='' name='tanggal_pinjam' class='form-control' required="required" />
+						            </div>
 								</div>
 							</div>
 							
@@ -69,3 +69,16 @@
     </div>
     <!-- /page content -->
 @endsection
+@push('scripts')
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.pegawai').select2();
+		
+      $('#datepicker').datepicker({
+        format: 'dd-mm-yyyy',
+        autoclose: true
+    	});
+  	});
+
+</script>
+@endpush

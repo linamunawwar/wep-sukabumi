@@ -96,6 +96,23 @@ Route::group(['middleware' => 'auth'], function () {
 
 		//rkp
 		Route::get('/rkp', 'admin\RkpController@index');
+
+		//peralatan
+		Route::get('/peralatan', 'admin\PeralatanController@index');
+		Route::get('/peralatan/create', 'admin\PeralatanController@getCreate');
+		Route::post('/peralatan/create', 'admin\PeralatanController@postCreate');
+		Route::get('/peralatan/edit/{id}', 'admin\PeralatanController@getEdit');
+		Route::post('/peralatan/edit/{id}', 'admin\PeralatanController@postEdit');
+		Route::get('/peralatan/delete/{id}', 'admin\PeralatanController@getDelete');
+		Route::get('/peralatan/kembali/{id}', 'admin\PeralatanController@getKembali');
+
+		Route::get('/arsip', 'admin\ArsipController@index');
+		Route::get('/arsip/create', 'admin\ArsipController@getCreate');
+		Route::post('/arsip/create', 'admin\ArsipController@postCreate');
+		Route::get('/arsip/edit/{id}', 'admin\ArsipController@getEdit');
+		Route::post('/arsip/edit/{id}', 'admin\ArsipController@postEdit');
+		Route::get('/arsip/delete/{id}', 'admin\ArsipController@getDelete');
+		Route::get('/arsip/unduh/{id}', 'admin\ArsipController@getUnduh');
 	});
 
 	Route::group(['prefix' => '/user'], function () {
@@ -187,6 +204,10 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/rkp', 'manager\RkpController@index');
 		Route::get('/rkp/create', 'manager\RkpController@getCreate');
 
+		//peralatan
+		Route::get('/peralatan', 'manager\PeralatanController@index');
+		Route::get('/peralatan/approve/{id}', 'manager\PeralatanController@getApprove');
+
 
 	});
 
@@ -252,16 +273,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	//----------------ARSIP----------------
 	Route::get('/arsip', 'ArsipController@index');
-	Route::get('/arsip/create', 'ArsipController@getCreate');
 
 	//----------------Peralatan----------------
-	Route::get('/peralatan', 'PeralatanController@index');
-	Route::get('/peralatan/create', 'PeralatanController@getCreate');
-
-
-
-	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>USER<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
 	
 
 	
