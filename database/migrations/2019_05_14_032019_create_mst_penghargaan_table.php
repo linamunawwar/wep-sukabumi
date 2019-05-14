@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMstArsipTable extends Migration
+class CreateMstPenghargaanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,15 @@ class CreateMstArsipTable extends Migration
      */
     public function up()
     {
-        Schema::create('mst_arsip', function (Blueprint $table) {
+        Schema::create('mst_penghargaan', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama_form');
-            $table->string('nama_file');
-            $table->string('PM')->nullable();
-            $table->string('SO')->nullable();
-            $table->string('SC')->nullable();
-            $table->string('SA')->nullable();
-            $table->string('SE')->nullable();
-            $table->string('SL')->nullable();
-            $table->string('HS')->nullable();
-            $table->string('QC')->nullable();
-
+            $table->string('nip');
+            $table->string('tanggal')->nullable();
+            $table->string('nama_penghargaan')->nullable();
+            $table->string('tempat')->nullable();
+            $table->string('jenis_penghargaan')->nullable();
+            $table->string('lingkup_kegiatan')->nullable();
+            $table->string('referensi')->nullable();
             $table->boolean('soft_delete')->nullable()->default(0);
             $table->string('user_id')->nullable();
             $table->string('role_id')->nullable();
@@ -40,6 +36,6 @@ class CreateMstArsipTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mst_arsip');
+        Schema::dropIfExists('mst_penghargaan');
     }
 }

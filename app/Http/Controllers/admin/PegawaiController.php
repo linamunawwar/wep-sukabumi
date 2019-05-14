@@ -12,6 +12,10 @@ use App\Pecat;
 use App\Resign;
 use App\MCU;
 use App\MCUPegawai;
+use App\Pendidikan;
+use App\Sertifikat;
+use App\Pelatihan;
+use App\Pengalaman;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -150,7 +154,7 @@ class PegawaiController extends Controller
         $data['is_verif_pm'] = 0;
         $query_pegawai = \DB::table('mst_pegawai')->where('id',$id)->update($data);
 
-
+        
         if($query_user && $query_pegawai){
             return Redirect('admin/pegawai')->with(['msg'=>'Data berhasil ditambahkan','status'=>1]);
         }else{
@@ -165,7 +169,19 @@ class PegawaiController extends Controller
         $kode = KodeBagian::all();
         $mcus = MCU::where('soft_delete','0')->get();
 
-        return view('admin.pegawai.edit_cv',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'mcus'=>$mcus]);
+        $pendidikan = Pendidikan::where('nip',$pegawai->nip)->get();
+        $pendidikans = json_decode(json_encode($pendidikan), true);
+
+        $sertifikat = Sertifikat::where('nip',$pegawai->nip)->get();
+        $sertifikats = json_decode(json_encode($sertifikat), true);
+
+        $pelatihan = Pelatihan::where('nip',$pegawai->nip)->get();
+        $pelatihans = json_decode(json_encode($pelatihan), true);
+
+        $pengalaman = Pengalaman::where('nip',$pegawai->nip)->get();
+        $pengalamans = json_decode(json_encode($pengalaman), true);
+
+        return view('admin.pegawai.edit_cv',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'mcus'=>$mcus,'pendidikans'=>$pendidikans,'sertifikats'=>$sertifikats,'pelatihans'=>$pelatihans,'pengalamans'=>$pengalamans]);
     }
 
     public function postEditCV($id)
@@ -216,6 +232,99 @@ class PegawaiController extends Controller
        $bank['nomor_lain'] = $data['nomor_asuransi'];
 
        $update_bank = BankAsuransi::where('nip',$data['nip'])->update($bank);
+
+       //-------------Pendidikan---------
+        $del_pendidikan = Pendidikan::where('nip',$data['nip'])->delete();
+
+        $jenjang = \Input::get('jenjang');
+        $asal_sekolah = \Input::get('asal_sekolah');
+        $kota = \Input::get('kota');
+        $jurusan = \Input::get('jurusan');
+        $tahun_lulus = \Input::get('tahun_lulus');
+        $no_ijazah = \Input::get('no_ijazah');
+        for ($i=0; $i < sizeof($jenjang) ; $i++) { 
+          $pendidikan = new Pendidikan;
+          $pendidikan->nip = $data['nip'];
+          $pendidikan->jenjang = $jenjang[$i];
+          $pendidikan->asal_sekolah = $asal_sekolah[$i];
+          $pendidikan->kota = $kota[$i];
+          $pendidikan->jurusan = $jurusan[$i];
+          $pendidikan->tahun_lulus = $tahun_lulus[$i];
+          $pendidikan->no_ijazah = $no_ijazah[$i];
+          $pendidikan->user_id = \Auth::user()->id;
+          $pendidikan->role_id = \Auth::user()->role_id;
+
+          $pendidikan->save();
+        }
+
+        //-------------Sertifikat---------
+        $del_sertifikat = Sertifikat::where('nip',$data['nip'])->delete();
+
+        $sertifikat_mulai = \Input::get('sertifikat_mulai');
+        $sertifikat_akhir = \Input::get('sertifikat_akhir');
+        $nama_sertifikat = \Input::get('sertifikat');
+        $no_sertifikat = \Input::get('no_sertifikat');
+        $institusi_sertifikat = \Input::get('institusi_sertifikat');
+
+        for ($i=0; $i < sizeof($sertifikat_mulai) ; $i++) { 
+          $sertifikat = new Sertifikat;
+          $sertifikat->nip = $data['nip'];
+          $sertifikat->tanggal_mulai = $sertifikat_mulai[$i];
+          $sertifikat->tanggal_akhir = $sertifikat_akhir[$i];
+          $sertifikat->sertifikat = $nama_sertifikat[$i];
+          $sertifikat->no_sertifikat = $no_sertifikat[$i];
+          $sertifikat->institusi = $institusi_sertifikat[$i];
+          $sertifikat->user_id = \Auth::user()->id;
+          $sertifikat->role_id = \Auth::user()->role_id;
+
+          $sertifikat->save();
+        }
+
+        //-------------Pelatihan---------
+        $del_pelatihan = Pelatihan::where('nip',$data['nip'])->delete();
+
+        $pelatihan_tanggal = \Input::get('pelatihan_tanggal');
+        $nama_pelatihan = \Input::get('nama_pelatihan');
+        $tempat_pelatihan = \Input::get('tempat_pelatihan');
+        $jam_hari = \Input::get('jam_hari');
+        $penyelenggara_pelatihan = \Input::get('penyelenggara_pelatihan');
+
+        for ($i=0; $i < sizeof($pelatihan_tanggal) ; $i++) { 
+          $pelatihan = new Pelatihan;
+          $pelatihan->nip = $data['nip'];
+          $pelatihan->tanggal = $pelatihan_tanggal[$i];
+          $pelatihan->nama_pelatihan = $nama_pelatihan[$i];
+          $pelatihan->tempat = $tempat_pelatihan[$i];
+          $pelatihan->jam_hari = $jam_hari[$i];
+          $pelatihan->penyelenggara = $penyelenggara_pelatihan[$i];
+          $pelatihan->user_id = \Auth::user()->id;
+          $pelatihan->role_id = \Auth::user()->role_id;
+
+          $pelatihan->save();
+        }
+
+        //-------------Pengalaman Kerja---------
+        $del_pengalaman = Pengalaman::where('nip',$data['nip'])->delete();
+
+        $mulai_kerja = \Input::get('mulai_kerja');
+        $akhir_kerja = \Input::get('akhir_kerja');
+        $nama_perusahaan = \Input::get('nama_perusahaan');
+        $jabatan = \Input::get('jabatan');
+        $keterangan = \Input::get('keterangan');
+
+        for ($i=0; $i < sizeof($mulai_kerja) ; $i++) { 
+          $pengalaman = new Pengalaman;
+          $pengalaman->nip = $data['nip'];
+          $pengalaman->tanggal_mulai = $mulai_kerja[$i];
+          $pengalaman->tanggal_akhir = $akhir_kerja[$i];
+          $pengalaman->nama_perusahaan = $nama_perusahaan[$i];
+          $pengalaman->jabatan = $jabatan[$i];
+          $pengalaman->keterangan = $keterangan[$i];
+          $pengalaman->user_id = \Auth::user()->id;
+          $pengalaman->role_id = \Auth::user()->role_id;
+
+          $pengalaman->save();
+        }
 
         return redirect('/admin/pegawai');
     }
