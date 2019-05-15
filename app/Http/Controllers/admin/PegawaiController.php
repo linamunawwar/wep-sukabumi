@@ -16,6 +16,8 @@ use App\Pendidikan;
 use App\Sertifikat;
 use App\Pelatihan;
 use App\Pengalaman;
+use App\Penugasan;
+use App\KaryaIlmiah;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -181,7 +183,19 @@ class PegawaiController extends Controller
         $pengalaman = Pengalaman::where('nip',$pegawai->nip)->get();
         $pengalamans = json_decode(json_encode($pengalaman), true);
 
-        return view('admin.pegawai.edit_cv',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'mcus'=>$mcus,'pendidikans'=>$pendidikans,'sertifikats'=>$sertifikats,'pelatihans'=>$pelatihans,'pengalamans'=>$pengalamans]);
+        $penugasan = Penugasan::where('nip',$pegawai->nip)->get();
+        $penugasans = json_decode(json_encode($penugasan), true);
+
+        $presentasi = KaryaIlmiah::where('nip',$pegawai->nip)->where('publikasi','presentasi')->get();
+        $presentasis = json_decode(json_encode($presentasi), true);
+
+        $nopresentasi = KaryaIlmiah::where('nip',$pegawai->nip)->where('publikasi','nopresentasi')->get();
+        $nopresentasis = json_decode(json_encode($nopresentasi), true);
+
+        $nopublikasi = KaryaIlmiah::where('nip',$pegawai->nip)->where('publikasi','nopublikasi')->get();
+        $nopublikasis = json_decode(json_encode($nopublikasi), true);
+
+        return view('admin.pegawai.edit_cv',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'mcus'=>$mcus,'pendidikans'=>$pendidikans,'sertifikats'=>$sertifikats,'pelatihans'=>$pelatihans,'pengalamans'=>$pengalamans,'penugasans'=>$penugasans,'presentasis'=>$presentasis, 'nopresentasis'=>$nopresentasis,'nopublikasis'=>$nopublikasis]);
     }
 
     public function postEditCV($id)
@@ -254,7 +268,9 @@ class PegawaiController extends Controller
           $pendidikan->user_id = \Auth::user()->id;
           $pendidikan->role_id = \Auth::user()->role_id;
 
-          $pendidikan->save();
+          if($pendidikan->jenjang != ''){
+            $pendidikan->save();
+          }
         }
 
         //-------------Sertifikat---------
@@ -277,7 +293,9 @@ class PegawaiController extends Controller
           $sertifikat->user_id = \Auth::user()->id;
           $sertifikat->role_id = \Auth::user()->role_id;
 
-          $sertifikat->save();
+          if($sertifikat->sertifikat != ''){
+            $sertifikat->save();
+          }
         }
 
         //-------------Pelatihan---------
@@ -300,7 +318,9 @@ class PegawaiController extends Controller
           $pelatihan->user_id = \Auth::user()->id;
           $pelatihan->role_id = \Auth::user()->role_id;
 
-          $pelatihan->save();
+          if($pelatihan->tanggal != ''){
+            $pelatihan->save();
+          }
         }
 
         //-------------Pengalaman Kerja---------
@@ -323,7 +343,132 @@ class PegawaiController extends Controller
           $pengalaman->user_id = \Auth::user()->id;
           $pengalaman->role_id = \Auth::user()->role_id;
 
-          $pengalaman->save();
+          if($pengalaman->tanggal_mulai != ''){
+            $pengalaman->save();
+          }
+        }
+
+        //-------------Penugasan---------
+        $del_penugasan= Penugasan::where('nip',$data['nip'])->delete();
+
+        $mulai_tugas = \Input::get('mulai_tugas');
+        $akhir_tugas = \Input::get('akhir_tugas');
+        $no_sk = \Input::get('no_sk');
+        $jabatan_tugas = \Input::get('jabatan_tugas');
+        $unit_kerja = \Input::get('unit_kerja');
+        $kj = \Input::get('kj');
+        $kk = \Input::get('kk');
+        $tempat_kerja = \Input::get('tempat_kerja');
+        $prestasi_rencana = \Input::get('prestasi_rencana');
+        $prestasi_realisasi = \Input::get('prestasi_realisasi');
+        $nama_atasan = \Input::get('nama_atasan');
+        $jabatan_atasan = \Input::get('jabatan_atasan');
+
+        for ($i=0; $i < sizeof($mulai_tugas) ; $i++) { 
+          $penugasan = new Penugasan;
+          $penugasan->nip = $data['nip'];
+          $penugasan->tanggal_mulai = $mulai_tugas[$i];
+          $penugasan->tanggal_akhir = $akhir_tugas[$i];
+          $penugasan->no_sk = $no_sk[$i];
+          $penugasan->jabatan = $jabatan_tugas[$i];
+          $penugasan->unit_kerja = $unit_kerja[$i];
+          $penugasan->KJ = $kj[$i];
+          $penugasan->KK = $kk[$i];
+          $penugasan->tempat_kerja = $tempat_kerja[$i];
+          $penugasan->prestasi_rencana = $prestasi_rencana[$i];
+          $penugasan->prestasi_realisasi = $prestasi_realisasi[$i];
+          $penugasan->nama_atasan = $nama_atasan[$i];
+          $penugasan->jabatan_atasan = $jabatan_atasan[$i];
+          $penugasan->user_id = \Auth::user()->id;
+          $penugasan->role_id = \Auth::user()->role_id;
+
+          if($penugasan->tanggal_mulai != ''){
+            $penugasan->save();
+          }
+        }
+
+        //-------------Karya Ilmiah Presentasi---------
+        $del_presentasi = KaryaIlmiah::where('nip',$data['nip'])->where('publikasi','presentasi')->delete();
+
+        $tanggal_presentasi = \Input::get('tanggal_presentasi');
+        $judul_presentasi = \Input::get('judul_presentasi');
+        $tempat_presentasi = \Input::get('tempat_presentasi');
+        $sifat_presentasi = \Input::get('sifat_presentasi');
+        $lingkup_presentasi = \Input::get('lingkup_presentasi');
+        $referensi_presentasi = \Input::get('referensi_presentasi');
+
+        for ($i=0; $i < sizeof($tanggal_presentasi) ; $i++) { 
+          $presentasi = new KaryaIlmiah;
+          $presentasi->nip = $data['nip'];
+          $presentasi->tanggal = $tanggal_presentasi[$i];
+          $presentasi->publikasi = 'presentasi';
+          $presentasi->judul = $judul_presentasi[$i];
+          $presentasi->tempat = $tempat_presentasi[$i];
+          $presentasi->sifat = $sifat_presentasi[$i];
+          $presentasi->lingkup_kegiatan = $lingkup_presentasi[$i];
+          $presentasi->referensi = $referensi_presentasi[$i];
+          $presentasi->user_id = \Auth::user()->id;
+          $presentasi->role_id = \Auth::user()->role_id;
+
+          if($presentasi->tanggal != ''){
+            $presentasi->save();
+          }
+        }
+
+        //-------------Karya Ilmiah No Presentasi---------
+        $del_nopresentasi = KaryaIlmiah::where('nip',$data['nip'])->where('publikasi','nopresentasi')->delete();
+
+        $tanggal_nopresentasi = \Input::get('tanggal_nopresentasi');
+        $judul_nopresentasi = \Input::get('judul_nopresentasi');
+        $tempat_nopresentasi = \Input::get('tempat_nopresentasi');
+        $sifat_nopresentasi = \Input::get('sifat_nopresentasi');
+        $lingkup_nopresentasi = \Input::get('lingkup_nopresentasi');
+        $referensi_nopresentasi = \Input::get('referensi_nopresentasi');
+
+        for ($i=0; $i < sizeof($tanggal_nopresentasi) ; $i++) { 
+          $nopresentasi = new KaryaIlmiah;
+          $nopresentasi->nip = $data['nip'];
+          $nopresentasi->tanggal = $tanggal_nopresentasi[$i];
+          $nopresentasi->publikasi = 'nopresentasi';
+          $nopresentasi->judul = $judul_nopresentasi[$i];
+          $nopresentasi->tempat = $tempat_nopresentasi[$i];
+          $nopresentasi->sifat = $sifat_nopresentasi[$i];
+          $nopresentasi->lingkup_kegiatan = $lingkup_nopresentasi[$i];
+          $nopresentasi->referensi = $referensi_nopresentasi[$i];
+          $nopresentasi->user_id = \Auth::user()->id;
+          $nopresentasi->role_id = \Auth::user()->role_id;
+
+          if($nopresentasi->tanggal != ''){
+            $nopresentasi->save();
+          }
+        }
+
+        //-------------Karya Ilmiah No Publikasi---------
+        $del_nopublikasi = KaryaIlmiah::where('nip',$data['nip'])->where('publikasi','nopublikasi')->delete();
+
+        $tanggal_nopublikasi = \Input::get('tanggal_nopublikasi');
+        $judul_nopublikasi = \Input::get('judul_nopublikasi');
+        $tempat_nopublikasi = \Input::get('tempat_nopublikasi');
+        $sifat_nopublikasi = \Input::get('sifat_nopublikasi');
+        $lingkup_nopublikasi = \Input::get('lingkup_nopublikasi');
+        $referensi_nopublikasi = \Input::get('referensi_nopublikasi');
+
+        for ($i=0; $i < sizeof($tanggal_nopublikasi) ; $i++) { 
+          $nopublikasi = new KaryaIlmiah;
+          $nopublikasi->nip = $data['nip'];
+          $nopublikasi->tanggal = $tanggal_nopublikasi[$i];
+          $nopublikasi->publikasi = 'nopublikasi';
+          $nopublikasi->judul = $judul_nopublikasi[$i];
+          $nopublikasi->tempat = $tempat_nopublikasi[$i];
+          $nopublikasi->sifat = $sifat_nopublikasi[$i];
+          $nopublikasi->lingkup_kegiatan = $lingkup_nopublikasi[$i];
+          $nopublikasi->referensi = $referensi_nopublikasi[$i];
+          $nopublikasi->user_id = \Auth::user()->id;
+          $nopublikasi->role_id = \Auth::user()->role_id;
+
+          if($nopublikasi->tanggal != ''){
+            $nopublikasi->save();
+          }
         }
 
         return redirect('/admin/pegawai');

@@ -591,7 +591,8 @@ $kode = KodeBagian::all();
 														<td>
 															<input type="text" name="keterangan[]"  class="form-control col-md-7 col-xs-12" value="{{$pengalaman['keterangan']}}">
 														</td>
-													</tr><?php $i++; ?>
+													</tr>
+													<?php $i++; ?>
 												@endforeach
 												@if($i < 4)
 													<?php 
@@ -651,396 +652,95 @@ $kode = KodeBagian::all();
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td>
-													<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="no_sk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="unit_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kj[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="tempat_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_rencana[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_realisasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="nama_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>
-													<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="no_sk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="unit_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kj[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="tempat_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_rencana[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_realisasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="nama_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>
-													<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="no_sk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="unit_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kj[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="tempat_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_rencana[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_realisasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="nama_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>4</td>
-												<td>
-													<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="no_sk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="unit_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kj[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="tempat_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_rencana[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_realisasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="nama_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>5</td>
-												<td>
-													<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="no_sk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="unit_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kj[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="tempat_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_rencana[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_realisasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="nama_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>6</td>
-												<td>
-													<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="no_sk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="unit_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kj[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="tempat_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_rencana[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_realisasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="nama_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>7</td>
-												<td>
-													<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="no_sk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="unit_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kj[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="tempat_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_rencana[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_realisasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="nama_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>8</td>
-												<td>
-													<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="no_sk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="unit_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kj[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="tempat_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_rencana[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_realisasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="nama_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>9</td>
-												<td>
-													<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="no_sk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="unit_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kj[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="tempat_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_rencana[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_realisasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="nama_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>10</td>
-												<td>
-													<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="no_sk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_tugas[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="unit_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kj[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="kk[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="tempat_kerja[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_rencana[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="prestasi_realisasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="nama_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jabatan_atasan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
+											<?php $i=0;?>
+												@foreach($penugasans as $penugasan)
+													<tr>
+														<td>{{$i+1}}</td>
+														<td>
+															<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['tanggal_mulai']}}">
+														</td>
+														<td>
+															<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['tanggal_akhir']}}">
+														</td>
+														<td>
+															<input type="text" name="no_sk[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['no_sk']}}">
+														</td>
+														<td>
+															<input type="text" name="jabatan_tugas[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['jabatan']}}">
+														</td>
+														<td>
+															<input type="text" name="unit_kerja[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['unit_kerja']}}">
+														</td>
+														<td>
+															<input type="text" name="kj[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['KJ']}}">
+														</td>
+														<td>
+															<input type="text" name="kk[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['KK']}}">
+														</td>
+														<td>
+															<input type="text" name="tempat_kerja[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['tempat_kerja']}}">
+														</td>
+														<td>
+															<input type="text" name="prestasi_rencana[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['prestasi_rencana']}}">
+														</td>
+														<td>
+															<input type="text" name="prestasi_realisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['prestasi_realisasi']}}">
+														</td>
+														<td>
+															<input type="text" name="nama_atasan[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['nama_atasan']}}">
+														</td>
+														<td>
+															<input type="text" name="jabatan_atasan[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['jabatan_atasan']}}">
+														</td>
+													</tr>
+													<?php $i++; ?>
+												@endforeach
+												@if($i < 12)
+													<?php 
+														$kurang = 12 - $i;
+														for ($j=1; $j <= $kurang ; $j++) { 
+													?>
+															<tr>
+																<td>{{$j + $i}}</td>
+																<td>
+																	<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="no_sk[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="jabatan_tugas[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="unit_kerja[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="kj[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="kk[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="tempat_kerja[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="prestasi_rencana[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="prestasi_realisasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="nama_atasan[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="jabatan_atasan[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+															</tr>
+													<?php	} ?>
+												@endif
 										</tbody>
 									</table>
 									<p>** : - Untuk Kepala Proyek (Ex Kapro) diisi BK/PU</p>
@@ -1065,69 +765,59 @@ $kode = KodeBagian::all();
 											<th>Referensi</th>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td>
-													<input type="text" name="tanggal_presentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="judul_presentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
-												</td>
-												<td>
-													<input type="text" name="tempat_presentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
-												</td>
-												<td>
-													<input type="text" name="sifat_presentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_presentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_presentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>
-													<input type="text" name="tanggal_presentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="judul_presentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
-												</td>
-												<td>
-													<input type="text" name="tempat_presentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
-												</td>
-												<td>
-													<input type="text" name="sifat_presentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_presentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_presentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>
-													<input type="text" name="tanggal_presentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="judul_presentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
-												</td>
-												<td>
-													<input type="text" name="tempat_presentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
-												</td>
-												<td>
-													<input type="text" name="sifat_presentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_presentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_presentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
+											<?php $i=0;?>
+												@foreach($presentasis as $presentasi)
+													<tr>
+														<td>{{$i+1}}</td>
+														<td>
+															<input type="text" name="tanggal_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['tanggal']}}">
+														</td>
+														<td>
+															<input type="text" name="judul_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['judul']}}">
+														</td>
+														<td>
+															<input type="text" name="tempat_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['tempat']}}">
+														</td>
+														<td>
+															<input type="text" name="sifat_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['sifat']}}">
+														</td>
+														<td>
+															<input type="text" name="lingkup_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['lingkup_kegiatan']}}">
+														</td>
+														<td>
+															<input type="text" name="referensi_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['referensi']}}">
+														</td>
+													</tr>
+													<?php $i++; ?>
+												@endforeach
+												@if($i < 3)
+													<?php 
+														$kurang = 3 - $i;
+														for ($j=1; $j <= $kurang ; $j++) { 
+													?>
+															<tr>
+																<td>{{$j + $i}}</td>
+																<td>
+																	<input type="text" name="tanggal_presentasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="judul_presentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
+																</td>
+																<td>
+																	<input type="text" name="tempat_presentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
+																</td>
+																<td>
+																	<input type="text" name="sifat_presentasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="lingkup_presentasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="referensi_presentasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+															</tr>
+														<?php	} ?>
+												@endif
 										</tbody>
 									</table>
 									<table class="table table-bordered">
@@ -1141,69 +831,58 @@ $kode = KodeBagian::all();
 											<th>Referensi</th>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td>
-													<input type="text" name="tanggal_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="judul_nopresentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
-												</td>
-												<td>
-													<input type="text" name="tempat_nopresentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
-												</td>
-												<td>
-													<input type="text" name="sifat_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>
-													<input type="text" name="tanggal_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="judul_nopresentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
-												</td>
-												<td>
-													<input type="text" name="tempat_nopresentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
-												</td>
-												<td>
-													<input type="text" name="sifat_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>
-													<input type="text" name="tanggal_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="judul_nopresentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
-												</td>
-												<td>
-													<input type="text" name="tempat_nopresentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
-												</td>
-												<td>
-													<input type="text" name="sifat_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
+											<?php $i=0;?>
+												@foreach($nopresentasis as $nopresentasi)
+													<tr>
+														<td>{{$i+1}}</td>
+														<td>
+															<input type="text" name="tanggal_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['tanggal']}}">
+														</td>
+														<td>
+															<input type="text" name="judul_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['judul']}}">
+														</td>
+														<td>
+															<input type="text" name="tempat_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['tempat']}}">
+														</td>
+														<td>
+															<input type="text" name="sifat_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['sifat']}}">
+														</td>
+														<td>
+															<input type="text" name="lingkup_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['lingkup_kegiatan']}}">
+														</td>
+														<td>
+															<input type="text" name="referensi_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['referensi']}}">
+														</td>
+													<?php $i++; ?>
+												@endforeach
+												@if($i < 3)
+													<?php 
+														$kurang = 3 - $i;
+														for ($j=1; $j <= $kurang ; $j++) { 
+													?>
+															<tr>
+																<td>{{$j + $i}}</td>
+																<td>
+																	<input type="text" name="tanggal_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="judul_nopresentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
+																</td>
+																<td>
+																	<input type="text" name="tempat_nopresentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
+																</td>
+																<td>
+																	<input type="text" name="sifat_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="lingkup_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="referensi_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+															</tr>
+												<?php	} ?>
+												@endif
 										</tbody>
 									</table>
 									<table class="table table-bordered">
@@ -1217,69 +896,59 @@ $kode = KodeBagian::all();
 											<th>Referensi</th>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td>
-													<input type="text" name="tanggal_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="judul_nopublikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
-												</td>
-												<td>
-													<input type="text" name="tempat_nopublikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
-												</td>
-												<td>
-													<input type="text" name="sifat_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>
-													<input type="text" name="tanggal_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="judul_nopublikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
-												</td>
-												<td>
-													<input type="text" name="tempat_nopublikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
-												</td>
-												<td>
-													<input type="text" name="sifat_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>
-													<input type="text" name="tanggal_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="judul_nopublikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
-												</td>
-												<td>
-													<input type="text" name="tempat_nopublikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
-												</td>
-												<td>
-													<input type="text" name="sifat_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
+											<?php $i=0;?>
+												@foreach($nopublikasis as $nopublikasi)
+													<tr>
+														<td>{{$i+1}}</td>
+														<td>
+															<input type="text" name="tanggal_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['tanggal']}}">
+														</td>
+														<td>
+															<input type="text" name="judul_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['judul']}}">
+														</td>
+														<td>
+															<input type="text" name="tempat_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['tempat']}}">
+														</td>
+														<td>
+															<input type="text" name="sifat_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['sifat']}}">
+														</td>
+														<td>
+															<input type="text" name="lingkup_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['lingkup_kegiatan']}}">
+														</td>
+														<td>
+															<input type="text" name="referensi_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['referensi']}}">
+														</td>
+													</tr>
+											<?php $i++; ?>
+												@endforeach
+												@if($i < 3)
+													<?php 
+														$kurang = 3 - $i;
+														for ($j=1; $j <= $kurang ; $j++) { 
+													?>
+															<tr>
+																<td>{{$j + $i}}</td>
+																<td>
+																	<input type="text" name="tanggal_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="judul_nopublikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
+																</td>
+																<td>
+																	<input type="text" name="tempat_nopublikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
+																</td>
+																<td>
+																	<input type="text" name="sifat_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="lingkup_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="referensi_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+															</tr>
+												<?php	} ?>
+												@endif
 										</tbody>
 									</table>
 								</div>
