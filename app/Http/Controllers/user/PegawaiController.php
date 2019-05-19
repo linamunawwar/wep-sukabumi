@@ -11,6 +11,17 @@ use App\BankAsuransi;
 use App\MCU;
 use App\MCUPegawai;
 use App\Resign;
+use App\Pendidikan;
+use App\Sertifikat;
+use App\Pelatihan;
+use App\Pengalaman;
+use App\Penugasan;
+use App\KaryaIlmiah;
+use App\Pertemuan;
+use App\Organisasi;
+use App\Publikasi;
+use App\TenagaPengajar;
+use App\Penghargaan;
 
 class PegawaiController extends Controller
 {
@@ -26,9 +37,48 @@ class PegawaiController extends Controller
       $pegawai = Pegawai::where('nip',$nip)->first();
       $bank = BankAsuransi::where('nip',$nip)->first();
     	$mcus = MCU::where('soft_delete','0')->get();
+      $kode = KodeBagian::all();
       $data_mcus = MCUPegawai::where('nip',$nip)->where('soft_delete','0')->get();
-    	// dd($pegawai);
-        return view('user.pegawai.cv',['pegawai'=>$pegawai,'bank'=>$bank,'mcus'=>$mcus,'data_mcus'=>$data_mcus]);
+    	$pendidikan = Pendidikan::where('nip',$pegawai->nip)->get();
+        $pendidikans = json_decode(json_encode($pendidikan), true);
+
+        $sertifikat = Sertifikat::where('nip',$pegawai->nip)->get();
+        $sertifikats = json_decode(json_encode($sertifikat), true);
+
+        $pelatihan = Pelatihan::where('nip',$pegawai->nip)->get();
+        $pelatihans = json_decode(json_encode($pelatihan), true);
+
+        $pengalaman = Pengalaman::where('nip',$pegawai->nip)->get();
+        $pengalamans = json_decode(json_encode($pengalaman), true);
+
+        $penugasan = Penugasan::where('nip',$pegawai->nip)->get();
+        $penugasans = json_decode(json_encode($penugasan), true);
+
+        $presentasi = KaryaIlmiah::where('nip',$pegawai->nip)->where('publikasi','presentasi')->get();
+        $presentasis = json_decode(json_encode($presentasi), true);
+
+        $nopresentasi = KaryaIlmiah::where('nip',$pegawai->nip)->where('publikasi','nopresentasi')->get();
+        $nopresentasis = json_decode(json_encode($nopresentasi), true);
+
+        $nopublikasi = KaryaIlmiah::where('nip',$pegawai->nip)->where('publikasi','nopublikasi')->get();
+        $nopublikasis = json_decode(json_encode($nopublikasi), true);
+
+        $pertemuan = Pertemuan::where('nip',$pegawai->nip)->get();
+        $pertemuans = json_decode(json_encode($pertemuan), true);
+
+        $organisasi = Organisasi::where('nip',$pegawai->nip)->get();
+        $organisasis = json_decode(json_encode($organisasi), true);
+
+        $publikasi = Publikasi::where('nip',$pegawai->nip)->get();
+        $publikasis = json_decode(json_encode($publikasi), true);
+
+        $pengajar = TenagaPengajar::where('nip',$pegawai->nip)->get();
+        $pengajars = json_decode(json_encode($pengajar), true);
+
+        $penghargaan = Penghargaan::where('nip',$pegawai->nip)->get();
+        $penghargaans = json_decode(json_encode($penghargaan), true);
+
+        return view('user.pegawai.cv',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'mcus'=>$mcus,'data_mcus'=>$data_mcus,'pendidikans'=>$pendidikans,'sertifikats'=>$sertifikats,'pelatihans'=>$pelatihans,'pengalamans'=>$pengalamans,'penugasans'=>$penugasans,'presentasis'=>$presentasis, 'nopresentasis'=>$nopresentasis,'nopublikasis'=>$nopublikasis,'pertemuans'=>$pertemuans,'organisasis'=>$organisasis,'publikasis'=>$publikasis,'pengajars'=>$pengajars,'penghargaans'=>$penghargaans]);
     }
 
      public function postEditCV($nip)

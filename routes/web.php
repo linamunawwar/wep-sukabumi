@@ -13,6 +13,8 @@
 
 Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
+Route::get('/password', 'PegawaiController@showResetForm');
+Route::post('/password', 'PegawaiController@postReset');
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/', 'HomeController@index');
 
@@ -28,6 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pegawai/approve/{id}', 'admin\PegawaiController@getApprove');
 		Route::post('/pegawai/approve/{id}', 'admin\PegawaiController@postApprove');
 		Route::get('/pegawai/struktur', 'admin\PegawaiController@getStruktur');
+		Route::get('/pegawai/prod05', 'admin\PegawaiController@getProd05');
 
 		//pemecatan
 		Route::get('/pegawai/pecat', 'admin\PegawaiController@getPecat');
@@ -39,11 +42,17 @@ Route::group(['middleware' => 'auth'], function () {
 
 		//izin
 		Route::get('/izin', 'admin\IzinController@index');
+		Route::get('/pengajuan_izin', 'admin\IzinController@getPengajuanIzin');
+		Route::get('/pengajuan_izin/create', 'admin\IzinController@getPengajuanIzinCreate');
+		Route::post('/pengajuan_izin/create', 'admin\IzinController@postPengajuanIzinCreate');
 
 		//cuti
 		Route::get('/cuti', 'admin\CutiController@index');
 		Route::get('/cuti/create', 'admin\CutiController@getCreate');
 		Route::post('/cuti/create', 'admin\CutiController@postCreate');
+		Route::get('/pengajuan_cuti', 'admin\CutiController@getPengajuanCuti');
+		Route::get('/pengajuan_cuti/create', 'admin\CutiController@getPengajuanCutiCreate');
+		Route::post('/pengajuan_cuti/create', 'admin\CutiController@postPengajuanCuticCreate');
 
 		//gaji
 		Route::get('/gaji', 'admin\GajiController@index');
@@ -255,37 +264,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 	
 
-	Route::get('/pegawai/struktur', 'PegawaiController@getStruktur');
-
-	Route::get('/pegawai/prod05', 'PegawaiController@getProd05');
-
-	
-
-
-	//--------------------RENCANA KEBUTUHAN PEGAWAI--------------------
-	
-
 	//-------------------FORM PELATIHAN----------------------
 	Route::get('/pelatihan', 'PelatihanController@index');
 	Route::get('/pelatihan/create_gap', 'PelatihanController@getCreateGap');
 	Route::get('/pelatihan/create_usulan', 'PelatihanController@getCreateUsulan');
 	Route::get('/pelatihan/edit_usulan', 'PelatihanController@getEditUsulan');
 
-	//----------------ARSIP----------------
-	Route::get('/arsip', 'ArsipController@index');
-
-	//----------------Peralatan----------------
-	
-
-	
-
-	Route::get('/manager/rkp', 'RkpController@indexManager');
-	Route::get('/manager/rkp/create', 'RkpController@getCreate');
-
-	//--------------------PROJECT MANAGER-------------------------
-
-	
-
-	Route::get('/pm/rkp', 'RkpController@indexPM');
-	Route::get('/pm/rkp/detail', 'RkpController@getDetail');
 });

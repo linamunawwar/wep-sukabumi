@@ -70,6 +70,8 @@
         <script src="{{ asset("vendor/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js") }}"></script>
         <script src="{{ asset("vendor/bower_components/datatables.net-responsive-bs/js/responsive.bootstrap.js") }}"></script>
         <script src="{{ asset("vendor/bower_components/datatables.net-scroller/js/dataTables.scroller.min.js") }}"></script>
+        <script src="{{ asset("vendor/bower_components/orgchart/js/html2canvas.min.js") }}"></script>
+        <script src="{{ asset("vendor/bower_components/orgchart/js/jspdf.min.js") }}"></script>
         <script src="{{ asset("vendor/bower_components/orgchart/js/jquery.mockjax.min.js") }}"></script>
         <script src="{{ asset("vendor/bower_components/orgchart/js/jquery.orgchart.js") }}"></script>
         <script src="{{ asset("vendor/bower_components/orgchart/js/jquery.orgchart.min.js") }}"></script>

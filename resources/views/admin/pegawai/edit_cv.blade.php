@@ -130,7 +130,7 @@ $kode = KodeBagian::all();
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<div class='input-group date' id='datepicker' class="datepicker">
 												<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
-								                <input type='text' name='tgl_lahir' class='form-control' required="required" value="{{konversi_tanggal($pegawai->tanggal_lahir)}}" readonly="readonly" />
+								                <input type='text' name='tgl_lahir' class='form-control' required="required" value="{{konversi_tanggal($pegawai->tanggal_lahir)}}" readonly="readonly" placeholder="dd-mm-yyyy" />
 								            </div>
 										</div>
 									</div>
@@ -139,7 +139,8 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label for="suami_istri" class="control-label col-md-4 col-sm-4 col-xs-12">Nama Suami / Istri</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input id="suami_istri" class="form-control col-md-7 col-xs-12 suami_istri-" type="text" name="suami_istri" value="{{$pegawai->suami_istri}}">
+											<?php $readonly = ($pegawai->status_kawin == 'TK') ? 'readonly': ''; ?>
+											<input id="suami_istri" class="form-control col-md-7 col-xs-12 suami_istri" type="text" name="suami_istri" value="{{$pegawai->suami_istri}}" {{$readonly}}>
 										</div>
 									</div>
 								</div>
@@ -157,7 +158,8 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama_anak">Nama Anak <span class="required">*</span></label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<textarea id="anak" name="anak" required="required" class="anak form-control col-md-7 col-xs-12">{{$pegawai->anak}}</textarea>
+											<?php $readonly = (($pegawai->status_kawin == 'TK') || ($pegawai->status_kawin == 'K0') ) ? 'readonly': ''; ?>
+											<textarea id="anak" name="anak" required="required" class="anak form-control col-md-7 col-xs-12" {{$readonly}}>{{$pegawai->anak}}</textarea>
 										</div>
 									</div>
 								</div>
@@ -257,93 +259,181 @@ $kode = KodeBagian::all();
 									</div>
 								</div>
 							</div>
-							
-							<div class="ln_solid"></div>
-							<!-- ----------------------------------------------------- -->
-							<div class="x_title">
-								<h4>Data Bank & Asuransi </h4>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama_bank">Nama Bank <span class="required">*</span></label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="nama_bank" name="nama_bank" required="required" class="nama_bank form-control col-md-7 col-xs-12" value="{{$bank->nama_bank}}">
+							@if($bank)
+								<div class="ln_solid"></div>
+								<!-- ----------------------------------------------------- -->
+								<div class="x_title">
+									<h4>Data Bank & Asuransi </h4>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama_bank">Nama Bank <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="text" id="nama_bank" name="nama_bank" required="required" class="nama_bank form-control col-md-7 col-xs-12" value="{{$bank->nama_bank}}">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12">Asuransi Lainnya</label>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="control-label col-md-4 col-sm-4 col-xs-12">Asuransi Lainnya</label>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">No. Rekening <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="text" id="no_rek" name="no_rek"  class="form-control col-md-7 col-xs-12" value="{{$bank->no_rekening}}">
+											</div>
+										</div>
 									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">No. Rekening <span class="required">*</span></label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="no_rek" name="no_rek"  class="form-control col-md-7 col-xs-12" value="{{$bank->no_rekening}}">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12">Nama Asuransi</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="text" id="nama_asuransi" name="nama_asuransi" class="nama_asuransi form-control col-md-7 col-xs-12" value="{{$bank->asuransi_lain}}">
+											</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="control-label col-md-4 col-sm-4 col-xs-12">Nama Asuransi</label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="nama_asuransi" name="nama_asuransi" class="nama_asuransi form-control col-md-7 col-xs-12" value="{{$bank->asuransi_lain}}">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="npwp" class="control-label col-md-4 col-sm-4 col-xs-12">No. NPWP</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input id="npwp" class="form-control col-md-7 col-xs-12 npwp" type="text" name="npwp" value="{{$bank->npwp}}">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nomor_asuransi">Nomor </label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="text" id="nomor_asuransi" name="nomor_asuransi" class="nomor_asuransi form-control col-md-7 col-xs-12" value="{{$bank->nomor_lain}}">
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="npwp" class="control-label col-md-4 col-sm-4 col-xs-12">No. NPWP</label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input id="npwp" class="form-control col-md-7 col-xs-12 npwp" type="text" name="npwp" value="{{$bank->npwp}}">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="jamsostek" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jamsostek</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input id="jamsostek" class="form-control col-md-7 col-xs-12 jamsostek" type="text" name="jamsostek" value="{{$bank->jamsostek}}">
+											</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nomor_asuransi">Nomor </label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="nomor_asuransi" name="nomor_asuransi" class="nomor_asuransi form-control col-md-7 col-xs-12" value="{{$bank->nomor_lain}}">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="dplk" class="control-label col-md-4 col-sm-4 col-xs-12">No. DPLK</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="text" id="dplk" class="form-control col-md-7 col-xs-12 dplk" type="text" name="dplk" value="{{$bank->dplk}}">
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="jamsostek" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jamsostek</label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input id="jamsostek" class="form-control col-md-7 col-xs-12 jamsostek" type="text" name="jamsostek" value="{{$bank->jamsostek}}">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="jiwasraya" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jiwasraya</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="text" id="jiwasraya" class="form-control col-md-7 col-xs-12 jiwasraya" type="text" name="jiwasraya" value="{{$bank->jiwasraya}}">
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="dplk" class="control-label col-md-4 col-sm-4 col-xs-12">No. DPLK</label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="dplk" class="form-control col-md-7 col-xs-12 dplk" type="text" name="dplk" value="{{$bank->dplk}}">
+							@else
+								<div class="ln_solid"></div>
+								<!-- ----------------------------------------------------- -->
+								<div class="x_title">
+									<h4>Data Bank & Asuransi </h4>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama_bank">Nama Bank <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="text" id="nama_bank" name="nama_bank" required="required" class="nama_bank form-control col-md-7 col-xs-12" >
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12">Asuransi Lainnya</label>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="jiwasraya" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jiwasraya</label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="jiwasraya" class="form-control col-md-7 col-xs-12 jiwasraya" type="text" name="jiwasraya" value="{{$bank->jiwasraya}}">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">No. Rekening <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="text" id="no_rek" name="no_rek"  class="form-control col-md-7 col-xs-12">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12">Nama Asuransi</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="text" id="nama_asuransi" name="nama_asuransi" class="nama_asuransi form-control col-md-7 col-xs-12" >
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="npwp" class="control-label col-md-4 col-sm-4 col-xs-12">No. NPWP</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input id="npwp" class="form-control col-md-7 col-xs-12 npwp" type="text" name="npwp" >
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nomor_asuransi">Nomor </label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="text" id="nomor_asuransi" name="nomor_asuransi" class="nomor_asuransi form-control col-md-7 col-xs-12">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="jamsostek" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jamsostek</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input id="jamsostek" class="form-control col-md-7 col-xs-12 jamsostek" type="text" name="jamsostek" >
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="dplk" class="control-label col-md-4 col-sm-4 col-xs-12">No. DPLK</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="text" id="dplk" class="form-control col-md-7 col-xs-12 dplk" type="text" name="dplk">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="jiwasraya" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jiwasraya</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input type="text" id="jiwasraya" class="form-control col-md-7 col-xs-12 jiwasraya" type="text" name="jiwasraya">
+											</div>
+										</div>
+									</div>
+								</div>
+							@endif
 							<!-- ------------------------------------------------------------------------------------- -->
 							<div class="ln_solid"></div>
 								<div class="x_title">
@@ -971,78 +1061,64 @@ $kode = KodeBagian::all();
 											<th>Referensi</th>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td>
-													<input type="text" name="tanggal_pertemuan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="tema[]"  class="form-control col-md-7 col-xs-12 ">
-												</td>
-												<td>
-													<input type="text" name="organisasi[]"  class="form-control col-md-7 col-xs-12 ">
-												</td>
-												<td>
-													<input type="text" name="tempat_pertemuan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="hadir_sebagai[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_pertemuan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_pertemuan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>
-													<input type="text" name="tanggal_pertemuan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="tema[]"  class="form-control col-md-7 col-xs-12 ">
-												</td>
-												<td>
-													<input type="text" name="organisasi[]"  class="form-control col-md-7 col-xs-12 ">
-												</td>
-												<td>
-													<input type="text" name="tempat_pertemuan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="hadir_sebagai[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_pertemuan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_pertemuan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>
-													<input type="text" name="tanggal_pertemuan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="tema[]"  class="form-control col-md-7 col-xs-12 ">
-												</td>
-												<td>
-													<input type="text" name="organisasi[]"  class="form-control col-md-7 col-xs-12 ">
-												</td>
-												<td>
-													<input type="text" name="tempat_pertemuan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="hadir_sebagai[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_pertemuan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_pertemuan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
+											<?php $i=0;?>
+												@foreach($pertemuans as $pertemuan)
+													<tr>
+														<td>{{$i+1}}</td>
+														<td>
+															<input type="text" name="tanggal_pertemuan[]"  class="form-control col-md-7 col-xs-12" value="{{$pertemuan['tanggal']}}">
+														</td>
+														<td>
+															<input type="text" name="tema[]"  class="form-control col-md-7 col-xs-12 " value="{{$pertemuan['tema']}}">
+														</td>
+														<td>
+															<input type="text" name="organisasi_penyelenggara[]"  class="form-control col-md-7 col-xs-12 " value="{{$pertemuan['penyelenggara']}}">
+														</td>
+														<td>
+															<input type="text" name="tempat_pertemuan[]"  class="form-control col-md-7 col-xs-12" value="{{$pertemuan['tempat']}}">
+														</td>
+														<td>
+															<input type="text" name="hadir_sebagai[]"  class="form-control col-md-7 col-xs-12" value="{{$pertemuan['hadir_sebagai']}}">
+														</td>
+														<td>
+															<input type="text" name="lingkup_pertemuan[]"  class="form-control col-md-7 col-xs-12" value="{{$pertemuan['lingkup_kegiatan']}}">
+														</td>
+														<td>
+															<input type="text" name="referensi_pertemuan[]"  class="form-control col-md-7 col-xs-12" value="{{$pertemuan['referensi']}}">
+														</td>
+													<?php $i++; ?>
+												@endforeach
+												@if($i < 3)
+													<?php 
+														$kurang = 3 - $i;
+														for ($j=1; $j <= $kurang ; $j++) { 
+													?>
+															<tr>
+																<td>{{$j + $i}}</td>
+																<td>
+																	<input type="text" name="tanggal_pertemuan[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="tema[]"  class="form-control col-md-7 col-xs-12 ">
+																</td>
+																<td>
+																	<input type="text" name="organisasi[]"  class="form-control col-md-7 col-xs-12 ">
+																</td>
+																<td>
+																	<input type="text" name="tempat_pertemuan[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="hadir_sebagai[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="lingkup_pertemuan[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="referensi_pertemuan[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+															</tr>
+												<?php	} ?>
+												@endif
 										</tbody>
 									</table>
 									<table class="table table-bordered">
@@ -1056,69 +1132,59 @@ $kode = KodeBagian::all();
 											<th>Referensi</th>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td>
-													<input type="text" name="tanggal_organisasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="nama_organisasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
-												</td>
-												<td>
-													<input type="text" name="tempat_organisasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
-												</td>
-												<td>
-													<input type="text" name="aktif_sebagai[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_organisasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_organisasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>
-													<input type="text" name="tanggal_organisasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="nama_organisasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
-												</td>
-												<td>
-													<input type="text" name="tempat_organisasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
-												</td>
-												<td>
-													<input type="text" name="aktif_sebagai[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_organisasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_organisasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>
-													<input type="text" name="tanggal_organisasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="nama_organisasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
-												</td>
-												<td>
-													<input type="text" name="tempat_organisasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
-												</td>
-												<td>
-													<input type="text" name="aktif_sebagai[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_organisasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_organisasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
+											<?php $i=0;?>
+												@foreach($organisasis as $organisasi)
+													<tr>
+														<td>{{$i+1}}</td>
+														<td>
+															<input type="text" name="tanggal_organisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['tanggal']}}">
+														</td>
+														<td>
+															<input type="text" name="nama_organisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['nama_organisasi']}}">
+														</td>
+														<td>
+															<input type="text" name="tempat_organisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['tempat']}}">
+														</td>
+														<td>
+															<input type="text" name="aktif_sebagai[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['aktif_sebagai']}}">
+														</td>
+														<td>
+															<input type="text" name="lingkup_organisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['lingkup_kegiatan']}}">
+														</td>
+														<td>
+															<input type="text" name="referensi_organisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['referensi']}}">
+														</td>
+													</tr>
+											<?php $i++; ?>
+												@endforeach
+												@if($i < 3)
+													<?php 
+														$kurang = 3 - $i;
+														for ($j=1; $j <= $kurang ; $j++) { 
+													?>
+															<tr>
+																<td>{{$j + $i}}</td>
+																<td>
+																	<input type="text" name="tanggal_organisasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="nama_organisasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
+																</td>
+																<td>
+																	<input type="text" name="tempat_organisasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
+																</td>
+																<td>
+																	<input type="text" name="aktif_sebagai[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="lingkup_organisasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="referensi_organisasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+															</tr>
+															<?php	} ?>
+													@endif
 										</tbody>
 									</table>
 									<table class="table table-bordered">
@@ -1132,69 +1198,59 @@ $kode = KodeBagian::all();
 											<th>Referensi</th>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td>
-													<input type="text" name="tanggal_publikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="nama_publikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
-												</td>
-												<td>
-													<input type="text" name="tempat_publikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
-												</td>
-												<td>
-													<input type="text" name="aktif_sebagai_publikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_publikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_publikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>
-													<input type="text" name="tanggal_publikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="nama_publikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
-												</td>
-												<td>
-													<input type="text" name="tempat_publikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
-												</td>
-												<td>
-													<input type="text" name="aktif_sebagai_publikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_publikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_publikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>
-													<input type="text" name="tanggal_publikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="nama_publikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
-												</td>
-												<td>
-													<input type="text" name="tempat_publikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
-												</td>
-												<td>
-													<input type="text" name="aktif_sebagai_publikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_publikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_publikasi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
+											<?php $i=0;?>
+												@foreach($publikasis as $publikasi)
+													<tr>
+														<td>{{$i+1}}</td>
+														<td>
+															<input type="text" name="tanggal_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['tanggal']}}">
+														</td>
+														<td>
+															<input type="text" name="nama_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['nama_publikasi']}}">
+														</td>
+														<td>
+															<input type="text" name="tempat_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['tempat']}}">
+														</td>
+														<td>
+															<input type="text" name="aktif_sebagai_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['aktif_sebagai']}}">
+														</td>
+														<td>
+															<input type="text" name="lingkup_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['lingkup_kegiatan']}}">
+														</td>
+														<td>
+															<input type="text" name="referensi_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['referensi']}}">
+														</td>
+													</tr>
+											<?php $i++; ?>
+												@endforeach
+												@if($i < 3)
+													<?php 
+														$kurang = 3 - $i;
+														for ($j=1; $j <= $kurang ; $j++) { 
+													?>
+															<tr>
+																<td>{{$j + $i}}</td>
+																<td>
+																	<input type="text" name="tanggal_publikasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="nama_publikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
+																</td>
+																<td>
+																	<input type="text" name="tempat_publikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
+																</td>
+																<td>
+																	<input type="text" name="aktif_sebagai_publikasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="lingkup_publikasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="referensi_publikasi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+															</tr>
+														<?php	} ?>
+													@endif
 										</tbody>
 									</table>
 								</div>
@@ -1218,78 +1274,65 @@ $kode = KodeBagian::all();
 											<th>Referensi</th>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td>
-													<input type="text" name="mulai_pengajar[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="materi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="institusi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="tempat_pengajar[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="aktif_sebagai_pengajar[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_pengajar[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_pengajar[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>
-													<input type="text" name="mulai_pengajar[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="materi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="institusi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="tempat_pengajar[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="aktif_sebagai_pengajar[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_pengajar[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_pengajar[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>
-													<input type="text" name="mulai_pengajar[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="materi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="institusi[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="tempat_pengajar[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="aktif_sebagai_pengajar[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_pengajar[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_pengajar[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
+											<?php $i=0;?>
+												@foreach($pengajars as $pengajar)
+													<tr>
+														<td>{{$i+1}}</td>
+														<td>
+															<input type="text" name="mulai_pengajar[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['tanggal_mulai']}}">
+														</td>
+														<td>
+															<input type="text" name="materi[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['materi']}}">
+														</td>
+														<td>
+															<input type="text" name="institusi[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['institusi']}}">
+														</td>
+														<td>
+															<input type="text" name="tempat_pengajar[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['tempat']}}">
+														</td>
+														<td>
+															<input type="text" name="aktif_sebagai_pengajar[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['aktif_sebagai']}}">
+														</td>
+														<td>
+															<input type="text" name="lingkup_pengajar[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['lingkup_kegiatan']}}">
+														</td>
+														<td>
+															<input type="text" name="referensi_pengajar[]"  class="form-control col-md-7 col-xs-12"  value="{{$pengajar['referensi']}}">
+														</td>
+													</tr>
+													<?php $i++; ?>
+												@endforeach
+												@if($i < 3)
+													<?php 
+														$kurang = 3 - $i;
+														for ($j=1; $j <= $kurang ; $j++) { 
+													?>
+															<tr>
+																<td>{{$j + $i}}</td>
+																<td>
+																	<input type="text" name="mulai_pengajar[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="materi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="institusi[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="tempat_pengajar[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="aktif_sebagai_pengajar[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="lingkup_pengajar[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="referensi_pengajar[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+															</tr>
+														<?php	} ?>
+													@endif
 										</tbody>
 									</table>
 								</div>
@@ -1312,69 +1355,59 @@ $kode = KodeBagian::all();
 											<th>Referensi</th>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td>
-													<input type="text" name="tanggal_penghargaan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="nama_penghargaan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="tempat_penghargaan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jenis_penghargaan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_penghargaan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_penghargaan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>
-													<input type="text" name="tanggal_penghargaan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="nama_penghargaan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="tempat_penghargaan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jenis_penghargaan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_penghargaan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_penghargaan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>
-													<input type="text" name="tanggal_penghargaan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="nama_penghargaan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="tempat_penghargaan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="jenis_penghargaan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="lingkup_penghargaan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-												<td>
-													<input type="text" name="referensi_penghargaan[]"  class="form-control col-md-7 col-xs-12">
-												</td>
-											</tr>
+											<?php $i=0;?>
+												@foreach($penghargaans as $penghargaan)
+													<tr>
+														<td>{{$i+1}}</td>
+														<td>
+															<input type="text" name="tanggal_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['tanggal']}}">
+														</td>
+														<td>
+															<input type="text" name="nama_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['nama_penghargaan']}}">
+														</td>
+														<td>
+															<input type="text" name="tempat_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['tempat']}}">
+														</td>
+														<td>
+															<input type="text" name="jenis_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['jenis_penghargaan']}}">
+														</td>
+														<td>
+															<input type="text" name="lingkup_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['lingkup_kegiatan']}}">
+														</td>
+														<td>
+															<input type="text" name="referensi_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['referensi']}}">
+														</td>
+													</tr>
+													<?php $i++; ?>
+												@endforeach
+												@if($i < 3)
+													<?php 
+														$kurang = 3 - $i;
+														for ($j=1; $j <= $kurang ; $j++) { 
+													?>
+															<tr>
+																<td>{{$j + $i}}</td>
+																<td>
+																	<input type="text" name="tanggal_penghargaan[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="nama_penghargaan[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="tempat_penghargaan[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="jenis_penghargaan[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="lingkup_penghargaan[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+																<td>
+																	<input type="text" name="referensi_penghargaan[]"  class="form-control col-md-7 col-xs-12">
+																</td>
+															</tr>
+														<?php	} ?>
+													@endif
 										</tbody>
 									</table>
 								</div>
@@ -1419,6 +1452,22 @@ $kode = KodeBagian::all();
       $('.stepContainer').height('100%');
 
       $( ".actionBar.buttonFinish" ).replaceWith( "<button type='submit' class='buttonFinish btn btn-default'>Finish</button>" );
+
+      $('input[type=radio][name=status_kawin]').change(function () {
+      		console.log('sd');
+            if ($("input[name='status_kawin']:checked").val() == 'TK') {
+            	$('#anak').attr('readonly','readonly');
+            	$('#suami_istri').attr('readonly','readonly');
+            }
+            if ($("input[name='status_kawin']:checked").val() == 'K0') {
+            	$('#anak').attr('readonly','readonly');
+            	$('#suami_istri'). removeAttr('readonly');
+            }
+            if (($("input[name='status_kawin']:checked").val() == 'K1') || ($("input[name='status_kawin']:checked").val() == 'K2') || ($("input[name='status_kawin']:checked").val() == 'K3')) {
+            	$('#anak').removeAttr('readonly');
+            	$('#suami_istri'). removeAttr('readonly');
+            }
+         });
   	});
 
 </script>

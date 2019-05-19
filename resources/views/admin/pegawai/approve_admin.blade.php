@@ -172,7 +172,7 @@ $kode = KodeBagian::all();
 											<div class="col-md-6 col-sm-6 col-xs-12">
 												<div class='input-group date' id='datepicker' class="datepicker">
 													<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
-									                <input type='text' name='tgl_lahir' class='form-control' required="required" value="{{konversi_tanggal($pegawai->tanggal_lahir)}}" readonly="readonly" />
+									                <input type='text' name='tgl_lahir' class='form-control' required="required" value="{{konversi_tanggal($pegawai->tanggal_lahir)}}" readonly="readonly" placeholder="dd-mm-yyyy" />
 									            </div>
 											</div>
 										</div>
@@ -299,93 +299,198 @@ $kode = KodeBagian::all();
 										</div>
 									</div>
 								</div>
-								
-								<div class="ln_solid"></div>
-								<!-- ----------------------------------------------------- -->
-								<div class="x_title">
-									<h4>Data Bank & Asuransi </h4>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama_bank">Nama Bank <span class="required">*</span></label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" id="nama_bank" name="nama_bank" required="required" class="nama_bank form-control col-md-7 col-xs-12" value="{{$bank->nama_bank}}">
+								@if($bank)
+									<div class="ln_solid"></div>
+									<!-- ----------------------------------------------------- -->
+									<div class="x_title">
+										<h4>Data Bank & Asuransi </h4>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama_bank">Nama Bank <span class="required">*</span></label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" id="nama_bank" name="nama_bank" required="required" class="nama_bank form-control col-md-7 col-xs-12" value="{{$bank->nama_bank}}">
+													<select id="nama_bank" name="nama_bank" required="required" class="nama_bank form-control col-md-7 col-xs-12">
+														<option value="">--Pilih Bank----</option>
+														<?php $selected = ($bank->nama_bank == 'BRI')? 'selected': '';?>
+														<option value="BRI" {{$selected}}>BRI</option>
+														<?php $selected = ($bank->nama_bank == 'Mandiri')? 'selected': '';?>
+														<option value="Mandiri" {{$selected}}>Mandiri</option>
+														<?php $selected = ($bank->nama_bank == 'BNI')? 'selected': '';?>
+														<option value="BNI" {{$selected}}>BNI</option>
+														<?php $selected = ($bank->nama_bank == 'BCA')? 'selected': '';?>
+														<option value="BCA" {{$selected}}>BCA</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label col-md-4 col-sm-4 col-xs-12">Asuransi Lainnya</label>
 											</div>
 										</div>
 									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label col-md-4 col-sm-4 col-xs-12">Asuransi Lainnya</label>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">No. Rekening <span class="required">*</span></label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" id="no_rek" name="no_rek"  class="form-control col-md-7 col-xs-12" value="{{$bank->no_rekening}}">
+												</div>
+											</div>
 										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">No. Rekening <span class="required">*</span></label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" id="no_rek" name="no_rek"  class="form-control col-md-7 col-xs-12" value="{{$bank->no_rekening}}">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label col-md-4 col-sm-4 col-xs-12">Nama Asuransi</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" id="nama_asuransi" name="nama_asuransi" class="nama_asuransi form-control col-md-7 col-xs-12" value="{{$bank->asuransi_lain}}">
+												</div>
 											</div>
 										</div>
 									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label col-md-4 col-sm-4 col-xs-12">Nama Asuransi</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" id="nama_asuransi" name="nama_asuransi" class="nama_asuransi form-control col-md-7 col-xs-12" value="{{$bank->asuransi_lain}}">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="npwp" class="control-label col-md-4 col-sm-4 col-xs-12">No. NPWP</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input id="npwp" class="form-control col-md-7 col-xs-12 npwp" type="text" name="npwp" value="{{$bank->npwp}}">
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nomor_asuransi">Nomor </label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" id="nomor_asuransi" name="nomor_asuransi" class="nomor_asuransi form-control col-md-7 col-xs-12" value="{{$bank->nomor_lain}}">
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="npwp" class="control-label col-md-4 col-sm-4 col-xs-12">No. NPWP</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input id="npwp" class="form-control col-md-7 col-xs-12 npwp" type="text" name="npwp" value="{{$bank->npwp}}">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="jamsostek" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jamsostek</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input id="jamsostek" class="form-control col-md-7 col-xs-12 jamsostek" type="text" name="jamsostek" value="{{$bank->jamsostek}}">
+												</div>
 											</div>
 										</div>
 									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nomor_asuransi">Nomor </label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" id="nomor_asuransi" name="nomor_asuransi" class="nomor_asuransi form-control col-md-7 col-xs-12" value="{{$bank->nomor_lain}}">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="dplk" class="control-label col-md-4 col-sm-4 col-xs-12">No. DPLK</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" id="dplk" class="form-control col-md-7 col-xs-12 dplk" type="text" name="dplk" value="{{$bank->dplk}}">
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="jamsostek" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jamsostek</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input id="jamsostek" class="form-control col-md-7 col-xs-12 jamsostek" type="text" name="jamsostek" value="{{$bank->jamsostek}}">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="jiwasraya" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jiwasraya</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" id="jiwasraya" class="form-control col-md-7 col-xs-12 jiwasraya" type="text" name="jiwasraya" value="{{$bank->jiwasraya}}">
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="dplk" class="control-label col-md-4 col-sm-4 col-xs-12">No. DPLK</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" id="dplk" class="form-control col-md-7 col-xs-12 dplk" type="text" name="dplk" value="{{$bank->dplk}}">
+								@else
+									<div class="ln_solid"></div>
+									<!-- ----------------------------------------------------- -->
+									<div class="x_title">
+										<h4>Data Bank & Asuransi </h4>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama_bank">Nama Bank <span class="required">*</span></label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<select id="nama_bank" name="nama_bank" required="required" class="nama_bank form-control col-md-7 col-xs-12">
+														<option value="">--Pilih Bank----</option>
+														<option value="BRI">BRI</option>
+														<option value="Mandiri">Mandiri</option>
+														<option value="BNI">BNI</option>
+														<option value="BCA">BCA</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label col-md-4 col-sm-4 col-xs-12">Asuransi Lainnya</label>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="jiwasraya" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jiwasraya</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" id="jiwasraya" class="form-control col-md-7 col-xs-12 jiwasraya" type="text" name="jiwasraya" value="{{$bank->jiwasraya}}">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">No. Rekening <span class="required">*</span></label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" id="no_rek" name="no_rek"  class="form-control col-md-7 col-xs-12">
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label col-md-4 col-sm-4 col-xs-12">Nama Asuransi</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" id="nama_asuransi" name="nama_asuransi" class="nama_asuransi form-control col-md-7 col-xs-12">
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="npwp" class="control-label col-md-4 col-sm-4 col-xs-12">No. NPWP</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input id="npwp" class="form-control col-md-7 col-xs-12 npwp" type="text" name="npwp">
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nomor_asuransi">Nomor </label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" id="nomor_asuransi" name="nomor_asuransi" class="nomor_asuransi form-control col-md-7 col-xs-12">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="jamsostek" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jamsostek</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input id="jamsostek" class="form-control col-md-7 col-xs-12 jamsostek" type="text" name="jamsostek">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="dplk" class="control-label col-md-4 col-sm-4 col-xs-12">No. DPLK</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" id="dplk" class="form-control col-md-7 col-xs-12 dplk" type="text" name="dplk" >
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="jiwasraya" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jiwasraya</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" id="jiwasraya" class="form-control col-md-7 col-xs-12 jiwasraya" type="text" name="jiwasraya">
+												</div>
+											</div>
+										</div>
+									</div>
+								@endif
 								<!-- ------------------------------------------------------------------------------------- -->
 								<div class="ln_solid"></div>
 								<div class="x_title">
@@ -762,6 +867,8 @@ $kode = KodeBagian::all();
 														$pph21 = 2000000;
 													}elseif ($pegawai->status_kawin == 'K3') {
 														$pph21 = 2500000;
+													}else{
+														$pph21='';
 													}
 												?>
 												<input type="text" name="tunj_pph21" class="form-control col-md-7 col-xs-12 tunj_pph21" id="tunj_pph21" readonly="readonly" value="{{$pph21}}">
@@ -843,6 +950,22 @@ $kode = KodeBagian::all();
       $('.stepContainer').height('100%');
 
       $( ".actionBar.buttonFinish" ).replaceWith( "<button type='submit' class='buttonFinish btn btn-default'>Finish</button>" );
+
+      $('input[type=radio][name=status_kawin]').change(function () {
+      		console.log('sd');
+            if ($("input[name='status_kawin']:checked").val() == 'TK') {
+            	$('#anak').attr('readonly','readonly');
+            	$('#suami_istri').attr('readonly','readonly');
+            }
+            if ($("input[name='status_kawin']:checked").val() == 'K0') {
+            	$('#anak').attr('readonly','readonly');
+            	$('#suami_istri'). removeAttr('readonly');
+            }
+            if (($("input[name='status_kawin']:checked").val() == 'K1') || ($("input[name='status_kawin']:checked").val() == 'K2') || ($("input[name='status_kawin']:checked").val() == 'K3')) {
+            	$('#anak').removeAttr('readonly');
+            	$('#suami_istri'). removeAttr('readonly');
+            }
+         });
   	});
 
 </script>

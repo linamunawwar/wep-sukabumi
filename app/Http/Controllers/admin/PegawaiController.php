@@ -18,6 +18,11 @@ use App\Pelatihan;
 use App\Pengalaman;
 use App\Penugasan;
 use App\KaryaIlmiah;
+use App\Pertemuan;
+use App\Organisasi;
+use App\Publikasi;
+use App\TenagaPengajar;
+use App\Penghargaan;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -195,7 +200,22 @@ class PegawaiController extends Controller
         $nopublikasi = KaryaIlmiah::where('nip',$pegawai->nip)->where('publikasi','nopublikasi')->get();
         $nopublikasis = json_decode(json_encode($nopublikasi), true);
 
-        return view('admin.pegawai.edit_cv',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'mcus'=>$mcus,'pendidikans'=>$pendidikans,'sertifikats'=>$sertifikats,'pelatihans'=>$pelatihans,'pengalamans'=>$pengalamans,'penugasans'=>$penugasans,'presentasis'=>$presentasis, 'nopresentasis'=>$nopresentasis,'nopublikasis'=>$nopublikasis]);
+        $pertemuan = Pertemuan::where('nip',$pegawai->nip)->get();
+        $pertemuans = json_decode(json_encode($pertemuan), true);
+
+        $organisasi = Organisasi::where('nip',$pegawai->nip)->get();
+        $organisasis = json_decode(json_encode($organisasi), true);
+
+        $publikasi = Publikasi::where('nip',$pegawai->nip)->get();
+        $publikasis = json_decode(json_encode($publikasi), true);
+
+        $pengajar = TenagaPengajar::where('nip',$pegawai->nip)->get();
+        $pengajars = json_decode(json_encode($pengajar), true);
+
+        $penghargaan = Penghargaan::where('nip',$pegawai->nip)->get();
+        $penghargaans = json_decode(json_encode($penghargaan), true);
+
+        return view('admin.pegawai.edit_cv',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'mcus'=>$mcus,'pendidikans'=>$pendidikans,'sertifikats'=>$sertifikats,'pelatihans'=>$pelatihans,'pengalamans'=>$pengalamans,'penugasans'=>$penugasans,'presentasis'=>$presentasis, 'nopresentasis'=>$nopresentasis,'nopublikasis'=>$nopublikasis,'pertemuans'=>$pertemuans,'organisasis'=>$organisasis,'publikasis'=>$publikasis,'pengajars'=>$pengajars,'penghargaans'=>$penghargaans]);
     }
 
     public function postEditCV($id)
@@ -471,6 +491,145 @@ class PegawaiController extends Controller
           }
         }
 
+        //-------------Pertemuan---------
+        $del_pertemuan = Pertemuan::where('nip',$data['nip'])->delete();
+
+        $tanggal_pertemuan = \Input::get('tanggal_pertemuan');
+        $tema = \Input::get('tema');
+        $organisasi_penyelenggara = \Input::get('organisasi_penyelenggara');
+        $tempat_pertemuan = \Input::get('tempat_pertemuan');
+        $hadir_sebagai = \Input::get('hadir_sebagai');
+        $lingkup_pertemuan = \Input::get('lingkup_pertemuan');
+        $referensi_pertemuan = \Input::get('referensi_pertemuan');
+
+        for ($i=0; $i < sizeof($tanggal_pertemuan) ; $i++) { 
+          $pertemuan = new Pertemuan;
+          $pertemuan->nip = $data['nip'];
+          $pertemuan->tanggal = $tanggal_pertemuan[$i];
+          $pertemuan->tema = $tema[$i];
+          $pertemuan->penyelenggara = $organisasi_penyelenggara[$i];
+          $pertemuan->tempat = $tanggal_pertemuan[$i];
+          $pertemuan->hadir_sebagai = $hadir_sebagai[$i];
+          $pertemuan->lingkup_kegiatan = $lingkup_pertemuan[$i];
+          $pertemuan->referensi = $referensi_pertemuan[$i];
+          $pertemuan->user_id = \Auth::user()->id;
+          $pertemuan->role_id = \Auth::user()->role_id;
+
+          if($pertemuan->tanggal != ''){
+            $pertemuan->save();
+          }
+        }
+
+        //-------------Organisasi---------
+        $del_organisasi = Organisasi::where('nip',$data['nip'])->delete();
+
+        $tanggal_organisasi = \Input::get('tanggal_organisasi');
+        $nama_organisasi = \Input::get('nama_organisasi');
+        $tempat_organisasi = \Input::get('tempat_organisasi');
+        $aktif_sebagai = \Input::get('aktif_sebagai');
+        $lingkup_organisasi = \Input::get('lingkup_organisasi');
+        $referensi_organisasi = \Input::get('referensi_organisasi');
+
+        for ($i=0; $i < sizeof($tanggal_organisasi) ; $i++) { 
+          $organisasi = new Organisasi;
+          $organisasi->nip = $data['nip'];
+          $organisasi->tanggal = $tanggal_organisasi[$i];
+          $organisasi->nama_organisasi = $nama_organisasi[$i];
+          $organisasi->tempat = $tempat_organisasi[$i];
+          $organisasi->aktif_sebagai = $aktif_sebagai[$i];
+          $organisasi->lingkup_kegiatan = $lingkup_organisasi[$i];
+          $organisasi->referensi = $referensi_organisasi[$i];
+          $organisasi->user_id = \Auth::user()->id;
+          $organisasi->role_id = \Auth::user()->role_id;
+
+          if($organisasi->tanggal != ''){
+            $organisasi->save();
+          }
+        }
+
+        //-------------Publikasi---------
+        $del_publikasi = Publikasi::where('nip',$data['nip'])->delete();
+
+        $tanggal_publikasi = \Input::get('tanggal_publikasi');
+        $nama_publikasi = \Input::get('nama_publikasi');
+        $tempat_publikasi = \Input::get('tempat_publikasi');
+        $aktif_sebagai_publikasi = \Input::get('aktif_sebagai_publikasi');
+        $lingkup_publikasi = \Input::get('lingkup_publikasi');
+        $referensi_publikasi = \Input::get('referensi_publikasi');
+
+        for ($i=0; $i < sizeof($tanggal_publikasi) ; $i++) { 
+          $publikasi = new Publikasi;
+          $publikasi->nip = $data['nip'];
+          $publikasi->tanggal = $tanggal_organisasi[$i];
+          $publikasi->nama_organisasi = $nama_organisasi[$i];
+          $publikasi->tempat = $tempat_organisasi[$i];
+          $publikasi->aktif_sebagai = $aktif_sebagai[$i];
+          $publikasi->lingkup_kegiatan = $lingkup_organisasi[$i];
+          $publikasi->referensi = $referensi_organisasi[$i];
+          $publikasi->user_id = \Auth::user()->id;
+          $publikasi->role_id = \Auth::user()->role_id;
+
+          if($publikasi->tanggal != ''){
+            $publikasi->save();
+          }
+        }
+
+        //-------------Tenaga Pengajar---------
+        $del_pengajar = TenagaPengajar::where('nip',$data['nip'])->delete();
+
+        $mulai_pengajar = \Input::get('mulai_pengajar');
+        $materi = \Input::get('materi');
+        $institusi = \Input::get('institusi');
+        $tempat_pengajar = \Input::get('tempat_pengajar');
+        $aktif_sebagai_pengajar = \Input::get('aktif_sebagai_pengajar');
+        $lingkup_pengajar = \Input::get('lingkup_pengajar');
+        $referensi_pengajar = \Input::get('referensi_pengajar');
+
+        for ($i=0; $i < sizeof($mulai_pengajar) ; $i++) { 
+          $pengajar = new TenagaPengajar;
+          $pengajar->nip = $data['nip'];
+          $pengajar->tanggal_mulai = $mulai_pengajar[$i];
+          $pengajar->materi = $materi[$i];
+          $pengajar->institusi = $institusi[$i];
+          $pengajar->tempat = $tempat_pengajar[$i];
+          $pengajar->aktif_sebagai = $aktif_sebagai_pengajar[$i];
+          $pengajar->lingkup_kegiatan = $lingkup_pengajar[$i];
+          $pengajar->referensi = $referensi_pengajar[$i];
+          $pengajar->user_id = \Auth::user()->id;
+          $pengajar->role_id = \Auth::user()->role_id;
+
+          if($pengajar->tanggal != ''){
+            $pengajar->save();
+          }
+        }
+
+        //-------------Penghargaan---------
+        $del_penghargaan = Penghargaan::where('nip',$data['nip'])->delete();
+
+        $tanggal_penghargaan = \Input::get('tanggal_penghargaan');
+        $nama_penghargaan = \Input::get('nama_penghargaan');
+        $tempat_penghargaan = \Input::get('tempat_penghargaan');
+        $jenis_penghargaan = \Input::get('jenis_penghargaan');
+        $lingkup_penghargaan = \Input::get('lingkup_penghargaan');
+        $referensi_penghargaan = \Input::get('referensi_penghargaan');
+
+        for ($i=0; $i < sizeof($tanggal_penghargaan) ; $i++) { 
+          $penghargaan = new Penghargaan;
+          $penghargaan->nip = $data['nip'];
+          $penghargaan->tanggal_mulai = $tanggal_penghargaan[$i];
+          $penghargaan->nama_penghargaan = $nama_penghargaan[$i];
+          $penghargaan->tempat = $tempat_penghargaan[$i];
+          $penghargaan->jenis_penghargaan = $jenis_penghargaan[$i];
+          $penghargaan->lingkup_kegiatan = $lingkup_penghargaan[$i];
+          $penghargaan->referensi = $referensi_penghargaan[$i];
+          $penghargaan->user_id = \Auth::user()->id;
+          $penghargaan->role_id = \Auth::user()->role_id;
+
+          if($penghargaan->tanggal != ''){
+            $penghargaan->save();
+          }
+        }
+
         return redirect('/admin/pegawai');
     }
 
@@ -562,10 +721,26 @@ class PegawaiController extends Controller
     {
       $level = Posisi::groupBy('level')->get();
       foreach ($level as $key => $value) {
-         $posisi[$value->level] = Posisi::where('level',$value->level)->get();
-
+         $posisi[$value->level] = Posisi::where('level',$value->level)->where('soft_delete',0)->get();
       }
 
+      $posisi = Posisi::where('level',0)->get();
+        foreach ($posisi as $key => $value) {
+          $value->anggota = Pegawai::where('posisi_id',$value->id)->where('soft_delete',0)->get();
+          $value->anak = Posisi::where('parent',$value->id)->get();
+          foreach ($value->anak as $key => $anak2) {
+            $anak2->anggota = Pegawai::where('posisi_id',$anak2->id)->where('soft_delete',0)->get();
+            $anak2->anak = Posisi::where('parent',$anak2->id)->get();
+            foreach ($anak2->anak as $key => $anak3) {
+              $anak3->anggota = Pegawai::where('posisi_id',$anak3->id)->where('soft_delete',0)->get();
+              $anak3->anak = Posisi::where('parent',$anak3->id)->get();
+              foreach ($anak3->anak as $key => $anak4) {
+                $anak4->anggota = Pegawai::where('posisi_id',$anak4->id)->where('soft_delete',0)->get();
+                $anak4->anak = Posisi::where('parent',$anak4->id)->get();
+              }
+            }
+          }
+        }
       // $atasans = Pegawai::whereHas('posisi', function ($q){
       //     $q->where('parent', '1');
       // })->get();
@@ -621,5 +796,12 @@ class PegawaiController extends Controller
       $resigns = Resign::get();
 
       return view('admin.pegawai.resign.index',['resigns'=>$resigns]);
+    }
+
+    public function getProd05()
+    {
+      $pegawais = Pegawai::where('soft_delete',0)->where('is_active',1)->get();
+
+      return view('admin.pegawai.prod05.index',['pegawais'=>$pegawais]);
     }
 }

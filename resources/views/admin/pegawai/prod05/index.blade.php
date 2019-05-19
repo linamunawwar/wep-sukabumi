@@ -13,49 +13,51 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Form Prod 05 </h2>
+						<h2>PROD 05 </h2>
+						<ul class="nav navbar-right panel_toolbox">
+							<li><a href="{{url('admin/pegawai/create')}}"><button class="btn btn-success"> Download</button></a></li>
+						</ul>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-							<div class="form-group">
-								<label class="control-label col-md-2 col-sm-2 col-xs-12" for="periode">Periode <span class="required">*</span>:</label>
-								<div class="col-md-4 col-sm-4 col-xs-12">
-									<select class="form-control col-md-7 col-xs-12">
-										<option value="01">Januari</option>
-										<option value="02">Februari</option>
-										<option value="03">Maret</option>
-										<option value="04">April</option>
-										<option value="05">Mei</option>
-										<option value="06">Juni</option>
-										<option value="07">Juli</option>
-										<option value="08">Agustus</option>
-										<option value="09">September</option>
-										<option value="10">Oktober</option>
-										<option value="11">November</option>
-										<option value="12">Desember</option>
-									</select>
-								</div>
-								<div class="col-md-4 col-sm-4 col-xs-12">
-									<select class="form-control col-md-7 col-xs-12">
-										<option value="2019">2019</option>
-										<option value="2018">2018</option>
-										<option value="2017">2017</option>
-										<option value="2016">2016</option>
-										<option value="2015">2015</option>
-										<option value="2014">2014</option>
-									</select>
-								</div>
-							</div>
-							<div class="ln_solid"></div>
-							<div class="form-group">
-								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" style="padding-left: 150px;">
-									<button class="btn btn-primary" type="button" >Cancel</button>
-									<button class="btn btn-primary" type="reset">Reset</button>
-									<button type="submit" class="btn btn-success">Submit</button>
-								</div>
-							</div>
-						</form>
+						<table id="datatable" class="table table-striped table-bordered">
+							<thead>
+								<tr>
+									<th rowspan="2">NIP</th>
+									<th rowspan="2">Nama</th>
+									<th rowspan="2" style="width: 15%;">Jabatan</th>
+									<th rowspan="2" style="width: 15%;">Tanggal Lahir</th>
+									<th rowspan="2" style="width: 15%;">Status Kepegawaian</th>
+									<th rowspan="2" style="width: 35%;">Mulai Tugas Di Proyek</th>
+									<th rowspan="2">Gaji</th>
+									<th colspan="3" style="text-align: center;">Status</th>
+									<th rowspan="2">Keterangan</th>
+								</tr>
+								<tr>
+									<th>Lembur</th>
+									<th>Komunikasi</th>
+									<th style="border-right-width: 1;">Makan</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								@foreach($pegawais as $pegawai)
+									<tr>
+										<td>{{$pegawai->nip}}</td>
+										<td>{{$pegawai->nama}}</td>
+										<td>{{$pegawai->posisi->posisi}}</td>
+										<td>{{konversi_tanggal($pegawai->tanggal_lahir)}}</td>
+										<td></td>
+										<td>{{konversi_tanggal($pegawai->tanggal_masuk)}}</td>
+										<td>{{$pegawai->gaji->gaji_pokok}}</td>
+										<td></td>
+										<td>{{$pegawai->gaji->tunj_komunikasi}}</td>
+										<td>{{$pegawai->gaji->uang_makan}}</td>
+										<td>-</td>
+									</tr>
+								@endforeach
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>

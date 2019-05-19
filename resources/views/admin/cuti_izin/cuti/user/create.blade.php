@@ -17,17 +17,37 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">NIP <span class="required">*</span>:</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<p style="padding: 6px 12px; font-size: 15px;">SA150795</p>
+										<p style="padding: 6px 12px; font-size: 15px;">{{\Auth::user()->pegawai_id}}</p>
 									</div>
 								</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama Karyawan <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<p style="padding: 6px 12px;">{{Auth::user()->name}}</p>
+									<input type="hidden" name="nip" value="{{\Auth::user()->pegawai_id}}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="tgl_lahir" class="control-label col-md-3 col-sm-3 col-xs-12">Mulai Cuti * :</label>
+								<div class="col-md-3 col-sm-3 col-xs-12">
+									<div class='input-group date' id='datepicker' class="datepicker">
+										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
+						                <input type='text' value='' name='tanggal_mulai' class='form-control' required="required" placeholder="dd-mm-yyyy" />
+						            </div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="tgl_lahir" class="control-label col-md-3 col-sm-3 col-xs-12">Selesai Cuti * :</label>
+								<div class="col-md-3 col-sm-3 col-xs-12">
+									<div class='input-group date' id='datepicker2' class="datepicker">
+										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
+						                <input type='text' value='' name='tanggal_selesai' class='form-control' required="required" placeholder="dd-mm-yyyy" />
+						            </div>
 								</div>
 							</div>
 							<div class="form-group">
@@ -37,9 +57,9 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Tujuan / Alamat selama cuti:</label>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Tujuan / Alamat Selama Cuti:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<textarea name="alasan" class="form-control col-md-7 col-xs-12"></textarea>
+									<textarea name="alamat_cuti" class="form-control col-md-7 col-xs-12"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
@@ -51,11 +71,11 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Penyerahan Tugas Kepada <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select class="form-control col-md-7 col-xs-12">
-										<option value="0">Pilih Karyawan</option>
-										<option value="SA150795">SA150795 - Tiger Nixon</option>
-										<option value="SL170793">SL170793 - Garrett Winters</option>
-										<option value="HS1506795">HS1506795 - Cedric Kelly</option>
+									<select class="form-control pegawai pengganti" name="pengganti" required="required" id="pengganti">
+										<option value="">Pilih Karyawan</option>
+										@foreach($pegawais as $pegawai)
+											<option value="{{$pegawai->nip}}">{{strtoupper($pegawai->nip)}} - {{$pegawai->nama}}</option>
+										@endforeach
 									</select>
 								</div>
 							</div>
@@ -77,3 +97,20 @@
     </div>
     <!-- /page content -->
 @endsection
+@push('scripts')
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $('.pegawai').select2();
+
+		    $('#datepicker').datepicker({
+		        format: 'dd-mm-yyyy',
+		        autoclose: true
+	    	});
+
+	    	$('#datepicker2').datepicker({
+		        format: 'dd-mm-yyyy',
+		        autoclose: true
+	    	});
+		});
+	</script>
+@endpush

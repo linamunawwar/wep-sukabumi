@@ -17,17 +17,37 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">NIP <span class="required">*</span>:</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<p style="padding: 6px 12px; font-size: 15px;">SA150795</p>
+										<p style="padding: 6px 12px; font-size: 15px;">{{Auth::user()->pegawai_id}}</p>
+										<input type="hidden" name="nip" value="{{Auth::user()->pegawai_id}}">
 									</div>
 								</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama Karyawan <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<p style="padding: 6px 12px;">{{Auth::user()->name}}</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="tgl_lahir" class="control-label col-md-3 col-sm-3 col-xs-12">Mulai Izin * :</label>
+								<div class="col-md-3 col-sm-3 col-xs-12">
+									<div class='input-group date' id='datepicker' class="datepicker">
+										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
+						                <input type='text' value='' name='tanggal_mulai' class='form-control' required="required" placeholder="dd-mm-yyyy" />
+						            </div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="tgl_lahir" class="control-label col-md-3 col-sm-3 col-xs-12">Selesai Izin * :</label>
+								<div class="col-md-3 col-sm-3 col-xs-12">
+									<div class='input-group date' id='datepicker2' class="datepicker">
+										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
+						                <input type='text' value='' name='tanggal_selesai' class='form-control' required="required" placeholder="dd-mm-yyyy" />
+						            </div>
 								</div>
 							</div>
 							<div class="form-group">
@@ -39,7 +59,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Dokumen Pendukung:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="file" name="alasan" class="form-control col-md-7 col-xs-12">
+									<input type="file" name="surat" class="form-control col-md-7 col-xs-12">
 								</div>
 							</div>
 							
@@ -60,3 +80,20 @@
     </div>
     <!-- /page content -->
 @endsection
+@push('scripts')
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $('.pegawai').select2();
+
+		    $('#datepicker').datepicker({
+		        format: 'dd-mm-yyyy',
+		        autoclose: true
+	    	});
+
+	    	$('#datepicker2').datepicker({
+		        format: 'dd-mm-yyyy',
+		        autoclose: true
+	    	});
+		});
+	</script>
+@endpush

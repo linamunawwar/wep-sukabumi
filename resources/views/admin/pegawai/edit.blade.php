@@ -59,7 +59,7 @@
 										</fieldset> -->
 										<div class='input-group date' id='datepicker' class="datepicker">
 											<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
-							                <input type='text' name='tgl_lahir' class='form-control' required="required" value="{{konversi_tanggal($pegawai->tanggal_lahir)}}" />
+							                <input type='text' name='tgl_lahir' class='form-control' required="required" value="{{konversi_tanggal($pegawai->tanggal_lahir)}}" placeholder="dd-mm-yyyy" />
 							            </div>
 									</div>
 								</div>

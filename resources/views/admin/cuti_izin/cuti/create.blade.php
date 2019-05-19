@@ -35,7 +35,7 @@
 								<div class="col-md-3 col-sm-3 col-xs-12">
 									<div class='input-group date' id='datepicker' class="datepicker">
 										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
-						                <input type='text' value='' name='tanggal_mulai' class='form-control' required="required" placeholder="Mulai Cuti" />
+						                <input type='text' value='' name='tanggal_mulai' class='form-control' required="required" placeholder="Mulai Cuti (dd-mm-yyyy)" />
 						            </div>
 								</div>
 							</div>
@@ -44,7 +44,7 @@
 								<div class="col-md-3 col-sm-3 col-xs-12">
 									<div class='input-group date' id='datepicker2' class="datepicker">
 										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
-						                <input type='text' value='' name='tanggal_selesai' class='form-control' required="required" placeholder="Selesai Cuti" />
+						                <input type='text' value='' name='tanggal_selesai' class='form-control' required="required" placeholder="Selesai Cuti (dd-mm-yyyy)" />
 						            </div>
 								</div>
 							</div>

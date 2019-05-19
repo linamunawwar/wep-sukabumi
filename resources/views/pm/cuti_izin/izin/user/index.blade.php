@@ -15,7 +15,7 @@
 					<div class="x_title">
 						<h2>Daftar izin Pegawai </h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('admin/pengajuan_izin/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
+							<li><a href="{{url('pm/pengajuan_izin/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>

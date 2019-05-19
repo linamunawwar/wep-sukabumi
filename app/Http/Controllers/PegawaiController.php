@@ -2,29 +2,26 @@
 
 namespace App\Http\Controllers;
 use App\Roles;
-use app\Pegawai;
-use app\KodeBagian;
+use App\Pegawai;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PegawaiController extends Controller
 {
     //----------------------------------------------------ADMIN---------------------------------------------
 
-    public function getProd05()
+    public function showResetForm()
     {
-        return view('pegawai.prod05.index');
+        return view('auth.passwords.reset');
     }
 
-    
+    public function postReset()
+    {
+        $data = \Input::all();
+        $pass_baru = \Hash::make($data['pass_baru']);
+        $user = User::where('id',\Auth::user()->id)->update(['pass_asli'=>$data['pass_baru'],'password'=>$pass_baru]);
 
-    public function pecatManager(){
-            return view('manager.pecat.index');
-    }
-
-    
-
-    public function resignManager(){
-            return view('manager.resign.index');
+        return view('auth.passwords.reset');
     }
 
     //----------------------------USER----------------------------------

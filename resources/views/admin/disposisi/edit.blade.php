@@ -42,7 +42,7 @@
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<div class='input-group date' id='datepicker' class="datepicker">
 										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
-						                <input type='text' value="{{konversi_tanggal($disposisi->tanggal_terima)}}"" name='tanggal_terima' class='form-control' required="required" />
+						                <input type='text' value="{{konversi_tanggal($disposisi->tanggal_terima)}}"" name='tanggal_terima' class='form-control' required="required" placeholder="dd-mm-yyyy" />
 						            </div>
 								</div>
 							</div>
@@ -57,7 +57,7 @@
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<div class='input-group date' id='datepicker2' class="datepicker">
 										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
-						                <input type='text' value="{{$disposisi->tanggal_surat}}"" name='tanggal_surat' class='form-control' required="required" />
+						                <input type='text' value="{{$disposisi->tanggal_surat}}"" name='tanggal_surat' class='form-control' required="required" placeholder="dd-mm-yyyy" />
 						            </div>
 								</div>
 							</div>
