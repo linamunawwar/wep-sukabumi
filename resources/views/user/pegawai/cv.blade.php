@@ -1469,11 +1469,11 @@ $kode = KodeBagian::all();
 			                        				</td>
 			                        				<td>
 			                        					<?php $checked = ($mcu->nilai == '1')? 'checked' : ''; ?>
-			                        					<input type="radio" name="mcu[{{$key}}]" value="1" {{$checked}}> Ya
+			                        					<input type="radio" name="mcu[{{$key}}]" value="1" {{$checked}} required="required"> Ya
 			                        				</td>
 			                        				<td>
 			                        					<?php $checked = ($mcu->nilai == '0')? 'checked' : ''; ?>
-			                        					<input type="radio" name="mcu[{{$key}}]" value="0" {{$checked}}> Tidak
+			                        					<input type="radio" name="mcu[{{$key}}]" value="0" {{$checked}} required="required"> Tidak
 			                        				</td>
 			                        			</tr>
 			                        			<?php $i++; ?>

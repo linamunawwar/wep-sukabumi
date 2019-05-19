@@ -164,6 +164,7 @@ return [
 		Collective\Html\HtmlServiceProvider::class,
 		Watson\BootstrapForm\BootstrapFormServiceProvider::class,
 		Spatie\Permission\PermissionServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -215,6 +216,7 @@ return [
 		'Html' => Collective\Html\HtmlFacade::class,
 		'BootForm' => Watson\BootstrapForm\Facades\BootstrapForm::class,
         'Input' => Illuminate\Support\Facades\Input::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

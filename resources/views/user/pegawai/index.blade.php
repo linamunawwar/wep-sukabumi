@@ -55,19 +55,24 @@ $kode = KodeBagian::all();
 								<div class="form-group">
 									<label class="control-label col-md-4 col-sm-4 col-xs-12">Gender</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<p class="data">Male</p>
+										@if($pegawai->gender == 'P')
+											<p class="data">Pria</p>
+										@elseif($pegawai->gender == 'W')
+											<p class="data">Wanita</p>
+										@endif
+
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="tgl_lahir" class="control-label col-md-4 col-sm-4 col-xs-12">Tanggal Lahir *</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<p class="data">22-02-1990</p>
+										<p class="data">{{konversi_tanggal($pegawai->tanggal_lahir)}}</p>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nip">NIP <span class="required">*</span>:</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<p class="data">SA220290</p>
+										<p class="data">{{Auth::user()->pegawai_id}}</p>
 									</div>
 								</div>
 								<div class="ln_solid"></div>

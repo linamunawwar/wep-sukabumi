@@ -791,6 +791,11 @@ class PegawaiController extends Controller
       
     }
 
+    public function getUnduhSPK($value='')
+    {
+      return view('admin.pegawai.pecat.spk');
+    }
+
     public function getResign()
     {
       $resigns = Resign::get();

@@ -140,11 +140,11 @@ class PegawaiController extends Controller
         $pernyataan = $data['pernyataan'];
         $data_mcu = $data['mcu'];
         
-        foreach ($data['mcu'] as $key => $mcu) {
+        foreach ($data['mcu'] as $key => $mcus) {
           $mcu = new MCUPegawai;
           $mcu->nip = $data['nip'];
-          $mcu->pernyataan_id = $pernyataan[$key-1];
-          $mcu->nilai = $mcu;
+          $mcu->pernyataan_id = $pernyataan[$key];
+          $mcu->nilai = $mcus;
           $mcu->user_id = \Auth::user()->id;
           $mcu->role_id = \Auth::user()->role_id;
 
