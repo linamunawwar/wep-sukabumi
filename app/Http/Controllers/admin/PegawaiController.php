@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
+use PDF;
 use App\Roles;
 use App\Pegawai;
 use App\KodeBagian;
@@ -52,6 +52,7 @@ class PegawaiController extends Controller
         $gender = \Input::get('gender');
         $date = \Input::get('tgl_lahir');
         $date_masuk = \Input::get('tgl_masuk');
+        $status_pegawai = \Input::get('status_pegawai');
 
         $dates = explode('-', $date);
 		  $tgl_lahir = $dates[2].'-'.$dates[1].'-'.$dates[0];
@@ -87,9 +88,10 @@ class PegawaiController extends Controller
         $data['gender'] = $gender;
         $data['tanggal_lahir'] = $tgl_lahir;
         $data['tanggal_masuk'] = $tgl_masuk;
+        $data['status_pegawai'] = $status_pegawai;
         $data['is_new'] = 1;
         $data['is_verif_admin'] = 0;
-        $data['is_verif_mngr'] = 0;
+        $data['is_verif_mngr'] = 1;
         $data['is_verif_pm'] = 0;
         $query_pegawai = \DB::table('mst_pegawai')->insert($data);
 
@@ -791,9 +793,12 @@ class PegawaiController extends Controller
       
     }
 
-    public function getUnduhSPK($value='')
+    public function getUnduhSPK($id)
     {
-      return view('admin.pegawai.pecat.spk');
+      $pecat = Pecat::find($id);
+      $pdf = PDF::loadView('admin.pegawai.pecat.spk',['pecat' => $pecat]);
+      $pdf->setPaper('A4');
+      return $pdf->download('SPK_'.$pecat->nip.'.pdf');
     }
 
     public function getResign()

@@ -82,6 +82,18 @@
 									</div>
 								</div>
 								<div class="form-group">
+									<label class="control-label col-md-4 col-sm-4 col-xs-12"> Status Kepegawaian <span class="required">*</span>:</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<select class="form-control col-md-7 col-xs-12" required="required" name="status_pegawai">
+											<option value="">Pilih Status</option>
+											<option value="PT">Pegawai Tetap</option>
+											<option value="PTT">Pegawai Tidak Tetap</option>
+											<option value="OS">Outsourcing</option>
+											<option value="Harian">Harian</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
 									<label for="tgl_lahir" class="control-label col-md-4 col-sm-4 col-xs-12">Tanggal Masuk * :</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
 										<div class='input-group date' id='datepicker2' class="datepicker">

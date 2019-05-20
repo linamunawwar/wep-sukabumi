@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use PDF;
 use App\Cuti;
 use App\Pegawai;
 
@@ -59,6 +60,14 @@ class CutiController extends Controller
 
       return redirect('/admin/cuti');
       
+    }
+
+    public function getSuratCuti($id)
+    {
+      $cuti = Cuti::find($id);
+      $pdf = PDF::loadView('admin.cuti_izin.cuti.surat_cuti',['cuti' => $cuti]);
+      $pdf->setPaper('A4');
+      return $pdf->download('Surat Cuti_'.$cuti->nip.'.pdf');
     }
 
 

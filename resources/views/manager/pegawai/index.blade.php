@@ -28,7 +28,6 @@
 									<th>Password</th>
 									<th>Action</th>
 									<th>Status</th>
-									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -56,18 +55,14 @@
 										<td style="text-align: center;">
 											@if($pegawai->is_verif_admin == 0)
 												<span class="label label-default">Not Approved</span>
-											@elseif(($pegawai->is_verif_admin == 1) && ($pegawai->is_verif_mngr == 0) && ($pegawai->is_verif_pm == 0))
+											@elseif(($pegawai->is_verif_admin == 1) && ($pegawai->is_verif_pm == 0))
 												<span class="label label-primary">Approved by Admin</span>
-											@elseif(($pegawai->is_verif_mngr == 1) && ($pegawai->is_verif_pm == 0))
-												<span class="label label-primary">Approved by Admin</span>	
-												<span class="label label-success">Approved by Manager</span>
 											@elseif($pegawai->is_verif_pm == 1)
 												<span class="label label-primary">Approved by Admin</span>	
-												<span class="label label-success">Approved by Manager</span>
 												<span class="label label-success">Approved by PM</span>
 											@endif
 										</td>
-										<td style="text-align: center;">
+										<td style="text-align: center; display: none;">
 											@if(($pegawai->is_new == 0) && ($pegawai->is_verif_admin == 1) && ($pegawai->is_verif_mngr == 0))
 												<a class="btn btn-success btn-xs" href="{{url('manager/pegawai/approve/'.$pegawai->id.'')}}"><i class="fa fa-check" ></i>  Approve</a>
 											@else

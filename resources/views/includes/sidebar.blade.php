@@ -34,7 +34,6 @@
                             @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 4)
                                 <li><a href="{{url('manager/pegawai')}}">Data Pegawai</a></li>
                                 <li><a href="{{url('manager/pegawai/struktur')}}">Struktur Pegawai</a></li>
-                                <li><a href="{{url('manager/pegawai/prod05')}}">PROD 05</a></li>
                                 <li><a href="{{url('manager/pegawai/pecat')}}">Pemecatan</a></li>
                                 <li><a href="{{url('manager/pegawai/resign')}}">Pengajuan Resign</a></li>
                             @endif 
@@ -42,7 +41,6 @@
                             @if(Auth::user()->role_id == 5)
                                 <li><a href="{{url('pm/pegawai')}}">Data Pegawai</a></li>
                                 <li><a href="{{url('pm/pegawai/struktur')}}">Struktur Pegawai</a></li>
-                                <li><a href="{{url('pm/pegawai/prod05')}}">PROD 05</a></li>
                                 <li><a href="{{url('pm/pegawai/pecat')}}">Pemecatan</a></li>
                                 <li><a href="{{url('pm/pegawai/resign')}}">Pengajuan Resign</a></li>
                             @endif
