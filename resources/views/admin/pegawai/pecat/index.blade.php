@@ -54,10 +54,10 @@
 										</td>
 										<td style="text-align: center;">
 											@if($pecat->is_verif_pm == 1)
-												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  SPK</a>
+												<a href="{{'pegawai/pecat/spk/'.$pecat->id.''}}" class="btn btn-success btn-xs"><i class="fa fa-download"></i>  SPK</a>
 											@else
-												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  SPK</a>
-												<a class="btn btn-success btn-xs"><i class="fa fa-edit"></i>  Edit</a>
+												<a  class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  SPK</a>
+												<a href="{{'pegawai/pecat/edit/'.$pecat->id.''}}" class="btn btn-success btn-xs"><i class="fa fa-edit"></i>  Edit</a>
 											@endif
 										</td>
 									</tr>

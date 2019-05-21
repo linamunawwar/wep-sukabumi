@@ -179,14 +179,6 @@
                         </li>
                     @endif
                     @if(Auth::user()->role_id == 3)
-                        <li><a><i class="fa fa-list-alt"></i>Rencana Kebutuhan Pegawai <span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
-                                <li><a href="{{url('manager/rkp')}}">Pengajuan RKP</a></li>
-                                <li><a href="{{url('manager/sdm/rkp')}}">Kebutuhan Pegawai</a></li>
-                            </ul>
-                        </li>
-                    @endif
-                    @if(Auth::user()->role_id == 4)
                         <li>
                             <a href="{{url('manager/rkp')}}">
                                 <i class="fa fa-list-alt"></i>
@@ -194,6 +186,15 @@
                             </a>
                         </li>
                     @endif
+                    @if(Auth::user()->role_id == 4)
+                        <li><a><i class="fa fa-list-alt"></i>Rencana Kebutuhan Pegawai <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{url('manager/rkp')}}">Pengajuan RKP</a></li>
+                                <li><a href="{{url('manager/sdm/rkp')}}">Kebutuhan Pegawai</a></li>
+                            </ul>
+                        </li>
+                    @endif
+                    
                     @if(Auth::user()->role_id == 5)
                         <li>
                             <a href="{{url('pm/rkp')}}">

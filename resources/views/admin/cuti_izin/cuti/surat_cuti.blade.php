@@ -95,7 +95,7 @@ PEGAWAI KANTOR PUSAT</h3>
       <?php
         $created_at = explode(' ', $cuti->created_at);
       ?>
-      <td>Bekasi, {{konversi_tanggal($created_at[0])}} </td>
+      <td style="text-align: center;">Bekasi, {{konversi_tanggal($created_at[0])}} </td>
     </tr>
     <tr>
       <td></td>
@@ -104,19 +104,19 @@ PEGAWAI KANTOR PUSAT</h3>
       <?php
         $created_at = explode(' ', $cuti->created_at);
       ?>
-      <td>Pemohon, </td>
+      <td style="text-align: center;">Pemohon, </td>
     </tr>
     <tr>
       <td></td>
       <td></td>
       <td colspan="2"></td>
-      <td><img src="{{asset('public/img/ttd.png')}}" style="width: 150px; height: 40px;"> </td>
+      <td style="text-align: center;"><img src="{{asset('public/img/ttd.png')}}" style="width: 150px; height: 40px;"> </td>
     </tr>
     <tr>
       <td></td>
       <td></td>
       <td colspan="2"></td>
-      <td>({{$cuti->pegawai->nama}}) </td>
+      <td style="text-align: center;">({{$cuti->pegawai->nama}}) </td>
     </tr>
     <tr style="border-bottom: 1px solid black;">
       <td style="border-bottom: 1px solid black;"></td>
@@ -127,17 +127,12 @@ PEGAWAI KANTOR PUSAT</h3>
     <tr>
       <td>B.</td>
       <td colspan="3">Keterangan tentang cuti / izin yang pernah dijalani :<br>{{konversi_tanggal($cuti->tanggal_mulai_terakhir)}} s.d {{konversi_tanggal($cuti->tanggal_selesai_terakhir)}}</td>
-      <td>Kepala Bagian SDM</td>
+      <td style="text-align: center;">Kepala Bagian SDM</td>
     </tr>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td><img src="{{asset('public/img/ttd.png')}}" style="width: 150px; height: 40px;"></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td colspan="3"></td>
-      <td></td>
+      <td style="text-align: center;"><img src="{{asset('public/img/ttd.png')}}" style="width: 150px; height: 40px;"></td>
     </tr>
     <tr>
       <td></td>
@@ -147,7 +142,12 @@ PEGAWAI KANTOR PUSAT</h3>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td>( Kepala Bagian SDM )</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="3"></td>
+      <td style="text-align: center;">( Kepala Bagian SDM )</td>
     </tr>
     <tr style="border-bottom: 1px solid black;">
       <td style="border-bottom: 1px solid black;"></td>
@@ -156,13 +156,12 @@ PEGAWAI KANTOR PUSAT</h3>
     </tr>
     <tr>
       <td>C.</td>
-      <td colspan="3">Keterangan dari Kalap / Kasie SDM/ Kasie Teknik/ Kasie Adkon / Kasie Loglat / QC / K3LP * :</td>
-      <td></td>
+      <td colspan="4">Keterangan dari Kalap / Kasie SDM/ Kasie Teknik/ Kasie Adkon / Kasie Loglat / QC / K3LP * :</td>
     </tr>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td><img src="{{asset('public/img/ttd.png')}}" style="width: 150px; height: 40px;"></td>
+      <td style="text-align: center;"><img src="{{asset('public/img/ttd.png')}}" style="width: 150px; height: 40px;"></td>
     </tr>
     <tr>
       <td></td>
@@ -177,7 +176,7 @@ PEGAWAI KANTOR PUSAT</h3>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td>( Manager )</td>
+      <td style="text-align: center;">( Manager )</td>
     </tr>
     <tr style="border-bottom: 1px solid black;">
       <td style="border-bottom: 1px solid black;"></td>
@@ -186,13 +185,12 @@ PEGAWAI KANTOR PUSAT</h3>
     </tr>
     <tr>
       <td>D.</td>
-      <td colspan="3">Selama menjalani cuti / izin tanggal {{konversi_tanggal($cuti->tanggal_mulai)}}  s.d {{konversi_tanggal($cuti->tanggal_selesai)}}<br>pekerjaan rutin diserahkan kepada {{$cuti->pegawaiPengganti->nama}}</td>
-      <td></td>
+      <td colspan="4">Selama menjalani cuti / izin tanggal {{konversi_tanggal($cuti->tanggal_mulai)}}  s.d {{konversi_tanggal($cuti->tanggal_selesai)}}<br>pekerjaan rutin diserahkan kepada {{$cuti->pegawaiPengganti->nama}}</td>
     </tr>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td><img src="{{asset('public/img/ttd.png')}}" style="width: 150px; height: 40px;"></td>
+      <td style="text-align: center;"><img src="{{asset('public/img/ttd.png')}}" style="width: 150px; height: 40px;"></td>
     </tr>
     <tr>
       <td></td>
@@ -207,7 +205,7 @@ PEGAWAI KANTOR PUSAT</h3>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td>( {{$cuti->pegawaiPengganti->nama}} )</td>
+      <td style="text-align: center;">( {{$cuti->pegawaiPengganti->nama}} )</td>
     </tr>
     <tr style="border-bottom: 1px solid black;">
       <td style="border-bottom: 1px solid black;"></td>
@@ -217,12 +215,12 @@ PEGAWAI KANTOR PUSAT</h3>
     <tr>
       <td>E.</td>
       <td colspan="3">Disetujui:<br>BERKEBERATAN / TIDAK BERKEBERATAN *)</td>
-      <td><b>Kepala Proyek</b></td>
+      <td style="text-align: center;"><b>Kepala Proyek</b></td>
     </tr>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td><img src="{{asset('public/img/ttd.png')}}" style="width: 150px; height: 40px;"></td>
+      <td style="text-align: center;"><img src="{{asset('public/img/ttd.png')}}" style="width: 150px; height: 40px;"></td>
     </tr>
     <tr>
       <td></td>
@@ -237,7 +235,7 @@ PEGAWAI KANTOR PUSAT</h3>
     <tr>
       <td style="border-bottom: 1px solid black;"></td>
       <td style="border-bottom: 1px solid black;" colspan="3"></td>
-      <td style="border-bottom: 1px solid black;">( Waskito Adi )</td>
+      <td style="border-bottom: 1px solid black; text-align: center;">( Waskito Adi )</td>
     </tr>
   </table>
 </div>

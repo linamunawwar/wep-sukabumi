@@ -59,7 +59,7 @@
 										</td>
 										<td style="text-align: center;">
 											@if($cuti->is_verif_pm == 1)
-												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Surat Cuti</a>
+												<a href="{{'cuti/surat_cuti/'.$cuti->id.''}}" class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Surat Cuti</a>
 											@else
 												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Surat Cuti</a>
 												<a class="btn btn-success btn-xs"><i class="fa fa-edit"></i>  Edit</a>
