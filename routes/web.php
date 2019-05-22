@@ -171,6 +171,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pegawai/struktur', 'manager\PegawaiController@getStruktur');
 
 		Route::get('/pegawai/pecat', 'manager\PegawaiController@getPecat');
+		Route::get('/pegawai/pecat/create', 'manager\PegawaiController@getCreatePecat');
+		Route::post('/pegawai/pecat/create', 'manager\PegawaiController@postCreatePecat');
+		Route::get('/pegawai/pecat/tanggal_masuk/{nip}', 'manager\PegawaiController@getTanggalMasuk');
 		Route::get('/pegawai/pecat/approve/{id}', 'manager\PegawaiController@getApprovePecat');
 		Route::post('/pegawai/pecat/approve/{id}', 'manager\PegawaiController@postApprovePecat');
 		Route::get('/pegawai/pecat/approve_sdm/{id}', 'manager\PegawaiController@getApprovePecatSDM');

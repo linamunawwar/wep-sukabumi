@@ -66,6 +66,57 @@ class PegawaiController extends Controller
       return view('manager.pegawai.pecat.index',['pecats'=>$pecats]);
     }
 
+    public function getCreatePecat(){
+      $pegawais = Pegawai::where('kode_bagian', \Auth::user()->pegawai->kode_bagian)
+                            ->where('is_active','1')
+                            ->whereHas('user',function ($q){
+                                $q->where('role_id', 2);
+                            })
+                            ->get();
+      
+      return view('manager.pegawai.pecat.create',['pegawais'=>$pegawais]);
+      
+    }
+
+    public function getTanggalMasuk($nip){
+      $pegawai = Pegawai::where('nip', $nip)->where('is_active','1')->first();
+      
+      $pegawai->tanggal_masuk = konversi_tanggal($pegawai->tanggal_masuk);
+      $pegawai->gaji = $pegawai->gaji->gaji_pokok;
+      
+      return $pegawai;
+    }
+
+    public function postCreatePecat(){
+      $data = \Input::all();
+      
+      $pecat = new Pecat;
+      $pecat->nip = $data['nip'];
+      $pecat->alasan = $data['alasan'];
+      $terakhir_kerja = explode('-',$data['terakhir_kerja']);
+      $data['terakhir_kerja'] = $terakhir_kerja[2].'-'.$terakhir_kerja[1].'-'.$terakhir_kerja[0];
+      $pecat->terakhir_kerja =$data['terakhir_kerja'];
+      $pecat->pesangon =$data['pesangon'];
+      $pecat->is_verif_mngr = 1;
+      $pecat->verif_mngr_by = \Auth::user()->id;
+      $pecat->verify_mngr_time = date('Y-m-d H:i:s');
+      $pecat->is_verif_sdm = 0;
+      $pecat->verif_sdm_by = 0;
+      $pecat->verify_sdm_time = 0;
+      $pecat->is_verif_pm = 0;
+      $pecat->verif_pm_by = 0;
+      $pecat->verify_pm_time = 0;
+      $pecat->user_id = \Auth::user()->id;
+      $pecat->role_id = \Auth::user()->role_id;
+
+      $pecat->save();
+
+      $update = Pegawai::where('nip',$data['nip'])->update(['tanggal_keluar'=>$data['terakhir_kerja']]);
+
+      return redirect('/manager/pegawai/pecat');
+      
+    }
+
     public function getApprovePecat($id)
     {
         $pecat = Pecat::find($id);

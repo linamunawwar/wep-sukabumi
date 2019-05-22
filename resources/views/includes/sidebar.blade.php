@@ -19,9 +19,10 @@
                         <ul class="nav child_menu">
                             @if(Auth::user()->role_id == 1) 
                                 <li><a href="{{url('admin/pegawai')}}">Data Pegawai</a></li>
+                                <li><a href="{{url('admin/pegawai_non_aktif')}}">Data Pegawai Non Aktif</a></li>
                                 <li><a href="{{url('admin/pegawai/struktur')}}">Struktur Pegawai</a></li>
                                 <li><a href="{{url('admin/pegawai/prod05')}}">PROD 05</a></li>
-                                <li><a href="{{url('admin/pegawai/pecat')}}">Pemecatan</a></li>
+                                <li><a href="{{url('admin/pegawai/pecat')}}">Pemberhentian Kerja</a></li>
                                 <li><a href="{{url('admin/pegawai/resign')}}">Pengajuan Resign</a></li>
                             @endif
 
@@ -33,15 +34,17 @@
 
                             @if(Auth::user()->role_id == 3 || Auth::user()->role_id == 4)
                                 <li><a href="{{url('manager/pegawai')}}">Data Pegawai</a></li>
+                                <li><a href="{{url('manager/pegawai_non_aktif')}}">Data Pegawai Non Aktif</a></li>
                                 <li><a href="{{url('manager/pegawai/struktur')}}">Struktur Pegawai</a></li>
-                                <li><a href="{{url('manager/pegawai/pecat')}}">Pemecatan</a></li>
+                                <li><a href="{{url('manager/pegawai/pecat')}}">Pemberhentian Kerja</a></li>
                                 <li><a href="{{url('manager/pegawai/resign')}}">Pengajuan Resign</a></li>
                             @endif 
 
                             @if(Auth::user()->role_id == 5)
                                 <li><a href="{{url('pm/pegawai')}}">Data Pegawai</a></li>
+                                <li><a href="{{url('pm/pegawai_non_aktif')}}">Data Pegawai Non Aktif</a></li>
                                 <li><a href="{{url('pm/pegawai/struktur')}}">Struktur Pegawai</a></li>
-                                <li><a href="{{url('pm/pegawai/pecat')}}">Pemecatan</a></li>
+                                <li><a href="{{url('pm/pegawai/pecat')}}">Pemberhentian Kerja</a></li>
                                 <li><a href="{{url('pm/pegawai/resign')}}">Pengajuan Resign</a></li>
                             @endif
                             
@@ -51,9 +54,7 @@
                         <ul class="nav child_menu">
                             @if(Auth::user()->role_id == 1)
                                 <li><a href="{{url('admin/cuti')}}">Cuti</a></li>
-                                <li><a href="{{url('admin/pengajuan_cuti')}}">Pengajuan Cuti</a></li>
                                 <li><a href="{{url('admin/izin')}}">Izin</a></li>
-                                <li><a href="{{url('admin/pengajuan_izin')}}">Pengajuan Izin</a></li>
                             @endif
 
                             @if(Auth::user()->role_id == 2)

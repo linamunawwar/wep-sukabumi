@@ -55,7 +55,7 @@ class PegawaiController extends Controller
         $status_pegawai = \Input::get('status_pegawai');
 
         $dates = explode('-', $date);
-		  $tgl_lahir = $dates[2].'-'.$dates[1].'-'.$dates[0];
+		    $tgl_lahir = $dates[2].'-'.$dates[1].'-'.$dates[0];
 
         $dates_msk = explode('-', $date_masuk);
         $tgl_masuk = $dates_msk[2].'-'.$dates_msk[1].'-'.$dates_msk[0];
@@ -64,7 +64,11 @@ class PegawaiController extends Controller
         $role = \Input::get('role');
         
         $tahun = str_split($dates[2],2);
-        $nip = $kode_bagian.$dates[0].$dates[1].$tahun[1];
+        if(($role == 3) || ($role == 4)){
+          $nip = $kode_bagian.'M'.$dates[0].$dates[1].$tahun[1];
+        }else{
+          $nip = $kode_bagian.$dates[0].$dates[1].$tahun[1];
+        }
         $password = str_random(6);
 
         $user['name'] = $nama;

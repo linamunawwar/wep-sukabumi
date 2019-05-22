@@ -13,7 +13,10 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Daftar Pemecatan Pegawai </h2>
+						<h2>Daftar Pemberhentian Kerja Pegawai </h2>
+						<ul class="nav navbar-right panel_toolbox">
+							<li><a href="{{url('manager/pegawai/pecat/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
+						</ul>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">

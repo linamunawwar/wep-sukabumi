@@ -22,7 +22,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama Karyawan <span class="required">*</span></label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select class="form-control pegawai" name="nip" required="required">
+									<select class="form-control nip" id="nip" name="nip" required="required">
 										<option value="">Pilih Karyawan</option>
 										@foreach($pegawais as $pegawai)
 											<option value="{{$pegawai->nip}}">{{strtoupper($pegawai->nip)}} - {{$pegawai->nama}}</option>
@@ -41,14 +41,14 @@
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<div class='input-group date' id='datepicker' class="datepicker">
 										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
-						                <input type='text' value='' name='terakhir_kerja' class='form-control' required="required" placeholder="Terakhir Kerja" />
+						                <input type='text' value='' name='terakhir_kerja' class='form-control' required="required" placeholder="dd-mm-yyyy" id="terakhir_kerja" />
 						            </div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Pesangon</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="pesangon" class="form-control" readonly="readonly" value="500.000">
+									<input type="text" name="pesangon" class="form-control pesangon" id="pesangon" readonly="readonly" value="">
 								</div>
 							</div>
 							
@@ -72,12 +72,74 @@
 @push('scripts')
 	<script type="text/javascript">
 		$(document).ready(function() {
-		    $('.pegawai').select2();
+		    $('.nip').select2();
 
 		    $('#datepicker').datepicker({
 		        format: 'dd-mm-yyyy',
 		        autoclose: true
 	    	});
+
+		    function monthDiff(d1, d2) {
+			    var months;
+			    months = (d2.getFullYear() - d1.getFullYear()) * 12;
+			    months -= d1.getMonth();
+			    months += d2.getMonth();
+			    return months <= 0 ? 0 : months;
+			}
+
+	    	$(document).on("keyup", "#terakhir_kerja", function(e){
+		      var tgl = this.value;
+		      var nip = $('#nip').val();
+		      $.ajax({
+		            url  : laravel_base+'/manager/pegawai/pecat/tanggal_masuk/'+nip,
+		            type : 'get',
+		            success:function(response){
+		                var keluar = $('#terakhir_kerja').val().split('-');
+		                keluar = new Date(keluar[2], keluar[1]-1, keluar[0]);
+		                var masuk = response.tanggal_masuk;
+		                masuk = masuk.split('-');
+		                masuk = new Date(masuk[2], masuk[1]-1, masuk[0]);
+
+		                var month = monthDiff(masuk, keluar);
+
+		                var gaji = response.gaji.gaji_pokok;
+
+		                if(month <= 2){
+		                	var pesangon = (month / 12) * gaji;
+		                }else{
+		                	var pesangon = 2 * gaji;
+		                }
+
+		                $('#pesangon').val(pesangon);
+		            }
+		        });
+		    });
+
+		    $(document).on("change", "#terakhir_kerja", function(e){
+		      var tgl = this.value;
+		      var nip = $('#nip').val();
+		      $.ajax({
+		            url  : laravel_base+'/manager/pegawai/pecat/tanggal_masuk/'+nip,
+		            type : 'get',
+		            success:function(response){
+		            	var keluar = $('#terakhir_kerja').val().split('-');
+		                keluar = new Date(keluar[2], keluar[1]-1, keluar[0]);
+		                var masuk = response.tanggal_masuk;
+		                masuk = masuk.split('-');
+		                masuk = new Date(masuk[2], masuk[1]-1, masuk[0]);
+
+		                var month = monthDiff(masuk, keluar);
+		                var gaji = response.gaji.gaji_pokok;
+		                if(month <= 2){
+		                	var pesangon = (month / 12) * gaji;
+		                }else{
+		                	var pesangon = 2 * gaji;
+		                }
+
+		                $('#pesangon').val(pesangon);
+		            }
+		        });
+		    });
 		});
 	</script>
 @endpush
