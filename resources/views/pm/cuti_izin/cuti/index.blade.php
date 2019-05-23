@@ -63,11 +63,11 @@
 												<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>
 											@endif
 
-											@if($cuti->is_verif_pm == 1)
+											<!-- @if($cuti->is_verif_pm == 1)
 												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Surat Cuti</a>
 											@else
 												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Surat Cuti</a>
-											@endif
+											@endif -->
 										</td>
 									</tr>
 								@endforeach

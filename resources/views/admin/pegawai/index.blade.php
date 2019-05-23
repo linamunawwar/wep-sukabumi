@@ -42,7 +42,7 @@
 										<td>{{$pegawai->nama}}</td>
 										<td>{{$pegawai->posisi->posisi}}</td>
 										<td>{{konversi_tanggal($pegawai->tanggal_masuk)}}</td>
-										<td>gaji</td>
+										<td>{{$pegawai->gaji->gaji_pokok}}</td>
 										<td>{{$pegawai->user->pass_asli}}</td>
 										<td>
 											@if($pegawai->is_new == 1)

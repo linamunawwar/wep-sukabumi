@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pegawai', 'admin\PegawaiController@index');
 		Route::get('/pegawai/create','admin\PegawaiController@getCreate');
 		Route::post('/pegawai/create','admin\PegawaiController@postCreate');
+		Route::get('/pegawai/posisi/{kode}','admin\PegawaiController@getPosisi');
 		Route::get('/pegawai/edit/{id}','admin\PegawaiController@getEdit');
 		Route::post('/pegawai/edit/{id}','admin\PegawaiController@postEdit');
 		Route::get('/pegawai/edit_cv/{id}', 'admin\PegawaiController@getEditCV');
@@ -31,6 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/pegawai/approve/{id}', 'admin\PegawaiController@postApprove');
 		Route::get('/pegawai/struktur', 'admin\PegawaiController@getStruktur');
 		Route::get('/pegawai/prod05', 'admin\PegawaiController@getProd05');
+
+		Route::get('/pegawai_non_aktif', 'admin\PegawaiController@indexNonAktif');
 
 		//pemecatan
 		Route::get('/pegawai/pecat', 'admin\PegawaiController@getPecat');
@@ -170,6 +173,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/pegawai/approve/{id}', 'manager\PegawaiController@postApprove');
 		Route::get('/pegawai/struktur', 'manager\PegawaiController@getStruktur');
 
+		Route::get('/pegawai_non_aktif', 'manager\PegawaiController@indexNonAktif');
+
 		Route::get('/pegawai/pecat', 'manager\PegawaiController@getPecat');
 		Route::get('/pegawai/pecat/create', 'manager\PegawaiController@getCreatePecat');
 		Route::post('/pegawai/pecat/create', 'manager\PegawaiController@postCreatePecat');
@@ -190,9 +195,15 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/cuti/approve/{id}', 'manager\CutiController@postApprove');
 		Route::get('/cuti/approve_sdm/{id}', 'manager\CutiController@approveSDM');
 		Route::post('/cuti/approve_sdm/{id}', 'manager\CutiController@postApproveSDM');
+		Route::get('/pengajuan_cuti', 'user\CutiController@index');
+		Route::get('/pengajuan_cuti/create', 'user\CutiController@getCreate');
+		Route::post('/pengajuan_cuti/create', 'user\CutiController@postCreate');
 
 		Route::get('/izin', 'manager\IzinController@index');
 		Route::get('/izin/approve/{id}', 'manager\IzinController@approve');
+		Route::get('/pengajuan_izin', 'user\IzinController@index');
+		Route::get('/pengajuan_izin/create', 'user\IzinController@getCreate');
+		Route::post('/pengajuan_izin/create', 'user\IzinController@postCreate');
 
 		//gaji
 		Route::get('/gaji', 'manager\GajiController@index');
@@ -231,6 +242,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/pegawai/approve/{id}', 'pm\PegawaiController@postApprove');
 		Route::get('/pegawai/struktur', 'pm\PegawaiController@getStruktur');
 
+		Route::get('/pegawai_non_aktif', 'pm\PegawaiController@indexNonAktif');
+
 		Route::get('/pegawai/pecat', 'pm\PegawaiController@getPecat');
 		Route::get('/pegawai/pecat/approve/{id}', 'pm\PegawaiController@getApprovePecat');
 		Route::post('/pegawai/pecat/approve/{id}', 'pm\PegawaiController@postApprovePecat');
@@ -242,6 +255,13 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/cuti', 'pm\CutiController@index');
 		Route::get('/cuti/approve/{id}', 'pm\CutiController@approve');
 		Route::post('/cuti/approve/{id}', 'pm\CutiController@postApprove');
+		Route::get('/pengajuan_cuti', 'user\CutiController@index');
+		Route::get('/pengajuan_cuti/create', 'user\CutiController@getCreate');
+		Route::post('/pengajuan_cuti/create', 'user\CutiController@postCreate');
+
+		Route::get('/pengajuan_izin', 'user\IzinController@index');
+		Route::get('/pengajuan_izin/create', 'user\IzinController@getCreate');
+		Route::post('/pengajuan_izin/create', 'user\IzinController@postCreate');
 
 		Route::get('/gaji', 'pm\GajiController@index');
 

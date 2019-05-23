@@ -20,8 +20,22 @@ class CutiController extends Controller
     public function getCreate()
     {
     	$pegawais = Pegawai::where('is_active',1)->get();
+      if((\Auth::user()->role_id == 2) || (\Auth::user()->role_id == 3) || (\Auth::user()->role_id == 4)){
+        $penggantis = Pegawai::where('is_active',1)
+                      ->where('soft_delete',0)
+                      ->where('nip','!=',\Auth::user()->pegawai_id)
+                      ->whereHas('user',function ($q){
+                          $q->where('role_id',2);
+                      })
+                      ->where('kode_bagian',\Auth::user()->pegawai->kode_bagian)->get();
+                      
+      }
+      if(\Auth::user()->role_id == 5){
+        $penggantis = Pegawai::where('nip','!=',\Auth::user()->pegawai_id)
+                      ->where('kode_bagian',\Auth::user()->pegawai->kode_bagian)->get();
+      }
 
-        return view('user.cuti_izin.cuti.create',['pegawais'=>$pegawais]);
+        return view('user.cuti_izin.cuti.create',['pegawais'=>$pegawais,'penggantis'=>$penggantis]);
     }
 
     public function postCreate(){

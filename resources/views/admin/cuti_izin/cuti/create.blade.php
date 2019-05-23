@@ -35,7 +35,7 @@
 								<div class="col-md-3 col-sm-3 col-xs-12">
 									<div class='input-group date' id='datepicker' class="datepicker">
 										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
-						                <input type='text' value='' name='tanggal_mulai' class='form-control' required="required" placeholder="Mulai Cuti (dd-mm-yyyy)" />
+						                <input type='text' name='tanggal_mulai' class='form-control tanggal_mulai' id="tanggal_mulai" required="required" placeholder="Mulai Cuti (dd-mm-yyyy)" />
 						            </div>
 								</div>
 							</div>
@@ -44,7 +44,7 @@
 								<div class="col-md-3 col-sm-3 col-xs-12">
 									<div class='input-group date' id='datepicker2' class="datepicker">
 										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
-						                <input type='text' value='' name='tanggal_selesai' class='form-control' required="required" placeholder="Selesai Cuti (dd-mm-yyyy)" />
+						                <input type='text'  name='tanggal_selesai' class='form-control tanggal_selesai' id="tanggal_selesai" required="required" placeholder="Selesai Cuti (dd-mm-yyyy)" readonly="readonly" />
 						            </div>
 								</div>
 							</div>
@@ -71,8 +71,8 @@
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<select class="form-control pegawai pengganti" name="pengganti" required="required" id="pengganti">
 										<option value="">Pilih Karyawan</option>
-										@foreach($pegawais as $pegawai)
-											<option value="{{$pegawai->nip}}">{{strtoupper($pegawai->nip)}} - {{$pegawai->nama}}</option>
+										@foreach($penggantis as $pengganti)
+											<option value="{{$pengganti->nip}}">{{strtoupper($pengganti->nip)}} - {{$pengganti->nama}}</option>
 										@endforeach
 									</select>
 								</div>
@@ -109,6 +109,34 @@
 		        format: 'dd-mm-yyyy',
 		        autoclose: true
 	    	});
+
+	    	$(document).on("keyup", "#datepicker", function(e){
+		      var tgl = this.value;
+		      var nip = $('#nip').val();
+		     
+		    });
+
+		    $(document).on("change", "#datepicker", function(e){
+		      	var mulai = $('#tanggal_mulai').val().split('-');
+		      	mulai = new Date(mulai[2], mulai[1]-1, mulai[0]);
+		      	
+		      	var selesai = new Date(mulai.getTime()+(5*24*60*60*1000));
+		      	
+		      	var day = selesai.getDate();
+
+				var month = selesai.getMonth();
+
+			 	var year = selesai.getFullYear();
+			 	day = day.toString();
+			 	month = month.toString();
+			 	year = year.toString();
+
+			  	if (month.length < 2) month = '0' + month;
+     			if (day.length < 2) day = '0' + day;
+			  	selesai = day+"-"+month+"-"+year;
+		      	
+		      	$('#tanggal_selesai').val(selesai);
+		    });
 		});
 	</script>
 @endpush

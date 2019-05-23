@@ -32,8 +32,14 @@ class PegawaiController extends Controller
 
     public function index()
     {
-    	 $pegawais= Pegawai::get();
+    	 $pegawais= Pegawai::where('is_active',1)->where('soft_delete',0)->get();
         return view('admin.pegawai.index',['pegawais'=>$pegawais]);
+    }
+
+    public function indexNonAktif()
+    {
+       $pegawais= Pegawai::where('is_active',0)->where('soft_delete',0)->get();
+        return view('admin.pegawai.index_non_aktif',['pegawais'=>$pegawais]);
     }
 
     public function getCreate()
@@ -43,6 +49,13 @@ class PegawaiController extends Controller
         $posisi = Posisi::all();
         
         return view('admin.pegawai.create',['roles'=>$roles,'kode'=>$kode,'posisi'=>$posisi]);
+    }
+
+    public function getPosisi($kode)
+    {
+        $posisi = Posisi::where('kode',$kode)->get();
+        
+        return $posisi;
     }
 
     public function postCreate()

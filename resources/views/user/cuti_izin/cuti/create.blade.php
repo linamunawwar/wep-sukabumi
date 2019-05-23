@@ -73,8 +73,8 @@
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<select class="form-control pegawai pengganti" name="pengganti" required="required" id="pengganti">
 										<option value="">Pilih Karyawan</option>
-										@foreach($pegawais as $pegawai)
-											<option value="{{$pegawai->nip}}">{{strtoupper($pegawai->nip)}} - {{$pegawai->nama}}</option>
+										@foreach($penggantis as $pengganti)
+											<option value="{{$pengganti->nip}}">{{strtoupper($pengganti->nip)}} - {{$pengganti->nama}}</option>
 										@endforeach
 									</select>
 								</div>

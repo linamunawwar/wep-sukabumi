@@ -21,12 +21,18 @@ class PegawaiController extends Controller
 
     	 // $pegawais= Pegawai::get();
       if(\Auth::user()->pegawai->kode_bagian == 'SA'){
-        $pegawais = Pegawai::get();
+        $pegawais = Pegawai::where('is_active',0)->where('soft_delete',0)get();
       }else{
         $pegawais = Pegawai::where('kode_bagian', \Auth::user()->pegawai->kode_bagian)->get();
 
       }
         return view('manager.pegawai.index',['pegawais'=>$pegawais]);
+    }
+
+    public function indexNonAktif()
+    {
+       $pegawais= Pegawai::where('is_active',0)->where('soft_delete',0)->get();
+        return view('admin.pegawai.index_non_aktif',['pegawais'=>$pegawais]);
     }
 
     public function getApprove($id)

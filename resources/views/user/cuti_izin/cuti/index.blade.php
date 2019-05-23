@@ -35,12 +35,12 @@
 									<td>{{konversi_tanggal($cuti->tanggal_mulai)}}</td>
 									<td>{{konversi_tanggal($cuti->tanggal_selesai)}}</td>
 									<td>
-										@if($cuti->is_verif_mngr== 0)
+										@if($cuti->is_verif_pengganti== 0)
 											<span class="label label-default">Not Approved</span>
 										@elseif(($cuti->is_verif_pengganti == 1) && ($cuti->is_verif_mngr == 0) && ($cuti->is_verif_sdm == 0) && ($cuti->is_verif_pm == 0))
-											<span class="label label-primary">Approved by Pengganti</span>
+											<span class="label label-primary">Pending Approval {{$cuti->pegawaiPengganti->nama}}</span>
 										@elseif(($cuti->is_verif_pengganti == 1) && ($cuti->is_verif_mngr == 1) && ($cuti->is_verif_sdm == 0) && ($cuti->is_verif_pm == 0))
-											<span class="label label-primary">Approved by Pengganti</span>
+											<span class="label label-primary">Pending Approval {{$cuti->pegawaiPengganti->nama}}</span>
 											<span class="label label-primary">Approved by Manager</span>
 										@elseif(($cuti->is_verif_sdm == 1) && ($cuti->is_verif_pm == 0))
 											<span class="label label-primary">Approved by Manager</span>	
