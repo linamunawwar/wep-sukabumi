@@ -652,6 +652,29 @@ class PegawaiController extends Controller
         return redirect('/admin/pegawai');
     }
 
+    public function getUnduhCV($id)
+    {
+      $pegawai = Pegawai::find($id);
+      $pegawai->bank = BankAsuransi::where('nip',$pegawai->nip)->first();
+      $pegawai->pendidikan = Pendidikan::where('nip',$pegawai->nip)->get();
+      $pegawai->sertifikat = Sertifikat::where('nip',$pegawai->nip)->get();
+      $pegawai->pelatihan = Pelatihan::where('nip',$pegawai->nip)->get();
+      $pegawai->pengalaman = Pengalaman::where('nip',$pegawai->nip)->get();
+      $pegawai->penugasan = Penugasan::where('nip',$pegawai->nip)->get();
+      $pegawai->karya_presentasi = KaryaIlmiah::where('publikasi','presentasi')->where('nip',$pegawai->nip)->get();
+      $pegawai->karya_nopresentasi = KaryaIlmiah::where('publikasi','nopresentasi')->where('nip',$pegawai->nip)->get();
+      $pegawai->karya_nopublikasi = KaryaIlmiah::where('publikasi','nopublikasi')->where('nip',$pegawai->nip)->get();
+      $pegawai->pertemuan = Pertemuan::where('nip',$pegawai->nip)->get();
+      $pegawai->organisasi = Organisasi::where('nip',$pegawai->nip)->get();
+      $pegawai->publikasi = Publikasi::where('nip',$pegawai->nip)->get();
+      $pegawai->pengajar = TenagaPengajar::where('nip',$pegawai->nip)->get();
+      $pegawai->penghargaan = Penghargaan::where('nip',$pegawai->nip)->get();
+
+      $pdf = PDF::loadView('admin.pegawai.unduh_cv',['pegawai' => $pegawai]);
+      $pdf->setPaper('A4','landscape');
+      return $pdf->download('CV_'.$pegawai->nip.'.pdf');
+    }
+
     public function getApprove($id)
     {
         $pegawai = Pegawai::find($id);

@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/pegawai/edit/{id}','admin\PegawaiController@postEdit');
 		Route::get('/pegawai/edit_cv/{id}', 'admin\PegawaiController@getEditCV');
 		Route::post('/pegawai/edit_cv/{id}','admin\PegawaiController@postEditCV');
+		Route::get('/pegawai/unduh_cv/{id}','admin\PegawaiController@getUnduhCV');
 		Route::get('/pegawai/approve/{id}', 'admin\PegawaiController@getApprove');
 		Route::post('/pegawai/approve/{id}', 'admin\PegawaiController@postApprove');
 		Route::get('/pegawai/struktur', 'admin\PegawaiController@getStruktur');
