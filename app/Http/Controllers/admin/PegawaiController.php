@@ -675,6 +675,15 @@ class PegawaiController extends Controller
       return $pdf->download('CV_'.$pegawai->nip.'.pdf');
     }
 
+    public function getUnduhMCU($id)
+    {
+      $pegawai = Pegawai::find($id);
+      $mcus = MCUPegawai::where('nip',$pegawai->nip)->get();
+      $pdf = PDF::loadView('admin.pegawai.unduh_mcu',['pegawai' => $pegawai,'mcus'=>$mcus]);
+      $pdf->setPaper('A4');
+      return $pdf->download('MCU_'.$pegawai->nip.'.pdf');
+    }
+
     public function getApprove($id)
     {
         $pegawai = Pegawai::find($id);

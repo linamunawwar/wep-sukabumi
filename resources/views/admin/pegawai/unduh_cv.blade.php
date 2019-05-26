@@ -5,6 +5,13 @@
   b {
     font-size: 12px;
   }
+  p {
+    font-size: 15px !important;
+  }
+  div{
+    font-size: 12px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  }
 </style>
 
 <img src="{{ asset("public/img/Waskita.png") }}" style="width: 60px; height: 40px; text-align: right;float: right;"/>
@@ -23,6 +30,7 @@
       <td>Nama Karyawan</td>
       <td>:</td>
       <td>{{$pegawai->nama}}</td>
+      <td><img src="{{ asset("public/img/profil.jpg") }}" style="width: 80px; height: 100px; text-align: right;float: right;"/></td>
     </tr>
     <tr>
       <td>Gelar Depan</td>
@@ -112,16 +120,13 @@
       <td>:</td>
       <td>{{$pegawai->anak}}</td>
     </tr>
-  </table>
-  <table style="width: 100%;">
     <tr>
-      <td>Keluarga yang bisa dihubung</td>
+      <td style="padding-top: 20px;">Keluarga yang bisa dihubungi</td>
     </tr>
     <tr>
       <td style="padding-left: 10px;">Nama</td>
       <td>:</td>
       <td>{{$pegawai->nama_keluarga}}</td>
-      <td></td>
     </tr>
     <tr>
       <td style="padding-left: 10px;">Hubungan Keluarga</td>
@@ -162,7 +167,7 @@
       <td>{{$pegawai->bank->no_rekening}}</td>
     </tr>
     <tr>
-      <td>No.NPWP</td>
+      <td>No. NPWP</td>
       <td>:</td>
       <td>{{$pegawai->bank->npwp}}</td>
     </tr>
@@ -242,7 +247,7 @@
       <td><b>INSTITUSI</b></td>
       <td><b>CHECKLIST *</b></td>
     </tr>
-    <?php $i = 0; ?>
+    <?php $i = 1; ?>
     @foreach($pegawai->sertifikat as $sertifikat)
       <tr>
         <td>{{$i++}}</td>
@@ -254,9 +259,9 @@
         <td></td>
       </tr>
     @endforeach
-    @if($i < 6)
+    @if($i < 7)
     <?php
-      $selisih = 6 - $i;
+      $selisih = 7 - $i;
       for ($i=0; $i < $selisih ; $i++) { 
         echo '<tr>';
         echo '<td style="height:20px;"></td>';
@@ -282,7 +287,7 @@
       <td><b>PENYELENGGARA</b></td>
       <td><b>CHECKLIST *</b></td>
     </tr>
-    <?php $i = 0; ?>
+    <?php $i = 1; ?>
     @foreach($pegawai->pelatihan as $pelatihan)
       <tr>
         <td>{{$i++}}</td>
@@ -294,9 +299,9 @@
         <td></td>
       </tr>
     @endforeach
-    @if($i < 3)
+    @if($i < 4)
     <?php
-      $selisih = 3 - $i;
+      $selisih = 4 - $i;
       for ($i=0; $i < $selisih ; $i++) { 
         echo '<tr>';
         echo '<td style="height:20px;"></td>';
@@ -322,7 +327,7 @@
       <td><b>KETERANGAN</b></td>
       <td><b>CHECKLIST *</b></td>
     </tr>
-    <?php $i = 0; ?>
+    <?php $i = 1; ?>
     @foreach($pegawai->pengalaman as $pengalaman)
       <tr>
         <td>{{$i++}}</td>
@@ -334,9 +339,9 @@
         <td></td>
       </tr>
     @endforeach
-    @if($i < 4)
+    @if($i < 5)
     <?php
-      $selisih = 4 - $i;
+      $selisih = 5 - $i;
       for ($i=0; $i < $selisih ; $i++) { 
         echo '<tr>';
         echo '<td style="height:20px;"></td>';
@@ -372,7 +377,7 @@
       <td><b> RENCANA</b></td>
       <td><b> REALISASI</b></td>
     </tr>
-    <?php $i = 0; ?>
+    <?php $i = 1; ?>
     @foreach($pegawai->penugasan as $penugasan)
       <tr>
         <td>{{$i++}}</td>
@@ -391,12 +396,14 @@
         <td></td>
       </tr>
     @endforeach
-    @if($i < 13)
+    @if($i < 14)
     <?php
-      $selisih = 13 - $i;
+      $selisih = 14 - $i;
       for ($i=0; $i < $selisih ; $i++) { 
         echo '<tr>';
         echo '<td style="height:20px;"></td>';
+        echo '<td></td>';
+        echo '<td></td>';
         echo '<td></td>';
         echo '<td></td>';
         echo '<td></td>';
@@ -413,7 +420,7 @@
     ?>
     @endif
   </table>
-  <p><b> ** : - Untuk Kepala Proyek (Ex Kapro) diisi BK/PU<br> &nbsp&nbsp - Untuk Kepala Cabang (Ex Kacab) diisi NKB
+  <p><b> ** : - Untuk Kepala Proyek (Ex Kapro) diisi BK/PU<br>   - Untuk Kepala Cabang (Ex Kacab) diisi NKB
   <p style="font-size: 14px;"><b>8. Karya Ilmiah</b></p>
   <table border="1" style="width: 100%;border-collapse: collapse; text-align: center;" cellspacing="1" cellpadding="3">
     <tr>
@@ -425,7 +432,7 @@
       <td><b>LINGKUP KEGIATAN (INTERNASIONAL, NASIONAL, LOKAL) *)</b></td>
       <td><b>REFERENSI</b></td>
     </tr>
-    <?php $i = 0; ?>
+    <?php $i = 1; ?>
     @foreach($pegawai->karya_presentasi as $karya_presentasi)
       <tr>
         <td>{{$i++}}</td>
@@ -437,9 +444,9 @@
         <td>{{$karya_presentasi->referensi}}</td>
       </tr>
     @endforeach
-    @if($i < 3)
+    @if($i < 4)
     <?php
-      $selisih = 3 - $i;
+      $selisih = 4 - $i;
       for ($i=0; $i < $selisih ; $i++) { 
         echo '<tr>';
         echo '<td style="height:20px;"></td>';
@@ -465,7 +472,7 @@
       <td><b>LINGKUP KEGIATAN (INTERNASIONAL, NASIONAL, LOKAL) *)</b></td>
       <td><b>REFERENSI</b></td>
     </tr>
-    <?php $i = 0; ?>
+    <?php $i = 1; ?>
     @foreach($pegawai->karya_nopresentasi as $karya_nopresentasi)
       <tr>
         <td>{{$i++}}</td>
@@ -477,9 +484,9 @@
         <td>{{$karya_nopresentasi->referensi}}</td>
       </tr>
     @endforeach
-    @if($i < 3)
+    @if($i < 4)
     <?php
-      $selisih = 3 - $i;
+      $selisih = 4 - $i;
       for ($i=0; $i < $selisih ; $i++) { 
         echo '<tr>';
         echo '<td style="height:20px;"></td>';
@@ -505,7 +512,7 @@
       <td><b>LINGKUP KEGIATAN (INTERNASIONAL, NASIONAL, LOKAL) *)</b></td>
       <td><b>REFERENSI</b></td>
     </tr>
-    <?php $i = 0; ?>
+    <?php $i = 1; ?>
     @foreach($pegawai->karya_nopublikasi as $karya_nopublikasi)
       <tr>
         <td>{{$i++}}</td>
@@ -517,9 +524,9 @@
         <td>{{$karya_nopublikasi->referensi}}</td>
       </tr>
     @endforeach
-    @if($i < 3)
+    @if($i < 4)
     <?php
-      $selisih = 3 - $i;
+      $selisih = 4 - $i;
       for ($i=0; $i < $selisih ; $i++) { 
         echo '<tr>';
         echo '<td style="height:20px;"></td>';
@@ -546,7 +553,7 @@
       <td><b>LINGKUP KEGIATAN(INTERNASIONAL, NASIONAL, LOKAL)*)</b></td>
       <td><b>REFERENSI</b></td>
     </tr>
-    <?php $i = 0; ?>
+    <?php $i = 1; ?>
     @foreach($pegawai->pertemuan as $pertemuan)
       <tr>
         <td>{{$i++}}</td>
@@ -559,9 +566,9 @@
         <td>{{$pertemuan->referensi}}</td>
       </tr>
     @endforeach
-    @if($i < 3)
+    @if($i < 4)
     <?php
-      $selisih = 3 - $i;
+      $selisih = 4 - $i;
       for ($i=0; $i < $selisih ; $i++) { 
         echo '<tr>';
         echo '<td style="height:20px;"></td>';
@@ -577,7 +584,7 @@
     ?>
     @endif
   </table>
-  <br><br>
+  <br><br><br>
   <table border="1" style="width: 100%;border-collapse: collapse; text-align: center;" cellspacing="1" cellpadding="3">
     <tr>
       <td><b>NO</b></td>
@@ -588,7 +595,7 @@
       <td><b>LINGKUP KEGIATAN(INTERNASIONAL, NASIONAL, LOKAL)*)</b></td>
       <td><b>REFERENSI</b></td>
     </tr>
-    <?php $i = 0; ?>
+    <?php $i = 1; ?>
     @foreach($pegawai->organisasi as $organisasi)
       <tr>
         <td>{{$i++}}</td>
@@ -601,9 +608,9 @@
         <td></td>
       </tr>
     @endforeach
-    @if($i < 3)
+    @if($i < 4)
     <?php
-      $selisih = 3 - $i;
+      $selisih = 4 - $i;
       for ($i=0; $i < $selisih ; $i++) { 
         echo '<tr>';
         echo '<td style="height:20px;"></td>';
@@ -629,7 +636,7 @@
       <td><b>LINGKUP KEGIATAN(INTERNASIONAL, NASIONAL, LOKAL)*)</b></td>
       <td><b>REFERENSI</b></td>
     </tr>
-    <?php $i = 0; ?>
+    <?php $i = 1; ?>
     @foreach($pegawai->publikasi as $publikasi)
       <tr>
         <td>{{$i++}}</td>
@@ -641,9 +648,9 @@
         <td>{{$publikasi->referensi}}</td>
       </tr>
     @endforeach
-    @if($i < 3)
+    @if($i < 4)
     <?php
-      $selisih = 3 - $i;
+      $selisih = 4 - $i;
       for ($i=0; $i < $selisih ; $i++) { 
         echo '<tr>';
         echo '<td style="height:20px;"></td>';
@@ -658,8 +665,8 @@
     ?>
     @endif
   </table>
-  <p style="font-size: 14px;"><b>10. Tenaga Pengajar</b></p>
-  <table border="1" style="width: 100%;border-collapse: collapse; text-align: center;" cellspacing="1" cellpadding="3">
+  <p style="font-size: 14px;margin-bottom: 0px; padding-bottom: 0px;"><b>10. Tenaga Pengajar</b></p>
+  <table border="1" style="width: 100%;border-collapse: collapse; text-align: center; margin-top: 4px; padding-top: 0px;" cellspacing="1" cellpadding="3">
     <tr>
       <td><b>NO</b></td>
       <td><b>TANGGAL MULAI</b></td>
@@ -670,7 +677,7 @@
       <td><b>LINGKUP KEGIATAN(INTERNASIONAL, NASIONAL, LOKAL)*)</b></td>
       <td><b>REFERENSI</b></td>
     </tr>
-    <?php $i = 0; ?>
+    <?php $i = 1; ?>
     @foreach($pegawai->pengajar as $pengajar)
       <tr>
         <td>{{$i++}}</td>
@@ -683,9 +690,9 @@
         <td>{{$pegajar->referensi}}</td>
       </tr>
     @endforeach
-    @if($i < 3)
+    @if($i < 4)
     <?php
-      $selisih = 3 - $i;
+      $selisih = 4 - $i;
       for ($i=0; $i < $selisih ; $i++) { 
         echo '<tr>';
         echo '<td style="height:20px;"></td>';
@@ -701,8 +708,8 @@
     ?>
     @endif
   </table>
-  <p style="font-size: 14px;"><b>11. Penghargaan</b></p>
-  <table border="1" style="width: 100%;border-collapse: collapse; text-align: center;" cellspacing="1" cellpadding="3">
+  <p style="margin-bottom: 0px; padding-bottom: 0px;"><b>11. Penghargaan</b></p>
+  <table border="1" style="width: 100%;border-collapse: collapse; text-align: center; margin-top: 4px; padding-top: 0px;" cellspacing="1" cellpadding="3">
     <tr>
       <td><b>NO</b></td>
       <td><b>TANGGAL</b></td>
@@ -712,7 +719,7 @@
       <td><b>LINGKUP KEGIATAN(INTERNASIONAL, NASIONAL, LOKAL)*)</b></td>
       <td><b>REFERENSI</b></td>
     </tr>
-    <?php $i = 0; ?>
+    <?php $i = 1; ?>
     @foreach($pegawai->penghargaan as $penghargaan)
       <tr>
         <td>{{$i++}}</td>
@@ -725,9 +732,9 @@
         <td></td>
       </tr>
     @endforeach
-    @if($i < 3)
+    @if($i < 4)
     <?php
-      $selisih = 3 - $i;
+      $selisih = 4 - $i;
       for ($i=0; $i < $selisih ; $i++) { 
         echo '<tr>';
         echo '<td style="height:20px;"></td>';
@@ -742,11 +749,11 @@
     ?>
     @endif
   </table>
-  <b>*) Coret yang tidak perlu</b>
-  <div>
+  <b>*) Coret yang tidak perlu</b><br>
+  <div style="float: right;">
     Tanggal: {{konversi_tanggal(date('Y-m-d'))}}<br>
     Dibuat oleh :
-    <br><br><br>
+    <br><br><br><br>
     ({{strtoupper($pegawai->nama)}})
   </div>
 </div>
