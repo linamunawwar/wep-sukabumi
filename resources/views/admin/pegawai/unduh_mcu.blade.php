@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta charset="utf-8">
 <style type="text/css">
   table tr td {
     min-height: 80px;
@@ -26,7 +31,7 @@
     -moz-osx-font-smoothing: grayscale;
   }
 </style>
-
+<body>
 <div style="text-align: center;">
   <h3 style="font-family: 'Times New Roman';padding: 0;margin: 0;">KUESIONER  PEMERIKSAAN  KESEHATAN (MCU)<br><br>
 SEBELUM  BEKERJA</h3>
@@ -49,7 +54,7 @@ SEBELUM  BEKERJA</h3>
     </tr>
   </table>
   <br>
-  <p style="font-size: 14px;"><i>Pentunjuk : Berilah tanda (<span class="fa fa-check"></span>) yang menurut anda sesuai.</i></p>
+  <p style="font-size: 14px;"><i>Pentunjuk : Berilah tanda (<img src="{{ asset("public/img/check.PNG") }}" style="width: 10px; height: 10px;"/>) yang menurut anda sesuai.</i></p>
   <table border="1" style="width: 100%;border-collapse: collapse;" cellspacing="1" cellpadding="3">
     <tr>
       <td style="text-align: center;"><b>NO</b></td>
@@ -62,11 +67,11 @@ SEBELUM  BEKERJA</h3>
       <tr>
         <td style="text-align: center;">{{$i++}}</td>
         @if($mcu->nilai == 1)
-          <td><span class="fa fa-check"></span></td>
+          <td style="text-align: center;"><img src="{{ asset("public/img/check.PNG") }}" style="width: 10px; height: 10px;"/></td>
           <td></td>
         @else
           <td></td>
-          <td><span class="fa fa-check"></span></td>
+          <td style="text-align: center;"><img src="{{ asset("public/img/check.PNG") }}" style="width: 10px; height: 10px;"/></td>
         @endif
         <td>{{$mcu->mcu->pernyataan}}</td>
       </tr>
@@ -82,4 +87,6 @@ SEBELUM  BEKERJA</h3>
     
   </div>
 </div>
-  
+</body>
+</head>
+</html>

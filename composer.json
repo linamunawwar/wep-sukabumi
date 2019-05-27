@@ -32,7 +32,7 @@
         "spatie/laravel-permission": "^2.3",
         "doctrine/dbal": "^2.9",
         "barryvdh/laravel-dompdf": "^0.8",
-        "maatwebsite/excel": "2.1.0"
+        "maatwebsite/excel": "~2.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/pegawai/approve/{id}', 'admin\PegawaiController@postApprove');
 		Route::get('/pegawai/struktur', 'admin\PegawaiController@getStruktur');
 		Route::get('/pegawai/prod05', 'admin\PegawaiController@getProd05');
+		Route::get('/pegawai/prod05/unduh', 'admin\PegawaiController@getProd05Unduh');
 
 		Route::get('/pegawai_non_aktif', 'admin\PegawaiController@indexNonAktif');
 

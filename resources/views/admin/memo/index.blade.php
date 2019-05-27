@@ -28,29 +28,30 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-12 mail_list_column">
+								@if($memos)
 								<table style="width: 100%;">
 									@foreach($memos as $memo)
 										<tr>
 											<td>
-							 					<a href="{{url('user/memo/detail/'.$memo->memo->id.'')}}">
+							 					<a href="{{url('user/memo/detail/'.$memo->id.'')}}">
 													<div class="mail_list">
 														<div class="left" style="width: 0%;">
 															<i class="fa fa-circle"></i>
 														</div>
 														<div class="right">
 															<?php
-																$datetime = explode(' ',$memo->memo->waktu);
+																$datetime = explode(' ',$memo->waktu);
 															?>
-															@if($memo->viewed_at == '0000-00-00 00:00:00')
-																<h3>{{$memo->memo->judul}} <small>{{konversi_tanggal($datetime[0])}} {{$datetime[1]}}</small></h3>
+															@if($memo->memoPegawai->viewed_at == '0000-00-00 00:00:00')
+																<h3>{{$memo->judul}} <small>{{konversi_tanggal($datetime[0])}} {{$datetime[1]}}</small></h3>
 															@else
-																<p style="font-size: 15px; margin: 0 0 6px;">{{$memo->memo->judul}} <small style="float: right;color: #ADABAB; font-size: 11px;line-height: 20px;">{{konversi_tanggal($datetime[0])}} {{$datetime[1]}}</small></p>
+																<p style="font-size: 15px; margin: 0 0 6px;">{{$memo->judul}} <small style="float: right;color: #ADABAB; font-size: 11px;line-height: 20px;">{{konversi_tanggal($datetime[0])}} {{$datetime[1]}}</small></p>
 															@endif
 
-															@if($memo->memo->cc)
-																<p><span class="badge">CC</span> {{$memo->memo->cc}}</p>
+															@if($memo->cc)
+																<p><span class="badge">CC</span> {{$memo->cc}}</p>
 															@endif
-															<p style="display: inline-block;">{{trim_text($memo->memo->isi,150)}}</p>
+															<p style="display: inline-block;">{{trim_text($memo->isi,150)}}</p>
 														</div>
 													</div>
 												</a>
@@ -58,6 +59,7 @@
 										</tr>
 									@endforeach
 								</table>
+								@endif
 							</div>
 						</div>
 					</div>

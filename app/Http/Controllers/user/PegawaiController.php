@@ -104,6 +104,14 @@ class PegawaiController extends Controller
        $pegawai['hub_keluarga'] = $data['hub_keluarga'];
        $pegawai['alamat_keluarga'] = $data['alamat_keluarga'];
        $pegawai['telp_keluarga'] = $data['telp_keluarga'];
+       $ori_file  = \Request::file('ttd');
+       $tujuan = "upload/".$nip;
+       $ekstension = $ori_file->getClientOriginalExtension();
+
+      $nama_file = 'ttd_'.$nip.'.'.$ekstension;
+
+      $ori_file->move($tujuan,$nama_file);
+      $pegawai['ttd'] = $tujuan.'/'.$nama_file;
        $pegawai['is_new'] = 0;
        $pegawai['is_active'] = 0;
        $pegawai['is_verif_admin'] = 0;

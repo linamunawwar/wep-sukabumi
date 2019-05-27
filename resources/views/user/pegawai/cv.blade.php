@@ -27,7 +27,7 @@ $kode = KodeBagian::all();
 						<div class="alert alert-success">
 							Dimohon untuk tidak me-refresh atau memuat ulang halaman ini selama pengisian data, dikarenakan data yang sudah ditulis akan hilang.
 						</div>
-						<form class="form-horizontal form-label-left" method="POST">
+						<form class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data">
 	                    <div id="wizard" class="form_wizard wizard_horizontal">
 	                      <ul class="wizard_steps">
 	                        <li>

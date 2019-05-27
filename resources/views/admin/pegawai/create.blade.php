@@ -18,7 +18,7 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form id="demo-form2" class="form-horizontal form-label-left" method="POST">
+						<form id="demo-form2" class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								<div class="form-group">
 									<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Nama Karyawan <span class="required">*</span>:</label>

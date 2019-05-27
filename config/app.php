@@ -165,6 +165,7 @@ return [
 		Watson\BootstrapForm\BootstrapFormServiceProvider::class,
 		Spatie\Permission\PermissionServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -217,6 +218,7 @@ return [
 		'BootForm' => Watson\BootstrapForm\Facades\BootstrapForm::class,
         'Input' => Illuminate\Support\Facades\Input::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

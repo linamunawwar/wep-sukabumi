@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 use PDF;
+use PHPExcel_Worksheet_Drawing;
 use App\Roles;
 use App\Pegawai;
 use App\KodeBagian;
@@ -862,5 +863,39 @@ class PegawaiController extends Controller
       $pegawais = Pegawai::where('soft_delete',0)->where('is_active',1)->get();
 
       return view('admin.pegawai.prod05.index',['pegawais'=>$pegawais]);
+    }
+
+    public function getProd05Unduh()
+    {
+            $tanggal = date('F Y');
+            $datas =  '';
+            $excel = \Excel::create('Prod05_'.$tanggal, function($excel) use ($datas) {
+
+                    $excel->sheet('New sheet', function($sheet) use ($datas) {
+
+                        $sheet->loadView('admin.pegawai.prod05.unduh',['datas' => $datas]);
+                        $objDrawing = new PHPExcel_Worksheet_Drawing;
+                        $objDrawing->setPath(public_path('img/Waskita.png'));
+                        $objDrawing->setCoordinates('A1');
+                        $objDrawing->setWorksheet($sheet);
+                        $objDrawing->setResizeProportional(false);
+                        // set width later
+                        $objDrawing->setWidth(40);
+                        $objDrawing->setHeight(35);
+                        $sheet->getStyle('A1')->getAlignment()->setIndent(1);
+                        $sheet->getStyle('A13:P14')->getAlignment()->setWrapText(true);
+                        $sheet->getStyle('A13:P14')->getAlignment()->applyFromArray(
+                            array('horizontal' => 'center')
+                        );
+                        $sheet->cells('A13:P14', function ($cells) {
+                            $cells->setValignment('center');
+                            $cells->setFontFamily('Arial');
+                            $cells->setFontSize('4');
+                        });
+
+
+                    });
+                });
+                return $excel->export('xls');
     }
 }
