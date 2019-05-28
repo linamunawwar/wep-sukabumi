@@ -47,7 +47,7 @@
 										<td>{{$gaji->pegawai->bank->no_rekening}}</td>
 										<td style="text-align: center;">
 											<a class="btn btn-default btn-xs" href="{{'gaji/edit/'.$gaji->id.''}}"><i class="fa fa-edit"></i>  Edit</a> 
-											<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Slip Gaji</a>
+											<a class="btn btn-success btn-xs" href="{{'gaji/slip_gaji/unduh/'.$gaji->id.''}}"><i class="fa fa-download"></i>  Slip Gaji</a>
 										</td>
 									</tr>
 								@endforeach

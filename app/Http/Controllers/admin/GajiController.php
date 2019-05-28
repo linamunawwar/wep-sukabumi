@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use PHPExcel_Worksheet_Drawing;
 use App\Gaji;
 use App\SlipGaji;
 use App\Pegawai;
@@ -79,5 +79,82 @@ class GajiController extends Controller
         $slip_gaji->save();
 
         return redirect('/admin/gaji/slip_gaji');
+    }
+
+    public function getSlipGajiUnduh($id)
+    {
+        $slip = SlipGaji::find($id);
+        Switch ($slip->bulan){
+             case '01' : $tanggal="Januari";
+             Break;
+             case '02' : $tanggal="Februari";
+             Break;
+             case '03' : $tanggal="Maret";
+             Break;
+             case '04' : $tanggal="April";
+             Break;
+             case '05' : $tanggal="Mei";
+             Break;
+             case '06' : $tanggal="Juni";
+             Break;
+             case '07' : $tanggal="Juli";
+             Break;
+             case '08' : $tanggal="Agustus";
+             Break;
+             case '09' : $tanggal="September";
+             Break;
+             case '10' : $tanggal="Oktober";
+             Break;
+             case '11' : $tanggal="November";
+             Break;
+             case '12' : $tanggal="Desember";
+             Break;
+        }  
+        $periode = $tanggal.' '.$slip->tahun ;         
+        $excel = \Excel::create('Slip Gaji_'.$slip->nip, function($excel) use ($slip,$periode) {
+
+                    $excel->sheet('New sheet', function($sheet) use ($slip, $periode) {
+
+                        $sheet->loadView('admin.gaji.unduh_slip',['slip' => $slip,'periode'=>$periode]);
+                        $objDrawing = new PHPExcel_Worksheet_Drawing;
+                        $objDrawing->setPath(public_path('img/Waskita.png'));
+                        $objDrawing->setCoordinates('E6');
+                        $objDrawing->setWorksheet($sheet);
+                        $objDrawing->setResizeProportional(false);
+                        // set width later
+                        $objDrawing->setWidth(2);
+                        $objDrawing->setHeight(50);
+                      
+                        $sheet->cell('D21:K21', function($cell){
+                            $cell->setBorder('thin','','','');
+                        });
+                        $sheet->cell('D27:K27', function($cell){
+                            $cell->setBorder('thin','','','');
+                        });
+                        $sheet->cell('D30:K30', function($cell){
+                            $cell->setBorder('double','','','');
+                        });
+                        $sheet->cell('D31:K31', function($cell){
+                            $cell->setBorder('thin','','','');
+                        });
+                        //border atas
+                        $sheet->cell('D5:K6', function($cell){
+                            $cell->setBorder('thin','','','');
+                        });
+                        //border bawah
+                        $sheet->cell('D40:K41', function($cell){
+                            $cell->setBorder('','','thin','');
+                        });
+                        //border kanan
+                        $sheet->cell('C5:C41', function($cell){
+                            $cell->setBorder('','thin','','');
+                        });
+                        //border kiri
+                        $sheet->cell('L5:L41', function($cell){
+                            $cell->setBorder('','','','thin');
+                        }); 
+                    });
+                });
+                return $excel->export('xls');
     }
 }

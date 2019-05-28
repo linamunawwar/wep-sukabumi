@@ -15,7 +15,7 @@
 					<div class="x_title">
 						<h2>PROD 05 </h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('admin/pegawai/create')}}"><button class="btn btn-success"> Download</button></a></li>
+							<li><a href="{{url('admin/pegawai/prod05/unduh')}}"><button class="btn btn-success"> Download</button></a></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
@@ -47,7 +47,7 @@
 										<td>{{$pegawai->nama}}</td>
 										<td>{{$pegawai->posisi->posisi}}</td>
 										<td>{{konversi_tanggal($pegawai->tanggal_lahir)}}</td>
-										<td></td>
+										<td>{{$pegawai->status_pegawai}}</td>
 										<td>{{konversi_tanggal($pegawai->tanggal_masuk)}}</td>
 										<td>{{$pegawai->gaji->gaji_pokok}}</td>
 										<td></td>

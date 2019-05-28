@@ -867,33 +867,74 @@ class PegawaiController extends Controller
 
     public function getProd05Unduh()
     {
-            $tanggal = date('F Y');
-            $datas =  '';
-            $excel = \Excel::create('Prod05_'.$tanggal, function($excel) use ($datas) {
+            $periode = date('F Y');
+            $pegawais = Pegawai::where('status_pegawai','PT')
+                                  ->where('soft_delete',0)
+                                  ->where('is_active',1)
+                                  ->orwhere('status_pegawai','PTT')
+                                  ->where('soft_delete',0)
+                                  ->where('is_active',1)
+                                  ->orwhere('status_pegawai','OJT')
+                                  ->where('soft_delete',0)
+                                  ->where('is_active',1)
+                                  ->get();
+            $oss = Pegawai::where('status_pegawai','OS')
+                                  ->where('soft_delete',0)
+                                  ->where('is_active',1)
+                                  ->get();
+            $harians = Pegawai::where('status_pegawai','harian')
+                                  ->where('soft_delete',0)
+                                  ->where('is_active',1)
+                                  ->get();
 
-                    $excel->sheet('New sheet', function($sheet) use ($datas) {
+            $gajis = Pegawai::where('soft_delete',0)->where('is_active',1)->get();
+            $total = 0;
 
-                        $sheet->loadView('admin.pegawai.prod05.unduh',['datas' => $datas]);
+            foreach ($gajis as $key => $gaji) {
+              $total = $total + $gaji->gaji->gaji_pokok;
+            }
+            $excel = \Excel::create('Prod05_'.$periode, function($excel) use ($pegawais,$oss,$harians,$total,$periode) {
+
+                    $excel->sheet('New sheet', function($sheet) use ($pegawais,$oss,$harians,$total,$periode) {
+
+                        $sheet->loadView('admin.pegawai.prod05.unduh',['pegawais' => $pegawais,'oss'=>$oss,'harians'=>$harians,'total'=>$total,'periode'=>$periode]);
                         $objDrawing = new PHPExcel_Worksheet_Drawing;
                         $objDrawing->setPath(public_path('img/Waskita.png'));
-                        $objDrawing->setCoordinates('A1');
+                        $objDrawing->setCoordinates('C1');
                         $objDrawing->setWorksheet($sheet);
                         $objDrawing->setResizeProportional(false);
                         // set width later
                         $objDrawing->setWidth(40);
                         $objDrawing->setHeight(35);
-                        $sheet->getStyle('A1')->getAlignment()->setIndent(1);
+                        $sheet->getStyle('C1')->getAlignment()->setIndent(1);
                         $sheet->getStyle('A13:P14')->getAlignment()->setWrapText(true);
                         $sheet->getStyle('A13:P14')->getAlignment()->applyFromArray(
                             array('horizontal' => 'center')
                         );
+                        $sheet->cells('A10:P10', function ($cells) {
+                            $cells->setValignment('center');
+                            $cells->setFontFamily('Arial');
+                            $cells->setFontSize('14');
+                            $cells->setFontWeight('bold');
+                        });
                         $sheet->cells('A13:P14', function ($cells) {
                             $cells->setValignment('center');
                             $cells->setFontFamily('Arial');
-                            $cells->setFontSize('4');
+                            $cells->setFontSize('10');
+                            $cells->setFontWeight('bold');
                         });
-
-
+                        $sheet->cells('A15:P15', function ($cells) {
+                            $cells->setValignment('center');
+                            $cells->setFontFamily('Arial');
+                            $cells->setFontSize('8');
+                            $cells->setFontWeight('bold');
+                        });
+                        $sheet->cell('B13:E13', function($cell){
+                            $cell->setBorder('','thin','','');
+                        });
+                        // $sheet->cell('B14:E14', function($cell){
+                        //     $cell->setBorder('','','','thin');
+                        // });
                     });
                 });
                 return $excel->export('xls');

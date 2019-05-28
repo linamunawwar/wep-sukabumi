@@ -71,6 +71,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/gaji/slip_gaji', 'admin\GajiController@slipGaji');
 		Route::get('/gaji/slip_gaji/create', 'admin\GajiController@getSlipGajiCreate');
 		Route::post('/gaji/slip_gaji/create', 'admin\GajiController@postSlipGajiCreate');
+		Route::get('/gaji/slip_gaji/unduh/{id}', 'admin\GajiController@getSlipGajiUnduh');
 
 		//memo
 		Route::get('/memo', 'admin\MemoController@index');

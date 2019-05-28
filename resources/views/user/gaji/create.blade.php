@@ -34,19 +34,34 @@
 							<div class="form-group">
 								<label class="control-label col-md-2 col-sm-2 col-xs-12" for="periode">Periode <span class="required">*</span>:</label>
 								<div class="col-md-2 col-sm-2 col-xs-12">
-									<select class="form-control col-md-7 col-xs-12 bulan" name="bulan" id="bulan">
-										<option value="01">Januari</option>
-										<option value="02">Februari</option>
-										<option value="03">Maret</option>
-										<option value="04">April</option>
-										<option value="05">Mei</option>
-										<option value="06">Juni</option>
-										<option value="07">Juli</option>
-										<option value="08">Agustus</option>
-										<option value="09">September</option>
-										<option value="10">Oktober</option>
-										<option value="11">November</option>
-										<option value="12">Desember</option>
+									<?php
+										$bulan = date('m');
+									?>
+									<select class="form-control col-md-7 col-xs-12 bulan" name="bulan" id="bulan" disabled="disabled">
+										<?php $selected = ($bulan == '01')? 'selected' : '';?>
+										<option value="01" {{$selected}}>Januari</option>
+										<?php $selected = ($bulan == '02')? 'selected' : '';?>
+										<option value="02" {{$selected}}>Februari</option>
+										<?php $selected = ($bulan == '03')? 'selected' : '';?>
+										<option value="03" {{$selected}}>Maret</option>
+										<?php $selected = ($bulan == '04')? 'selected' : '';?>
+										<option value="04" {{$selected}}>April</option>
+										<?php $selected = ($bulan == '05')? 'selected' : '';?>
+										<option value="05" {{$selected}}>Mei</option>
+										<?php $selected = ($bulan == '06')? 'selected' : '';?>
+										<option value="06" {{$selected}}>Juni</option>
+										<?php $selected = ($bulan == '07')? 'selected' : '';?>
+										<option value="07" {{$selected}}>Juli</option>
+										<?php $selected = ($bulan == '08')? 'selected' : '';?>
+										<option value="08" {{$selected}}>Agustus</option>
+										<?php $selected = ($bulan == '09')? 'selected' : '';?>
+										<option value="09" {{$selected}}>September</option>
+										<?php $selected = ($bulan == '10')? 'selected' : '';?>
+										<option value="10" {{$selected}}>Oktober</option>
+										<?php $selected = ($bulan == '11')? 'selected' : '';?>
+										<option value="11" {{$selected}}>November</option>
+										\<?php $selected = ($bulan == '12')? 'selected' : '';?>
+										<option value="12" {{$selected}}>Desember</option>
 									</select>
 								</div>
 								<div class="col-md-2 col-sm-2 col-xs-12">
@@ -58,7 +73,7 @@
 									  // Set your latest year you want in the range, in this case we use PHP to just set it to the current year.
 									  $latest_year = date('Y'); 
 
-									  print '<select class="form-control col-md-7 col-xs-12 tahun" name="tahun">';
+									  print '<select class="form-control col-md-7 col-xs-12 tahun" name="tahun" disabled="disabled">';
 									  // Loops over each int[year] from current year, back to the $earliest_year [1950]
 									  foreach ( range( $latest_year, $earliest_year ) as $i ) {
 									    // Prints the option with the next year in range.
