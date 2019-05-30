@@ -18,7 +18,8 @@ class PegawaiController extends Controller
 {
     public function index()
     {
-    	 $pegawais= Pegawai::get();
+    	 $pegawais= Pegawai::where('is_active','!=',0)->where('soft_delete',0)->orwhere('is_active','')
+                            ->where('soft_delete',0)->get();
         return view('pm.pegawai.index',['pegawais'=>$pegawais]);
     }
 

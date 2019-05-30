@@ -35,6 +35,8 @@ class PegawaiController extends Controller
     {
     	 $pegawais= Pegawai::where('is_active','!=',0)
                             ->where('soft_delete',0)
+                            ->orwhere('is_active','')
+                            ->where('soft_delete',0)
                             ->get();
         return view('admin.pegawai.index',['pegawais'=>$pegawais]);
     }
