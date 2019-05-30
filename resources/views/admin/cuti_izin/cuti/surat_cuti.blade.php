@@ -110,7 +110,7 @@ PEGAWAI KANTOR PUSAT</h3>
       <td></td>
       <td></td>
       <td colspan="2"></td>
-      <td style="text-align: center;"><img src="{{asset('public/img/ttd.png')}}" style="width: 150px; height: 40px;"> </td>
+      <td style="text-align: center;"><img src="{{asset('public/img/ttd_staff1.png')}}" style="width: 150px; height: 40px;"> </td>
     </tr>
     <tr>
       <td></td>
@@ -132,7 +132,7 @@ PEGAWAI KANTOR PUSAT</h3>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td style="text-align: center;"><img src="{{asset('public/img/ttd.png')}}" style="width: 150px; height: 40px;"></td>
+      <td style="text-align: center;"><img src="{{asset('public/img/ttd_sdm.jpg')}}" style="width: 150px; height: 40px;"></td>
     </tr>
     <tr>
       <td></td>
@@ -161,7 +161,11 @@ PEGAWAI KANTOR PUSAT</h3>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td style="text-align: center;"><img src="{{asset('public/img/ttd.png')}}" style="width: 150px; height: 40px;"></td>
+      @if($cuti->pegawai->kode_bagian == 'SA')
+        <td style="text-align: center;"><img src="{{asset('public/img/ttd_sdm.jpf')}}" style="width: 150px; height: 40px;"></td>
+      @else
+        <td style="text-align: center;"><img src="{{asset('public/img/ttd_manager.jpg')}}" style="width: 150px; height: 40px;"></td>
+      @endif
     </tr>
     <tr>
       <td></td>
@@ -190,7 +194,7 @@ PEGAWAI KANTOR PUSAT</h3>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td style="text-align: center;"><img src="{{asset('public/img/ttd.png')}}" style="width: 150px; height: 40px;"></td>
+      <td style="text-align: center;"><img src="{{asset('public/img/ttd_staff2.jpg')}}" style="width: 150px; height: 40px;"></td>
     </tr>
     <tr>
       <td></td>
@@ -220,7 +224,7 @@ PEGAWAI KANTOR PUSAT</h3>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td style="text-align: center;"><img src="{{asset('public/img/ttd.png')}}" style="width: 150px; height: 40px;"></td>
+      <td style="text-align: center;"><img src="{{asset('public/img/ttd_pm.jpg')}}" style="width: 150px; height: 40px;"></td>
     </tr>
     <tr>
       <td></td>

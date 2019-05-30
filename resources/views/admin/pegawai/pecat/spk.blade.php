@@ -119,6 +119,6 @@ Demikian surat ini dibuat untuk dipergunakan sebagaimana mestinya. <br>
 Project Manager<br>
 Jalan Tol Becakayu Seksi 2A Ujung
 <br><br>
-<img src="{{asset('public/img/ttd.png')}}" style="width: 220px; height: 60px;">
+<img src="{{asset('public/img/ttd_pm.jpg')}}" style="width: 220px; height: 60px;">
 <br>
 Waskito Adi
