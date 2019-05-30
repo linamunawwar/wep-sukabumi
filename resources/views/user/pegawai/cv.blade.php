@@ -391,7 +391,13 @@ $kode = KodeBagian::all();
 											<div class="form-group">
 												<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama_bank">Nama Bank <span class="required">*</span></label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="text" id="nama_bank" name="nama_bank" required="required" class="nama_bank form-control col-md-7 col-xs-12">
+													<select id="nama_bank" name="nama_bank" required="required" class="nama_bank form-control col-md-7 col-xs-12">
+														<option value="">--Pilih Bank--</option>
+														<option value="BCA">BCA</option>
+														<option value="BNI">BNI</option>
+														<option value="Mandiri">Mandiri</option>
+														<option value="BRI">BRI</option>
+													</select>
 												</div>
 											</div>
 										</div>
