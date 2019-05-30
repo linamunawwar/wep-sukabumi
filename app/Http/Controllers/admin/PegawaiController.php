@@ -37,6 +37,10 @@ class PegawaiController extends Controller
                             ->where('soft_delete',0)
                             ->orwhere('is_active','')
                             ->where('soft_delete',0)
+                            ->orwhere('is_active',null)
+                            ->where('soft_delete',0)
+                            ->orwhere('is_active','NULL')
+                            ->where('soft_delete',0)
                             ->get();
         return view('admin.pegawai.index',['pegawais'=>$pegawais]);
     }
@@ -111,6 +115,7 @@ class PegawaiController extends Controller
         $data['tanggal_lahir'] = $tgl_lahir;
         $data['tanggal_masuk'] = $tgl_masuk;
         $data['status_pegawai'] = $status_pegawai;
+        $data['is_active'] = '';
         $data['is_new'] = 1;
         $data['is_verif_admin'] = 0;
         $data['is_verif_mngr'] = 1;
