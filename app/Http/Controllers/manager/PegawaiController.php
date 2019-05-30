@@ -21,7 +21,7 @@ class PegawaiController extends Controller
 
     	 // $pegawais= Pegawai::get();
       if(\Auth::user()->pegawai->kode_bagian == 'SA'){
-        $pegawais = Pegawai::where('is_active',0)->where('soft_delete',0)get();
+        $pegawais = Pegawai::where('is_active','!=',0)->where('soft_delete',0)->get();
       }else{
         $pegawais = Pegawai::where('kode_bagian', \Auth::user()->pegawai->kode_bagian)->get();
 
