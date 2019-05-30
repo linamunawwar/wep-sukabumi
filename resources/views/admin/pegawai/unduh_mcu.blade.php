@@ -83,7 +83,7 @@ SEBELUM  BEKERJA</h3>
   <p>Saya menyatakan bahwa keterangan diatas saya isi dengan benar dan saya sadar bahwa kesalahan informasi yang saya berikan akan menyebabkan cacatnya sertifikat yang diberikan :<br><br>
     Tanggal: {{konversi_tanggal(date('Y-m-d'))}}<br>
     Tanda Tangan<br></p>
-    <img src="{{ asset("public/img/Waskita.png") }}" style="width: 70px; height: 50px;"/>
+    <img src="{{ asset("public/img/ttd_staff1.png") }}" style="width: 70px; height: 50px;"/>
     
   </div>
 </div>
