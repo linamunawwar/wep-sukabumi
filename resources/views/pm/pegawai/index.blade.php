@@ -24,7 +24,6 @@
 									<th>Nama</th>
 									<th style="width: 15%;">Jabatan</th>
 									<th style="width: 15%;">Mulai Tugas Di Proyek</th>
-									<th>Gaji</th>
 									<th>Password</th>
 									<th>Action</th>
 									<th>Status</th>
@@ -39,7 +38,6 @@
 										<td>{{$pegawai->nama}}</td>
 										<td>System Architect</td>
 										<td>{{konversi_tanggal($pegawai->tanggal_masuk)}}</td>
-										<td>gaji</td>
 										<td>{{$pegawai->user->pass_asli}}</td>
 										<td>
 											@if($pegawai->is_active == 1)
