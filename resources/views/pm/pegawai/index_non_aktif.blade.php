@@ -36,7 +36,11 @@
 										<td>{{$pegawai->nama}}</td>
 										<td>{{$pegawai->posisi->posisi}}</td>
 										<td>{{konversi_tanggal($pegawai->tanggal_masuk)}}</td>
-										<td>{{konversi_tanggal($pegawai->tanggal_keluar)}}</td>
+										@if($pegawai->tanggal_keluar)
+											<td>{{konversi_tanggal($pegawai->tanggal_keluar)}}</td>
+										@else
+											<td></td>
+										@endif
 									</tr>
 								@endforeach
 							</tbody>

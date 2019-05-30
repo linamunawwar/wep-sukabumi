@@ -28,7 +28,6 @@
 								</tr>
 							</thead>
 							<tbody>
-
 								@foreach($pegawais as $pegawai)
 									<tr>
 										<td>{{$pegawai->nip}}</td>
