@@ -64,7 +64,7 @@
     var password = document.getElementById("pass_baru")
   , confirm_password = document.getElementById("pass_konfirm"), pass_lama = document.getElementById('pass_lama');
 
-    var password_lama = <?php echo \Auth::user()->pass_asli; ?>
+    var password_lama = <?php echo \Auth::user()->pass_asli; ?>;
 
     function validatePassword(){
       if(password.value != confirm_password.value) {
