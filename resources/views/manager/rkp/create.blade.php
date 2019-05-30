@@ -17,19 +17,20 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"method="POST">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Posisi Jabatan <span class="required">*</span>:</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="posisi" name="posisi" required="required" class="posisi form-control col-md-7 col-xs-12">
+											<input type="text" id="posisi" name="posisi" class="posisi form-control col-md-7 col-xs-12">
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Uraian Singkat Tugas Pokok <span class="required">*</span>:</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<textarea id="tugas" name="tugas" required="required" class="tugas form-control col-md-7 col-xs-12"></textarea>
+											<textarea id="tugas" name="tugas"  class="tugas form-control col-md-7 col-xs-12"></textarea>
 										</div>
 									</div>
 									<div class="form-group">
@@ -56,11 +57,11 @@
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Tahun :</label>
 										<div class="col-md-2 col-sm-2 col-xs-12">
-											<input type="text" id="tahun" name="tahun" required="required" class="tahun form-control col-md-7 col-xs-12">
+											<input type="text" id="tahun" name="tahun" class="tahun form-control col-md-7 col-xs-12">
 										</div>
 										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Jenis Pek. :</label>
 										<div class="col-md-3 col-sm-3 col-xs-12">
-											<input type="text" id="jenis_kerja" name="jenis_kerja" required="required" class="jenis_kerja form-control col-md-7 col-xs-12">
+											<input type="text" id="jenis_kerja" name="jenis_kerja"  class="jenis_kerja form-control col-md-7 col-xs-12">
 										</div>
 									</div>
 									<div class="ln_solid"></div>
@@ -70,11 +71,11 @@
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">TPA :</label>
 										<div class="col-md-2 col-sm-2 col-xs-12">
-											<input type="text" id="tpa" name="tpa" required="required" class="tpa form-control col-md-7 col-xs-12">
+											<input type="text" id="tpa" name="tpa" class="tpa form-control col-md-7 col-xs-12">
 										</div>
 										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">EPT :</label>
 										<div class="col-md-2 col-sm-2 col-xs-12">
-											<input type="text" id="ept" name="ept" required="required" class="ept form-control col-md-7 col-xs-12">
+											<input type="text" id="ept" name="ept" class="ept form-control col-md-7 col-xs-12">
 										</div>
 									</div>
 								</div>
@@ -82,13 +83,13 @@
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Jumlah yang Dibutuhkan :</label>
 										<div class="col-md-2 col-sm-2 col-xs-12">
-											<input type="text" id="jumlah" name="jumlah" required="required" class="jumlah form-control col-md-7 col-xs-12">
+											<input type="text" id="jumlah" name="jumlah" class="jumlah form-control col-md-7 col-xs-12">
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Waktu Penempatan :</label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<input type="text" id="waktu" name="waktu" required="required" class="waktu form-control col-md-7 col-xs-12">
+										<div class="col-md-6 col-sm-6 col-xs-12"> 
+											<input type="text" id="waktu" name="waktu" class="waktu form-control col-md-7 col-xs-12">
 										</div>
 									</div>
 								</div>
@@ -159,18 +160,19 @@
 	        var waktu = $('#waktu').val();
 	        var jumlah_data = $('#jumlah_data').val();
 	        	jumlah_data++;
-
+	        $('#jumlah_data').val(jumlah_data);
+	        
 	        var table = "<tr  class='data_"+jumlah_data+"'>";
 	        	table += "<td>"+jumlah_data+"</td>";
-	        	table += "<td>"+posisi+"</td>";
-	        	table += "<td>"+tugas+"</td>";
-	        	table += "<td>"+pendidikan+"</td>";
-	        	table += "<td>"+tahun+"</td>";
-	        	table += "<td>"+jenis_kerja+"</td>";
-	        	table += "<td>"+tpa+"</td>";
-	        	table += "<td>"+ept+"</td>";
-	        	table += "<td>"+jumlah+"</td>";
-	        	table += "<td>"+waktu+"</td>";
+	        	table += "<td>"+posisi+"<input type='hidden' name='posisi[]' value="+posisi+" id='posisi_"+jumlah_data+"'></td>";
+	        	table += "<td>"+tugas+"<input type='hidden' name='tugas[]' value="+tugas+" id='tugas_"+jumlah_data+"'></td>";
+	        	table += "<td>"+pendidikan+"<input type='hidden' name='pendidikan[]' value="+pendidikan+" id='pendidikan_"+jumlah_data+"'></td>";
+	        	table += "<td>"+tahun+"<input type='hidden' name='tahun_kerja[]' value="+tahun+" id='tahun_kerja_"+jumlah_data+"'></td>";
+	        	table += "<td>"+jenis_kerja+"<input type='hidden' name='jenis_kerja[]' value="+jenis_kerja+" id='jenis_kerja_"+jumlah_data+"'></td>";
+	        	table += "<td>"+tpa+"<input type='hidden' name='tpa[]' value="+tpa+" id='tpa_"+jumlah_data+"'></td>";
+	        	table += "<td>"+ept+"<input type='hidden' name='ept[]' value="+ept+" id='ept_"+jumlah_data+"'></td>";
+	        	table += "<td>"+jumlah+"<input type='hidden' name='jumlah[]' value="+jumlah+" id='jumlah_"+jumlah_data+"'></td>";
+	        	table += "<td>"+waktu+"<input type='hidden' name='waktu[]' value="+waktu+" id='waktu_"+jumlah_data+"'></td>";
 	        	table+="<td>";
                 table+="<a class='btn btn-sm btn-block btn-danger del' idsub='"+jumlah_data+"' style='width:40px;'><span class='fa fa-trash'></span></a>";
                 table+="</td>";

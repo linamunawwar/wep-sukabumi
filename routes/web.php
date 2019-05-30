@@ -103,6 +103,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/disposisi/edit/{id}', 'admin\DisposisiController@postEdit');
 		Route::get('/disposisi/delete/{id}', 'admin\DisposisiController@getDelete');
 		Route::get('/disposisi/monitoring/{id}', 'admin\DisposisiController@monitoring');
+		Route::get('/disposisi/unduh/{id}', 'admin\DisposisiController@getUnduhDisposisi');
 		
 		//surat keluar
 		Route::get('/surat_keluar', 'admin\SuratKeluarController@index');
@@ -232,6 +233,7 @@ Route::group(['middleware' => 'auth'], function () {
 		//rkp
 		Route::get('/rkp', 'manager\RkpController@index');
 		Route::get('/rkp/create', 'manager\RkpController@getCreate');
+		Route::post('/rkp/create', 'manager\RkpController@postCreate');
 
 		//peralatan
 		Route::get('/peralatan', 'manager\PeralatanController@index');
