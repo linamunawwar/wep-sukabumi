@@ -41,7 +41,13 @@ class PegawaiController extends Controller
 
     public function indexNonAktif()
     {
-       $pegawais= Pegawai::where('is_active','!=',1)->where('soft_delete',0)->get();
+       $pegawais= Pegawai::where('is_active','!=',1)
+                          ->where('soft_delete',0)
+                          ->orwhere('is_active','')
+                          ->where('soft_delete',0)
+                          ->orwhere('is_active','NULL')
+                            ->where('soft_delete',0)
+                          ->get();
         return view('admin.pegawai.index_non_aktif',['pegawais'=>$pegawais]);
     }
 
