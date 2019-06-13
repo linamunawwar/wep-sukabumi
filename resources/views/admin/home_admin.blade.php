@@ -30,7 +30,7 @@
 				</div>
 				<div cla
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
-					<span class="count_top"><i class="fa fa-sign-out"></i> Pemecatan</span>
+					<span class="count_top"><i class="fa fa-sign-out"></i> Pemberhentian Kerja</span>
 					<div class="count green">6</div>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">

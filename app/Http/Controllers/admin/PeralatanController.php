@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Peralatan;
+use App\Inventori;
 use App\Pegawai;
 
 class PeralatanController extends Controller
@@ -73,5 +74,59 @@ class PeralatanController extends Controller
         $alat = Peralatan::where('id',$id)->update(['tanggal_kembali'=>date('Y-m-d'),'is_kembali'=>1]);
 
         return redirect('admin/peralatan');
+    }
+
+    public function indexData()
+    {
+        $inventoris = Inventori::where('soft_delete',0)->get();
+        
+        return view('admin.peralatan.data.index',['inventoris'=>$inventoris]);
+    }
+
+    public function getCreateData()
+    {
+
+        return view('admin.peralatan.data.create');
+    }
+
+    public function postCreateData()
+    {
+        $data = \Input::all();
+
+        $alat = new Inventori;
+        $alat->nama_barang = $data['nama_barang'];
+        $alat->kode_barang = $data['kode_barang'];
+        $alat->tipe_barang = $data['tipe_barang'];
+        $alat->user_id = \Auth::user()->id;
+        $alat->role_id = \Auth::user()->role_id;
+
+        $alat->save();
+
+        return redirect('admin/peralatan/data');
+    }
+
+    public function getEditData($id)
+    {
+        $inventori = Inventori::where('id',$id)->first();
+
+        return view('admin.peralatan.data.edit',['inventori'=>$inventori]);
+    }
+
+    public function postEditData($id)
+    {
+        $data = \Input::all();
+
+        unset($data['_token']);
+
+        $upd = Inventori::where('id',$id)->update($data);
+
+        return redirect('admin/peralatan/data');
+    }
+
+    public function getDeleteData($id)
+    {
+        $alat = Inventori::where('id',$id)->update(['soft_delete'=>1]);
+
+        return redirect('admin/peralatan/data');
     }
 }

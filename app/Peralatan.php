@@ -14,4 +14,9 @@ class Peralatan extends Model
     {
         return $this->belongsTo('App\Pegawai','nip','nip');
     }
+
+    public function inventori()
+    {
+        return $this->belongsTo('App\Inventori','kode_barang','kode_barang');
+    }
 }

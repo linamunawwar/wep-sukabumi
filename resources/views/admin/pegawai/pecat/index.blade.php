@@ -26,8 +26,8 @@
 									<th>NIP</th>
 									<th>Nama</th>
 									<th>Jabatan</th>
-									<th>Tanggal Pemecatan</th>
-									<th>Status Pemecatan</th>
+									<th>Tanggal Berhenti Kerja</th>
+									<th>Status Pemberhentian</th>
 									<th>Action</th>
 								</tr>
 							</thead>

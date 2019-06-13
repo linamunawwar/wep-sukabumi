@@ -215,18 +215,22 @@
                     @endif -->
                     @if(Auth::user()->role_id == 1)
                         <li>
-                        <a href="{{url('admin/peralatan')}}">
-                            <i class="fa fa-gears"></i>
-                            Peralatan Penunjang
-                            <span class="label label-success pull-right">Flag</span>
-                        </a>
-                    </li>
+                            <a href="#">
+                                <i class="fa fa-gears"></i>
+                                Inventaris Proyek
+                                <span class="fa fa-chevron-down"></span>
+                            </a>
+                            <ul class="nav child_menu">
+                                <li><a href="{{url('admin/peralatan/data')}}">Data Inventaris Proyek</a></li>
+                                <li><a href="{{url('admin/peralatan')}}">Peminjaman Inventaris Proyek</a></li>
+                            </ul>
+                        </li>
                     @endif
                     @if(Auth::user()->role_id == 3)
                         <li>
                         <a href="{{url('manager/peralatan')}}">
                             <i class="fa fa-gears"></i>
-                            Peralatan Penunjang
+                            Inventaris Proyek
                             <span class="label label-success pull-right">Flag</span>
                         </a>
                     </li>
