@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use PDF;
 use PHPExcel_Worksheet_Drawing;
 use App\Disposisi;
 use App\DisposisiTugas;
@@ -184,50 +185,8 @@ class DisposisiController extends Controller
     public function getUnduhDisposisi($id)
     {
         $disposisi = Disposisi::find($id);
-        $excel = \Excel::create('Disposisi_'.$disposisi->nip, function($excel) use ($disposisi) {
-
-                    $excel->sheet('New sheet', function($sheet) use ($disposisi) {
-
-                        $sheet->loadView('admin.disposisi.unduh',['disposisi' => $disposisi]);
-                        $objDrawing = new PHPExcel_Worksheet_Drawing;
-                        $objDrawing->setPath(public_path('img/kop.PNG'));
-                        $objDrawing->setCoordinates('E6');
-                        $objDrawing->setWorksheet($sheet);
-                        $objDrawing->setResizeProportional(false);
-                        // set width later
-                        $objDrawing->setWidth(200);
-                        $objDrawing->setHeight(50);
-                      
-                        $sheet->cell('D21:K21', function($cell){
-                            $cell->setBorder('thin','','','');
-                        });
-                        $sheet->cell('D27:K27', function($cell){
-                            $cell->setBorder('thin','','','');
-                        });
-                        $sheet->cell('D30:K30', function($cell){
-                            $cell->setBorder('double','','','');
-                        });
-                        $sheet->cell('D31:K31', function($cell){
-                            $cell->setBorder('thin','','','');
-                        });
-                        //border atas
-                        $sheet->cell('D5:K6', function($cell){
-                            $cell->setBorder('thin','','','');
-                        });
-                        //border bawah
-                        $sheet->cell('D40:K41', function($cell){
-                            $cell->setBorder('','','thin','');
-                        });
-                        //border kanan
-                        $sheet->cell('C5:C41', function($cell){
-                            $cell->setBorder('','thin','','');
-                        });
-                        //border kiri
-                        $sheet->cell('L5:L41', function($cell){
-                            $cell->setBorder('','','','thin');
-                        }); 
-                    });
-                });
-                return $excel->export('xls');
+        $pdf = PDF::loadView('admin.disposisi.unduh',['disposisi' => $disposisi]);
+        return $pdf->download('Disposisi_'.$disposisi->no_agenda.'.pdf');
+        
     }
 }

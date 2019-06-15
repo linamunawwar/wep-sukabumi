@@ -47,6 +47,14 @@ Route::group(['middleware' => 'auth'], function () {
 		//resign
 		Route::get('/pegawai/resign', 'admin\PegawaiController@getResign');
 
+		//pemecatan
+		Route::get('/pegawai/pelatihan', 'admin\PegawaiController@getPelatihan');
+		Route::get('/pegawai/pelatihan/create', 'admin\PegawaiController@getCreatePelatihan');
+		Route::post('/pegawai/pelatihan/create', 'admin\PegawaiController@postCreatePelatihan');
+		Route::get('/pegawai/pelatihan/edit/{id}', 'admin\PegawaiController@getEditPelatihan');
+		Route::post('/pegawai/pelatihan/edit/{id}', 'admin\PegawaiController@postEditPelatihan');
+		Route::get('/pegawai/pelatihan/delete/{id}', 'admin\PegawaiController@getDeletePelatihan');
+
 		//izin
 		Route::get('/izin', 'admin\IzinController@index');
 		Route::get('/pengajuan_izin', 'admin\IzinController@getPengajuanIzin');

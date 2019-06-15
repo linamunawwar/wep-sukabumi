@@ -24,6 +24,7 @@
                                 <li><a href="{{url('admin/pegawai/prod05')}}">PROD 05</a></li>
                                 <li><a href="{{url('admin/pegawai/pecat')}}">Pemberhentian Kerja</a></li>
                                 <li><a href="{{url('admin/pegawai/resign')}}">Pengajuan Resign</a></li>
+                                <li><a href="{{url('admin/pegawai/pelatihan')}}">Monitoring Pelatihan</a></li>
                             @endif
 
                             @if(Auth::user()->role_id == 2)

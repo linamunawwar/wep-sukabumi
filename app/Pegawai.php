@@ -80,4 +80,9 @@ class Pegawai extends Model
     {
         return $this->hasMany('App\Spj','nip','nip');
     }
+
+    public function pelatihan()
+    {
+        return $this->hasOne('App\Pelatihan','nip','nip');
+    }
 }

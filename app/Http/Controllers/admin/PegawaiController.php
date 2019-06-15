@@ -946,4 +946,70 @@ class PegawaiController extends Controller
                 });
                 return $excel->export('xls');
     }
+
+    public function getPelatihan()
+    {
+      $pelatihans = Pelatihan::where('soft_delete',0)->get();
+
+      return view('admin.pegawai.pelatihan.index',['pelatihans'=>$pelatihans]);
+    }
+
+    public function getCreatePelatihan()
+    {
+      $pegawais = Pegawai::where('is_active','1')->get();
+      
+      return view('admin.pegawai.pelatihan.create',['pegawais'=>$pegawais]);
+    }
+
+    public function postCreatePelatihan(){
+      $data = \Input::all();
+      
+      $pelatihan = new Pelatihan;
+      $pelatihan->nip = $data['nip'];
+      $pelatihan->nama_pelatihan = $data['nama_pelatihan'];
+      $tanggal_mulai = explode('-',$data['tanggal_mulai']);
+      $data['tanggal_mulai'] = $tanggal_mulai[2].'-'.$tanggal_mulai[1].'-'.$tanggal_mulai[0];
+      $pelatihan->tanggal_mulai =$data['tanggal_mulai'];
+      $tanggal_selesai = explode('-',$data['tanggal_selesai']);
+      $data['tanggal_selesai'] = $tanggal_selesai[2].'-'.$tanggal_selesai[1].'-'.$tanggal_selesai[0];
+      $pelatihan->tanggal_selesai =$data['tanggal_selesai'];
+      $pelatihan->tempat =$data['tempat'];
+      $pelatihan->penyelenggara =$data['penyelenggara'];
+      $pelatihan->no_im =$data['no_im'];
+     
+      $pelatihan->user_id = \Auth::user()->id;
+      $pelatihan->role_id = \Auth::user()->role_id;
+
+      $pelatihan->save();
+
+      return redirect('/admin/pegawai/pelatihan');
+      
+    }
+
+    public function getEditPelatihan($id)
+    {
+      $pegawais = Pegawai::where('is_active','1')->get();
+      $pelatihan = Pelatihan::find($id);
+      
+      return view('admin.pegawai.pelatihan.edit',['pegawais'=>$pegawais,'pelatihan'=>$pelatihan]);
+    }
+
+    public function postEditPelatihan($id){
+      $data = \Input::all();
+      
+      $data['user_id'] = \Auth::user()->id;
+      $data['role_id'] = \Auth::user()->role_id;
+      unset($data['_token']);
+      $update = Pelatihan::where('id',$id)->update($data);
+
+      return redirect('/admin/pegawai/pelatihan');
+      
+    }
+
+    public function getDeletePelatihan($id)
+    {
+      $update = Pelatihan::where('id',$id)->update(['soft_delete'=>1]);
+      
+      return redirect('/admin/pegawai/pelatihan');
+    }
 }
