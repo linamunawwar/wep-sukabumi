@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pegawai/pelatihan', 'admin\PegawaiController@getPelatihan');
 		Route::get('/pegawai/pelatihan/create', 'admin\PegawaiController@getCreatePelatihan');
 		Route::post('/pegawai/pelatihan/create', 'admin\PegawaiController@postCreatePelatihan');
+		Route::post('/pegawai/pelatihan/unduh', 'admin\PegawaiController@postUnduhPelatihan');
 		Route::get('/pegawai/pelatihan/edit/{id}', 'admin\PegawaiController@getEditPelatihan');
 		Route::post('/pegawai/pelatihan/edit/{id}', 'admin\PegawaiController@postEditPelatihan');
 		Route::get('/pegawai/pelatihan/delete/{id}', 'admin\PegawaiController@getDeletePelatihan');

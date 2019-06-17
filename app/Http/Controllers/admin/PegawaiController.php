@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 use PDF;
 use PHPExcel_Worksheet_Drawing;
+use PHPExcel_Worksheet_PageSetup;
 use App\Roles;
 use App\Pegawai;
 use App\KodeBagian;
@@ -1011,5 +1012,164 @@ class PegawaiController extends Controller
       $update = Pelatihan::where('id',$id)->update(['soft_delete'=>1]);
       
       return redirect('/admin/pegawai/pelatihan');
+    }
+
+    public function postUnduhPelatihan()
+    {
+      $tahun = \Input::get('tahun');
+
+      if($tahun == 'all'){
+        $tahuns = Pelatihan::select(\DB::raw('YEAR(tanggal_mulai) year'))->where('soft_delete',0)->groupby('year')->get();
+        foreach ($tahuns as $key => $value) {
+          $pelatihans[$value->year] = Pelatihan::where('soft_delete',0)->whereYear('tanggal_mulai',$value->year)->get();
+          
+        }
+        
+
+        $excel = \Excel::create('Monitoring Pelatihan_'.$tahun, function($excel) use ($tahuns,$pelatihans,$tahun) {
+                  foreach ($tahuns as $key => $value) {
+                    $data = $pelatihans[$value->year];
+                    $nama_sheet = $value->year;
+                    $excel->sheet('Tahun '.$nama_sheet, function($sheet) use ($data,$tahun,$nama_sheet) {
+
+                        $sheet->loadView('admin.pegawai.pelatihan.unduh',['data' => $data,'nama_sheet'=>$nama_sheet]);
+                        $objDrawing = new PHPExcel_Worksheet_Drawing;
+                        $objDrawing->setPath(public_path('img/Waskita.png'));
+                        $objDrawing->setCoordinates('A1');
+                        $objDrawing->setWorksheet($sheet);
+                        $objDrawing->setResizeProportional(false);
+                        // set width later
+                        $objDrawing->setWidth(60);
+                        $objDrawing->setHeight(50);
+                        
+                        $sheet->cell('B6', function($cell){
+                            $cell->setBorder('medium','medium','medium','medium');
+                        });
+                        $sheet->cell('B8', function($cell){
+                            $cell->setBorder('medium','medium','medium','medium');
+                        });
+                        $sheet->cell('A10', function($cell){
+                            $cell->setBorder('medium','medium','medium','medium');
+                        });
+                        $sheet->cell('B9', function($cell){
+                            $cell->setBorder('','','medium','');
+                        });
+                        $sheet->cell('C9', function($cell){
+                            $cell->setBorder('','','medium','');
+                        });
+                        $sheet->cell('D9', function($cell){
+                            $cell->setBorder('','','medium','');
+                        });
+                        $sheet->cell('E9', function($cell){
+                            $cell->setBorder('','','medium','');
+                        });
+                        $sheet->cell('B12', function($cell){
+                            $cell->setBorder('medium','','','');
+                        });
+                        $sheet->cell('C12', function($cell){
+                            $cell->setBorder('medium','','','');
+                        });
+                        $sheet->cell('D12', function($cell){
+                            $cell->setBorder('medium','','','');
+                        });
+                        $sheet->cell('E12', function($cell){
+                            $cell->setBorder('medium','','','');
+                        });
+                        $sheet->cell('F10', function($cell){
+                            $cell->setBorder('medium','medium','medium','medium');
+                        });
+                        $sheet->cell('G10', function($cell){
+                            $cell->setBorder('medium','medium','medium','medium');
+                        });
+                        $sheet->cell('H10', function($cell){
+                            $cell->setBorder('medium','medium','medium','medium');
+                        });
+                        $sheet->cell('I10', function($cell){
+                            $cell->setBorder('medium','medium','medium','medium');
+                        });
+                        $sheet->cell('J10', function($cell){
+                            $cell->setBorder('medium','medium','medium','medium');
+                        });
+                        $sheet->cell('K10', function($cell){
+                            $cell->setBorder('medium','medium','medium','medium');
+                        });
+                        $sheet->cell('A12:K12', function($cell){
+                            $cell->setBorder('double','','','');
+                        });
+                        $sheet->cell('K11', function($cell){
+                            $cell->setBorder('','','','medium');
+                        });
+
+                          
+                    });
+                  }
+                });
+
+                $excel->getActiveSheet()
+                    ->getPageSetup()
+                    ->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+                $excel->getActiveSheet()
+                    ->getPageSetup()
+                    ->setPaperSize(PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
+
+                $excel->getActiveSheet()
+                    ->getPageMargins()->setTop(0.75);
+                $excel->getActiveSheet()
+                    ->getPageMargins()->setRight(0.5);
+                $excel->getActiveSheet()
+                    ->getPageMargins()->setLeft(0.5);
+                $excel->getActiveSheet()
+                    ->getPageMargins()->setBottom(0.5);
+      }else{
+        $pelatihans = Pelatihan::whereYear($tahun)->where('soft_delete',0)->get();
+        $excel = \Excel::create('Monitoring Pelatihan_'.$tahun, function($excel) use ($pelatihans) {
+
+                    $excel->sheet('New sheet', function($sheet) use ($pelatihans) {
+
+                        $sheet->loadView('admin.pegawai.pelatihan.unduh',['data' => $pelatihans]);
+                        $objDrawing = new PHPExcel_Worksheet_Drawing;
+                        $objDrawing->setPath(public_path('img/Waskita.png'));
+                        $objDrawing->setCoordinates('E6');
+                        $objDrawing->setWorksheet($sheet);
+                        $objDrawing->setResizeProportional(false);
+                        // set width later
+                        $objDrawing->setWidth(2);
+                        $objDrawing->setHeight(50);
+                      
+                        $sheet->cell('D21:K21', function($cell){
+                            $cell->setBorder('thin','','','');
+                        });
+                        $sheet->cell('D27:K27', function($cell){
+                            $cell->setBorder('thin','','','');
+                        });
+                        $sheet->cell('D30:K30', function($cell){
+                            $cell->setBorder('double','','','');
+                        });
+                        $sheet->cell('D31:K31', function($cell){
+                            $cell->setBorder('thin','','','');
+                        });
+                        //border atas
+                        $sheet->cell('D5:K6', function($cell){
+                            $cell->setBorder('thin','','','');
+                        });
+                        //border bawah
+                        $sheet->cell('D40:K41', function($cell){
+                            $cell->setBorder('','','thin','');
+                        });
+                        //border kanan
+                        $sheet->cell('C5:C41', function($cell){
+                            $cell->setBorder('','thin','','');
+                        });
+                        //border kiri
+                        $sheet->cell('L5:L41', function($cell){
+                            $cell->setBorder('','','','thin');
+                        }); 
+                    });
+                });
+      }
+
+
+      
+      return $excel->export('xls');
     }
 }
