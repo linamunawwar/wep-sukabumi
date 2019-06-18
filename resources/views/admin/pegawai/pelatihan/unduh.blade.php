@@ -34,14 +34,14 @@
 	<tr></tr>
 	<tdead>
 		<tr>
-			<td rowspan="2" width="6" align="center">No.</td>
-			<td rowspan="2" colspan="2" align="center">Nama Pegawai</td>
-			<td rowspan="2" colspan="2" align="center">Jabatan</td>
-			<td rowspan="2" width="40" align="center">Nama Pelatihan</td>
-			<td colspan="2" align="center">Waktu Pelaksanaan</td>
-			<td rowspan="2" width="30" align="center">Tempat Pelaksanaan</td>
-			<td rowspan="2" width="30" align="center">Penyelenggara</td>
-			<td rowspan="2" width="30" align="center">NO IM</td>
+			<td rowspan="2" width="6" align="center"><b>No.</b></td>
+			<td rowspan="2" colspan="2" align="center"><b>Nama Pegawai</td>
+			<td rowspan="2" colspan="2" align="center"><b>Jabatan</td>
+			<td rowspan="2" width="40" align="center"><b>Nama Pelatihan</td>
+			<td colspan="2" align="center"><b>Waktu Pelaksanaan</td>
+			<td rowspan="2" width="30" align="center"><b>Tempat Pelaksanaan</td>
+			<td rowspan="2" width="30" align="center"><b>Penyelenggara</td>
+			<td rowspan="2" width="30" align="center"><b>NO IM</td>
 		</tr>
 		<tr>
 			<td></td>			

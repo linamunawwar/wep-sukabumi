@@ -92,7 +92,9 @@ class DisposisiController extends Controller
 
     public function getCreate()
     {
-        return view('admin.disposisi.create');
+        $surats = SuratMasuk::where('soft_delete',0)->get();
+
+        return view('admin.disposisi.create',['surats'=>$surats]);
     }
 
     public function postCreate()
@@ -185,7 +187,34 @@ class DisposisiController extends Controller
     public function getUnduhDisposisi($id)
     {
         $disposisi = Disposisi::find($id);
-        $pdf = PDF::loadView('admin.disposisi.unduh',['disposisi' => $disposisi]);
+
+        $tugass = DisposisiTugas::where('disposisi_id',$id)->where('soft_delete',0)->get();
+        
+        foreach ($tugass as $key => $tugas) {
+
+            if($tugas->tugas == 'Diketahui'){
+                $diketahui['posisi_id'] = $tugas->posisi_id;
+                $diketahui['status'] = $tugas->status;
+            }
+
+            if($tugas->tugas == 'Diselesaikan'){
+                $diselesaikan['posisi_id'] = $tugas->posisi_id;
+                $diselesaikan['status'] = $tugas->status;
+            }
+
+            if($tugas->tugas == 'Diproses'){
+                $diproses['posisi_id'] = $tugas->posisi_id;
+                $diproses['status'] = $tugas->status;
+            }
+            
+            if($tugas->tugas == 'Diperiksa'){
+                $diperiksa['posisi_id'] = $tugas->posisi_id;
+                $diperiksa['status'] = $tugas->status;
+            }
+        }
+
+        $pdf = PDF::loadView('admin.disposisi.unduh',['disposisi' => $disposisi, 'diketahui'=>$diketahui,'diselesaikan'=>$diselesaikan,'diproses'=>$diproses,'diperiksa'=>$diperiksa]);
+        $pdf->setPaper('legal', 'portrait');
         return $pdf->download('Disposisi_'.$disposisi->no_agenda.'.pdf');
         
     }

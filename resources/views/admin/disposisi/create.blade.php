@@ -50,6 +50,12 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nomor Surat <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input type="text" name="no_surat" class="form-control">
+									<select name="no_surat" class="form-control" required="required">
+										<option value="">--Pilih Nomor Surat--</option>
+										@foreach($surats as $surat)
+											<option value="{{$surat->no_surat}}">{{$surat->no_surat}}</option>
+										@endforeach
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
