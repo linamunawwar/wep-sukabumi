@@ -571,10 +571,10 @@ $kode = KodeBagian::all();
 														<tr>
 															<td>{{$i+1}}</td>
 															<td>
-																<input type="text" name="sertifikat_mulai[]"  class="form-control col-md-7 col-xs-12 sertifikat_mulai" value="{{$sertifikat['tanggal_mulai']}}">
+																<input type="text" name="sertifikat_mulai[]"  class="form-control col-md-7 col-xs-12 sertifikat_mulai" value="{{konversi_tanggal($sertifikat['tanggal_mulai'])}}" placeholder="dd-mm-yyyy">
 															</td>
 															<td>
-																<input type="text" name="sertifikat_akhir[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir" value="{{$sertifikat['tanggal_akhir']}}">
+																<input type="text" name="sertifikat_akhir[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir" value="{{konversi_tanggal($sertifikat['tanggal_akhir'])}}" placeholder="dd-mm-yyyy">
 															</td>
 															<td>
 																<input type="text" name="sertifikat[]"  class="form-control col-md-7 col-xs-12 sertifikat" value="{{$sertifikat['sertifikat']}}">
@@ -596,10 +596,10 @@ $kode = KodeBagian::all();
 																<tr>
 																	<td>{{$j + $i}}</td>
 																	<td>
-																		<input type="text" name="sertifikat_mulai[]"  class="form-control col-md-7 col-xs-12 sertifikat_mulai">
+																		<input type="text" name="sertifikat_mulai[]"  class="form-control col-md-7 col-xs-12 sertifikat_mulai" placeholder="dd-mm-yyyy">
 																	</td>
 																	<td>
-																		<input type="text" name="sertifikat_akhir[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
+																		<input type="text" name="sertifikat_akhir[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir" placeholder="dd-mm-yyyy">
 																	</td>
 																	<td>
 																		<input type="text" name="sertifikat[]"  class="form-control col-md-7 col-xs-12 sertifikat">
@@ -640,7 +640,7 @@ $kode = KodeBagian::all();
 														<tr>
 															<td>{{$i+1}}</td>
 															<td>
-																<input type="text" name="pelatihan_tanggal[]"  class="form-control col-md-7 col-xs-12" value="{{$pelatihan['tanggal']}}">
+																<input type="text" name="pelatihan_tanggal[]"  class="form-control col-md-7 col-xs-12" value="{{konversi_tanggal($pelatihan['tanggal'])}}" placeholder="dd-mm-yyyy">
 															</td>
 															<td>
 																<input type="text" name="nama_pelatihan[]"  class="form-control col-md-7 col-xs-12" value="{{$pelatihan['nama_pelatihan']}}">
@@ -664,7 +664,7 @@ $kode = KodeBagian::all();
 																<tr>
 																	<td>{{$j + $i}}</td>
 																	<td>
-																		<input type="text" name="pelatihan_tanggal[]"  class="form-control col-md-7 col-xs-12">
+																		<input type="text" name="pelatihan_tanggal[]"  class="form-control col-md-7 col-xs-12" placeholder="dd-mm-yyyy">
 																	</td>
 																	<td>
 																		<input type="text" name="nama_pelatihan[]"  class="form-control col-md-7 col-xs-12">
@@ -708,10 +708,10 @@ $kode = KodeBagian::all();
 														<tr>
 															<td>{{$i+1}}</td>
 															<td>
-																<input type="text" name="mulai_kerja[]"  class="form-control col-md-7 col-xs-12" value="{{$pengalaman['tanggal_mulai']}}">
+																<input type="text" name="mulai_kerja[]"  class="form-control col-md-7 col-xs-12" value="{{konversi_tanggal($pengalaman['tanggal_mulai'])}}" placeholder="dd-mm-yyyy">
 															</td>
 															<td>
-																<input type="text" name="akhir_kerja[]"  class="form-control col-md-7 col-xs-12" value="{{$pengalaman['tanggal_akhir']}}">
+																<input type="text" name="akhir_kerja[]"  class="form-control col-md-7 col-xs-12" value="{{konversi_tanggal($pengalaman['tanggal_akhir'])}}" placeholder="dd-mm-yyyy">
 															</td>
 															<td>
 																<input type="text" name="nama_perusahaan[]"  class="form-control col-md-7 col-xs-12" value="{{$pengalaman['nama_perusahaan']}}">
@@ -733,10 +733,10 @@ $kode = KodeBagian::all();
 																<tr>
 																	<td>{{$j + $i}}</td>
 																	<td>
-																		<input type="text" name="mulai_kerja[]"  class="form-control col-md-7 col-xs-12">
+																		<input type="text" name="mulai_kerja[]"  class="form-control col-md-7 col-xs-12" placeholder="dd-mm-yyyy">
 																	</td>
 																	<td>
-																		<input type="text" name="akhir_kerja[]"  class="form-control col-md-7 col-xs-12">
+																		<input type="text" name="akhir_kerja[]"  class="form-control col-md-7 col-xs-12" placeholder="dd-mm-yyyy">
 																	</td>
 																	<td>
 																		<input type="text" name="nama_perusahaan[]"  class="form-control col-md-7 col-xs-12">
@@ -788,10 +788,10 @@ $kode = KodeBagian::all();
 														<tr>
 															<td>{{$i+1}}</td>
 															<td>
-																<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['tanggal_mulai']}}">
+																<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12" value="{{konversi_tanggal($penugasan['tanggal_mulai'])}}" placeholder="dd-mm-yyyy">
 															</td>
 															<td>
-																<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['tanggal_akhir']}}">
+																<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12" value="{{konversi_tanggal($penugasan['tanggal_akhir'])}}" placeholder="dd-mm-yyyy">
 															</td>
 															<td>
 																<input type="text" name="no_sk[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['no_sk']}}">
@@ -834,10 +834,10 @@ $kode = KodeBagian::all();
 																<tr>
 																	<td>{{$j + $i}}</td>
 																	<td>
-																		<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12">
+																		<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12" placeholder="dd-mm-yyyy">
 																	</td>
 																	<td>
-																		<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12">
+																		<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12" placeholder="dd-mm-yyyy">
 																	</td>
 																	<td>
 																		<input type="text" name="no_sk[]"  class="form-control col-md-7 col-xs-12">
@@ -901,7 +901,7 @@ $kode = KodeBagian::all();
 														<tr>
 															<td>{{$i+1}}</td>
 															<td>
-																<input type="text" name="tanggal_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['tanggal']}}">
+																<input type="text" name="tanggal_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{konversi_tanggal($presentasi['tanggal'])}}" placeholder="dd-mm-yyyy">
 															</td>
 															<td>
 																<input type="text" name="judul_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['judul']}}">
@@ -929,7 +929,7 @@ $kode = KodeBagian::all();
 																<tr>
 																	<td>{{$j + $i}}</td>
 																	<td>
-																		<input type="text" name="tanggal_presentasi[]"  class="form-control col-md-7 col-xs-12">
+																		<input type="text" name="tanggal_presentasi[]"  class="form-control col-md-7 col-xs-12" placeholder="dd-mm-yyyy">
 																	</td>
 																	<td>
 																		<input type="text" name="judul_presentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
@@ -967,7 +967,7 @@ $kode = KodeBagian::all();
 														<tr>
 															<td>{{$i+1}}</td>
 															<td>
-																<input type="text" name="tanggal_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['tanggal']}}">
+																<input type="text" name="tanggal_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{konversi_tanggal($nopresentasi['tanggal'])}}" placeholder="dd-mm-yyyy">
 															</td>
 															<td>
 																<input type="text" name="judul_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['judul']}}">
@@ -994,7 +994,7 @@ $kode = KodeBagian::all();
 																<tr>
 																	<td>{{$j + $i}}</td>
 																	<td>
-																		<input type="text" name="tanggal_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
+																		<input type="text" name="tanggal_nopresentasi[]"  class="form-control col-md-7 col-xs-12" placeholder="dd-mm-yyyy">
 																	</td>
 																	<td>
 																		<input type="text" name="judul_nopresentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
@@ -1032,7 +1032,7 @@ $kode = KodeBagian::all();
 														<tr>
 															<td>{{$i+1}}</td>
 															<td>
-																<input type="text" name="tanggal_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['tanggal']}}">
+																<input type="text" name="tanggal_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{konversi_tanggal($nopublikasi['tanggal'])}}" placeholder="dd-mm-yyyy">
 															</td>
 															<td>
 																<input type="text" name="judul_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['judul']}}">
@@ -1060,7 +1060,7 @@ $kode = KodeBagian::all();
 																<tr>
 																	<td>{{$j + $i}}</td>
 																	<td>
-																		<input type="text" name="tanggal_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
+																		<input type="text" name="tanggal_nopublikasi[]"  class="form-control col-md-7 col-xs-12" placeholder="dd-mm-yyyy">
 																	</td>
 																	<td>
 																		<input type="text" name="judul_nopublikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
@@ -1107,7 +1107,7 @@ $kode = KodeBagian::all();
 														<tr>
 															<td>{{$i+1}}</td>
 															<td>
-																<input type="text" name="tanggal_pertemuan[]"  class="form-control col-md-7 col-xs-12" value="{{$pertemuan['tanggal']}}">
+																<input type="text" name="tanggal_pertemuan[]"  class="form-control col-md-7 col-xs-12" value="{{konversi_tanggal($pertemuan['tanggal'])}}" placeholder="dd-mm-yyyy">
 															</td>
 															<td>
 																<input type="text" name="tema[]"  class="form-control col-md-7 col-xs-12 " value="{{$pertemuan['tema']}}">
@@ -1137,7 +1137,7 @@ $kode = KodeBagian::all();
 																<tr>
 																	<td>{{$j + $i}}</td>
 																	<td>
-																		<input type="text" name="tanggal_pertemuan[]"  class="form-control col-md-7 col-xs-12">
+																		<input type="text" name="tanggal_pertemuan[]"  class="form-control col-md-7 col-xs-12" placeholder="dd-mm-yyyy">
 																	</td>
 																	<td>
 																		<input type="text" name="tema[]"  class="form-control col-md-7 col-xs-12 ">
@@ -1178,7 +1178,7 @@ $kode = KodeBagian::all();
 														<tr>
 															<td>{{$i+1}}</td>
 															<td>
-																<input type="text" name="tanggal_organisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['tanggal']}}">
+																<input type="text" name="tanggal_organisasi[]"  class="form-control col-md-7 col-xs-12" value="{{konversi_tanggal($organisasi['tanggal'])}}" placeholder="dd-mm-yyyy">
 															</td>
 															<td>
 																<input type="text" name="nama_organisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['nama_organisasi']}}">
@@ -1206,7 +1206,7 @@ $kode = KodeBagian::all();
 																<tr>
 																	<td>{{$j + $i}}</td>
 																	<td>
-																		<input type="text" name="tanggal_organisasi[]"  class="form-control col-md-7 col-xs-12">
+																		<input type="text" name="tanggal_organisasi[]"  class="form-control col-md-7 col-xs-12" placeholder="dd-mm-yyyy">
 																	</td>
 																	<td>
 																		<input type="text" name="nama_organisasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
@@ -1244,7 +1244,7 @@ $kode = KodeBagian::all();
 														<tr>
 															<td>{{$i+1}}</td>
 															<td>
-																<input type="text" name="tanggal_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['tanggal']}}">
+																<input type="text" name="tanggal_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{konversi_tanggal($publikasi['tanggal'])}}" placeholder="dd-mm-yyyy">
 															</td>
 															<td>
 																<input type="text" name="nama_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['nama_publikasi']}}">
@@ -1272,7 +1272,7 @@ $kode = KodeBagian::all();
 																<tr>
 																	<td>{{$j + $i}}</td>
 																	<td>
-																		<input type="text" name="tanggal_publikasi[]"  class="form-control col-md-7 col-xs-12">
+																		<input type="text" name="tanggal_publikasi[]"  class="form-control col-md-7 col-xs-12" placeholder="dd-mm-yyyy">
 																	</td>
 																	<td>
 																		<input type="text" name="nama_publikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
@@ -1320,7 +1320,7 @@ $kode = KodeBagian::all();
 														<tr>
 															<td>{{$i+1}}</td>
 															<td>
-																<input type="text" name="mulai_pengajar[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['tanggal_mulai']}}">
+																<input type="text" name="mulai_pengajar[]"  class="form-control col-md-7 col-xs-12" value="{{konversi_tanggal($pengajar['tanggal_mulai'])}}" placeholder="dd-mm-yyyy">
 															</td>
 															<td>
 																<input type="text" name="materi[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['materi']}}">
@@ -1351,7 +1351,7 @@ $kode = KodeBagian::all();
 																<tr>
 																	<td>{{$j + $i}}</td>
 																	<td>
-																		<input type="text" name="mulai_pengajar[]"  class="form-control col-md-7 col-xs-12">
+																		<input type="text" name="mulai_pengajar[]"  class="form-control col-md-7 col-xs-12" placeholder="dd-mm-yyyy">
 																	</td>
 																	<td>
 																		<input type="text" name="materi[]"  class="form-control col-md-7 col-xs-12">
@@ -1401,7 +1401,7 @@ $kode = KodeBagian::all();
 														<tr>
 															<td>{{$i+1}}</td>
 															<td>
-																<input type="text" name="tanggal_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['tanggal']}}">
+																<input type="text" name="tanggal_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{konversi_tanggal($penghargaan['tanggal'])}}" placeholder="dd-mm-yyyy">
 															</td>
 															<td>
 																<input type="text" name="nama_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['nama_penghargaan']}}">
@@ -1429,7 +1429,7 @@ $kode = KodeBagian::all();
 																<tr>
 																	<td>{{$j + $i}}</td>
 																	<td>
-																		<input type="text" name="tanggal_penghargaan[]"  class="form-control col-md-7 col-xs-12">
+																		<input type="text" name="tanggal_penghargaan[]"  class="form-control col-md-7 col-xs-12" placeholder="dd-mm-yyyy">
 																	</td>
 																	<td>
 																		<input type="text" name="nama_penghargaan[]"  class="form-control col-md-7 col-xs-12">
@@ -1471,7 +1471,7 @@ $kode = KodeBagian::all();
 			                        			<tr>
 			                        				<td>{{$i+1}}</td>
 			                        				<td>{{$mcu->mcu->pernyataan}}
-			                        					<input type="hidden" name="pernyataan[]" value="{{$mcu->pernyataan_id}}">
+			                        					<input type="hidden" name="pernyataan[{{$key}}]" value="{{$mcu->pernyataan_id}}">
 			                        				</td>
 			                        				<td>
 			                        					<?php $checked = ($mcu->nilai == '1')? 'checked' : ''; ?>
@@ -1519,8 +1519,16 @@ $kode = KodeBagian::all();
 		                        <div class="form-group">
 									<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">Tanda Tangan <span class="required">*</span>:</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input type="file" id="ttd" name="ttd"  class="form-control col-md-7 col-xs-12" value="{{$pegawai->ttd}}">
+										<input type="file" id="ttd" name="ttd"  class="form-control col-md-7 col-xs-12">
 										<p>Tanda Tangan harus berupa file .jpg / .png, dengan ukuran maksimum 1 MB</p>
+									</div>
+								</div>
+								* Untuk Projek Manager, Manager dan Staff Public Relation harap mengupload paraf
+								<div class="form-group">
+									<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">Paraf <span class="required">*</span>:</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<input type="file" id="ttd" name="paraf"  class="form-control col-md-7 col-xs-12">
+										<p>Paraf harus berupa file .jpg / .png, dengan ukuran maksimum 1 MB</p>
 									</div>
 								</div>
 		                      </div>

@@ -1,4 +1,5 @@
 <?php
+use App\Pegawai;
 
 function formatTanggalPanjang($tanggal) {
     $aBulan = array(1=> "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
@@ -8,8 +9,10 @@ function formatTanggalPanjang($tanggal) {
 }
 
 function konversi_tanggal($date){
-    list($y, $m, $d) = explode('-', $date);
-    return $d.'-'.$m.'-'.$y;
+    if($date != ''){
+        list($y, $m, $d) = explode('-', $date);
+        return $d.'-'.$m.'-'.$y;
+    }
 }
 
 function bulan($month){
@@ -43,6 +46,37 @@ function bulan($month){
     return $tanggal;   
 }
 
+function bulanRomawi($month){
+    Switch ($month){
+         case '01' : $tanggal="I";
+         Break;
+         case '02' : $tanggal="II";
+         Break;
+         case '03' : $tanggal="III";
+         Break;
+         case '04' : $tanggal="IV";
+         Break;
+         case '05' : $tanggal="V";
+         Break;
+         case '06' : $tanggal="VI";
+         Break;
+         case '07' : $tanggal="VII";
+         Break;
+         case '08' : $tanggal="VIII";
+         Break;
+         case '09' : $tanggal="IX";
+         Break;
+         case '10' : $tanggal="X";
+         Break;
+         case '11' : $tanggal="XI";
+         Break;
+         case '12' : $tanggal="XII";
+         Break;
+    }  
+
+    return $tanggal;   
+}
+
 function trim_text($input, $length, $ellipses = true, $strip_html = true) {
     //strip tags, if desired
     if ($strip_html) {
@@ -66,4 +100,33 @@ function trim_text($input, $length, $ellipses = true, $strip_html = true) {
     return $trimmed_text;
 }
 
+function getPM()
+{
+    $pm = Pegawai::where('posisi_id',1)->first();
+
+    return $pm;
+}
+
+function getManager($kode)
+{
+    $manager = Pegawai::where('kode_bagian',$kode)->whereHas('user',function ($q){
+                $q->where('role_id', 3);
+            })->first();
+
+    return $manager;
+}
+
+function getManagerSDM($kode)
+{
+    $manager = Pegawai::where('kode_bagian',$kode)->whereHas('user',function ($q){
+                $q->where('role_id', 4);
+            })->first();
+
+    return $manager;
+}
+
+function getPublicRelation()
+{
+    $manager = \Pegawai::where('posisi_id',24)->first();
+}
 ?>

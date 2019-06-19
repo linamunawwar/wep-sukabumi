@@ -189,31 +189,64 @@ class DisposisiController extends Controller
         $disposisi = Disposisi::find($id);
 
         $tugass = DisposisiTugas::where('disposisi_id',$id)->where('soft_delete',0)->get();
-        
+        $pm['status']='';
+        $som['status']='';
+        $splem['status']='';
+        $qc['status']='';
+        $sem['status']='';
+        $scarm['status']='';
+        $sam['status']='';
+        $hse['status']='';
+        $hm['status']='';
         foreach ($tugass as $key => $tugas) {
 
-            if($tugas->tugas == 'Diketahui'){
-                $diketahui['posisi_id'] = $tugas->posisi_id;
-                $diketahui['status'] = $tugas->status;
+            if($tugas->posisi_id == 1){
+                $pm['status'] = $tugas->status;
+                $pm['done_at'] = $tugas->done_at;
             }
 
-            if($tugas->tugas == 'Diselesaikan'){
-                $diselesaikan['posisi_id'] = $tugas->posisi_id;
-                $diselesaikan['status'] = $tugas->status;
+            if($tugas->posisi_id == 8){
+                $som['status'] = $tugas->status;
+                $som['done_at'] = $tugas->done_at;
             }
 
-            if($tugas->tugas == 'Diproses'){
-                $diproses['posisi_id'] = $tugas->posisi_id;
-                $diproses['status'] = $tugas->status;
+            if($tugas->posisi_id == 7){
+                $splem['status'] = $tugas->status;
+                $splem['done_at'] = $tugas->done_at;
             }
             
-            if($tugas->tugas == 'Diperiksa'){
-                $diperiksa['posisi_id'] = $tugas->posisi_id;
-                $diperiksa['status'] = $tugas->status;
+            if($tugas->posisi_id == 2){
+                $qc['status'] = $tugas->status;
+                $qc['done_at'] = $tugas->done_at;
+            }
+
+            if($tugas->posisi_id == 4){
+                $sem['status'] = $tugas->status;
+                $sem['done_at'] = $tugas->done_at;
+            }
+
+            if($tugas->posisi_id == 5){
+                $scarm['status'] = $tugas->status;
+                $scarm['done_at'] = $tugas->done_at;
+            }
+
+            if($tugas->posisi_id == 7){
+                $sam['status'] = $tugas->status;
+                $sam['done_at'] = $tugas->done_at;
+            }
+
+            if($tugas->posisi_id == 3){
+                $hse['status'] = $tugas->status;
+                $hse['done_at'] = $tugas->done_at;
+            }
+
+            if($tugas->posisi_id == 24){
+                $hm['status'] = $tugas->status;
+                $hm['done_at'] = $tugas->done_at;
             }
         }
-
-        $pdf = PDF::loadView('admin.disposisi.unduh',['disposisi' => $disposisi, 'diketahui'=>$diketahui,'diselesaikan'=>$diselesaikan,'diproses'=>$diproses,'diperiksa'=>$diperiksa]);
+    
+        $pdf = PDF::loadView('admin.disposisi.unduh',['disposisi' => $disposisi, 'pm'=>$pm,'som'=>$som,'splem'=>$splem,'qc'=>$qc, 'sem'=>$sem, 'scarm'=>$scarm, 'sam'=>$sam, 'hse'=>$hse, 'hm'=>$hm]);
         $pdf->setPaper('legal', 'portrait');
         return $pdf->download('Disposisi_'.$disposisi->no_agenda.'.pdf');
         

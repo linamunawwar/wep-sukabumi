@@ -55,9 +55,9 @@ $kode = KodeBagian::all();
 								<div class="form-group">
 									<label class="control-label col-md-4 col-sm-4 col-xs-12">Gender</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										@if($pegawai->gender == 'P')
+										@if(Auth::user()->pegawai->gender == 'P')
 											<p class="data">Pria</p>
-										@elseif($pegawai->gender == 'W')
+										@elseif(Auth::user()->pegawai->gender == 'W')
 											<p class="data">Wanita</p>
 										@endif
 
@@ -66,7 +66,7 @@ $kode = KodeBagian::all();
 								<div class="form-group">
 									<label for="tgl_lahir" class="control-label col-md-4 col-sm-4 col-xs-12">Tanggal Lahir *</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<p class="data">{{konversi_tanggal($pegawai->tanggal_lahir)}}</p>
+										<p class="data">{{konversi_tanggal(Auth::user()->pegawai->tanggal_lahir)}}</p>
 									</div>
 								</div>
 								<div class="form-group">
@@ -78,7 +78,50 @@ $kode = KodeBagian::all();
 								<div class="ln_solid"></div>
 							</form>
 						</div>
-					@else
+					@elseif(Auth::user()->pegawai->is_new == 0 && Auth::user()->pegawai->is_active == 0 )
+						<div class="x_content">
+							<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+								<div class="x_title">
+									<h4>Data Pribadi </h4>
+									<div class="alert alert-danger alert-dismissible fade in" role="alert">
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+										</button>
+										<strong>Akun Belum Diverifikasi!</strong> Harap Tunggu Sampai Akun anda diaktifkan oleh admin.
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Nama Karyawan: <span class="required">*</span></label>
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<p class="data">{{Auth::user()->name}}</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-4 col-sm-4 col-xs-12">Gender</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										@if(Auth::user()->pegawai->gender == 'P')
+											<p class="data">Pria</p>
+										@elseif(Auth::user()->pegawai->gender == 'W')
+											<p class="data">Wanita</p>
+										@endif
+
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="tgl_lahir" class="control-label col-md-4 col-sm-4 col-xs-12">Tanggal Lahir *</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<p class="data">{{konversi_tanggal(Auth::user()->pegawai->tanggal_lahir)}}</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nip">NIP <span class="required">*</span>:</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<p class="data">{{Auth::user()->pegawai_id}}</p>
+									</div>
+								</div>
+								<div class="ln_solid"></div>
+							</form>
+						</div>
+					@elseif(Auth::user()->pegawai->is_new == 1 && Auth::user()->pegawai->is_active == 1 )
 						<div class="x_content">
 							<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 								<div class="x_title">

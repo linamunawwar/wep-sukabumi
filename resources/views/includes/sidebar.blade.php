@@ -15,6 +15,14 @@
                             <span class="label label-success pull-right">Flag</span>
                         </a>
                     </li>
+                    @if(Auth::user()->role_id == 5)
+                        <li>
+                        <a href="{{url('user/pegawai')}}">
+                            <i class="fa fa-list"></i>
+                            Data Diri
+                        </a>
+                    </li>
+                    @endif
                     <li><a><i class="fa fa-users"></i> Pegawai <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             @if(Auth::user()->role_id == 1) 

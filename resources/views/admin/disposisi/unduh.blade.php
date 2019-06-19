@@ -113,10 +113,20 @@
 					</div>
 				</td>
 				<td>
-					<div style="border: 2px solid black; width: 50px; height: 30px;"></div>
+					<div style="border: 2px solid black; width: 50px; height: 30px;">
+						@if($pm['status'] == 1)
+							<?php $dt_pm = getPM(); ?>
+							<img src="{{ asset('upload/pegawai/'.$dt_pm->nip.'/paraf.png')}}" style=" height: 27px; width: 47px; margin-bottom: 0; padding: 0;">
+						@endif
+					</div>
 				</td>
 				<td>
-					<div style="border: 2px solid black; width: 100px; height: 30px; margin-left: 30px;"></div>
+					<div style="border: 2px solid black; width: 110px; height: 30px; margin-left: 5px;padding-top: 7px;" align="center">
+						@if($pm['status'] == 1)
+							<?php $tanggal = explode(' ',$pm['done_at']); ?>
+							{{konversi_tanggal($tanggal[0])}}
+						@endif
+					</div>
 				</td>
 			</tr>
 			<tr>
@@ -150,10 +160,20 @@
 					</div>
 				</td>
 				<td>
-					<div style="border: 2px solid black; width: 50px; height: 30px;"></div>
+					<div style="border: 2px solid black; width: 50px; height: 30px;">
+						@if($som['status'] == 1)
+							<?php $dt_som = getManager('SO'); ?>
+							<img src="{{ asset('upload/pegawai/'.$dt_som->nip.'/paraf.png')}}" style="height: 27px; width: 47px; margin-bottom: 0; padding: 0;">
+						@endif
+					</div>
 				</td>
 				<td>
-					<div style="border: 2px solid black; width: 100px; height: 30px; margin-left: 30px;"></div>
+					<div style="border: 2px solid black; width: 110px; height: 30px; margin-left: 5px;padding-top: 7px;" align="center">
+						@if($som['status'] == 1)
+							<?php $tanggal = explode(' ',$som['done_at']); ?>
+							{{konversi_tanggal($tanggal[0])}}
+						@endif
+					</div>
 				</td>
 			</tr>
 			<tr>
@@ -187,10 +207,20 @@
 					</div>
 				</td>
 				<td>
-					<div style="border: 2px solid black; width: 50px; height: 30px;"></div>
+					<div style="border: 2px solid black; width: 50px; height: 30px;">
+						@if($splem['status'] == 1)
+							<?php $dt_splem = getManager('SL'); ?>
+							<img src="{{ asset('upload/pegawai/'.$dt_splem->nip.'/paraf.png')}}" style="height: 27px; width: 47px; margin-bottom: 0; padding: 0;">
+						@endif
+					</div>
 				</td>
 				<td>
-					<div style="border: 2px solid black; width: 100px; height: 30px; margin-left: 30px;"></div>
+					<div style="border: 2px solid black; width: 110px; height: 30px; margin-left: 5px;padding-top: 7px;" align="center">
+						@if($splem['status'] == 1)
+							<?php $tanggal = explode(' ',$splem['done_at']); ?>
+							{{konversi_tanggal($tanggal[0])}}
+						@endif
+					</div>
 				</td>
 			</tr>
 			<tr>
@@ -224,10 +254,20 @@
 					</div>
 				</td>
 				<td>
-					<div style="border: 2px solid black; width: 50px; height: 30px;"></div>
+					<div style="border: 2px solid black; width: 50px; height: 30px;">
+						@if($qc['status'] == 1)
+							<?php $dt_qc = getManager('QC'); ?>
+							<img src="{{ asset('upload/pegawai/'.$dt_qc->nip.'/paraf.png')}}" style="height: 27px; width: 47px; margin-bottom: 0; padding: 0;">
+						@endif
+					</div>
 				</td>
 				<td>
-					<div style="border: 2px solid black; width: 100px; height: 30px; margin-left: 30px;"></div>
+					<div style="border: 2px solid black; width: 110px; height: 30px; margin-left: 5px;padding-top: 7px;" align="center">
+						@if($qc['status'] == 1)
+							<?php $tanggal = explode(' ',$qc['done_at']); ?>
+							{{konversi_tanggal($tanggal[0])}}
+						@endif
+					</div>
 				</td>
 			</tr>
 			<tr>
@@ -261,47 +301,67 @@
 					</div>
 				</td>
 				<td>
-					<div style="border: 2px solid black; width: 50px; height: 30px;"></div>
+					<div style="border: 2px solid black; width: 50px; height: 30px;">
+						@if($sem['status'] == 1)
+							<?php $dt_sem = getManager('SE'); ?>
+							<img src="{{ asset('upload/pegawai/'.$dt_sem->nip.'/paraf.png')}}" style="height: 27px; width: 47px; margin-bottom: 0; padding: 0;">
+						@endif
+					</div>
 				</td>
 				<td>
-					<div style="border: 2px solid black; width: 100px; height: 30px; margin-left: 30px;"></div>
+					<div style="border: 2px solid black; width: 110px; height: 30px; margin-left: 5px;padding-top: 7px;" align="center">
+						@if($sem['status'] == 1)
+							<?php $tanggal = explode(' ',$sem['done_at']); ?>
+							{{konversi_tanggal($tanggal[0])}}
+						@endif
+					</div>
 				</td>
 			</tr>
 			<tr>
-				<td width="40">* SCM</td>
+				<td width="40">* SCARM</td>
 				<td>
 					<div style="border: 2px solid black; width: 20px; height: 30px; margin: 0; padding-top: 5px;" align="center">
-						@if($disposisi->SCM == 'Diketahui')
+						@if($disposisi->SCARM == 'Diketahui')
 							v
 						@endif
 					</div>
 				</td>
 				<td>
 					<div style="border: 2px solid black; width: 20px; height: 30px; margin: 0; padding-top: 5px;" align="center">
-						@if($disposisi->SCM == 'Diselesaikan')
+						@if($disposisi->SCARM == 'Diselesaikan')
 							v
 						@endif
 					</div>
 				</td>
 				<td>
 					<div style="border: 2px solid black; width: 20px; height: 30px; margin: 0; padding-top: 5px;" align="center">
-						@if($disposisi->SCM == 'Diproses')
+						@if($disposisi->SCARM == 'Diproses')
 							v
 						@endif
 					</div>
 				</td>
 				<td>
 					<div style="border: 2px solid black; width: 20px; height: 30px; margin: 0; padding-top: 5px;" align="center">
-						@if($disposisi->SCM == 'Diperiksa')
+						@if($disposisi->SCARM == 'Diperiksa')
 							v
 						@endif
 					</div>
 				</td>
 				<td>
-					<div style="border: 2px solid black; width: 50px; height: 30px;"></div>
+					<div style="border: 2px solid black; width: 50px; height: 30px;">
+						@if($scarm['status'] == 1)
+							<?php $dt_scarm = getManager('SC'); ?>
+							<img src="{{ asset('upload/pegawai/'.$dt_scarm->nip.'/paraf.png')}}" style="height: 27px; width: 47px; margin-bottom: 0; padding: 0;">
+						@endif
+					</div>
 				</td>
 				<td>
-					<div style="border: 2px solid black; width: 100px; height: 30px; margin-left: 30px;"></div>
+					<div style="border: 2px solid black; width: 110px; height: 30px; margin-left: 5px;padding-top: 7px;" align="center">
+						@if($scarm['status'] == 1)
+							<?php $tanggal = explode(' ',$scarm['done_at']); ?>
+							{{konversi_tanggal($tanggal[0])}}
+						@endif
+					</div>
 				</td>
 			</tr>
 			<tr>
@@ -335,10 +395,20 @@
 					</div>
 				</td>
 				<td>
-					<div style="border: 2px solid black; width: 50px; height: 30px;"></div>
+					<div style="border: 2px solid black; width: 50px; height: 30px;">
+						@if($sam['status'] == 1)
+							<?php $dt_sam = getManager('SA'); ?>
+							<img src="{{ asset('upload/pegawai/'.$dt_sam->nip.'/paraf.png')}}" style="height: 27px; width: 47px; margin-bottom: 0; padding: 0;">
+						@endif
+					</div>
 				</td>
 				<td>
-					<div style="border: 2px solid black; width: 100px; height: 30px; margin-left: 30px;"></div>
+					<div style="border: 2px solid black; width: 110px; height: 30px; margin-left: 5px;padding-top: 7px;" align="center">
+						@if($sam['status'] == 1)
+							<?php $tanggal = explode(' ',$sam['done_at']); ?>
+							{{konversi_tanggal($tanggal[0])}}
+						@endif
+					</div>
 				</td>
 			</tr>
 			<tr>
@@ -372,10 +442,20 @@
 					</div>
 				</td>
 				<td>
-					<div style="border: 2px solid black; width: 50px; height: 30px;"></div>
+					<div style="border: 2px solid black; width: 50px; height: 30px;">
+						@if($hse['status'] == 1)
+							<?php $dt_hse = getManager('HS'); ?>
+							<img src="{{ asset('upload/pegawai/'.$dt_hse->nip.'/paraf.png')}}" style="]height: 27px; width: 47px; margin-bottom: 0; padding: 0;">
+						@endif
+					</div>
 				</td>
 				<td>
-					<div style="border: 2px solid black; width: 100px; height: 30px; margin-left: 30px;"></div>
+					<div style="border: 2px solid black; width: 110px; height: 30px; margin-left: 5px;padding-top: 7px;" align="center">
+						@if($hse['status'] == 1)
+							<?php $tanggal = explode(' ',$hse['done_at']); ?>
+							{{konversi_tanggal($tanggal[0])}}
+						@endif
+					</div>
 				</td>
 			</tr>
 			<tr>
@@ -409,10 +489,20 @@
 					</div>
 				</td>
 				<td>
-					<div style="border: 2px solid black; width: 50px; height: 30px;"></div>
+					<div style="border: 2px solid black; width: 50px; height: 30px;">
+						@if($hm['status'] == 1)
+							<?php $dt_hm = getPublicRelation(); ?>
+							<img src="{{ asset('upload/pegawai/'.$dt_hm->nip.'/paraf.png')}}" style="height: 27px; width: 47px; margin-bottom: 0; padding: 0;">
+						@endif
+					</div>
 				</td>
 				<td>
-					<div style="border: 2px solid black; width: 100px; height: 30px; margin-left: 30px;"></div>
+					<div style="border: 2px solid black; width: 110px; height: 30px; margin-left: 5px;padding-top: 7px;" align="center">
+						@if($hm['status'] == 1)
+							<?php $tanggal = explode(' ',$hm['done_at']); ?>
+							{{konversi_tanggal($tanggal[0])}}
+						@endif
+					</div>
 				</td>
 			</tr>
 		</table>

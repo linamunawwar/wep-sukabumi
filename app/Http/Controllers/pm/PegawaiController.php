@@ -72,7 +72,7 @@ class PegawaiController extends Controller
        $pecat['verify_pm_time'] = date('Y-m-d H:i:s');
 
        $update = Pecat::where('nip',$nip)->update($pecat);
-       $non_aktif = Pegawai::where('nip',$nip)->update(['is_active'=>0]);
+       $non_aktif = Pegawai::where('nip',$nip)->update(['is_active'=>0,'soft_delete'=>1]);
 
        return redirect('/pm/pegawai/pecat');
     }
@@ -99,7 +99,7 @@ class PegawaiController extends Controller
        $resign['verify_pm_time'] = date('Y-m-d H:i:s');
 
        $update = Resign::where('nip',$nip)->update($resign);
-       $non_aktif = Pegawai::where('nip',$nip)->update(['is_active'=>0]);
+       $non_aktif = Pegawai::where('nip',$nip)->update(['is_active'=>0,'soft_delete'=>1]);
 
        return redirect('/pm/pegawai/resign');
     }

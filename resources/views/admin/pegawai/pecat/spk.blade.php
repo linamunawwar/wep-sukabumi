@@ -44,12 +44,18 @@
 <div style="text-align: center;">
   <h3 style="font-family: "Times New Roman";">Surat Pengalaman Kerja</h3>
 </div>
+<?php
+  $jml_resign = env("USER_OUT");
+  $jml = $jml_resign + 1;
+  $kode = env("KODE_PROYEK");
+  $pm = getPM();
+?>
 <div style="text-align: left;">
   <table>
     <tr>
       <td>Nomor</td>
       <td>:</td>
-      <td>001/SKPK/WK/    /IV/{{date('Y')}}</td>
+      <td>{{jml}}/SKPK/WK/{{kode}}/{{bulan_romawi(date('M'))}}/{{date('Y')}}</td>
     </tr>
     <tr>
       <td>Lampiran</td>
@@ -119,6 +125,6 @@ Demikian surat ini dibuat untuk dipergunakan sebagaimana mestinya. <br>
 Project Manager<br>
 Jalan Tol Becakayu Seksi 2A Ujung
 <br><br>
-<img src="{{asset('public/img/ttd_pm.jpg')}}" style="width: 220px; height: 60px;">
+<img src="{{asset('upload/'.$pm->nip.'/'.$pm->ttd.'')}}" style="width: 220px; height: 60px;">
 <br>
 Waskito Adi
