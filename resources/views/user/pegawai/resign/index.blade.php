@@ -48,7 +48,7 @@
 										</td>
 										<td style="text-align: center;">
 											@if($resign->is_verif_pm == 1)
-												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  SPK</a>
+												<a href="{{'resign/spk/'.$resign->id.''}}" class="btn btn-success btn-xs"><i class="fa fa-download"></i>  SPK</a>
 											@else
 												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  SPK</a>
 												<!-- <a class="btn btn-success btn-xs"><i class="fa fa-edit"></i>  Edit</a> -->

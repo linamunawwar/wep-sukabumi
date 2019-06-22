@@ -15,7 +15,7 @@
                             <span class="label label-success pull-right">Flag</span>
                         </a>
                     </li>
-                    @if(Auth::user()->role_id == 5)
+                    @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5)) 
                         <li>
                         <a href="{{url('user/pegawai')}}">
                             <i class="fa fa-list"></i>

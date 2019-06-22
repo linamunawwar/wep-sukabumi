@@ -52,7 +52,7 @@
     <tr>
       <td>Nomor</td>
       <td>:</td>
-      <td>{{$pecat->no_surat}}</td>
+      <td>{{$resign->no_surat}}</td>
     </tr>
     <tr>
       <td>Lampiran</td>
@@ -74,17 +74,17 @@ Dengan ini kami dari PT. Waskita Karya (Persero), Tbk Proyek Jalan Tol Becakayu 
   <tr>
     <td>Nama</td>
     <td>:</td>
-    <td>{{$pecat->pegawai->nama}}</td>
+    <td>{{$resign->pegawai->nama}}</td>
   </tr>
   <tr>
     <td>Tempat, Tanggal Lahir</td>
     <td>:</td>
-    <td>{{$pecat->pegawai->tempat_lahir}}, {{konversi_tanggal($pecat->pegawai->tanggal_lahir)}}</td>
+    <td>{{$resign->pegawai->tempat_lahir}}, {{konversi_tanggal($resign->pegawai->tanggal_lahir)}}</td>
   </tr>
   <tr>
     <td>Jabatan</td>
     <td>:</td>
-    <td>{{$pecat->pegawai->posisi->posisi}}</td>
+    <td>{{$resign->pegawai->posisi->posisi}}</td>
   </tr>
   <tr>
     <td>Penugasan</td>
@@ -94,18 +94,18 @@ Dengan ini kami dari PT. Waskita Karya (Persero), Tbk Proyek Jalan Tol Becakayu 
   <tr>
     <td>Tanggal Masuk Kerja</td>
     <td>:</td>
-    <td>{{$pecat->pegawai->tanggal_masuk}}</td>
+    <td>{{$resign->pegawai->tanggal_masuk}}</td>
   </tr>
   <tr>
     <td>Status</td>
     <td>:</td>
-    @if($pecat->pegawai->status_pegawai == 'PT')
+    @if($resign->pegawai->status_pegawai == 'PT')
       <td>Pegawai Tetap</td>
-    @elseif($pecat->pegawai->status_pegawai == 'PTT')
+    @elseif($resign->pegawai->status_pegawai == 'PTT')
       <td>Pegawai Tidak Tetap</td>
-    @elseif($pecat->pegawai->status_pegawai == 'OS')
+    @elseif($resign->pegawai->status_pegawai == 'OS')
       <td>Outsourcing</td>
-    @elseif($pecat->pegawai->status_pegawai == 'Harian')
+    @elseif($resign->pegawai->status_pegawai == 'Harian')
       <td>Harian</td>
     @endif
   </tr>
@@ -113,7 +113,7 @@ Dengan ini kami dari PT. Waskita Karya (Persero), Tbk Proyek Jalan Tol Becakayu 
 <br>
 Benar-benar telah bekerja di PT. Waskita Karya (Persero), Tbk Proyek Jalan Tol Becakayu Seksi 2A Ujung dalam kurun waktu:
 <br><br>
-{{konversi_tanggal($pecat->pegawai->tanggal_masuk)}} sampai dengan {{konversi_tanggal($pecat->pegawai->tanggal_keluar)}}
+{{konversi_tanggal($resign->pegawai->tanggal_masuk)}} sampai dengan {{konversi_tanggal($resign->pegawai->tanggal_keluar)}}
 <br><br>
 Yang bersangkutan telah memberikan kontribusi yang baik bagi perusahaan dan selama bekerja tidak pernah melakukan perbuatan yang merugikan perusahaan kami.<br><br>
 Kami berterima kasih atas semua kerjasama yang telah diberikan selama ini dan semoga yang bersangkutan dapat lebih sukses dan berhasil dimasa mendatang.<br><br>

@@ -42,7 +42,7 @@
 										<td style="text-align: center;">
 											<a class="btn btn-default btn-xs" href="{{url('admin/surat_masuk/edit/'.$surat->id.'')}}"><i class="fa fa-edit"></i>  Edit</a> 
 											<a class="btn btn-danger btn-xs" href="{{url('admin/surat_masuk/delete/'.$surat->id.'')}}"><i class="fa fa-trash"></i>  Delete</a> 
-											<button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Surat</button>
+											<a class="btn btn-success btn-xs" href="{{url('admin/surat_masuk/unduh/'.$surat->id.'')}}"><i class="fa fa-download"></i>  Surat</a>
 										</td>
 									</tr>
 								@endforeach

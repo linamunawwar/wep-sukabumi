@@ -127,6 +127,30 @@ function getManagerSDM($kode)
 
 function getPublicRelation()
 {
-    $manager = \Pegawai::where('posisi_id',24)->first();
+    $hr = \Pegawai::where('posisi_id',24)->first();
+
+    return $hr;
+}
+
+function setEnvironmentValue($envKey, $envValue)
+{
+    $envFile = app()->environmentFilePath();
+    $str = file_get_contents($envFile);
+
+    $oldValue = env("{$envKey}");
+
+    $str = str_replace("{$envKey}={$oldValue}", "{$envKey}={$envValue}", $str);
+    $fp = fopen($envFile, 'w');
+    fwrite($fp, $str);
+    fclose($fp);
+}
+
+function tigadigit($value){
+    $length = strlen($value);
+    if($length == 1){
+        return '00'.$value;
+    }elseif($length == 2){
+        return '0'.$value;
+    }
 }
 ?>

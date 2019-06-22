@@ -96,6 +96,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/spj/create', 'admin\SpjController@getCreate');
 		Route::post('/spj/create', 'admin\SpjController@postCreate');
 		Route::get('/spj/approve/{id}', 'admin\SpjController@getApprove');
+		Route::get('/spj/unduh/{id}', 'admin\SpjController@getUnduh');
 
 		//disposisi
 		Route::get('/surat_masuk', 'admin\DisposisiController@indexSuratMasuk');
@@ -104,6 +105,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/surat_masuk/edit/{id}', 'admin\DisposisiController@getEditSuratMasuk');
 		Route::post('/surat_masuk/edit/{id}', 'admin\DisposisiController@postEditSuratMasuk');
 		Route::get('/surat_masuk/delete/{id}', 'admin\DisposisiController@getDeleteSuratMasuk');
+		Route::get('/surat_masuk/unduh/{id}', 'admin\DisposisiController@getUnduhSuratMasuk');
 
 		Route::get('/disposisi', 'admin\DisposisiController@index');
 		Route::get('/disposisi/create', 'admin\DisposisiController@getCreate');
@@ -157,6 +159,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pegawai/resign', 'user\PegawaiController@getResign');
 		Route::get('/pegawai/resign/create', 'user\PegawaiController@getCreateResign');
 		Route::post('/pegawai/resign/create', 'user\PegawaiController@postCreateResign');
+		Route::get('/pegawai/resign/spk/{id}', 'user\PegawaiController@getUnduhSPK');
 
 		//Cuti
 		Route::get('/cuti', 'user\CutiController@index');

@@ -34,7 +34,7 @@
 				
 				<div>
 					{!! BootForm::submit('Log in', ['class' => 'btn btn-default submit']) !!}
-					<a class="reset_pass" href="{{  url('/password/reset') }}">Lost your password ?</a>
+					<a class="reset_pass" href="{{  url('/password/reset') }}" style="display: none;">Lost your password ?</a>
 				</div>
                     
 				<div class="clearfix"></div>

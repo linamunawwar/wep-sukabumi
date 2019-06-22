@@ -66,11 +66,17 @@ class PegawaiController extends Controller
     {
       date_default_timezone_set("Asia/Jakarta");
       
+       $kode = env("KODE_PROYEK");
+      $jml_resign = env("USER_OUT");
+      $jml = (int)$jml_resign + 1;
+      setEnvironmentValue('USER_OUT',$jml);
+
       $nip = \Input::get('nip');
        $pecat['is_verif_pm'] = 1;
        $pecat['verif_pm_by'] = \Auth::user()->id;
        $pecat['verify_pm_time'] = date('Y-m-d H:i:s');
 
+       $pecat['no_surat'] = tigadigit($jml).'/SKPK/WK/'.$kode.'/'.bulanRomawi(date('m')).'/'.date('Y');
        $update = Pecat::where('nip',$nip)->update($pecat);
        $non_aktif = Pegawai::where('nip',$nip)->update(['is_active'=>0,'soft_delete'=>1]);
 
@@ -93,11 +99,19 @@ class PegawaiController extends Controller
 
     public function postApproveResign($id)
     {
+      date_default_timezone_set("Asia/Jakarta");
+      
+      $kode = env("KODE_PROYEK");
+      $jml_resign = env("USER_OUT");
+      $jml = (int)$jml_resign + 1;
+      setEnvironmentValue('USER_OUT',$jml);
+
       $nip = \Input::get('nip');
        $resign['is_verif_pm'] = 1;
        $resign['verif_pm_by'] = \Auth::user()->id;
        $resign['verify_pm_time'] = date('Y-m-d H:i:s');
 
+       $resign['no_surat'] = tigadigit($jml).'/SKPK/WK/'.$kode.'/'.bulanRomawi(date('m')).'/'.date('Y');
        $update = Resign::where('nip',$nip)->update($resign);
        $non_aktif = Pegawai::where('nip',$nip)->update(['is_active'=>0,'soft_delete'=>1]);
 

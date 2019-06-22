@@ -14,4 +14,9 @@ class Spj extends Model
     {
         return $this->belongsTo('App\Pegawai','nip','nip');
     }
+
+    public function pegawaiTugas()
+    {
+        return $this->belongsTo('App\Pegawai','pemberi_tugas','nip');
+    }
 }

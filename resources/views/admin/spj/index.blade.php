@@ -15,7 +15,7 @@
 					<div class="x_title">
 						<h2>Daftar Pengajuan SPJ Pegawai</h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('admin/spj/create')}}"><button class="btn btn-primary"> <i class="fa fa-plus"></i>  Tambah Data</button></a></li>
+							<li style="display: none;"><a href="{{url('admin/spj/create')}}"><button class="btn btn-primary"> <i class="fa fa-plus"></i>  Tambah Data</button></a></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
@@ -46,7 +46,7 @@
 											<td style="text-align: center;"><span class="label label-success">Approved By Admin</span></td>
 											<td style="text-align: left;">
 												<a class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</a > 
-												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
+												<a class="btn btn-success btn-xs" href="{{url('admin/spj/unduh/'.$spj->id.'')}}"><i class="fa fa-download"></i>  Unduh</a>
 											</td>
 										@else
 											<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>

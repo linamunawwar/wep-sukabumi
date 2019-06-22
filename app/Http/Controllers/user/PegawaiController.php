@@ -106,7 +106,7 @@ class PegawaiController extends Controller
        $pegawai['telp_keluarga'] = $data['telp_keluarga'];
        if(\Input::hasfile('paraf')){
           $ori_file  = \Request::file('paraf');
-         $tujuan = "upload/".$nip;
+         $tujuan = "upload/pegawai/".$nip;
          $ekstension = $ori_file->getClientOriginalExtension();
 
           $nama_file = 'paraf.png';
@@ -114,13 +114,13 @@ class PegawaiController extends Controller
         $ori_file->move($tujuan,$nama_file);
        }
        $ori_file  = \Request::file('ttd');
-       $tujuan = "upload/".$nip;
+       $tujuan = "upload/pegawai".$nip;
        $ekstension = $ori_file->getClientOriginalExtension();
 
         $nama_file = 'ttd.'.$ekstension;
 
       $ori_file->move($tujuan,$nama_file);
-      $pegawai['ttd'] = $tujuan.'/'.$nama_file;
+      $pegawai['ttd'] = $nama_file;
        $pegawai['is_new'] = 0;
        $pegawai['is_active'] = '';
        $pegawai['is_verif_admin'] = 0;
@@ -574,5 +574,13 @@ class PegawaiController extends Controller
         $resign->save();
 
         return redirect('/user/pegawai/resign');
+    }
+
+    public function getUnduhSPK($id)
+    {
+      $resign = Resign::find($id);
+      $pdf = PDF::loadView('user.pegawai.resign.spk',['resign' => $resign]);
+      $pdf->setPaper('A4');
+      return $pdf->download('SPK_'.$resign->nip.'.pdf');
     }
 }

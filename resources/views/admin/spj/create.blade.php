@@ -17,7 +17,7 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
+						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">NIP <span class="required">*</span>:</label>
@@ -29,6 +29,29 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama Karyawan <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<p style="padding: 6px 12px;">{{Auth::user()->name}}</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">No. SPPD <span class="required">*</span>:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input type='text' value='009/SPPD/WK/2019' name='no_sppd' class='form-control' required="required" placeholder="" readonly="readonly" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Pemberi Tugas <span class="required">*</span>:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<select class="form-control pegawai" name="pemberi_tugas" required="required">
+										<option value="">Pilih Pemberi Tugas</option>
+										@foreach($pegawais as $pegawai)
+											<option value="{{$pegawai->nip}}">{{strtoupper($pegawai->nip)}} - {{$pegawai->nama}}</option>
+										@endforeach
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Kota / Tujuan <span class="required">*</span>:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input type='text' name='tujuan' class='form-control' required="required" placeholder="" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -85,7 +108,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Upload Surat Perintah *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="file" name="nominal" class="form-control col-md-7 col-xs-12">
+									<input type="file" name="lampiran" class="form-control col-md-7 col-xs-12" required="required">
 									mohon mengupload bukti perintah
 								</div>
 							</div>
