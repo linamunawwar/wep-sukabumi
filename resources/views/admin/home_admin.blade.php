@@ -11,35 +11,48 @@
 	    <div class="right_col" role="main">
 	    	<div class="row tile_count">
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
-					<span class="count_top"><i class="fa fa-user"></i> Pegawai Baru (CV)</span><br/>
-					<div class="count green">{{$pegawai}}</div>
-					<span class="count_bottom"><i class="green">Need To be Approved</i></span>
+					<a href="{{url('admin/pegawai')}}">
+						<span class="count_top"><i class="fa fa-user"></i> Pegawai Baru (CV)</span><br/>
+						<div class="count green">{{$pegawai}}</div>
+						<span class="count_bottom"><i class="green">Need To be Approved</i></span>
+					</a>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
-					<span class="count_top"><i class="fa fa-paper-plane"></i> Pesan Internal</span>
-					<div class="count green">{{$memo}}</div>
+					<a href="{{url('admin/memo')}}">
+						<span class="count_top"><i class="fa fa-paper-plane"></i> Pesan Internal</span>
+						<div class="count green">{{$memo}}</div>
+					</a>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
-					<span class="count_top"><i class="fa fa-sign-out"></i> Cuti</span>
-					<div class="count green">{{$cuti}}</div>
+					<a href="{{url('admin/cuti')}}">
+						<span class="count_top"><i class="fa fa-sign-out"></i> Cuti</span>
+						<div class="count green">{{$cuti}}</div>
+					</a>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
-					<span class="count_top"><i class="fa fa-sign-out"></i> SPJ</span>
-					<div class="count green">{{$spj}}</div>
-					<span class="count_bottom"><i class="green">Need To be Approved</i></span>
+					<a href="{{url('admin/spj')}}">
+						<span class="count_top"><i class="fa fa-sign-out"></i> SPJ</span>
+						<div class="count green">{{$spj}}</div>
+						<span class="count_bottom"><i class="green">Need To be Approved</i></span>
+					</a>
 				</div>
-				<div cla
-				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
-					<span class="count_top"><i class="fa fa-sign-out"></i> Pemberhentian Kerja</span>
-					<div class="count green">{{$pecat}}</div>
+				<div  class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
+					<a href="{{url('admin/pecat')}}">
+						<span class="count_top"><i class="fa fa-sign-out"></i> Pemberhentian Kerja</span>
+						<div class="count green">{{$pecat}}</div>
+					</a>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
-					<span class="count_top"><i class="fa fa-sign-out"></i> Resign</span>
-					<div class="count green">{{$resign}}</div>
+					<a href="{{url('admin/resign')}}">
+						<span class="count_top"><i class="fa fa-sign-out"></i> Resign</span>
+						<div class="count green">{{$resign}}</div>
+					</a>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
-					<span class="count_top"><i class="fa fa-sign-out"></i> Rencana Kebutuhan Pegawai</span>
-					<div class="count green">6</div>
+					<a href="{{url('admin/rkp')}}">
+						<span class="count_top"><i class="fa fa-sign-out"></i> Rencana Kebutuhan Pegawai</span>
+						<div class="count green">6</div>
+					</a>
 				</div>
 			</div>
 

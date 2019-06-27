@@ -83,7 +83,7 @@ class HomeController extends Controller
                         $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
                     })->count();
             $cuti_sdm = Cuti::where('is_verif_sdm',0)->where('soft_delete',0)->count();
-            $cuti = $cuti + $cuti_sdm
+            $cuti = $cuti + $cuti_sdm;
             $izin = Izin::where('is_verif_mngr',0)->where('soft_delete',0)
                     ->whereHas('pegawai',function ($q){
                         $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
@@ -95,7 +95,7 @@ class HomeController extends Controller
                         $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
                     })->count();
             $pecat_sdm = Pecat::where('is_verif_sdm',0)->where('soft_delete',0)->count();
-            $pecat = $pecat + $pecat_sdm
+            $pecat = $pecat + $pecat_sdm;
             $resign = Resign::where('is_verif_mngr',0)->where('soft_delete',0)
                     ->whereHas('pegawai',function ($q){
                         $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
