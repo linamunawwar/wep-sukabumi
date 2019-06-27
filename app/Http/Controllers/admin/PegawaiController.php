@@ -295,7 +295,7 @@ class PegawaiController extends Controller
        $bank['jiwasraya'] = $data['jiwasraya'];
        $bank['asuransi_lain'] = $data['nama_asuransi'];
        $bank['nomor_lain'] = $data['nomor_asuransi'];
-       $find_bank = BankAsuransi::where('nip',$data['nip'])->first()
+       $find_bank = BankAsuransi::where('nip',$data['nip'])->first();
        if($find_bank){
         $update_bank = BankAsuransi::where('nip',$data['nip'])->update($bank);
       }else{
