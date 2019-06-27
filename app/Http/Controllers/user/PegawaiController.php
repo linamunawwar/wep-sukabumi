@@ -88,7 +88,7 @@ class PegawaiController extends Controller
        $pegawai['nama'] = $data['nama'];
        $pegawai['gelar_depan'] = $data['gelar_depan'];
        $pegawai['gelar_belakang'] = $data['gelar_belakang'];
-       $pegawai['agama'] = $data['gelar_belakang'];
+       $pegawai['agama'] = $data['agama'];
        $pegawai['tempat_lahir'] = $data['tempat_lahir'];
        $pegawai['status_kawin'] = $data['status_kawin'];
        $pegawai['suami_istri'] = $data['suami_istri'];

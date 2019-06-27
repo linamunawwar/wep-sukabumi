@@ -273,7 +273,6 @@ class PegawaiController extends Controller
        $pegawai['alamat_keluarga'] = $data['alamat_keluarga'];
        $pegawai['telp_keluarga'] = $data['telp_keluarga'];
        $pegawai['is_new'] = 0;
-       $pegawai['is_active'] = 0;
        $pegawai['is_verif_admin'] = 0;
        $pegawai['verif_admin_by'] = '';
        $pegawai['verify_admin_time'] = '';
