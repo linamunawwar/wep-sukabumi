@@ -294,8 +294,23 @@ class PegawaiController extends Controller
        $bank['jiwasraya'] = $data['jiwasraya'];
        $bank['asuransi_lain'] = $data['nama_asuransi'];
        $bank['nomor_lain'] = $data['nomor_asuransi'];
-
-       $update_bank = BankAsuransi::where('nip',$data['nip'])->update($bank);
+       $find_bank = BankAsuransi::where('nip',$data['nip'])->first()
+       if($find_bank){
+        $update_bank = BankAsuransi::where('nip',$data['nip'])->update($bank);
+      }else{
+        $bank = new BankAsuransi;
+        $bank->nip = $data['nip'];
+         $bank->nama_bank = $data['nama_bank'];
+         $bank->no_rekening = $data['no_rek'];
+         $bank->npwp = $data['npwp'];
+         $bank->jamsostek = $data['jamsostek'];
+         $bank->dplk = $data['dplk'];
+         $bank->jiwasraya = $data['jiwasraya'];
+         $bank->asuransi_lain = $data['nama_asuransi'];
+         $bank->nomor_lain = $data['nomor_asuransi'];
+       
+        $bank->save();
+      }
 
        //-------------Pendidikan---------
         $del_pendidikan = Pendidikan::where('nip',$data['nip'])->delete();
