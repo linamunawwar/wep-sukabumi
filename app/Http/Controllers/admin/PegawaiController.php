@@ -261,6 +261,7 @@ class PegawaiController extends Controller
        $pegawai['suami_istri'] = $data['suami_istri'];
        $pegawai['alamat_tetap'] = $data['alamat_tetap'];
        $pegawai['anak'] = $data['anak'];
+       $pegawai['agama'] = $data['agama'];
        $pegawai['alamat_sementara'] = $data['alamat_sementara'];
        $pegawai['telp'] = $data['telp'];
        $pegawai['hp'] = $data['hp'];
