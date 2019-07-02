@@ -30,8 +30,9 @@ $kode = KodeBagian::all();
 							<a href="{{url('user/pegawai/edit_cv/'.Auth::user()->pegawai_id)}}" class="btn btn-primary"><i class="fa fa-edit"></i>  Edit CV</a>
 						</div>
 						<div class="pull-right">
-							<a href="" class="btn btn-success"><i class="fa fa-download"></i>    Download CV</a>
-							<a href="" class="btn btn-success"><i class="fa fa-download"></i>    Download MCU</a>
+							<a href="{{url('admin/pegawai/unduh_cv/'.Auth::user()->pegawai->id.'')}}" class="btn btn-success"><i class="fa fa-download"></i>    Download CV</a>
+							<a href="{{url('admin/pegawai/unduh_mcu/'.Auth::user()->pegawai->id.'')}}" class="btn btn-success"><i class="fa fa-download"></i>    Download MCU</a>
+							<a href="{{url('admin/pegawai/unduh_pkwt/'.Auth::user()->pegawai->id.'')}}" class="btn btn-success"><i class="fa fa-download"></i>    Download PKWT</a>
 						</div>
 						<div class="clearfix"></div>
 					</div>

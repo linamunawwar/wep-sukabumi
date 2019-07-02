@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/pegawai/edit_cv/{id}','admin\PegawaiController@postEditCV');
 		Route::get('/pegawai/unduh_cv/{id}','admin\PegawaiController@getUnduhCV');
 		Route::get('/pegawai/unduh_mcu/{id}','admin\PegawaiController@getUnduhMCU');
+		Route::get('/pegawai/unduh_pkwt/{id}','admin\PegawaiController@getUnduhPKWT');
 		Route::get('/pegawai/approve/{id}', 'admin\PegawaiController@getApprove');
 		Route::post('/pegawai/approve/{id}', 'admin\PegawaiController@postApprove');
 		Route::get('/pegawai/struktur', 'admin\PegawaiController@getStruktur');
@@ -155,6 +156,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pegawai', 'user\PegawaiController@index');
 		Route::get('/pegawai/edit_cv/{nip}', 'user\PegawaiController@getEditCV');
 		Route::post('/pegawai/edit_cv/{nip}','user\PegawaiController@postEditCV');
+		Route::get('/pegawai/unduh_cv/{id}','admin\PegawaiController@getUnduhCV');
+		Route::get('/pegawai/unduh_mcu/{id}','admin\PegawaiController@getUnduhMCU');
+		Route::get('/pegawai/unduh_pkwt/{id}','admin\PegawaiController@getUnduhPKWT');
 		Route::get('/pegawai/struktur', 'user\PegawaiController@getStruktur');
 		Route::get('/pegawai/resign', 'user\PegawaiController@getResign');
 		Route::get('/pegawai/resign/create', 'user\PegawaiController@getCreateResign');
@@ -194,6 +198,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pegawai', 'manager\PegawaiController@index');
 		Route::get('/pegawai/approve/{id}', 'manager\PegawaiController@getApprove');
 		Route::post('/pegawai/approve/{id}', 'manager\PegawaiController@postApprove');
+		Route::get('/pegawai/unduh_cv/{id}','admin\PegawaiController@getUnduhCV');
+		Route::get('/pegawai/unduh_mcu/{id}','admin\PegawaiController@getUnduhMCU');
+		Route::get('/pegawai/unduh_pkwt/{id}','admin\PegawaiController@getUnduhPKWT');
 		Route::get('/pegawai/struktur', 'manager\PegawaiController@getStruktur');
 
 		Route::get('/pegawai_non_aktif', 'manager\PegawaiController@indexNonAktif');
@@ -264,6 +271,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pegawai', 'pm\PegawaiController@index');
 		Route::get('/pegawai/approve/{id}', 'pm\PegawaiController@getApprove');
 		Route::post('/pegawai/approve/{id}', 'pm\PegawaiController@postApprove');
+		Route::get('/pegawai/unduh_cv/{id}','admin\PegawaiController@getUnduhCV');
+		Route::get('/pegawai/unduh_mcu/{id}','admin\PegawaiController@getUnduhMCU');
+		Route::get('/pegawai/unduh_pkwt/{id}','admin\PegawaiController@getUnduhPKWT');
 		Route::get('/pegawai/struktur', 'pm\PegawaiController@getStruktur');
 
 		Route::get('/pegawai_non_aktif', 'pm\PegawaiController@indexNonAktif');

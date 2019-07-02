@@ -9,7 +9,7 @@ function formatTanggalPanjang($tanggal) {
 }
 
 function konversi_tanggal($date){
-    if($date != ''){
+    if(($date != '') && ($date != null)){
         list($y, $m, $d) = explode('-', $date);
         return $d.'-'.$m.'-'.$y;
     }

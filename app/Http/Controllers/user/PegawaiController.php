@@ -84,8 +84,11 @@ class PegawaiController extends Controller
      public function postEditCV($nip)
     {
        $data = \Input::all();
+       $db = Pegawai::where('nip',$nip)->first();
 
        $pegawai['nama'] = $data['nama'];
+       $pegawai['no_ktp'] = $data['no_ktp'];
+       $pegawai['no_pkwt'] = tigadigit($db->id).'/PKWT/WK/INF2/BSTR-3/'.date('Y');
        $pegawai['gelar_depan'] = $data['gelar_depan'];
        $pegawai['gelar_belakang'] = $data['gelar_belakang'];
        $pegawai['agama'] = $data['agama'];
@@ -113,14 +116,17 @@ class PegawaiController extends Controller
 
         $ori_file->move($tujuan,$nama_file);
        }
-       $ori_file  = \Request::file('ttd');
-       $tujuan = "upload/pegawai".$nip;
-       $ekstension = $ori_file->getClientOriginalExtension();
+       if(\Input::hasfile('ttd')){
+         $ori_file  = \Request::file('ttd');
+         $tujuan = "upload/pegawai".$nip;
+         $ekstension = $ori_file->getClientOriginalExtension();
 
-        $nama_file = 'ttd.'.$ekstension;
+          $nama_file = 'ttd.'.$ekstension;
 
-      $ori_file->move($tujuan,$nama_file);
-      $pegawai['ttd'] = $nama_file;
+        $ori_file->move($tujuan,$nama_file);
+        $pegawai['ttd'] = $nama_file;
+      }
+      
        $pegawai['is_new'] = 0;
        $pegawai['is_active'] = '';
        $pegawai['is_verif_admin'] = 0;
@@ -186,8 +192,8 @@ class PegawaiController extends Controller
         for ($i=0; $i < sizeof($sertifikat_mulai) ; $i++) { 
           $sertifikat = new Sertifikat;
           $sertifikat->nip = $data['nip'];
-          $sertifikat->tanggal_mulai = konversi_tanggal($sertifikat_mulai[$i]);
-          $sertifikat->tanggal_akhir = konversi_tanggal($sertifikat_akhir[$i]);
+          $sertifikat->tanggal_mulai = $sertifikat_mulai[$i];
+          $sertifikat->tanggal_akhir = $sertifikat_akhir[$i];
           $sertifikat->sertifikat = $nama_sertifikat[$i];
           $sertifikat->no_sertifikat = $no_sertifikat[$i];
           $sertifikat->institusi = $institusi_sertifikat[$i];
@@ -211,7 +217,7 @@ class PegawaiController extends Controller
         for ($i=0; $i < sizeof($pelatihan_tanggal) ; $i++) { 
           $pelatihan = new PelatihanCV;
           $pelatihan->nip = $data['nip'];
-          $pelatihan->tanggal = konversi_tanggal($pelatihan_tanggal[$i]);
+          $pelatihan->tanggal = $pelatihan_tanggal[$i];
           $pelatihan->nama_pelatihan = $nama_pelatihan[$i];
           $pelatihan->tempat = $tempat_pelatihan[$i];
           $pelatihan->jam_hari = $jam_hari[$i];
@@ -236,8 +242,8 @@ class PegawaiController extends Controller
         for ($i=0; $i < sizeof($mulai_kerja) ; $i++) { 
           $pengalaman = new Pengalaman;
           $pengalaman->nip = $data['nip'];
-          $pengalaman->tanggal_mulai = konversi_tanggal($mulai_kerja[$i]);
-          $pengalaman->tanggal_akhir = konversi_tanggal($akhir_kerja[$i]);
+          $pengalaman->tanggal_mulai =$mulai_kerja[$i];
+          $pengalaman->tanggal_akhir = $akhir_kerja[$i];
           $pengalaman->nama_perusahaan = $nama_perusahaan[$i];
           $pengalaman->jabatan = $jabatan[$i];
           $pengalaman->keterangan = $keterangan[$i];
@@ -268,8 +274,8 @@ class PegawaiController extends Controller
         for ($i=0; $i < sizeof($mulai_tugas) ; $i++) { 
           $penugasan = new Penugasan;
           $penugasan->nip = $data['nip'];
-          $penugasan->tanggal_mulai = konversi_tanggal($mulai_tugas[$i]);
-          $penugasan->tanggal_akhir = konversi_tanggal($akhir_tugas[$i]);
+          $penugasan->tanggal_mulai = $mulai_tugas[$i];
+          $penugasan->tanggal_akhir = $akhir_tugas[$i];
           $penugasan->no_sk = $no_sk[$i];
           $penugasan->jabatan = $jabatan_tugas[$i];
           $penugasan->unit_kerja = $unit_kerja[$i];
@@ -301,7 +307,7 @@ class PegawaiController extends Controller
         for ($i=0; $i < sizeof($tanggal_presentasi) ; $i++) { 
           $presentasi = new KaryaIlmiah;
           $presentasi->nip = $data['nip'];
-          $presentasi->tanggal = konversi_tanggal($tanggal_presentasi[$i]);
+          $presentasi->tanggal = $tanggal_presentasi[$i];
           $presentasi->publikasi = 'presentasi';
           $presentasi->judul = $judul_presentasi[$i];
           $presentasi->tempat = $tempat_presentasi[$i];
@@ -329,7 +335,7 @@ class PegawaiController extends Controller
         for ($i=0; $i < sizeof($tanggal_nopresentasi) ; $i++) { 
           $nopresentasi = new KaryaIlmiah;
           $nopresentasi->nip = $data['nip'];
-          $nopresentasi->tanggal = konversi_tanggal($tanggal_nopresentasi[$i]);
+          $nopresentasi->tanggal = $tanggal_nopresentasi[$i];
           $nopresentasi->publikasi = 'nopresentasi';
           $nopresentasi->judul = $judul_nopresentasi[$i];
           $nopresentasi->tempat = $tempat_nopresentasi[$i];
@@ -357,7 +363,7 @@ class PegawaiController extends Controller
         for ($i=0; $i < sizeof($tanggal_nopublikasi) ; $i++) { 
           $nopublikasi = new KaryaIlmiah;
           $nopublikasi->nip = $data['nip'];
-          $nopublikasi->tanggal = konversi_tanggal($tanggal_nopublikasi[$i]);
+          $nopublikasi->tanggal = $tanggal_nopublikasi[$i];
           $nopublikasi->publikasi = 'nopublikasi';
           $nopublikasi->judul = $judul_nopublikasi[$i];
           $nopublikasi->tempat = $tempat_nopublikasi[$i];
@@ -386,7 +392,7 @@ class PegawaiController extends Controller
         for ($i=0; $i < sizeof($tanggal_pertemuan) ; $i++) { 
           $pertemuan = new Pertemuan;
           $pertemuan->nip = $data['nip'];
-          $pertemuan->tanggal = konversi_tanggal($tanggal_pertemuan[$i]);
+          $pertemuan->tanggal = $tanggal_pertemuan[$i];
           $pertemuan->tema = $tema[$i];
           $pertemuan->penyelenggara = $organisasi_penyelenggara[$i];
           $pertemuan->tempat = $tanggal_pertemuan[$i];
@@ -414,7 +420,7 @@ class PegawaiController extends Controller
         for ($i=0; $i < sizeof($tanggal_organisasi) ; $i++) { 
           $organisasi = new Organisasi;
           $organisasi->nip = $data['nip'];
-          $organisasi->tanggal = konversi_tanggal($tanggal_organisasi[$i]);
+          $organisasi->tanggal = $tanggal_organisasi[$i];
           $organisasi->nama_organisasi = $nama_organisasi[$i];
           $organisasi->tempat = $tempat_organisasi[$i];
           $organisasi->aktif_sebagai = $aktif_sebagai[$i];
@@ -441,7 +447,7 @@ class PegawaiController extends Controller
         for ($i=0; $i < sizeof($tanggal_publikasi) ; $i++) { 
           $publikasi = new Publikasi;
           $publikasi->nip = $data['nip'];
-          $publikasi->tanggal = konversi_tanggal($tanggal_organisasi[$i]);
+          $publikasi->tanggal = $tanggal_organisasi[$i];
           $publikasi->nama_organisasi = $nama_organisasi[$i];
           $publikasi->tempat = $tempat_organisasi[$i];
           $publikasi->aktif_sebagai = $aktif_sebagai[$i];
@@ -469,7 +475,7 @@ class PegawaiController extends Controller
         for ($i=0; $i < sizeof($mulai_pengajar) ; $i++) { 
           $pengajar = new TenagaPengajar;
           $pengajar->nip = $data['nip'];
-          $pengajar->tanggal_mulai = konversi_tanggal($mulai_pengajar[$i]);
+          $pengajar->tanggal_mulai = $mulai_pengajar[$i];
           $pengajar->materi = $materi[$i];
           $pengajar->institusi = $institusi[$i];
           $pengajar->tempat = $tempat_pengajar[$i];
@@ -497,7 +503,7 @@ class PegawaiController extends Controller
         for ($i=0; $i < sizeof($tanggal_penghargaan) ; $i++) { 
           $penghargaan = new Penghargaan;
           $penghargaan->nip = $data['nip'];
-          $penghargaan->tanggal_mulai = konversi_tanggal($tanggal_penghargaan[$i]);
+          $penghargaan->tanggal_mulai = $tanggal_penghargaan[$i];
           $penghargaan->nama_penghargaan = $nama_penghargaan[$i];
           $penghargaan->tempat = $tempat_penghargaan[$i];
           $penghargaan->jenis_penghargaan = $jenis_penghargaan[$i];

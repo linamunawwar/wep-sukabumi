@@ -710,6 +710,14 @@ class PegawaiController extends Controller
       return $pdf->download('MCU_'.$pegawai->nip.'.pdf');
     }
 
+    public function getUnduhPKWT($id)
+    {
+      $pegawai = Pegawai::find($id);
+      $pdf = PDF::loadView('admin.pegawai.unduh_pkwt',['pegawai' => $pegawai]);
+      $pdf->setPaper('A4');
+      return $pdf->download('PKWT_'.$pegawai->nip.'.pdf');
+    }
+
     public function getApprove($id)
     {
         $pegawai = Pegawai::find($id);

@@ -41,9 +41,9 @@
 										<td>{{$pegawai->user->pass_asli}}</td>
 										<td>
 											@if($pegawai->is_active == 1)
-												<a class="btn btn-success btn-xs" href="{{url('pm/unduhcv/'.$pegawai->nip.'')}}"><i class="fa fa-download"></i> CV </a>
-												<a class="btn btn-success btn-xs" href="{{url('pm/unduhmcu/'.$pegawai->nip.'')}}"><i class="fa fa-download"></i> MCU </a> 
-												<a class="btn btn-success btn-xs" href="{{url('pm/unduhpkwt/'.$pegawai->nip.'')}}"><i class="fa fa-download"></i> PKWT </a>
+												<a class="btn btn-success btn-xs" href="{{url('pm/pegawai/unduh_cv/'.$pegawai->nip.'')}}"><i class="fa fa-download"></i> CV </a>
+												<a class="btn btn-success btn-xs" href="{{url('pm/pegawai/unduh_mcu/'.$pegawai->nip.'')}}"><i class="fa fa-download"></i> MCU </a> 
+												<a class="btn btn-success btn-xs" href="{{url('pm/pegawai/unduh_pkwt/'.$pegawai->nip.'')}}"><i class="fa fa-download"></i> PKWT </a>
 											@else
 												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> CV </a>
 												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i> MCU </a> 

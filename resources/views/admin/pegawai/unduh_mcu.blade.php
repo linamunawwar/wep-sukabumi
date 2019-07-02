@@ -81,10 +81,12 @@ SEBELUM  BEKERJA</h3>
   <div style="width: 500px; border-bottom: 1px solid black;"></div>
   <div>
   <p>Saya menyatakan bahwa keterangan diatas saya isi dengan benar dan saya sadar bahwa kesalahan informasi yang saya berikan akan menyebabkan cacatnya sertifikat yang diberikan :<br><br>
-    Tanggal: {{konversi_tanggal(date('Y-m-d'))}}<br>
+    <?php 
+      $tanggal = explode(' ',$pegawai->created_at);
+    ?>
+    Tanggal: {{konversi_tanggal($tanggal[0])}}<br>
     Tanda Tangan<br></p>
-    <img src="{{ asset("public/img/ttd_staff1.png") }}" style="width: 70px; height: 50px;"/>
-    
+    <img src="{{asset('upload/pegawai/'.$pegawai->nip.'/'.$pegawai->ttd.'')}}" style="width: 70px; height: 50px;"/>
   </div>
 </div>
 </body>

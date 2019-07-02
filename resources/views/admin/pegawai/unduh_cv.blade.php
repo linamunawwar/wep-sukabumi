@@ -751,9 +751,13 @@
   </table>
   <b>*) Coret yang tidak perlu</b><br>
   <div style="float: right;">
-    Tanggal: {{konversi_tanggal(date('Y-m-d'))}}<br>
+    <?php 
+      $tanggal = explode(' ',$pegawai->created_at);
+    ?>
+    Tanggal: {{konversi_tanggal($tanggal[0])}}<br>
     Dibuat oleh :
-    <br><br><br><br>
+    <br><br>
+    <img src="{{asset('upload/pegawai/'.$pegawai->nip.'/'.$pegawai->ttd.'')}}" style="width: 220px; height: 60px;">
     ({{strtoupper($pegawai->nama)}})
   </div>
 </div>
