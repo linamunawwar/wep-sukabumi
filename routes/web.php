@@ -96,6 +96,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/spj', 'admin\SpjController@index');
 		Route::get('/spj/create', 'admin\SpjController@getCreate');
 		Route::post('/spj/create', 'admin\SpjController@postCreate');
+		Route::get('/spj/edit/{id}', 'user\SpjController@getEdit');
+		Route::post('/spj/edit/{id}', 'user\SpjController@postEdit');
 		Route::get('/spj/approve/{id}', 'admin\SpjController@getApprove');
 		Route::get('/spj/unduh/{id}', 'admin\SpjController@getUnduh');
 
@@ -190,6 +192,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/spj', 'user\SpjController@index');
 		Route::get('/spj/create', 'user\SpjController@getCreate');
 		Route::post('/spj/create', 'user\SpjController@postCreate');
+		Route::get('/spj/edit/{id}', 'user\SpjController@getEdit');
+		Route::post('/spj/edit/{id}', 'user\SpjController@postEdit');
+		Route::post('/spj/hitung', 'user\SpjController@hitungNominal');
 
 		
 	});

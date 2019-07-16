@@ -47,12 +47,14 @@
 											<td style="text-align: left;">
 												<a class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</a > 
 												<a class="btn btn-success btn-xs" href="{{url('admin/spj/unduh/'.$spj->id.'')}}"><i class="fa fa-download"></i>  Unduh</a>
+												<a class="btn btn-default btn-xs" href="{{url('admin/spj/edit/'.$spj->id.'')}}"><i class="fa fa-edit"></i>  Edit</a>
 											</td>
 										@else
 											<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
 											<td style="text-align: left;">
 												<a class="btn btn-success btn-xs" href="{{url('admin/spj/approve/'.$spj->id.'')}}"><i class="fa fa-check"></i>  Approve</a > 
 												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</a>
+												<a class="btn btn-default btn-xs" href="{{url('admin/spj/edit/'.$spj->id.'')}}"><i class="fa fa-edit"></i>  Edit</a>
 											</td>
 										@endif
 

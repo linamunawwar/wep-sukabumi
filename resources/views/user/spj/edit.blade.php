@@ -17,7 +17,7 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
+						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}" id="_token">
 							<div class="form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">NIP <span class="required">*</span>:</label>
@@ -34,7 +34,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">No. SPPD <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type='text' value='009/SPPD/WK/2019' name='no_sppd' class='form-control' required="required" placeholder="" readonly="readonly" />
+									<input type='text' value='{{$spj->no_sppd}}' name='no_sppd' class='form-control' required="required" placeholder="" readonly="readonly" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -43,7 +43,8 @@
 									<select class="form-control pegawai" name="pemberi_tugas" required="required">
 										<option value="">Pilih Pemberi Tugas</option>
 										@foreach($pegawais as $pegawai)
-											<option value="{{$pegawai->nip}}">{{strtoupper($pegawai->nip)}} - {{$pegawai->nama}}</option>
+											<?php $selected = ($spj->pemberi_tugas == $pegawai->nip)? 'selected': ''; ?>
+											<option value="{{$pegawai->nip}}" {{$selected}}>{{strtoupper($pegawai->nip)}} - {{$pegawai->nama}}</option>
 										@endforeach
 									</select>
 								</div>
@@ -53,7 +54,7 @@
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<div class='input-group date' id='datepicker' class="datepicker">
 										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
-						                <input type='text' value='' name='tanggal_berangkat' class='form-control' required="required" placeholder="" id="tanggal_berangkat" />
+						                <input type='text' value='{{konversi_tanggal($spj->tanggal_berangkat)}}' name='tanggal_berangkat' class='form-control' required="required" placeholder="" id="tanggal_berangkat" />
 						            </div>
 								</div>
 							</div>
@@ -62,7 +63,7 @@
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<div class='input-group date' id='datepicker2' class="datepicker">
 										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
-						                <input type='text' value='' name='tanggal_pulang' class='form-control' required="required" id="tanggal_pulang" />
+						                <input type='text' value='{{konversi_tanggal($spj->tanggal_pulang)}}' name='tanggal_pulang' class='form-control' required="required" id="tanggal_pulang" />
 						            </div>
 								</div>
 							</div>
@@ -71,18 +72,22 @@
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<div class="row">
 										<div class="col-md-4">
-											<input type="radio" id="angkutan" class="angkutan" name="angkutan" value="pesawat" > Pesawat Terbang
+											<?php $checked = ($spj->angkutan == 'pesawat')? 'checked': ''; ?>
+											<input type="radio" id="angkutan" class="angkutan" name="angkutan" value="pesawat" {{$checked}} > Pesawat Terbang
 										</div>
 										<div class="col-md-6">
-											<input type="radio" id="angkutan" class="angkutan" name="angkutan" value="kereta"> Kereta Api / Bus / Travel
+											<?php $checked = ($spj->angkutan == 'kereta')? 'checked': ''; ?>
+											<input type="radio" id="angkutan" class="angkutan" name="angkutan" value="kereta" {{$checked}}> Kereta Api / Bus / Travel
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-4">
-											<input type="radio" id="angkutan" class="angkutan" name="angkutan" value="dinas"> Kendaraan Dinas
+											<?php $checked = ($spj->angkutan == 'dinas')? 'checked': ''; ?>
+											<input type="radio" id="angkutan" class="angkutan" name="angkutan" value="dinas" {{$checked}}> Kendaraan Dinas
 										</div>
 										<div class="col-md-6">
-											<input type="radio" id="angkutan" class="angkutan" name="angkutan" value="pribadi"> Kendaraan Pribadi
+											<?php $checked = ($spj->angkutan == 'pribadi')? 'checked': ''; ?>
+											<input type="radio" id="angkutan" class="angkutan" name="angkutan" value="pribadi" {{$checked}}> Kendaraan Pribadi
 										</div>
 									</div>
 								</div>
@@ -90,13 +95,13 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Nominal *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="nominal" class="form-control col-md-7 col-xs-12 nominal" readonly="readonly">
+									<input type="text" name="nominal" class="form-control col-md-7 col-xs-12 nominal" readonly="readonly" value="{{$spj->nominal}}">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Keperluan *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="keperluan" class="form-control col-md-7 col-xs-12">
+									<input type="text" name="keperluan" class="form-control col-md-7 col-xs-12" value="{{$spj->keperluan}}">
 								</div>
 							</div>
 							<div class="form-group">
