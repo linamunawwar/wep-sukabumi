@@ -22,7 +22,26 @@ class GajiController extends Controller
 
     public function getListTransfer()
     {
-        return view('admin.gaji.list_transfer');
+        $datas = Pegawai::where('is_active', 1)->get();
+
+        return view('admin.gaji.list_transfer', ['datas'=>$datas]);
+    }
+
+    public function getUnduhListTransfer()
+    {
+        $datas = Pegawai::where('is_active', 1)->get();
+
+        $excel = \Excel::create('List Transfer', function($excel) use ($datas) {
+
+                    $excel->sheet('New sheet', function($sheet) use ($datas) {
+
+                        $sheet->loadView('admin.gaji.unduh_list_transfer',['datas' => $datas,]);
+                        
+                    });
+                });
+                return $excel->export('xls');
+
+        return view('admin.gaji.list_transfer', ['gajis'=>$gajis]);
     }
 
     public function getEdit($id)

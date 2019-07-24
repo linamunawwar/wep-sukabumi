@@ -15,7 +15,7 @@
 					<div class="x_title">
 						<h2>Daftar Gaji Pegawai </h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('admin/gaji/list_transfer')}}"><button class="btn btn-primary"> <i class="fa fa-download"></i>  List Transfer</button></a></li>
+							<a href="{{url('admin/gaji/list_transfer')}}"><button class="btn btn-primary"> <i class="fa fa-download"></i> List Transfer</button></a>
 						</ul>
 						<div class="clearfix"></div>
 					</div>

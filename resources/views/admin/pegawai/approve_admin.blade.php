@@ -813,7 +813,11 @@ $kode = KodeBagian::all();
 			                        <h2 class="StepTitle" style="text-align: center;">PERJANJIAN KERJA WAKTU TERTENTU (PKWT)</h2>
 			                        <h4 style="text-align: center;">NOMOR : {{$pegawai->no_pkwt}}</h4><br>
 			                        <?php
-			                        	$tanggal = explode(' ', $pegawai->created_at);
+			                        	if($pegawai->created_at){
+			                        		$tanggal = explode(' ', $pegawai->created_at);
+			                        	}else{
+			                        		$tanggal[0]=0;
+			                        	}
 			                        ?>
 			                        <div>
 										Pada hari ini tanggal {{formatTanggalPanjang($tangal[0])}}, kami yang bertandatangan dibawah ini :

@@ -15,7 +15,7 @@
 					<div class="x_title">
 						<h2>List Transfer Gaji </h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('gaji/list_transfer/unduh')}}"><button class="btn btn-success"><i class="fa fa-download"></i> Download</button></a></li>
+							<li><a href="{{url('admin/gaji/list_transfer/unduh')}}"><button class="btn btn-success"><i class="fa fa-download"></i> Download</button></a></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
@@ -31,97 +31,32 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>SA150795</td>
-									<td>Tiger Nixon</td>
-									<td>BNI</td>
-									<td>1360005xxxxxx</td>
-									<td>$320,800</td>
-								</tr>
-								<tr>
-									<td>SL170793</td>
-									<td>Garrett Winters</td>
-									<td>BRI</td>
-									<td>1360005xxxxxx</td>
-									<td>$320,800</td>
-								</tr>
-								<tr>
-									<td>HS1506795</td>
-									<td>Ashton Cox</td>
-									<td>Mandiri</td>
-									<td>1360005xxxxxx</td>
-									<td>$320,800</td>
-								</tr>
-								<tr>
-									<td>QC150694</td>
-									<td>Cedric Kelly</td>
-									<td>BNI</td>
-									<td>1360005xxxxxx</td>
-									<td>$320,800</td>
-								</tr>
-								<tr>
-									<td>SL080695</td>
-									<td>Airi Satou</td>
-									<td>BRI</td>
-									<td>1360005xxxxxx</td>
-									<td>$320,800</td>
-								</tr>
-								<tr>
-									<td>SO110695</td>
-									<td>Brielle Williamson</td>
-									<td>Mandiri</td>
-									<td>1360005xxxxxx</td>
-									<td>$320,800</td>
-								</tr>
-								<tr>
-									<td>SO190292</td>
-									<td>Herrod Chandler</td>
-									<td>BNI</td>
-									<td>1360005xxxxxx</td>
-									<td>$320,800</td>
-								</tr>
-								<tr>
-									<td>SA110695</td>
-									<td>Rhona Davidson</td>
-									<td>BRI</td>
-									<td>1360005xxxxxx</td>
-									<td>$320,800</td>
-								</tr>
-								<tr>
-									<td>PM110695</td>
-									<td>Colleen Hurst</td>
-									<td>BRI</td>
-									<td>1360005xxxxxx</td>
-									<td>$320,800</td>
-								</tr>
-								<tr>
-									<td>SO110695</td>
-									<td>Sonya Frost</td>
-									<td>BCA</td>
-									<td>1360005xxxxxx</td>
-									<td>$320,800</td>
-								</tr>
-								<tr>
-									<td>SL030695</td>
-									<td>Jena Gaines</td>
-									<td>BNI</td>
-									<td>1360005xxxxxx</td>
-									<td>$320,800</td>
-								</tr>
-								<tr>
-									<td>SC310591</td>
-									<td>Quinn Flynn</td>
-									<td>Mandiri</td>
-									<td>1360005xxxxxx</td>
-									<td>$320,800</td>
-								</tr>
-								<tr>
-									<td>HS180693</td>
-									<td>Angelica Ramos</td>
-									<td>BNI</td>
-									<td>1360005xxxxxx</td>
-									<td>$320,800</td>
-								</tr>
+								@foreach($datas as $data)
+									<?php
+										if(($data->gaji->gaji_pokok == null) || ($data->gaji->gaji_pokok == '')){
+											$data->gaji->gaji_pokok = 0;
+										}
+										if(($data->gaji->tunj_komunikasi == null) || ($data->gaji->tunj_komunikasi == '')){
+											$data->gaji->tunj_komunikasi = 0;
+										}
+										if(($data->gaji->tunj_transportasi == null) || ($data->gaji->tunj_transportasi == '')){
+											$data->gaji->tunj_transportasi = 0;
+										}
+										if(($data->gaji->uang_makan == null) || ($data->gaji->uang_makan == '')){
+											$data->gaji->uang_makan = 0;
+										}
+										if(($data->gaji->tunj_pph21 == null) || ($data->gaji->tunj_pph21 == '')){
+											$data->gaji->tunj_pph21 = 0;
+										}
+									?>
+									<tr>
+										<td>{{$data->nip}}</td>
+										<td>{{$data->nama}}</td>
+										<td>{{$data->bank->nama_bank}}</td>
+										<td>{{$data->bank->no_rekening}}</td>
+										<td>{{$data->gaji->gaji_pokok + $data->gaji->tunj_komunikasi + $data->gaji->tunj_transportasi + $data->gaji->uang_makan + $data->gaji->tunj_pph21}}</td>
+									</tr>
+								@endforeach
 							</tbody>
 						</table>
 					</div>
