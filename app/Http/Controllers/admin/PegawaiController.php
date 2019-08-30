@@ -118,8 +118,8 @@ class PegawaiController extends Controller
         $data['status_pegawai'] = $status_pegawai;
         $data['is_active'] = '';
         $data['is_new'] = 1;
-        $data['is_verif_admin'] = 0;
-        $data['is_verif_mngr'] = 1;
+        $data['is_verif_admin'] = 1;
+        $data['is_verif_mngr'] = 0;
         $data['is_verif_pm'] = 0;
         $query_pegawai = \DB::table('mst_pegawai')->insert($data);
 
@@ -724,8 +724,10 @@ class PegawaiController extends Controller
         $bank= BankAsuransi::where('nip',$pegawai->nip)->first();
         $kode = KodeBagian::all();
         $mcus = MCU::where('soft_delete','0')->get();
+        $data_mcus = MCUPegawai::where('nip',$pegawai->nip)->where('soft_delete','0')->get();
+        $gaji= Gaji::where('nip',$pegawai->nip)->first();
 
-        return view('admin.pegawai.approve_admin',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'mcus'=>$mcus]);
+        return view('admin.pegawai.approve_admin',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'mcus'=>$mcus,'data_mcus'=>$data_mcus,'gaji'=>$gaji]);
     }
 
     public function postApprove($id)
@@ -1163,49 +1165,32 @@ class PegawaiController extends Controller
                 $excel->getActiveSheet()
                     ->getPageMargins()->setBottom(0.5);
       }else{
-        $pelatihans = Pelatihan::whereYear($tahun)->where('soft_delete',0)->get();
-        $excel = \Excel::create('Monitoring Pelatihan_'.$tahun, function($excel) use ($pelatihans) {
+        $pelatihans = Pelatihan::whereYear('tanggal_mulai',$tahun)->where('soft_delete',0)->get();
+        $excel = \Excel::create('Monitoring Pelatihan_'.$tahun, function($excel) use ($pelatihans,$tahun) {
 
-                    $excel->sheet('New sheet', function($sheet) use ($pelatihans) {
-
-                        $sheet->loadView('admin.pegawai.pelatihan.unduh',['data' => $pelatihans]);
+                    $excel->sheet('New sheet', function($sheet) use ($pelatihans,$tahun) {
+                        $nama_sheet = $tahun;
+                        $sheet->loadView('admin.pegawai.pelatihan.unduh',['data' => $pelatihans,'nama_sheet'=>$nama_sheet]);
                         $objDrawing = new PHPExcel_Worksheet_Drawing;
                         $objDrawing->setPath(public_path('img/Waskita.png'));
-                        $objDrawing->setCoordinates('E6');
+                        $objDrawing->setCoordinates('A1');
                         $objDrawing->setWorksheet($sheet);
                         $objDrawing->setResizeProportional(false);
                         // set width later
-                        $objDrawing->setWidth(2);
+                        $objDrawing->setWidth(3);
                         $objDrawing->setHeight(50);
                       
-                        $sheet->cell('D21:K21', function($cell){
-                            $cell->setBorder('thin','','','');
+                        $sheet->cell('B6', function($cell){
+                            $cell->setBorder('thin','thin','thin','thin');
                         });
-                        $sheet->cell('D27:K27', function($cell){
-                            $cell->setBorder('thin','','','');
+                        $sheet->cell('B8', function($cell){
+                            $cell->setBorder('thin','thin','thin','thin');
                         });
-                        $sheet->cell('D30:K30', function($cell){
-                            $cell->setBorder('double','','','');
+
+                        $sheet->cell('A10:K11', function($cell){
+                            $cell->setBorder('thin','thin','thin','thin');
                         });
-                        $sheet->cell('D31:K31', function($cell){
-                            $cell->setBorder('thin','','','');
-                        });
-                        //border atas
-                        $sheet->cell('D5:K6', function($cell){
-                            $cell->setBorder('thin','','','');
-                        });
-                        //border bawah
-                        $sheet->cell('D40:K41', function($cell){
-                            $cell->setBorder('','','thin','');
-                        });
-                        //border kanan
-                        $sheet->cell('C5:C41', function($cell){
-                            $cell->setBorder('','thin','','');
-                        });
-                        //border kiri
-                        $sheet->cell('L5:L41', function($cell){
-                            $cell->setBorder('','','','thin');
-                        }); 
+                        
                     });
                 });
       }

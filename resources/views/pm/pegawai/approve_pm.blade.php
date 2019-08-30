@@ -290,19 +290,19 @@ $kode = KodeBagian::all();
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">Gaji Pokok:</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="gaji_pokok" class="form-control col-md-7 col-xs-12 gaji_pokok" id="gaji_pokok" readonly="readonly">
+												<input type="text" name="gaji_pokok" class="form-control col-md-7 col-xs-12 gaji_pokok" id="gaji_pokok" readonly="readonly" value="{{$gaji->gaji_pokok}}">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">Tunjangan Komunikasi:</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="tunj_komunikasi" class="form-control col-md-7 col-xs-12 tunj_komunikasi" id="tunj_komunikasi" readonly="readonly">
+												<input type="text" name="tunj_komunikasi" class="form-control col-md-7 col-xs-12 tunj_komunikasi" id="tunj_komunikasi" readonly="readonly" value="{{$gaji->tunj_komunikasi}}">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">Uang Makan:</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="uang_makan" class="form-control col-md-7 col-xs-12" readonly="readonly">
+												<input type="text" name="uang_makan" class="form-control col-md-7 col-xs-12" readonly="readonly" value="{{$gaji->uang_makan}}">
 											</div>
 										</div>
 										<div class="ln_solid"></div>
@@ -312,7 +312,7 @@ $kode = KodeBagian::all();
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">Tunjangan Transportasi:</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="tunj_transportasi" class="form-control col-md-7 col-xs-12 tunj_transportasi" id="tunj_transportasi" readonly="readonly">
+												<input type="text" name="tunj_transportasi" class="form-control col-md-7 col-xs-12 tunj_transportasi" id="tunj_transportasi" readonly="readonly" value="{{$gaji->tunj_transportasi}}">
 											</div>
 										</div>
 										<div class="form-group">
@@ -338,7 +338,7 @@ $kode = KodeBagian::all();
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">Total Pendapatan:</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="tot_pendapatan" class="form-control col-md-7 col-xs-12" readonly="readonly">
+												<input type="text" name="tot_pendapatan" class="form-control col-md-7 col-xs-12" readonly="readonly" value="{{$gaji->gaji_pokok + $gaji->tunj_komunikasi + $gaji->uang_makan + $gaji->tunj_transportasi}}">
 											</div>
 										</div>
 										<br>
@@ -362,7 +362,7 @@ $kode = KodeBagian::all();
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">Total Potongan:</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="tot_potongan" class="form-control col-md-7 col-xs-12 tot_potongan" id="tot_potongan" readonly="readonly">
+												<input type="text" name="tot_potongan" class="form-control col-md-7 col-xs-12 tot_potongan" id="tot_potongan" readonly="readonly" value="{{$pph21}}">
 											</div>
 										</div>
 
@@ -371,7 +371,7 @@ $kode = KodeBagian::all();
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">Pendapatan Bersih:</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="pendapatan_bersih" class="form-control col-md-7 col-xs-12 pendapatan_bersih" id="pendapatan_bersih" readonly="readonly">
+												<input type="text" name="pendapatan_bersih" class="form-control col-md-7 col-xs-12 pendapatan_bersih" id="pendapatan_bersih" readonly="readonly" value="{{$gaji->gaji_pokok + $gaji->tunj_komunikasi + $gaji->uang_makan + $gaji->tunj_transportasi - $pph21}}">
 											</div>
 										</div>
 									</div>

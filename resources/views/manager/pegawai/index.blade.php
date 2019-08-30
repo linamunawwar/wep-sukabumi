@@ -27,6 +27,7 @@
 									<th>Password</th>
 									<th>Action</th>
 									<th>Status</th>
+									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -35,7 +36,7 @@
 									<tr>
 										<td>{{$pegawai->nip}}</td>
 										<td>{{$pegawai->nama}}</td>
-										<td>System Architect</td>
+										<td>{{$pegawai->posisi->posisi}}</td>
 										<td>{{konversi_tanggal($pegawai->tanggal_masuk)}}</td>
 										<td>{{$pegawai->user->pass_asli}}</td>
 										<td>
@@ -60,8 +61,8 @@
 												<span class="label label-success">Approved by PM</span>
 											@endif
 										</td>
-										<td style="text-align: center; display: none;">
-											@if(($pegawai->is_new == 0) && ($pegawai->is_verif_admin == 1) && ($pegawai->is_verif_mngr == 0))
+										<td style="text-align: center;">
+											@if(($pegawai->is_verif_admin == 1) && ($pegawai->is_new == 0) && ($pegawai->is_verif_mngr == 0) && ($pegawai->user->role != 3))
 												<a class="btn btn-success btn-xs" href="{{url('manager/pegawai/approve/'.$pegawai->id.'')}}"><i class="fa fa-check" ></i>  Approve</a>
 											@else
 												<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>

@@ -36,7 +36,7 @@
 									<tr>
 										<td>{{$pegawai->nip}}</td>
 										<td>{{$pegawai->nama}}</td>
-										<td>System Architect</td>
+										<td>{{$pegawai->posisi->posisi}}</td>
 										<td>{{konversi_tanggal($pegawai->tanggal_masuk)}}</td>
 										<td>{{$pegawai->user->pass_asli}}</td>
 										<td>

@@ -792,20 +792,43 @@ $kode = KodeBagian::all();
 			                        		<th>Tidak</th>
 			                        	</thead>
 			                        	<tbody>
-			                        		@foreach($mcus as $key=>$mcu)
+			                        		@if(count($data_mcus) !=0)
+			                        		<?php $i = 0;?>
+			                        		@foreach($data_mcus as $key=>$mcu)
 			                        			<tr>
-			                        				<td>{{$key+1}}</td>
-			                        				<td>{{$mcu->pernyataan}}
-			                        					<input type="hidden" name="pernyataan[]" value="{{$mcu->id}}">
+			                        				<td>{{$i+1}}</td>
+			                        				<td>{{$mcu->mcu->pernyataan}}
+			                        					<input type="hidden" name="pernyataan[{{$key}}]" value="{{$mcu->pernyataan_id}}">
 			                        				</td>
 			                        				<td>
-			                        					<input type="radio" name="mcu[{{$mcu->id}}]" value="1"> Ya
+			                        					<?php $checked = ($mcu->nilai == '1')? 'checked' : ''; ?>
+			                        					<input type="radio" name="mcu[{{$key}}]" value="1" {{$checked}} required="required"> Ya
 			                        				</td>
 			                        				<td>
-			                        					<input type="radio" name="mcu[{{$mcu->id}}]" value="0"> Tidak
+			                        					<?php $checked = ($mcu->nilai == '0')? 'checked' : ''; ?>
+			                        					<input type="radio" name="mcu[{{$key}}]" value="0" {{$checked}} required="required"> Tidak
 			                        				</td>
 			                        			</tr>
+			                        			<?php $i++; ?>
 			                        		@endforeach
+			                        	@else
+			                        		<?php $i = 0;?>
+			                        		@foreach($mcus as $key=>$mcu)
+			                        			<tr>
+			                        				<td>{{$i+1}}</td>
+			                        				<td>{{$mcu->pernyataan}}
+			                        					<input type="hidden" name="pernyataan[]" value="{{$mcu->pernyataan_id}}">
+			                        				</td>
+			                        				<td>
+			                        					<input type="radio" name="mcu[{{$key}}]" value="1"> Ya
+			                        				</td>
+			                        				<td>
+			                        					<input type="radio" name="mcu[{{$key}}]" value="0"> Tidak
+			                        				</td>
+			                        			</tr>
+			                        			<?php $i++; ?>
+			                        		@endforeach
+			                        	@endif
 			                        	</tbody>
 			                        </table>
 			                      </div>
@@ -813,6 +836,7 @@ $kode = KodeBagian::all();
 			                        <h2 class="StepTitle" style="text-align: center;">PERJANJIAN KERJA WAKTU TERTENTU (PKWT)</h2>
 			                        <h4 style="text-align: center;">NOMOR : {{$pegawai->no_pkwt}}</h4><br>
 			                        <?php
+
 			                        	if($pegawai->created_at){
 			                        		$tanggal = explode(' ', $pegawai->created_at);
 			                        	}else{
@@ -820,7 +844,7 @@ $kode = KodeBagian::all();
 			                        	}
 			                        ?>
 			                        <div>
-										Pada hari ini tanggal {{formatTanggalPanjang($tangal[0])}}, kami yang bertandatangan dibawah ini :
+										Pada hari ini tanggal {{formatTanggalPanjang($tanggal[0])}}, kami yang bertandatangan dibawah ini :
 										<br><br>
 										<ol type="1">
 											<li>Pihak Perusahaan 
@@ -1062,19 +1086,19 @@ $kode = KodeBagian::all();
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">Gaji Pokok:</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="text" name="gaji_pokok" class="form-control col-md-7 col-xs-12 gaji_pokok" id="gaji_pokok">
+													<input type="text" name="gaji_pokok" class="form-control col-md-7 col-xs-12 gaji_pokok" id="gaji_pokok" required="required">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">Tunjangan Komunikasi:</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="text" name="tunj_komunikasi" class="form-control col-md-7 col-xs-12 tunj_komunikasi" id="tunj_komunikasi">
+													<input type="text" name="tunj_komunikasi" class="form-control col-md-7 col-xs-12 tunj_komunikasi" id="tunj_komunikasi" required="required">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">Uang Makan:</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="text" name="uang_makan" class="form-control col-md-7 col-xs-12">
+													<input type="text" name="uang_makan" class="form-control col-md-7 col-xs-12 uang_makan" id="uang_makan" required="required">
 												</div>
 											</div>
 											<div class="ln_solid"></div>
@@ -1084,7 +1108,7 @@ $kode = KodeBagian::all();
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">Tunjangan Transportasi:</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="text" name="tunj_transportasi" class="form-control col-md-7 col-xs-12 tunj_transportasi" id="tunj_transportasi">
+													<input type="text" name="tunj_transportasi" class="form-control col-md-7 col-xs-12 tunj_transportasi" id="tunj_transportasi" required="required">
 												</div>
 											</div>
 											<div class="form-group">
@@ -1112,7 +1136,7 @@ $kode = KodeBagian::all();
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">Total Pendapatan:</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="text" name="tot_pendapatan" class="form-control col-md-7 col-xs-12" readonly="readonly">
+													<input type="text" name="tot_pendapatan" class="form-control col-md-7 col-xs-12 tot_pendapatan" id="tot_pendapatan" readonly="readonly">
 												</div>
 											</div>
 											<br>
@@ -1136,7 +1160,7 @@ $kode = KodeBagian::all();
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">Total Potongan:</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="text" name="tot_potongan" class="form-control col-md-7 col-xs-12 tot_potongan" id="tot_potongan" readonly="readonly">
+													<input type="text" name="tot_potongan" class="form-control col-md-7 col-xs-12 tot_potongan" id="tot_potongan" readonly="readonly" value="{{$pph21}}">
 												</div>
 											</div>
 
@@ -1200,6 +1224,70 @@ $kode = KodeBagian::all();
             	$('#suami_istri'). removeAttr('readonly');
             }
          });
+
+      $(document).on("change", ".gaji_pokok", function(e){
+	     var pokok = $('.gaji_pokok').val();
+	     if(!pokok){pokok = 0;}
+	     var komunikasi = $('.tunj_komunikasi').val();
+	     if(!komunikasi){komunikasi = 0;}
+	     var makan = $('.uang_makan').val();
+	     if(!makan){makan = 0;}
+	     var transport = $('.tunj_transportasi').val();
+	     if(!transport){transport = 0;}
+	     var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(transport);
+	     var potongan = $('.tot_potongan').val();
+	     var bersih = tot_pendapatan - potongan;
+	     $('#tot_pendapatan').val(tot_pendapatan);
+	     $('#pendapatan_bersih').val(bersih);
+	  });
+
+	  $(document).on("change", ".tunj_komunikasi", function(e){
+	     var pokok = $('.gaji_pokok').val();
+	     if(!pokok){pokok = 0;}
+	     var komunikasi = $('.tunj_komunikasi').val();
+	     if(!komunikasi){komunikasi = 0;}
+	     var makan = $('.uang_makan').val();
+	     if(!makan){makan = 0;}
+	     var transport = $('.tunj_transportasi').val();
+	     if(!transport){transport = 0;}
+	     var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(transport);
+	     var potongan = $('.tot_potongan').val();
+	     var bersih = tot_pendapatan - potongan;
+	     $('#tot_pendapatan').val(tot_pendapatan);
+	     $('#pendapatan_bersih').val(bersih);
+	  });
+
+	  $(document).on("change", ".uang_makan", function(e){
+	     var pokok = $('.gaji_pokok').val();
+	     if(!pokok){pokok = 0;}
+	     var komunikasi = $('.tunj_komunikasi').val();
+	     if(!komunikasi){komunikasi = 0;}
+	     var makan = $('.uang_makan').val();
+	     if(!makan){makan = 0;}
+	     var transport = $('.tunj_transportasi').val();
+	     if(!transport){transport = 0;}
+	     var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(transport);
+	     var potongan = $('.tot_potongan').val();
+	     var bersih = tot_pendapatan - potongan;
+	     $('#tot_pendapatan').val(tot_pendapatan);
+	     $('#pendapatan_bersih').val(bersih);
+	  });
+
+	  $(document).on("change", ".tunj_transportasi", function(e){
+	     var pokok = $('.gaji_pokok').val();
+	     if(!pokok){pokok = 0;}
+	     var komunikasi = $('.tunj_komunikasi').val();
+	     if(!komunikasi){komunikasi = 0;}
+	     var makan = $('.uang_makan').val();
+	     if(!makan){makan = 0;}
+	     var transport = $('.tunj_transportasi').val();
+	     if(!transport){transport = 0;}
+	    var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(transport);
+	     var potongan = $('.tot_potongan').val();
+	     var bersih = tot_pendapatan - potongan;
+	     $('#tot_pendapatan').val(tot_pendapatan);
+	     $('#pendapatan_bersih').val(bersih);
+	  });
   	});
 
 </script>
