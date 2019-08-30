@@ -27,10 +27,11 @@ class PegawaiController extends Controller
     {
         $pegawai = Pegawai::find($id);
         $bank= BankAsuransi::where('nip',$pegawai->nip)->first();
+        $gaji= Gaji::where('nip',$pegawai->nip)->first();
         $kode = KodeBagian::all();
         $data_mcus = MCUPegawai::where('nip',$pegawai->nip)->where('soft_delete','0')->get();
 
-        return view('pm.pegawai.approve_pm',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'data_mcus'=>$data_mcus]);
+        return view('pm.pegawai.approve_pm',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'data_mcus'=>$data_mcus,'gaji'=>$gaji]);
     }
 
     public function postApprove($id)
