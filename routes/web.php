@@ -271,6 +271,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/peralatan/approve/{id}', 'manager\PeralatanController@getApprove');
 
 
+
+
 	});
 
 	Route::group(['prefix' => '/pm'], function () {
@@ -327,7 +329,9 @@ Route::group(['middleware' => 'auth'], function () {
 	});
 
 
-	
+	//arsip
+		Route::get('/arsip', 'ArsipController@index');
+		Route::get('/arsip/unduh/{id}', 'ArsipController@getUnduh');	
 
 	//-------------------FORM PELATIHAN----------------------
 	Route::get('/pelatihan', 'PelatihanController@index');

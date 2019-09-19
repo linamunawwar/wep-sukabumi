@@ -72,7 +72,7 @@
 													@endif
 												@endif
 											@else
-												@if($cuti->is_verif_mngr == 0)
+												@if(($cuti->is_verif_pengganti == 1) && ($cuti->is_verif_mngr == 0))
 													<a class="btn btn-success btn-xs" href="{{url('manager/cuti/approve/'.$cuti->id.'')}}"><i class="fa fa-check" ></i>  Approve</a>
 												@else
 													<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>

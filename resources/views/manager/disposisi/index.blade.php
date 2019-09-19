@@ -48,7 +48,7 @@
 												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
 											@else
 												<a class="btn btn-dark btn-xs"><i class="fa fa-refresh"></i>  Proses</a>
-												<a class="btn btn-primary btn-xs" href="{{url('manager/disposisi/monitor/'.$disposisi->id.'')}}"><i class="fa fa-eye"></i>  Monitor</a>
+												<a class="btn btn-primary btn-xs" href="{{url('manager/disposisi/monitoring/'.$disposisi->id.'')}}"><i class="fa fa-eye"></i>  Monitor</a>
 												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
 											@endif
 										</td>

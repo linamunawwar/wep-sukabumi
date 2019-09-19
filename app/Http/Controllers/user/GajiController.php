@@ -31,7 +31,6 @@ class GajiController extends Controller
 
     public function postSlipGajiCreate(){
         $data = \Input::all();
-        
         $slip_gaji = new SlipGaji;
         $slip_gaji->nip = \Auth::user()->pegawai_id;
         $slip_gaji->bulan = $data['bulan'];

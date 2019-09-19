@@ -20,11 +20,30 @@
                 </li>
                 
                 <li role="presentation" class="dropdown">
-                    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
+                    @if(Auth::user()->role_id == 1)
+                        <a href="{{url('admin/memo')}}" class="dropdown-toggle info-number" aria-expanded="false" style="color: white!important;">
+                            <i class="fa fa-envelope-o"></i>
+                        </a>
+                    @endif
+                    @if(Auth::user()->role_id == 2)
+                        <a href="{{url('user/memo')}}" class="dropdown-toggle info-number" aria-expanded="false" style="color: white!important;">
+                            <i class="fa fa-envelope-o"></i>
+                        </a>
+                    @endif
+                    @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
+                        <a href="{{url('manager/memo')}}" class="dropdown-toggle info-number" aria-expanded="false" style="color: white!important;">
+                            <i class="fa fa-envelope-o"></i>
+                        </a>
+                    @endif
+                    @if(Auth::user()->role_id == 5)
+                       <a href="{{url('pm/memo')}}" class="dropdown-toggle info-number" aria-expanded="false" style="color: white!important;">
+                            <i class="fa fa-envelope-o"></i>
+                        </a>
+                    @endif
+                    <!-- <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="badge bg-green">6</span>
-                    </a>
-                    <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                    </a> -->
+                    <!-- <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                         <li>
                             <a>
                                 <span class="image"><img src="{{ Gravatar::src(Auth::user()->email) }}" alt="Profile Image" /></span>
@@ -81,15 +100,17 @@
                                 </a>
                             </div>
                         </li>
-                    </ul>
+                    </ul> -->
                 </li>
                 @if(Auth::user()->role_id == 2)
-                    <li role="presentation" class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
+                    <li>
+                        <a href="{{url('user/cuti/serah_tugas')}}" class="info-number" style="color: white!important;">
                             <i class="fa fa-user"></i>
-                            <span class="badge bg-green">6</span>
+                            @if(session('pengganti') != 0)
+                            <span class="badge bg-green">{{session('pengganti')}}</span>
+                            @endif
                         </a>
-                        <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                        <!-- <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                             <li>
                                 <a>
                                     <span class="image"><img src="{{ Gravatar::src(Auth::user()->email) }}" alt="Profile Image" /></span>
@@ -146,7 +167,7 @@
                                     </a>
                                 </div>
                             </li>
-                        </ul>
+                        </ul> -->
                     </li>
                 @endif
             </ul>

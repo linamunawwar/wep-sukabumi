@@ -21,18 +21,18 @@ class PeralatanController extends Controller
     public function getCreate()
     {
         $pegawais = Pegawai::where('is_active',1)->where('soft_delete',0)->get();
-
-        return view('admin.peralatan.create',['pegawais'=>$pegawais]);
+        $alats = Inventori::all();
+        return view('admin.peralatan.create',['pegawais'=>$pegawais, 'alats'=>$alats]);
     }
 
     public function postCreate()
     {
         $data = \Input::all();
-
+        $find = Inventori::where('kode_barang', $data['kode_barang'])->first();
         $alat = new Peralatan;
         $alat->nip = $data['nip'];
-        $alat->nama_barang = $data['nama_barang'];
-        $alat->tipe_barang = $data['tipe_barang'];
+        $alat->kode_barang = $data['kode_barang'];
+        $alat->tipe_barang = $find->tipe_barang;
         $alat->tanggal_pinjam = konversi_tanggal($data['tanggal_pinjam']);
         $alat->user_id = \Auth::user()->id;
         $alat->role_id = \Auth::user()->role_id;
@@ -46,14 +46,16 @@ class PeralatanController extends Controller
     {
         $alat = Peralatan::where('id',$id)->first();
         $pegawais = Pegawai::where('is_active',1)->where('soft_delete',0)->get();
+        $inventoris = Inventori::all();
 
-        return view('admin.peralatan.edit',['alat'=>$alat,'pegawais'=>$pegawais]);
+        return view('admin.peralatan.edit',['alat'=>$alat,'pegawais'=>$pegawais,'inventoris'=>$inventoris]);
     }
 
     public function postEdit($id)
     {
         $data = \Input::all();
-
+        $find = Inventori::where('kode_barang', $data['kode_barang'])->first();
+        $data['tipe_barang'] = $find->tipe_barang;
         unset($data['_token']);
         $data['tanggal_pinjam'] = konversi_tanggal($data['tanggal_pinjam']);
 

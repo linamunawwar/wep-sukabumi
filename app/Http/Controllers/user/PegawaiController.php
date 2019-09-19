@@ -15,6 +15,7 @@ use App\Pendidikan;
 use App\Sertifikat;
 use App\PelatihanCV;
 use App\Pengalaman;
+use App\Posisi;
 use App\Penugasan;
 use App\KaryaIlmiah;
 use App\Pertemuan;
@@ -540,7 +541,29 @@ class PegawaiController extends Controller
 
     public function getStruktur()
     {
-        return view('user.pegawai.struktur.index');
+        $level = Posisi::groupBy('level')->get();
+      foreach ($level as $key => $value) {
+         $posisi[$value->level] = Posisi::where('level',$value->level)->where('soft_delete',0)->get();
+      }
+
+      $posisi = Posisi::where('level',0)->get();
+        foreach ($posisi as $key => $value) {
+          $value->anggota = Pegawai::where('posisi_id',$value->id)->where('soft_delete',0)->get();
+          $value->anak = Posisi::where('parent',$value->id)->get();
+          foreach ($value->anak as $key => $anak2) {
+            $anak2->anggota = Pegawai::where('posisi_id',$anak2->id)->where('soft_delete',0)->get();
+            $anak2->anak = Posisi::where('parent',$anak2->id)->get();
+            foreach ($anak2->anak as $key => $anak3) {
+              $anak3->anggota = Pegawai::where('posisi_id',$anak3->id)->where('soft_delete',0)->get();
+              $anak3->anak = Posisi::where('parent',$anak3->id)->get();
+              foreach ($anak3->anak as $key => $anak4) {
+                $anak4->anggota = Pegawai::where('posisi_id',$anak4->id)->where('soft_delete',0)->get();
+                $anak4->anak = Posisi::where('parent',$anak4->id)->get();
+              }
+            }
+          }
+        }
+        return view('user.pegawai.struktur.index',['level'=>$level,'posisi'=>$posisi]);
     }
 
     public function getResign()

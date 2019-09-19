@@ -34,13 +34,13 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Tipe Barang <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" class="form-control" name="tipe_barang" value="{{$alat->tipe_barang}}">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama Barang <span class="required">*</span>:</label>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" class="form-control" name="nama_barang" value="{{$alat->nama_barang}}">
+									<select class="form-control kode_barang" name="kode_barang" required="required">
+										<option value="">Pilih Barang</option>
+										@foreach($inventoris as $inventori)
+											<?php $selected = ($inventori->kode_barang == $alat->kode_barang)? "selected" : ''; ?>
+											<option value="{{$inventori->kode_barang}}" {{$selected}}>{{$inventori->nama_barang}}</option>
+										@endforeach
+									</select>
 								</div>
 							</div>
 							<div class="form-group">

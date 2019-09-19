@@ -44,7 +44,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Surat Pengunduran Diri: </label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="file" name="surat_resign" class="form-control">
+									<input type="file" name="surat_resign" class="form-control" disabled="disabled">
 									*Sudah di ttd direct manager
 								</div>
 							</div>

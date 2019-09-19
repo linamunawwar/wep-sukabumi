@@ -28,7 +28,7 @@
 									<th>Jabatan</th>
 									<th>Tanggal Pemecatan</th>
 									<th>Status Pemecatan</th>
-									<th>Action</th>
+									<!-- <th>Action</th> -->
 								</tr>
 							</thead>
 							<tbody>
@@ -52,7 +52,7 @@
 												<span class="label label-success">Approved by PM</span>
 											@endif
 										</td>
-										<td style="text-align: center;">
+										<!-- <td style="text-align: center;">
 											@if(\Auth::user()->role_id == 4)
 												@if($pecat->pegawai->kode_bagian == 'SA')
 													@if(($pecat->is_verif_mngr == 0) && ($pecat->is_verif_sdm == 0) )
@@ -74,7 +74,7 @@
 													<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>
 												@endif
 											@endif
-										</td>
+										</td> -->
 									</tr>
 								@endforeach
 							</tbody>

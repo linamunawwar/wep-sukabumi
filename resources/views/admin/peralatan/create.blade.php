@@ -33,13 +33,12 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Tipe Barang <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" class="form-control" name="tipe_barang">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama Barang <span class="required">*</span>:</label>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" class="form-control" name="nama_barang">
+									<select class="form-control kode_barang" name="kode_barang" required="required">
+										<option value="">Pilih barang</option>
+										@foreach($alats as $alat)
+											<option value="{{$alat->kode_barang}}">{{$alat->nama_barang}}</option>
+										@endforeach
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
@@ -73,6 +72,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('.pegawai').select2();
+		$('.kode_barang').select2();
 		
       $('#datepicker').datepicker({
         format: 'dd-mm-yyyy',

@@ -27,7 +27,7 @@
 									<th>Password</th>
 									<th>Action</th>
 									<th>Status</th>
-									<th>Action</th>
+									<!-- <th>Action</th> -->
 								</tr>
 							</thead>
 							<tbody>
@@ -61,13 +61,13 @@
 												<span class="label label-success">Approved by PM</span>
 											@endif
 										</td>
-										<td style="text-align: center;">
+										<!-- <td style="text-align: center;">
 											@if(($pegawai->is_verif_admin == 1) && ($pegawai->is_new == 0) && ($pegawai->is_verif_mngr == 0) && ($pegawai->user->role != 3))
 												<a class="btn btn-success btn-xs" href="{{url('manager/pegawai/approve/'.$pegawai->id.'')}}"><i class="fa fa-check" ></i>  Approve</a>
 											@else
 												<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>
 											@endif
-										</td>
+										</td> -->
 									</tr>
 								@endforeach
 							</tbody>
