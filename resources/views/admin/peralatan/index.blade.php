@@ -38,18 +38,20 @@
 									<tr>
 										<td>{{$alat->nip}}</td>
 										<td>{{$alat->pegawai->nama}}</td>
-										<td>{{$alat->nama_barang}}</td>
+										<td>{{$alat->inventori->nama_barang}}</td>
 										<td>{{$alat->tipe_barang}}</td>
 										<td>{{konversi_tanggal($alat->tanggal_pinjam)}}</td>
 										<td>{{konversi_tanggal($alat->tanggal_kembali)}}</td>
 										<td style="text-align: center;">
-											@if($alat->is_verif_sdm == 1)
+											<!-- @if($alat->is_verif_sdm == 1)
 												<span class="label label-primary">Approved</span>
 											@else
 												<span class="label label-default">Not Approved</span>
-											@endif
+											@endif -->
 											@if($alat->is_kembali == 1)
 												<span class="label label-success">Dikembalikan</span>
+											@else
+												<span class="label label-default">Belum Kembali</span>
 											@endif
 										</td>
 										<td style="text-align: left;">

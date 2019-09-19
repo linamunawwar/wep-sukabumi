@@ -19,6 +19,12 @@
 		    			<li>Mohon Untuk Selalu mengecek surat masuk yang ada pada icon <i class="fa fa-envelope-o"></i> di pojok kanan atas</li>
 		    			<li>Mohon Untuk Selalu mengecek notifikasi penggantian tugas yang ada pada icon <i class="fa fa-user"></i> di pojok kanan atas</li>
 		    	</div>
+		    @else
+		    	<div style="background: #E7E7E7; width: 100%; padding: 20px; margin-top:10px; border-radius: 5px; color:#2A3F54;" >
+		    		<ul>
+		    			<li>Mohon Untuk Selalu mengecek surat masuk yang ada pada icon <i class="fa fa-envelope-o"></i> di pojok kanan atas</li>
+		    			<li>Mohon Untuk Selalu mengecek notifikasi penggantian tugas yang ada pada icon <i class="fa fa-user"></i> di pojok kanan atas</li>
+		    	</div>
 	    	@endif
 	    </div>
     <!-- /page content -->

@@ -37,7 +37,7 @@
 									<?php
 										$bulan = date('m');
 									?>
-									<select class="form-control col-md-7 col-xs-12 bulan" name="bulan" id="bulan" disabled="disabled">
+									<select class="form-control col-md-7 col-xs-12 bulan" name="bulan" id="bulan" readonly="readonly">
 										<?php $selected = ($bulan == '01')? 'selected' : '';?>
 										<option value="01" {{$selected}}>Januari</option>
 										<?php $selected = ($bulan == '02')? 'selected' : '';?>
@@ -73,7 +73,7 @@
 									  // Set your latest year you want in the range, in this case we use PHP to just set it to the current year.
 									  $latest_year = date('Y'); 
 
-									  print '<select class="form-control col-md-7 col-xs-12 tahun" name="tahun" disabled="disabled">';
+									  print '<select class="form-control col-md-7 col-xs-12 tahun" name="tahun" readonly="readonly">';
 									  // Loops over each int[year] from current year, back to the $earliest_year [1950]
 									  foreach ( range( $latest_year, $earliest_year ) as $i ) {
 									    // Prints the option with the next year in range.

@@ -122,7 +122,7 @@ $kode = KodeBagian::all();
 								<div class="ln_solid"></div>
 							</form>
 						</div>
-					@elseif(Auth::user()->pegawai->is_new == 1 && Auth::user()->pegawai->is_active == 1 )
+					@elseif((Auth::user()->pegawai->is_new == 1 && Auth::user()->pegawai->is_active == 1 ) || (Auth::user()->pegawai->is_new == 0 && Auth::user()->pegawai->is_active == 1 ))
 						<div class="x_content">
 							<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 								<div class="x_title">

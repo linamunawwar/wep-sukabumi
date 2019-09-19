@@ -718,7 +718,7 @@ $kode = KodeBagian::all();
 			                        	$tanggal = explode(' ', $pegawai->created_at);
 			                        ?>
 			                        <div>
-										Pada hari ini tanggal {{formatTanggalPanjang($tangal[0])}}, kami yang bertandatangan dibawah ini :
+										Pada hari ini tanggal {{formatTanggalPanjang($tanggal[0])}}, kami yang bertandatangan dibawah ini :
 										<br><br>
 										<ol type="1">
 											<li>Pihak Perusahaan 

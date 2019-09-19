@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,10 +11,10 @@ class ArsipController extends Controller
 {
     public function index()
     {
-        $kode = \Auth::user()->pegawai->kode_bagian;
+        $kode = \Auth::user()->role->id;
         $arsips = Arsip::where($kode,'on')->where('soft_delete',0)->get();
 
-        return view('arsip.index',['arsips'=>$arsips]);
+        return view('admin.arsip.index',['arsips'=>$arsips]);
     }
 
 
@@ -23,7 +23,7 @@ class ArsipController extends Controller
         $arsip = Arsip::find($id);
 
         if($arsip){
-            return redirect('arsip');
+            return redirect('manager/arsip');
         }
         
     }
