@@ -1500,7 +1500,7 @@ $kode = KodeBagian::all();
 			                        			<tr>
 			                        				<td>{{$i+1}}</td>
 			                        				<td>{{$mcu->pernyataan}}
-			                        					<input type="hidden" name="pernyataan[]" value="{{$mcu->pernyataan_id}}">
+			                        					<input type="hidden" name="pernyataan[]" value="{{$mcu->id}}">
 			                        				</td>
 			                        				<td>
 			                        					<input type="radio" name="mcu[{{$key}}]" value="1"> Ya
@@ -1760,15 +1760,17 @@ $kode = KodeBagian::all();
 										<p>Tanda Tangan harus berupa file .jpg / .png, dengan ukuran maksimum 1 MB</p>
 									</div>
 								</div>
-								* Untuk Projek Manager, Manager dan Staff Public Relation harap mengupload paraf
-								<div class="form-group">
-									<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">Paraf <span class="required">*</span>:</label>
-									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input type="file" id="paraf" name="paraf"  class="form-control col-md-7 col-xs-12">
-										<p>Paraf harus berupa file .jpg / .png, dengan ukuran maksimum 1 MB</p>
+								@if((\Auth::user()->role_id == 3) || (\Auth::user()->role_id == 4) || (\Auth::user()->role_id == 5) || (\Auth::user()->pegawai->posisi_id == 24))
+									* Untuk Projek Manager, Manager dan Staff Public Relation harap mengupload paraf
+									<div class="form-group">
+										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">Paraf <span class="required">*</span>:</label>
+										<div class="col-md-6 col-sm-6 col-xs-12">
+											<input type="file" id="paraf" name="paraf"  class="form-control col-md-7 col-xs-12">
+											<p>Paraf harus berupa file .jpg / .png, dengan ukuran maksimum 1 MB</p>
+										</div>
 									</div>
-								</div>
-		                      </div>
+			                      </div>
+		                      @endif
 	                      
 	                    </div>
 	                    </form>
