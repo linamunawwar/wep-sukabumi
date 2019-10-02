@@ -1500,7 +1500,7 @@ $kode = KodeBagian::all();
 			                        			<tr>
 			                        				<td>{{$i+1}}</td>
 			                        				<td>{{$mcu->pernyataan}}
-			                        					<input type="hidden" name="pernyataan[]" value="{{$mcu->pernyataan_id}}">
+			                        					<input type="hidden" name="pernyataan[]" value="{{$mcu->id}}">
 			                        				</td>
 			                        				<td>
 			                        					<input type="radio" name="mcu[{{$key}}]" value="1"> Ya
