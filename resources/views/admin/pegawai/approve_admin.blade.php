@@ -849,8 +849,8 @@ $kode = KodeBagian::all();
 										<ol type="1">
 											<li>Pihak Perusahaan 
 												<ul style="list-style-type:none;">
-													<li>Nama Perusahaan 	:	PT. Waskita Karya (Persero), Tbk. Proyek Pembangunan Jalan Tol Bekasi - Cawang – Kampung Melayu Seksi 2A Ujung</li>
-													<li>Alamat Perusahaan	:	Jl. Sriagung No. 28, Desa Taman Gede, Kecamatan Gemuh, Kabupaten Kendal, Jawa Tengah</li>
+													<li>Nama Perusahaan 	:	PT. Waskita Karya (Persero), Tbk. Proyek Pembangunan Jalan Tol Becakayu 2A Ujung</li>
+													<li>Alamat Perusahaan	:	Jl. Ahmad Yani Ruko Mutiara Bekasi Center Blok A9 nomor 7, Bekasi Utara, Bekasi, Jawa Barat.</li>
 												</ul>
 												<br><br>
 												Dalam hal ini diwakili oleh
@@ -858,7 +858,7 @@ $kode = KodeBagian::all();
 													<li>Nama	:	Mochamad Waskito Adi, ST</li>
 													<li>Jabatan	:	Kepala Proyek<br><br></li>
 												</ul>
-												<br>Dalam hal ini bertindak untuk dan atas nama PT. Waskita Karya (Persero) Tbk Proyek Pembangunan Jalan Tol Bekasi - Cawang – Kampung Melayu Seksi 2A Ujung, selanjutnya dalam Perjanjian Kerja Waktu Tertentu ini disebut sebagai PIHAK PERTAMA.
+												<br>Dalam hal ini bertindak untuk dan atas nama PT. Waskita Karya (Persero) Tbk Proyek Pembangunan Jalan Tol Becakayu 2A Ujung, selanjutnya dalam Perjanjian Kerja Waktu Tertentu ini disebut sebagai PIHAK PERTAMA.
 											</li>
 											<li>Pihak Pekerja<br>
 												<ul style="list-style-type:none;">
@@ -889,7 +889,7 @@ $kode = KodeBagian::all();
 										</div>
 										<ol type="1">
 											<li>
-												Yang dimaksud Perusahaan dalam perjanjian ini adalah PT. Waskita Karya (Persero) Tbk Proyek Pembangunan Tol Batang– Semarang Seksi 3.
+												Yang dimaksud Perusahaan dalam perjanjian ini adalah PT. Waskita Karya (Persero) Tbk Proyek Pembangunan Tol Becakayu 2A Ujung.
 											</li>
 											<li>
 												Perjanjian Kerja Waktu Tertentu (yang selanjutnya disebut PKWT) dalam perjanjian ini adalah perjanjian kerja antara Perusahaan dengan Pegawai yang dibuat secara tertulis untuk jangka waktu tertentu.
@@ -901,7 +901,7 @@ $kode = KodeBagian::all();
 										</div>
 										<ol type="1">
 											<li>
-												PIHAK PERTAMA akan mempekerjakan PIHAK KEDUA sebagai pekerja PT. WaskitaKarya (Persero) TbkProyekJalan Tol Batang-Semarang Paket 2 (Seksi 3), dengan status / kedudukan sebagai pekerja waktu tertentu (tidak tetap) dan ditempatkan sebagai ………………………..
+												PIHAK PERTAMA akan mempekerjakan PIHAK KEDUA sebagai pekerja PT. WaskitaKarya (Persero) Tbk Proyek Jalan Tol Becakayu 2A Ujung, dengan status / kedudukan sebagai pekerja waktu tertentu (tidak tetap) dan ditempatkan sebagai ………………………..
 											</li>
 											<li>
 												PIHAK KEDUA bersedia menerima dan melaksankan tugas pekerjaannya dengan sebaik-baiknya dan penuh rasa tanggungjawab.
@@ -919,7 +919,7 @@ $kode = KodeBagian::all();
 												PIHAK KEDUA diterima bekerja sebagai pekerja Kontrak / Waktu Tertentu.
 											</li>
 											<li>
-												PIHAK PERTAMA menerima PIHAK KEDUA sebagai Pegawai Honorer Proyek dan menandatangani PKWT dalam jangka waktu sampai dengan 30 September 2018, terhitung sejak ditandatangani yaitu tanggal ............. sampai dengan tanggal .............. Dengan catatan jika proyek ini sudah selesai sebelum tanggal tersebut pihak kedua tidak bisa menuntut pihak pertama.
+												PIHAK PERTAMA menerima PIHAK KEDUA sebagai Pegawai Honorer Proyek dan menandatangani PKWT dalam jangka waktu sampai dengan 31 Januari 2019, terhitung sejak ditandatangani yaitu tanggal ............. sampai dengan tanggal .............. Dengan catatan jika proyek ini sudah selesai sebelum tanggal tersebut pihak kedua tidak bisa menuntut pihak pertama.
 											</li>
 										</ol>
 										<div style="text-align: center;">
@@ -928,10 +928,10 @@ $kode = KodeBagian::all();
 										</div>
 										<ol type="1">
 											<li>
-												PIHAK KEDUA bersedia mengikuti jam kerja yang diatur oleh PT. Waskita Karya (Persero) Tbk ProyekBatang Semarang Paket 2 (Seksi 3).
+												PIHAK KEDUA bersedia mengikuti jam kerja yang diatur oleh PT. Waskita Karya (Persero) Tbk Proyek Jalan Tol Becakayu 2A Ujung.
 											</li>
 											<li>
-												Sesuai dengan kebutuhan pelaksanaan pekerjaan di PT. Waskita Karya (Persero) Tbk ProyekBatang Semarang Paket 2 (Seksi 3, PIHAK KEDUA bersedia bekerja secara bergiliran (shift) apabila diperlukan.
+												Sesuai dengan kebutuhan pelaksanaan pekerjaan di PT. Waskita Karya (Persero) Tbk Proyek Jalan Tol Becakayu 2A Ujung, PIHAK KEDUA bersedia bekerja secara bergiliran (shift) apabila diperlukan.
 											</li>
 										</ol>
 										<div style="text-align: center;">
@@ -1049,12 +1049,12 @@ $kode = KodeBagian::all();
 										</div>
 										<ol type="1">
 											<li>Bahwa setelah membaca, mengerti dan memahami seluruh isi dan maksud yang terkandung dalam passal - pasal PKWT ini, maka PIHAK KEDUA setuju dan sepakat untuk mengikat kan diri dengan menandatangani PKWT ini.</li>
-											<li>Perusahaan dan PIHAK KEDUA menyatakan bahwa tidak ada janji-janji lainnya selain kesepakatan yang tertulis dalam pasal-pasal PKWT ini, kecuali surat-surat edaran dan kebijakan-kebijakan yang telah disepakati bersama oleh kedua belah pihak selama bertugas di proyek Pembangunan Jalan Tol Batang-Semarang Seksi 3.</li>
+											<li>Perusahaan dan PIHAK KEDUA menyatakan bahwa tidak ada janji-janji lainnya selain kesepakatan yang tertulis dalam pasal-pasal PKWT ini, kecuali surat-surat edaran dan kebijakan-kebijakan yang telah disepakati bersama oleh kedua belah pihak selama bertugas di proyek Pembangunan Jalan Tol Becakayu 2A Ujung.</li>
 										</ol>
 										<div style="text-align: center;">
 											Pasal 16<br>
 										PENYELESAIAN PERSELISIHAN<br><br>
-										Apabila terjadi perselisihan pendapa tmengena pelaksanaan PKWT ini, akan diselesaikan secara musyawarah antara Perusahaan dan PIHAK KEDUA, apabila perselisihan tersebut tidak terselesaikan antara kedua pihak, akan diselesaikan secara Bipartitantara Perusahaan dengan Serikat Pekerja Waskita, dan / atau secara Tripatit dengan pejabat perantara dari Departemen Tenaga Kerja RI.<br><br>
+										Apabila terjadi perselisihan pendapa tmengena pelaksanaan PKWT ini, akan diselesaikan secara musyawarah antara Perusahaan dan PIHAK KEDUA, apabila perselisihan tersebut tidak terselesaikan antara kedua pihak, akan diselesaikan secara Bipartit antara Perusahaan dengan Serikat Pekerja Waskita, dan / atau secara Tripatit dengan pejabat perantara dari Departemen Tenaga Kerja RI.<br><br>
 										</div>
 
 										<div style="text-align: center;">
