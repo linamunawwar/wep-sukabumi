@@ -272,7 +272,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td align="center">Mengetahui,</td>
+		<td align="center">Menyetujui,</td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -287,12 +287,12 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td align="center">Sudiarso,SE</td>
+		<td align="center">Sudiarso</td>
 		<td></td>
 		<td></td>
 		<td></td>
 		<td></td>
-		<td>Ridho Nur Fatoni</td>
+		<td>Deo Panggabean</td>
 	</tr>
 	<tr>
 		<td></td>
@@ -303,6 +303,6 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td align="center" colspan="3">Site Adminitration Staff</td>
+		<td align="center" colspan="3">Site Adminitration Officer</td>
 	</tr>
 </table>
