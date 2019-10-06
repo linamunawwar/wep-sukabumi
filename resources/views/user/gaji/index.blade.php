@@ -27,6 +27,7 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
+						@if($gaji)
 						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 							<div class="row">
 								<div class="col-md-6">
@@ -148,6 +149,7 @@
 							</div>
 							
 						</form>
+						@endif
 					</div>
 				</div>
 			</div>
