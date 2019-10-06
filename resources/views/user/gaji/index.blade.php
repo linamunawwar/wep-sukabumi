@@ -38,7 +38,9 @@
 									<div class="form-group">
 										<label class="control-label col-md-5 col-sm-5 col-xs-12" for="nama">Gaji Pokok: <span class="required">*</span></label>
 										<div class="col-md-4 col-sm-4 col-xs-12">
-											<p class="data">{{$gaji->gaji_pokok}}</p>
+											@if($gaji->gaji_pokok)
+												<p class="data">{{$gaji->gaji_pokok}}</p>
+											@endif
 										</div>
 									</div>
 								</div>
@@ -46,7 +48,9 @@
 									<div class="form-group total">
 										<label class="control-label col-md-5 col-sm-5 col-xs-12" for="role"> <b>Total Pendapatan: <span class="required">*</span>:</b></label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<p class="data">{{$gaji->gaji_pokok + $gaji->tunj_komunikasi + $gaji->uang_makan + $gaji->tunj_transportasi + $gaji->tunj_pph21}}</p>
+											@if($gaji->gaji_pokok && $gaji->tunj_komunikasi && $gaji->uang_makan && $gaji->tunj_transportasi && $gaji->tunj_pph21)
+												<p class="data">{{$gaji->gaji_pokok + $gaji->tunj_komunikasi + $gaji->uang_makan + $gaji->tunj_transportasi + $gaji->tunj_pph21}}</p>
+											@endif
 										</div>
 									</div>
 								</div>
@@ -56,7 +60,9 @@
 									<div class="form-group ">
 										<label class="control-label col-md-5 col-sm-5 col-xs-12" for="role"> Tunjangan Komunikasi: <span class="required">*</span>:</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
+											@if($gaji->tunj_komunikasi)
 											<p class="data">{{$gaji->tunj_komunikasi}}</p>
+											@endif
 										</div>
 									</div>
 								</div>
@@ -65,7 +71,9 @@
 									<div class="form-group total">
 										<label class="control-label col-md-5 col-sm-5 col-xs-12" for="nama"><b>Total Potongan: <span class="required">*</span>:</b></label>
 										<div class="col-md-4 col-sm-4 col-xs-12">
-											<p class="data">{{$gaji->pph21}}</p>
+											@if($gaji->pph21)
+												<p class="data">{{$gaji->pph21}}</p>
+											@endif
 										</div>
 									</div>
 								</div>
@@ -75,7 +83,9 @@
 									<div class="form-group">
 										<label class="control-label col-md-5 col-sm-5 col-xs-12" for="role"> Uang Makan: <span class="required">*</span>:</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<p class="data">{{$gaji->uang_makan}}</p>
+											@if($gaji->uang_makan)
+												<p class="data">{{$gaji->uang_makan}}</p>
+											@endif
 										</div>
 									</div>
 								</div>
@@ -83,7 +93,9 @@
 									<div class="form-group total">
 										<label class="control-label col-md-5 col-sm-5 col-xs-12" for="nama"><b>Pendapatan Bersih: <span class="required">*</span>:</b></label>
 										<div class="col-md-4 col-sm-4 col-xs-12">
-											<p class="data">{{$gaji->gaji_pokok + $gaji->tunj_komunikasi + $gaji->uang_makan + $gaji->tunj_transportasi}}</p>
+											@if($gaji->gaji_pokok && $gaji->tunj_komunikasi && $gaji->uang_makan && $gaji->tunj_transportasi && $gaji->tunj_pph21)
+												<p class="data">{{$gaji->gaji_pokok + $gaji->tunj_komunikasi + $gaji->uang_makan + $gaji->tunj_transportasi}}</p>
+											@endif
 										</div>
 									</div>
 								</div>
@@ -101,7 +113,9 @@
 									<div class="form-group">
 										<label class="control-label col-md-5 col-sm-5 col-xs-12" for="nama">Tunjangan Transportasi: <span class="required">*</span></label>
 										<div class="col-md-4 col-sm-4 col-xs-12">
-											<p class="data">{{$gaji->tunj_transportasi}}</p>
+											@if($gaji->tunj_trasportasi)
+												<p class="data">{{$gaji->tunj_transportasi}}</p>
+											@endif
 										</div>
 									</div>
 								</div>
@@ -122,7 +136,9 @@
 									<div class="form-group">
 										<label class="control-label col-md-5 col-sm-5 col-xs-12" for="nama">PPH 21: <span class="required">*</span></label>
 										<div class="col-md-4 col-sm-4 col-xs-12">
-											<p class="data">{{$gaji->pph21}}</p>
+											@if($gaji->pph21)
+												<p class="data">{{$gaji->pph21}}</p>
+											@endif
 										</div>
 									</div>
 								</div>
