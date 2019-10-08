@@ -861,19 +861,21 @@ class PegawaiController extends Controller
           $role = \Input::get('role');
           
           $tahun = str_split($dates[0],2);
+          if($kode_bagian != 'PM'){
+            if(($data['role'] == 3) || ($data['role'] == 4)){
+              $nip = $kode_bagian.'M'.$dates[2].$dates[1].$tahun[1];
+              $dt_user['pegawai_id'] = $nip;
+              $dt_pegawai['nip'] = $nip;
+            }
 
-          if(($data['role'] == 3) || ($data['role'] == 4)){
-            $nip = $kode_bagian.'M'.$dates[2].$dates[1].$tahun[1];
-            $dt_user['pegawai_id'] = $nip;
-            $dt_pegawai['nip'] = $nip;
-          }
 
-          $dt_user['role_id'] = $data['role'];
-          $query_user = User::where('pegawai_id',$pegawai->nip)->update($dt_user);
-          $query_pegawai = Pegawai::where('nip',$pegawai->nip)->update($dt_pegawai);
+            $dt_user['role_id'] = $data['role'];
+            $query_user = User::where('pegawai_id',$pegawai->nip)->update($dt_user);
+            $query_pegawai = Pegawai::where('nip',$pegawai->nip)->update($dt_pegawai);
 
-          if($query_pegawai && $query_user){
-            return redirect('admin/pegawai');
+            if($query_pegawai && $query_user){
+              return redirect('admin/pegawai');
+            }
           }
         }
     }
