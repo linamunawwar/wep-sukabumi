@@ -6,6 +6,7 @@ use PHPExcel_Worksheet_Drawing;
 use PHPExcel_Worksheet_PageSetup;
 use App\Roles;
 use App\Pegawai;
+use App\Models\User;
 use App\KodeBagian;
 use App\BankAsuransi;
 use App\Gaji;
@@ -819,6 +820,62 @@ class PegawaiController extends Controller
 
 
         return redirect('/admin/pegawai');
+    }
+
+    public function getReject($id)
+    {
+        date_default_timezone_set("Asia/Jakarta");
+        $pegawai = Pegawai::find($id);
+        if($pegawai){
+            $data['is_verif_admin'] = '-1';
+            $data['verif_admin_by'] = \Auth::user()->id;
+            $data['verify_admin_time'] = date('Y-m-d H:i:s');
+            $data['is_active'] = '';
+            $data['is_new'] = 1;
+
+            $query = Pegawai::where('id',$id)->update($data);
+        }
+  
+        return redirect('/admin/pegawai');
+    }
+
+    public function getEditRole($id)
+    {
+        $pegawai = Pegawai::find($id);
+        if($pegawai){
+            $roles= Roles::get();
+            return view('admin.pegawai.edit_role',['pegawai'=>$pegawai,'roles'=>$roles]);
+        }
+    }
+
+    public function postEditRole($id)
+    {
+        $pegawai = Pegawai::find($id);
+        $user = User::where('pegawai_id',$pegawai->nip);
+        if($pegawai && $user){
+          $data= \Input::all();
+
+          $dates = explode('-', $pegawai->tanggal_lahir);
+
+          $kode_bagian = $pegawai->kode_bagian;
+          $role = \Input::get('role');
+          
+          $tahun = str_split($dates[0],2);
+
+          if(($data['role'] == 3) || ($data['role'] == 4)){
+            $nip = $kode_bagian.'M'.$dates[2].$dates[1].$tahun[1];
+            $dt_user['pegawai_id'] = $nip;
+            $dt_pegawai['nip'] = $nip;
+          }
+
+          $dt_user['role_id'] = $data['role'];
+          $query_user = User::where('pegawai_id',$pegawai->nip)->update($dt_user);
+          $query_pegawai = Pegawai::where('nip',$pegawai->nip)->update($dt_pegawai);
+
+          if($query_pegawai && $query_user){
+            return redirect('admin/pegawai');
+          }
+        }
     }
 
     public function getStruktur()

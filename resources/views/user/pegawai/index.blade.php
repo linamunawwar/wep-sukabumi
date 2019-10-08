@@ -36,7 +36,50 @@ $kode = KodeBagian::all();
 						</div>
 						<div class="clearfix"></div>
 					</div>
-					@if(Auth::user()->pegawai->is_new == 1)
+					@if(Auth::user()->pegawai->is_verif_admin == '-1')
+						<div class="x_content">
+							<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+								<div class="x_title">
+									<h4>Data Pribadi </h4>
+									<div class="alert alert-danger alert-dismissible fade in" role="alert">
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+										</button>
+										<strong>Akun Direject oleh Admin!</strong> Harap Segera Lengkapi CV Anda. Silahkan Tekan Tombol Edit CV
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Nama Karyawan: <span class="required">*</span></label>
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<p class="data">{{Auth::user()->name}}</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-4 col-sm-4 col-xs-12">Gender</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										@if(Auth::user()->pegawai->gender == 'P')
+											<p class="data">Pria</p>
+										@elseif(Auth::user()->pegawai->gender == 'W')
+											<p class="data">Wanita</p>
+										@endif
+
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="tgl_lahir" class="control-label col-md-4 col-sm-4 col-xs-12">Tanggal Lahir *</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<p class="data">{{konversi_tanggal(Auth::user()->pegawai->tanggal_lahir)}}</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nip">NIP <span class="required">*</span>:</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<p class="data">{{Auth::user()->pegawai_id}}</p>
+									</div>
+								</div>
+								<div class="ln_solid"></div>
+							</form>
+						</div>
+					@elseif(Auth::user()->pegawai->is_new == 1)
 						<div class="x_content">
 							<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 								<div class="x_title">
