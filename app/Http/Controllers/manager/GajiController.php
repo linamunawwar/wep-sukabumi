@@ -12,15 +12,36 @@ class GajiController extends Controller
 {
 	 public function index()
     {
-    	if(\Auth::user()->pegawai->kode_bagian == 'SA'){
-	        $gajis = Gaji::where('soft_delete',0)->whereHas('pegawai',function ($q){
-	            $q->where('is_active', 1);
-	        })->get();
-	      }else{
-	        $gajis = Gaji::whereHas('pegawai',function ($q){
-	            $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian)->where('is_active', 1);
-	        })->get();
-	      }
+        if(\Auth::user()->pegawai->kode_bagian == 'SA'){
+          $gajis = Gaji::where('soft_delete',0)->whereHas('pegawai',function ($q){
+              $q->where('is_active', 1);
+          })->get();
+        }elseif(\Auth::user()->pegawai->kode_bagian == 'QHSE'){
+          $gajis_qc = Gaji::whereHas('pegawai',function ($q){
+              $q->where('kode_bagian', 'QC')->where('is_active', 1);
+          })->get();
+
+          $gajis = [];
+
+          foreach ($gajis_qc as $key => $value) {
+            $gajis[] = $value;
+          }
+
+          $gajis_hs = Gaji::whereHas('pegawai',function ($q){
+              $q->where('kode_bagian', 'HS')->where('is_active', 1);
+          })->get();
+
+          foreach ($gajis_hs as $key => $value) {
+            $gajis[] = $value;
+          }
+
+        }else{
+          $gajis = Gaji::whereHas('pegawai',function ($q){
+              $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian)->where('is_active', 1);
+          })->get();
+
+        }
+
         return view('manager.gaji.index', ['gajis'=>$gajis]);
     }
 

@@ -11,10 +11,32 @@ class IzinController extends Controller
 {
     public function index()
     {
-    	$izins = Izin::whereHas('pegawai',function ($q){
-	            $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
-	        })->get();
+    	
+     if(\Auth::user()->pegawai->kode_bagian == 'QHSE'){
+          $izins_qc = Izin::whereHas('pegawai',function ($q){
+              $q->where('kode_bagian', 'QC');
+          })->get();
 
+          $izins = [];
+          
+          foreach ($izins_qc as $key => $value) {
+            $izins[] = $value;
+          }
+
+          $izins_hs = Izin::whereHas('pegawai',function ($q){
+              $q->where('kode_bagian', 'HS');
+          })->get();
+
+          foreach ($izins_hs as $key => $value) {
+            $izins[] = $value;
+          }
+
+        }else{
+          $izins = Izin::whereHas('pegawai',function ($q){
+              $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
+          })->get();
+
+        }
         return view('manager.cuti_izin.izin.index',['izins'=>$izins]);
     }
 

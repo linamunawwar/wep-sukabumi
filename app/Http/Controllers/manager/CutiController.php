@@ -14,7 +14,26 @@ class CutiController extends Controller
     {
     	if(\Auth::user()->pegawai->kode_bagian == 'SA'){
 	        $cutis = Cuti::get();
-	      }else{
+	      }elseif(\Auth::user()->pegawai->kode_bagian == 'QHSE'){
+          $cutis_qc = Cuti::whereHas('pegawai',function ($q){
+              $q->where('kode_bagian', 'QC');
+          })->get();
+
+          $cutis = [];
+
+          foreach ($cutis_qc as $key => $value) {
+            $cutis[] = $value;
+          }
+
+          $cutis_hs = Cuti::whereHas('pegawai',function ($q){
+              $q->where('kode_bagian', 'HS');
+          })->get();
+
+          foreach ($cutis_hs as $key => $value) {
+            $cutis[] = $value;
+          }
+
+        }else{
 	        $cutis = Cuti::whereHas('pegawai',function ($q){
 	            $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
 	        })->get();

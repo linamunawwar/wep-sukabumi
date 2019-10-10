@@ -56,24 +56,73 @@ class HomeController extends Controller
         //Manager
         if(Auth::user()->role_id == 3){
             $memo = MemoPegawai::where('pegawai_id',Auth::user()->pegawai_id)->where('viewed_at',0)->where('soft_delete',0)->count();
-            $cuti = Cuti::where('is_verif_mngr',0)->where('soft_delete',0)
-                    ->whereHas('pegawai',function ($q){
-                        $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
-                    })->count();
-            $izin = Izin::where('is_verif_mngr',0)->where('soft_delete',0)
-                    ->whereHas('pegawai',function ($q){
-                        $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
-                    })->count();
-            $pecat = Pecat::where('is_verif_mngr',0)->where('soft_delete',0)
-                    ->whereHas('pegawai',function ($q){
-                        $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
-                    })->count();
-            $resign = Resign::where('is_verif_mngr',0)->where('soft_delete',0)
-                    ->whereHas('pegawai',function ($q){
-                        $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
-                    })->count();
             $disposisi = DisposisiTugas::where('status','!=',1)->where('soft_delete',0)
-                    ->where('posisi_id',\Auth::user()->pegawai->posisi_id)->count();
+                        ->where('posisi_id',\Auth::user()->pegawai->posisi_id)->count();
+
+            if(\Auth::user()->pegawai->kode_bagian == 'QHSE'){
+              $cutis_qc = Cuti::whereHas('pegawai',function ($q){
+                  $q->where('kode_bagian', 'QC');
+              })->count();
+
+              $cutis_hs = Cuti::whereHas('pegawai',function ($q){
+                  $q->where('kode_bagian', 'HS');
+              })->count();
+
+              $cuti= $cutis_qc + $cutis_hs;
+              
+
+              //izin
+              $izin_qc = Izin::whereHas('pegawai',function ($q){
+                  $q->where('kode_bagian', 'QC');
+              })->count();
+
+              $izin_hs = Izin::whereHas('pegawai',function ($q){
+                  $q->where('kode_bagian', 'HS');
+              })->count();
+
+                $izin = $izin_hs + $izin_qc;
+
+              //pecat
+              $pecat_qc = Pecat::whereHas('pegawai',function ($q){
+                  $q->where('kode_bagian', 'QC');
+              })->count();
+
+              $pecat_hs = Pecat::whereHas('pegawai',function ($q){
+                  $q->where('kode_bagian', 'HS');
+              })->count();
+
+                $pecat = $pecat_qc + $pecat_hs;
+
+              //resign
+              $resign_qc = Resign::whereHas('pegawai',function ($q){
+                  $q->where('kode_bagian', 'QC');
+              })->count();
+
+
+              $resign_hs = Izin::whereHas('pegawai',function ($q){
+                  $q->where('kode_bagian', 'HS');
+              })->count();
+
+              $resign = $resign_qc + $resign_hs;
+
+            }else{
+                $cuti = Cuti::where('is_verif_mngr',0)->where('soft_delete',0)
+                        ->whereHas('pegawai',function ($q){
+                            $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
+                        })->count();
+                $izin = Izin::where('is_verif_mngr',0)->where('soft_delete',0)
+                        ->whereHas('pegawai',function ($q){
+                            $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
+                        })->count();
+                $pecat = Pecat::where('is_verif_mngr',0)->where('soft_delete',0)
+                        ->whereHas('pegawai',function ($q){
+                            $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
+                        })->count();
+                $resign = Resign::where('is_verif_mngr',0)->where('soft_delete',0)
+                        ->whereHas('pegawai',function ($q){
+                            $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
+                        })->count();
+            }
             return view('manager.home_manager',['memo'=>$memo,'cuti'=>$cuti,'izin'=>$izin,'pecat'=>$pecat,'resign'=>$resign,'disposisi'=>$disposisi]);
         }
 

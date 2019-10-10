@@ -19,15 +19,45 @@ class PegawaiController extends Controller
 {
     public function index()
     {
-
-    	 // $pegawais= Pegawai::get();
       if(\Auth::user()->pegawai->kode_bagian == 'SA'){
-        $pegawais = Pegawai::where('is_active','!=',0)->where('soft_delete',0)->orwhere('is_active','')
+          $pegawais = Pegawai::where('is_active','!=',0)->where('soft_delete',0)->orwhere('is_active','')
                             ->where('soft_delete',0)->get();
-      }else{
-        $pegawais = Pegawai::where('kode_bagian', \Auth::user()->pegawai->kode_bagian)->get();
+        }elseif(\Auth::user()->pegawai->kode_bagian == 'QHSE'){
+         $pegawais_qc = Pegawai::where('kode_bagian', 'QC')
+                              ->where('is_active','!=',0)
+                              ->where('soft_delete',0)
+                              ->orwhere('is_active','')
+                            ->where('soft_delete',0)
+                            ->where('kode_bagian', 'QC')
+                            ->get();
 
-      }
+          $pegawais = [];
+
+          foreach ($pegawais_qc as $key => $value) {
+            $pegawais[] = $value;
+          }
+
+          $pegawais_hs =Pegawai::where('kode_bagian', 'HS')
+                              ->where('is_active','!=',0)
+                              ->where('soft_delete',0)
+                              ->orwhere('is_active','')
+                              ->where('kode_bagian', 'HS')
+                            ->where('soft_delete',0)
+                            ->get();
+
+          foreach ($pegawais_hs as $key => $value) {
+            $pegawais[] = $value;
+          }
+
+        }else{
+          $pegawais = Pegawai::where('kode_bagian', \Auth::user()->pegawai->kode_bagian)
+                            ->where('is_active','!=',0)
+                            ->where('soft_delete',0)
+                            ->orwhere('is_active','')
+                            ->where('soft_delete',0)
+                            ->where('kode_bagian', \Auth::user()->pegawai->kode_bagian)->get();
+
+        }
         return view('manager.pegawai.index',['pegawais'=>$pegawais]);
     }
 
