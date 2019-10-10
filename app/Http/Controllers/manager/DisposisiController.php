@@ -7,9 +7,23 @@ use App\Http\Controllers\Controller;
 
 use App\Disposisi;
 use App\DisposisiTugas;
+use App\SuratMasuk;
 
 class DisposisiController extends Controller
 {
+    public function indexSuratMasuk()
+    {
+        $surats = SuratMasuk::where('soft_delete',0)->get();
+
+        return view('manager.disposisi.surat_masuk.index',['surats'=>$surats]);
+    }
+
+    public function getUnduhSuratMasuk($id){
+        $surat = SuratMasuk::find($id);
+
+        return response()->download('upload/surat_masuk/' . $surat->file_surat);
+    }
+
      public function index()
     {
     	$disposisis = Disposisi::whereHas('disposisiTugas',function ($q){

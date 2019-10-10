@@ -259,6 +259,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/spj/create', 'manager\SpjController@postCreate');
 
 		//disposisi
+		Route::get('/surat_masuk', 'manager\DisposisiController@indexSuratMasuk');
+		Route::get('/surat_masuk/unduh/{id}', 'manager\DisposisiController@getUnduhSuratMasuk');
+
 		Route::get('/disposisi', 'manager\DisposisiController@index');
 		Route::get('/disposisi/proses/{id}', 'manager\DisposisiController@proses');
 		Route::post('/disposisi/proses/{id}', 'manager\DisposisiController@postProses');
@@ -319,6 +322,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/spj/create', 'pm\SpjController@postCreate');
 
 		//disposisi
+		Route::get('/surat_masuk', 'pm\DisposisiController@indexSuratMasuk');
+		Route::get('/surat_masuk/unduh/{id}', 'pm\DisposisiController@getUnduhSuratMasuk');
+
 		Route::get('/disposisi', 'pm\DisposisiController@index');
 		Route::get('/disposisi/proses/{id}', 'pm\DisposisiController@proses');
 		Route::post('/disposisi/proses/{id}', 'pm\DisposisiController@postProses');
