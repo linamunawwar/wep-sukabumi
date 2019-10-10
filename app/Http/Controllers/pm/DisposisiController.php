@@ -12,6 +12,19 @@ use App\SuratMasuk;
 
 class DisposisiController extends Controller
 {
+     public function indexSuratMasuk()
+    {
+        $surats = SuratMasuk::where('soft_delete',0)->get();
+
+        return view('pm.disposisi.surat_masuk.index',['surats'=>$surats]);
+    }
+
+    public function getUnduhSuratMasuk($id){
+        $surat = SuratMasuk::find($id);
+
+        return response()->download('upload/surat_masuk/' . $surat->file_surat);
+    }
+
     public function index()
     {
     	$disposisis = Disposisi::where('soft_delete',0)->get();
