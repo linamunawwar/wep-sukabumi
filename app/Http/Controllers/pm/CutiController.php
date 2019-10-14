@@ -48,7 +48,7 @@ class CutiController extends Controller
 
     public function getPengajuanCutiCreate()
     {
-      $pegawais = Pegawai::where('is_active',1)->get();
+      $pegawais = Pegawai::where('is_active',1)->where('soft_delete',0)->get();
 
         return view('pm.cuti_izin.cuti.user.create',['pegawais'=>$pegawais]);
     }

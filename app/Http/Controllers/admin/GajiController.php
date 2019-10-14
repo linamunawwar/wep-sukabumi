@@ -22,14 +22,14 @@ class GajiController extends Controller
 
     public function getListTransfer()
     {
-        $datas = Pegawai::where('is_active', 1)->get();
+        $datas = Pegawai::where('is_active', 1)->where('soft_delete',0)->get();
 
         return view('admin.gaji.list_transfer', ['datas'=>$datas]);
     }
 
     public function getUnduhListTransfer()
     {
-        $datas = Pegawai::where('is_active', 1)->get();
+        $datas = Pegawai::where('is_active', 1)->where('soft_delete',0)->get();
 
         $excel = \Excel::create('List Transfer', function($excel) use ($datas) {
 

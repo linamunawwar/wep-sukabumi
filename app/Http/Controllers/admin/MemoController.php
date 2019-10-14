@@ -41,7 +41,7 @@ class MemoController extends Controller
 
     	$memo->save();
 
-    	$pegawais = Pegawai::where('is_active',1)->get();
+    	$pegawais = Pegawai::where('is_active',1)->where('soft_delete',0)->get();
     	foreach ($pegawais as $key => $pegawai) {
     		$memop = new MemoPegawai;
     		$memop->memo_id = $memo->id;

@@ -200,6 +200,16 @@ class PegawaiController extends Controller
         }
     }
 
+    public function postDelete(){
+      $data = Input::all();
+      $update = Pegawai::where('nip',$data['nip'])->update(['soft_delete'=>1]);
+
+      if($update){
+        return redirect('admin/pegawai');
+      }
+
+    }
+
     public function getEditCV($id)
     {
         $pegawai = Pegawai::find($id);
@@ -921,7 +931,7 @@ class PegawaiController extends Controller
     }
 
     public function getCreatePecat(){
-      $pegawais = Pegawai::where('is_active','1')->get();
+      $pegawais = Pegawai::where('is_active','1')->where('soft_delete',0)->get();
       
       return view('admin.pegawai.pecat.create',['pegawais'=>$pegawais]);
       
@@ -1061,7 +1071,7 @@ class PegawaiController extends Controller
 
     public function getCreatePelatihan()
     {
-      $pegawais = Pegawai::where('is_active','1')->get();
+      $pegawais = Pegawai::where('is_active','1')->where('soft_delete',0)->get();
       
       return view('admin.pegawai.pelatihan.create',['pegawais'=>$pegawais]);
     }
@@ -1093,7 +1103,7 @@ class PegawaiController extends Controller
 
     public function getEditPelatihan($id)
     {
-      $pegawais = Pegawai::where('is_active','1')->get();
+      $pegawais = Pegawai::where('is_active','1')->where('soft_delete',0)->get();
       $pelatihan = Pelatihan::find($id);
       
       return view('admin.pegawai.pelatihan.edit',['pegawais'=>$pegawais,'pelatihan'=>$pelatihan]);

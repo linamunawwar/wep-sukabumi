@@ -32,6 +32,7 @@ class CutiController extends Controller
       }
       if(\Auth::user()->role_id == 5){
         $penggantis = Pegawai::where('nip','!=',\Auth::user()->pegawai_id)
+                      ->where('soft_delete',0)
                       ->where('kode_bagian',\Auth::user()->pegawai->kode_bagian)->get();
       }
 

@@ -139,6 +139,7 @@ class PegawaiController extends Controller
     public function getCreatePecat(){
       $pegawais = Pegawai::where('kode_bagian', \Auth::user()->pegawai->kode_bagian)
                             ->where('is_active','1')
+                            ->where('soft_delete',0)
                             ->whereHas('user',function ($q){
                                 $q->where('role_id', 2);
                             })
@@ -149,7 +150,7 @@ class PegawaiController extends Controller
     }
 
     public function getTanggalMasuk($nip){
-      $pegawai = Pegawai::where('nip', $nip)->where('is_active','1')->first();
+      $pegawai = Pegawai::where('nip', $nip)->where('is_active','1')->where('soft_delete',0)->first();
       
       $pegawai->tanggal_masuk = konversi_tanggal($pegawai->tanggal_masuk);
       $pegawai->gaji = $pegawai->gaji->gaji_pokok;

@@ -20,7 +20,7 @@ class SpjController extends Controller
 
     public function getCreate()
     {
-    	$pegawais = Pegawai::where('is_active',1)->get();
+    	$pegawais = Pegawai::where('is_active',1)->where('soft_delete',0)->get();
 
         return view('admin.spj.create',['pegawais'=>$pegawais]);
     }

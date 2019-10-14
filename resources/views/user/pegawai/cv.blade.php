@@ -1755,7 +1755,13 @@ $kode = KodeBagian::all();
 								</div>
 		                        <div class="form-group">
 									<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">Tanda Tangan <span class="required">*</span>:</label>
-									<div class="col-md-6 col-sm-6 col-xs-12">
+									@if($pegawai->ttd)
+											<img src='{{asset("upload/pegawai/$pegawai->nip/$pegawai->ttd")}}' style="max-width: 100px; max-height: 100px;">
+											<br>		
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">*Upload ulang Tanda Tangan
+											</label>
+									@endif
+									<div class="col-md-4 col-sm-4 col-xs-12">
 										<input type="file" id="ttd" name="ttd"  class="form-control col-md-7 col-xs-12">
 										<p>Tanda Tangan harus berupa file .jpg / .png, dengan ukuran maksimum 1 MB</p>
 									</div>

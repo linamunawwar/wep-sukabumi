@@ -28,7 +28,7 @@ class PegawaiController extends Controller
 {
 	public function index()
     {
-        $pegawai = Pegawai::where('is_active','!=',0)->where('nip',\Auth::user()->pegawai_id)->first();
+        $pegawai = Pegawai::where('is_active','!=',0)->where('nip',\Auth::user()->pegawai_id)->where()'soft_delete',0)->first();
         $bank = BankAsuransi::where('nip',\Auth::user()->pegawai_id)->first();
         return view('user.pegawai.index',['pegawai'=>$pegawai,'bank'=>$bank]);
     }
@@ -90,6 +90,10 @@ class PegawaiController extends Controller
        $pegawai['nama'] = $data['nama'];
        $pegawai['no_ktp'] = $data['no_ktp'];
        $pegawai['no_pkwt'] = tigadigit($db->id).'/PKWT/WK/INF2/BSTR-3/'.date('Y');
+       if(array_key_exists('gender', $data)){
+            $pegawai['gender'] = $data['gender'];
+       }
+       
        $pegawai['gelar_depan'] = $data['gelar_depan'];
        $pegawai['gelar_belakang'] = $data['gelar_belakang'];
        $pegawai['agama'] = $data['agama'];
@@ -119,7 +123,7 @@ class PegawaiController extends Controller
        }
        if(\Input::hasfile('ttd')){
          $ori_file  = \Request::file('ttd');
-         $tujuan = "upload/pegawai".$nip;
+         $tujuan = "upload/pegawai/".$nip;
          $ekstension = $ori_file->getClientOriginalExtension();
 
           $nama_file = 'ttd.'.$ekstension;

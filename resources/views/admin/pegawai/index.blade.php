@@ -57,6 +57,7 @@
 												@endif
 											@endif
 												
+											<button data-toggle="modal"  nip='{{$pegawai->nip}}' data-target="#DeleteModal" class="btn btn-xs btn-danger" id="modal-delete" onclick='deleteData("{{$pegawai->nip}}")'><i class="fa fa-trash"></i> Delete</button>
 										</td>
 										<!-- <td style="text-align: center;">
 											@if($pegawai->is_verif_admin == 0)
@@ -102,5 +103,56 @@
 			</div>
 		</div>
     </div>
+    <div id="DeleteModal" class="modal fade text-danger" role="dialog">
+   <div class="modal-dialog ">
+     <!-- Modal content-->
+     <form action="{{ url("admin/pegawai/delete") }}" id="deleteForm" method="post" >
+         <div class="modal-content">
+             <div class="modal-header bg-danger">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 <h4 class="modal-title text-center">DELETE CONFIRMATION</h4>
+             </div>
+             <div class="modal-body">
+                 {{ csrf_field() }}
+                 {{ method_field('DELETE') }}
+                 <p class="text-center">Anda yakin ingin menghapus data ini ?</p>
+                 <input type="hidden" name="nip" id="nip">
+             </div>
+             <div class="modal-footer">
+                 <center>
+                     <button type="button" class="btn btn-success" data-dismiss="modal">Batal</button>
+                     <button type="submit" name="" class="btn btn-danger" data-dismiss="modal" onclick="formSubmit()">Ya, Hapus</button>
+                 </center>
+             </div>
+         </div>
+     </form>
+   </div>
+  </div>
+
     <!-- /page content -->
 @endsection
+@push('scripts')
+  <script type="text/javascript">
+  	$('#modal-delete').on("click",function(){
+  		var nip = $(this).attr('nip');
+  		console.log('ada');
+         console.log(nip);
+         $('#nip').val(nip);
+     
+  	});
+     function deleteData(id)
+     {
+         var id = id;
+         var url = '{{ url("admin/pegawai/delete") }}';
+         // url = url.replace(':id', id);
+         console.log(id);
+         $('#nip').val(id);
+         $("#deleteForm").attr('action', url);
+     }
+
+     function formSubmit()
+     {
+         $("#deleteForm").submit();
+     }
+  </script>
+ @endpush
