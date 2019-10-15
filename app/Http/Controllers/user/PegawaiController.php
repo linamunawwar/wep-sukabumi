@@ -28,7 +28,7 @@ class PegawaiController extends Controller
 {
 	public function index()
     {
-        $pegawai = Pegawai::where('is_active','!=',0)->where('nip',\Auth::user()->pegawai_id)->where()'soft_delete',0)->first();
+        $pegawai = Pegawai::where('is_active','!=',0)->where('nip',\Auth::user()->pegawai_id)->where('soft_delete',0)->first();
         $bank = BankAsuransi::where('nip',\Auth::user()->pegawai_id)->first();
         return view('user.pegawai.index',['pegawai'=>$pegawai,'bank'=>$bank]);
     }
