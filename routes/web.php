@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pegawai/prod05/unduh', 'admin\PegawaiController@getProd05Unduh');
 
 		Route::get('/pegawai_non_aktif', 'admin\PegawaiController@indexNonAktif');
+		Route::delete('/pegawai_non_aktif/delete', 'admin\PegawaiController@deleteNonAktif');
 
 		//pemecatan
 		Route::get('/pegawai/pecat', 'admin\PegawaiController@getPecat');

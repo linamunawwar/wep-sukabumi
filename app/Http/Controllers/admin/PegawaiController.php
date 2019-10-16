@@ -53,6 +53,17 @@ class PegawaiController extends Controller
         return view('admin.pegawai.index_non_aktif',['pegawais'=>$pegawais]);
     }
 
+     public function deleteNonAktif(){
+      $data = Input::all();
+      $del = Pegawai::where('nip',$data['nip'])->delete();
+      $del_user = User::where('pegawai_id',$data['nip'])->delete();
+
+      if($del && $del_user){
+        return redirect('admin/pegawai_non_aktif');
+      }
+
+    }
+
     public function getCreate()
     {
         $roles= Roles::get();

@@ -106,7 +106,7 @@
 			</div>
 		</div>
     </div>
-    <div id="DeleteModal" class="modal fade text-danger" role="dialog">
+   <div id="DeleteModal" class="modal fade text-danger" role="dialog">
    <div class="modal-dialog ">
      <!-- Modal content-->
      <form action="{{ url("admin/pegawai/delete") }}" id="deleteForm" method="post" >
