@@ -807,6 +807,11 @@ class PegawaiController extends Controller
        $pegawai['is_verif_admin'] = 1;
        $pegawai['verif_admin_by'] = \Auth::user()->id;
        $pegawai['verify_admin_time'] = date('Y-m-d H:i:s');
+       //karena deo minta aktivasi sampe akun admin deo aja jd tak bikin verif pm langsung ke de verif pas admin verif
+       $pegawai['is_active'] = 1;
+       $pegawai['is_verif_pm'] = 1;
+       $pegawai['verif_pm_by'] = \Auth::user()->id;
+       $pegawai['verify_pm_time'] = date('Y-m-d H:i:s');
 
        $update = Pegawai::where('nip',$data['nip'])->update($pegawai);
 

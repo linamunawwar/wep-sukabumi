@@ -86,11 +86,14 @@
 											@endif
 										</td>
 										<td style="text-align: center;">
-											@if(($pegawai->is_new == 1) || ($pegawai->is_verif_admin != 0))
-												<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>
-											@elseif(($pegawai->is_new == 0) && ($pegawai->is_verif_admin == 0))
-												<a class="btn btn-success btn-xs" href="{{url('admin/pegawai/approve/'.$pegawai->id.'')}}"><i class="fa fa-check" ></i>  Pending Approval</a>
-												<a class="btn btn-danger btn-xs" href="{{url('admin/pegawai/reject/'.$pegawai->id.'')}}"><i class="fa fa-check" ></i>  Reject</a>
+											<!-- deo minta approval hanya bisa dilakukan sama akun dia -->
+											@if(\Auth::user()->pegawai_id == 'SAA10001')
+												@if(($pegawai->is_new == 1) || ($pegawai->is_verif_admin != 0))
+													<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>
+												@elseif(($pegawai->is_new == 0) && ($pegawai->is_verif_admin == 0))
+													<a class="btn btn-success btn-xs" href="{{url('admin/pegawai/approve/'.$pegawai->id.'')}}"><i class="fa fa-check" ></i>  Pending Approval</a>
+													<a class="btn btn-danger btn-xs" href="{{url('admin/pegawai/reject/'.$pegawai->id.'')}}"><i class="fa fa-check" ></i>  Reject</a>
+												@endif
 											@endif
 											<a class="btn btn-default btn-xs" href="{{url('admin/pegawai/editrole/'.$pegawai->id.'')}}"><i class="fa fa-edit" ></i>  Edit Role</a>
 										</td>
