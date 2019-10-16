@@ -735,8 +735,8 @@ $kode = KodeBagian::all();
 								<h4>Penugasan Karyawan</h4>
 							</div>
 							<div class="row">
-								<div class="col-md-12">
-									<table class="table table-bordered" style="width: 1500px; overflow: scroll; background: white;">
+								<div class="col-md-12" style="overflow: scroll;">
+									<table class="table table-bordered" style="width: 1500px;  background: white;">
 										<thead>
 											<tr>
 												<th rowspan="2">No.</th>

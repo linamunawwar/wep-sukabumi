@@ -30,7 +30,7 @@
       <td>Nama Karyawan</td>
       <td>:</td>
       <td>{{$pegawai->nama}}</td>
-      <td><img src="{{ asset("public/img/profil.jpg") }}" style="width: 80px; height: 100px; text-align: right;float: right;"/></td>
+      <td><img src="{{ asset("upload/pegawai/$pegawai->nip/$pegawai->foto") }}" style="width: 80px; height: 100px; text-align: right;float: right;"/></td>
     </tr>
     <tr>
       <td>Gelar Depan</td>

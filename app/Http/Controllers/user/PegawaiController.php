@@ -131,6 +131,16 @@ class PegawaiController extends Controller
         $ori_file->move($tujuan,$nama_file);
         $pegawai['ttd'] = $nama_file;
       }
+      if(\Input::hasfile('foto')){
+         $ori_file  = \Request::file('foto');
+         $tujuan = "upload/pegawai/".$nip;
+         $ekstension = $ori_file->getClientOriginalExtension();
+
+          $nama_file = 'foto.'.$ekstension;
+
+        $ori_file->move($tujuan,$nama_file);
+        $pegawai['foto'] = $nama_file;
+      }
       
        $pegawai['is_new'] = 0;
        $pegawai['is_active'] = '';

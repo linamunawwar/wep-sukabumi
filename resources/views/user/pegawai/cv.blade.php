@@ -770,8 +770,8 @@ $kode = KodeBagian::all();
 									<h4>Penugasan Karyawan</h4>
 								</div>
 								<div class="row">
-									<div class="col-md-12">
-										<table class="table table-bordered" style="width: 1500px; overflow: scroll; background: white;">
+									<div class="col-md-12" style="overflow: scroll;">
+										<table class="table table-bordered" style=" width: 1500px; background: white; overflow: scroll;">
 											<thead>
 												<tr>
 													<th rowspan="2">No.</th>
@@ -1766,6 +1766,7 @@ $kode = KodeBagian::all();
 										<p>Tanda Tangan harus berupa file .jpg / .png, dengan ukuran maksimum 1 MB</p>
 									</div>
 								</div>
+								
 								@if((\Auth::user()->role_id == 3) || (\Auth::user()->role_id == 4) || (\Auth::user()->role_id == 5) || (\Auth::user()->pegawai->posisi_id == 24))
 									* Untuk Projek Manager, Manager dan Staff Public Relation harap mengupload paraf
 									<div class="form-group">
@@ -1777,6 +1778,20 @@ $kode = KodeBagian::all();
 									</div>
 			                      </div>
 		                      @endif
+		                      <br>
+								<div class="form-group">
+									<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">Upload Foto <span class="required">*</span>:</label>
+									@if($pegawai->foto)
+											<img src='{{asset("upload/pegawai/$pegawai->nip/$pegawai->foto")}}' style="max-width: 100px; max-height: 100px;">
+											<br>		
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">*Upload ulang foto
+											</label>
+									@endif
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<input type="file" id="foto" name="foto"  class="form-control col-md-7 col-xs-12">
+										<p>Tanda Tangan harus berupa file .jpg / .png, dengan ukuran maksimum 1 MB</p>
+									</div>
+								</div>
 	                      
 	                    </div>
 	                    </form>
