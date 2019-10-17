@@ -513,22 +513,22 @@ $kode = KodeBagian::all();
 														<tr>
 															<td>{{$i+1}}</td>
 															<td>
-																<input type="text"  name="jenjang[]"  class="form-control col-md-7 col-xs-12 jenjang_1" value="{{$pendidikan['jenjang']}}">
+																<input type="text"  name="jenjang[]"  class="form-control col-md-7 col-xs-12 jenjang_1" value="{{$pendidikan['jenjang']}}" readonly="readonly">
 															</td>
 															<td>
-																<input type="text" name="asal_sekolah[]"  class="form-control col-md-7 col-xs-12 asal_sekolah_1" value="{{$pendidikan['asal_sekolah']}}">
+																<input type="text" name="asal_sekolah[]"  class="form-control col-md-7 col-xs-12 asal_sekolah_1" value="{{$pendidikan['asal_sekolah']}}" readonly="readonly">
 															</td>
 															<td>
-																<input type="text"  name="kota[]"  class="form-control col-md-7 col-xs-12 kota_1" value="{{$pendidikan['kota']}}">
+																<input type="text"  name="kota[]"  class="form-control col-md-7 col-xs-12 kota_1" value="{{$pendidikan['kota']}}" readonly="readonly">
 															</td>
 															<td>
-																<input type="text"name="jurusan[]"  class="form-control col-md-7 col-xs-12 jurusan_1" value="{{$pendidikan['jurusan']}}">
+																<input type="text"name="jurusan[]"  class="form-control col-md-7 col-xs-12 jurusan_1" value="{{$pendidikan['jurusan']}}" readonly="readonly">
 															</td>
 															<td>
-																<input type="text" name="tahun_lulus[]"  class="form-control col-md-7 col-xs-12" value="{{$pendidikan['tahun_lulus']}}" >
+																<input type="text" name="tahun_lulus[]"  class="form-control col-md-7 col-xs-12" value="{{$pendidikan['tahun_lulus']}}" readonly="readonly" >
 															</td>
 															<td>
-																<input type="text" name="no_ijazah[]"  class="form-control col-md-7 col-xs-12" value="{{$pendidikan['no_ijazah']}}">
+																<input type="text" name="no_ijazah[]"  class="form-control col-md-7 col-xs-12" value="{{$pendidikan['no_ijazah']}}" readonly="readonly">
 															</td>
 														</tr>
 														<?php $i++; ?>
@@ -540,21 +540,21 @@ $kode = KodeBagian::all();
 														?>
 																<tr>
 																	<td>{{$j + $i}}</td>
-																	<td><input type="text" id="jenjang_2" name="jenjang[]"  class="form-control col-md-7 col-xs-12 jenjang_2"></td>
+																	<td><input type="text" id="jenjang_2" name="jenjang[]"  class="form-control col-md-7 col-xs-12 jenjang_2" readonly="readonly"></td>
 																	<td>
-																		<input type="text" id="asal_sekolah_2" name="asal_sekolah[]"  class="form-control col-md-7 col-xs-12 asal_sekolah_2">
+																		<input type="text" id="asal_sekolah_2" name="asal_sekolah[]"  class="form-control col-md-7 col-xs-12 asal_sekolah_2" readonly="readonly">
 																	</td>
 																	<td>
-																		<input type="text" id="kota_2" name="kota[]"  class="form-control col-md-7 col-xs-12 kota_2">
+																		<input type="text" id="kota_2" name="kota[]"  class="form-control col-md-7 col-xs-12 kota_2" readonly="readonly">
 																	</td>
 																	<td>
-																		<input type="text" id="jurusan_2" name="jurusan[]"  class="form-control col-md-7 col-xs-12 jurusan_2">
+																		<input type="text" id="jurusan_2" name="jurusan[]"  class="form-control col-md-7 col-xs-12 jurusan_2" readonly="readonly">
 																	</td>
 																	<td>
-																		<input type="text" id="lulus_2" name="tahun_lulus[]"  class="form-control col-md-7 col-xs-12 lulus_2">
+																		<input type="text" id="lulus_2" name="tahun_lulus[]"  class="form-control col-md-7 col-xs-12 lulus_2" readonly="readonly">
 																	</td>
 																	<td>
-																		<input type="text" id="ijazah_2" name="no_ijazah[]"  class="form-control col-md-7 col-xs-12 ijazah_2">
+																		<input type="text" id="ijazah_2" name="no_ijazah[]"  class="form-control col-md-7 col-xs-12 ijazah_2" readonly="readonly">
 																	</td>
 																</tr>
 														<?php	} ?>
@@ -586,19 +586,19 @@ $kode = KodeBagian::all();
 														<tr>
 															<td>{{$i+1}}</td>
 															<td>
-																<input type="text" name="sertifikat_mulai[]"  class="form-control col-md-7 col-xs-12 sertifikat_mulai" value="{{$sertifikat['tanggal_mulai']}}">
+																<input type="text" name="sertifikat_mulai[]"  class="form-control col-md-7 col-xs-12 sertifikat_mulai" value="{{$sertifikat['tanggal_mulai']}}" readonly="readonly">
 															</td>
 															<td>
-																<input type="text" name="sertifikat_akhir[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir" value="{{$sertifikat['tanggal_akhir']}}">
+																<input type="text" name="sertifikat_akhir[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir" value="{{$sertifikat['tanggal_akhir']}}" readonly="readonly">
 															</td>
 															<td>
-																<input type="text" name="sertifikat[]"  class="form-control col-md-7 col-xs-12 sertifikat" value="{{$sertifikat['sertifikat']}}">
+																<input type="text" name="sertifikat[]"  class="form-control col-md-7 col-xs-12 sertifikat" value="{{$sertifikat['sertifikat']}}" readonly="readonly">
 															</td>
 															<td>
-																<input type="text" name="no_sertifikat[]"  class="form-control col-md-7 col-xs-12" value="{{$sertifikat['no_sertifikat']}}">
+																<input type="text" name="no_sertifikat[]"  class="form-control col-md-7 col-xs-12" value="{{$sertifikat['no_sertifikat']}}" readonly="readonly">
 															</td>
 															<td>
-																<input type="text" name="institusi_sertifikat[]"  class="form-control col-md-7 col-xs-12" value="{{$sertifikat['institusi']}}">
+																<input type="text" name="institusi_sertifikat[]"  class="form-control col-md-7 col-xs-12" value="{{$sertifikat['institusi']}}" readonly="readonly">
 															</td>
 														</tr>
 													<?php $i++; ?>
@@ -611,19 +611,19 @@ $kode = KodeBagian::all();
 																<tr>
 																	<td>{{$j + $i}}</td>
 																	<td>
-																		<input type="text" name="sertifikat_mulai[]"  class="form-control col-md-7 col-xs-12 sertifikat_mulai">
+																		<input type="text" name="sertifikat_mulai[]"  class="form-control col-md-7 col-xs-12 sertifikat_mulai" readonly="readonly">
 																	</td>
 																	<td>
-																		<input type="text" name="sertifikat_akhir[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
+																		<input type="text" name="sertifikat_akhir[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir" readonly="readonly">
 																	</td>
 																	<td>
-																		<input type="text" name="sertifikat[]"  class="form-control col-md-7 col-xs-12 sertifikat">
+																		<input type="text" name="sertifikat[]"  class="form-control col-md-7 col-xs-12 sertifikat" readonly="readonly">
 																	</td>
 																	<td>
-																		<input type="text" name="no_sertifikat[]"  class="form-control col-md-7 col-xs-12">
+																		<input type="text" name="no_sertifikat[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																	</td>
 																	<td>
-																		<input type="text" name="institusi_sertifikat[]"  class="form-control col-md-7 col-xs-12">
+																		<input type="text" name="institusi_sertifikat[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																	</td>
 																</tr>
 														<?php	} ?>
@@ -655,19 +655,19 @@ $kode = KodeBagian::all();
 															<tr>
 																<td>{{$i+1}}</td>
 																<td>
-																	<input type="text" name="pelatihan_tanggal[]"  class="form-control col-md-7 col-xs-12" value="{{$pelatihan['tanggal']}}">
+																	<input type="text" name="pelatihan_tanggal[]"  class="form-control col-md-7 col-xs-12" value="{{$pelatihan['tanggal']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="nama_pelatihan[]"  class="form-control col-md-7 col-xs-12" value="{{$pelatihan['nama_pelatihan']}}">
+																	<input type="text" name="nama_pelatihan[]"  class="form-control col-md-7 col-xs-12" value="{{$pelatihan['nama_pelatihan']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="tempat_pelatihan[]"  class="form-control col-md-7 col-xs-12" value="{{$pelatihan['tempat']}}">
+																	<input type="text" name="tempat_pelatihan[]"  class="form-control col-md-7 col-xs-12" value="{{$pelatihan['tempat']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="jam_hari[]"  class="form-control col-md-7 col-xs-12" value="{{$pelatihan['jam_hari']}}">
+																	<input type="text" name="jam_hari[]"  class="form-control col-md-7 col-xs-12" value="{{$pelatihan['jam_hari']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="penyelenggara_pelatihan[]"  class="form-control col-md-7 col-xs-12" value="{{$pelatihan['penyelenggara']}}">
+																	<input type="text" name="penyelenggara_pelatihan[]"  class="form-control col-md-7 col-xs-12" value="{{$pelatihan['penyelenggara']}}" readonly="readonly">
 																</td>
 															<?php $i++; ?>
 														@endforeach
@@ -679,19 +679,19 @@ $kode = KodeBagian::all();
 																	<tr>
 																		<td>{{$j + $i}}</td>
 																		<td>
-																			<input type="text" name="pelatihan_tanggal[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="pelatihan_tanggal[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="nama_pelatihan[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="nama_pelatihan[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="tempat_pelatihan[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="tempat_pelatihan[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="jam_hari[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="jam_hari[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="penyelenggara_pelatihan[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="penyelenggara_pelatihan[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																	</tr>
 															<?php	} ?>
@@ -723,19 +723,19 @@ $kode = KodeBagian::all();
 															<tr>
 																<td>{{$i+1}}</td>
 																<td>
-																	<input type="text" name="mulai_kerja[]"  class="form-control col-md-7 col-xs-12" value="{{$pengalaman['tanggal_mulai']}}">
+																	<input type="text" name="mulai_kerja[]"  class="form-control col-md-7 col-xs-12" value="{{$pengalaman['tanggal_mulai']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="akhir_kerja[]"  class="form-control col-md-7 col-xs-12" value="{{$pengalaman['tanggal_akhir']}}">
+																	<input type="text" name="akhir_kerja[]"  class="form-control col-md-7 col-xs-12" value="{{$pengalaman['tanggal_akhir']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="nama_perusahaan[]"  class="form-control col-md-7 col-xs-12" value="{{$pengalaman['nama_perusahaan']}}">
+																	<input type="text" name="nama_perusahaan[]"  class="form-control col-md-7 col-xs-12" value="{{$pengalaman['nama_perusahaan']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="jabatan[]"  class="form-control col-md-7 col-xs-12" value="{{$pengalaman['jabatan']}}">
+																	<input type="text" name="jabatan[]"  class="form-control col-md-7 col-xs-12" value="{{$pengalaman['jabatan']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="keterangan[]"  class="form-control col-md-7 col-xs-12" value="{{$pengalaman['keterangan']}}">
+																	<input type="text" name="keterangan[]"  class="form-control col-md-7 col-xs-12" value="{{$pengalaman['keterangan']}}" readonly="readonly">
 																</td>
 															</tr>
 															<?php $i++; ?>
@@ -748,19 +748,19 @@ $kode = KodeBagian::all();
 																	<tr>
 																		<td>{{$j + $i}}</td>
 																		<td>
-																			<input type="text" name="mulai_kerja[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="mulai_kerja[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="akhir_kerja[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="akhir_kerja[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="nama_perusahaan[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="nama_perusahaan[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="jabatan[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="jabatan[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="keterangan[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="keterangan[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																	</tr>
 															<?php	} ?>
@@ -804,40 +804,40 @@ $kode = KodeBagian::all();
 															<tr>
 																<td>{{$i+1}}</td>
 																<td>
-																	<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['tanggal_mulai']}}">
+																	<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['tanggal_mulai']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['tanggal_akhir']}}">
+																	<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['tanggal_akhir']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="no_sk[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['no_sk']}}">
+																	<input type="text" name="no_sk[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['no_sk']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="jabatan_tugas[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['jabatan']}}">
+																	<input type="text" name="jabatan_tugas[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['jabatan']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="unit_kerja[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['unit_kerja']}}">
+																	<input type="text" name="unit_kerja[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['unit_kerja']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="kj[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['KJ']}}">
+																	<input type="text" name="kj[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['KJ']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="kk[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['KK']}}">
+																	<input type="text" name="kk[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['KK']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="tempat_kerja[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['tempat_kerja']}}">
+																	<input type="text" name="tempat_kerja[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['tempat_kerja']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="prestasi_rencana[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['prestasi_rencana']}}">
+																	<input type="text" name="prestasi_rencana[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['prestasi_rencana']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="prestasi_realisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['prestasi_realisasi']}}">
+																	<input type="text" name="prestasi_realisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['prestasi_realisasi']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="nama_atasan[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['nama_atasan']}}">
+																	<input type="text" name="nama_atasan[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['nama_atasan']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="jabatan_atasan[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['jabatan_atasan']}}">
+																	<input type="text" name="jabatan_atasan[]"  class="form-control col-md-7 col-xs-12" value="{{$penugasan['jabatan_atasan']}}" readonly="readonly">
 																</td>
 															</tr>
 															<?php $i++; ?>
@@ -850,40 +850,40 @@ $kode = KodeBagian::all();
 																	<tr>
 																		<td>{{$j + $i}}</td>
 																		<td>
-																			<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="mulai_tugas[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="akhir_tugas[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="no_sk[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="no_sk[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="jabatan_tugas[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="jabatan_tugas[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="unit_kerja[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="unit_kerja[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="kj[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="kj[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="kk[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="kk[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="tempat_kerja[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="tempat_kerja[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="prestasi_rencana[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="prestasi_rencana[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="prestasi_realisasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="prestasi_realisasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="nama_atasan[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="nama_atasan[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="jabatan_atasan[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="jabatan_atasan[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																	</tr>
 															<?php	} ?>
@@ -918,22 +918,22 @@ $kode = KodeBagian::all();
 															<tr>
 																<td>{{$i+1}}</td>
 																<td>
-																	<input type="text" name="tanggal_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['tanggal']}}">
+																	<input type="text" name="tanggal_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['tanggal']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="judul_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['judul']}}">
+																	<input type="text" name="judul_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['judul']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="tempat_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['tempat']}}">
+																	<input type="text" name="tempat_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['tempat']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="sifat_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['sifat']}}">
+																	<input type="text" name="sifat_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['sifat']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="lingkup_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['lingkup_kegiatan']}}">
+																	<input type="text" name="lingkup_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['lingkup_kegiatan']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="referensi_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['referensi']}}">
+																	<input type="text" name="referensi_presentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$presentasi['referensi']}}" readonly="readonly">
 																</td>
 															</tr>
 															<?php $i++; ?>
@@ -946,22 +946,22 @@ $kode = KodeBagian::all();
 																	<tr>
 																		<td>{{$j + $i}}</td>
 																		<td>
-																			<input type="text" name="tanggal_presentasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="tanggal_presentasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="judul_presentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
+																			<input type="text" name="judul_presentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="tempat_presentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
+																			<input type="text" name="tempat_presentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="sifat_presentasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="sifat_presentasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="lingkup_presentasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="lingkup_presentasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="referensi_presentasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="referensi_presentasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																	</tr>
 																<?php	} ?>
@@ -984,22 +984,22 @@ $kode = KodeBagian::all();
 															<tr>
 																<td>{{$i+1}}</td>
 																<td>
-																	<input type="text" name="tanggal_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['tanggal']}}">
+																	<input type="text" name="tanggal_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['tanggal']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="judul_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['judul']}}">
+																	<input type="text" name="judul_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['judul']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="tempat_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['tempat']}}">
+																	<input type="text" name="tempat_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['tempat']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="sifat_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['sifat']}}">
+																	<input type="text" name="sifat_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['sifat']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="lingkup_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['lingkup_kegiatan']}}">
+																	<input type="text" name="lingkup_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['lingkup_kegiatan']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="referensi_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['referensi']}}">
+																	<input type="text" name="referensi_nopresentasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopresentasi['referensi']}}" readonly="readonly">
 																</td>
 															<?php $i++; ?>
 														@endforeach
@@ -1011,22 +1011,22 @@ $kode = KodeBagian::all();
 																	<tr>
 																		<td>{{$j + $i}}</td>
 																		<td>
-																			<input type="text" name="tanggal_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="tanggal_nopresentasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="judul_nopresentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
+																			<input type="text" name="judul_nopresentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="tempat_nopresentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
+																			<input type="text" name="tempat_nopresentasi[]"  class="form-control col-md-7 col-xs-12 sertifikat" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="sifat_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="sifat_nopresentasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="lingkup_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="lingkup_nopresentasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="referensi_nopresentasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="referensi_nopresentasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																	</tr>
 														<?php	} ?>
@@ -1049,22 +1049,22 @@ $kode = KodeBagian::all();
 															<tr>
 																<td>{{$i+1}}</td>
 																<td>
-																	<input type="text" name="tanggal_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['tanggal']}}">
+																	<input type="text" name="tanggal_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['tanggal']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="judul_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['judul']}}">
+																	<input type="text" name="judul_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['judul']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="tempat_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['tempat']}}">
+																	<input type="text" name="tempat_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['tempat']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="sifat_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['sifat']}}">
+																	<input type="text" name="sifat_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['sifat']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="lingkup_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['lingkup_kegiatan']}}">
+																	<input type="text" name="lingkup_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['lingkup_kegiatan']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="referensi_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['referensi']}}">
+																	<input type="text" name="referensi_nopublikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$nopublikasi['referensi']}}" readonly="readonly">
 																</td>
 															</tr>
 													<?php $i++; ?>
@@ -1077,22 +1077,22 @@ $kode = KodeBagian::all();
 																	<tr>
 																		<td>{{$j + $i}}</td>
 																		<td>
-																			<input type="text" name="tanggal_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="tanggal_nopublikasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="judul_nopublikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
+																			<input type="text" name="judul_nopublikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="tempat_nopublikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
+																			<input type="text" name="tempat_nopublikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="sifat_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="sifat_nopublikasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="lingkup_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="lingkup_nopublikasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="referensi_nopublikasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="referensi_nopublikasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																	</tr>
 														<?php	} ?>
@@ -1125,25 +1125,25 @@ $kode = KodeBagian::all();
 															<tr>
 																<td>{{$i+1}}</td>
 																<td>
-																	<input type="text" name="tanggal_pertemuan[]"  class="form-control col-md-7 col-xs-12" value="{{$pertemuan['tanggal']}}">
+																	<input type="text" name="tanggal_pertemuan[]"  class="form-control col-md-7 col-xs-12" value="{{$pertemuan['tanggal']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="tema[]"  class="form-control col-md-7 col-xs-12 " value="{{$pertemuan['tema']}}">
+																	<input type="text" name="tema[]"  class="form-control col-md-7 col-xs-12 " value="{{$pertemuan['tema']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="organisasi_penyelenggara[]"  class="form-control col-md-7 col-xs-12 " value="{{$pertemuan['penyelenggara']}}">
+																	<input type="text" name="organisasi_penyelenggara[]"  class="form-control col-md-7 col-xs-12 " value="{{$pertemuan['penyelenggara']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="tempat_pertemuan[]"  class="form-control col-md-7 col-xs-12" value="{{$pertemuan['tempat']}}">
+																	<input type="text" name="tempat_pertemuan[]"  class="form-control col-md-7 col-xs-12" value="{{$pertemuan['tempat']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="hadir_sebagai[]"  class="form-control col-md-7 col-xs-12" value="{{$pertemuan['hadir_sebagai']}}">
+																	<input type="text" name="hadir_sebagai[]"  class="form-control col-md-7 col-xs-12" value="{{$pertemuan['hadir_sebagai']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="lingkup_pertemuan[]"  class="form-control col-md-7 col-xs-12" value="{{$pertemuan['lingkup_kegiatan']}}">
+																	<input type="text" name="lingkup_pertemuan[]"  class="form-control col-md-7 col-xs-12" value="{{$pertemuan['lingkup_kegiatan']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="referensi_pertemuan[]"  class="form-control col-md-7 col-xs-12" value="{{$pertemuan['referensi']}}">
+																	<input type="text" name="referensi_pertemuan[]"  class="form-control col-md-7 col-xs-12" value="{{$pertemuan['referensi']}}" readonly="readonly">
 																</td>
 															<?php $i++; ?>
 														@endforeach
@@ -1155,25 +1155,25 @@ $kode = KodeBagian::all();
 																	<tr>
 																		<td>{{$j + $i}}</td>
 																		<td>
-																			<input type="text" name="tanggal_pertemuan[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="tanggal_pertemuan[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="tema[]"  class="form-control col-md-7 col-xs-12 ">
+																			<input type="text" name="tema[]"  class="form-control col-md-7 col-xs-12 " readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="organisasi[]"  class="form-control col-md-7 col-xs-12 ">
+																			<input type="text" name="organisasi[]"  class="form-control col-md-7 col-xs-12 " readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="tempat_pertemuan[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="tempat_pertemuan[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="hadir_sebagai[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="hadir_sebagai[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="lingkup_pertemuan[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="lingkup_pertemuan[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="referensi_pertemuan[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="referensi_pertemuan[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																	</tr>
 														<?php	} ?>
@@ -1196,22 +1196,22 @@ $kode = KodeBagian::all();
 															<tr>
 																<td>{{$i+1}}</td>
 																<td>
-																	<input type="text" name="tanggal_organisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['tanggal']}}">
+																	<input type="text" name="tanggal_organisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['tanggal']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="nama_organisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['nama_organisasi']}}">
+																	<input type="text" name="nama_organisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['nama_organisasi']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="tempat_organisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['tempat']}}">
+																	<input type="text" name="tempat_organisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['tempat']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="aktif_sebagai[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['aktif_sebagai']}}">
+																	<input type="text" name="aktif_sebagai[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['aktif_sebagai']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="lingkup_organisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['lingkup_kegiatan']}}">
+																	<input type="text" name="lingkup_organisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['lingkup_kegiatan']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="referensi_organisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['referensi']}}">
+																	<input type="text" name="referensi_organisasi[]"  class="form-control col-md-7 col-xs-12" value="{{$organisasi['referensi']}}" readonly="readonly">
 																</td>
 															</tr>
 													<?php $i++; ?>
@@ -1224,22 +1224,22 @@ $kode = KodeBagian::all();
 																	<tr>
 																		<td>{{$j + $i}}</td>
 																		<td>
-																			<input type="text" name="tanggal_organisasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="tanggal_organisasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="nama_organisasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
+																			<input type="text" name="nama_organisasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="tempat_organisasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
+																			<input type="text" name="tempat_organisasi[]"  class="form-control col-md-7 col-xs-12 sertifikat" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="aktif_sebagai[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="aktif_sebagai[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="lingkup_organisasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="lingkup_organisasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="referensi_organisasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="referensi_organisasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																	</tr>
 																	<?php	} ?>
@@ -1262,22 +1262,22 @@ $kode = KodeBagian::all();
 															<tr>
 																<td>{{$i+1}}</td>
 																<td>
-																	<input type="text" name="tanggal_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['tanggal']}}">
+																	<input type="text" name="tanggal_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['tanggal']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="nama_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['nama_publikasi']}}">
+																	<input type="text" name="nama_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['nama_publikasi']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="tempat_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['tempat']}}">
+																	<input type="text" name="tempat_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['tempat']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="aktif_sebagai_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['aktif_sebagai']}}">
+																	<input type="text" name="aktif_sebagai_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['aktif_sebagai']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="lingkup_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['lingkup_kegiatan']}}">
+																	<input type="text" name="lingkup_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['lingkup_kegiatan']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="referensi_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['referensi']}}">
+																	<input type="text" name="referensi_publikasi[]"  class="form-control col-md-7 col-xs-12" value="{{$publikasi['referensi']}}" readonly="readonly">
 																</td>
 															</tr>
 													<?php $i++; ?>
@@ -1290,22 +1290,22 @@ $kode = KodeBagian::all();
 																	<tr>
 																		<td>{{$j + $i}}</td>
 																		<td>
-																			<input type="text" name="tanggal_publikasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="tanggal_publikasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="nama_publikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir">
+																			<input type="text" name="nama_publikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat_akhir" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="tempat_publikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat">
+																			<input type="text" name="tempat_publikasi[]"  class="form-control col-md-7 col-xs-12 sertifikat" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="aktif_sebagai_publikasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="aktif_sebagai_publikasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="lingkup_publikasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="lingkup_publikasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="referensi_publikasi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="referensi_publikasi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																	</tr>
 																<?php	} ?>
@@ -1339,25 +1339,25 @@ $kode = KodeBagian::all();
 															<tr>
 																<td>{{$i+1}}</td>
 																<td>
-																	<input type="text" name="mulai_pengajar[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['tanggal_mulai']}}">
+																	<input type="text" name="mulai_pengajar[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['tanggal_mulai']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="materi[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['materi']}}">
+																	<input type="text" name="materi[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['materi']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="institusi[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['institusi']}}">
+																	<input type="text" name="institusi[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['institusi']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="tempat_pengajar[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['tempat']}}">
+																	<input type="text" name="tempat_pengajar[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['tempat']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="aktif_sebagai_pengajar[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['aktif_sebagai']}}">
+																	<input type="text" name="aktif_sebagai_pengajar[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['aktif_sebagai']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="lingkup_pengajar[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['lingkup_kegiatan']}}">
+																	<input type="text" name="lingkup_pengajar[]"  class="form-control col-md-7 col-xs-12" value="{{$pengajar['lingkup_kegiatan']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="referensi_pengajar[]"  class="form-control col-md-7 col-xs-12"  value="{{$pengajar['referensi']}}">
+																	<input type="text" name="referensi_pengajar[]"  class="form-control col-md-7 col-xs-12"  value="{{$pengajar['referensi']}}" readonly="readonly">
 																</td>
 															</tr>
 															<?php $i++; ?>
@@ -1370,25 +1370,25 @@ $kode = KodeBagian::all();
 																	<tr>
 																		<td>{{$j + $i}}</td>
 																		<td>
-																			<input type="text" name="mulai_pengajar[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="mulai_pengajar[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="materi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="materi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="institusi[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="institusi[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="tempat_pengajar[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="tempat_pengajar[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="aktif_sebagai_pengajar[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="aktif_sebagai_pengajar[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="lingkup_pengajar[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="lingkup_pengajar[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="referensi_pengajar[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="referensi_pengajar[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																	</tr>
 																<?php	} ?>
@@ -1421,22 +1421,22 @@ $kode = KodeBagian::all();
 															<tr>
 																<td>{{$i+1}}</td>
 																<td>
-																	<input type="text" name="tanggal_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['tanggal']}}">
+																	<input type="text" name="tanggal_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['tanggal']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="nama_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['nama_penghargaan']}}">
+																	<input type="text" name="nama_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['nama_penghargaan']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="tempat_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['tempat']}}">
+																	<input type="text" name="tempat_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['tempat']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="jenis_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['jenis_penghargaan']}}">
+																	<input type="text" name="jenis_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['jenis_penghargaan']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="lingkup_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['lingkup_kegiatan']}}">
+																	<input type="text" name="lingkup_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['lingkup_kegiatan']}}" readonly="readonly">
 																</td>
 																<td>
-																	<input type="text" name="referensi_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['referensi']}}">
+																	<input type="text" name="referensi_penghargaan[]"  class="form-control col-md-7 col-xs-12" value="{{$penghargaan['referensi']}}" readonly="readonly">
 																</td>
 															</tr>
 															<?php $i++; ?>
@@ -1449,22 +1449,22 @@ $kode = KodeBagian::all();
 																	<tr>
 																		<td>{{$j + $i}}</td>
 																		<td>
-																			<input type="text" name="tanggal_penghargaan[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="tanggal_penghargaan[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="nama_penghargaan[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="nama_penghargaan[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="tempat_penghargaan[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="tempat_penghargaan[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="jenis_penghargaan[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="jenis_penghargaan[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="lingkup_penghargaan[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="lingkup_penghargaan[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																		<td>
-																			<input type="text" name="referensi_penghargaan[]"  class="form-control col-md-7 col-xs-12">
+																			<input type="text" name="referensi_penghargaan[]"  class="form-control col-md-7 col-xs-12" readonly="readonly">
 																		</td>
 																	</tr>
 																<?php	} ?>
@@ -1794,6 +1794,12 @@ $kode = KodeBagian::all();
 													<input type="text" name="uang_makan" class="form-control col-md-7 col-xs-12 uang_makan" id="uang_makan" required="required">
 												</div>
 											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">Uang Lembur:</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" name="uang_lembur" class="form-control col-md-7 col-xs-12 uang_lembur" id="uang_lembur" required="required">
+												</div>
+											</div>
 											<div class="ln_solid"></div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">Lain - Lain</label>
@@ -1925,9 +1931,11 @@ $kode = KodeBagian::all();
 	     if(!komunikasi){komunikasi = 0;}
 	     var makan = $('.uang_makan').val();
 	     if(!makan){makan = 0;}
+	     var lembur = $('.uang_lembur').val();
+	     if(!lembur){lembur = 0;}
 	     var transport = $('.tunj_transportasi').val();
 	     if(!transport){transport = 0;}
-	     var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(transport);
+	     var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(lembur) + parseInt(transport);
 	     var potongan = $('.tot_potongan').val();
 	     var bersih = tot_pendapatan - potongan;
 	     $('#tot_pendapatan').val(tot_pendapatan);
@@ -1941,9 +1949,11 @@ $kode = KodeBagian::all();
 	     if(!komunikasi){komunikasi = 0;}
 	     var makan = $('.uang_makan').val();
 	     if(!makan){makan = 0;}
+	     var lembur = $('.uang_lembur').val();
+	     if(!lembur){lembur = 0;}
 	     var transport = $('.tunj_transportasi').val();
 	     if(!transport){transport = 0;}
-	     var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(transport);
+	     var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(lembur) + parseInt(transport);
 	     var potongan = $('.tot_potongan').val();
 	     var bersih = tot_pendapatan - potongan;
 	     $('#tot_pendapatan').val(tot_pendapatan);
@@ -1957,9 +1967,29 @@ $kode = KodeBagian::all();
 	     if(!komunikasi){komunikasi = 0;}
 	     var makan = $('.uang_makan').val();
 	     if(!makan){makan = 0;}
+	     var lembur = $('.uang_lembur').val();
+	     if(!lembur){lembur = 0;}
 	     var transport = $('.tunj_transportasi').val();
 	     if(!transport){transport = 0;}
-	     var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(transport);
+	     var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(lembur) + parseInt(transport);
+	     var potongan = $('.tot_potongan').val();
+	     var bersih = tot_pendapatan - potongan;
+	     $('#tot_pendapatan').val(tot_pendapatan);
+	     $('#pendapatan_bersih').val(bersih);
+	  });
+
+	  $(document).on("change", ".uang_lembur", function(e){
+	     var pokok = $('.gaji_pokok').val();
+	     if(!pokok){pokok = 0;}
+	     var komunikasi = $('.tunj_komunikasi').val();
+	     if(!komunikasi){komunikasi = 0;}
+	     var makan = $('.uang_makan').val();
+	     if(!makan){makan = 0;}
+	     var lembur = $('.uang_lembur').val();
+	     if(!lembur){lembur = 0;}
+	     var transport = $('.tunj_transportasi').val();
+	     if(!transport){transport = 0;}
+	     var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(lembur) + parseInt(transport);
 	     var potongan = $('.tot_potongan').val();
 	     var bersih = tot_pendapatan - potongan;
 	     $('#tot_pendapatan').val(tot_pendapatan);
@@ -1973,9 +2003,11 @@ $kode = KodeBagian::all();
 	     if(!komunikasi){komunikasi = 0;}
 	     var makan = $('.uang_makan').val();
 	     if(!makan){makan = 0;}
+	     var lembur = $('.uang_lembur').val();
+	     if(!lembur){lembur = 0;}
 	     var transport = $('.tunj_transportasi').val();
 	     if(!transport){transport = 0;}
-	    var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(transport);
+	    var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(lembur) + parseInt(transport);
 	     var potongan = $('.tot_potongan').val();
 	     var bersih = tot_pendapatan - potongan;
 	     $('#tot_pendapatan').val(tot_pendapatan);

@@ -757,7 +757,8 @@
     Tanggal: {{konversi_tanggal($tanggal[0])}}<br>
     Dibuat oleh :
     <br><br>
-    <img src="{{asset('upload/pegawai/'.$pegawai->nip.'/'.$pegawai->ttd.'')}}" style="width: 220px; height: 60px;">
+    <img src="{{asset("upload/pegawai/$pegawai->nip/$pegawai->ttd")}}" style="width: 220px; height: 60px;">
+    <br>
     ({{strtoupper($pegawai->nama)}})
   </div>
 </div>

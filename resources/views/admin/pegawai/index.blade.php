@@ -77,12 +77,12 @@
 											@if($pegawai->is_verif_admin == 0)
 												<span class="label label-default">Not Approved</span>
 											@elseif(($pegawai->is_verif_admin == 1) && ($pegawai->is_verif_pm == 0))
-												<span class="label label-primary">Approved by Admin</span>
+												<!-- <span class="label label-primary">Approved by Admin</span> -->
 											@elseif($pegawai->is_verif_admin == -1)
 												<span class="label label-danger">Rejected by Admin</span>
 											@elseif($pegawai->is_verif_pm == 1)
 												<span class="label label-primary">Approved by Admin</span>	
-												<span class="label label-success">Approved by PM</span>
+												<!-- <span class="label label-success">Approved by PM</span> -->
 											@endif
 										</td>
 										<td style="text-align: center;">
