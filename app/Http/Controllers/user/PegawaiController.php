@@ -501,12 +501,12 @@ class PegawaiController extends Controller
         for ($i=0; $i < sizeof($tanggal_publikasi) ; $i++) { 
           $publikasi = new Publikasi;
           $publikasi->nip = $data['nip'];
-          $publikasi->tanggal = $tanggal_organisasi[$i];
-          $publikasi->nama_organisasi = $nama_organisasi[$i];
-          $publikasi->tempat = $tempat_organisasi[$i];
-          $publikasi->aktif_sebagai = $aktif_sebagai[$i];
-          $publikasi->lingkup_kegiatan = $lingkup_organisasi[$i];
-          $publikasi->referensi = $referensi_organisasi[$i];
+          $publikasi->tanggal = $tanggal_publikasi[$i];
+          $publikasi->nama_organisasi = $nama_publikasi[$i];
+          $publikasi->tempat = $tempat_publikasi[$i];
+          $publikasi->aktif_sebagai = $aktif_sebagai_publikasi[$i];
+          $publikasi->lingkup_kegiatan = $lingkup_publikasi[$i];
+          $publikasi->referensi = $referensi_publikasi[$i];
           $publikasi->user_id = \Auth::user()->id;
           $publikasi->role_id = \Auth::user()->role_id;
 
