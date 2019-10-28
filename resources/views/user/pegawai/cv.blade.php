@@ -1761,6 +1761,7 @@ $kode = KodeBagian::all();
 											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">*Upload ulang Tanda Tangan
 											</label>
 									@endif
+									<br>
 									<div class="col-md-4 col-sm-4 col-xs-12">
 										<input type="file" id="ttd" name="ttd"  class="form-control col-md-7 col-xs-12">
 										<p>Tanda Tangan harus berupa file .jpg / .png, dengan ukuran maksimum 1 MB</p>
@@ -1776,7 +1777,7 @@ $kode = KodeBagian::all();
 											<p>Paraf harus berupa file .jpg / .png, dengan ukuran maksimum 1 MB</p>
 										</div>
 									</div>
-			                      </div>
+			                      
 		                      @endif
 		                      <br>
 								<div class="form-group">
@@ -1792,7 +1793,7 @@ $kode = KodeBagian::all();
 										<p>Tanda Tangan harus berupa file .jpg / .png, dengan ukuran maksimum 1 MB</p>
 									</div>
 								</div>
-	                      
+	                      	</div>
 	                    </div>
 	                    </form>
 	                    <!-- End SmartWizard Content -->

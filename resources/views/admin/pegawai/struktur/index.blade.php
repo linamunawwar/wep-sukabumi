@@ -7,7 +7,7 @@
       #chart-container { background-color: #eee; }
       .orgchart { background: #fff; padding: 0px; }
       .orgchart .node .title { background-color: #006699; width: 100%; height: 100%; white-space: initial;}
-      .orgchart .node .content { border-color: #006699; width: 100%; height: 100%; min-height:20px;  white-space: initial;}
+      .orgchart .node .content { border-color: #006699; width: 100%; height: auto; min-height:20px;  white-space: initial;}
       .orgchart .nodes .title { background-color: #006699; width: 100%; height: 100%; white-space: initial;}
       .orgchart .nodes .content { border-color: #006699; width: 100%; height: 100%;min-height: 20px; white-space: initial; }
       .orgchart .lines .topLine {
@@ -59,7 +59,7 @@
                       @foreach($pos->anak as $anak)
                         <li id="{{$anak->id}}" title="{{$anak->posisi}}">
                           @foreach($anak->anggota as $anggota1)
-                            {{$anggota1->nama}}
+                            {{$anggota1->nama}}<br>
                           @endforeach
                           @if(count($anak->anak) != 0)
                               <ul>
@@ -73,7 +73,7 @@
                                         @foreach($anak2->anak as $anak3)
                                           <li id="{{$anak3->id}}" title="{{$anak3->posisi}}">
                                             @foreach($anak3->anggota as $anggota3)
-                                              {{$anggota3->nama}}<br>
+                                              {!!$anggota3->nama!!}<br>
                                             @endforeach
                                             @if(count($anak3->anak) != 0)
                                               <ul>

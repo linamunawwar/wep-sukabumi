@@ -106,6 +106,17 @@ class PegawaiController extends Controller
         }
         $password = str_random(6);
 
+        //cek nip ada yg sama gak
+        $array_nip = [];
+        $nips = Pegawai::select('nip')->where('soft_delete',0)->get();
+        foreach ($nips as $key => $val) {
+          $array_nip[]=$val->nip;
+        }
+        
+        while (in_array($nip, $array_nip)) {
+          $nip = $nip.rand(0,9);
+        }
+
         $user['name'] = $nama;
         $user['pegawai_id'] = $nip;
         $user['pass_asli'] = $password;
@@ -278,6 +289,9 @@ class PegawaiController extends Controller
        $pegawai['gelar_depan'] = $data['gelar_depan'];
        $pegawai['gelar_belakang'] = $data['gelar_belakang'];
        $pegawai['agama'] = $data['gelar_belakang'];
+       if(array_key_exists('gender', $data)){
+            $pegawai['gender'] = $data['gender'];
+       }
        $pegawai['tempat_lahir'] = $data['tempat_lahir'];
        $pegawai['status_kawin'] = $data['status_kawin'];
        $pegawai['suami_istri'] = $data['suami_istri'];
@@ -955,7 +969,8 @@ class PegawaiController extends Controller
          $posisi[$value->level] = Posisi::where('level',$value->level)->where('soft_delete',0)->get();
       }
 
-      $posisi = Posisi::where('level',0)->get();
+      $posisi = Posisi::where('level','0')->get();
+      // dd($posisi);
         foreach ($posisi as $key => $value) {
           $value->anggota = Pegawai::where('posisi_id',$value->id)->where('soft_delete',0)->get();
           $value->anak = Posisi::where('parent',$value->id)->where('soft_delete',0)->get();
@@ -976,7 +991,7 @@ class PegawaiController extends Controller
       //     $q->where('parent', '1');
       // })->get();
 
-
+// dd($posisi);
       return view('admin.pegawai.struktur.index',['level'=>$level,'posisi'=>$posisi]);
     }
 

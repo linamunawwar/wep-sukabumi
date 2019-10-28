@@ -13,48 +13,48 @@
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
 					<a href="{{url('manager/memo')}}">
 						<span class="count_top"><i class="fa fa-paper-plane"></i> Pesan Internal</span>
-						<div class="count">3</div>
+						<div class="count">{{$memo}}</div>
 					</a>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
 					<a href="{{url('manager/cuti')}}">
 						<span class="count_top"><i class="fa fa-sign-out"></i> Cuti</span>
-						<div class="count green">6</div>
+						<div class="count green">{{$cuti}}</div>
 						<span class="count_bottom"><i class="green">Need To be Approved</i></span>
 					</a>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
 					<a href="{{url('manager/izin')}}">
 						<span class="count_top"><i class="fa fa-sign-out"></i> Izin</span>
-						<div class="count green">6</div>
+						<div class="count green">{{$izin}}</div>
 						<span class="count_bottom"><i class="green">Need To be Approved</i></span>
 					</a>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
 					<a href="{{url('manager/slip_gaji')}}">
 						<span class="count_top"><i class="fa fa-money"></i> Slip Gaji</span>
-						<div class="count green">6</div>
+						<div class="count green">{{$slip_gaji}}</div>
 						<span class="count_bottom"><i class="green">Need To be Approved</i></span>
 					</a>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
 					<a href="{{url('manager/pecat')}}">
 						<span class="count_top"><i class="fa fa-sign-out"></i> Pemberhentian Kerja</span>
-						<div class="count green">6</div>
+						<div class="count green">{{$pecat}}</div>
 						<span class="count_bottom"><i class="green">Need To be Approved</i></span>
 					</a>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
 					<a href="{{url('manager/resign')}}">
 						<span class="count_top"><i class="fa fa-sign-out"></i> Resign</span>
-						<div class="count green">6</div>
+						<div class="count green">{{$resign}}</div>
 						<span class="count_bottom"><i class="green">Need To be Approved</i></span>
 					</a>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
 					<a href="{{url('manager/disposisi')}}">
 						<span class="count_top"><i class="fa fa-envelope"></i> Disposisi</span>
-						<div class="count">10</div>
+						<div class="count">{{$disposisi}}</div>
 						<span class="count_bottom"><i class="green">Need To be processed</i></span>
 					</a>
 				</div>

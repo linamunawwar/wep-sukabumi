@@ -22,20 +22,20 @@
 							<div class="form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">NIP <span class="required">*</span>:</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input type="hidden" name="nip" value="{{\Auth::user()->pegawai_id}}">
-										<p style="padding: 6px 12px; font-size: 15px;">{{\Auth::user()->pegawai_id}}</p>
+										<input type="hidden" name="nip" value="{{$cuti->nip}}">
+										<p style="padding: 6px 12px; font-size: 15px;">{{$cuti->nip}}</p>
 									</div>
 								</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama Karyawan <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<p style="padding: 6px 12px;">{{Auth::user()->name}}</p>
+									<p style="padding: 6px 12px;">{{$cuti->pegawai->nama}}</p>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Jabatan <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<p style="padding: 6px 12px;">{{Auth::user()->pegawai->posisi->posisi}}</p>
+									<p style="padding: 6px 12px;">{{$cuti->pegawai->posisi->posisi}}</p>
 								</div>
 							</div>
 							<div class="form-group">
