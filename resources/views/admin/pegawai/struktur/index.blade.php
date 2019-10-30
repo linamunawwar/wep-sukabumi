@@ -7,9 +7,10 @@
       #chart-container { background-color: #eee; }
       .orgchart { background: #fff; padding: 0px; }
       .orgchart .node .title { background-color: #006699; width: 100%; height: 100%; white-space: initial;}
-      .orgchart .node .content { border-color: #006699; width: 100%; height: auto; min-height:20px;  white-space: initial;}
+      .orgchart .node .content { border-color: #006699; width: 100%; height: auto; min-height:20px;  white-space: initial; white-space: pre-line;}
       .orgchart .nodes .title { background-color: #006699; width: 100%; height: 100%; white-space: initial;}
-      .orgchart .nodes .content { border-color: #006699; width: 100%; height: 100%;min-height: 20px; white-space: initial; }
+      .orgchart .nodes .content { border-color: #006699; width: 100%; height: 100%;min-height: 20px; white-space: initial; white-space: pre-line;}
+      .orgchart .node .level-3 { background-color: #8C001B; width: 100%; height: 100%; white-space: initial;}
       .orgchart .lines .topLine {
         border-color: #006699;
       }
@@ -48,7 +49,7 @@
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
-            <ul id="ul-data" style="display: none;">
+            <ul id="ul-data" style="display: none;" >
               @foreach($posisi as $pos)
               <li id="{{$pos->id}}" title="{{$pos->posisi}}">
                 @foreach($pos->anggota as $anggota)
@@ -71,9 +72,10 @@
                                     @if(count($anak2->anak) != 0)
                                       <ul>
                                         @foreach($anak2->anak as $anak3)
-                                          <li id="{{$anak3->id}}" title="{{$anak3->posisi}}">
                                             @foreach($anak3->anggota as $anggota3)
-                                              {!!$anggota3->nama!!}<br>
+                                                <li id="{{$anggota3->id}}" title="{{$anak3->posisi}}" >
+                                                  {!!$anggota3->nama!!}
+                                                </li>                         
                                             @endforeach
                                             @if(count($anak3->anak) != 0)
                                               <ul>
@@ -82,7 +84,6 @@
                                                 @endforeach
                                               </ul>
                                             @else
-                                              </li>
                                             @endif
                                         @endforeach
                                       </ul>
@@ -155,6 +156,14 @@
     //   'nodeTitle': 'name',
     //   'nodeContent': 'title'
     // });
+    var nodeTemplate = function(data) {
+      console.log(data);
+      return `
+        <div class="title  level-${data.level}">${data.title}</div>
+          <div class="content" style="white-space:pre-line;">${data.content}</div>
+      `;
+    };
+
     $('#chart-container').orgchart({
         nodeTitle: 'title',
         nodeContent: 'content',
@@ -163,7 +172,8 @@
         exportButton: true,
         exportFilename: 'Struktur Organisasi',
         exportFileextension :'pdf',
-        data: $('#ul-data')
+        data: $('#ul-data'),
+        nodeTemplate: nodeTemplate
     });
 
   </script>
