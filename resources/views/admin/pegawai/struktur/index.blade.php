@@ -11,6 +11,7 @@
       .orgchart .nodes .title { background-color: #006699; width: 100%; height: 100%; white-space: initial;}
       .orgchart .nodes .content { border-color: #006699; width: 100%; height: 100%;min-height: 20px; white-space: initial; white-space: pre-line;}
       .orgchart .node .level-3 { background-color: #8C001B; width: 100%; height: 100%; white-space: initial;}
+      .orgchart .node .level-4 { background-color: #a9a9a9; width: 100%; height: 100%; white-space: initial; color: black;}
       .orgchart .lines .topLine {
         border-color: #006699;
       }
@@ -65,9 +66,11 @@
                           @if(count($anak->anak) != 0)
                               <ul>
                                 @foreach($anak->anak as $anak2)
-                                  <li id="{{$anak2->id}}" title="{{$anak2->posisi}}">
+                                    <li id="{{$anak->id}}" title="{{$anak2->posisi}}">
                                     @foreach($anak2->anggota as $anggota2)
-                                      {{$anggota2->nama}}<br>
+                                      <li id="{{$anggota2->id}}" title="{{$anak2->posisi}}">
+                                        {{$anggota2->nama}}
+                                      </li>
                                     @endforeach
                                     @if(count($anak2->anak) != 0)
                                       <ul>
@@ -88,7 +91,7 @@
                                         @endforeach
                                       </ul>
                                     @else
-                                      </li>
+                                  </li>
                                     @endif
                                 @endforeach
                               </ul>
