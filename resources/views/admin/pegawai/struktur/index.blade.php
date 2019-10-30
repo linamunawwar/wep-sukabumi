@@ -51,7 +51,7 @@
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
-            <ul id="ul-data2" class="tree" >
+            <ul id="ul-data2" class="tree" style="display: none;">
               @foreach($posisi as $pos)
               <li id="{{$pos->id}}" title="{{$pos->posisi}}">
                 <b>{{$pos->posisi}}</b><br>
