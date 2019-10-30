@@ -167,8 +167,9 @@ class PegawaiController extends Controller
 
           $nama_file = 'ttd.'.$ekstension;
 
-        $ori_file->move($tujuan,$nama_file);
-        $pegawai['ttd'] = $nama_file;
+        if($ori_file->move($tujuan,$nama_file)){
+          $pegawai['ttd'] = $nama_file;
+        }
       }
       if(\Input::hasfile('foto')){
          $ori_file  = \Request::file('foto');
@@ -177,8 +178,10 @@ class PegawaiController extends Controller
 
           $nama_file = 'foto.'.$ekstension;
 
-        $ori_file->move($tujuan,$nama_file);
-        $pegawai['foto'] = $nama_file;
+        if($ori_file->move($tujuan,$nama_file)){
+          $pegawai['foto'] = $nama_file;
+        }
+        
       }
       
        $pegawai['is_new'] = 0;
