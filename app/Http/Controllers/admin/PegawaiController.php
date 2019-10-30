@@ -68,7 +68,7 @@ class PegawaiController extends Controller
     {
         $roles= Roles::get();
         $kode = KodeBagian::all();
-        $posisi = Posisi::all();
+        $posisi = Posisi::where('soft_delete',0)->get();
         
         return view('admin.pegawai.create',['roles'=>$roles,'kode'=>$kode,'posisi'=>$posisi]);
     }
@@ -925,7 +925,9 @@ class PegawaiController extends Controller
         $pegawai = Pegawai::find($id);
         if($pegawai){
             $roles= Roles::get();
-            return view('admin.pegawai.edit_role',['pegawai'=>$pegawai,'roles'=>$roles]);
+            $kode = KodeBagian::all();
+          $posisi = Posisi::where('soft_delete',0)->get();
+            return view('admin.pegawai.edit_role',['pegawai'=>$pegawai,'roles'=>$roles,'kode'=>$kode,'posisi'=>$posisi]);
         }
     }
 
@@ -951,11 +953,14 @@ class PegawaiController extends Controller
 
             }
           }
+          $dt_pegawai['kode_bagian'] = $data['kode_bagian'];
+          $dt_pegawai['posisi_id'] = $data['posisi_id'];
+          $query_pegawai2 = Pegawai::where('nip',$pegawai->nip)->update($dt_pegawai);
 
             $dt_user['role_id'] = $data['role'];
             $query_user = User::where('pegawai_id',$pegawai->nip)->update($dt_user);
            
-            if($query_pegawai && $query_user){
+            if($query_pegawai2 && $query_user){
               return redirect('admin/pegawai');
             }
           

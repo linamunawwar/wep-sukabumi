@@ -66,7 +66,7 @@
 								<div class="form-group">
 									<label class="control-label col-md-4 col-sm-4 col-xs-12" for="kode_bagian"> Bagian <span class="required">*</span>:</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<select class="form-control col-md-7 col-xs-12" required="required" name="kode_bagian">
+										<select class="form-control col-md-7 col-xs-12" required="required" name="kode_bagian" id="bagian">
 											<option value="">Pilih Bagian</option>
 											@foreach($kode as $kd)
 												 <?php $selected = ($pegawai->kode_bagian==$kd->kode) ?'selected':'';?>
@@ -78,7 +78,7 @@
 								<div class="form-group">
 									<label class="control-label col-md-4 col-sm-4 col-xs-12" for="kode_bagian"> Posisi <span class="required">*</span>:</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<select class="form-control col-md-7 col-xs-12" required="required" name="posisi_id">
+										<select class="form-control col-md-7 col-xs-12" required="required" name="posisi_id" id="posisi">
 											<option value="">Pilih Posisi</option>
 											@foreach($posisi as $kd)
 												 <?php $selected = ($pegawai->posisi_id==$kd->id) ?'selected':'';?>
@@ -144,6 +144,23 @@
         format: 'dd-mm-yyyy',
         autoclose: true
     	});
+
+      $(document).on("change", "#bagian", function(e){
+	      	var kode = $(this).val();
+
+	      	$.ajax({
+	            url  : laravel_base+'/admin/pegawai/posisi/'+kode,
+	            type : 'get',
+	            success:function(response){
+	            	var opt = '<select class="form-control col-md-7 col-xs-12 posisi" id="posisi" required="required" name="posisi_id"><option value="">Pilih Posisi</option>';
+	                $.each(response, function(key,valueObj){
+	                	opt += '<option value='+valueObj.id+'>'+valueObj.posisi+'</option>';
+	                })
+	                opt += '</select>';
+	                $('#posisi').html(opt);
+	            }
+	        });
+	    });
   	});
 
 </script>
