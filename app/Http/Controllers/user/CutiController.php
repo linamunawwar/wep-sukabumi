@@ -76,6 +76,16 @@ class CutiController extends Controller
       
     }
 
+    public function deletePengajuan(){
+      $data = \Input::all();
+      $del = Cuti::where('id',$data['id_cuti'])->delete();
+
+      if($del){
+        return redirect('user/cuti');
+      }
+
+    }
+
     public function getSerahTugas()
     {
     	$tugass = Cuti::where('pengganti',\Auth::user()->pegawai_id)->where('soft_delete',0)->get();

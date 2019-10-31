@@ -72,6 +72,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/cuti', 'admin\CutiController@index');
 		Route::get('/cuti/create', 'admin\CutiController@getCreate');
 		Route::post('/cuti/create', 'admin\CutiController@postCreate');
+		Route::delete('/cuti/delete', 'admin\CutiController@deletePengajuan');
 		Route::get('/cuti/surat_cuti/{id}', 'admin\CutiController@getSuratCuti');
 		Route::get('/pengajuan_cuti', 'admin\CutiController@getPengajuanCuti');
 		Route::get('/pengajuan_cuti/create', 'admin\CutiController@getPengajuanCutiCreate');
@@ -177,6 +178,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/cuti', 'user\CutiController@index');
 		Route::get('/cuti/create', 'user\CutiController@getCreate');
 		Route::post('/cuti/create', 'user\CutiController@postCreate');
+		Route::delete('/cuti/delete', 'user\CutiController@deletePengajuan');
 		Route::get('/cuti/serah_tugas', 'user\CutiController@getSerahTugas');
 		Route::get('/cuti/approve/{id}', 'user\CutiController@approveSerahTugas');
 
@@ -239,6 +241,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pengajuan_cuti', 'user\CutiController@index');
 		Route::get('/pengajuan_cuti/create', 'user\CutiController@getCreate');
 		Route::post('/pengajuan_cuti/create', 'user\CutiController@postCreate');
+		Route::delete('/pengajuan_cuti/delete', 'user\CutiController@deletePengajuan');
 
 		Route::get('/izin', 'manager\IzinController@index');
 		Route::get('/izin/approve/{id}', 'manager\IzinController@approve');
@@ -308,6 +311,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pengajuan_cuti', 'user\CutiController@index');
 		Route::get('/pengajuan_cuti/create', 'user\CutiController@getCreate');
 		Route::post('/pengajuan_cuti/create', 'user\CutiController@postCreate');
+		Route::delete('/pengajuan_cuti/delete', 'user\CutiController@deletePengajuan');
 
 		Route::get('/pengajuan_izin', 'user\IzinController@index');
 		Route::get('/pengajuan_izin/create', 'user\IzinController@getCreate');

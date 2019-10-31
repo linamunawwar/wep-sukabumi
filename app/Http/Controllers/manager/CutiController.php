@@ -149,4 +149,14 @@ class CutiController extends Controller
       return redirect('/manager/pengajuan_cuti');
       
     }
+
+    public function deletePengajuan(){
+      $data = \Input::all();
+      $del = Cuti::where('id',$data['id_cuti'])->delete();
+
+      if($del){
+        return redirect('manager/pengajuan_cuti');
+      }
+
+    }
 }
