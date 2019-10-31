@@ -106,7 +106,7 @@ $kode = KodeBagian::all();
 													</label>
 													<?php $active = ($pegawai->gender=='W')?'active':''; ?>
 													<label class="btn btn-default {{$active}}" data-toggle-class="btn-default" data-toggle-passive-class="btn-default">
-														<?php $status = ($pegawai->gender=='P')?'checked':''; ?>
+														<?php $status = ($pegawai->gender=='W')?'checked':''; ?>
 														<input type="radio" name="gender" value="W" {{$status}}> Wanita
 													</label>
 												</div>
