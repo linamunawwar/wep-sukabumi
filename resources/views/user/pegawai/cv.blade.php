@@ -146,7 +146,7 @@ $kode = KodeBagian::all();
 											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="status_kawin">Status Perkawinan <span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
 												<?php $checked = ($pegawai->status_kawin == 'TK')? 'checked ': ''; ?>
-												<input type="radio" value="TK" name="status_kawin" {{$checked}}> Belum Kawin </br>
+												<input type="radio" value="TK" name="status_kawin" {{$checked}} required="required"> Belum Kawin </br>
 												<?php $checked = ($pegawai->status_kawin == 'K0')? 'checked ': ''; ?>
 												<input type="radio" value="K0" name="status_kawin" {{$checked}}> Kawin </br>
 												<?php $checked = ($pegawai->status_kawin == 'K1')? 'checked ': ''; ?>
