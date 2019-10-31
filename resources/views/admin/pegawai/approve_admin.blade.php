@@ -1870,6 +1870,12 @@ $kode = KodeBagian::all();
 												</div>
 											</div>
 											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">PTKP:</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" name="ptkp" class="form-control col-md-7 col-xs-12 ptkp"  value="{{$gaji->ptkp}}">
+												</div>
+											</div>
+											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">PPh 21:</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<input type="text" name="pph21" class="form-control col-md-7 col-xs-12 pph21"  value="{{$gaji->pph21}}">
@@ -1968,6 +1974,12 @@ $kode = KodeBagian::all();
 												</div>
 											</div>
 											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">PTKP :</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" name="ptkp" class="form-control col-md-7 col-xs-12 ptkp" value="">
+												</div>
+											</div>
+											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">PPh 21:</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<input type="text" name="pph21" class="form-control col-md-7 col-xs-12 pph21" value="{{$pph21}}">
@@ -2043,6 +2055,22 @@ $kode = KodeBagian::all();
             }
          });
 
+      var potongan = $('.pph21').val();
+	    var pokok = $('.gaji_pokok').val();
+	     if(!pokok){pokok = 0;}
+	     var komunikasi = $('.tunj_komunikasi').val();
+	     if(!komunikasi){komunikasi = 0;}
+	     var makan = $('.uang_makan').val();
+	     if(!makan){makan = 0;}
+	     var lembur = $('.uang_lembur').val();
+	     if(!lembur){lembur = 0;}
+	     var transport = $('.tunj_transportasi').val();
+	     if(!transport){transport = 0;}
+	    var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(lembur) + parseInt(transport);
+	    var bersih = tot_pendapatan - potongan;
+	     $('#tot_potongan').val(potongan);
+	     $('#pendapatan_bersih').val(bersih);
+	     
       $(document).on("change", ".gaji_pokok", function(e){
 	     var pokok = $('.gaji_pokok').val();
 	     if(!pokok){pokok = 0;}
@@ -2135,8 +2163,20 @@ $kode = KodeBagian::all();
 
 	  $(document).on("change", ".pph21", function(e){
 	     var potongan = $('.pph21').val();
-	    
+	    var pokok = $('.gaji_pokok').val();
+	     if(!pokok){pokok = 0;}
+	     var komunikasi = $('.tunj_komunikasi').val();
+	     if(!komunikasi){komunikasi = 0;}
+	     var makan = $('.uang_makan').val();
+	     if(!makan){makan = 0;}
+	     var lembur = $('.uang_lembur').val();
+	     if(!lembur){lembur = 0;}
+	     var transport = $('.tunj_transportasi').val();
+	     if(!transport){transport = 0;}
+	    var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(lembur) + parseInt(transport);
+	    var bersih = tot_pendapatan - potongan;
 	     $('#tot_potongan').val(potongan);
+	     $('#pendapatan_bersih').val(bersih);
 	  });
   	});
 

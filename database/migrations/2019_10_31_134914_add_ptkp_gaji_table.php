@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnLemburMstGajiTable extends Migration
+class AddPtkpGajiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddColumnLemburMstGajiTable extends Migration
     public function up()
     {
         Schema::table('mst_gaji', function(Blueprint $table) {
-            $table->string('uang_lembur')->after('uang_makan');
+            $table->string('ptkp')->after('tunj_pph21');
         });
     }
 
@@ -26,7 +26,7 @@ class AddColumnLemburMstGajiTable extends Migration
     public function down()
     {
         Schema::table('mst_gaji', function(Blueprint $table) {
-            $table->dropColumn('uang_lembur');
-        });    
+            $table->dropColumn('ptkp');
+        }); 
     }
 }
