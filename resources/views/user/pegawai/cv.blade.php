@@ -185,7 +185,7 @@ $kode = KodeBagian::all();
 										<div class="form-group">
 											<label for="alamat_tetap" class="control-label col-md-4 col-sm-4 col-xs-12">Alamat Rumah Tetap</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<textarea id="alamat_tetap" class="form-control col-md-7 col-xs-12 alamat_tetap" type="text" name="alamat_tetap"> {{$pegawai->alamat_tetap}}></textarea>
+												<textarea id="alamat_tetap" class="form-control col-md-7 col-xs-12 alamat_tetap" type="text" name="alamat_tetap"> {{$pegawai->alamat_tetap}}</textarea>
 											</div>
 										</div>
 									</div>
