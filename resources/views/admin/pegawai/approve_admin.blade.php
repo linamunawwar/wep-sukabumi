@@ -12,6 +12,23 @@ $kode = KodeBagian::all();
 @endpush
 
 @section('main_container')
+<?php
+	if(($gaji->gaji_pokok == null) || ($gaji->gaji_pokok == '')){
+		$gaji->gaji_pokok = 0;
+	}
+	if(($gaji->tunj_komunikasi == null) || ($gaji->tunj_komunikasi == '')){
+		$gaji->tunj_komunikasi = 0;
+	}
+	if(($gaji->tunj_transportasi == null) || ($gaji->tunj_transportasi == '')){
+		$gaji->tunj_transportasi = 0;
+	}
+	if(($gaji->uang_makan == null) || ($gaji->uang_makan == '')){
+		$gaji->uang_makan = 0;
+	}
+	if(($gaji->tunj_pph21 == null) || ($gaji->tunj_pph21 == '')){
+		$gaji->tunj_pph21 = 0;
+	}
+?>
 
     <!-- page content -->
     <div class="right_col" role="main">
