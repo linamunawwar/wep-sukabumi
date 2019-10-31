@@ -1,4 +1,4 @@
-<?php
+f<?php
 
 use App\KodeBagian;
 $kode = KodeBagian::all();
@@ -70,7 +70,7 @@ $kode = KodeBagian::all();
 												</label>
 												<?php $active = ($pegawai->gender=='W')?'active':''; ?>
 												<label class="btn btn-default {{$active}}" data-toggle-class="btn-default" data-toggle-passive-class="btn-default">
-													<?php $status = ($pegawai->gender=='P')?'checked':''; ?>
+													<?php $status = ($pegawai->gender=='W')?'checked':''; ?>
 													<input type="radio" name="gender" value="W" {{$status}}> Wanita
 												</label>
 											</div>
@@ -150,7 +150,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label for="alamat_tetap" class="control-label col-md-4 col-sm-4 col-xs-12">Alamat Rumah Tetap</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<textarea id="alamat_tetap" class="form-control col-md-7 col-xs-12 alamat_tetap" type="text" name="alamat_tetap" value="{{$pegawai->alamat_tetap}}"></textarea>
+											<textarea id="alamat_tetap" class="form-control col-md-7 col-xs-12 alamat_tetap" type="text" name="alamat_tetap">{{$pegawai->alamat_tetap}}</textarea>
 										</div>
 									</div>
 								</div>
@@ -169,7 +169,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label for="alamat_sementara" class="control-label col-md-4 col-sm-4 col-xs-12">Alamat Rumah Sementara</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<textarea id="alamat_sementara" class="form-control col-md-7 col-xs-12 alamat_sementara" type="text" name="alamat_sementara" value="{{$pegawai->alamat_sementara}}"></textarea>
+											<textarea id="alamat_sementara" class="form-control col-md-7 col-xs-12 alamat_sementara" type="text" name="alamat_sementara">{{$pegawai->alamat_sementara}}</textarea>
 										</div>
 									</div>
 								</div>
@@ -236,7 +236,7 @@ $kode = KodeBagian::all();
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_fax">Alamat <span class="required">*</span></label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<textarea id="alamat_keluarga" name="alamat_keluarga"  class="form-control col-md-7 col-xs-12 alamat_keluarga" value="{{$pegawai->alamat_keluarga}}"></textarea>
+											<textarea id="alamat_keluarga" name="alamat_keluarga"  class="form-control col-md-7 col-xs-12 alamat_keluarga">{{$pegawai->alamat_keluarga}}</textarea>
 										</div>
 									</div>
 								</div>

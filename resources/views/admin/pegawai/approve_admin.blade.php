@@ -1775,6 +1775,105 @@ $kode = KodeBagian::all();
 			                      <div id="step-4">
 			                        <h2 class="StepTitle">Data Gaji</h2>
 			                        <div class="row">
+			                        	@if($gaji)
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">Gaji Pokok:</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" name="gaji_pokok" class="form-control col-md-7 col-xs-12 gaji_pokok" id="gaji_pokok" required="required" value="{{$gaji->gaji_pokok}}">
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">Tunjangan Komunikasi:</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" name="tunj_komunikasi" class="form-control col-md-7 col-xs-12 tunj_komunikasi" id="tunj_komunikasi" required="required" value="{{$gaji->tunj_komunikasi}}">
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">Uang Makan:</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" name="uang_makan" class="form-control col-md-7 col-xs-12 uang_makan" id="uang_makan" required="required" value="{{$gaji->uang_makan}}">
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">Uang Lembur:</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" name="uang_lembur" class="form-control col-md-7 col-xs-12 uang_lembur" id="uang_lembur" required="required" value="{{$gaji->uang_lembur}}">
+												</div>
+											</div>
+											<div class="ln_solid"></div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">Lain - Lain</label>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">Tunjangan Transportasi:</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" name="tunj_transportasi" class="form-control col-md-7 col-xs-12 tunj_transportasi" id="tunj_transportasi" required="required" value="{{$gaji->tunj_transportasi}}">
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">Tunjangan PPh 21:</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<?php
+														if($pegawai->status_kawin == 'TK'){
+															$pph21 = 500000;
+														}elseif ($pegawai->status_kawin == 'K0') {
+															$pph21 = 1000000;
+														}elseif ($pegawai->status_kawin == 'K1') {
+															$pph21 = 1500000;
+														}elseif ($pegawai->status_kawin == 'K2') {
+															$pph21 = 2000000;
+														}elseif ($pegawai->status_kawin == 'K3') {
+															$pph21 = 2500000;
+														}else{
+															$pph21='';
+														}
+													?>
+													<input type="text" name="tunj_pph21" class="form-control col-md-7 col-xs-12 tunj_pph21" id="tunj_pph21" value="{{$gaji->tunj_pph21}}">
+												</div>
+											</div>
+											<div class="ln_solid"></div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">Total Pendapatan:</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" name="tot_pendapatan" class="form-control col-md-7 col-xs-12 tot_pendapatan" id="tot_pendapatan" readonly="readonly" value="{{$gaji->gaji_pokok + $gaji->tunj_komunikasi + $gaji->tunj_transportasi + $gaji->uang_makan + $gaji->tunj_pph21}}">
+												</div>
+											</div>
+											<br>
+											<div class="x_title">
+												<h4>Pengeluaran </h4>
+												<div class="clearfix"></div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">Status:</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p style="padding: 8px 12px;">{{$pegawai->status_kawin}}</p>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">PPh 21:</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" name="pph21" class="form-control col-md-7 col-xs-12" readonly="readonly" value="{{$gaji->pph21}}">
+												</div>
+											</div>
+											<div class="ln_solid"></div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">Total Potongan:</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" name="tot_potongan" class="form-control col-md-7 col-xs-12 tot_potongan" id="tot_potongan" readonly="readonly" value="{{$gaji->pph21}}">
+												</div>
+											</div>
+
+											
+											<div class="ln_solid"></div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">Pendapatan Bersih:</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="text" name="pendapatan_bersih" class="form-control col-md-7 col-xs-12 pendapatan_bersih" id="pendapatan_bersih" readonly="readonly">
+												</div>
+											</div>
+										</div>
+										@else
 										<div class="col-md-12">
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">Gaji Pokok:</label>
@@ -1828,7 +1927,7 @@ $kode = KodeBagian::all();
 															$pph21='';
 														}
 													?>
-													<input type="text" name="tunj_pph21" class="form-control col-md-7 col-xs-12 tunj_pph21" id="tunj_pph21" readonly="readonly" value="{{$pph21}}">
+													<input type="text" name="tunj_pph21" class="form-control col-md-7 col-xs-12 tunj_pph21" id="tunj_pph21" value="{{$pph21}}">
 												</div>
 											</div>
 											<div class="ln_solid"></div>
@@ -1872,6 +1971,7 @@ $kode = KodeBagian::all();
 												</div>
 											</div>
 										</div>
+										@endif
 									</div>
 		                      </div>
 		                      

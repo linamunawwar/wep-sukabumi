@@ -90,7 +90,7 @@
       <td>:</td>
       @if($pegawai->gender == 'P')
         <td>Pria</td>
-      @elseif($pegawai->ggender == 'W')
+      @elseif($pegawai->gender == 'W')
         <td>Wanita</td>
       @endif
     </tr>
@@ -102,7 +102,7 @@
     <tr>
       <td>Status Perkawinan</td>
       <td>:</td>
-      @if($pegawai->status_kawin == 'K0')
+      @if($pegawai->status_kawin == 'TK')
         <td>Belum Kawin</td>
       @else
         <td>Kawin</td>
