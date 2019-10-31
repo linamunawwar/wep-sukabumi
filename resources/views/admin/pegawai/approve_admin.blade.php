@@ -1870,14 +1870,14 @@ $kode = KodeBagian::all();
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">PPh 21:</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="text" name="pph21" class="form-control col-md-7 col-xs-12" readonly="readonly" value="{{$gaji->pph21}}">
+													<input type="text" name="pph21" class="form-control col-md-7 col-xs-12 pph21"  value="{{$gaji->pph21}}">
 												</div>
 											</div>
 											<div class="ln_solid"></div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">Total Potongan:</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="text" name="tot_potongan" class="form-control col-md-7 col-xs-12 tot_potongan" id="tot_potongan" readonly="readonly" value="{{$gaji->pph21}}">
+													<input type="text" name="tot_potongan" class="form-control col-md-7 col-xs-12 tot_potongan" id="tot_potongan" value="{{$gaji->pph21}}">
 												</div>
 											</div>
 
@@ -1968,14 +1968,14 @@ $kode = KodeBagian::all();
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">PPh 21:</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="text" name="pph21" class="form-control col-md-7 col-xs-12" readonly="readonly" value="{{$pph21}}">
+													<input type="text" name="pph21" class="form-control col-md-7 col-xs-12 pph21" value="{{$pph21}}">
 												</div>
 											</div>
 											<div class="ln_solid"></div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">Total Potongan:</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<input type="text" name="tot_potongan" class="form-control col-md-7 col-xs-12 tot_potongan" id="tot_potongan" readonly="readonly" value="{{$pph21}}">
+													<input type="text" name="tot_potongan" class="form-control col-md-7 col-xs-12 tot_potongan" id="tot_potongan"  value="{{$pph21}}">
 												</div>
 											</div>
 
@@ -2129,6 +2129,12 @@ $kode = KodeBagian::all();
 	     var bersih = tot_pendapatan - potongan;
 	     $('#tot_pendapatan').val(tot_pendapatan);
 	     $('#pendapatan_bersih').val(bersih);
+	  });
+
+	  $(document).on("change", ".pph21", function(e){
+	     var potongan = $('.pph21').val();
+	    
+	     $('#tot_potongan').val(potongan);
 	  });
   	});
 
