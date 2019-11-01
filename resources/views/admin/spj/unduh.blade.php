@@ -155,15 +155,23 @@ body { margin-bottom: 10px; }
 			<td style="border: 0.5px solid black; text-align: center;"></td>
 		</tr>
 		<tr>
-			<td style="border: 0.5px solid black; border-right: 0; padding-left: 15px; text-align: left;">   a. Akomodasi</td>
-			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="2"></td>
+			<td style="border: 0.5px solid black; border-right: 0; padding-left: 15px; text-align: left;">   a. Penginapan</td>
+			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="2">
+				@if($spj->uang_penginapan)
+					{{number_format($spj->uang_penginapan)}}
+				@endif
+			</td>
 			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="2"></td>
 			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="3"> </td>
 			<td style="border: 0.5px solid black; text-align: left;"></td>
 		</tr>
 		<tr>
 			<td style="border: 0.5px solid black; border-right: 0; padding-left: 15px; text-align: left;">  b. Konsumsi</td>
-			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="2"></td>
+			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="2">
+				@if($spj->uang_konsumsi)
+					{{number_format($spj->uang_konsumsi)}}
+				@endif
+			</td>
 			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="2"></td>
 			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="3"> </td>
 			<td style="border: 0.5px solid black; text-align: left;"></td>
@@ -184,7 +192,11 @@ body { margin-bottom: 10px; }
 		</tr>
 		<tr>
 			<td style="border: 0.5px solid black; border-right: 0; padding-left: 25px; text-align: left;">  1. Akomodasi</td>
-			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="2"></td>
+			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="2">
+				@if($spj->uang_transport)
+					{{number_format($spj->uang_transport)}}
+				@endif
+			</td>
 			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="2"></td>
 			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="3"> </td>
 			<td style="border: 0.5px solid black; text-align: left;"></td>
@@ -218,8 +230,12 @@ body { margin-bottom: 10px; }
 			<td style="border: 0.5px solid black; text-align: left;"></td>
 		</tr>
 		<tr>
-			<td style="border: 0.5px solid black; border-right: 0; padding-left: 15px; text-align: left;">  f. Taxi Bandara</td>
-			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="2"></td>
+			<td style="border: 0.5px solid black; border-right: 0; padding-left: 15px; text-align: left;">  f. Taxi</td>
+			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="2">
+				@if($spj->uang_taksi)
+					{{number_format($spj->uang_taksi)}}
+				@endif
+			</td>
 			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="2"></td>
 			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="3"> </td>
 			<td style="border: 0.5px solid black; text-align: left;"></td>
@@ -293,7 +309,7 @@ body { margin-bottom: 10px; }
 		</tr>
 		<tr>
 			<td style="border: 0.5px solid black;  border-top: 0; border-right: 0; margin-left: 5px; text-align: center; height: 60px;">
-				<img src="{{ asset('upload/pegawai/'.$spj->pemberi_tugas.'/'.$spj->pegawaiTugas->ttd.'') }}" style="width: 120px; padding: 0; margin: 0;">
+				<img src="{{ asset('upload/pegawai/'.$pm->nip.'/'.$pm->ttd.'') }}" style="width: 120px; padding: 0; margin: 0;">
 			</td>
 			<td style="border: 0.5px solid black; border-top: 0; border-right: 0; margin-left: 5px; text-align: center;" colspan="3">
 				<img src="{{ asset('upload/pegawai/'.$spj->nip.'/'.$spj->pegawai->ttd.'') }}" style="width: 120px; padding: 0; margin: 0;">
@@ -301,7 +317,7 @@ body { margin-bottom: 10px; }
 			<td style="border: 0.5px solid black; border-top: 0; margin-left: 5px; text-align: center;" colspan="5"></td>
 		</tr>
 		<tr>
-			<td style="border: 0.5px solid black;  border-top: 0; border-right: 0; margin-left: 5px;">Nama   : {{$spj->pegawaiTugas->nama}}	</td>
+			<td style="border: 0.5px solid black;  border-top: 0; border-right: 0; margin-left: 5px;">Nama   : {{$pm->nama}}	</td>
 			<td style="border: 0.5px solid black; border-top: 0; border-right: 0; margin-left: 5px; " colspan="3">Nama   : {{$spj->pegawai->nama}}</td>
 			<td style="border: 0.5px solid black; border-top: 0; margin-left: 5px;" colspan="5">Nama   :</td>
 		</tr>
@@ -319,7 +335,7 @@ body { margin-bottom: 10px; }
 		</tr>
 		<tr>
 			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px;" colspan="3">Nama   : {{$spj->pegawai->nama}}	</td>
-			<td style="border: 0.5px solid black;  margin-left: 5px;" colspan="6">Nama  :</td>
+			<td style="border: 0.5px solid black;  margin-left: 5px;" colspan="6">Nama  : {{$spj->pegawai->nama}}</td>
 		</tr>
 		<tr>
 			<td style="border: 0.5px solid black; border-right: 0; border-bottom: 0; border-top: 0; margin-left: 5px;" colspan="3">Tanda Tangan   : 	</td>
@@ -329,7 +345,9 @@ body { margin-bottom: 10px; }
 			<td style="border: 0.5px solid black; border-right: 0; border-top: 0; margin-left: 5px; height: 60px;" colspan="3"> 
 				<img src="{{ asset('upload/pegawai/'.$spj->nip.'/'.$spj->pegawai->ttd.'') }}" style="width: 120px; padding: 0; margin: 0;">
 			</td>
-			<td style="border: 0.5px solid black; border-top: 0;  margin-left: 5px;" colspan="6"></td>
+			<td style="border: 0.5px solid black; border-top: 0;  margin-left: 5px;" colspan="6">
+				<img src="{{ asset('upload/pegawai/'.$spj->nip.'/'.$spj->pegawai->ttd.'') }}" style="width: 120px; padding: 0; margin: 0;">
+			</td>
 		</tr>
 	</table>
 	<h4 style="text-align: center;">BIAYA PERJALANAN DINAS DALAM NEGERI</h4>
@@ -349,21 +367,21 @@ body { margin-bottom: 10px; }
 		</tr>
 		<tr>
 			<td></td>
-			<td style="padding-left: 15px;">a. Uang Taksi</td>
+			<td style="padding-left: 15px;">a. Uang Penginapan</td>
 			<td>
-				@if($spj->uang_taksi)
-					{{number_format($spj->uang_taksi)}}
+				@if($spj->uang_penginapan)
+					{{number_format($spj->uang_penginapan)}}
 				@endif
 			</td>
 			<td>
-				@if($spj->uang_taksi)
-					{{number_format($spj->uang_taksi)}}
+				@if($spj->uang_penginapan)
+					{{number_format($spj->uang_penginapan)}}
 				@endif
 			</td>
 		</tr>
 		<tr>
 			<td></td>
-			<td style="padding-left: 15px;">b. Konsumsi & Akomodasi setempat</td>
+			<td style="padding-left: 15px;">b. Konsumsi </td>
 			<td>
 				@if($spj->uang_konsumsi)
 					{{number_format($spj->uang_konsumsi)}}
@@ -418,8 +436,16 @@ body { margin-bottom: 10px; }
 		<tr>
 			<td></td>
 			<td style="padding-left: 15px;"> Taxi ke Lokasi</td>
-			<td></td>
-			<td></td>
+			<td>
+				@if($spj->uang_taksi)
+					{{number_format($spj->uang_taksi)}}
+				@endif
+			</td>
+			<td>
+				@if($spj->uang_taksi)
+					{{number_format($spj->uang_taksi)}}
+				@endif
+			</td>
 		</tr>
 		<tr>
 			<td></td>
@@ -432,6 +458,9 @@ body { margin-bottom: 10px; }
 			<td></td>
 			<td></td>
 			<td>
+				@if(!$spj->uang_penginapan)
+					<?php $spj->uang_penginapan= 0;?>
+				@endif
 				@if(!$spj->uang_taksi)
 					<?php $spj->uang_taksi= 0;?>
 				@endif
@@ -441,7 +470,7 @@ body { margin-bottom: 10px; }
 				@if(!$spj->uang_transport)
 					<?php $spj->uang_transport= 0;?>
 				@endif
-				{{number_format($spj->uang_taksi + $spj->uang_konsumsi + $spj->uang_transport)}}
+				{{number_format($spj->uang_penginapan + $spj->uang_taksi + $spj->uang_konsumsi + $spj->uang_transport)}}
 			</td>
 		</tr>
 	</table>
