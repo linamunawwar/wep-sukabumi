@@ -110,7 +110,7 @@ PEGAWAI KANTOR PUSAT</h3>
       <td></td>
       <td></td>
       <td colspan="2"></td>
-      <td style="text-align: center;"><img src="{{asset('public/img/ttd_staff1.png')}}" style="width: 150px; height: 40px;"> </td>
+      <td style="text-align: center;"><img src='{{asset("public/img/$cuti->nip/$cuti->pegawai->ttd")}}' style="width: 150px; height: 40px;"> </td>
     </tr>
     <tr>
       <td></td>
@@ -132,7 +132,7 @@ PEGAWAI KANTOR PUSAT</h3>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td style="text-align: center;"><img src="{{asset('public/img/ttd_sdm.jpg')}}" style="width: 150px; height: 40px;"></td>
+      <td style="text-align: center;"><img src='{{asset("public/img/$sdm->nip/$sdm->ttd")}}' style="width: 150px; height: 40px;"></td>
     </tr>
     <tr>
       <td></td>
@@ -147,7 +147,7 @@ PEGAWAI KANTOR PUSAT</h3>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td style="text-align: center;">( Kepala Bagian SDM )</td>
+      <td style="text-align: center;">( {{$sdm->nama}} )</td>
     </tr>
     <tr style="border-bottom: 1px solid black;">
       <td style="border-bottom: 1px solid black;"></td>
@@ -162,9 +162,9 @@ PEGAWAI KANTOR PUSAT</h3>
       <td></td>
       <td colspan="3"></td>
       @if($cuti->pegawai->kode_bagian == 'SA')
-        <td style="text-align: center;"><img src="{{asset('public/img/ttd_sdm.jpf')}}" style="width: 150px; height: 40px;"></td>
+        <td style="text-align: center;"><img src='{{asset("public/img/$sdm->nip/$sdm->ttd")}}' style="width: 150px; height: 40px;"></td>
       @else
-        <td style="text-align: center;"><img src="{{asset('public/img/ttd_manager.jpg')}}" style="width: 150px; height: 40px;"></td>
+        <td style="text-align: center;"><img src='{{asset("public/img/$manager->nip/$manager->ttd")}}' style="width: 150px; height: 40px;"></td>
       @endif
     </tr>
     <tr>
@@ -180,7 +180,7 @@ PEGAWAI KANTOR PUSAT</h3>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td style="text-align: center;">( Manager )</td>
+      <td style="text-align: center;">( {{$manager->nama}} )</td>
     </tr>
     <tr style="border-bottom: 1px solid black;">
       <td style="border-bottom: 1px solid black;"></td>
@@ -194,7 +194,7 @@ PEGAWAI KANTOR PUSAT</h3>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td style="text-align: center;"><img src="{{asset('public/img/ttd_staff2.jpg')}}" style="width: 150px; height: 40px;"></td>
+      <td style="text-align: center;"><img src='{{asset("public/img/$cuti->pengganti/$cuti->pegawaiPengganti->ttd")}}' style="width: 150px; height: 40px;"></td>
     </tr>
     <tr>
       <td></td>
@@ -224,7 +224,7 @@ PEGAWAI KANTOR PUSAT</h3>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td style="text-align: center;"><img src="{{asset('public/img/ttd_pm.jpg')}}" style="width: 150px; height: 40px;"></td>
+      <td style="text-align: center;"><img src='{{asset("public/img/$pm->nip/$pm->ttd")}}' style="width: 150px; height: 40px;"></td>
     </tr>
     <tr>
       <td></td>
@@ -239,7 +239,7 @@ PEGAWAI KANTOR PUSAT</h3>
     <tr>
       <td style="border-bottom: 1px solid black;"></td>
       <td style="border-bottom: 1px solid black;" colspan="3"></td>
-      <td style="border-bottom: 1px solid black; text-align: center;">( Waskito Adi )</td>
+      <td style="border-bottom: 1px solid black; text-align: center;">( {{$pm->nama}} )</td>
     </tr>
   </table>
 </div>

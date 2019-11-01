@@ -32,8 +32,8 @@ class SpjController extends Controller
           $ori_file  = \Request::file('lampiran');
          $tujuan = "upload/spj";
          $ekstension = $ori_file->getClientOriginalExtension();
-
-          $nama_file = 'lampiran_'.$data['no_sppd'].'.'.$ekstension;
+         $sppd = str_replace('/', '_', $data['no_sppd']);
+          $nama_file = 'lampiran_'.$sppd.'.'.$ekstension;
 
         $ori_file->move($tujuan,$nama_file);
        }else{
@@ -42,15 +42,16 @@ class SpjController extends Controller
 
         $spj = new Spj;
         $spj->nip = \Auth::user()->pegawai_id;
+      $spj->no_sppd = $data['no_sppd'];
         $spj->pemberi_tugas = $data['pemberi_tugas'];
         $spj->tanggal_berangkat = konversi_tanggal($data['tanggal_berangkat']);
         $spj->tanggal_pulang = konversi_tanggal($data['tanggal_pulang']);
         $spj->angkutan = $data['angkutan'];
-        $spj->nominal = $data['nominal'];
+        $spj->tujuan = $data['tujuan'];
         $spj->keperluan = $data['keperluan'];
         $spj->lampiran = $nama_file;
-        $spj->is_verif_admin = '0';
-        $spj->is_verif_sdm = '0';
+      $spj->is_verif_admin = '0';
+      $spj->is_verif_sdm = '0';
         $spj->user_id = \Auth::user()->id;
         $spj->role_id = \Auth::user()->role_id;
 

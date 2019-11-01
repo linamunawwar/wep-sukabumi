@@ -54,7 +54,7 @@ SEBELUM  BEKERJA</h3>
     </tr>
   </table>
   <br>
-  <p style="font-size: 14px;"><i>Pentunjuk : Berilah tanda (<img src="{{ asset("public/img/check.PNG") }}" style="width: 10px; height: 10px;"/>) yang menurut anda sesuai.</i></p>
+  <p style="font-size: 14px;"><i>Pentunjuk : Berilah tanda (<img src="{{ asset("public/img/check.png") }}" style="width: 10px; height: 10px;"/>) yang menurut anda sesuai.</i></p>
   <table border="1" style="width: 100%;border-collapse: collapse;" cellspacing="1" cellpadding="3">
     <tr>
       <td style="text-align: center;"><b>NO</b></td>

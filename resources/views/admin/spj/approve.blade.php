@@ -105,23 +105,24 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Uang Konsumsi *:</label>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Uang Konsumsi & Akomodasi Setempat *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input type="text" name="uang_konsumsi" class="form-control col-md-7 col-xs-12 uang_konsumsi"  value="{{$spj->uang_konsumsi}}">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Akomodasi *:</label>
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Uang Taksi *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="uang_akomodasi" class="form-control col-md-7 col-xs-12 uang_akomodasi"  value="{{$spj->uang_akomodasi}}">
+									<input type="text" name="uang_taksi" class="form-control col-md-7 col-xs-12 uang_taksi"  value="{{$spj->uang_taksi}}">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Surat Perintah *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<a href="" class="col-md-7 col-xs-12">
-										preview
-									</a>
+									<br>
+									<b><a href='{{url("upload/spj/$spj->lampiran")}}' class="col-md-7 col-xs-12" target="_blank">
+										<i class="fa fa-search-plus"></i>&nbsp&nbsp&nbspPreview
+									</a></b>
 								</div>
 							</div>
 							

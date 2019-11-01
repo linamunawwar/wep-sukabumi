@@ -33,8 +33,8 @@ class SpjController extends Controller
           $ori_file  = \Request::file('lampiran');
          $tujuan = "upload/spj";
          $ekstension = $ori_file->getClientOriginalExtension();
-
-          $nama_file = 'lampiran_'.$data['no_sppd'].'.'.$ekstension;
+         $sppd = str_replace('/', '_', $data['no_sppd']);
+          $nama_file = 'lampiran_'.$sppd.'.'.$ekstension;
 
         $ori_file->move($tujuan,$nama_file);
        }else{
@@ -43,12 +43,13 @@ class SpjController extends Controller
 
     	$spj = new Spj;
         $spj->nip = \Auth::user()->pegawai_id;
+      $spj->no_sppd = $data['no_sppd'];
     	$spj->pemberi_tugas = $data['pemberi_tugas'];
     	$spj->tanggal_berangkat = konversi_tanggal($data['tanggal_berangkat']);
     	$spj->tanggal_pulang = konversi_tanggal($data['tanggal_pulang']);
     	$spj->angkutan = $data['angkutan'];
-    	$spj->nominal = $data['nominal'];
-        $spj->keperluan = $data['keperluan'];
+      $spj->tujuan = $data['tujuan'];
+      $spj->keperluan = $data['keperluan'];
     	$spj->lampiran = $nama_file;
       $spj->is_verif_admin = '0';
       $spj->is_verif_sdm = '0';
@@ -63,20 +64,6 @@ class SpjController extends Controller
     public function hitungNominal()
     {
         $data = \Input::all();
-        switch ($data['angkutan']) {
-            case 'pesawat':
-             $angkutan = 1000000;
-              break;
-            case 'kereta':
-              $angkutan = 500000;
-              break;
-            case 'dinas':
-              $angkutan = 100000;
-              break;
-            case 'pribadi':
-              $angkutan = 100000;
-              break;
-        }
         $tanggal_berangkat = konversi_tanggal($data['tanggal_berangkat']);
         $tanggal_pulang = konversi_tanggal($data['tanggal_pulang']);
 
@@ -90,20 +77,16 @@ class SpjController extends Controller
 
         switch (\Auth::user()->role_id) {
             case 2:
-                $akomodasi = 0;
-                $konsumsi = 250000;
+                $konsumsi = 400000;
               break;
             case 3:
-                $akomodasi = 0;
-                $konsumsi = 350000;
+                $konsumsi = 500000;
               break;
             case 4:
-                $akomodasi = 0;
-                $konsumsi = 350000;
+                $konsumsi = 500000;
               break;
             case 5:
-                $akomodasi = 600000;
-                $konsumsi = 400000;
+                $konsumsi = 600000;
               break;
         }
 
@@ -144,7 +127,6 @@ class SpjController extends Controller
         $spj['tanggal_pulang'] = konversi_tanggal($data['tanggal_pulang']);
         $spj['pemberi_tugas'] = $data['pemberi_tugas'];
         $spj['angkutan'] = $data['angkutan'];
-        $spj['nominal'] = $data['nominal'];
         $spj['keperluan'] = $data['keperluan'];
         $spj['user_id'] = \Auth::user()->id;
         $spj['role_id'] = \Auth::user()->role_id;

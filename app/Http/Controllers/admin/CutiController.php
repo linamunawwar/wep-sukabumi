@@ -65,7 +65,11 @@ class CutiController extends Controller
     public function getSuratCuti($id)
     {
       $cuti = Cuti::find($id);
-      $pdf = PDF::loadView('admin.cuti_izin.cuti.surat_cuti',['cuti' => $cuti]);
+      $user = Pegawai::where('nip',$cuti->nip)->first();
+      $sdm = Pegawai::where('posisi_id',6)->first();
+      $pm = Pegawai::where('posisi_id',1)->first();
+      $manager = Pegawai::where('posisi_id',$user->posisi->parent)->first();
+      $pdf = PDF::loadView('admin.cuti_izin.cuti.surat_cuti',['cuti' => $cuti,'sdm'=>$sdm,'pm'=>$pm,'manager'=>$manager]);
       $pdf->setPaper('A4');
       return $pdf->download('Surat Cuti_'.$cuti->nip.'.pdf');
     }

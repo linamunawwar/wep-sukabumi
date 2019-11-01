@@ -349,21 +349,21 @@ body { margin-bottom: 10px; }
 		</tr>
 		<tr>
 			<td></td>
-			<td style="padding-left: 15px;">a. Akomodasi (Penginapan)</td>
+			<td style="padding-left: 15px;">a. Uang Taksi</td>
 			<td>
-				@if($spj->uang_akomodasi)
-					{{number_format($spj->uang_akomodasi)}}
+				@if($spj->uang_taksi)
+					{{number_format($spj->uang_taksi)}}
 				@endif
 			</td>
 			<td>
-				@if($spj->uang_akomodasi)
-					{{number_format($spj->uang_akomodasi)}}
+				@if($spj->uang_taksi)
+					{{number_format($spj->uang_taksi)}}
 				@endif
 			</td>
 		</tr>
 		<tr>
 			<td></td>
-			<td style="padding-left: 15px;">b. Konsumsi & Transport setempat</td>
+			<td style="padding-left: 15px;">b. Konsumsi & Akomodasi setempat</td>
 			<td>
 				@if($spj->uang_konsumsi)
 					{{number_format($spj->uang_konsumsi)}}
@@ -432,8 +432,8 @@ body { margin-bottom: 10px; }
 			<td></td>
 			<td></td>
 			<td>
-				@if(!$spj->uang_akomodasi)
-					<?php $spj->uang_akomodasi= 0;?>
+				@if(!$spj->uang_taksi)
+					<?php $spj->uang_taksi= 0;?>
 				@endif
 				@if(!$spj->uang_konsumsi)
 					<?php $spj->uang_konsumsi= 0;?>
@@ -441,7 +441,7 @@ body { margin-bottom: 10px; }
 				@if(!$spj->uang_transport)
 					<?php $spj->uang_transport= 0;?>
 				@endif
-				{{number_format($spj->uang_akomodasi + $spj->uang_konsumsi + $spj->uang_transport)}}
+				{{number_format($spj->uang_taksi + $spj->uang_konsumsi + $spj->uang_transport)}}
 			</td>
 		</tr>
 	</table>
