@@ -67,11 +67,11 @@ SEBELUM  BEKERJA</h3>
       <tr>
         <td style="text-align: center;">{{$i++}}</td>
         @if($mcu->nilai == 1)
-          <td style="text-align: center;"><img src="{{ asset("public/img/check.PNG") }}" style="width: 10px; height: 10px;"/></td>
+          <td style="text-align: center;"><img src="{{ asset("public/img/check.png") }}" style="width: 10px; height: 10px;"/></td>
           <td></td>
         @else
           <td></td>
-          <td style="text-align: center;"><img src="{{ asset("public/img/check.PNG") }}" style="width: 10px; height: 10px;"/></td>
+          <td style="text-align: center;"><img src="{{ asset("public/img/check.png") }}" style="width: 10px; height: 10px;"/></td>
         @endif
         <td>{{$mcu->mcu->pernyataan}}</td>
       </tr>

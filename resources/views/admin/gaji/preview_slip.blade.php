@@ -1,21 +1,22 @@
-<?php if($slip){
-		if(($slip->pegawai->gaji->gaji_pokok == null) || ($slip->pegawai->gaji->gaji_pokok == '')){
-			$slip->pegawai->gaji->gaji_pokok = 0;
+<?php
+if($slip){
+		if(($slip->gaji_pokok == null) || ($slip->gaji_pokok == '')){
+			$slip->gaji_pokok = 0;
 		}
-		if(($slip->pegawai->gaji->tunj_komunikasi == null) || ($slip->pegawai->gaji->tunj_komunikasi == '')){
-			$slip->pegawai->gaji->tunj_komunikasi = 0;
+		if(($slip->tunj_komunikasi == null) || ($slip->tunj_komunikasi == '')){
+			$slip->tunj_komunikasi = 0;
 		}
-		if(($slip->pegawai->gaji->tunj_transportasi == null) || ($slip->pegawai->gaji->tunj_transportasi == '')){
-			$slip->pegawai->gaji->tunj_transportasi = 0;
+		if(($slip->tunj_transportasi == null) || ($slip->tunj_transportasi == '')){
+			$slip->tunj_transportasi = 0;
 		}
-		if(($slip->pegawai->gaji->uang_makan == null) || ($slip->pegawai->gaji->uang_makan == '')){
-			$slip->pegawai->gaji->uang_makan = 0;
+		if(($slip->uang_makan == null) || ($slip->uang_makan == '')){
+			$slip->uang_makan = 0;
 		}
-		if(($slip->pegawai->gaji->uang_lembur == null) || ($slip->pegawai->gaji->uang_lembur == '')){
-			$slip->pegawai->gaji->uang_lembur = 0;
+		if(($slip->uang_lembur == null) || ($slip->uang_lembur == '')){
+			$slip->uang_lembur = 0;
 		}
-		if(($slip->pegawai->gaji->tunj_pph21 == null) || ($slip->pegawai->gaji->tunj_pph21 == '')){
-			$slip->pegawai->gaji->tunj_pph21 = 0;
+		if(($slip->tunj_pph21 == null) || ($slip->tunj_pph21 == '')){
+			$slip->tunj_pph21 = 0;
 		}
 	}
 ?>
@@ -80,7 +81,7 @@
 		<td></td>
 		<td></td>
 		<td>Bulan</td>
-		<td colspan="2">: {{$periode}}</td>
+		<td colspan="2">: </td>
 	</tr>
 	<tr></tr>
 	<tr>
@@ -100,11 +101,7 @@
 		<td></td>
 		<td width="1">:</td>
 		<td width="4">Rp.</td>
-		@if($slip->pegawai->gaji->gaji_pokok)
-			<td colspan="2" align="right">{{number_format($slip->pegawai->gaji->gaji_pokok)}}</td>
-		@else
-			<td colspan="2"></td>
-		@endif
+		<td colspan="2" align="right">{{number_format($slip->gaji_pokok)}}</td>
 	</tr>
 	<tr>
 		<td></td>
@@ -115,11 +112,7 @@
 		<td></td>
 		<td width="1">:</td>
 		<td width="4">Rp.</td>
-		@if($slip->pegawai->gaji->tunj_komunikasi)
-			<td colspan="2" align="right">{{number_format($slip->pegawai->gaji->tunj_komunikasi)}}</td>
-		@else
-			<td colspan="2"></td>
-		@endif
+		<td colspan="2" align="right">{{number_format($slip->tunj_komunikasi)}}</td>
 	</tr>
 	<tr>
 		<td></td>
@@ -130,11 +123,7 @@
 		<td></td>
 		<td width="1">:</td>
 		<td width="4">Rp.</td>
-		@if($slip->pegawai->gaji->tunj_transportasi)
-		<td colspan="2" align="right">{{number_format($slip->pegawai->gaji->tunj_transportasi)}}</td>
-		@else
-			<td colspan="2"></td>
-		@endif
+		<td colspan="2" align="right">{{number_format($slip->tunj_transportasi)}}</td>
 	</tr>
 	<tr>
 		<td></td>
@@ -145,11 +134,7 @@
 		<td></td>
 		<td width="1">:</td>
 		<td width="4">Rp.</td>
-		@if($slip->pegawai->gaji->tunj_pph21)
-			<td colspan="2" align="right">{{number_format($slip->pegawai->gaji->tunj_pph21)}}</td>
-		@else
-			<td colspan="2"></td>
-		@endif
+		<td colspan="2" align="right">{{number_format($slip->tunj_pph21)}}</td>
 	</tr>
 	<tr>
 		<td></td>
@@ -161,11 +146,7 @@
 		<td></td>
 		<td width="1">:</td>
 		<td width="4">Rp.</td>
-		@if($slip->pegawai->gaji->uang_makan)
-			<td colspan="2" align="right">{{number_format($slip->pegawai->gaji->uang_makan)}}</td>
-		@else
-			<td colspan="2"></td>
-		@endif
+		<td colspan="2" align="right">{{number_format($slip->uang_makan)}}</td>
 	</tr>
 	<tr>
 		<td></td>
@@ -198,12 +179,7 @@
 		<td></td>
 		<td width="1">:</td>
 		<td width="4">Rp.</td>
-		@if($slip->pegawai->gaji->uang_lembur)
-		<td colspan="2" align="right">{{number_format($slip->pegawai->gaji->uang_lembur)}}</td>
-		@else
-			<td colspan="2"></td>
-		@endif
-	</tr></td>
+		<td colspan="2" align="right">{{number_format($slip->uang_lembur)}}</td>
 	</tr>
 	<tr>
 		<td></td>
@@ -227,7 +203,7 @@
 		<td></td>
 		<td width="1"><b>:</b></td>
 		<td width="4"><b>Rp.</b></td>
-		<?php $pendapatan = $slip->pegawai->gaji->gaji_pokok + $slip->pegawai->gaji->tunj_komunikasi + $slip->pegawai->gaji->tunj_transportasi + $slip->pegawai->gaji->tunj_pph21 + $slip->pegawai->gaji->uang_makan  + $slip->pegawai->gaji->uang_lembur; ?>
+		<?php $pendapatan = $slip->gaji_pokok + $slip->tunj_komunikasi + $slip->tunj_transportasi + $slip->tunj_pph21 + $slip->uang_makan + $slip->uang_lembur; ?>
 		<td colspan="2" align="right"><b>{{number_format($pendapatan)}}</b></td>
 	</tr>
 	<tr></tr>
@@ -250,11 +226,7 @@
 		<td></td>
 		<td width="1">:</td>
 		<td width="4">Rp.</td>
-		@if($slip->pegawai->gaji->pph21)
-		<td colspan="2" align="right">{{number_format($slip->pegawai->gaji->pph21)}}</td>
-		@else
-			<td colspan="2"></td>
-		@endif
+		<td colspan="2" align="right">{{number_format($slip->pph21)}}</td>
 	</tr>
 	<tr>
 		<td></td>
@@ -290,11 +262,7 @@
 		<td></td>
 		<td width="1"><b>:</b></td>
 		<td width="4"><b>Rp.</b></td>
-		@if($slip->pegawai->gaji->pph21)
-			<td colspan="2" align="right">{{number_format($slip->pegawai->gaji->pph21)}}</td>
-		@else
-			<td colspan="2"></td>
-		@endif
+		<td colspan="2" align="right"><b>{{number_format($slip->pph21)}}</b></td>
 	</tr>
 	<tr></tr>
 	<tr>
@@ -307,7 +275,7 @@
 		<td></td>
 		<td width="1"><b>:</b></td>
 		<td width="4"><b>Rp.</b></td>
-		<?php $tot_pendapatan = $pendapatan - $slip->pegawai->gaji->pph21;?>
+		<?php $tot_pendapatan = $pendapatan - $slip->pph21;?>
 		<td  colspan="2" align="right"><b>{{number_format($tot_pendapatan)}}</b></td>
 	</tr>
 	<tr></tr>
@@ -323,15 +291,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<?php 
-			$time = explode(' ', $slip->verify_sdm_time);
-
-		?>
-		@if($slip->is_verif_sdm ==1)
-			<td>Bekasi, {{formatTanggalPanjang($time[0])}}</td>
-		@else
-			<td>Bekasi, </td>
-		@endif
+		<td>Bekasi, {{date('d-m-Y')}}</td>
 	</tr>
 	<tr>
 		<td></td>

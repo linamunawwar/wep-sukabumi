@@ -50,6 +50,8 @@ class SpjController extends Controller
     	$spj->nominal = $data['nominal'];
         $spj->keperluan = $data['keperluan'];
     	$spj->lampiran = $nama_file;
+      $spj->is_verif_admin = '0';
+      $spj->is_verif_sdm = '0';
     	$spj->user_id = \Auth::user()->id;
     	$spj->role_id = \Auth::user()->role_id;
 

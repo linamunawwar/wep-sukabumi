@@ -89,6 +89,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/gaji/slip_gaji/create', 'admin\GajiController@getSlipGajiCreate');
 		Route::post('/gaji/slip_gaji/create', 'admin\GajiController@postSlipGajiCreate');
 		Route::get('/gaji/slip_gaji/unduh/{id}', 'admin\GajiController@getSlipGajiUnduh');
+		Route::get('/gaji/slip_gaji/preview_admin/{id}', 'admin\GajiController@getSlipGajiUnduhAdmin');
 
 		//memo
 		Route::get('/memo', 'admin\MemoController@index');
@@ -106,6 +107,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/spj/edit/{id}', 'user\SpjController@getEdit');
 		Route::post('/spj/edit/{id}', 'user\SpjController@postEdit');
 		Route::get('/spj/approve/{id}', 'admin\SpjController@getApprove');
+		Route::post('/spj/approve/{id}', 'admin\SpjController@postApprove');
 		Route::get('/spj/unduh/{id}', 'admin\SpjController@getUnduh');
 
 		//disposisi
@@ -262,6 +264,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/spj', 'manager\SpjController@index');
 		Route::get('/spj/create', 'manager\SpjController@getCreate');
 		Route::post('/spj/create', 'manager\SpjController@postCreate');
+		Route::get('/spj/approve/{id}', 'manager\SpjController@getApprove');
+		Route::post('/spj/approve/{id}', 'manager\SpjController@postApprove');
+		Route::get('/spj/pengajuan', 'manager\SpjController@getListPengajuan');
 
 		//disposisi
 		Route::get('/surat_masuk', 'manager\DisposisiController@indexSuratMasuk');

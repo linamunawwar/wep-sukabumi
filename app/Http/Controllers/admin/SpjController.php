@@ -62,13 +62,25 @@ class SpjController extends Controller
 
     public function getApprove($id)
     {
-    	date_default_timezone_set("Asia/Jakarta");
 
-    	$data['is_verif_sdm'] = '1';
-    	$data['verif_sdm_by'] = \Auth::user()->id;
-    	$data['verify_sdm_time'] = date('Y-m-d H:i:s');
+    	$spj = Spj::find($id);
+        $pegawais = Pegawai::where('is_active',1)->where('soft_delete',0)->get();
 
-    	$spj = Spj::where('id',$id)->update($data);
+        return view('admin.spj.approve',['spj'=>$spj,'pegawais'=>$pegawais]);
+    }
+
+    public function postApprove($id)
+    {
+        date_default_timezone_set("Asia/Jakarta");
+        $data = \Input::all();
+        $data['is_verif_admin'] = '1';
+        $data['verif_admin_by'] = \Auth::user()->id;
+        $data['verify_admin_time'] = date('Y-m-d H:i:s');
+        $data['tanggal_berangkat']=konversi_tanggal($data['tanggal_berangkat']);
+        $data['tanggal_pulang'] =konversi_tanggal($data['tanggal_pulang']);
+        unset($data['_token']);
+
+        $spj = Spj::where('id',$id)->update($data);
 
         return redirect('admin/spj');
     }

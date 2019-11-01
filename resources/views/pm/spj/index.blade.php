@@ -25,7 +25,6 @@
 								<tr>
 									<th>Tanggal Berangkat</th>
 									<th>Tanggal Pulang</th>
-									<th>Nominal</th>
 									<th>Keperluan</th>
 									<th>Status</th>
 									<th>Action</th>
@@ -36,13 +35,21 @@
 									<tr>
 										<td>{{konversi_tanggal($spj->tanggal_berangkat)}}</td>
 										<td>{{konversi_tanggal($spj->tanggal_pulang)}}</td>
-										<td>{{$spj->nominal}}</td>
 										<td>{{$spj->keperluan}}</td>
-										@if($spj->is_verif_sdm == 1)
-											<td style="text-align: center;"><span class="label label-success">Approved By Admin</span></td>
+										@if(($spj->is_verif_sdm == 1) && ($spj->is_verif_admin == 1))
+											<td style="text-align: center;">
+												<span class="label label-success">Approved By Admin</span>
+												<span class="label label-primary">Approved By SDM</span>
+											</td>
 											<td style="text-align: left;">
 												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
 											</td>
+										@elseif(($spj->is_verif_admin == 1) && ($spj->is_verif_sdm == 0))
+											<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
+											<td style="text-align: left;">
+												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</a>
+											</td>
+										@endif
 										@else
 											<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
 											<td style="text-align: left;">

@@ -34,7 +34,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">No. SPPD <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type='text' value='009/SPPD/WK/2019' name='no_sppd' class='form-control' required="required" placeholder="" readonly="readonly" />
+									<input type='text' value='' name='no_sppd' class='form-control' required="required" placeholder="" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -94,12 +94,6 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Nominal *:</label>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="nominal" class="form-control col-md-7 col-xs-12 nominal" readonly="readonly">
-								</div>
-							</div>
-							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Keperluan *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input type="text" name="keperluan" class="form-control col-md-7 col-xs-12">
@@ -148,20 +142,20 @@
 	    	$('input[type=radio][name=angkutan]').on('change', function() {
 			  var angkutan = $(this).val();
 			  console.log(angkutan);
-			  switch ($(this).val()) {
-				    case 'pesawat':
-				      $('.nominal').val(1000000);
-				      break;
-				    case 'kereta':
-				      $('.nominal').val(500000);
-				      break;
-				    case 'dinas':
-				      $('.nominal').val(100000);
-				      break;
-				    case 'pribadi':
-				      $('.nominal').val(100000);
-				      break;
-				  }
+			  // switch ($(this).val()) {
+				 //    case 'pesawat':
+				 //      $('.nominal').val(1000000);
+				 //      break;
+				 //    case 'kereta':
+				 //      $('.nominal').val(500000);
+				 //      break;
+				 //    case 'dinas':
+				 //      $('.nominal').val(100000);
+				 //      break;
+				 //    case 'pribadi':
+				 //      $('.nominal').val(100000);
+				 //      break;
+				 //  }
 			});
 		});
 	</script>

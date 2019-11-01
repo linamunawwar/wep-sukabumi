@@ -194,6 +194,7 @@ $kode = KodeBagian::all();
 											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama_anak">Nama Anak <span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
 												<textarea id="anak" name="anak" required="required" class="anak form-control col-md-7 col-xs-12"> {{$pegawai->anak}}</textarea>
+												*jika lebih dari satu, pisahkan dengan koma (,)
 											</div>
 										</div>
 									</div>

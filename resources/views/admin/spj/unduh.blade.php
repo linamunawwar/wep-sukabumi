@@ -350,38 +350,28 @@ body { margin-bottom: 10px; }
 		<tr>
 			<td></td>
 			<td style="padding-left: 15px;">a. Akomodasi (Penginapan)</td>
-			<td style="padding-left: 15px;">
-				@if($spj->pegawai->user->role_id == 5)
-					{{$diff->days}} X <?php echo number_format($diff->days*600000); $jml = $diff->days*600000; ?>
-				@else
-					<?php $jml =0; ?>
+			<td>
+				@if($spj->uang_akomodasi)
+					{{number_format($spj->uang_akomodasi)}}
 				@endif
 			</td>
-			<td></td>
+			<td>
+				@if($spj->uang_akomodasi)
+					{{number_format($spj->uang_akomodasi)}}
+				@endif
+			</td>
 		</tr>
 		<tr>
 			<td></td>
 			<td style="padding-left: 15px;">b. Konsumsi & Transport setempat</td>
 			<td>
-				@if($spj->pegawai->user->role_id == 5)
-					{{$diff->days}} X 400.000
-				@elseif(($spj->pegawai->user->role_id == 3) || ($spj->pegawai->user->role_id == 4))
-					{{$diff->days}} X 350.000
-				@elseif(($spj->pegawai->user->role_id == 2) || ($spj->pegawai->status_pegawai != 'Harian'))
-					{{$diff->days}} X 250.000
-				@elseif(($spj->pegawai->user->role_id == 2) || ($spj->pegawai->status_pegawai == 'Harian'))
-					{{$diff->days}} X 200.000)
+				@if($spj->uang_konsumsi)
+					{{number_format($spj->uang_konsumsi)}}
 				@endif
 			</td>
 			<td>
-				@if($spj->pegawai->user->role_id == 5)
-					<?php echo number_format($diff->days*400000); $jml = $jml + ($diff->days*400000); ?>
-				@elseif(($spj->pegawai->user->role_id == 3) || ($spj->pegawai->user->role_id == 4))
-					<?php echo number_format($diff->days*350000); $jml = $jml + ($diff->days*350000); ?>
-				@elseif(($spj->pegawai->user->role_id == 2) || ($spj->pegawai->status_pegawai != 'Harian'))
-					<?php echo number_format($diff->days*250000); $jml = $jml + ($diff->days*250000); ?>
-				@elseif(($spj->pegawai->user->role_id == 2) || ($spj->pegawai->status_pegawai == 'Harian'))
-					<?php echo number_format($diff->days*200000); $jml = $jml + ($diff->days*200000);?>
+				@if($spj->uang_konsumsi)
+					{{number_format($spj->uang_konsumsi)}}
 				@endif
 			</td>
 		</tr>
@@ -408,8 +398,16 @@ body { margin-bottom: 10px; }
 			@elseif($spj->angkutan == 'pribadi')
 				<td style="padding-left: 15px;">- Kendaraan Pribadi</td>
 			@endif
-			<td></td>
-			<td></td>
+			<td>
+				@if($spj->uang_transport)
+					{{number_format($spj->uang_transport)}}
+				@endif
+			</td>
+			<td>
+				@if($spj->uang_transport)
+					{{number_format($spj->uang_transport)}}
+				@endif
+			</td>
 		</tr>
 		<tr>
 			<td style="height: 30px;"></td>
@@ -433,7 +431,18 @@ body { margin-bottom: 10px; }
 			<td></td>
 			<td></td>
 			<td></td>
-			<td>{{number_format($jml)}}</td>
+			<td>
+				@if(!$spj->uang_akomodasi)
+					<?php $spj->uang_akomodasi= 0;?>
+				@endif
+				@if(!$spj->uang_konsumsi)
+					<?php $spj->uang_konsumsi= 0;?>
+				@endif
+				@if(!$spj->uang_transport)
+					<?php $spj->uang_transport= 0;?>
+				@endif
+				{{number_format($spj->uang_akomodasi + $spj->uang_konsumsi + $spj->uang_transport)}}
+			</td>
 		</tr>
 	</table>
 	<table style="margin-left: 350px;">

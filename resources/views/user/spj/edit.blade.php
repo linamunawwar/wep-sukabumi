@@ -93,12 +93,6 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Nominal *:</label>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="nominal" class="form-control col-md-7 col-xs-12 nominal" readonly="readonly" value="{{$spj->nominal}}">
-								</div>
-							</div>
-							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Keperluan *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input type="text" name="keperluan" class="form-control col-md-7 col-xs-12" value="{{$spj->keperluan}}">
@@ -161,7 +155,7 @@
 	                },
 	                success: function(response){
 	                    console.log(response);
-	                    $('.nominal').val(response);
+	                    // $('.nominal').val(response);
 	                }
 	            });
 			  

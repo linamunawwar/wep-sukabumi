@@ -85,18 +85,20 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Tunjangan PPh 21:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<?php
-										if($gaji->pegawai->status_kawin == 'TK'){
-											$pph21 = 500000;
-										}elseif ($gaji->pegawai->status_kawin == 'K0') {
-											$pph21 = 1000000;
-										}elseif ($gaji->pegawai->status_kawin == 'K1') {
-											$pph21 = 1500000;
-										}elseif ($gaji->pegawai->status_kawin == 'K2') {
-											$pph21 = 2000000;
-										}elseif ($gaji->pegawai->status_kawin == 'K3') {
-											$pph21 = 2500000;
-										}else{
-											$pph21 = 0;
+										if(!$pph21){
+											if($gaji->pegawai->status_kawin == 'TK'){
+												$pph21 = 500000;
+											}elseif ($gaji->pegawai->status_kawin == 'K0') {
+												$pph21 = 1000000;
+											}elseif ($gaji->pegawai->status_kawin == 'K1') {
+												$pph21 = 1500000;
+											}elseif ($gaji->pegawai->status_kawin == 'K2') {
+												$pph21 = 2000000;
+											}elseif ($gaji->pegawai->status_kawin == 'K3') {
+												$pph21 = 2500000;
+											}else{
+												$pph21 = 0;
+											}
 										}
 									?>
 									<input type="text" name="tunj_pph21" class="form-control col-md-7 col-xs-12 tunj_pph21" id="tunj_pph21"  value="{{$pph21}}">

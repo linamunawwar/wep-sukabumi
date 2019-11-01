@@ -102,6 +102,56 @@ class GajiController extends Controller
         return redirect('/admin/gaji/slip_gaji');
     }
 
+    public function getSlipGajiUnduhAdmin($id)
+    {
+        $slip = Gaji::find($id);     
+        $excel = \Excel::create('Slip Gaji_'.$slip->nip, function($excel) use ($slip) {
+
+                    $excel->sheet('New sheet', function($sheet) use ($slip) {
+
+                        $sheet->loadView('admin.gaji.preview_slip',['slip' => $slip]);
+                        $objDrawing = new PHPExcel_Worksheet_Drawing;
+                        $objDrawing->setPath(public_path('img/Waskita.png'));
+                        $objDrawing->setCoordinates('E6');
+                        $objDrawing->setWorksheet($sheet);
+                        $objDrawing->setResizeProportional(false);
+                        // set width later
+                        $objDrawing->setWidth(2);
+                        $objDrawing->setHeight(50);
+                      
+                        $sheet->cell('D21:K21', function($cell){
+                            $cell->setBorder('thin','','','');
+                        });
+                        $sheet->cell('D27:K27', function($cell){
+                            $cell->setBorder('thin','','','');
+                        });
+                        $sheet->cell('D30:K30', function($cell){
+                            $cell->setBorder('double','','','');
+                        });
+                        $sheet->cell('D31:K31', function($cell){
+                            $cell->setBorder('thin','','','');
+                        });
+                        //border atas
+                        $sheet->cell('D5:K6', function($cell){
+                            $cell->setBorder('thin','','','');
+                        });
+                        //border bawah
+                        $sheet->cell('D40:K41', function($cell){
+                            $cell->setBorder('','','thin','');
+                        });
+                        //border kanan
+                        $sheet->cell('C5:C41', function($cell){
+                            $cell->setBorder('','thin','','');
+                        });
+                        //border kiri
+                        $sheet->cell('L5:L41', function($cell){
+                            $cell->setBorder('','','','thin');
+                        }); 
+                    });
+                });
+                return $excel->export('xls');
+    }
+
     public function getSlipGajiUnduh($id)
     {
         $slip = SlipGaji::find($id);
@@ -163,15 +213,15 @@ class GajiController extends Controller
                             $cell->setBorder('thin','','','');
                         });
                         //border bawah
-                        $sheet->cell('D40:K41', function($cell){
+                        $sheet->cell('D40:K42', function($cell){
                             $cell->setBorder('','','thin','');
                         });
                         //border kanan
-                        $sheet->cell('C5:C41', function($cell){
+                        $sheet->cell('C5:C42', function($cell){
                             $cell->setBorder('','thin','','');
                         });
                         //border kiri
-                        $sheet->cell('L5:L41', function($cell){
+                        $sheet->cell('L5:L42', function($cell){
                             $cell->setBorder('','','','thin');
                         }); 
                     });

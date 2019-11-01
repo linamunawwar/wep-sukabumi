@@ -43,7 +43,7 @@
 										</td>
 										<td style="text-align: left;">
 											@if($slip_gaji->is_verif_sdm == 1)
-												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
+												<a class="btn btn-success btn-xs" href="{{'slip_gaji/unduh/'.$slip_gaji->id.''}}"><i class="fa fa-download"></i>  Unduh</a>
 											@else
 												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</a>
 											@endif

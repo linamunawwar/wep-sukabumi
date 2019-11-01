@@ -34,7 +34,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">No. SPPD <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type='text' value='009/SPPD/WK/2019' name='no_sppd' class='form-control' required="required" placeholder="" readonly="readonly" />
+									<input type='text' value='' name='no_sppd' class='form-control' required="required" placeholder="" readonly="readonly" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -85,12 +85,6 @@
 											<input type="radio" id="angkutan" class="angkutan" name="angkutan" value="pribadi"> Kendaraan Pribadi
 										</div>
 									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Nominal *:</label>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="nominal" class="form-control col-md-7 col-xs-12 nominal" readonly="readonly">
 								</div>
 							</div>
 							<div class="form-group">
@@ -156,7 +150,7 @@
 	                },
 	                success: function(response){
 	                    console.log(response);
-	                    $('.nominal').val(response);
+	                    // $('.nominal').val(response);
 	                }
 	            });
 			  
