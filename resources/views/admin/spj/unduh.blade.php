@@ -166,7 +166,7 @@ body { margin-bottom: 10px; }
 			<td style="border: 0.5px solid black; text-align: left;"></td>
 		</tr>
 		<tr>
-			<td style="border: 0.5px solid black; border-right: 0; padding-left: 15px; text-align: left;">  b. Konsumsi</td>
+			<td style="border: 0.5px solid black; border-right: 0; padding-left: 15px; text-align: left;">  b. Konsumsi dan Akomodasi</td>
 			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="2">
 				@if($spj->uang_konsumsi)
 					{{number_format($spj->uang_konsumsi)}}
@@ -191,9 +191,9 @@ body { margin-bottom: 10px; }
 			<td style="border: 0.5px solid black; text-align: left;"></td>
 		</tr>
 		<tr>
-			<td style="border: 0.5px solid black; border-right: 0; padding-left: 25px; text-align: left;">  1. Akomodasi</td>
+			<td style="border: 0.5px solid black; border-right: 0; padding-left: 25px; text-align: left;">  1. Kendaraan Udara</td>
 			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="2">
-				@if($spj->uang_transport)
+				@if($spj->angkutan == 'pesawat')
 					{{number_format($spj->uang_transport)}}
 				@endif
 			</td>
@@ -210,7 +210,11 @@ body { margin-bottom: 10px; }
 		</tr>
 		<tr>
 			<td style="border: 0.5px solid black; border-right: 0; padding-left: 25px; text-align: left;">  3. Kendaraan Darat</td>
-			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="2"></td>
+			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="2">
+				@if(($spj->angkutan == 'kereta') || ($spj->angkutan == 'dinas') || ($spj->angkutan == 'pribadi'))
+					{{number_format($spj->uang_transport)}}
+				@endif
+			</td>
 			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="2"></td>
 			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="3"> </td>
 			<td style="border: 0.5px solid black; text-align: left;"></td>
@@ -381,7 +385,7 @@ body { margin-bottom: 10px; }
 		</tr>
 		<tr>
 			<td></td>
-			<td style="padding-left: 15px;">b. Konsumsi </td>
+			<td style="padding-left: 15px;">b. Konsumsi dan Akomodasi </td>
 			<td>
 				@if($spj->uang_konsumsi)
 					{{number_format($spj->uang_konsumsi)}}
