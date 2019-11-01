@@ -117,13 +117,13 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">PTKP:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="ptkp" class="form-control col-md-7 col-xs-12"  value="{{$gaji->ptkp}}">
+									<input type="text" name="ptkp" class="form-control col-md-7 col-xs-12 ptkp"  value="{{$gaji->ptkp}}">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">PPh 21:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="pph21" class="form-control col-md-7 col-xs-12"  value="{{$pph21}}">
+									<input type="text" name="pph21" class="form-control col-md-7 col-xs-12 pph21"  value="{{$pph21}}">
 								</div>
 							</div>
 							<div class="ln_solid"></div>
@@ -139,7 +139,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Pendapatan Bersih:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="pendatan_bersih" class="form-control col-md-7 col-xs-12 pendatan_bersih" id="pendatan_bersih" readonly="readonly">
+									<input type="text" name="pendapatan_bersih" class="form-control col-md-7 col-xs-12 pendapatan_bersih" id="pendapatan_bersih" readonly="readonly">
 								</div>
 							</div>
 							<div class="ln_solid"></div>
