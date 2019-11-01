@@ -62,6 +62,7 @@ class GajiController extends Controller
            $gaji['uang_makan'] = $data['uang_makan'];
            $gaji['uang_lembur'] = $data['uang_lembur'];
            $gaji['tunj_pph21'] = $data['tunj_pph21'];
+           $gaji['ptkp'] = $data['ptkp'];
            $gaji['pph21'] = $data['pph21'];
            $gaji['user_id'] = \Auth::user()->id;
            $gaji['role_id'] = \Auth::user()->role_id;

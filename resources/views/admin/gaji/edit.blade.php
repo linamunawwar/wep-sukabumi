@@ -93,7 +93,7 @@
 											$pph21 = 0;
 										}
 									?>
-									<input type="text" name="tunj_pph21" class="form-control col-md-7 col-xs-12 tunj_pph21" id="tunj_pph21" readonly="readonly" value="{{$pph21}}">
+									<input type="text" name="tunj_pph21" class="form-control col-md-7 col-xs-12 tunj_pph21" id="tunj_pph21"  value="{{$pph21}}">
 								</div>
 							</div>
 							<div class="ln_solid"></div>
@@ -115,16 +115,22 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">PTKP:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input type="text" name="ptkp" class="form-control col-md-7 col-xs-12"  value="{{$ptkp}}">
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">PPh 21:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="pph21" class="form-control col-md-7 col-xs-12" readonly="readonly" value="{{$pph21}}">
+									<input type="text" name="pph21" class="form-control col-md-7 col-xs-12"  value="{{$pph21}}">
 								</div>
 							</div>
 							<div class="ln_solid"></div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Total Potongan:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="tot_potongan" class="form-control col-md-7 col-xs-12 tot_potongan" id="tot_potongan" readonly="readonly" value="{{$pph21}}">
+									<input type="text" name="tot_potongan" class="form-control col-md-7 col-xs-12 tot_potongan" id="tot_potongan"  value="{{$pph21}}">
 								</div>
 							</div>
 
@@ -159,61 +165,130 @@
 		var potongan = $('#tot_potongan').val();
 		$('#pendatan_bersih').val(pendapatan - potongan);
 
-		$(document).on("change", ".gaji_pokok", function(e){
-		    var gaji_pokok = $(this).val();
-		    var tunj_komunikasi = $('.tunj_komunikasi').val();
-		    var uang_makan = $('.uang_makan').val();
-		    var tunj_transportasi = $('.tunj_transportasi').val();
-		    var tunj_pph21 = $('.tunj_pph21').val();
+		var potongan = $('.pph21').val();
+	    var pokok = $('.gaji_pokok').val();
+	     if(!pokok){pokok = 0;}
+	     var komunikasi = $('.tunj_komunikasi').val();
+	     if(!komunikasi){komunikasi = 0;}
+	     var makan = $('.uang_makan').val();
+	     if(!makan){makan = 0;}
+	     var lembur = $('.uang_lembur').val();
+	     if(!lembur){lembur = 0;}
+	     var transport = $('.tunj_transportasi').val();
+	     if(!transport){transport = 0;}
+	    var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(lembur) + parseInt(transport);
+	    var bersih = tot_pendapatan - potongan;
+	     $('#tot_potongan').val(potongan);
+	     $('#pendapatan_bersih').val(bersih);
+	     
+      $(document).on("change", ".gaji_pokok", function(e){
+	     var pokok = $('.gaji_pokok').val();
+	     if(!pokok){pokok = 0;}
+	     var komunikasi = $('.tunj_komunikasi').val();
+	     if(!komunikasi){komunikasi = 0;}
+	     var makan = $('.uang_makan').val();
+	     if(!makan){makan = 0;}
+	     var lembur = $('.uang_lembur').val();
+	     if(!lembur){lembur = 0;}
+	     var transport = $('.tunj_transportasi').val();
+	     if(!transport){transport = 0;}
+	     var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(lembur) + parseInt(transport);
+	     var potongan = $('.tot_potongan').val();
+	     var bersih = tot_pendapatan - potongan;
+	     $('#tot_pendapatan').val(tot_pendapatan);
+	     $('#pendapatan_bersih').val(bersih);
+	  });
 
-		    var pendapatan = parseInt(gaji_pokok) + parseInt(tunj_komunikasi) + parseInt(uang_makan) + parseInt(tunj_transportasi) + parseInt(tunj_pph21);
-		    $('#tot_pendapatan').val(parseInt(pendapatan));  
+	  $(document).on("change", ".tunj_komunikasi", function(e){
+	     var pokok = $('.gaji_pokok').val();
+	     if(!pokok){pokok = 0;}
+	     var komunikasi = $('.tunj_komunikasi').val();
+	     if(!komunikasi){komunikasi = 0;}
+	     var makan = $('.uang_makan').val();
+	     if(!makan){makan = 0;}
+	     var lembur = $('.uang_lembur').val();
+	     if(!lembur){lembur = 0;}
+	     var transport = $('.tunj_transportasi').val();
+	     if(!transport){transport = 0;}
+	     var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(lembur) + parseInt(transport);
+	     var potongan = $('.tot_potongan').val();
+	     var bersih = tot_pendapatan - potongan;
+	     $('#tot_pendapatan').val(tot_pendapatan);
+	     $('#pendapatan_bersih').val(bersih);
+	  });
 
-		    var potongan = $('#tot_potongan').val();
-			$('#pendatan_bersih').val(pendapatan - potongan); 
-		});
+	  $(document).on("change", ".uang_makan", function(e){
+	     var pokok = $('.gaji_pokok').val();
+	     if(!pokok){pokok = 0;}
+	     var komunikasi = $('.tunj_komunikasi').val();
+	     if(!komunikasi){komunikasi = 0;}
+	     var makan = $('.uang_makan').val();
+	     if(!makan){makan = 0;}
+	     var lembur = $('.uang_lembur').val();
+	     if(!lembur){lembur = 0;}
+	     var transport = $('.tunj_transportasi').val();
+	     if(!transport){transport = 0;}
+	     var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(lembur) + parseInt(transport);
+	     var potongan = $('.tot_potongan').val();
+	     var bersih = tot_pendapatan - potongan;
+	     $('#tot_pendapatan').val(tot_pendapatan);
+	     $('#pendapatan_bersih').val(bersih);
+	  });
 
-		$(document).on("change", ".tunj_komunikasi", function(e){
-		    var gaji_pokok = $('.gaji_pokok').val();
-		    var tunj_komunikasi = $(this).val();
-		    var uang_makan = $('.uang_makan').val();
-		    var tunj_transportasi = $('.tunj_transportasi').val();
-		    var tunj_pph21 = $('.tunj_pph21').val();
+	  $(document).on("change", ".uang_lembur", function(e){
+	     var pokok = $('.gaji_pokok').val();
+	     if(!pokok){pokok = 0;}
+	     var komunikasi = $('.tunj_komunikasi').val();
+	     if(!komunikasi){komunikasi = 0;}
+	     var makan = $('.uang_makan').val();
+	     if(!makan){makan = 0;}
+	     var lembur = $('.uang_lembur').val();
+	     if(!lembur){lembur = 0;}
+	     var transport = $('.tunj_transportasi').val();
+	     if(!transport){transport = 0;}
+	     var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(lembur) + parseInt(transport);
+	     var potongan = $('.tot_potongan').val();
+	     var bersih = tot_pendapatan - potongan;
+	     $('#tot_pendapatan').val(tot_pendapatan);
+	     $('#pendapatan_bersih').val(bersih);
+	  });
 
-		    var pendapatan = parseInt(gaji_pokok) + parseInt(tunj_komunikasi) + parseInt(uang_makan) + parseInt(tunj_transportasi) + parseInt(tunj_pph21);
-		    $('#tot_pendapatan').val(parseInt(pendapatan));  
+	  $(document).on("change", ".tunj_transportasi", function(e){
+	     var pokok = $('.gaji_pokok').val();
+	     if(!pokok){pokok = 0;}
+	     var komunikasi = $('.tunj_komunikasi').val();
+	     if(!komunikasi){komunikasi = 0;}
+	     var makan = $('.uang_makan').val();
+	     if(!makan){makan = 0;}
+	     var lembur = $('.uang_lembur').val();
+	     if(!lembur){lembur = 0;}
+	     var transport = $('.tunj_transportasi').val();
+	     if(!transport){transport = 0;}
+	    var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(lembur) + parseInt(transport);
+	     var potongan = $('.tot_potongan').val();
+	     var bersih = tot_pendapatan - potongan;
+	     $('#tot_pendapatan').val(tot_pendapatan);
+	     $('#pendapatan_bersih').val(bersih);
+	  });
 
-		    var potongan = $('#tot_potongan').val();
-			$('#pendatan_bersih').val(pendapatan - potongan); 
-		});
-
-		$(document).on("change", ".uang_makan", function(e){
-		    var gaji_pokok = $('.gaji_pokok').val();
-		    var tunj_komunikasi = $('.tunj_komunikasi').val();
-		    var uang_makan = $(this).val();
-		    var tunj_transportasi = $('.tunj_transportasi').val();
-		    var tunj_pph21 = $('.tunj_pph21').val();
-
-		    var pendapatan = parseInt(gaji_pokok) + parseInt(tunj_komunikasi) + parseInt(uang_makan) + parseInt(tunj_transportasi) + parseInt(tunj_pph21);
-		    $('#tot_pendapatan').val(parseInt(pendapatan));  
-
-		    var potongan = $('#tot_potongan').val();
-			$('#pendatan_bersih').val(pendapatan - potongan); 
-		});
-
-		$(document).on("change", ".tunj_transportasi", function(e){
-		    var gaji_pokok = $('.gaji_pokok').val();
-		    var tunj_komunikasi = $('.tunj_komunikasi').val();
-		    var uang_makan = $('.uang_makan').val();
-		    var tunj_transportasi = $(this).val();
-		    var tunj_pph21 = $('.tunj_pph21').val();
-
-		    var pendapatan = parseInt(gaji_pokok) + parseInt(tunj_komunikasi) + parseInt(uang_makan) + parseInt(tunj_transportasi) + parseInt(tunj_pph21);
-		    $('#tot_pendapatan').val(parseInt(pendapatan)); 
-
-		    var potongan = $('#tot_potongan').val();
-			$('#pendatan_bersih').val(pendapatan - potongan);  
-		});
+	  $(document).on("change", ".pph21", function(e){
+	     var potongan = $('.pph21').val();
+	    var pokok = $('.gaji_pokok').val();
+	     if(!pokok){pokok = 0;}
+	     var komunikasi = $('.tunj_komunikasi').val();
+	     if(!komunikasi){komunikasi = 0;}
+	     var makan = $('.uang_makan').val();
+	     if(!makan){makan = 0;}
+	     var lembur = $('.uang_lembur').val();
+	     if(!lembur){lembur = 0;}
+	     var transport = $('.tunj_transportasi').val();
+	     if(!transport){transport = 0;}
+	    var tot_pendapatan = parseInt(pokok) + parseInt(komunikasi) + parseInt(makan) + parseInt(lembur) + parseInt(transport);
+	    var bersih = tot_pendapatan - potongan;
+	     $('#tot_potongan').val(potongan);
+	     $('#pendapatan_bersih').val(bersih);
+	  });
+  	});
 
 		
 	});
