@@ -163,7 +163,7 @@
 	$(document).ready(function(){
 		var pendapatan = $('#tot_pendapatan').val();
 		var potongan = $('#tot_potongan').val();
-		$('#pendatan_bersih').val(pendapatan - potongan);
+		$('#pendapatan_bersih').val(pendapatan - potongan);
 
 		var potongan = $('.pph21').val();
 	    var pokok = $('.gaji_pokok').val();
@@ -288,7 +288,6 @@
 	     $('#tot_potongan').val(potongan);
 	     $('#pendapatan_bersih').val(bersih);
 	  });
-  	});
 
 		
 	});
