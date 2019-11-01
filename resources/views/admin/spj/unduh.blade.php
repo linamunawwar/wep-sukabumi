@@ -191,7 +191,7 @@ body { margin-bottom: 10px; }
 			<td style="border: 0.5px solid black; text-align: left;"></td>
 		</tr>
 		<tr>
-			<td style="border: 0.5px solid black; border-right: 0; padding-left: 25px; text-align: left;">  1. Kendaraan Udara</td>
+			<td style="border: 0.5px solid black; border-right: 0; padding-left: 25px; text-align: left;">  1. Pesawat</td>
 			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px; text-align: right;" colspan="2">
 				@if($spj->angkutan == 'pesawat')
 					{{number_format($spj->uang_transport)}}
