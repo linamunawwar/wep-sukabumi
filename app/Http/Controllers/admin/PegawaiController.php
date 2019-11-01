@@ -141,7 +141,7 @@ class PegawaiController extends Controller
         $data['status_pegawai'] = $status_pegawai;
         $data['is_active'] = '';
         $data['is_new'] = 1;
-        $data['is_verif_admin'] = 1;
+        $data['is_verif_admin'] = 0;
         $data['is_verif_mngr'] = 0;
         $data['is_verif_pm'] = 0;
         $query_pegawai = \DB::table('mst_pegawai')->insert($data);
