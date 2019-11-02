@@ -77,11 +77,11 @@ class DisposisiController extends Controller
 
     		$update['SPLEM'] = $data['SPLEM'];
     	}
-
+        //QC dan hse digabung jd SQHSEM, tp ngga aku ubah, yg aku pake QC
     	if(array_key_exists('QC', $data)){
     		$tugas = new DisposisiTugas;
 	    	$tugas->disposisi_id = $id;
-    		$tugas->posisi_id = 2;
+    		$tugas->posisi_id = 42;
     		$tugas->tugas = $data['QC'];
     		$tugas->save();
 
@@ -118,15 +118,15 @@ class DisposisiController extends Controller
     		$update['SAM'] = $data['SAM'];
     	}
 
-    	if(array_key_exists('HSE', $data)){
-    		$tugas = new DisposisiTugas;
-	    	$tugas->disposisi_id = $id;
-    		$tugas->posisi_id = 3;
-    		$tugas->tugas = $data['HSE'];
-    		$tugas->save();
+    	// if(array_key_exists('HSE', $data)){
+    	// 	$tugas = new DisposisiTugas;
+	    // 	$tugas->disposisi_id = $id;
+    	// 	$tugas->posisi_id = 3;
+    	// 	$tugas->tugas = $data['HSE'];
+    	// 	$tugas->save();
 
-    		$update['HSE'] = $data['HSE'];
-    	}
+    	// 	$update['HSE'] = $data['HSE'];
+    	// }
 
     	if(array_key_exists('Public', $data)){
     		$tugas = new DisposisiTugas;
@@ -191,7 +191,7 @@ class DisposisiController extends Controller
     	if(array_key_exists('QC', $data)){
     		$tugas = new DisposisiTugas;
 	    	$tugas->disposisi_id = $id;
-    		$tugas->posisi_id = 2;
+    		$tugas->posisi_id = 42;
 
     		$tugas->save();
 
@@ -228,15 +228,15 @@ class DisposisiController extends Controller
     		$update['SAM'] = $data['SAM'];
     	}
 
-    	if(array_key_exists('HSE', $data)){
-    		$tugas = new DisposisiTugas;
-	    	$tugas->disposisi_id = $id;
-    		$tugas->posisi_id = 3;
+    	// if(array_key_exists('HSE', $data)){
+    	// 	$tugas = new DisposisiTugas;
+	    // 	$tugas->disposisi_id = $id;
+    	// 	$tugas->posisi_id = 3;
 
-    		$tugas->save();
+    	// 	$tugas->save();
 
-    		$update['HSE'] = $data['HSE'];
-    	}
+    	// 	$update['HSE'] = $data['HSE'];
+    	// }
 
     	if(array_key_exists('Public', $data)){
     		$tugas = new DisposisiTugas;

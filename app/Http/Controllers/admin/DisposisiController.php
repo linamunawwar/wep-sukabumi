@@ -107,7 +107,8 @@ class DisposisiController extends Controller
     }
 
     public function getUnduhSuratMasuk($id){
-        $surat = SuratMasuk::find($id);
+        $no_surat = str_replace('_', '/', $id);
+        $surat = SuratMasuk::where('no_surat',$no_surat)->first();
 
         return response()->download('upload/surat_masuk/' . $surat->file_surat);
     }
@@ -256,7 +257,7 @@ class DisposisiController extends Controller
         $sem['status']='';
         $scarm['status']='';
         $sam['status']='';
-        $hse['status']='';
+        // $hse['status']='';
         $hm['status']='';
         foreach ($tugass as $key => $tugas) {
 
@@ -275,7 +276,7 @@ class DisposisiController extends Controller
                 $splem['done_at'] = $tugas->done_at;
             }
             
-            if($tugas->posisi_id == 2){
+            if($tugas->posisi_id == 42){
                 $qc['status'] = $tugas->status;
                 $qc['done_at'] = $tugas->done_at;
             }
@@ -295,10 +296,10 @@ class DisposisiController extends Controller
                 $sam['done_at'] = $tugas->done_at;
             }
 
-            if($tugas->posisi_id == 3){
-                $hse['status'] = $tugas->status;
-                $hse['done_at'] = $tugas->done_at;
-            }
+            // if($tugas->posisi_id == 3){
+            //     $hse['status'] = $tugas->status;
+            //     $hse['done_at'] = $tugas->done_at;
+            // }
 
             if($tugas->posisi_id == 24){
                 $hm['status'] = $tugas->status;
@@ -306,7 +307,7 @@ class DisposisiController extends Controller
             }
         }
     
-        $pdf = PDF::loadView('admin.disposisi.unduh',['disposisi' => $disposisi, 'pm'=>$pm,'som'=>$som,'splem'=>$splem,'qc'=>$qc, 'sem'=>$sem, 'scarm'=>$scarm, 'sam'=>$sam, 'hse'=>$hse, 'hm'=>$hm]);
+        $pdf = PDF::loadView('admin.disposisi.unduh',['disposisi' => $disposisi, 'pm'=>$pm,'som'=>$som,'splem'=>$splem,'qc'=>$qc, 'sem'=>$sem, 'scarm'=>$scarm, 'sam'=>$sam, 'hm'=>$hm]);
         $pdf->setPaper('legal', 'portrait');
         return $pdf->download('Disposisi_'.$disposisi->no_agenda.'.pdf');
         

@@ -48,6 +48,8 @@
 												<a class="btn btn-primary btn-xs" href="{{url('pm/disposisi/monitor/'.$disposisi->id.'')}}"><i class="fa fa-eye"></i>  Monitor</a>
 												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
 											@endif
+											<?php $disposisi->no_surat = str_replace('/', '_', $disposisi->no_surat); ?>
+											<a class="btn btn-success btn-xs" href="{{url('admin/surat_masuk/unduh/'.$disposisi->no_surat.'')}}"><i class="fa fa-download"></i>  Surat</a>
 										</td>
 									</tr>
 								@endforeach

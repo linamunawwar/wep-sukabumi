@@ -162,21 +162,21 @@
                     @endif
 
                     @if(Auth::user()->role_id == 1)
-                        <li><a><i class="fa fa-envelope"></i>Disposisi <span class="fa fa-chevron-down"></span></a>
+                        <li><a><i class="fa fa-envelope"></i>Disposisi Surat Masuk<span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="{{url('admin/surat_masuk')}}">List Surat Masuk</a></li>
-                                <li><a href="{{url('admin/disposisi')}}">List Disposisi</a></li>
+                                <!-- <li><a href="{{url('admin/surat_masuk')}}">List Surat Masuk</a></li> -->
+                                <li><a href="{{url('admin/disposisi')}}">List Disposisi Surat Masuk</a></li>
                             </ul>
                         </li>
                     @endif
                     @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
-                        <li><a href="{{url('manager/disposisi')}}"><i class="fa fa-envelope"></i>List Disposisi</a></li>
+                        <li><a href="{{url('manager/disposisi')}}"><i class="fa fa-envelope"></i>List Disposisi Surat Masuk</a></li>
                     @endif
                     @if(Auth::user()->role_id == 5)
-                        <li><a><i class="fa fa-envelope"></i>Disposisi <span class="fa fa-chevron-down"></span></a>
+                        <li><a><i class="fa fa-envelope"></i>Disposisi Surat Masuk<span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                                <li><a href="{{url('pm/surat_masuk')}}">List Surat Masuk</a></li>
-                                <li><a href="{{url('pm/disposisi')}}">List Disposisi</a></li>
+                                <!-- <li><a href="{{url('pm/surat_masuk')}}">List Surat Masuk</a></li> -->
+                                <li><a href="{{url('pm/disposisi')}}">List Disposisi Surat Masuk</a></li>
                             </ul>
                         </li>
                     @endif

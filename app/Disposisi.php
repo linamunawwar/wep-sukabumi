@@ -13,4 +13,8 @@ class Disposisi extends Model
     {
         return $this->belongsTo('App\DisposisiTugas','id','disposisi_id');
     }
+    public function surat()
+    {
+        return $this->hasOne('App\SuratMasuk','no_surat','no_surat');
+    }
 }

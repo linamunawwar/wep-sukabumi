@@ -99,7 +99,7 @@
 										<td><input type="radio" name="SPLEM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diperiksa"></td>
 									</tr>
 									<tr>
-										<td>QC</td>
+										<td>SQHSEM</td>
 										<td><input type="radio" name="QC" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diketahui"></td>
 										<td><input type="radio" name="QC" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diselesaikan"></td>
 										<td><input type="radio" name="QC" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diproses"></td>
@@ -126,13 +126,13 @@
 										<td><input type="radio" name="SAM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diproses"></td>
 										<td><input type="radio" name="SAM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diperiksa"></td>
 									</tr>
-									<tr>
+									<!-- <tr>
 										<td>HSE</td>
 										<td><input type="radio" name="HSE" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diketahui"></td>
 										<td><input type="radio" name="HSE" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diselesaikan"></td>
 										<td><input type="radio" name="HSE" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diproses"></td>
 										<td><input type="radio" name="HSE" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diperiksa"></td>
-									</tr>
+									</tr> -->
 									<tr>
 										<td>Public Relation</td>
 										<td><input type="radio" name="Public" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diketahui"></td>

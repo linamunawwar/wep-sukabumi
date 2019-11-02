@@ -5,7 +5,7 @@
 </style>
 <div style="border: 3px solid black; width: 420px; font-family: sans-serif;">
 	<div>
-		<img src="{{asset('public/img/kop.PNG')}}" style="width: 400px; margin: 10	px; ">
+		<img src="{{asset('public/img/kop.png')}}" style="width: 400px; margin: 10	px; ">
 	</div>
 	<h4 align="center" style="margin-top: 5px; padding-top: 5px;">PROYEK JALAN TOL BECAKAYU SEKSI 2A UJUNG</h4>
 	<table cellspacing="2" style="font-size: 11px;">
@@ -58,17 +58,17 @@
 			<td>:</td>
 			<td>
 				@if($disposisi->sifat == 'Penting')
-					<div style="display: inline-block;"><img src="{{ asset("public/img/check.PNG") }}" style="width: 25px; padding: 5px; border: 1px solid black;"></div>
+					<div style="display: inline-block;"><img src="{{ asset("public/img/check.png") }}" style="width: 25px; padding: 5px; border: 1px solid black;"></div>
 				@else
 					<div style="display: inline-block; width:35px;border: 1px solid black; height: 35px;"></div>
 				@endif
 				@if($disposisi->sifat == 'Segera')
-					<div style="margin-left: 35px;display: inline-block;"><img src="{{ asset("public/img/check.PNG") }}" style="width: 25px;padding: 5px; border: 1px solid black;"></div>
+					<div style="margin-left: 35px;display: inline-block;"><img src="{{ asset("public/img/check.png") }}" style="width: 25px;padding: 5px; border: 1px solid black;"></div>
 				@else
 					<div style="display: inline-block; width:35px;border: 1px solid black; margin-left: 40px; height: 35px;"></div>
 				@endif
 				@if($disposisi->sifat == 'Biasa')
-					<div style="margin-left: 35px;display: inline-block;"><img src="{{ asset("public/img/check.PNG") }}" style="width: 25px;padding: 5px; border: 1px solid black;"></div>
+					<div style="margin-left: 35px;display: inline-block;"><img src="{{ asset("public/img/check.png") }}" style="width: 25px;padding: 5px; border: 1px solid black;"></div>
 				@else
 					<div style="display: inline-block; width:35px;border: 1px solid black; margin-left: 35px; height: 35px;"></div>
 				@endif
@@ -80,7 +80,7 @@
 	<div style="width: 418px; height: 0.1px; border: 2px solid black;"></div>
 	<br>
 	<div>
-		<img src="{{ asset('public/img/header_disposisi.PNG')}}" style="margin-left: 90px; height: 85px; width: 300px; margin-bottom: 0; padding: 0;">
+		<img src="{{ asset('public/img/header_disposisi.png')}}" style="margin-left: 90px; height: 85px; width: 300px; margin-bottom: 0; padding: 0;">
 		<table cellpadding="4" style="margin: 0; padding: 0;">
 			<tr>
 				<td width="50">* PM</td>
@@ -177,7 +177,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="40">* SLEM</td>
+				<td width="40">* SPLEM</td>
 				<td>
 					<div style="border: 2px solid black; width: 20px; height: 30px; margin: 0; padding-top: 5px;" align="center">
 						@if($disposisi->SPLEM == 'Diketahui')
@@ -224,7 +224,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="40">* QC</td>
+				<td width="40">* SQHSEM</td>
 				<td>
 					<div style="border: 2px solid black; width: 20px; height: 30px; margin: 0; padding-top: 5px;" align="center">
 						@if($disposisi->QC == 'Diketahui')
@@ -411,7 +411,7 @@
 					</div>
 				</td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td width="40">* HSE</td>
 				<td>
 					<div style="border: 2px solid black; width: 20px; height: 30px; margin: 0; padding-top: 5px;" align="center">
@@ -457,9 +457,9 @@
 						@endif
 					</div>
 				</td>
-			</tr>
+			</tr> -->
 			<tr>
-				<td width="40">* HM</td>
+				<td width="40">* Public Relation</td>
 				<td>
 					<div style="border: 2px solid black; width: 20px; height: 30px; margin: 0; padding-top: 5px;" align="center">
 						@if($disposisi->HM == 'Diketahui')

@@ -260,9 +260,9 @@
 												</td>
 											</tr>
 											<tr>
-												<td>QC</td>
+												<td>SQHSEM</td>
 												<td>
-													@if($diketahui['posisi_id'] == 2)
+													@if($diketahui['posisi_id'] == 42)
 														@if($diketahui['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
@@ -479,7 +479,7 @@
 													@endif
 												</td>
 											</tr>
-											<tr>
+											<!-- <tr>
 												<td>HSE</td>
 												<td>
 													@if($diketahui['posisi_id'] == 3)
@@ -533,7 +533,7 @@
 														<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
 													@endif
 												</td>
-											</tr>
+											</tr> -->
 											<tr>
 												<td>Public Relation</td>
 												<td>

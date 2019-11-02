@@ -129,6 +129,8 @@
 									<b><a href='{{url("upload/spj/$spj->lampiran")}}' class="col-md-7 col-xs-12" target="_blank">
 										<i class="fa fa-search-plus"></i>&nbsp&nbsp&nbspPreview
 									</a></b>
+									<iframe style="display: none;" src ="{{asset('vendor')}}/ViewerJS/#../../upload/spj/{{$spj->lampiran}}" width='724' height='1024'	 allowfullscreen webkitallowfullscreen>
+									</iframe>
 								</div>
 							</div>
 							
