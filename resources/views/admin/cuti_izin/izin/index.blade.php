@@ -46,7 +46,7 @@
 										</td>
 										<td style="text-align: left;">
 											@if($izin->is_verif_mngr == 1)
-												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
+												<a href="{{'izin/surat_izin/'.$izin->id.''}}" class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
 											@else
 												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</a>
 											@endif

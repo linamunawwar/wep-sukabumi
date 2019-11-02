@@ -34,18 +34,13 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">No. SPPD <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type='text' value='' name='no_sppd' class='form-control' required="required" placeholder="" readonly="readonly" />
+									<input type='text' value='' name='no_sppd' class='form-control' required="required" placeholder="" />
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group" style="display: none;">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Pemberi Tugas <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select class="form-control pegawai" name="pemberi_tugas" required="required">
-										<option value="">Pilih Pemberi Tugas</option>
-										@foreach($pegawais as $pegawai)
-											<option value="{{$pegawai->nip}}">{{strtoupper($pegawai->nip)}} - {{$pegawai->nama}}</option>
-										@endforeach
-									</select>
+									<input type='text' value='' name='pemberi_tugas' class='form-control' required="required" placeholder="" readonly="readonly" value="{{$pm->nip}}" />
 								</div>
 							</div>
 							<div class="form-group">

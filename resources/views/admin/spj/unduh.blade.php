@@ -309,7 +309,7 @@ body { margin-bottom: 10px; }
 		<tr>
 			<td style="border: 0.5px solid black; border-right: 0; border-bottom: 0; margin-left: 5px; text-align: center;">Pemberi Tugas</td>
 			<td style="border: 0.5px solid black; border-right: 0;  border-bottom: 0; margin-left: 5px; text-align: center;" colspan="3">Penerima Tugas</td>
-			<td style="border: 0.5px solid black;  border-bottom: 0; margin-left: 5px; text-align: center;" colspan="5">Diperiksa oleh SAS</td>
+			<td style="border: 0.5px solid black;  border-bottom: 0; margin-left: 5px; text-align: center;" colspan="5">Diperiksa oleh SAM</td>
 		</tr>
 		<tr>
 			<td style="border: 0.5px solid black;  border-top: 0; border-right: 0; margin-left: 5px; text-align: center; height: 60px;">
@@ -318,12 +318,14 @@ body { margin-bottom: 10px; }
 			<td style="border: 0.5px solid black; border-top: 0; border-right: 0; margin-left: 5px; text-align: center;" colspan="3">
 				<img src="{{ asset('upload/pegawai/'.$spj->nip.'/'.$spj->pegawai->ttd.'') }}" style="width: 120px; padding: 0; margin: 0;">
 			</td>
-			<td style="border: 0.5px solid black; border-top: 0; margin-left: 5px; text-align: center;" colspan="5"></td>
+			<td style="border: 0.5px solid black; border-top: 0; margin-left: 5px; text-align: center;" colspan="5">
+				<img src="{{ asset('upload/pegawai/'.$sdm->nip.'/'.$sdm->ttd.'') }}" style="width: 120px; padding: 0; margin: 0;">
+			</td>
 		</tr>
 		<tr>
 			<td style="border: 0.5px solid black;  border-top: 0; border-right: 0; margin-left: 5px;">Nama   : {{$pm->nama}}	</td>
 			<td style="border: 0.5px solid black; border-top: 0; border-right: 0; margin-left: 5px; " colspan="3">Nama   : {{$spj->pegawai->nama}}</td>
-			<td style="border: 0.5px solid black; border-top: 0; margin-left: 5px;" colspan="5">Nama   :</td>
+			<td style="border: 0.5px solid black; border-top: 0; margin-left: 5px;" colspan="5">Nama   : {{$sdm->nama}}</td>
 		</tr>
 		<?php $ttd_tgl = explode(' ', $spj->created_at); ?>
 		<tr>

@@ -67,6 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pengajuan_izin', 'admin\IzinController@getPengajuanIzin');
 		Route::get('/pengajuan_izin/create', 'admin\IzinController@getPengajuanIzinCreate');
 		Route::post('/pengajuan_izin/create', 'admin\IzinController@postPengajuanIzinCreate');
+		Route::get('/izin/surat_izin/{id}', 'admin\IzinController@getSuratIzin');
 
 		//cuti
 		Route::get('/cuti', 'admin\CutiController@index');
@@ -187,6 +188,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/izin', 'user\IzinController@index');
 		Route::get('/izin/create', 'user\IzinController@getCreate');
 		Route::post('/izin/create', 'user\IzinController@postCreate');
+		Route::get('/izin/surat_izin/{id}', 'admin\IzinController@getSuratIzin');
 
 		//gaji
 		Route::get('/gaji', 'user\GajiController@index');
@@ -250,6 +252,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pengajuan_izin', 'user\IzinController@index');
 		Route::get('/pengajuan_izin/create', 'user\IzinController@getCreate');
 		Route::post('/pengajuan_izin/create', 'user\IzinController@postCreate');
+		Route::get('/izin/surat_izin/{id}', 'admin\IzinController@getSuratIzin');
 
 		//gaji
 		Route::get('/gaji', 'manager\GajiController@index');
@@ -321,6 +324,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pengajuan_izin', 'user\IzinController@index');
 		Route::get('/pengajuan_izin/create', 'user\IzinController@getCreate');
 		Route::post('/pengajuan_izin/create', 'user\IzinController@postCreate');
+		Route::get('/izin/surat_izin/{id}', 'admin\IzinController@getSuratIzin');
 
 		Route::get('/gaji', 'pm\GajiController@index');
 

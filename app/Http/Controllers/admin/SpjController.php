@@ -21,8 +21,9 @@ class SpjController extends Controller
     public function getCreate()
     {
     	$pegawais = Pegawai::where('is_active',1)->where('soft_delete',0)->get();
+      $pm = Pegawai::where('posisi_id',1)->first();
 
-        return view('admin.spj.create',['pegawais'=>$pegawais]);
+        return view('admin.spj.create',['pegawais'=>$pegawais,'pm'=>$pm]);
     }
 
     public function postCreate()
@@ -66,8 +67,9 @@ class SpjController extends Controller
 
     	$spj = Spj::find($id);
         $pegawais = Pegawai::where('is_active',1)->where('soft_delete',0)->get();
+        $pm = Pegawai::where('posisi_id',1)->first();
 
-        return view('admin.spj.approve',['spj'=>$spj,'pegawais'=>$pegawais]);
+        return view('admin.spj.approve',['spj'=>$spj,'pegawais'=>$pegawais,'pm'=>$pm]);
     }
 
     public function postApprove($id)
@@ -90,7 +92,8 @@ class SpjController extends Controller
     {
       $spj = Spj::find($id);
       $pm = Pegawai::where('posisi_id',1)->first();
-      $pdf = PDF::loadView('admin.spj.unduh',['spj' => $spj,'pm'=>$pm]);
+      $sdm = Pegawai::where('posisi_id',6)->first();
+      $pdf = PDF::loadView('admin.spj.unduh',['spj' => $spj,'pm'=>$pm,'sdm'=>$sdm]);
       $pdf->setPaper('A4');
       return $pdf->download('SPJ_'.$spj->no_sppd.'.pdf');
     }

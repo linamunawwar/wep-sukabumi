@@ -4,8 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use PDF;
 use App\Izin;
+use App\Pegawai;
 
 class IzinController extends Controller
 {
@@ -53,5 +54,17 @@ class IzinController extends Controller
 
       return redirect('/admin/pengajuan_izin');
       
+    }
+
+    public function getSuratIzin($id)
+    {
+      $izin = Izin::find($id);
+      $user = Pegawai::where('nip',$izin->nip)->first();
+      $sdm = Pegawai::where('posisi_id',6)->first();
+      $pm = Pegawai::where('posisi_id',1)->first();
+      $manager = Pegawai::where('posisi_id',$user->posisi->parent)->first();
+      $pdf = PDF::loadView('admin.cuti_izin.izin.surat_izin',['izin' => $izin,'sdm'=>$sdm,'pm'=>$pm,'manager'=>$manager]);
+      $pdf->setPaper('A4');
+      return $pdf->download('Surat Izin_'.$izin->nip.'.pdf');
     }
 }
