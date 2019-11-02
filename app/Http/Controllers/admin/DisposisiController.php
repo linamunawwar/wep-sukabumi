@@ -131,6 +131,30 @@ class DisposisiController extends Controller
     {
     	$data = \Input::all();
 
+        if(\Input::hasfile('file_surat')){
+            $ori_file  = \Request::file('file_surat');
+            $tujuan = "upload/surat_masuk/";
+            $ekstension = $ori_file->getClientOriginalExtension();
+            $name = $ori_file->getClientOriginalName();
+
+            $nama_file = $data['pengirim'].'_'.$name;
+            $ori_file->move($tujuan,$nama_file);
+        }else{
+            $nama_file = '';
+        }
+
+        $surat = new SuratMasuk;
+        $surat->no_surat = $data['no_surat'];
+        $surat->pengirim = $data['pengirim'];
+        $surat->kepada = $data['kepada'];
+        $surat->tanggal_surat = konversi_tanggal($data['tanggal_surat']);
+        $surat->perihal = $data['perihal'];
+        $surat->file_surat = $nama_file;
+        $surat->user_id = \Auth::user()->id;
+        $surat->role_id = \Auth::user()->role_id;
+
+        $surat->save();
+
     	$disposisi = new Disposisi;
     	$disposisi->no_agenda = $data['no_agenda'];
     	$disposisi->pengirim = $data['pengirim'];

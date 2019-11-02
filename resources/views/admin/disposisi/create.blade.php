@@ -26,6 +26,12 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nomor Surat <span class="required">*</span>:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input type="text" name="no_surat" class="form-control col-md-7 col-xs-12">
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Pengirim <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input type="text" name="pengirim" class="form-control col-md-7 col-xs-12">
@@ -47,17 +53,6 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nomor Surat <span class="required">*</span>:</label>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select name="no_surat" class="form-control" required="required">
-										<option value="">--Pilih Nomor Surat--</option>
-										@foreach($surats as $surat)
-											<option value="{{$surat->no_surat}}">{{$surat->no_surat}}</option>
-										@endforeach
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
 								<label for="tanggal" class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Surat *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<div class='input-group date' id='datepicker2' class="datepicker">
@@ -70,6 +65,12 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Perihal:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<textarea name="perihal" class="form-control col-md-7 col-xs-12"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Upload Surat:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input type="file" name="file_surat" class="form-control col-md-7 col-xs-12">
 								</div>
 							</div>
 							<div class="form-group">
@@ -87,7 +88,6 @@
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 									<button class="btn btn-primary" type="button">Cancel</button>
-									<button class="btn btn-primary" type="reset">Reset</button>
 									<button type="submit" class="btn btn-success">Submit</button>
 								</div>
 							</div>
