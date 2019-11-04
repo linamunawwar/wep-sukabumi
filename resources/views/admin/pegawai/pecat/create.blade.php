@@ -48,7 +48,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Pesangon</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="pesangon" class="form-control" readonly="readonly" value="500.000">
+									<input type="text" name="pesangon" class="form-control">
 								</div>
 							</div>
 							
