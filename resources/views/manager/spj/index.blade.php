@@ -39,7 +39,7 @@
 										<td>{{$spj->keperluan}}</td>
 										<td>
 											<?php
-												$date = explode(' ', $apj->created_at);
+												$date = explode(' ', $spj->created_at);
 											?>
 											{{konversi_tanggal($date[0])}}
 										</td>

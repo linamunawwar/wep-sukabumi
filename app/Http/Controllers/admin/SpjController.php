@@ -81,6 +81,11 @@ class SpjController extends Controller
         $data['verify_admin_time'] = date('Y-m-d H:i:s');
         $data['tanggal_berangkat']=konversi_tanggal($data['tanggal_berangkat']);
         $data['tanggal_pulang'] =konversi_tanggal($data['tanggal_pulang']);
+        $date1 = new \DateTime($data['tanggal_berangkat']);
+        $date2 = new \DateTime($data['tanggal_pulang']);
+        $days  = $date2->diff($date1)->format('%a');
+        $data['uang_konsumsi'] = $data['uang_konsumsi'] * $days;
+        $data['uang_penginapan'] = $data['uang_penginapan'] * $days;
         unset($data['_token']);
 
         $spj = Spj::where('id',$id)->update($data);
