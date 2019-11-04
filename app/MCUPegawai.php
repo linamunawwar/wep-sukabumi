@@ -8,6 +8,7 @@ class MCUPegawai extends Model
 {
     protected $connection = 'mysql';
     protected $table = "tr_mcu";
+    public $timestamps = true;
 
 
     public function pegawai()

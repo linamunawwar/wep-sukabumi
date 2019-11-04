@@ -8,6 +8,7 @@ class DisposisiTugas extends Model
 {
     protected $connection = 'mysql';
     protected $table = "tr_disposisi";
+    public $timestamps = true;
 
      public function disposisi()
     {

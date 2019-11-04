@@ -8,6 +8,7 @@ class Inventori extends Model
 {
     protected $connection = 'mysql';
     protected $table = "mst_peralatan";
+    public $timestamps = true;
 
 
     public function peralatan()

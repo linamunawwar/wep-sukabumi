@@ -8,6 +8,7 @@ class Resign extends Model
 {
     protected $connection = 'mysql';
     protected $table = "tr_resign";
+    public $timestamps = true;
 
 
     public function pegawai()

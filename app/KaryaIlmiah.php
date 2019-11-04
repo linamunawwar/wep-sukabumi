@@ -8,4 +8,5 @@ class KaryaIlmiah extends Model
 {
     protected $connection = 'mysql';
     protected $table = "mst_karya_ilmiah";
+    public $timestamps = true;
 }

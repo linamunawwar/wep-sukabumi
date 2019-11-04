@@ -8,8 +8,8 @@
 <div style="text-align: center;">
   <h3 style="font-family: 'Times New Roman';padding: 0;margin: 0;">SURAT IZIN TIDAK MASUK KERJA<br>
 PEGAWAI PROYEK BECAKAYU SEKSI 2A UJUNG</h3>
-  <div style="border-top: 1px solid black;width: 240px; float: center; margin: 0 auto;padding: 0;"></div>
-  <h4 style="font-family: 'Times New Roman';padding: 0;margin: 0;">Nomor  :       </h4>
+  <div style="border-top: 1px solid black;width: 480px; float: center; margin: 0 auto;padding: 0;"></div>
+  <h4 style="font-family: 'Times New Roman';padding: 0;margin: 0;margin-left: 150px; text-align: left;">Nomor  :       </h4>
   <br>
 </div>
 <div style="text-align: left;">
@@ -172,6 +172,11 @@ PEGAWAI PROYEK BECAKAYU SEKSI 2A UJUNG</h3>
       <td></td>
       <td colspan="3"></td>
       <td style="text-align: center;">( {{$sdm->nama}} )</td>
+    </tr>
+    <tr style="border-bottom: 1px solid black;">
+      <td style="border-bottom: 1px solid black;"></td>
+      <td style="border-bottom: 1px solid black;" colspan="3"></td>
+      <td style="border-bottom: 1px solid black;"></td>
     </tr>
     <tr>
       <td>D.</td>

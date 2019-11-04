@@ -8,4 +8,5 @@ class SuratKeluar extends Model
 {
     protected $connection = 'mysql';
     protected $table = "mst_surat_keluar";
+    public $timestamps = true;
 }

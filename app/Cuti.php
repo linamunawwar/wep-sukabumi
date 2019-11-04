@@ -8,6 +8,7 @@ class Cuti extends Model
 {
     protected $connection = 'mysql';
     protected $table = "tr_cuti";
+    public $timestamps = true;
 
 
     public function pegawai()

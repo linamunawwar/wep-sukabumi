@@ -249,6 +249,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 		Route::get('/izin', 'manager\IzinController@index');
 		Route::get('/izin/approve/{id}', 'manager\IzinController@approve');
+		Route::get('/izin/approve_sdm/{id}', 'manager\IzinController@approveSDM');
 		Route::get('/pengajuan_izin', 'user\IzinController@index');
 		Route::get('/pengajuan_izin/create', 'user\IzinController@getCreate');
 		Route::post('/pengajuan_izin/create', 'user\IzinController@postCreate');

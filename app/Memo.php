@@ -8,6 +8,7 @@ class Memo extends Model
 {
     protected $connection = 'mysql';
     protected $table = "mst_memo";
+    public $timestamps = true;
 
     public function memoPegawai()
     {

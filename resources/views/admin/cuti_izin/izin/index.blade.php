@@ -25,6 +25,7 @@
 									<th>Jabatan</th>
 									<th>Mulai Izin</th>
 									<th>Selesai Izin</th>
+									<th>Tanggal Pengajuan</th>
 									<th>Status Izin</th>
 									<th>Action</th>
 								</tr>
@@ -38,14 +39,23 @@
 										<td>{{konversi_tanggal($izin->tanggal_mulai)}}</td>
 										<td>{{konversi_tanggal($izin->tanggal_selesai)}}</td>
 										<td>
-											@if($izin->is_verif_mngr == 1)
+											<?php
+												$date = explode(' ', $izin->created_at);
+											?>
+											{{konversi_tanggal($date[0])}}
+										</td>
+										<td>
+											@if(($izin->is_verif_mngr == 1) && ($izin->is_verif_sdm == 1))
+												<span class="label label-primary">Approved By Manager</span>
+												<span class="label label-success">Approved By SDM</span>
+											@elseif(($izin->is_verif_mngr == 1) && ($izin->is_verif_sdm == 0))
 												<span class="label label-primary">Approved By Manager</span>
 											@else
 												<span class="label label-default">Not Approved</span>
 											@endif
 										</td>
 										<td style="text-align: left;">
-											@if($izin->is_verif_mngr == 1)
+											@if($izin->is_verif_sdm == 1)
 												<a href="{{'izin/surat_izin/'.$izin->id.''}}" class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
 											@else
 												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</a>

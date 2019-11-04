@@ -26,6 +26,7 @@
 									<th>Tanggal Berangkat</th>
 									<th>Tanggal Pulang</th>
 									<th>Keperluan</th>
+									<th>Tanggal Pengajuan</th>
 									<th>Status</th>
 									<th>Action</th>
 								</tr>
@@ -36,6 +37,12 @@
 										<td>{{konversi_tanggal($spj->tanggal_berangkat)}}</td>
 										<td>{{konversi_tanggal($spj->tanggal_pulang)}}</td>
 										<td>{{$spj->keperluan}}</td>
+										<td>
+											<?php
+												$date = explode(' ', $apj->created_at);
+											?>
+											{{konversi_tanggal($date[0])}}
+										</td>
 										@if($spj->is_verif_sdm == 1)
 											<td style="text-align: center;"><span class="label label-success">Approved By Admin</span></td>
 											<td style="text-align: left;">

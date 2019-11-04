@@ -8,6 +8,7 @@ class Pecat extends Model
 {
     protected $connection = 'mysql';
     protected $table = "tr_pecat";
+    public $timestamps = true;
 
 
     public function pegawai()

@@ -8,6 +8,7 @@ class SuratMasuk extends Model
 {
     protected $connection = 'mysql';
     protected $table = "mst_surat_masuk";
+    public $timestamps = true;
 
     public function disposisi()
     {

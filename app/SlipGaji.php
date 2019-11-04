@@ -8,6 +8,7 @@ class SlipGaji extends Model
 {
     protected $connection = 'mysql';
     protected $table = "tr_slip_gaji";
+    public $timestamps = true;
 
 
     public function pegawai()

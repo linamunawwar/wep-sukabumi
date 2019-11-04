@@ -8,7 +8,8 @@ class Pegawai extends Model
 {
     protected $connection = 'mysql';
     protected $table = "mst_pegawai";
-
+    public $timestamps = true;
+    
     protected $fillable = ['nama','email','role_id'];
 
     public function user()

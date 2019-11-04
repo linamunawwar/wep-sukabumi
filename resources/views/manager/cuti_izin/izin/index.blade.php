@@ -25,6 +25,7 @@
 									<th>Jabatan</th>
 									<th>Mulai Izin</th>
 									<th>Selesai Izin</th>
+									<th>Tanggal Pengajuan</th>
 									<th>Status Izin</th>
 									<th>Action</th>
 								</tr>
@@ -38,18 +39,46 @@
 										<td>{{konversi_tanggal($izin->tanggal_mulai)}}</td>
 										<td>{{konversi_tanggal($izin->tanggal_selesai)}}</td>
 										<td>
-											@if($izin->is_verif_mngr == 1)
+											<?php
+												$date = explode(' ', $izin->created_at);
+											?>
+											{{konversi_tanggal($date[0])}}
+										</td>
+										<td>
+											@if(($izin->is_verif_mngr == 1) && ($izin->is_verif_sdm == 1))
+												<span class="label label-primary">Approved By Manager</span>
+												<span class="label label-success">Approved By SDM</span>
+											@elseif(($izin->is_verif_mngr == 1) && ($izin->is_verif_sdm == 0))
 												<span class="label label-primary">Approved By Manager</span>
 											@else
 												<span class="label label-default">Not Approved</span>
 											@endif
 										</td>
 										<td style="text-align: left;">
-											@if($izin->is_verif_mngr == 1)
-												<a class="btn btn-dark btn-xs">Approve</a>
-												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
+											@if(\Auth::user()->role_id == 4)
+												@if($izin->pegawai->kode_bagian == 'SA')
+													@if(($izin->is_verif_mngr == 0) && ($izin->is_verif_sdm == 0) )
+														<a class="btn btn-success btn-xs" href="{{url('manager/izin/approve_sdm/'.$izin->id.'')}}"><i class="fa fa-check" ></i>  Approve</a>
+													@else
+														<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>
+													@endif
+												@else
+													@if(($izin->is_verif_mngr == 1) && ($izin->is_verif_sdm == 0) )
+														<a class="btn btn-success btn-xs" href="{{url('manager/izin/approve_sdm/'.$izin->id.'')}}"><i class="fa fa-check" ></i>  Approve</a>
+													@else
+														<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>
+													@endif
+												@endif
 											@else
-												<a class="btn btn-success btn-xs" href="{{url("manager/izin/approve/$izin->id")}}">Approve</a>
+												@if($izin->is_verif_mngr == 0)
+													<a class="btn btn-success btn-xs" href="{{url('manager/izin/approve/'.$izin->id.'')}}"><i class="fa fa-check" ></i>  Approve</a>
+												@else
+													<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>
+												@endif
+											@endif
+											@if($izin->is_verif_sdm == 1)
+												<a href="{{'izin/surat_izin/'.$izin->id.''}}" class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
+											@else
 												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</a>
 											@endif
 										</td>
