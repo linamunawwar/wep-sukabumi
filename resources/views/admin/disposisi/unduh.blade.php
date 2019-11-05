@@ -443,18 +443,12 @@
 				</td>
 				<td>
 					<div style="border: 2px solid black; width: 50px; height: 30px;">
-						@if($hse['status'] == 1)
-							<?php $dt_hse = getManager('HS'); ?>
-							<img src="{{ asset('upload/pegawai/'.$dt_hse->nip.'/paraf.png')}}" style="]height: 27px; width: 47px; margin-bottom: 0; padding: 0;">
-						@endif
+						
 					</div>
 				</td>
 				<td>
 					<div style="border: 2px solid black; width: 110px; height: 30px; margin-left: 5px;padding-top: 7px;" align="center">
-						@if($hse['status'] == 1)
-							<?php $tanggal = explode(' ',$hse['done_at']); ?>
-							{{konversi_tanggal($tanggal[0])}}
-						@endif
+						
 					</div>
 				</td>
 			</tr> -->

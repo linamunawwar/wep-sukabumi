@@ -17,7 +17,7 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
+						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nomor Agenda <span class="required">*</span>:</label>
@@ -57,7 +57,7 @@
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<div class='input-group date' id='datepicker2' class="datepicker">
 										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
-						                <input type='text' value="{{$disposisi->tanggal_surat}}"" name='tanggal_surat' class='form-control' required="required" placeholder="dd-mm-yyyy" />
+						                <input type='text' value="{{konversi_tanggal($disposisi->tanggal_surat)}}"" name='tanggal_surat' class='form-control' required="required" placeholder="dd-mm-yyyy" />
 						            </div>
 								</div>
 							</div>
@@ -65,6 +65,12 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Perihal:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<textarea name="perihal" class="form-control col-md-7 col-xs-12">{{$disposisi->perihal}}</textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Upload Surat:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input type="file" name="file_surat" class="form-control col-md-7 col-xs-12">
 								</div>
 							</div>
 							<div class="form-group">

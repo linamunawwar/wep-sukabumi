@@ -183,6 +183,7 @@ class DisposisiController extends Controller
     public function postEdit($id)
     {
     	$data = \Input::all();
+         $find_dispo = Disposisi::find($id);
 
     	$disposisi['no_agenda'] = $data['no_agenda'];
     	$disposisi['pengirim'] = $data['pengirim'];
@@ -196,6 +197,33 @@ class DisposisiController extends Controller
       	$disposisi['role_id'] = \Auth::user()->role_id;
 
       	$update = Disposisi::where('id',$id)->update($disposisi);
+
+        if(\Input::hasfile('file_surat')){
+            $dt_lama = SuratMasuk::find($id);
+            unlink('upload/surat_masuk/'.$dt_lama->file_surat);
+
+            $ori_file  = \Request::file('file_surat');
+            $tujuan = "upload/surat_masuk/";
+            $ekstension = $ori_file->getClientOriginalExtension();
+            $name = $ori_file->getClientOriginalName();
+
+            $nama_file = $data['pengirim'].'_'.$name;
+            $ori_file->move($tujuan,$nama_file);
+
+            $surat['file_surat'] = $nama_file;
+        }
+
+        $surat['no_surat'] = $data['no_surat'];
+        $surat['pengirim'] = $data['pengirim'];
+        $surat['kepada'] = $data['kepada'];
+        $surat['tanggal_surat'] = konversi_tanggal($data['tanggal_surat']);
+        $surat['perihal'] = $data['perihal'];
+        
+
+        $surat['user_id'] = \Auth::user()->id;
+        $surat['role_id'] = \Auth::user()->role_id;
+
+        $update = SuratMasuk::where('no_surat',$find_dispo->no_surat)->update($surat);
 
         return redirect('admin/disposisi');
     }
