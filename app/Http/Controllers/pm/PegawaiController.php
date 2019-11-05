@@ -23,6 +23,15 @@ class PegawaiController extends Controller
         return view('pm.pegawai.index',['pegawais'=>$pegawais]);
     }
 
+    public function indexNonAktif()
+    {
+       $pegawais= Pegawai::where('is_active',0)
+                          ->where('soft_delete',1)
+                          ->get();
+
+        return view('pm.pegawai.index_non_aktif',['pegawais'=>$pegawais]);
+    }
+
     public function getApprove($id)
     {
         $pegawai = Pegawai::find($id);
@@ -49,6 +58,38 @@ class PegawaiController extends Controller
        return redirect('/pm/pegawai');
     }
 
+     public function getStruktur()
+    {
+      $level = Posisi::groupBy('level')->get();
+      foreach ($level as $key => $value) {
+         $posisi[$value->level] = Posisi::where('level',$value->level)->where('soft_delete',0)->get();
+      }
+
+      $posisi = Posisi::where('level','0')->get();
+      // dd($posisi);
+        foreach ($posisi as $key => $value) {
+          $value->anggota = Pegawai::where('posisi_id',$value->id)->where('soft_delete',0)->get();
+          $value->anak = Posisi::where('parent',$value->id)->where('soft_delete',0)->get();
+          foreach ($value->anak as $key => $anak2) {
+            $anak2->anggota = Pegawai::where('posisi_id',$anak2->id)->where('soft_delete',0)->get();
+            $anak2->anak = Posisi::where('parent',$anak2->id)->where('soft_delete',0)->get();
+            foreach ($anak2->anak as $key => $anak3) {
+              $anak3->anggota = Pegawai::where('posisi_id',$anak3->id)->where('soft_delete',0)->get();
+              $anak3->anak = Posisi::where('parent',$anak3->id)->where('soft_delete',0)->get();
+              foreach ($anak3->anak as $key => $anak4) {
+                $anak4->anggota = Pegawai::where('posisi_id',$anak4->id)->where('soft_delete',0)->get();
+                $anak4->anak = Posisi::where('parent',$anak4->id)->where('soft_delete',0)->get();
+              }
+            }
+          }
+        }
+      // $atasans = Pegawai::whereHas('posisi', function ($q){
+      //     $q->where('parent', '1');
+      // })->get();
+
+// dd($posisi);
+      return view('admin.pegawai.struktur.index',['level'=>$level,'posisi'=>$posisi]);
+    }
     public function getPecat()
     {
       $pecats = Pecat::get();

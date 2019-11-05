@@ -136,6 +136,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/surat_keluar/edit/{id}', 'admin\SuratKeluarController@getEdit');
 		Route::post('/surat_keluar/edit/{id}', 'admin\SuratKeluarController@postEdit');
 		Route::get('/surat_keluar/delete/{id}', 'admin\SuratKeluarController@getDelete');
+		Route::get('/surat_keluar/unduh/{id}', 'admin\SuratKeluarController@getUnduh');
 
 		//rkp
 		Route::get('/rkp', 'admin\RkpController@index');
@@ -348,7 +349,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/disposisi/proses/{id}', 'pm\DisposisiController@postProses');
 		Route::get('/disposisi/edit/{id}', 'pm\DisposisiController@getEdit');
 		Route::post('/disposisi/edit/{id}', 'pm\DisposisiController@postEdit');
-		Route::get('/disposisi/monitoring/{id}', 'pm\DisposisiController@monitoring');
+		Route::get('/disposisi/monitor/{id}', 'pm\DisposisiController@monitoring');
 
 		//rkp
 		Route::get('/rkp', 'pm\RkpController@index');
