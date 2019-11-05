@@ -199,7 +199,7 @@ class DisposisiController extends Controller
       	$update = Disposisi::where('id',$id)->update($disposisi);
 
         if(\Input::hasfile('file_surat')){
-            $dt_lama = SuratMasuk::find($id);
+            $dt_lama = SuratMasuk::where('no_surat', $find_dispo->no_surat)->first();
             if(file_exists('upload/surat_masuk/'.$dt_lama->file_surat)){
                 unlink('upload/surat_masuk/'.$dt_lama->file_surat);
             }
