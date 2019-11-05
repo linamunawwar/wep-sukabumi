@@ -257,7 +257,14 @@ class DisposisiController extends Controller
     {
     	$disposisi = Disposisi::find($id);
     	$tugass = DisposisiTugas::where('disposisi_id',$id)->where('soft_delete',0)->get();
-    	
+    	$diketahui['posisi_id'] = '';
+        $diketahui['status'] = '';
+        $diselesaikan['posisi_id'] = '';
+        $diselesaikan['status'] = '';
+        $diproses['posisi_id'] = '';
+        $diproses['status'] = '';
+        $diperiksa['posisi_id'] = '';
+        $diperiksa['status'] = '';
     	foreach ($tugass as $key => $tugas) {
 
     		if($tugas->tugas == 'Diketahui'){
