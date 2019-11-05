@@ -136,15 +136,15 @@ class GajiController extends Controller
                             $cell->setBorder('thin','','','');
                         });
                         //border bawah
-                        $sheet->cell('D40:K41', function($cell){
+                        $sheet->cell('D40:K42', function($cell){
                             $cell->setBorder('','','thin','');
                         });
                         //border kanan
-                        $sheet->cell('C5:C41', function($cell){
+                        $sheet->cell('C5:C42', function($cell){
                             $cell->setBorder('','thin','','');
                         });
                         //border kiri
-                        $sheet->cell('L5:L41', function($cell){
+                        $sheet->cell('L5:L42', function($cell){
                             $cell->setBorder('','','','thin');
                         }); 
                     });

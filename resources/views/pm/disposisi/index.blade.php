@@ -20,7 +20,7 @@
 						<table id="datatable" class="table table-striped table-bordered">
 							<thead>
 								<tr>
-									<th>Nomor Agenda</th>
+									<th>Nomor Surat</th>
 									<th>Pengirim</th>
 									<th>Kepada</th>
 									<th>Tanggal Terima</th>
@@ -32,7 +32,7 @@
 							<tbody>
 								@foreach($disposisis as $disposisi)
 									<tr>
-										<td>{{$disposisi->no_agenda}}</td>
+										<td>{{$disposisi->no_surat}}</td>
 										<td>{{$disposisi->pengirim}}</td>
 										<td>{{$disposisi->kepada}}</td>
 										<td>{{konversi_tanggal($disposisi->tanggal_terima)}}</td>

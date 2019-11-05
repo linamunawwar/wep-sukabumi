@@ -24,7 +24,9 @@
 									<th>Nama</th>
 									<th style="width: 15%;">Jabatan</th>
 									<th style="width: 15%;">Mulai Tugas Di Proyek</th>
-									<th>Password</th>
+									@if(\Auth::user()->role_id == 4 )
+										<th>Password</th>
+									@endif
 									<th>Action</th>
 									<th>Status</th>
 									<!-- <th>Action</th> -->
@@ -38,7 +40,9 @@
 										<td>{{$pegawai->nama}}</td>
 										<td>{{$pegawai->posisi->posisi}}</td>
 										<td>{{konversi_tanggal($pegawai->tanggal_masuk)}}</td>
-										<td>{{$pegawai->user->pass_asli}}</td>
+										@if(\Auth::user()->role_id == 4)
+											<td>{{$pegawai->user->pass_asli}}</td>
+										@endif
 										<td>
 											@if($pegawai->is_active == 1)
 												<a class="btn btn-success btn-xs" href="{{url('manager/unduh_cv/'.$pegawai->nip.'')}}"><i class="fa fa-download"></i> CV </a>
