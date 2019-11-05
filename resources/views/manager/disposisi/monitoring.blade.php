@@ -275,7 +275,7 @@
 													@endif
 												</td>
 												<td>
-													@if($diselesaikan['posisi_id'] == 2)
+													@if($diselesaikan['posisi_id'] == 42)
 														@if($diselesaikan['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
@@ -288,7 +288,7 @@
 													@endif
 												</td>
 												<td>
-													@if($diproses['posisi_id'] == 2)
+													@if($diproses['posisi_id'] == 42)
 														@if($diproses['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
@@ -301,7 +301,7 @@
 													@endif
 												</td>
 												<td>
-													@if($diperiksa['posisi_id'] == 2)
+													@if($diperiksa['posisi_id'] == 42)
 														@if($diperiksa['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>

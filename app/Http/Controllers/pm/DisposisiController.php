@@ -221,7 +221,7 @@ class DisposisiController extends Controller
     	if(array_key_exists('SAM', $data)){
     		$tugas = new DisposisiTugas;
 	    	$tugas->disposisi_id = $id;
-    		$tugas->posisi_id = 7;
+    		$tugas->posisi_id = 6;
 
     		$tugas->save();
 
