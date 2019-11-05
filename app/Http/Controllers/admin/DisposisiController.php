@@ -200,7 +200,9 @@ class DisposisiController extends Controller
 
         if(\Input::hasfile('file_surat')){
             $dt_lama = SuratMasuk::find($id);
-            unlink('upload/surat_masuk/'.$dt_lama->file_surat);
+            if(file_exists('upload/surat_masuk/'.$dt_lama->file_surat)){
+                unlink('upload/surat_masuk/'.$dt_lama->file_surat);
+            }
 
             $ori_file  = \Request::file('file_surat');
             $tujuan = "upload/surat_masuk/";
