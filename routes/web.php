@@ -195,6 +195,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/gaji/slip_gaji', 'user\GajiController@slipGaji');
 		Route::get('/gaji/slip_gaji/create', 'user\GajiController@getSlipGajiCreate');
 		Route::post('/gaji/slip_gaji/create', 'user\GajiController@postSlipGajiCreate');
+		Route::get('/gaji/slip_gaji/unduh/{id}', 'admin\GajiController@getSlipGajiUnduh');
 
 		//memo
 		Route::get('/memo', 'user\MemoController@index');
@@ -259,6 +260,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/gaji', 'manager\GajiController@index');
 		Route::get('/gaji/slip_gaji', 'manager\GajiController@slipGaji');
 		Route::get('/gaji/slip_gaji/approve/{id}', 'manager\GajiController@approveSlipGaji');
+		Route::get('/gaji/slip_gaji/unduh/{id}', 'admin\GajiController@getSlipGajiUnduh');
 
 		//memo
 		Route::get('/memo', 'manager\MemoController@index');
