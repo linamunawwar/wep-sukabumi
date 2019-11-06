@@ -240,39 +240,95 @@ class DisposisiController extends Controller
 
     public function monitoring($id)
     {
-    	$disposisi = Disposisi::find($id);
-    	$tugass = DisposisiTugas::where('disposisi_id',$id)->where('soft_delete',0)->get();
-    	$diketahui['posisi_id'] = '';
-        $diketahui['status'] = '';
-        $diselesaikan['posisi_id'] = '';
-        $diselesaikan['status'] = '';
-        $diproses['posisi_id'] = '';
-        $diproses['status'] = '';
-        $diperiksa['posisi_id'] = '';
-        $diperiksa['status'] = '';
-    	foreach ($tugass as $key => $tugas) {
-    		if($tugas->tugas == 'Diketahui'){
-    			$diketahui['posisi_id'] = $tugas->posisi_id;
-    			$diketahui['status'] = $tugas->status;
-    		}
+        $disposisi = Disposisi::find($id);
+        $tugass = DisposisiTugas::where('disposisi_id',$id)->where('soft_delete',0)->get();
+        $pm = array();
+        $pm[0] = array();
+        $som = array();
+        $som[0] = array();
+        $splem = array();
+        $splem[0] = array();
+        $sqhsem = array();
+        $sqhsem[0] = array();
+        $sem = array();
+        $sem[0] = array();
+        $scarm = array();
+        $scarm[0] = array();
+        $sam = array();
+        $sam[0] = array();
+        $public = array();
+        $public[0] = array();
+        $i=0;
+        foreach ($tugass as $key => $tugas) {
 
-    		if($tugas->tugas == 'Diselesaikan'){
-    			$diselesaikan['posisi_id'] = $tugas->posisi_id;
-    			$diselesaikan['status'] = $tugas->status;
-    		}
+            if($tugas->posisi_id == 1){
+                $pm[$i]['tugas'] = $tugas->tugas;
+                $pm[$i]['status'] = $tugas->status;
+            }else{
+                 $pm[$i]['tugas'] = '';
+                $pm[$i]['status'] = '';
+            }
 
-    		if($tugas->tugas == 'Diproses'){
-    			$diproses['posisi_id'] = $tugas->posisi_id;
-    			$diproses['status'] = $tugas->status;
-    		}
-    		
-    		if($tugas->tugas == 'Diperiksa'){
-    			$diperiksa['posisi_id'] = $tugas->posisi_id;
-    			$diperiksa['status'] = $tugas->status;
-    		}
-    	}
+            if($tugas->posisi_id == 8){
+                $som[$i]['tugas'] = $tugas->tugas;
+                $som[$i]['status'] = $tugas->status;
+            }else{
+                $som[$i]['tugas'] = '';
+                $som[$i]['status'] = '';
+            }
 
-        return view('admin.disposisi.monitoring',['disposisi'=>$disposisi,'diketahui'=>$diketahui,'diselesaikan'=>$diselesaikan,'diproses'=>$diproses,'diperiksa'=>$diperiksa]);
+            if($tugas->posisi_id == 7){
+                $splem[$i]['tugas'] = $tugas->tugas;
+                $splem[$i]['status'] = $tugas->status;
+            }else{
+                $splem[$i]['tugas'] = '';
+                $splem[$i]['status'] = '';
+            }
+
+            if($tugas->posisi_id == 42){
+                $sqhsem[$i]['tugas'] = $tugas->tugas;
+                $sqhsem[$i]['status'] = $tugas->status;
+            }else{
+                $sqhsem[$i]['tugas'] = '';
+                $sqhsem[$i]['status'] = '';
+            }
+
+            if($tugas->posisi_id == 4){
+                $sem[$i]['tugas'] = $tugas->tugas;
+                $sem[$i]['status'] = $tugas->status;
+            }else{
+                $sem[$i]['tugas'] = '';
+                $sem[$i]['status'] = '';
+            }
+
+            if($tugas->posisi_id == 5){
+                $scarm[$i]['tugas'] = $tugas->tugas;
+                $scarm[$i]['status'] = $tugas->status;
+            }else{
+                $scarm[$i]['tugas'] = '';
+                $scarm[$i]['status'] = '';
+            }
+
+            if($tugas->posisi_id == 6){
+                $sam[$i]['tugas'] = $tugas->tugas;
+                $sam[$i]['status'] = $tugas->status;
+            }else{
+                $sam[$i]['tugas'] = '';
+                $sam[$i]['status'] = '';
+            }
+
+            if($tugas->posisi_id == 24){
+                $public[$i]['tugas'] = $tugas->tugas;
+                $public[$i]['status'] = $tugas->status;
+            }else{
+                $public[$i]['tugas'] = '';
+                $public[$i]['status'] = '';
+            }
+
+            $i++;
+        }
+
+        return view('admin.disposisi.monitoring',['disposisi'=>$disposisi,'pm'=>$pm,'som'=>$som,'splem'=>$splem,'sqhsem'=>$sqhsem,'sem'=>$sem,'scarm'=>$scarm,'sam'=>$sam,'public'=>$public]);
     }
 
     public function getUnduhDisposisi($id)

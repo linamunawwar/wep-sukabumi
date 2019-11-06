@@ -77,6 +77,12 @@
 											</div>
 										</div>
 										<div class="form-group">
+											<label class="control-label col-md-4 col-sm-4 col-xs-12">Note PM:</label>
+											<div class="col-md-8 col-sm-8 col-xs-12">
+												<textarea name="alasan" class="form-control col-md-7 col-xs-12" width="200px" cols="20" rows="8" readonly="readonly">{{$disposisi->note_pm}}</textarea>
+											</div>
+										</div>
+										<div class="form-group">
 											<label class="control-label col-md-4 col-sm-4 col-xs-12">Note :</label>
 											<div class="col-md-8 col-sm-8 col-xs-12">
 												<textarea name="alasan" class="form-control col-md-7 col-xs-12" width="200px" cols="20" rows="8" readonly="readonly">{{$disposisi->note}}</textarea>
@@ -97,8 +103,9 @@
 											<tr>
 												<td>PM</td>
 												<td>
-													@if($diketahui['posisi_id'] == 1)
-														@if($diketahui['status'] == 1)
+													<?php $index = array_search('Diketahui', array_column($pm, 'tugas'));  ?>
+													@if(array_search('Diketahui', array_column($pm, 'tugas')))
+														@if($pm[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -110,8 +117,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diselesaikan['posisi_id'] == 1)
-														@if($diselesaikan['status'] == 1)
+													<?php $index = array_search('Diselesaikan', array_column($pm, 'tugas'));  ?>
+													@if(array_search('Diselesaikan', array_column($pm, 'tugas')))
+														@if($pm[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -123,8 +131,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diproses['posisi_id'] == 1)
-														@if($diproses['status'] == 1)
+													<?php $index = array_search('Diproses', array_column($pm, 'tugas'));  ?>
+													@if(array_search('Diproses', array_column($pm, 'tugas')))
+														@if($pm[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -136,8 +145,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diperiksa['posisi_id'] == 1)
-														@if($diperiksa['status'] == 1)
+													<?php $index = array_search('Diperiksa', array_column($pm, 'tugas'));  ?>
+													@if(array_search('Diperiksa', array_column($pm, 'tugas')))
+														@if($pm[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -152,8 +162,9 @@
 											<tr>
 												<td>SOM</td>
 												<td>
-													@if($diketahui['posisi_id'] == 8)
-														@if($diketahui['status'] == 1)
+													<?php $index = array_search('Diketahui', array_column($som, 'tugas'));  ?>
+													@if(array_search('Diketahui', array_column($som, 'tugas')))
+														@if($som[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -165,8 +176,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diselesaikan['posisi_id'] == 8)
-														@if($diselesaikan['status'] == 1)
+													<?php $index = array_search('Diselesaikan', array_column($som, 'tugas'));  ?>
+													@if(array_search('Diselesaikan', array_column($som, 'tugas')))
+														@if($som[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -178,8 +190,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diproses['posisi_id'] == 8)
-														@if($diproses['status'] == 1)
+													<?php $index = array_search('Diproses', array_column($som, 'tugas'));  ?>
+													@if(array_search('Diproses', array_column($som, 'tugas')))
+														@if($som[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -191,8 +204,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diperiksa['posisi_id'] == 8)
-														@if($diperiksa['status'] == 1)
+													<?php $index = array_search('Diperiksa', array_column($som, 'tugas'));  ?>
+													@if(array_search('Diperiksa', array_column($som, 'tugas')))
+														@if($som[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -207,8 +221,9 @@
 											<tr>
 												<td>SPLEM</td>
 												<td>
-													@if($diketahui['posisi_id'] == 7)
-														@if($diketahui['status'] == 1)
+													<?php $index = array_search('Diketahui', array_column($splem, 'tugas'));  ?>
+													@if(array_search('Diketahui', array_column($splem, 'tugas')))
+														@if($splem[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -220,8 +235,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diselesaikan['posisi_id'] == 7)
-														@if($diselesaikan['status'] == 1)
+													<?php $index = array_search('Diselesaikan', array_column($splem, 'tugas'));  ?>
+													@if(array_search('Diselesaikan', array_column($splem, 'tugas')))
+														@if($splem[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -233,8 +249,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diproses['posisi_id'] == 7)
-														@if($diproses['status'] == 1)
+													<?php $index = array_search('Diproses', array_column($splem, 'tugas'));  ?>
+													@if(array_search('Diproses', array_column($splem, 'tugas')))
+														@if($splem[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -246,8 +263,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diperiksa['posisi_id'] == 7)
-														@if($diperiksa['status'] == 1)
+													<?php $index = array_search('Diperiksa', array_column($splem, 'tugas'));  ?>
+													@if(array_search('Diperiksa', array_column($splem, 'tugas')))
+														@if($splem[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -262,8 +280,9 @@
 											<tr>
 												<td>SQHSEM</td>
 												<td>
-													@if($diketahui['posisi_id'] == 42)
-														@if($diketahui['status'] == 1)
+													<?php $index = array_search('Diketahui', array_column($sqhsem, 'tugas'));  ?>
+													@if(array_search('Diketahui', array_column($sqhsem, 'tugas')))
+														@if($sqhsem[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -275,8 +294,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diselesaikan['posisi_id'] == 42)
-														@if($diselesaikan['status'] == 1)
+													<?php $index = array_search('Diselesaikan', array_column($sqhsem, 'tugas'));  ?>
+													@if(array_search('Diselesaikan', array_column($sqhsem, 'tugas')))
+														@if($sqhsem[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -288,8 +308,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diproses['posisi_id'] == 42)
-														@if($diproses['status'] == 1)
+													<?php $index = array_search('Diproses', array_column($sqhsem, 'tugas'));  ?>
+													@if(array_search('Diproses', array_column($sqhsem, 'tugas')))
+														@if($sqhsem[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -301,8 +322,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diperiksa['posisi_id'] == 42)
-														@if($diperiksa['status'] == 1)
+													<?php $index = array_search('Diperiksa', array_column($sqhsem, 'tugas'));  ?>
+													@if(array_search('Diperiksa', array_column($sqhsem, 'tugas')))
+														@if($sqhsem[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -317,8 +339,9 @@
 											<tr>
 												<td>SEM</td>
 												<td>
-													@if($diketahui['posisi_id'] == 4)
-														@if($diketahui['status'] == 1)
+													<?php $index = array_search('Diketahui', array_column($sem, 'tugas'));  ?>
+													@if(array_search('Diketahui', array_column($sem, 'tugas')))
+														@if($sem[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -330,8 +353,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diselesaikan['posisi_id'] == 4)
-														@if($diselesaikan['status'] == 1)
+													<?php $index = array_search('Diselesaikan', array_column($sem, 'tugas'));  ?>
+													@if(array_search('Diselesaikan', array_column($sem, 'tugas')))
+														@if($sem[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -343,8 +367,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diproses['posisi_id'] == 4)
-														@if($diproses['status'] == 1)
+													<?php $index = array_search('Diproses', array_column($sem, 'tugas'));  ?>
+													@if(array_search('Diproses', array_column($sem, 'tugas')))
+														@if($sem[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -356,8 +381,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diperiksa['posisi_id'] == 4)
-														@if($diperiksa['status'] == 1)
+													<?php $index = array_search('Diperiksa', array_column($sem, 'tugas'));  ?>
+													@if(array_search('Diperiksa', array_column($sem, 'tugas')))
+														@if($sem[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -372,8 +398,9 @@
 											<tr>
 												<td>SCARM</td>
 												<<td>
-													@if($diketahui['posisi_id'] == 5)
-														@if($diketahui['status'] == 1)
+													<?php $index = array_search('Diketahui', array_column($scarm, 'tugas'));  ?>
+													@if(array_search('Diketahui', array_column($scarm, 'tugas')))
+														@if($scarm[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -385,8 +412,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diselesaikan['posisi_id'] == 5)
-														@if($diselesaikan['status'] == 1)
+													<?php $index = array_search('Diselesaikan', array_column($scarm, 'tugas'));  ?>
+													@if(array_search('Diselesaikan', array_column($scarm, 'tugas')))
+														@if($scarm[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -398,8 +426,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diproses['posisi_id'] == 5)
-														@if($diproses['status'] == 1)
+													<?php $index = array_search('Diproses', array_column($scarm, 'tugas'));  ?>
+													@if(array_search('Diproses', array_column($scarm, 'tugas')))
+														@if($scarm[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -411,8 +440,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diperiksa['posisi_id'] == 5)
-														@if($diperiksa['status'] == 1)
+													<?php $index = array_search('Diperiksa', array_column($scarm, 'tugas'));  ?>
+													@if(array_search('Diperiksa', array_column($scarm, 'tugas')))
+														@if($scarm[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -427,8 +457,9 @@
 											<tr>
 												<td>SAM</td>
 												<td>
-													@if($diketahui['posisi_id'] == 6)
-														@if($diketahui['status'] == 1)
+													<?php $index = array_search('Diketahui', array_column($sam, 'tugas'));  ?>
+													@if(array_search('Diketahui', array_column($sam, 'tugas')))
+														@if($sam[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -440,8 +471,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diselesaikan['posisi_id'] == 6)
-														@if($diselesaikan['status'] == 1)
+													<?php $index = array_search('Diselesaikan', array_column($sam, 'tugas'));  ?>
+													@if(array_search('Diselesaikan', array_column($sam, 'tugas')))
+														@if($sam[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -453,8 +485,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diproses['posisi_id'] == 6)
-														@if($diproses['status'] == 1)
+													<?php $index = array_search('Diproses', array_column($sam, 'tugas'));  ?>
+													@if(array_search('Diproses', array_column($sam, 'tugas')))
+														@if($sam[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -466,8 +499,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diperiksa['posisi_id'] == 6)
-														@if($diperiksa['status'] == 1)
+													<?php $index = array_search('Diperiksa', array_column($sam, 'tugas'));  ?>
+													@if(array_search('Diperiksa', array_column($sam, 'tugas')))
+														@if($sam[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -479,66 +513,12 @@
 													@endif
 												</td>
 											</tr>
-											<!-- <tr>
-												<td>HSE</td>
-												<td>
-													@if($diketahui['posisi_id'] == 3)
-														@if($diketahui['status'] == 1)
-															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
-															<span class="label label-success">DONE</span>
-														@else
-															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
-															<span class="label label-default">DONE</span>
-														@endif
-													@else
-														<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
-													@endif
-												</td>
-												<td>
-													@if($diselesaikan['posisi_id'] == 3)
-														@if($diselesaikan['status'] == 1)
-															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
-															<span class="label label-success">DONE</span>
-														@else
-															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
-															<span class="label label-default">DONE</span>
-														@endif
-													@else
-														<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
-													@endif
-												</td>
-												<td>
-													@if($diproses['posisi_id'] == 3)
-														@if($diproses['status'] == 1)
-															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
-															<span class="label label-success">DONE</span>
-														@else
-															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
-															<span class="label label-default">DONE</span>
-														@endif
-													@else
-														<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
-													@endif
-												</td>
-												<td>
-													@if($diperiksa['posisi_id'] == 3)
-														@if($diperiksa['status'] == 1)
-															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
-															<span class="label label-success">DONE</span>
-														@else
-															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
-															<span class="label label-default">DONE</span>
-														@endif
-													@else
-														<span style="width: 50px; margin-left: 15px;"><i class="fa fa-minus"></i></span>
-													@endif
-												</td>
-											</tr> -->
 											<tr>
 												<td>Public Relation</td>
 												<td>
-													@if($diketahui['posisi_id'] == 24)
-														@if($diketahui['status'] == 1)
+													<?php $index = array_search('Diketahui', array_column($public, 'tugas'));  ?>
+													@if(array_search('Diketahui', array_column($public, 'tugas')))
+														@if($public[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -550,8 +530,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diselesaikan['posisi_id'] == 24)
-														@if($diselesaikan['status'] == 1)
+													<?php $index = array_search('Diselesaikan', array_column($public, 'tugas'));  ?>
+													@if(array_search('Diselesaikan', array_column($public, 'tugas')))
+														@if($public[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -563,8 +544,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diproses['posisi_id'] == 24)
-														@if($diproses['status'] == 1)
+													<?php $index = array_search('Diproses', array_column($public, 'tugas'));  ?>
+													@if(array_search('Diproses', array_column($public, 'tugas')))
+														@if($public[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else
@@ -576,8 +558,9 @@
 													@endif
 												</td>
 												<td>
-													@if($diperiksa['posisi_id'] == 24)
-														@if($diperiksa['status'] == 1)
+													<?php $index = array_search('Diperiksa', array_column($public, 'tugas'));  ?>
+													@if(array_search('Diperiksa', array_column($public, 'tugas')))
+														@if($public[$index]['status'] == 1)
 															<span style="width: 50px; margin-left: 15px;"><i class="fa fa-check"></i></span>
 															<span class="label label-success">DONE</span>
 														@else

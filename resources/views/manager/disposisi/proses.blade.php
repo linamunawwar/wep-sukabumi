@@ -98,17 +98,25 @@
 								<label class="control-label col-md-2 col-sm-2 col-xs-12">Surat Perintah *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<br>
-									<b><a href='{{url("upload/surat_masuk/".$disposisi->surat->file_surat."")}}' class="col-md-7 col-xs-12" target="_blank">
-										<i class="fa fa-search-plus"></i>&nbsp&nbsp&nbspPreview
-									</a></b>
-									<iframe style="display: none;" src ="{{asset('vendor')}}/ViewerJS/#../../upload/surat_masuk/{{$disposisi->surat->file_surat}}" width='724' height='1024'	 allowfullscreen webkitallowfullscreen>
-									</iframe>
+									@if($disposisi->surat)
+										<b><a href='{{url("upload/surat_masuk/".$disposisi->surat->file_surat."")}}' class="col-md-7 col-xs-12" target="_blank">
+											<i class="fa fa-search-plus"></i>&nbsp&nbsp&nbspPreview
+										</a></b>
+										<iframe style="display: none;" src ="{{asset('vendor')}}/ViewerJS/#../../upload/surat_masuk/{{$disposisi->surat->file_surat}}" width='724' height='1024'	 allowfullscreen webkitallowfullscreen>
+										</iframe>
+									@endif
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-2 col-sm-2 col-xs-12">Note PM:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<textarea name="note_pm" class="form-control col-md-7 col-xs-12" cols="15" rows="8" readonly="readonly">{{$disposisi->note_pm}}</textarea>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-2 col-sm-2 col-xs-12">Note :</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<textarea name="alasan" class="form-control col-md-7 col-xs-12" cols="15" rows="8" readonly="readonly">{{$disposisi->note}}</textarea>
+									<textarea name="note" class="form-control col-md-7 col-xs-12" cols="15" rows="8" >{{$disposisi->note}}</textarea>
 								</div>
 							</div>
 							

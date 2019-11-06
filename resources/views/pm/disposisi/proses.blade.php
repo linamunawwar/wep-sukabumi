@@ -146,7 +146,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-1 col-sm-1 col-xs-12">Note :</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<textarea name="note" class="form-control col-md-7 col-xs-12" cols="15" rows="8" required="required"></textarea>
+									<textarea name="note_pm" class="form-control col-md-7 col-xs-12" cols="15" rows="8" required="required"></textarea>
 								</div>
 							</div>
 
