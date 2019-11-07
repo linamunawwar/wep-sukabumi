@@ -256,7 +256,7 @@
 				<td>
 					<div style="border: 2px solid black; width: 50px; height: 30px;">
 						@if($qc['status'] == 1)
-							<?php $dt_qc = getManager('QC'); ?>
+							<?php $dt_qc = getManager('QHSE'); ?>
 							<img src="{{ asset('upload/pegawai/'.$dt_qc->nip.'/paraf.png')}}" style="height: 27px; width: 47px; margin-bottom: 0; padding: 0;">
 						@endif
 					</div>

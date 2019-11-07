@@ -9,6 +9,7 @@ class RkpController extends Controller
 {
     public function index()
     {
-        return view('admin.rkp.index');
+    	$rkps = Rkp::where('soft_delete',0)->get();
+        return view('admin.rkp.index',['rkps'=>$rkps]);
     }
 }

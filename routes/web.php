@@ -283,6 +283,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/disposisi/proses/{id}', 'manager\DisposisiController@proses');
 		Route::post('/disposisi/proses/{id}', 'manager\DisposisiController@postProses');
 		Route::get('/disposisi/monitoring/{id}', 'manager\DisposisiController@monitoring');
+		Route::get('/disposisi/unduh/{id}', 'admin\DisposisiController@getUnduhDisposisi');
 
 		//rkp
 		Route::get('/rkp', 'manager\RkpController@index');
@@ -350,6 +351,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/disposisi/edit/{id}', 'pm\DisposisiController@getEdit');
 		Route::post('/disposisi/edit/{id}', 'pm\DisposisiController@postEdit');
 		Route::get('/disposisi/monitor/{id}', 'pm\DisposisiController@monitoring');
+		Route::get('/disposisi/unduh/{id}', 'admin\DisposisiController@getUnduhDisposisi');
 
 		//rkp
 		Route::get('/rkp', 'pm\RkpController@index');

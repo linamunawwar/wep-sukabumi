@@ -27,36 +27,17 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>Health & Saftey</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-default">Not Approved </span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>Quality Control</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"> <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>Quality Control</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"> <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>Site Operational</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"> <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>Health & Safety</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
+								@foreach($rkps as $rkp)
+									<tr>
+										<td>{{$rkp->kodeBagian->description}}</td>
+										<?php
+											$tanggal = explode(' ', $rkp->created_at);
+										?>
+										<td>2{{konversi_tanggal($tanggal[0])}}</td>
+										<td style="text-align: center;"><span class="label label-default">Not Approved </span></td>
+										<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
+									</tr>
+								@endforeach
 							</tbody>
 						</table>
 					</div>

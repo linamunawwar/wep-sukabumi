@@ -91,7 +91,7 @@
 									<th>Diriksa</th>
 								</thead>
 								<tbody>
-									<tr>
+									<tr style="display: none;">
 										<td>PM</td>
 										<td><input type="radio" name="PM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diketahui"></td>
 										<td><input type="radio" name="PM" class="checkbox" style="width: 50px; margin-left: 10px;" value="Diselesaikan"></td>
