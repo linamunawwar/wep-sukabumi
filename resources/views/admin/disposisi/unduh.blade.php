@@ -502,6 +502,7 @@
 		</table>
 		<div style="border: 1px solid black; width: 375px; margin-left: 10px; margin-right: 10px; height: 145px; padding:5px; font-size: 11px;">
 			Note:<br>
+			{{$disposisi->note_pm}}<br><br>
 			{{$disposisi->note}}
 		</div>
 		<p align="center" style="margin: 0; padding: 0;">Mohon dikembalikan untuk diarsipkan</p>

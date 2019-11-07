@@ -44,6 +44,19 @@ class DisposisiController extends Controller
         
         $disposisi = Disposisi::find($id);
 
+        date_default_timezone_set("Asia/Jakarta");
+        $cek_tugas = DisposisiTugas::where('disposisi_id',$id)->where('posisi_id',\Auth::user()->pegawai->posisi_id)->first();
+        if($cek_tugas){
+            $update['status'] = 1;
+            $update['done_by'] = \Auth::user()->pegawai_id;
+            $update['done_at'] = date('Y-m-d H:i:s');
+            $update['user_id'] = \Auth::user()->id;
+            $update['role_id'] = \Auth::user()->role_id;
+                
+            
+            $updt = DisposisiTugas::where('disposisi_id',$id)->where('posisi_id',\Auth::user()->pegawai->posisi_id)->update($update);
+        }
+
         $data = \Input::all();
 
         $update['note_pm'] = $data['note_pm'];

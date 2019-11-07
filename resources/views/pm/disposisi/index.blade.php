@@ -41,7 +41,7 @@
 										<td>{{$disposisi->sifat}}</td>
 										<td>{{$disposisi->perihal}}</td>
 										<td style="text-align: center;">
-											@if(!$disposisi->note)
+											@if(!$disposisi->note_pm)
 												<a class="btn btn-primary btn-xs" href="{{url('pm/disposisi/proses/'.$disposisi->id.'')}}"><i class="fa fa-refresh"></i>  Proses</a>
 												<a class="btn btn-primary btn-xs" href="{{url('pm/disposisi/monitor/'.$disposisi->id.'')}}"><i class="fa fa-eye"></i>  Monitor</a>
 												<a class="btn btn-success btn-xs" href="{{url('pm/disposisi/unduh/'.$disposisi->id.'')}}"><i class="fa fa-download"></i>  Unduh</a>
