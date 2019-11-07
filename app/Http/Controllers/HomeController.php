@@ -10,6 +10,7 @@ use App\Cuti;
 use App\Spj;
 use App\Pecat;
 use App\Resign;
+use App\Rkp;
 use App\Izin;
 use App\DisposisiTugas;
 use App\SlipGaji;
@@ -42,7 +43,8 @@ class HomeController extends Controller
             $spj = Spj::where('is_verif_sdm',0)->where('soft_delete',0)->count();
             $pecat = Pecat::where('is_verif_sdm',0)->where('soft_delete',0)->count();
             $resign = Resign::where('is_verif_sdm',0)->where('soft_delete',0)->count();
-            return view('admin.home_admin',['pegawai'=>$pegawai,'memo'=>$memo,'cuti'=>$cuti,'spj'=>$spj,'pecat'=>$pecat,'resign'=>$resign]);
+            $rkp = Rkp::where('soft_delete',0)->count();
+            return view('admin.home_admin',['pegawai'=>$pegawai,'memo'=>$memo,'cuti'=>$cuti,'spj'=>$spj,'pecat'=>$pecat,'resign'=>$resign,'rkp'=>$rkp]);
         }
         
         //User

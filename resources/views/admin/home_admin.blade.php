@@ -51,7 +51,7 @@
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
 					<a href="{{url('admin/rkp')}}">
 						<span class="count_top"><i class="fa fa-sign-out"></i> Rencana Kebutuhan Pegawai</span>
-						<div class="count green">6</div>
+						<div class="count green">{{$rkp}}</div>
 					</a>
 				</div>
 			</div>

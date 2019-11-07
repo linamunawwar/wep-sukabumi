@@ -148,6 +148,7 @@ class DisposisiController extends Controller
         $surat->no_surat = $data['no_surat'];
         $surat->pengirim = $data['pengirim'];
         $surat->kepada = $data['kepada'];
+        $surat->kategori = $data['kategori'];
         $surat->tanggal_surat = konversi_tanggal($data['tanggal_surat']);
         $surat->perihal = $data['perihal'];
         $surat->file_surat = $nama_file;
@@ -160,6 +161,7 @@ class DisposisiController extends Controller
     	$disposisi->no_agenda = $data['no_agenda'];
     	$disposisi->pengirim = $data['pengirim'];
     	$disposisi->kepada = $data['kepada'];
+        $disposisi->kategori = $data['kategori'];
     	$disposisi->tanggal_terima = konversi_tanggal($data['tanggal_terima']);
     	$disposisi->tanggal_surat = konversi_tanggal($data['tanggal_surat']);
     	$disposisi->no_surat = $data['no_surat'];
@@ -188,6 +190,7 @@ class DisposisiController extends Controller
     	$disposisi['no_agenda'] = $data['no_agenda'];
     	$disposisi['pengirim'] = $data['pengirim'];
     	$disposisi['kepada'] = $data['kepada'];
+        $disposisi['kategori'] = $data['kategori'];
     	$disposisi['tanggal_terima'] = konversi_tanggal($data['tanggal_terima']);
     	$disposisi['tanggal_surat'] = konversi_tanggal($data['tanggal_surat']);
     	$disposisi['no_surat'] = $data['no_surat'];
@@ -218,6 +221,7 @@ class DisposisiController extends Controller
         $surat['no_surat'] = $data['no_surat'];
         $surat['pengirim'] = $data['pengirim'];
         $surat['kepada'] = $data['kepada'];
+        $surat['kategori'] = $data['kategori'];
         $surat['tanggal_surat'] = konversi_tanggal($data['tanggal_surat']);
         $surat['perihal'] = $data['perihal'];
         

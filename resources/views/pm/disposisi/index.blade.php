@@ -23,6 +23,7 @@
 									<th>Nomor Surat</th>
 									<th>Pengirim</th>
 									<th>Kepada</th>
+									<th>Kategori</th>
 									<th>Tanggal Terima</th>
 									<th>Sifat</th>
 									<th>Perihal</th>
@@ -35,6 +36,7 @@
 										<td>{{$disposisi->no_surat}}</td>
 										<td>{{$disposisi->pengirim}}</td>
 										<td>{{$disposisi->kepada}}</td>
+										<td>{{$disposisi->kategori}}</td>
 										<td>{{konversi_tanggal($disposisi->tanggal_terima)}}</td>
 										<td>{{$disposisi->sifat}}</td>
 										<td>{{$disposisi->perihal}}</td>

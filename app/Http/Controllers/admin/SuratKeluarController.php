@@ -47,7 +47,8 @@ class SuratKeluarController extends Controller
     	$surat = new SuratKeluar;
     	$surat->no_surat = $data['no_surat'];
     	$surat->pengirim = $data['pengirim'];
-    	$surat->kepada = $data['kepada'];
+        $surat->kepada = $data['kepada'];
+    	$surat->kategori = $data['kategori'];
     	$surat->tanggal_surat = konversi_tanggal($data['tanggal_surat']);
     	$surat->perihal = $data['perihal'];
     	$surat->file_surat = $nama_file;
@@ -90,6 +91,7 @@ class SuratKeluarController extends Controller
     	$surat['no_surat'] = $data['no_surat'];
     	$surat['pengirim'] = $data['pengirim'];
     	$surat['kepada'] = $data['kepada'];
+        $surat['kepada'] = $data['kepada'];
     	$surat['tanggal_surat'] = konversi_tanggal($data['tanggal_surat']);
     	$surat['perihal'] = $data['perihal'];
     	$surat['file_surat'] = $nama_file;

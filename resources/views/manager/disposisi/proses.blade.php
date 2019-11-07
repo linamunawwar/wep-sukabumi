@@ -53,6 +53,22 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Kategori:</label>
+										<div class="col-md-6 col-sm-6 col-xs-12">
+											<select name="kategori" class="form-control col-md-7 col-xs-12" required="required">
+												<option value="">-- Pilih Kategori --</option>
+												<?php $selected = ($disposisi->kategori == 'divisi')? 'selected': '';?>
+												<option value="divisi" {{$selected}}>Divisi (Waskita)</option>
+												<?php $selected = ($disposisi->kategori == 'owner')? 'selected': '';?>
+												<option value="owner" {{$selected}}>Owner (PT. KKDM)</option>
+												<?php $selected = ($disposisi->kategori == 'eksternal')? 'selected': '';?>
+												<option value="eksternal" {{$selected}}>Eksternal (Lainnya)</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12">Perihal:</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<p class="data">{{$disposisi->perihal}}</p>
@@ -95,7 +111,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-2 col-sm-2 col-xs-12">Surat Perintah *:</label>
+								<label class="control-label col-md-2 col-sm-2 col-xs-12">Surat *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<br>
 									@if($disposisi->surat)

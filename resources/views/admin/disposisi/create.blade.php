@@ -62,6 +62,17 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Kategori:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<select name="kategori" class="form-control col-md-7 col-xs-12" required="required">
+										<option value="">-- Pilih Kategori --</option>
+										<option value="divisi">Divisi (Waskita)</option>
+										<option value="owner">Owner (PT. KKDM)</option>
+										<option value="eksternal">Eksternal (Lainnya)</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Perihal:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<textarea name="perihal" class="form-control col-md-7 col-xs-12"></textarea>
@@ -70,7 +81,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Upload Surat:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="file" name="file_surat" class="form-control col-md-7 col-xs-12">
+									<input type="file" name="file_surat" class="form-control col-md-7 col-xs-12" required="required">
 								</div>
 							</div>
 							<div class="form-group">
