@@ -109,7 +109,7 @@ function getPM()
 
 function getManager($kode)
 {
-    if($kode == 4){
+    if($kode == 'SA'){
         $manager = Pegawai::where('kode_bagian',$kode)->whereHas('user',function ($q){
                 $q->where('role_id', 4);
             })->first();
