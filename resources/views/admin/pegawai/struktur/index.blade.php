@@ -225,8 +225,8 @@
         })
       }
       var anggota = data.content;
-      anggota = anggota.split(',');
       console.log(anggota);
+      anggota = anggota.split(',');
        $.each(anggota, function (index, child) {
           if(child == ''){
             anggota.splice(index,1);

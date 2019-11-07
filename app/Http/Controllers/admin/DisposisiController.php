@@ -381,7 +381,7 @@ class DisposisiController extends Controller
                 $scarm['done_at'] = $tugas->done_at;
             }
 
-            if($tugas->posisi_id == 7){
+            if($tugas->posisi_id == 6){
                 $sam['status'] = $tugas->status;
                 $sam['done_at'] = $tugas->done_at;
             }
