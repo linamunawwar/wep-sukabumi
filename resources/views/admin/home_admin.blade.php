@@ -54,6 +54,13 @@
 						<div class="count green">{{$rkp}}</div>
 					</a>
 				</div>
+				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
+					<a href="{{url('admin/disposisi')}}">
+						<span class="count_top"><i class="fa fa-sign-out"></i>Disposisi</span>
+						<div class="count green">{{$disposisi}}</div>
+						<span class="count_bottom"><i class="green">Sudah diproses PM</i></span>
+					</a>
+				</div>
 			</div>
 
 	    	<br>

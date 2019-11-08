@@ -12,6 +12,7 @@ use App\Pecat;
 use App\Resign;
 use App\Rkp;
 use App\Izin;
+use App\Disposisi;
 use App\DisposisiTugas;
 use App\SlipGaji;
 use Illuminate\Http\Request;
@@ -44,7 +45,8 @@ class HomeController extends Controller
             $pecat = Pecat::where('is_verif_sdm',0)->where('soft_delete',0)->count();
             $resign = Resign::where('is_verif_sdm',0)->where('soft_delete',0)->count();
             $rkp = Rkp::where('soft_delete',0)->count();
-            return view('admin.home_admin',['pegawai'=>$pegawai,'memo'=>$memo,'cuti'=>$cuti,'spj'=>$spj,'pecat'=>$pecat,'resign'=>$resign,'rkp'=>$rkp]);
+            $disposisi = Disposisi::where('note_pm','!=',null)->where('soft_delete',0)->count();
+            return view('admin.home_admin',['pegawai'=>$pegawai,'memo'=>$memo,'cuti'=>$cuti,'spj'=>$spj,'pecat'=>$pecat,'resign'=>$resign,'rkp'=>$rkp,'disposisi'=>$disposisi]);
         }
         
         //User
