@@ -23,6 +23,7 @@ class RkpController extends Controller
 
     public function postCreate()
     {
+        // dd(\Input::all());
     	$jml = \Input::get('jumlah_data');
 
     	$posisi = \Input::get('posisi');
@@ -47,24 +48,28 @@ class RkpController extends Controller
         if($rkp->save()){
         	$id_rkp = $rkp->id;
         	for($i=0;$i< $jml;$i++){
-	        	$data['id_rkp']= $id_rkp;
-	        	$data['jabatan']= $posisi[$i];
-	        	$data['tugas']= $tugas[$i];
-	        	$data['pendidikan']= $pendidikan[$i];
-	        	$data['tahun_kerja']= $tahun_kerja[$i];
-	        	$data['jenis_kerja']= $jenis_kerja[$i];
-	        	$data['TPA']= $tpa[$i];
-	        	$data['EPT']= $ept[$i];
-	        	$data['jumlah_kurang']= $jumlah[$i];
-	        	$data['waktu_penempatan']= $waktu[$i];
-	        	$data['soft_delete']= 0;
+                $data = new DetailRkp;
+
+	        	$data->id_rkp= $id_rkp;
+	        	$data->jabatan= $posisi[$i];
+	        	$data->tugas= $tugas[$i];
+	        	$data->pendidikan= $pendidikan[$i];
+	        	$data->tahun_kerja= $tahun_kerja[$i];
+	        	$data->jenis_kerja= $jenis_kerja[$i];
+	        	$data->TPA= $tpa[$i];
+	        	$data->EPT= $ept[$i];
+	        	$data->jumlah_kurang= $jumlah[$i];
+	        	$data->waktu_penempatan= $waktu[$i];
+	        	$data->soft_delete= 0;
 	        	
-	        	$save = DetailRkp::create($data);
-	        	
-	        	if($save){
-	        		return redirect('manager/rkp');
-	        	}
+	        	if($data->save()){
+                    $simpan = 1;
+                }else{
+                    $simpan = 0;
+                    die();
+                }
 	        }
+            return redirect('manager/rkp');
         }
 
         

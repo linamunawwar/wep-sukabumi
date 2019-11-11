@@ -212,7 +212,6 @@
                             </ul>
                         </li>
                     @endif
-                    <!--
                     @if(Auth::user()->role_id == 5)
                         <li>
                             <a href="{{url('pm/rkp')}}">
@@ -220,7 +219,7 @@
                                 Rencana Kebutuhan Pegawai
                             </a>
                         </li>
-                    @endif -->
+                    @endif
                     <!-- @if((Auth::user()->role_id == 1) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))
                     <li>
                         <a href="{{url('pelatihan')}}">

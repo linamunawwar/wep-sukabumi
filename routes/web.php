@@ -140,6 +140,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 		//rkp
 		Route::get('/rkp', 'admin\RkpController@index');
+		Route::get('/rkp/detail/{id}', 'admin\RkpController@getDetail');
 
 		//peralatan
 		Route::get('/peralatan/data', 'admin\PeralatanController@indexData');

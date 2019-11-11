@@ -46,7 +46,11 @@
 										<td style="text-align: center;">
 											<a class="btn btn-default btn-xs" href="{{url('admin/disposisi/edit/'.$disposisi->id.'')}}"><i class="fa fa-edit"></i>  Edit</a>
 											<a class="btn btn-danger btn-xs" href="{{url('admin/disposisi/delete/'.$disposisi->id.'')}}"><i class="fa fa-trash"></i>  Delete</a><br>
-											<a class="btn btn-primary btn-xs" href="{{url('admin/disposisi/monitoring/'.$disposisi->id.'')}}"><i class="fa fa-eye"></i>  Monitor</a>
+											@if($disposisi->status_akhir === false)
+												<a class="btn btn-primary btn-xs" href="{{url('admin/disposisi/monitoring/'.$disposisi->id.'')}}"><i class="fa fa-eye"></i>  Monitor</a>
+											@else
+												<a class="btn btn-dark btn-xs" href="{{url('admin/disposisi/monitoring/'.$disposisi->id.'')}}"><i class="fa fa-eye"></i>  Monitor</a>
+											@endif
 											<a class="btn btn-success btn-xs" href="{{url('admin/disposisi/unduh/'.$disposisi->id.'')}}"><i class="fa fa-download"></i>  Unduh</a>
 											<?php $disposisi->no_surat = str_replace('/', '_', $disposisi->no_surat); ?>
 											<a class="btn btn-success btn-xs" href="{{url('admin/surat_masuk/unduh/'.$disposisi->no_surat.'')}}"><i class="fa fa-download"></i>  Surat</a>

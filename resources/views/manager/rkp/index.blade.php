@@ -36,9 +36,14 @@
 										<?php
 											$tanggal = explode(' ', $rkp->created_at);
 										?>
-										<td>2{{konversi_tanggal($tanggal[0])}}</td>
-										<td style="text-align: center;"><span class="label label-default">Not Approved </span></td>
-										<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
+										<td>{{konversi_tanggal($tanggal[0])}}</td>
+										@if($rkp->is_verif_pm == 0)
+											<td><span class="label label-default">Not Approved</span></td>
+											<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
+										@elseif($rkp->is_verif_pm == 1)
+											<td><span class="label label-primary">Approved by Admin</span></td>
+											<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
+										@endif
 									</tr>
 								@endforeach
 							</tbody>

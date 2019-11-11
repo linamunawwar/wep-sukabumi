@@ -164,15 +164,15 @@
 	        
 	        var table = "<tr  class='data_"+jumlah_data+"'>";
 	        	table += "<td>"+jumlah_data+"</td>";
-	        	table += "<td>"+posisi+"<input type='hidden' name='posisi[]' value="+posisi+" id='posisi_"+jumlah_data+"'></td>";
-	        	table += "<td>"+tugas+"<input type='hidden' name='tugas[]' value="+tugas+" id='tugas_"+jumlah_data+"'></td>";
-	        	table += "<td>"+pendidikan+"<input type='hidden' name='pendidikan[]' value="+pendidikan+" id='pendidikan_"+jumlah_data+"'></td>";
-	        	table += "<td>"+tahun+"<input type='hidden' name='tahun_kerja[]' value="+tahun+" id='tahun_kerja_"+jumlah_data+"'></td>";
-	        	table += "<td>"+jenis_kerja+"<input type='hidden' name='jenis_kerja[]' value="+jenis_kerja+" id='jenis_kerja_"+jumlah_data+"'></td>";
-	        	table += "<td>"+tpa+"<input type='hidden' name='tpa[]' value="+tpa+" id='tpa_"+jumlah_data+"'></td>";
-	        	table += "<td>"+ept+"<input type='hidden' name='ept[]' value="+ept+" id='ept_"+jumlah_data+"'></td>";
-	        	table += "<td>"+jumlah+"<input type='hidden' name='jumlah[]' value="+jumlah+" id='jumlah_"+jumlah_data+"'></td>";
-	        	table += "<td>"+waktu+"<input type='hidden' name='waktu[]' value="+waktu+" id='waktu_"+jumlah_data+"'></td>";
+	        	table += "<td>"+posisi+"<input type='hidden' name='posisi[]' value='"+posisi+"' id='posisi_"+jumlah_data+"'></td>";
+	        	table += "<td>"+tugas+"<input type='hidden' name='tugas[]' value='"+tugas+"' id='tugas_"+jumlah_data+"'></td>";
+	        	table += "<td>"+pendidikan+"<input type='hidden' name='pendidikan[]' value='"+pendidikan+"' id='pendidikan_"+jumlah_data+"'></td>";
+	        	table += "<td>"+tahun+"<input type='hidden' name='tahun_kerja[]' value='"+tahun+"'' id='tahun_kerja_"+jumlah_data+"'></td>";
+	        	table += "<td>"+jenis_kerja+"<input type='hidden' name='jenis_kerja[]' value='"+jenis_kerja+"' id='jenis_kerja_"+jumlah_data+"'></td>";
+	        	table += "<td>"+tpa+"<input type='hidden' name='tpa[]' value='"+tpa+"' id='tpa_"+jumlah_data+"'></td>";
+	        	table += "<td>"+ept+"<input type='hidden' name='ept[]' value='"+ept+"' id='ept_"+jumlah_data+"'></td>";
+	        	table += "<td>"+jumlah+"<input type='hidden' name='jumlah[]' value='"+jumlah+"' id='jumlah_"+jumlah_data+"'></td>";
+	        	table += "<td>"+waktu+"<input type='hidden' name='waktu[]' value='"+waktu+"' id='waktu_"+jumlah_data+"'></td>";
 	        	table+="<td>";
                 table+="<a class='btn btn-sm btn-block btn-danger del' idsub='"+jumlah_data+"' style='width:40px;'><span class='fa fa-trash'></span></a>";
                 table+="</td>";
