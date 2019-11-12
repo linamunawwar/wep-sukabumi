@@ -159,15 +159,50 @@ class DisposisiController extends Controller
     public function getEdit($id)
     {
         $disposisi = Disposisi::find($id);
+        $tugas['SOM'] = DisposisiTugas::where('disposisi_id',$id)->where('posisi_id',8)->where('soft_delete',0)->first();
+        if(!$tugas['SOM']){
+            $tugas['SOM']= new \stdClass();
+            $tugas['SOM']->tugas ='';
+        }
+        $tugas['SPLEM'] = DisposisiTugas::where('disposisi_id',$id)->where('posisi_id',7)->where('soft_delete',0)->first();
+        if(!$tugas['SPLEM']){
+            $tugas['SPLEM']= new \stdClass();
+            $tugas['SPLEM']->tugas ='';
+        }
+        $tugas['QHSEM'] = DisposisiTugas::where('disposisi_id',$id)->where('posisi_id',42)->where('soft_delete',0)->first();
+        if(!$tugas['QHSEM']){
+            $tugas['QHSEM']= new \stdClass();
+            $tugas['QHSEM']->tugas ='';
+        }
+        $tugas['SEM'] = DisposisiTugas::where('disposisi_id',$id)->where('posisi_id',4)->where('soft_delete',0)->first();
+        if(!$tugas['SEM']){
+            $tugas['SEM']= new \stdClass();
+            $tugas['SEM']->tugas ='';
+        }
+        $tugas['SCARM'] = DisposisiTugas::where('disposisi_id',$id)->where('posisi_id',5)->where('soft_delete',0)->first();
+        if(!$tugas['SCARM']){
+            $tugas['SCARM']= new \stdClass();
+            $tugas['SCARM']->tugas ='';
+        }
+        $tugas['SAM'] = DisposisiTugas::where('disposisi_id',$id)->where('posisi_id',6)->where('soft_delete',0)->first();
+        if(!$tugas['SAM']){
+            $tugas['SAM']= new \stdClass();
+            $tugas['SAM']->tugas ='';
+        }
+        $tugas['Public'] = DisposisiTugas::where('disposisi_id',$id)->where('posisi_id',24)->where('soft_delete',0)->first();
+        if(!$tugas['Public']){
+            $tugas['Public']= new \stdClass();
+            $tugas['Public']->tugas ='';
+        }
 
-        return view('pm.disposisi.edit',['disposisi'=>$disposisi]);
+        return view('pm.disposisi.edit',['disposisi'=>$disposisi,'tugas'=>$tugas]);
     }
 
      public function postEdit($id)
     {
         
         $disposisi = Disposisi::find($id);
-
+        $del_tugas = DisposisiTugas::where('disposisi_id',$id)->update(['soft_delete'=>1]);
         $data = \Input::all();
 
         $update['note_pm'] = $data['note_pm'];
@@ -176,6 +211,7 @@ class DisposisiController extends Controller
             $tugas = new DisposisiTugas;
             $tugas->disposisi_id = $id;
             $tugas->posisi_id = 1;
+            $tugas->tugas = $data['PM'];
             $tugas->save();
 
             $update['PM'] = $data['PM'];
@@ -185,7 +221,7 @@ class DisposisiController extends Controller
             $tugas = new DisposisiTugas;
             $tugas->disposisi_id = $id;
             $tugas->posisi_id = 8;
-
+            $tugas->tugas = $data['SOM'];
             $tugas->save();
 
             $update['SOM'] = $data['SOM'];
@@ -195,7 +231,7 @@ class DisposisiController extends Controller
             $tugas = new DisposisiTugas;
             $tugas->disposisi_id = $id;
             $tugas->posisi_id = 7;
-
+            $tugas->tugas = $data['SPLEM'];
             $tugas->save();
 
             $update['SPLEM'] = $data['SPLEM'];
@@ -205,7 +241,7 @@ class DisposisiController extends Controller
             $tugas = new DisposisiTugas;
             $tugas->disposisi_id = $id;
             $tugas->posisi_id = 42;
-
+            $tugas->tugas = $data['QC'];
             $tugas->save();
 
             $update['QC'] = $data['QC'];
@@ -215,7 +251,7 @@ class DisposisiController extends Controller
             $tugas = new DisposisiTugas;
             $tugas->disposisi_id = $id;
             $tugas->posisi_id = 4;
-
+            $tugas->tugas = $data['SEM'];
             $tugas->save();
 
             $update['SEM'] = $data['SEM'];
@@ -225,7 +261,7 @@ class DisposisiController extends Controller
             $tugas = new DisposisiTugas;
             $tugas->disposisi_id = $id;
             $tugas->posisi_id = 5;
-
+            $tugas->tugas = $data['SCARM'];
             $tugas->save();
 
             $update['SCARM'] = $data['SCARM'];
@@ -235,7 +271,7 @@ class DisposisiController extends Controller
             $tugas = new DisposisiTugas;
             $tugas->disposisi_id = $id;
             $tugas->posisi_id = 6;
-
+            $tugas->tugas = $data['SAM'];
             $tugas->save();
 
             $update['SAM'] = $data['SAM'];
@@ -255,7 +291,7 @@ class DisposisiController extends Controller
             $tugas = new DisposisiTugas;
             $tugas->disposisi_id = $id;
             $tugas->posisi_id = 9;
-
+            $tugas->tugas = $data['Public'];
             $tugas->save();
 
             $update['public_relation'] = $data['Public'];
