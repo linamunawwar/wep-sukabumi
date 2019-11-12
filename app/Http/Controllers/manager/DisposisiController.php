@@ -30,7 +30,7 @@ class DisposisiController extends Controller
 	            $q->where('posisi_id', \Auth::user()->pegawai->posisi_id);
 	        })->get();
     	foreach ($disposisis as $key => $disposisi) {
-    		$tugas = $disposisi->disposisiTugas()->where('posisi_id',\Auth::user()->pegawai->posisi_id)->first();
+    		$tugas = $disposisi->disposisiTugas()->where('posisi_id',\Auth::user()->pegawai->posisi_id)->where('disposisi_id',$disposisi->id)->first();
     		$disposisi->tugas = $tugas->tugas;
     		$disposisi->status = $tugas->status;
 

@@ -44,7 +44,7 @@
 										<td>{{$disposisi->perihal}}</td>
 										<td>{{$disposisi->tugas}}</td>
 										<td style="text-align: center;">
-											@if($disposisi->status_akhir != 1)
+											@if($disposisi->status != 1)
 												<a class="btn btn-warning btn-xs" href="{{url('manager/disposisi/proses/'.$disposisi->id.'')}}"><i class="fa fa-refresh"></i>  Proses</a>
 												<a class="btn btn-primary btn-xs" href="{{url('manager/disposisi/monitor/'.$disposisi->id.'')}}"><i class="fa fa-eye"></i>  Monitor</a>
 												<a class="btn btn-success btn-xs" href="{{url('manager/disposisi/unduh/'.$disposisi->id.'')}}"><i class="fa fa-download"></i>  Unduh</a>
