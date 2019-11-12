@@ -46,7 +46,7 @@
 										<td style="text-align: center;">
 											<a class="btn btn-default btn-xs" href="{{url('admin/disposisi/edit/'.$disposisi->id.'')}}"><i class="fa fa-edit"></i>  Edit</a>
 											<a class="btn btn-danger btn-xs" href="{{url('admin/disposisi/delete/'.$disposisi->id.'')}}"><i class="fa fa-trash"></i>  Delete</a><br>
-											@if($disposisi->status_akhir === false)
+											@if($disposisi->status === false)
 												<a class="btn btn-primary btn-xs" href="{{url('admin/disposisi/monitoring/'.$disposisi->id.'')}}"><i class="fa fa-eye"></i>  Monitor</a>
 											@else
 												<a class="btn btn-dark btn-xs" href="{{url('admin/disposisi/monitoring/'.$disposisi->id.'')}}"><i class="fa fa-eye"></i>  Monitor</a>
