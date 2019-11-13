@@ -286,6 +286,10 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/disposisi/monitoring/{id}', 'manager\DisposisiController@monitoring');
 		Route::get('/disposisi/unduh/{id}', 'admin\DisposisiController@getUnduhDisposisi');
 
+		//surat keluar
+		Route::get('/surat_keluar', 'manager\SuratKeluarController@index');
+		Route::get('/surat_keluar/unduh/{id}', 'manager\SuratKeluarController@getUnduh');
+
 		//rkp
 		Route::get('/rkp', 'manager\RkpController@index');
 		Route::get('/rkp/create', 'manager\RkpController@getCreate');
@@ -354,8 +358,13 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/disposisi/monitor/{id}', 'pm\DisposisiController@monitoring');
 		Route::get('/disposisi/unduh/{id}', 'admin\DisposisiController@getUnduhDisposisi');
 
+		//surat keluar
+		Route::get('/surat_keluar', 'manager\SuratKeluarController@index');
+		Route::get('/surat_keluar/unduh/{id}', 'manager\SuratKeluarController@getUnduh');
+
 		//rkp
 		Route::get('/rkp', 'pm\RkpController@index');
+		Route::get('/rkp/approve/{id}', 'pm\RkpController@getApprove');
 
 	});
 

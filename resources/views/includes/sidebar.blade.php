@@ -188,6 +188,22 @@
                         </a>
                     </li>
                     @endif
+                    @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
+                     <li>
+                        <a href="{{url('manager/surat_keluar')}}">
+                            <i class="fa fa-envelope-o"></i>
+                            Surat Keluar
+                        </a>
+                    </li>
+                    @endif
+                    @if(Auth::user()->role_id == 5)
+                     <li>
+                        <a href="{{url('pm/surat_keluar')}}">
+                            <i class="fa fa-envelope-o"></i>
+                            Surat Keluar
+                        </a>
+                    </li>
+                    @endif
                     @if(Auth::user()->role_id == 1)
                         <li>
                             <a href="{{url('admin/rkp')}}">

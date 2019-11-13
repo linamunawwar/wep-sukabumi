@@ -15,9 +15,10 @@ class RkpController extends Controller
         return view('pm.rkp.index',['rkps'=>$rkps]);
     }
 
-    public function getApprove()
+    public function getApprove($id)
     {
-        $rkps = Rkp::where('soft_delete',0)->get();
-        return view('pm.rkp.index',['rkps'=>$rkps]);
+        $rkp = Rkp::where('soft_delete',0)->where('id',$id)->first();
+        $dt_rkps = DetailRkp::where('soft_delete',0)->where('id_rkp',$id)->get();
+        return view('pm.rkp.index',['rkp'=>$rkp,'dt_rkps'=>$dt_rkps]);
     }
 }

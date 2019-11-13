@@ -49,10 +49,17 @@
 										<td>{{konversi_tanggal($pegawai->tanggal_lahir)}}</td>
 										<td>{{$pegawai->status_pegawai}}</td>
 										<td>{{konversi_tanggal($pegawai->tanggal_masuk)}}</td>
-										<td>{{$pegawai->gaji->gaji_pokok}}</td>
-										<td></td>
-										<td>{{$pegawai->gaji->tunj_komunikasi}}</td>
-										<td>{{$pegawai->gaji->uang_makan}}</td>
+										@if($pegawai->gaji)
+											<td>{{$pegawai->gaji->gaji_pokok}}</td>
+											<td></td>
+											<td>{{$pegawai->gaji->tunj_komunikasi}}</td>
+											<td>{{$pegawai->gaji->uang_makan}}</td>
+										@else
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										@endif
 										<td>-</td>
 									</tr>
 								@endforeach
