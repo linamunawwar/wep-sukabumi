@@ -294,6 +294,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/rkp', 'manager\RkpController@index');
 		Route::get('/rkp/create', 'manager\RkpController@getCreate');
 		Route::post('/rkp/create', 'manager\RkpController@postCreate');
+		Route::get('/rkp/form1/{id}', 'manager\RkpController@getForm1');
 
 		//peralatan
 		Route::get('/peralatan', 'manager\PeralatanController@index');
