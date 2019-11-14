@@ -56,7 +56,7 @@
     <td></td>
     <td></td>
     <td style="border: 1px solid #000000;" rowspan="3" align="center">No.</th>
-    <td style="border: 1px solid #000000; width: 27;" rowspan="3" align="center">Unit Kerja</th>
+    <td style="border: 1px solid #000000; width: 27;" rowspan="3" colspan="2" align="center">Unit Kerja</th>
     <td style="border: 1px solid #000000; width: 27;" rowspan="3" align="center">Kebutuhan</th>
     <td style="border: 1px solid #000000; width: 12;" rowspan="3" align="center">Tersedia</th>
     <td style="border: 1px solid #000000; width: 12;" rowspan="3" align="center">Kurang / Lebih</th>
@@ -105,6 +105,8 @@
       <td style="border: 1px solid #000000;"></td>
     </tr>
   @endforeach
+  <tr></tr>
+  <tr></tr>
   <tr>
     <td></td>
     <td></td>

@@ -14,6 +14,9 @@
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>Rencana Kebutuhan Pegawai </h2>
+						<ul class="nav navbar-right panel_toolbox">
+							<li><a href="{{url('manager/rkp/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
+						</ul>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
@@ -27,60 +30,27 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>Site Operational</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>Site Commercial</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>Health & Safety</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>Site Engineering</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>Site Engineering</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-default">Not Approved </span></td>
-									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>Health & Safety</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>Site Logistic</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-default">Not Approved</span></td>
-									<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>Site Operational</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
-								<tr>
-									<td>Quality Control</td>
-									<td>2011/04/25</td>
-									<td style="text-align: center;"><span class="label label-success">Approved By PM</span></td>
-									<td style="text-align: left;"><button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button > <button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
-								</tr>
+								@foreach($rkps as $rkp)
+									<tr>
+										<td>{{$rkp->kodeBagian->description}}</td>
+										<?php
+											$tanggal = explode(' ', $rkp->created_at);
+										?>
+										<td>{{konversi_tanggal($tanggal[0])}}</td>
+										@if($rkp->is_verif_pm == 0)
+											<td><span class="label label-default">Not Approved</span></td>
+											<td style="text-align: left;">
+												<a href="{{url('pm/rkp/approve/'.$rkp->id.'')}}" class="btn btn-primary btn-xs"><i class="fa fa-check"></i>  Approve</a>
+												<button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button>
+											</td>
+										@elseif($rkp->is_verif_pm == 1)
+											<td><span class="label label-primary">Approved by PM</span></td>
+											<td style="text-align: left;">
+												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Approve</a>
+												<a href="{{url('pm/rkp/form1/'.$rkp->id.'')}}" class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Form 1</a></td>
+										@endif
+									</tr>
+								@endforeach
 							</tbody>
 						</table>
 					</div>

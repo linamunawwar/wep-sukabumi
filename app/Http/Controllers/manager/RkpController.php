@@ -138,7 +138,10 @@ class RkpController extends Controller
                         $sheet->cell('B13:E13', function($cell){
                             $cell->setBorder('','thin','','');
                         });
-                        $sheet->cell('D4:D5', function($cell){
+                        $sheet->cell('D4', function($cell){
+                            $cell->setBorder('thin','thin','thin','thin');
+                        });
+                        $sheet->cell('D5', function($cell){
                             $cell->setBorder('thin','thin','thin','thin');
                         });
                         // $sheet->cell('B14:E14', function($cell){

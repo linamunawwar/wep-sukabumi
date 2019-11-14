@@ -366,6 +366,8 @@ Route::group(['middleware' => 'auth'], function () {
 		//rkp
 		Route::get('/rkp', 'pm\RkpController@index');
 		Route::get('/rkp/approve/{id}', 'pm\RkpController@getApprove');
+		Route::post('/rkp/approve/{id}', 'pm\RkpController@postApprove');
+		Route::get('/rkp/form1/{id}', 'manager\RkpController@getForm1');
 
 	});
 

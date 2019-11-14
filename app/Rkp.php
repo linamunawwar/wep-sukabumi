@@ -13,4 +13,9 @@ class Rkp extends Model
     {
         return $this->belongsTo('App\KodeBagian','kode_bagian','kode');
     }
+
+    public function detailRkp()
+    {
+        return $this->belongsTo('App\DetailRkp','id','id_rkp');
+    }
 }

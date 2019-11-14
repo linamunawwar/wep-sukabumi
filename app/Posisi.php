@@ -14,4 +14,9 @@ class Posisi extends Model
     {
         return $this->hasMany('App\Pegawai','id','posisi_id');
     }
+
+    public function posisiRkp()
+    {
+        return $this->hasMany('App\DetailRkp','id','unit_kerja');
+    }
 }
