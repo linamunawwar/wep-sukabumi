@@ -141,6 +141,8 @@ Route::group(['middleware' => 'auth'], function () {
 		//rkp
 		Route::get('/rkp', 'admin\RkpController@index');
 		Route::get('/rkp/detail/{id}', 'admin\RkpController@getDetail');
+		Route::get('/rkp/form1/{id}', 'manager\RkpController@getForm1');
+		Route::get('/rkp/form2/{id}', 'manager\RkpController@getForm2');
 
 		//peralatan
 		Route::get('/peralatan/data', 'admin\PeralatanController@indexData');
@@ -295,6 +297,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/rkp/create', 'manager\RkpController@getCreate');
 		Route::post('/rkp/create', 'manager\RkpController@postCreate');
 		Route::get('/rkp/form1/{id}', 'manager\RkpController@getForm1');
+		Route::get('/rkp/form2/{id}', 'manager\RkpController@getForm2');
 
 		//peralatan
 		Route::get('/peralatan', 'manager\PeralatanController@index');

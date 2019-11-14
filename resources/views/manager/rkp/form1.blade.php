@@ -9,9 +9,7 @@
     <td></td>
     <th></th>
     <th colspan="7"><b style="font-weight: 3;">PT. WASKITA KARYA (Persero) Tbk</b></th>
-    <th></th>
-    <th></th>
-    <th style="border: 1px solid #000000 width:25;" colspan="3">Form. WK-SDM-03-01</th>
+    <th style="border: 1px solid #000000 width:30;" colspan="3">Form. WK-SDM-03-01</th>
   </tr>
   <tr>
     <td></td>
@@ -24,9 +22,7 @@
     <th></th>
     <th></th>
     <th></th>
-    <th></th>
-    <th></th>
-    <th style="border: 1px solid #000000 width:25;" colspan="3"><b>Edisi : 3</b></th>
+    <th style="border: 1px solid #000000 width:30;" colspan="3"><b>Edisi : 3</b></th>
   <tr>
     <td></td>
     <td></td>
@@ -56,29 +52,29 @@
     <td></td>
     <td></td>
     <td style="border: 1px solid #000000;" rowspan="3" align="center">No.</th>
-    <td style="border: 1px solid #000000; width: 27;" rowspan="3" colspan="2" align="center">Unit Kerja</th>
+    <td  colspan="2" align="center"></th>
     <td style="border: 1px solid #000000; width: 27;" rowspan="3" align="center">Kebutuhan</th>
     <td style="border: 1px solid #000000; width: 12;" rowspan="3" align="center">Tersedia</th>
     <td style="border: 1px solid #000000; width: 12;" rowspan="3" align="center">Kurang / Lebih</th>
-    <td style="border: 1px solid #000000; width: 15;"  align="center" colspan="4">Pemenuhan</th>
+    <td style="border: 1px solid #000000; width: 15; text-align: center;" colspan="4" align="center" >Pemenuhan</th>
     <td style="border: 1px solid #000000; width: 12;" rowspan="3" align="center">Keterangan</th>
   </tr>
   <tr class="thead-light" style="text-align: center;">
     <td></td>
     <td></td>
     <th></th>
+    <th colspan="2">Unit Kerja</th>
     <th></th>
     <th></th>
     <th></th>
-    <th></th>
-    <td style="border: 1px solid #000000;" colspan="4" >Promosi/Mutasi</td>
+    <td style="border: 1px solid #000000;" colspan="4"  align="center">Promosi/Mutasi</td>
     <td ></td>
   </tr>
   <tr class="thead-light" style="text-align: center;">
     <td></td>
     <td></td>
-    <td ></td>
-    <td ></td>
+    <td></td>
+    <td colspan="2"></td>
     <td ></td>
     <td ></td>
     <td ></td>
@@ -93,18 +89,38 @@
     <tr>
       <td></td>
       <td></td>
-      <td style="border: 1px solid #000000;">{{$i++}}</td>
-      <td style="border: 1px solid #000000;" >{{$data->unit_kerja}}</td>
-      <td style="border: 1px solid #000000;">{{$data->kebutuhan}}</td>
-      <td style="border: 1px solid #000000;">{{$data->tersedia}}</td>
-      <td style="border: 1px solid #000000;">{{$data->kurang_lebih}}</td>
-      <td style="border: 1px solid #000000;">{{$data->masuk}}</td>
-      <td style="border: 1px solid #000000;">{{$data->keluar}}</td>
-      <td style="border: 1px solid #000000;">{{$data->jumlah}}</td>
-      <td style="border: 1px solid #000000;">{{$data->rekrut}}</td>
-      <td style="border: 1px solid #000000;"></td>
+      <td style="border: 1px solid #000000;" align="center">{{$i++}}</td>
+      <td style="border: 1px solid #000000;"  align="center" colspan="2" >{{$data->posisi->posisi}}</td>
+      <td style="border: 1px solid #000000;"  align="center">{{$data->kebutuhan}}</td>
+      <td style="border: 1px solid #000000;"  align="center">{{$data->tersedia}}</td>
+      <td style="border: 1px solid #000000;"  align="center">{{$data->kurang_lebih}}</td>
+      <td style="border: 1px solid #000000;"  align="center">{{$data->masuk}}</td>
+      <td style="border: 1px solid #000000;"  align="center">{{$data->keluar}}</td>
+      <td style="border: 1px solid #000000;"  align="center">{{$data->jumlah}}</td>
+      <td style="border: 1px solid #000000;"  align="center">{{$data->rekrut}}</td>
+      <td style="border: 1px solid #000000;"  align="center"></td>
     </tr>
   @endforeach
+  @if(count($dt_rkp) < 12)
+    <?php
+      for($i=count($dt_rkp);$i<=12;$i++){
+        echo '<tr>
+              <td></td>
+              <td></td>
+              <td style="border: 1px solid #000000;" align="center"></td>
+              <td style="border: 1px solid #000000;"  align="center" colspan="2" ></td>
+              <td style="border: 1px solid #000000;"  align="center"></td>
+              <td style="border: 1px solid #000000;"  align="center"></td>
+              <td style="border: 1px solid #000000;"  align="center"></td>
+              <td style="border: 1px solid #000000;"  align="center"></td>
+              <td style="border: 1px solid #000000;"  align="center"></td>
+              <td style="border: 1px solid #000000;"  align="center"></td>
+              <td style="border: 1px solid #000000;"  align="center"></td>
+              <td style="border: 1px solid #000000;"  align="center"></td>
+            </tr>';
+      }
+    ?>
+  @endif
   <tr></tr>
   <tr></tr>
   <tr>
@@ -133,33 +149,47 @@
     <td></td>
     <td></td>
     <td></td>
-    <td>yang membuat,</td>
-  </tr>
-  <tr></tr>
-  <tr></tr>
-  <tr></tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td align="center">Sudiarso</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>Deo Panggabean</td>
+    <td align="center">Yang Mengusulkan,</td>
   </tr>
   <tr>
     <td></td>
     <td></td>
     <td></td>
     <td></td>
-    <td align="center">Site Administation Manager</td>
+    <td style="text-align: center;">
+      <img src="upload/pegawai/{{$pm->nip}}/{{$pm->ttd}}" width="150" align="center">
+    </td>
     <td></td>
     <td></td>
     <td></td>
-    <td align="center" colspan="3">Site Adminitration Staff</td>
+    <td></td>
+    <td style="text-align: center;">
+      <img src="upload/pegawai/{{$manager->nip}}/{{$manager->ttd}}" width="150" align="center">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td align="center">{{$pm->nama}}</td>
+    <td></td>
+    <td><</td>
+    <td></td>
+    <td></td>
+    <td align="center">{{$manager->nama}}</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td align="center">Project Manager</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td align="center" colspan="2">{{$manager->posisi->posisi}}</td>
   </tr>
 </table>
   

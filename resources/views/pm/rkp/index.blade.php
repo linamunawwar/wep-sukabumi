@@ -47,7 +47,8 @@
 											<td><span class="label label-primary">Approved by PM</span></td>
 											<td style="text-align: left;">
 												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Approve</a>
-												<a href="{{url('pm/rkp/form1/'.$rkp->id.'')}}" class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Form 1</a></td>
+												<a href="{{url('pm/rkp/form1/'.$rkp->id.'')}}" class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Form 1</a>
+												<a href="{{url('pm/rkp/form2/'.$rkp->id.'')}}" class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Form 2</a>
 										@endif
 									</tr>
 								@endforeach

@@ -41,8 +41,11 @@
 												<button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button>
 											</td>
 										@elseif($rkp->is_verif_pm == 1)
-											<td><span class="label label-primary">Approved by Admin</span></td>
-											<td style="text-align: left;"><button class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</button></td>
+											<td><span class="label label-primary">Approved by pm</span></td>
+											<td style="text-align: left;">
+                        <a href="{{url('admin/rkp/form1/'.$rkp->id.'')}}" class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Form 1</a>
+                        <a href="{{url('admin/rkp/form2/'.$rkp->id.'')}}" class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Form 2</a>           
+                      </td>
 										@endif
 										
 									</tr>
