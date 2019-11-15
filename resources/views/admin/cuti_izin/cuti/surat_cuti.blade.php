@@ -110,7 +110,7 @@ PEGAWAI KANTOR PUSAT</h3>
       <td></td>
       <td></td>
       <td colspan="2"></td>
-      <td style="text-align: center;"><img src='{{asset("public/img/$cuti->nip/$cuti->pegawai->ttd")}}' style="width: 150px; height: 40px;"> </td>
+      <td style="text-align: center;"><img src='{{asset("upload/pegawai/$cuti->nip/$cuti->pegawai->ttd")}}' style="width: 150px; height: 40px;"> </td>
     </tr>
     <tr>
       <td></td>
@@ -132,7 +132,7 @@ PEGAWAI KANTOR PUSAT</h3>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td style="text-align: center;"><img src='{{asset("public/img/$sdm->nip/$sdm->ttd")}}' style="width: 150px; height: 40px;"></td>
+      <td style="text-align: center;"><img src='{{asset("upload/pegawai/$sdm->nip/$sdm->ttd")}}' style="width: 150px; height: 40px;"></td>
     </tr>
     <tr>
       <td></td>
@@ -162,9 +162,9 @@ PEGAWAI KANTOR PUSAT</h3>
       <td></td>
       <td colspan="3"></td>
       @if($cuti->pegawai->kode_bagian == 'SA')
-        <td style="text-align: center;"><img src='{{asset("public/img/$sdm->nip/$sdm->ttd")}}' style="width: 150px; height: 40px;"></td>
+        <td style="text-align: center;"><img src='{{asset("upload/pegawai/$sdm->nip/$sdm->ttd")}}' style="width: 150px; height: 40px;"></td>
       @else
-        <td style="text-align: center;"><img src='{{asset("public/img/$manager->nip/$manager->ttd")}}' style="width: 150px; height: 40px;"></td>
+        <td style="text-align: center;"><img src='{{asset("upload/pegawai/$manager->nip/$manager->ttd")}}' style="width: 150px; height: 40px;"></td>
       @endif
     </tr>
     <tr>
@@ -194,7 +194,7 @@ PEGAWAI KANTOR PUSAT</h3>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td style="text-align: center;"><img src='{{asset("public/img/$cuti->pengganti/$cuti->pegawaiPengganti->ttd")}}' style="width: 150px; height: 40px;"></td>
+      <td style="text-align: center;"><img src='{{asset("upload/pegawai/$cuti->pengganti/$cuti->pegawaiPengganti->ttd")}}' style="width: 150px; height: 40px;"></td>
     </tr>
     <tr>
       <td></td>
@@ -224,7 +224,7 @@ PEGAWAI KANTOR PUSAT</h3>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td style="text-align: center;"><img src='{{asset("public/img/$pm->nip/$pm->ttd")}}' style="width: 150px; height: 40px;"></td>
+      <td style="text-align: center;"><img src='{{asset("upload/pegawai/$pm->nip/$pm->ttd")}}' style="width: 150px; height: 40px;"></td>
     </tr>
     <tr>
       <td></td>

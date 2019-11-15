@@ -82,7 +82,7 @@ PEGAWAI PROYEK BECAKAYU SEKSI 2A UJUNG</h3>
       <td></td>
       <td></td>
       <td colspan="2"></td>
-      <td style="text-align: center;"><img src='{{asset("public/img/$izin->nip/$izin->pegawai->ttd")}}' style="width: 150px; height: 40px;"> </td>
+      <td style="text-align: center;"><img src='{{asset("upload/pegawai/$izin->nip/$izin->pegawai->ttd")}}' style="width: 150px; height: 40px;"> </td>
     </tr>
     <tr>
       <td></td>
@@ -114,9 +114,9 @@ PEGAWAI PROYEK BECAKAYU SEKSI 2A UJUNG</h3>
       <td></td>
       <td colspan="3"></td>
       @if($izin->pegawai->kode_bagian == 'SA')
-        <td style="text-align: center;"><img src='{{asset("public/img/$sdm->nip/$sdm->ttd")}}' style="width: 150px; height: 40px;"></td>
+        <td style="text-align: center;"><img src='{{asset("upload/pegawai/$sdm->nip/$sdm->ttd")}}' style="width: 150px; height: 40px;"></td>
       @else
-        <td style="text-align: center;"><img src='{{asset("public/img/$manager->nip/$manager->ttd")}}' style="width: 150px; height: 40px;"></td>
+        <td style="text-align: center;"><img src='{{asset("upload/pegawai/$manager->nip/$manager->ttd")}}' style="width: 150px; height: 40px;"></td>
       @endif
     </tr>
     <tr>
@@ -156,7 +156,7 @@ PEGAWAI PROYEK BECAKAYU SEKSI 2A UJUNG</h3>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td style="text-align: center;"><img src='{{asset("public/img/$sdm->nip/$sdm->ttd")}}' style="width: 150px; height: 40px;"></td>
+      <td style="text-align: center;"><img src='{{asset("upload/pegawai/$sdm->nip/$sdm->ttd")}}' style="width: 150px; height: 40px;"></td>
     </tr>
     <tr>
       <td></td>
@@ -181,12 +181,12 @@ PEGAWAI PROYEK BECAKAYU SEKSI 2A UJUNG</h3>
     <tr>
       <td>D.</td>
       <td colspan="3">Disetujui:<br>BERKEBERATAN / TIDAK BERKEBERATAN *)</td>
-      <td style="text-align: center;"><b>Kepala Proyek</b></td>
+      <td style="text-align: center;"><b>Project Manager</b></td>
     </tr>
     <tr>
       <td></td>
       <td colspan="3"></td>
-      <td style="text-align: center;"><img src='{{asset("public/img/$pm->nip/$pm->ttd")}}' style="width: 150px; height: 40px;"></td>
+      <td style="text-align: center;"><img src='{{asset("upload/pegawai/$pm->nip/$pm->ttd")}}' style="width: 150px; height: 40px;"></td>
     </tr>
     <tr>
       <td></td>
