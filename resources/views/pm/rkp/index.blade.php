@@ -41,7 +41,6 @@
 											<td><span class="label label-default">Not Approved</span></td>
 											<td style="text-align: left;">
 												<a href="{{url('pm/rkp/approve/'.$rkp->id.'')}}" class="btn btn-primary btn-xs"><i class="fa fa-check"></i>  Approve</a>
-												<button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button>
 											</td>
 										@elseif($rkp->is_verif_pm == 1)
 											<td><span class="label label-primary">Approved by PM</span></td>

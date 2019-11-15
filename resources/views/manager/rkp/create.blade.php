@@ -278,7 +278,7 @@
 
 	        $('#table_rkp tbody.data').append(table);
 
-	        $('#unit_kerja option[value='']').attr('selected','selected');
+	        $('#unit_kerja option[value=""]').attr('selected','selected');
 			$('#kebutuhan').val('');
 			$('#tersedia').val('');
 			$('#kurang_lebih').val('');
