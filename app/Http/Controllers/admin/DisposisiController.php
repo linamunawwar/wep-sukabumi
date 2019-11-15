@@ -405,4 +405,12 @@ class DisposisiController extends Controller
         return $pdf->download('Disposisi_'.$disposisi->no_agenda.'.pdf');
         
     }
+
+    public function setPage($page){
+        session(['page'=>$page]);
+    }
+
+    public function setSessionProses(){
+        session(['proses'=>0]);
+    }
 }

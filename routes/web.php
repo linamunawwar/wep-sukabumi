@@ -287,6 +287,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/disposisi/proses/{id}', 'manager\DisposisiController@postProses');
 		Route::get('/disposisi/monitoring/{id}', 'manager\DisposisiController@monitoring');
 		Route::get('/disposisi/unduh/{id}', 'admin\DisposisiController@getUnduhDisposisi');
+		Route::get('/disposisi/setPage/{page}', 'admin\DisposisiController@setPage');
+		Route::get('/disposisi/setSessionProses', 'admin\DisposisiController@setSessionProses');
 
 		//surat keluar
 		Route::get('/surat_keluar', 'manager\SuratKeluarController@index');

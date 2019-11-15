@@ -72,7 +72,7 @@ class DisposisiController extends Controller
 	    	
     	
     	$updt = DisposisiTugas::where('disposisi_id',$id)->where('posisi_id',\Auth::user()->pegawai->posisi_id)->update($update);
-
+        session(['proses'=>1]);
         return redirect('manager/disposisi');
     }
 
