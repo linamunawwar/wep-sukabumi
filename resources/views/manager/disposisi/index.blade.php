@@ -71,4 +71,64 @@
 		</div>
     </div>
     <!-- /page content -->
-@endsection 	
+@endsection 
+@push('scripts')
+<script type="text/javascript">
+	$.fn.dataTable.Api.register('row().show()', function () {
+            var page_info = this.table().page.info();
+            // Get row index
+            var new_row_index = this.index();
+            // Row position
+            var row_position = this.table().rows()[0].indexOf(new_row_index);
+            // Already on right page ?
+            if (row_position >= page_info.start && row_position < page_info.end) {
+                // Return row object
+                return this;
+            }
+            // Find page number
+            var page_to_display = Math.floor(row_position / this.table().page.len());
+            // Go to that page
+            this.table().page(page_to_display);
+            // Return row object
+            return this;
+        });
+	$(document).ready(function () {
+            var urlParams = getUrlVars();
+ 
+            //mapping  creates a row id to be used in the datatable
+            $.map(sampleData.data, function (item) { item.DT_RowId = "row_"+item.id; return item});
+         
+            $('#datatable').DataTable({
+                "data": sampleData.data,
+                "columns": [
+                { "data": "name", "title": "Name" },
+                { "data": "position", "title": "Position" },
+                { "data": "office", "title": "Office" },
+                { "data": "extn", "title": "Phone" },
+                { "data": "start_date", "title": "Start Date" },
+                { "data": "salary", "title": "Salary" },
+                {
+                    "data": null, "title": "url", render: function (data) {
+                        return "<a href='datatablelink.html?rowid=" + data.id + "'>" + data.id + "</a>";
+                    }
+                }
+                ],
+                initComplete: function (settings) {
+                    if (urlParams.rowid) {
+                        var api = new $.fn.dataTable.Api(settings);
+                        var row = api.row("#row_" + urlParams.rowid).show().draw(false);
+                    }
+                }
+            });
+        });
+ 
+        //  turns url parameters into an object
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+</script>
+@endpush	
