@@ -40,7 +40,7 @@
 										<td>{{$disposisi->pengirim}}</td>
 										<td>{{$disposisi->kepada}}</td>
 										<td>{{$disposisi->Kategori}}</td>
-										<td>{{konversi_tanggal($disposisi->tanggal_terima)}}</td>
+										<td data-sort="{{strtotime($disposisi->tanggal_terima)}}">{{konversi_tanggal($disposisi->tanggal_terima)}}</td>
 										<td>{{$disposisi->sifat}}</td>
 										<td>{{$disposisi->perihal}}</td>
 										<td style="text-align: center;">
@@ -66,3 +66,17 @@
     </div>
     <!-- /page content -->
 @endsection 	
+@push('scripts')
+<script type="text/javascript">
+
+	$(document).ready(function () {
+        var table = $('#datatable').DataTable();
+ 
+		// Sort by column 1 and then re-draw
+		table
+		    .order( [ 4, 'desc' ] )
+		    .draw();
+		    });
+
+</script>
+@endpush

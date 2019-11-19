@@ -39,7 +39,7 @@
 										<td>{{$disposisi->pengirim}}</td>
 										<td>{{$disposisi->kepada}}</td>
 										<td>{{$disposisi->kategori}}</td>
-										<td>{{konversi_tanggal($disposisi->tanggal_terima)}}</td>
+										<td data-sort="{{strtotime($disposisi->tanggal_terima)}}">{{konversi_tanggal($disposisi->tanggal_terima)}}</td>
 										<td>{{$disposisi->sifat}}</td>
 										<td>{{$disposisi->perihal}}</td>
 										<td>{{$disposisi->tugas}}</td>
@@ -77,7 +77,12 @@
 
 	$(document).ready(function () {
         var table = $('#datatable').DataTable();
-		    // table.page(1).draw( 'page' );	
+		
+		// Sort by column 1 and then re-draw
+		table
+		    .order( [ 4, 'desc' ] )
+		    .draw();
+		    });
 		var info, currrent_page;
 		var url = '<?php echo url('/'); ?>';
 		var session = '<?php echo \Session::get("page"); ?>';

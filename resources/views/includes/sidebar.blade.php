@@ -12,7 +12,6 @@
                         <a href="{{url('/')}}">
                             <i class="fa fa-laptop"></i>
                             Dashboard
-                            <span class="label label-success pull-right">Flag</span>
                         </a>
                     </li>
                     @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5)) 
@@ -263,7 +262,6 @@
                         <a href="{{url('manager/peralatan')}}">
                             <i class="fa fa-gears"></i>
                             Inventaris Proyek
-                            <span class="label label-success pull-right">Flag</span>
                         </a>
                     </li>
                     @endif
@@ -273,7 +271,6 @@
                         <a href="{{url('arsip')}}">
                             <i class="fa fa-folder-open"></i>
                             Arsip Berkas
-                            <span class="label label-success pull-right">Flag</span>
                         </a>
                     </li>
                     @endif
@@ -283,7 +280,6 @@
                         <a href="{{url('admin/arsip')}}">
                             <i class="fa fa-folder-open"></i>
                             Arsip Berkas
-                            <span class="label label-success pull-right">Flag</span>
                         </a>
                     </li>
                     @endif

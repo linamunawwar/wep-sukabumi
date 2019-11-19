@@ -116,7 +116,8 @@ class DisposisiController extends Controller
 
     public function index()
     {
-    	$disposisis = Disposisi::where('soft_delete',0)->get();
+    	$disposisis = Disposisi::where('soft_delete',0)->orderBy('tanggal_terima','DESC')->get();
+        // dd($disposisis);
         foreach ($disposisis as $key => $disposisi) {
             $tugass = DisposisiTugas::where('disposisi_id',$disposisi->id)->where('soft_delete',0)->get()->toArray();
             $disposisi->status = array_search('', array_column($tugass, 'status'));

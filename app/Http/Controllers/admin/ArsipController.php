@@ -27,7 +27,7 @@ class ArsipController extends Controller
     	$nama_form = \Input::get('nama_form');
     	$ekstension = $ori_file->getClientOriginalExtension();
 
-    	$nama_file = $nama_form.'.'.$ekstension;
+    	$nama_file = $ori_file->getClientOriginalName();
 
     	$ori_file->move($tujuan,$nama_file);
     	
@@ -69,7 +69,7 @@ class ArsipController extends Controller
         $nama_form = \Input::get('nama_form');
         $ekstension = $ori_file->getClientOriginalExtension();
 
-        $nama_file = $nama_form.'.'.$ekstension;
+        $nama_file = $ori_file->getClientOriginalName();
 
         $ori_file->move($tujuan,$nama_file);
         
