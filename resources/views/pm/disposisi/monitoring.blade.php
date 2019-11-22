@@ -31,7 +31,7 @@
 										<div class="form-group">
 											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Nomor Agenda <span class="required">*</span>:</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p class="data">{{$disposisi->monitoring}}</p>
+												<p class="data">{{$disposisi->no_agenda}}</p>
 											</div>
 										</div>
 										<div class="form-group">

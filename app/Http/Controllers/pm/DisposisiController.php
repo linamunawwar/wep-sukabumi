@@ -20,7 +20,8 @@ class DisposisiController extends Controller
     }
 
     public function getUnduhSuratMasuk($id){
-        $surat = SuratMasuk::find($id);
+        $no_surat = str_replace('_', '/', $id);
+        $surat = SuratMasuk::where('no_surat',$no_surat)->first();
 
         return response()->download('upload/surat_masuk/' . $surat->file_surat);
     }
