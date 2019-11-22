@@ -48,7 +48,6 @@
 											@else
 												<a class="btn btn-default btn-xs" href="{{url('pm/disposisi/edit/'.$disposisi->id.'')}}"><i class="fa fa-edit"></i>  Edit</a>
 												<a class="btn btn-primary btn-xs" href="{{url('pm/disposisi/monitor/'.$disposisi->id.'')}}"><i class="fa fa-eye"></i>  Monitor</a>
-												<a class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
 												<a class="btn btn-success btn-xs" href="{{url('pm/disposisi/unduh/'.$disposisi->id.'')}}"><i class="fa fa-download"></i>  Unduh</a>
 											@endif
 											<?php $disposisi->no_surat = str_replace('/', '_', $disposisi->no_surat); ?>
