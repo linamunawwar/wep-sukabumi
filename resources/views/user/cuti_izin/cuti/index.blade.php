@@ -57,7 +57,7 @@
 										@else
 											<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Surat Cuti</a>
 										@endif
-										<button data-toggle="modal"  id_cuti='{{$cuti->id}}' data-target="#DeleteModal" class="btn btn-xs btn-danger" id="modal-delete" onclick='deleteData("{{$cuti->id}}")'><i class="fa fa-trash"></i> Delete</button>
+										<!-- <button data-toggle="modal"  id_cuti='{{$cuti->id}}' data-target="#DeleteModal" class="btn btn-xs btn-danger" id="modal-delete" onclick='deleteData("{{$cuti->id}}")'><i class="fa fa-trash"></i> Delete</button> -->
 									</td>
 								</tr>
 								@endforeach
