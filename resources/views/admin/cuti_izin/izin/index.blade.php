@@ -60,6 +60,7 @@
 											@else
 												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</a>
 											@endif
+											<button data-toggle="modal"  id_izin='{{$izin->id}}' data-target="#DeleteModal" class="btn btn-xs btn-danger" id="modal-delete" onclick='deleteData("{{$izin->id}}")'><i class="fa fa-trash"></i> Delete</button>
 										</td>
 									</tr>
 								@endforeach
@@ -71,4 +72,52 @@
 		</div>
     </div>
     <!-- /page content -->
+     <div id="DeleteModal" class="modal fade text-danger" role="dialog">
+   <div class="modal-dialog ">
+     <!-- Modal content-->
+     <form action="{{ url("admin/izin/delete") }}" id="deleteForm" method="post" >
+         <div class="modal-content">
+             <div class="modal-header bg-danger">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 <h4 class="modal-title text-center">DELETE CONFIRMATION</h4>
+             </div>
+             <div class="modal-body">
+                 {{ csrf_field() }}
+                 {{ method_field('DELETE') }}
+                 <p class="text-center">Anda yakin ingin menghapus data ini ?</p>
+                 <input type="hidden" name="id_izin" id="id_izin">
+             </div>
+             <div class="modal-footer">
+                 <center>
+                     <button type="button" class="btn btn-success" data-dismiss="modal">Batal</button>
+                     <button type="submit" name="" class="btn btn-danger" data-dismiss="modal" onclick="formSubmit()">Ya, Hapus</button>
+                 </center>
+             </div>
+         </div>
+     </form>
+   </div>
+  </div>
 @endsection
+@push('scripts')
+  <script type="text/javascript">
+  	$('#modal-delete').on("click",function(){
+  		var id_izin = $(this).attr('id_izin');
+         $('#id_izin').val(id_izin);
+     
+  	});
+     function deleteData(id)
+     {
+         var id = id;
+         var url = '{{ url("admin/izin/delete") }}';
+         // url = url.replace(':id', id);
+         console.log(id);
+         $('#id_izin').val(id);
+         $("#deleteForm").attr('action', url);
+     }
+
+     function formSubmit()
+     {
+         $("#deleteForm").submit();
+     }
+  </script>
+ @endpush

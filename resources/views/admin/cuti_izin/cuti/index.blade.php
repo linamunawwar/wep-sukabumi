@@ -29,6 +29,7 @@
 									<th>Mulai Cuti</th>
 									<th>Selesai Cuti</th>
 									<th>Tanggal Pengajuan</th>
+									<th>Pengganti</th>
 									<th>Status Cuti</th>
 									<th>Action</th>
 								</tr>
@@ -47,6 +48,7 @@
 											?>
 											{{konversi_tanggal($date[0])}}
 										</td>
+										<td>{{$cuti->pengganti}}<br>({{$cuti->pegawaiPengganti->nama}})</td>
 										<td>
 											@if($cuti->is_verif_pengganti == 0)
 												<span class="label label-default">Not Approved</span>
@@ -86,7 +88,7 @@
      <div id="DeleteModal" class="modal fade text-danger" role="dialog">
    <div class="modal-dialog ">
      <!-- Modal content-->
-     <form action="{{ url("admin/pegawai/delete") }}" id="deleteForm" method="post" >
+     <form action="{{ url("admin/cuti/delete") }}" id="deleteForm" method="post" >
          <div class="modal-content">
              <div class="modal-header bg-danger">
                  <button type="button" class="close" data-dismiss="modal">&times;</button>

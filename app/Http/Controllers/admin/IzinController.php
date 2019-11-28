@@ -67,4 +67,14 @@ class IzinController extends Controller
       $pdf->setPaper('A4');
       return $pdf->download('Surat Izin_'.$izin->nip.'.pdf');
     }
+
+    public function getDelete(){
+      $data = \Input::all();
+      $del = Izin::where('id',$data['id_cuti'])->update(['soft_delete'=>1]);
+
+      if($del){
+        return redirect('admin/izin');
+      }
+
+    }
 }

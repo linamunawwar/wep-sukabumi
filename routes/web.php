@@ -68,6 +68,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pengajuan_izin/create', 'admin\IzinController@getPengajuanIzinCreate');
 		Route::post('/pengajuan_izin/create', 'admin\IzinController@postPengajuanIzinCreate');
 		Route::get('/izin/surat_izin/{id}', 'admin\IzinController@getSuratIzin');
+		Route::delete('/izin/delete', 'admin\IzinController@getDelete');
 
 		//cuti
 		Route::get('/cuti', 'admin\CutiController@index');
