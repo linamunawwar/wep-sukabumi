@@ -23,6 +23,9 @@
 						<br><br>
 						<p>{{$memo->isi}}</p>
 						<br>
+						<iframe style="display: none;" src ="{{asset('vendor')}}/ViewerJS/#../../upload/memo/{{$memo->nama_file}}" width='724' height='1024'	 allowfullscreen webkitallowfullscreen>
+										</iframe>
+						<br>
 						<?php
 							$datetime = explode(' ',$memo->waktu);
 						?>

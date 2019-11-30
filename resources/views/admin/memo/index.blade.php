@@ -43,11 +43,15 @@
 																$datetime = explode(' ',$memo->waktu);
 															?>
 															@if($memo->memoPegawai->viewed_at == '0000-00-00 00:00:00')
-																<h3>{{$memo->judul}} <small>{{konversi_tanggal($datetime[0])}} {{$datetime[1]}}</small></h3>
+																<h3>{{$memo->judul}} 
+																	<small>{{konversi_tanggal($datetime[0])}} {{$datetime[1]}}</small>
+																</h3>
 															@else
 																<p style="font-size: 15px; margin: 0 0 6px;">{{$memo->judul}} <small style="float: right;color: #ADABAB; font-size: 11px;line-height: 20px;">{{konversi_tanggal($datetime[0])}} {{$datetime[1]}}</small></p>
 															@endif
-
+															<div class="pull-right">
+																<a class="btn btn-primary btn-xs" href="{{url('admin/memo/edit/'.$memo->id.'')}}"><i class="fa fa-edit"></i>  Edit</a>
+															</div>
 															@if($memo->cc)
 																<p><span class="badge">CC</span> {{$memo->cc}}</p>
 															@endif

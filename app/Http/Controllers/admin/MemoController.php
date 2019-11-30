@@ -39,7 +39,17 @@ class MemoController extends Controller
     	$memo->user_id = \Auth::user()->id;
     	$memo->role_id = \Auth::user()->role_id;
 
-    	$memo->save();
+        if(\Input::hasfile('file')){
+          $ori_file  = \Request::file('file');
+          $tujuan = "upload/memo";
+          $ekstension = $ori_file->getClientOriginalExtension();
+
+          $nama_file = $ori_file->getClientOriginalName();
+
+            $ori_file->move($tujuan,$nama_file);
+            $memo->nama_file = $nama_file;
+       }
+       $memo->save();
 
     	$pegawais = Pegawai::where('is_active',1)->where('soft_delete',0)->get();
     	foreach ($pegawais as $key => $pegawai) {
@@ -75,6 +85,21 @@ class MemoController extends Controller
     	date_default_timezone_set("Asia/Jakarta");
 
     	$data = \Input::all();
+        $find = Memo::find($id);
+        if(\Input::hasfile('file')){
+            if(file_exists("upload/memo/".$find->nama_file)){
+                unlink( "upload/memo/".$find->nama_file);
+            }
+
+            $ori_file  = \Request::file('file');
+            $tujuan = "upload/memo";
+            $ekstension = $ori_file->getClientOriginalExtension();
+
+            $nama_file = $ori_file->getClientOriginalName();
+
+            $ori_file->move($tujuan,$nama_file);
+            $memo['nama_file'] = $nama_file;
+        }
 
     	$memo['judul'] = $data['judul'];
     	$memo['cc'] = $data['cc'];
