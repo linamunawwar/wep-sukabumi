@@ -114,8 +114,9 @@ class MemoController extends Controller
 
     }
 
-    public function getDelete($id)
+    public function getDelete()
     {
+        $id = \Input::get('id_memo');
     	date_default_timezone_set("Asia/Jakarta");
 
     	$memo['waktu'] = date('Y-m-d H:i:s');
@@ -124,6 +125,7 @@ class MemoController extends Controller
     	$memo['role_id'] = \Auth::user()->role_id;
 
     	$update = Memo::where('id',$id)->update($memo);
+        $delete = MemoPegawai::where('memo_id',$id)->delete();
 
     	return redirect('/admin/memo');
 

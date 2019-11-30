@@ -100,7 +100,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/memo/detail/{id}', 'admin\MemoController@getDetail');
 		Route::get('/memo/edit/{id}', 'admin\MemoController@getEdit');
 		Route::post('/memo/edit/{id}', 'admin\MemoController@postEdit');
-		Route::get('/memo/delete/{id}', 'admin\MemoController@getDelete');
+		Route::delete('/memo/delete', 'admin\MemoController@getDelete');
 
 		//spj
 		Route::get('/spj', 'admin\SpjController@index');

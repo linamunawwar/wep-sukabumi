@@ -25,6 +25,7 @@
 									<th>Jabatan</th>
 									<th>Mulai Izin</th>
 									<th>Selesai Izin</th>
+									<th>Tanggal Pengajuan</th>
 									<th>Status Izin</th>
 									<th>Action</th>
 								</tr>
@@ -37,6 +38,12 @@
 										<td>{{$izin->pegawai->posisi->posisi}}</td>
 										<td>{{konversi_tanggal($izin->tanggal_mulai)}}</td>
 										<td>{{konversi_tanggal($izin->tanggal_selesai)}}</td>
+										<td data-sort="{{strtotime($izin->created_at)}}">
+											<?php
+												$date = explode(' ', $izin->created_at);
+											?>
+											{{konversi_tanggal($date[0])}}
+										</td>
 										<td>
 											@if($izin->is_verif_mngr == 1)
 												<span class="label label-primary">Approved By Manager</span>
@@ -62,3 +69,17 @@
     </div>
     <!-- /page content -->
 @endsection
+@push('scripts')
+<script type="text/javascript">
+
+	$(document).ready(function () {
+        var table = $('#datatable').DataTable();
+ 
+		// Sort by column 1 and then re-draw
+		table
+		    .order( [ 5, 'desc' ] )
+		    .draw();
+		    });
+
+</script>
+@endpush

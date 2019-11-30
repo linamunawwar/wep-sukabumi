@@ -59,7 +59,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Keterangan <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<p style="padding: 6px 12px; font-size: 15px;">Cuti terakhir tanggal {{$cuti->tanggal_selesai_terakhir}}</p>
+									<p style="padding: 6px 12px; font-size: 15px;">Cuti terakhir tanggal {{konversi_tanggal($cuti->tanggal_mulai_terakhir)}}</p>
 									<textarea class="form-control keterangan" name="ket_manager"></textarea>
 								</div>
 							</div>

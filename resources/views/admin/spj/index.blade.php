@@ -41,7 +41,7 @@
 										<td>{{konversi_tanggal($spj->tanggal_berangkat)}}</td>
 										<td>{{konversi_tanggal($spj->tanggal_pulang)}}</td>
 										<td>{{$spj->keperluan}}</td>
-										<td>
+										<td data-sort="{{strtotime($spj->created_at)}}">
 											<?php
 												$date = explode(' ', $spj->created_at);
 											?>
@@ -82,3 +82,17 @@
     </div>
     <!-- /page content -->
 @endsection
+@push('scripts')
+<script type="text/javascript">
+
+	$(document).ready(function () {
+        var table = $('#datatable').DataTable();
+ 
+		// Sort by column 1 and then re-draw
+		table
+		    .order( [ 5, 'desc' ] )
+		    .draw();
+		    });
+
+</script>
+@endpush

@@ -38,7 +38,7 @@
 										<td>{{$izin->pegawai->posisi->posisi}}</td>
 										<td>{{konversi_tanggal($izin->tanggal_mulai)}}</td>
 										<td>{{konversi_tanggal($izin->tanggal_selesai)}}</td>
-										<td>
+										<td data-sort="{{strtotime($izin->created_at)}}">
 											<?php
 												$date = explode(' ', $izin->created_at);
 											?>
@@ -119,5 +119,12 @@
      {
          $("#deleteForm").submit();
      }
+
+     var table = $('#datatable').DataTable();
+		
+		// Sort by column 1 and then re-draw
+		table
+		    .order( [ 5, 'desc' ] )
+		    .draw();
   </script>
  @endpush

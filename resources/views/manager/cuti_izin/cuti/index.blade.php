@@ -38,7 +38,7 @@
 										<td>{{$cuti->pegawai->posisi->posisi}}</td>
 										<td>{{konversi_tanggal($cuti->tanggal_mulai)}}</td>
 										<td>{{konversi_tanggal($cuti->tanggal_selesai)}}</td>
-										<td>
+										<td data-sort="{{strtotime($cuti->created_at)}}">
 											<?php
 												$date = explode(' ', $cuti->created_at);
 											?>
@@ -102,3 +102,17 @@
     </div>
     <!-- /page content -->
 @endsection
+@push('scripts')
+<script type="text/javascript">
+
+	$(document).ready(function () {
+        var table = $('#datatable').DataTable();
+ 
+		// Sort by column 1 and then re-draw
+		table
+		    .order( [ 5, 'desc' ] )
+		    .draw();
+		    });
+
+</script>
+@endpush

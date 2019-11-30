@@ -26,6 +26,7 @@
 									<th>Tanggal Berangkat</th>
 									<th>Tanggal Pulang</th>
 									<th>Keperluan</th>
+									<th>Tanggal Pengajuan</th>
 									<th>Status</th>
 									<th>Action</th>
 								</tr>
@@ -36,6 +37,12 @@
 										<td>{{konversi_tanggal($spj->tanggal_berangkat)}}</td>
 										<td>{{konversi_tanggal($spj->tanggal_pulang)}}</td>
 										<td>{{$spj->keperluan}}</td>
+										<td data-sort="{{strtotime($spj->created_at)}}">
+											<?php
+												$date = explode(' ', $spj->created_at);
+											?>
+											{{konversi_tanggal($date[0])}}
+										</td>
 										@if(($spj->is_verif_sdm == 1) && ($spj->is_verif_admin == 1))
 											<td style="text-align: center;">
 												<span class="label label-success">Approved By Admin</span>
@@ -70,3 +77,17 @@
     </div>
     <!-- /page content -->
 @endsection
+@push('scripts')
+<script type="text/javascript">
+
+	$(document).ready(function () {
+        var table = $('#datatable').DataTable();
+ 
+		// Sort by column 1 and then re-draw
+		table
+		    .order( [ 3, 'desc' ] )
+		    .draw();
+		    });
+
+</script>
+@endpush

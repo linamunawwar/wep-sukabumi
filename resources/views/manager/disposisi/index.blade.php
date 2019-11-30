@@ -82,7 +82,7 @@
 		table
 		    .order( [ 4, 'desc' ] )
 		    .draw();
-		    });
+
 		var info, currrent_page;
 		var url = '<?php echo url('/'); ?>';
 		var session = '<?php echo \Session::get("page"); ?>';

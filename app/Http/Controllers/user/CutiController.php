@@ -54,6 +54,9 @@ class CutiController extends Controller
       $tanggal_selesai = explode('-',$data['tanggal_selesai']);
       $data['tanggal_selesai'] = $tanggal_selesai[2].'-'.$tanggal_selesai[1].'-'.$tanggal_selesai[0];
       $pecat->tanggal_selesai =$data['tanggal_selesai'];
+      $tanggal_mulai_terakhir = explode('-',$data['tanggal_mulai_terakhir']);
+      $data['tanggal_mulai_terakhir'] = $tanggal_mulai_terakhir[2].'-'.$tanggal_mulai_terakhir[1].'-'.$tanggal_mulai_terakhir[0];
+      $pecat->tanggal_mulai_terakhir =$data['tanggal_mulai_terakhir'];
       $pecat->pengganti =$data['pengganti'];
       $pecat->is_verif_pengganti = 0;
       $pecat->verif_pengganti_by = 0;

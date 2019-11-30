@@ -31,9 +31,20 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="tgl_lahir" class="control-label col-md-3 col-sm-3 col-xs-12">Mulai Cuti * :</label>
+								<label for="tgl_lahir" class="control-label col-md-3 col-sm-3 col-xs-12">Cuti Terkahir * :</label>
 								<div class="col-md-3 col-sm-3 col-xs-12">
 									<div class='input-group date' id='datepicker' class="datepicker">
+										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
+						                <input type='text' value='' name='tanggal_mulai_terakhir' class='form-control' required="required" placeholder="dd-mm-yyyy" />
+						            </div>
+						            *tanggal mulai cuti terakhir
+								</div>
+							</div>
+							<br>
+							<div class="form-group">
+								<label for="tgl_lahir" class="control-label col-md-3 col-sm-3 col-xs-12">Mulai Cuti * :</label>
+								<div class="col-md-3 col-sm-3 col-xs-12">
+									<div class='input-group date' id='datepicker1' class="datepicker">
 										<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
 						                <input type='text' name='tanggal_mulai' class='form-control tanggal_mulai' id="tanggal_mulai" required="required" placeholder="Mulai Cuti (dd-mm-yyyy)" />
 						            </div>
@@ -104,6 +115,11 @@
 		        format: 'dd-mm-yyyy',
 		        autoclose: true
 	    	});
+
+			$('#datepicker1').datepicker({
+		        format: 'dd-mm-yyyy',
+		        autoclose: true
+	    	});	    	
 
 	    	$('#datepicker2').datepicker({
 		        format: 'dd-mm-yyyy',
