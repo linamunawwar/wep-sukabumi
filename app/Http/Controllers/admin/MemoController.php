@@ -87,7 +87,7 @@ class MemoController extends Controller
     	$data = \Input::all();
         $find = Memo::find($id);
         if(\Input::hasfile('file')){
-            if(file_exists("upload/memo/".$find->nama_file)){
+            if(file_exists("upload/memo/".$find->nama_file) && $find->nama_file){
                 unlink( "upload/memo/".$find->nama_file);
             }
 
