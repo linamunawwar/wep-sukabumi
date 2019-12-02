@@ -17,6 +17,7 @@ class MstMaterialLokasiJenisPekerjaanTable extends Migration
             $table->increments('id');
             $table->string('kode_material');
             $table->string('nama');
+            $table->string('satuan');
             $table->string('keterangan')->nullable();
             $table->string('user_id')->nullable();
             $table->boolean('soft_delete')->nullable()->default(0);
