@@ -62,7 +62,7 @@ class IzinController extends Controller
       $user = Pegawai::where('nip',$izin->nip)->first();
       $sdm = Pegawai::where('posisi_id',6)->first();
       $pm = Pegawai::where('posisi_id',1)->first();
-      $manager = Pegawai::where('posisi_id',$user->posisi->parent)->first();
+      $manager = Pegawai::where('posisi_id',$user->posisi->manager)->first();
       $pdf = PDF::loadView('admin.cuti_izin.izin.surat_izin',['izin' => $izin,'sdm'=>$sdm,'pm'=>$pm,'manager'=>$manager]);
       $pdf->setPaper('A4');
       return $pdf->download('Surat Izin_'.$izin->nip.'.pdf');
