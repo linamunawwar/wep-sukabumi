@@ -51,3 +51,36 @@
     </div>
     <!-- /page content -->
 @endsection
+@push('scripts')
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var table = $('#datatable').DataTable();
+			table.destroy();
+		    $('#datatable').DataTable( {
+		        initComplete: function () {
+		            this.api().columns().every( function () {
+		                var column = this;
+		                if (column.index() === 1) {
+		                	$('#datatable_filter').append("<br><label style='padding-right:10px;'>Filter:</label>")
+			                var select = $('<select style="width:170px; height :30px; !important"><option value="">Pilih Nama Barang</option></select>')
+			                    .appendTo( $('#datatable_filter'))
+			                    .on( 'change', function () {
+			                        var val = $.fn.dataTable.util.escapeRegex(
+			                            $(this).val()
+			                        );
+			 
+			                        column
+			                            .search( val ? '^'+val+'$' : '', true, false )
+			                            .draw();
+			                    } );
+			 
+			                column.data().unique().sort().each( function ( d, j ) {
+			                    select.append( '<option value="'+d+'">'+d+'</option>' )
+			                } );
+			            }
+		            } );
+		        }
+		    } );
+		} );
+	</script>
+@endpush

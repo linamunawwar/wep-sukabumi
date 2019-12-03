@@ -63,7 +63,7 @@
     <td></td>
     <td></td>
     <th></th>
-    <th colspan="2">Unit Kerja</th>
+    <td colspan="2" align="center">Unit Kerja</td>
     <th></th>
     <th></th>
     <th></th>
@@ -156,7 +156,7 @@
     <td></td>
     <td></td>
     <td></td>
-    <td style="text-align: center;">
+    <td style="text-align: center; height: 15;" height="15">
       @if(file_exists("upload/pegawai/{{$pm->nip}}/{{$pm->ttd}}"))
         <img src="upload/pegawai/{{$pm->nip}}/{{$pm->ttd}}" width="150" align="center">
       @endif
@@ -166,7 +166,7 @@
     <td></td>
     <td></td>
     <td style="text-align: center;">
-      @if(file_exists("upload/pegawai/{{$manager->nip}}/{{$manager->ttd}}"))
+      @if(file_exists("upload/pegawai/$manager->nip/$manager->ttd"))
         <img src="upload/pegawai/{{$manager->nip}}/{{$manager->ttd}}" width="150" align="center">
       @endif
     </td>
