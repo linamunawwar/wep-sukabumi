@@ -157,7 +157,7 @@
     <td></td>
     <td></td>
     <td style="text-align: center;">
-      @if(file_exist("upload/pegawai/{{$pm->nip}}/{{$pm->ttd}}"))
+      @if(file_exists("upload/pegawai/{{$pm->nip}}/{{$pm->ttd}}"))
         <img src="upload/pegawai/{{$pm->nip}}/{{$pm->ttd}}" width="150" align="center">
       @endif
     </td>
@@ -166,7 +166,7 @@
     <td></td>
     <td></td>
     <td style="text-align: center;">
-      @if(file_exist("upload/pegawai/{{$manager->nip}}/{{$manager->ttd}}"))
+      @if(file_exists("upload/pegawai/{{$manager->nip}}/{{$manager->ttd}}"))
         <img src="upload/pegawai/{{$manager->nip}}/{{$manager->ttd}}" width="150" align="center">
       @endif
     </td>
