@@ -382,9 +382,11 @@ Route::group(['middleware' => 'auth'], function () {
 	//Logistik Admin
 	Route::group(['prefix' => '/logistik/admin'], function () {
 		Route::get('/material', 'logistik\Admin\MaterialController@index');
-		Route::get('/material/create', 'logistik\Admin\MaterialController@index');
-		Route::get('/material/edit/{id}', 'logistik\Admin\MaterialController@index');
-		Route::get('/material/delete/{id}', 'logistik\Admin\MaterialController@index');
+		Route::get('/material/create', 'logistik\Admin\MaterialController@beforePostMaterial');
+		Route::post('/material/create', 'logistik\Admin\MaterialController@postMaterial');
+		Route::get('/material/edit/{id}', 'logistik\Admin\MaterialController@getMaterialById');
+		Route::post('/material/edit/{id}', 'logistik\Admin\MaterialController@updateMaterial');
+		Route::get('/material/delete/{id}', 'logistik\Admin\MaterialController@deleteMaterial');
 	});
 
 	//arsip

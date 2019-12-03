@@ -13,8 +13,9 @@ class MaterialController extends Controller
         return view('logistik.admin.material.index', ['materials' => $materials]);
     }
 
-    public function beforePostMaterial(){
-        
+    public function beforePostMaterial()
+    {
+        return view('logistik.admin.material.create');
     }
 
     public function postMaterial()
@@ -31,14 +32,14 @@ class MaterialController extends Controller
         $addMaterial->created_at = date('Y-m-d H:i:s');
         $addMaterial->save();
 
-        return redirect('');
+        return redirect('/logistik/admin/material');
 
     }
 
     public function getMaterialById($id)
     {
         $getMaterial = LogMaterial::find($id);
-        return view('');
+        return view('logistik.admin.material.edit', ['material' => $getMaterial]);
     }
 
     public function updateMaterial($id)
@@ -54,16 +55,16 @@ class MaterialController extends Controller
 
         $updateMaterial = LogMaterial::where('kode_material', $data['kode_material'])->update($material);
 
-        return redirect('');
+        return redirect('/logistik/admin/material');
     }
 
     public function deleteMaterial($id)
     {
-        $data = \Input::all();
-        $deleteMaterial = LogMaterial::where('kode_material', $data['kode_material'])->update(['soft_delete' => 1]);
+        
+        $deleteMaterial = LogMaterial::where('id',$id)->update(['soft_delete'=>1]);
 
         if ($deleteMaterial) {
-            return redirect('');
+            return redirect('/logistik/admin/material');
 
         }
     }
