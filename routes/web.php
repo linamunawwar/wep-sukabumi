@@ -381,12 +381,21 @@ Route::group(['middleware' => 'auth'], function () {
 
 	//Logistik Admin
 	Route::group(['prefix' => '/logistik/admin'], function () {
+		//MASTER MATERIAL
 		Route::get('/material', 'logistik\Admin\MaterialController@index');
 		Route::get('/material/create', 'logistik\Admin\MaterialController@beforePostMaterial');
 		Route::post('/material/create', 'logistik\Admin\MaterialController@postMaterial');
 		Route::get('/material/edit/{id}', 'logistik\Admin\MaterialController@getMaterialById');
 		Route::post('/material/edit/{id}', 'logistik\Admin\MaterialController@updateMaterial');
 		Route::get('/material/delete/{id}', 'logistik\Admin\MaterialController@deleteMaterial');
+
+		//MASTER LOKASI PEKERJAAN
+		Route::get('/lokasi', 'logistik\Admin\LokasiController@index');
+		Route::get('/lokasi/create', 'logistik\Admin\LokasiController@beforePostLocation');
+		Route::post('/lokasi/create', 'logistik\Admin\LokasiController@postLocation');
+		Route::get('/lokasi/edit/{id}', 'logistik\Admin\LokasiController@getMaterialById');
+		Route::post('/lokasi/edit/{id}', 'logistik\Admin\LokasiController@updateMaterial');
+		Route::get('/lokasi/delete/{id}', 'logistik\Admin\LokasiController@deleteMaterial');
 	});
 
 	//arsip
