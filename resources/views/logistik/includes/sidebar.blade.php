@@ -15,6 +15,7 @@
                                 Dashboard
                             </a>
                         </li>
+                        
                         <!-------------------------PERMINTAAN ------------------------->
                         @if(Auth::user()->role_id == 2)
                             <li>
@@ -181,6 +182,17 @@
                                 <li><a href="{{url('admin/eval_pakai')}}">Evaluasi Pemakaian Material</a></li>
                                 <li><a href="{{url('admin/harian_pakai')}}">Harian Pemakaian Material</a></li>
                             @endif
+                        </ul>
+                        <!------------------------- MASTER ---------------------------->
+                        <li><a><i class="fa fa-sign-out"></i> Tabel Master <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            @if(Auth::user()->role_id == 6)
+                                <li><a href="{{url('admin/material')}}">Material</a></li>
+                                <li><a href="{{url('admin/pekerjaan')}}">Lokasi Pekerjaan</a></li>
+                                <li><a href="{{url('admin/jenis_pekerjaan')}}">Jenis Pekerjaan</a></li>
+                            @endif
+                        </ul>
+                        <!------------------------------------------------------------->
                     @endif
                     
 
