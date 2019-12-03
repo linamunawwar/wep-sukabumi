@@ -102,4 +102,14 @@ class SpjController extends Controller
       $pdf->setPaper('A4');
       return $pdf->download('SPJ_'.$spj->no_sppd.'.pdf');
     }
+
+    public function getDelete(){
+      $data = \Input::all();
+      $del = Spj::where('id',$data['id_spj'])->update(['soft_delete'=>1]);
+
+      if($del){
+        return redirect('admin/spj');
+      }
+
+    }
 }

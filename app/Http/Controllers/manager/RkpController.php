@@ -130,7 +130,7 @@ class RkpController extends Controller
                 break;
         }
         $manager = Pegawai::where('posisi_id',$kode)->where('soft_delete',0)->first();
-
+        
         $excel = \Excel::create('Form01_Rencana_Kebutuhan_Pegawai', function($excel) use ($rkp,$dt_rkp,$pm,$manager) {
 
                     $excel->sheet('New sheet', function($sheet) use ($rkp,$dt_rkp,$pm,$manager) {

@@ -17,6 +17,7 @@ Route::get('/password', 'PegawaiController@showResetForm');
 Route::post('/password', 'PegawaiController@postReset');
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/', 'HomeController@index');
+	Route::get('/logistik', 'Logistik\HomeController@index');
 
 	Route::group(['prefix' => '/admin'], function () {
 		// Route::get('/', ['as' => 'users.countdown', 'uses' => 'HomeController@countdown']);
@@ -111,6 +112,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/spj/approve/{id}', 'admin\SpjController@getApprove');
 		Route::post('/spj/approve/{id}', 'admin\SpjController@postApprove');
 		Route::get('/spj/unduh/{id}', 'admin\SpjController@getUnduh');
+		Route::delete('/spj/delete', 'admin\SpjController@getDelete');
 
 		//disposisi
 		Route::get('/surat_masuk', 'admin\DisposisiController@indexSuratMasuk');

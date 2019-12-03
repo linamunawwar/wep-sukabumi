@@ -81,8 +81,9 @@ class PeralatanController extends Controller
     public function indexData()
     {
         $inventoris = Inventori::where('soft_delete',0)->get();
+        $nama_barang = Inventori::where('soft_delete',0)->groupBy('nama_barang')->get();
         
-        return view('admin.peralatan.data.index',['inventoris'=>$inventoris]);
+        return view('admin.peralatan.data.index',['inventoris'=>$inventoris,'nama_barang'=>$nama_barang]);
     }
 
     public function getCreateData()

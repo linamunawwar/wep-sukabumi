@@ -15,6 +15,7 @@ use App\Izin;
 use App\Disposisi;
 use App\DisposisiTugas;
 use App\SlipGaji;
+use App\Models\LogMaterial;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -173,6 +174,11 @@ class HomeController extends Controller
             $rkp = Rkp::where('is_verif_pm',0)->where('soft_delete',0)->count();
 
             return view('pm.home_pm',['pegawai'=>$pegawai,'memo'=>$memo,'cuti'=>$cuti,'pecat'=>$pecat,'resign'=>$resign,'disposisi'=>$disposisi,'rkp'=>$rkp]);
+        }
+
+        if(Auth::user()->role_id == 6){
+            $materials = LogMaterial::where('soft_delete',0)->count();
+            return view('logistik.admin.home',['materials'=>$materials]);
         }
     }
 }

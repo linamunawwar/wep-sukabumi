@@ -8,6 +8,14 @@
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu" style="background: #00004E;">
             <div class="menu_section">
                 <ul class="nav side-menu">
+                    @if(Auth::user()->pegawai->kode_bagian == 'SL')
+                        <li>
+                            <a href="{{url('/logistik')}}">
+                                <i class="fa fa-laptop"></i>
+                                LOGISTIK
+                            </a>
+                        </li>
+                    @endif
                     <li>
                         <a href="{{url('/')}}">
                             <i class="fa fa-laptop"></i>
