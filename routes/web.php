@@ -393,9 +393,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/lokasi', 'logistik\Admin\LokasiController@index');
 		Route::get('/lokasi/create', 'logistik\Admin\LokasiController@beforePostLocation');
 		Route::post('/lokasi/create', 'logistik\Admin\LokasiController@postLocation');
-		Route::get('/lokasi/edit/{id}', 'logistik\Admin\LokasiController@getMaterialById');
-		Route::post('/lokasi/edit/{id}', 'logistik\Admin\LokasiController@updateMaterial');
-		Route::get('/lokasi/delete/{id}', 'logistik\Admin\LokasiController@deleteMaterial');
+		Route::get('/lokasi/edit/{id}', 'logistik\Admin\LokasiController@getLocationById');
+		Route::post('/lokasi/edit/{id}', 'logistik\Admin\LokasiController@updateLocation');
+		Route::get('/lokasi/delete/{id}', 'logistik\Admin\LokasiController@deleteLocation');
 	});
 
 	//arsip
