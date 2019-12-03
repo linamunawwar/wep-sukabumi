@@ -1,4 +1,4 @@
-@extends('layouts.blank')
+@extends('logistik.layouts.blank')
 
 @push('stylesheets')
     <!-- Example -->
