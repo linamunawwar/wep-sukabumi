@@ -379,6 +379,13 @@ Route::group(['middleware' => 'auth'], function () {
 
 	});
 
+	//Logistik Admin
+	Route::group(['prefix' => '/logistik/admin'], function () {
+		Route::get('/material', 'logistik\Admin\MaterialController@index');
+		Route::get('/material/create', 'logistik\Admin\MaterialController@index');
+		Route::get('/material/edit/{id}', 'logistik\Admin\MaterialController@index');
+		Route::get('/material/delete/{id}', 'logistik\Admin\MaterialController@index');
+	});
 
 	//arsip
 		Route::get('/arsip', 'ArsipController@index');

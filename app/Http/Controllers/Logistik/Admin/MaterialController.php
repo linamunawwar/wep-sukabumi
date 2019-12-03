@@ -1,16 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\logistik\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Model\LogMaterial;
+use App\Models\LogMaterial;
 
-class MaterialContoller extends Controller
+class MaterialController extends Controller
 {
     public function index()
     {
-        $material = LogMaterial::where('soft_delete', 0)->get();
-        return view('logistik.material.index', ['material' => $material]);
+        $materials = LogMaterial::where('soft_delete', 0)->get();
+        return view('logistik.admin.material.index', ['materials' => $materials]);
+    }
+
+    public function beforePostMaterial(){
+        
     }
 
     public function postMaterial()
