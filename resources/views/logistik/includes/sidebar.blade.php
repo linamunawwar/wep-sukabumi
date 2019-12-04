@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col" style="width: 240px; ">
     <div class="left_col scroll-view" style="background: #00004E;">
         <div class="navbar nav_title" style="border: 0; background: white; width: 100%; margin-bottom: 10px;">
-            <a href="{{ url('/') }}" class="site_title"><img src="{{asset('public/img/Waskita-noback.png')}}" width="40px" height="25px" style="color: white!important;"> <span style="color: #172D44 !important;">WEP -  Becakayu 2A</span></a>
+            <a href="{{ url('/') }}" class="site_title"><img src="{{asset('public/img/Waskita-noback.png')}}" width="40px" height="25px" style="color: white!important;"> <span style="color: #172D44 !important;">WEP - Logistik WEP </span></a>
         </div>
         
         <!-- sidebar menu -->
@@ -15,6 +15,7 @@
                                 Dashboard
                             </a>
                         </li>
+                        
                         <!-------------------------PERMINTAAN ------------------------->
                         @if(Auth::user()->role_id == 2)
                             <li>
@@ -181,6 +182,17 @@
                                 <li><a href="{{url('admin/eval_pakai')}}">Evaluasi Pemakaian Material</a></li>
                                 <li><a href="{{url('admin/harian_pakai')}}">Harian Pemakaian Material</a></li>
                             @endif
+                        </ul>
+                        <!------------------------- MASTER ---------------------------->
+                        <li><a><i class="fa fa-sign-out"></i> Tabel Master <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            @if(Auth::user()->role_id == 6)
+                                <li><a href="{{url('logistik/admin/material/')}}">Material</a></li>
+                                <li><a href="{{url('logistik/admin/lokasi')}}">Lokasi Pekerjaan</a></li>
+                                <li><a href="{{url('logistik/admin/jenis_pekerjaan')}}">Jenis Pekerjaan</a></li>
+                            @endif
+                        </ul>
+                        <!------------------------------------------------------------->
                     @endif
                     
 
