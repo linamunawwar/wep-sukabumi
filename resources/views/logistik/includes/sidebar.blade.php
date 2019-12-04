@@ -189,7 +189,7 @@
                             @if(Auth::user()->role_id == 6)
                                 <li><a href="{{url('logistik/admin/material/')}}">Material</a></li>
                                 <li><a href="{{url('logistik/admin/lokasi')}}">Lokasi Pekerjaan</a></li>
-                                <li><a href="{{url('admin/jenis_pekerjaan')}}">Jenis Pekerjaan</a></li>
+                                <li><a href="{{url('logistik/admin/jenis_pekerjaan')}}">Jenis Pekerjaan</a></li>
                             @endif
                         </ul>
                         <!------------------------------------------------------------->

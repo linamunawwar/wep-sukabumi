@@ -396,6 +396,14 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/lokasi/edit/{id}', 'logistik\Admin\LokasiController@getLocationById');
 		Route::post('/lokasi/edit/{id}', 'logistik\Admin\LokasiController@updateLocation');
 		Route::get('/lokasi/delete/{id}', 'logistik\Admin\LokasiController@deleteLocation');
+
+		//MASTER JENIS PEKERJAAN
+		Route::get('/jenis_pekerjaan', 'Logistik\Admin\JenisPekerjaanController@index');
+		Route::get('/jenis_pekerjaan/create', 'Logistik\Admin\JenisPekerjaanController@beforePostJenis');
+		Route::post('/jenis_pekerjaan/create', 'Logistik\Admin\JenisPekerjaanController@postJenis');
+		Route::get('/jenis_pekerjaan/edit/{id}', 'Logistik\Admin\JenisPekerjaanController@getJenisById');
+		Route::post('/jenis_pekerjaan/edit/{id}', 'Logistik\Admin\JenisPekerjaanController@updateJenis');
+		Route::delete('/jenis_pekerjaan/delete', 'Logistik\Admin\JenisPekerjaanController@deleteJenis');
 	});
 
 	//arsip
