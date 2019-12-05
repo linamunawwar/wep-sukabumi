@@ -295,7 +295,7 @@ $kode = KodeBagian::all();
 										<div class="form-group">
 											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">No. Rekening <span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" id="no_rek" name="no_rek"  class="form-control col-md-7 col-xs-12" value="{{$bank->no_rekening}}">
+												<input type="text" id="no_rek" name="no_rek"  class="form-control col-md-7 col-xs-12" value="{{$bank->no_rekening}}" required="required">
 											</div>
 										</div>
 									</div>
@@ -303,7 +303,7 @@ $kode = KodeBagian::all();
 										<div class="form-group">
 											<label class="control-label col-md-4 col-sm-4 col-xs-12">Nama Asuransi</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input type="text" id="nama_asuransi" name="nama_asuransi" class="nama_asuransi form-control col-md-7 col-xs-12" value="{{$bank->asuransi_lain}}">
+												<input type="text" id="nama_asuransi" name="nama_asuransi" class="nama_asuransi form-control col-md-7 col-xs-12" value="{{$bank->asuransi_lain}}" required="required">
 											</div>
 										</div>
 									</div>
@@ -313,7 +313,7 @@ $kode = KodeBagian::all();
 										<div class="form-group">
 											<label for="npwp" class="control-label col-md-4 col-sm-4 col-xs-12">No. NPWP</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input id="npwp" class="form-control col-md-7 col-xs-12 npwp" type="text" name="npwp" value="{{$bank->npwp}}">
+												<input id="npwp" class="form-control col-md-7 col-xs-12 npwp" type="text" name="npwp" value="{{$bank->npwp}}" required="required">
 											</div>
 										</div>
 									</div>
