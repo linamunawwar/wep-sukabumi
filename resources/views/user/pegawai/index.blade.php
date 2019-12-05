@@ -353,66 +353,131 @@ $kode = KodeBagian::all();
 								<div class="x_title">
 									<h4>Data Bank & Asuransi </h4>
 								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama_bank">Nama Bank <span class="required">*</span></label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p class="data">{{$bank->nama_bank}}</p>
+								@if($bank)
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama_bank">Nama Bank <span class="required">*</span></label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p class="data">
+														{{$bank->nama_bank}}
+													</p>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">No. Rekening <span class="required">*</span></label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p class="data">{{$bank->no_rekening}}</p>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">No. Rekening <span class="required">*</span></label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p class="data">{{$bank->no_rekening}}</p>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="npwp" class="control-label col-md-4 col-sm-4 col-xs-12">No. NPWP</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p class="data">{{$bank->npwp}}</p>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="npwp" class="control-label col-md-4 col-sm-4 col-xs-12">No. NPWP</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p class="data">{{$bank->npwp}}</p>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="jamsostek" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jamsostek</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p class="data">{{$bank->jamsostek}}</p>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="jamsostek" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jamsostek</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p class="data">{{$bank->jamsostek}}</p>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="dplk" class="control-label col-md-4 col-sm-4 col-xs-12">No. DPLK</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p class="data">{{$bank->dplk}}</p>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="dplk" class="control-label col-md-4 col-sm-4 col-xs-12">No. DPLK</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p class="data">{{$bank->dplk}}</p>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="jiwasraya" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jiwasraya</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p class="data">{{$bank->jiwasraya}}</p>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="jiwasraya" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jiwasraya</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p class="data">{{$bank->jiwasraya}}</p>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
+								@else
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama_bank">Nama Bank <span class="required">*</span></label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p class="data"></p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">No. Rekening <span class="required">*</span></label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p class="data"></p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="npwp" class="control-label col-md-4 col-sm-4 col-xs-12">No. NPWP</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p class="data"></p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="jamsostek" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jamsostek</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p class="data"></p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="dplk" class="control-label col-md-4 col-sm-4 col-xs-12">No. DPLK</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p class="data"></p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="jiwasraya" class="control-label col-md-4 col-sm-4 col-xs-12">No. Jiwasraya</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p class="data"></p>
+												</div>
+											</div>
+										</div>
+									</div>
+								@endif
 								<!-- ------------------------------------------------------------------------------------- -->
 								<div class="ln_solid"></div>
 									<div class="x_title">
