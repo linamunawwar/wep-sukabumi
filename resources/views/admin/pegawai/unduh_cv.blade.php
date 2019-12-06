@@ -155,43 +155,83 @@
     </tr>
   </table>
   <p style="font-size: 14px;"><b>2.Data Bank & Asuransi</b></p>
-  <table style="width: 100%;">
-    <tr>
-      <td>Nama Bank</td>
-      <td>:</td>
-      <td>{{$pegawai->bank->nama_bank}}</td>
-    </tr>
-    <tr>
-      <td>No. Rekening</td>
-      <td>:</td>
-      <td>{{$pegawai->bank->no_rekening}}</td>
-    </tr>
-    <tr>
-      <td>No. NPWP</td>
-      <td>:</td>
-      <td>{{$pegawai->bank->npwp}}</td>
-    </tr>
-    <tr>
-      <td>No. Jamsostek</td>
-      <td>:</td>
-      <td>{{$pegawai->bank->jamsostek}}</td>
-    </tr>
-    <tr>
-      <td>No. DPLK</td>
-      <td>:</td>
-      <td>{{$pegawai->bank->dplk}}</td>
-    </tr>
-    <tr>
-      <td>No. Jiwasraya</td>
-      <td>:</td>
-      <td>{{$pegawai->bank->jiwasraya}}</td>
-    </tr>
-    <tr>
-      <td>No. {{$pegawai->bank->asuransi_lain}}</td>
-      <td>:</td>
-      <td>{{$pegawai->bank->nomor_lain}}</td>
-    </tr>
-  </table>
+  @if($pegawai->bank)
+    <table style="width: 100%;">
+      <tr>
+        <td>Nama Bank</td>
+        <td>:</td>
+        <td>{{$pegawai->bank->nama_bank}}</td>
+      </tr>
+      <tr>
+        <td>No. Rekening</td>
+        <td>:</td>
+        <td>{{$pegawai->bank->no_rekening}}</td>
+      </tr>
+      <tr>
+        <td>No. NPWP</td>
+        <td>:</td>
+        <td>{{$pegawai->bank->npwp}}</td>
+      </tr>
+      <tr>
+        <td>No. Jamsostek</td>
+        <td>:</td>
+        <td>{{$pegawai->bank->jamsostek}}</td>
+      </tr>
+      <tr>
+        <td>No. DPLK</td>
+        <td>:</td>
+        <td>{{$pegawai->bank->dplk}}</td>
+      </tr>
+      <tr>
+        <td>No. Jiwasraya</td>
+        <td>:</td>
+        <td>{{$pegawai->bank->jiwasraya}}</td>
+      </tr>
+      <tr>
+        <td>No. {{$pegawai->bank->asuransi_lain}}</td>
+        <td>:</td>
+        <td>{{$pegawai->bank->nomor_lain}}</td>
+      </tr>
+    </table>
+  @else
+    <table style="width: 100%;">
+      <tr>
+        <td>Nama Bank</td>
+        <td>:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>No. Rekening</td>
+        <td>:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>No. NPWP</td>
+        <td>:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>No. Jamsostek</td>
+        <td>:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>No. DPLK</td>
+        <td>:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>No. Jiwasraya</td>
+        <td>:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>No. </td>
+        <td>:</td>
+        <td></td>
+      </tr>
+    </table>
+  @endif
   <p style="font-size: 14px;"><b>*) Coret yang tidak perlu</b></p>
   <p style="font-size: 14px;"><b>3. Pendidikan Formal</b></p>
   <table border="1" style="width: 100%;border-collapse: collapse; text-align: center;" cellspacing="1" cellpadding="3">

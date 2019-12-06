@@ -20,7 +20,22 @@ class CutiController extends Controller
     public function getCreate()
     {
     	$pegawais = Pegawai::where('is_active',1)->get();
-      if((\Auth::user()->role_id == 2) || (\Auth::user()->role_id == 3) || (\Auth::user()->role_id == 4)){
+      if(\Auth::user()->pegawai->kode_bagian == 'QHSE'){
+        $penggantis = Pegawai::where('is_active',1)
+                      ->where('soft_delete',0)
+                      ->where('nip','!=',\Auth::user()->pegawai_id)
+                      ->whereHas('user',function ($q){
+                          $q->where('role_id',2);
+                      })
+                      ->where('kode_bagian','QC')
+                      ->orwhere('soft_delete',0)
+                      ->where('nip','!=',\Auth::user()->pegawai_id)
+                      ->whereHas('user',function ($q){
+                          $q->where('role_id',2);
+                      })
+                      ->where('kode_bagian','HS')
+                      ->get();
+      }elseif((\Auth::user()->role_id == 2) || (\Auth::user()->role_id == 3) || (\Auth::user()->role_id == 4)){
         $penggantis = Pegawai::where('is_active',1)
                       ->where('soft_delete',0)
                       ->where('nip','!=',\Auth::user()->pegawai_id)
@@ -29,8 +44,7 @@ class CutiController extends Controller
                       })
                       ->where('kode_bagian',\Auth::user()->pegawai->kode_bagian)->get();
                       
-      }
-      if(\Auth::user()->role_id == 5){
+      }elseif(\Auth::user()->role_id == 5){
         $penggantis = Pegawai::where('nip','!=',\Auth::user()->pegawai_id)
                       ->where('soft_delete',0)
                       ->where('kode_bagian',\Auth::user()->pegawai->kode_bagian)->get();
