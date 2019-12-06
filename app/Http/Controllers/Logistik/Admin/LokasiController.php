@@ -30,7 +30,7 @@ class LokasiController extends Controller
         $addLocation->created_at = date('Y-m-d H:i:s');
         $addLocation->save();
 
-        return redirect('/logistik/admin/lokasi');
+        return redirect('/Logistik/admin/lokasi');
 
     }
 
@@ -53,16 +53,17 @@ class LokasiController extends Controller
             $UpdatedLocation = LogLokasi::where('id', $data['id'])->update($toUpdateLocation);
         }
 
-        return redirect('/logistik/admin/lokasi');
+        return redirect('/Logistik/admin/lokasi');
 
     }
 
-    public function deleteLocation($id)
+    public function deleteLocation()
     {
-        $deletedLocation = LogLokasi::where('id', $id)->update(['soft_delete' => 1]);
+        $dataDelete = \Input::all();
+        $deletedLocation = LogLokasi::where('id', $dataDelete['id_location'])->update(['soft_delete'=>1]);
         if ($deletedLocation) {
 
-            return redirect('/logistik/admin/lokasi');
+            return redirect('/Logistik/admin/lokasi');
 
         }
     }

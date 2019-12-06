@@ -1,4 +1,4 @@
-<div class="col-md-3 left_col" style="width: 240px; ">
+<div class="col-md-3 left_col" style="width: 230px; ">
     <div class="left_col scroll-view" style="background: #00004E;">
         <div class="navbar nav_title" style="border: 0; background: white; width: 100%; margin-bottom: 10px;">
             <a href="{{ url('/') }}" class="site_title"><img src="{{asset('public/img/Waskita-noback.png')}}" width="40px" height="25px" style="color: white!important;"> <span style="color: #172D44 !important;">WEP - Logistik WEP </span></a>
@@ -10,7 +10,7 @@
                 <ul class="nav side-menu">
                     @if(Auth::user()->pegawai->kode_bagian == 'SL')
                         <li>
-                            <a href="{{url('/logistik')}}">
+                            <a href="{{url('/Logistik')}}">
                                 <i class="fa fa-laptop"></i>
                                 Dashboard
                             </a>
@@ -43,7 +43,7 @@
                         @endif
                         @if(Auth::user()->role_id == 6)
                             <li>
-                                <a href="{{url('admin/permintaan')}}">
+                                <a href="{{url('Logistik/admin/permintaan/')}}">
                                     <i class="fa fa-list"></i>
                                     Permintaan Barang
                                 </a>
@@ -53,7 +53,7 @@
                         <!-------------------------PENERIMAAN ------------------------->
                         @if(Auth::user()->role_id == 2)
                             <li>
-                                <a href="{{url('user/permintaan')}}">
+                                <a href="{{url('Logistik/user/permintaan')}}">
                                     <i class="fa fa-list"></i>
                                     Penerimaan Barang
                                 </a>
@@ -61,7 +61,7 @@
                         @endif
                         @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
                             <li>
-                                <a href="{{url('manager/penerimaah')}}">
+                                <a href="{{url('Logistik/manager/penerimaan')}}">
                                     <i class="fa fa-list"></i>
                                     Penerimaan Barang
                                 </a>
@@ -69,7 +69,7 @@
                         @endif
                          @if(Auth::user()->role_id == 5)
                             <li>
-                                <a href="{{url('pm/penerimaah')}}">
+                                <a href="{{url('Logistik/pm/penerimaah')}}">
                                     <i class="fa fa-list"></i>
                                     Penerimaan Barang
                                 </a>
@@ -77,7 +77,7 @@
                         @endif
                         @if(Auth::user()->role_id == 6)
                             <li>
-                                <a href="{{url('admin/penerimaan')}}">
+                                <a href="{{url('Logistik/admin/penerimaan')}}">
                                     <i class="fa fa-list"></i>
                                     Penerimaan Barang
                                 </a>
@@ -87,7 +87,7 @@
                         <!--------------Pengajuan Pemakaian------------------>
                         @if(Auth::user()->role_id == 2)
                             <li>
-                                <a href="{{url('user/pengajuan')}}">
+                                <a href="{{url('Logistik/user/pengajuan')}}">
                                     <i class="fa fa-list"></i>
                                     Pengajuan Pemakaian
                                 </a>
@@ -95,7 +95,7 @@
                         @endif
                         @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
                             <li>
-                                <a href="{{url('manager/pengajuan')}}">
+                                <a href="{{url('Logistik/manager/pengajuan')}}">
                                     <i class="fa fa-list"></i>
                                     Pengajuan Pemakaian
                                 </a>
@@ -103,7 +103,7 @@
                         @endif
                          @if(Auth::user()->role_id == 5)
                             <li>
-                                <a href="{{url('pm/pengajuan')}}">
+                                <a href="{{url('Logistik/pm/pengajuan')}}">
                                     <i class="fa fa-list"></i>
                                     Pengajuan Pemakaian
                                 </a>
@@ -111,7 +111,7 @@
                         @endif
                         @if(Auth::user()->role_id == 6)
                             <li>
-                                <a href="{{url('admin/pengajuan')}}">
+                                <a href="{{url('Logistik/admin/pengajuan')}}">
                                     <i class="fa fa-list"></i>
                                     Pengajuan Pemakaian
                                 </a>
@@ -121,7 +121,7 @@
                         <!--------------------------WASTE MATERIAL------------>
                         @if(Auth::user()->role_id == 2)
                             <li>
-                                <a href="{{url('user/waste')}}">
+                                <a href="{{url('Logistik/user/waste')}}">
                                     <i class="fa fa-list"></i>
                                     Waste Material
                                 </a>
@@ -129,7 +129,7 @@
                         @endif
                         @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
                             <li>
-                                <a href="{{url('manager/waste')}}">
+                                <a href="{{url('Logistik/manager/waste')}}">
                                     <i class="fa fa-list"></i>
                                     Waste Material
                                 </a>
@@ -137,7 +137,7 @@
                         @endif
                          @if(Auth::user()->role_id == 5)
                             <li>
-                                <a href="{{url('pm/waste')}}">
+                                <a href="{{url('Logistik/pm/waste')}}">
                                     <i class="fa fa-list"></i>
                                     Waste Material
                                 </a>
@@ -145,7 +145,7 @@
                         @endif
                         @if(Auth::user()->role_id == 6)
                             <li>
-                                <a href="{{url('admin/waste')}}">
+                                <a href="{{url('Logistik/admin/waste')}}">
                                     <i class="fa fa-list"></i>
                                     Waste Material
                                 </a>
@@ -155,40 +155,40 @@
                         <li><a><i class="fa fa-sign-out"></i> Laporan <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             @if(Auth::user()->role_id == 2)
-                                <li><a href="{{url('user/kartu_gudang')}}">Kartu Gudang</a></li>
-                                <li><a href="{{url('user/eval_mingguan')}}">Evaluasi Mingguan Pengadaan</a></li>
-                                <li><a href="{{url('user/harian_gudang')}}">Harian Gudang</a></li>
-                                <li><a href="{{url('user/eval_pakai')}}">Evaluasi Pemakaian Material</a></li>
-                                <li><a href="{{url('user/harian_pakai')}}">Harian Pemakaian Material</a></li>
+                                <li><a href="{{url('Logistik/user/kartu_gudang')}}">Kartu Gudang</a></li>
+                                <li><a href="{{url('Logistik/user/eval_mingguan')}}">Evaluasi Mingguan Pengadaan</a></li>
+                                <li><a href="{{url('Logistik/user/harian_gudang')}}">Harian Gudang</a></li>
+                                <li><a href="{{url('Logistik/user/eval_pakai')}}">Evaluasi Pemakaian Material</a></li>
+                                <li><a href="{{url('Logistik/user/harian_pakai')}}">Harian Pemakaian Material</a></li>
                             @endif
                             @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4)) 
-                                <li><a href="{{url('manager/kartu_gudang')}}">Kartu Gudang</a></li>
-                                <li><a href="{{url('manager/eval_mingguan')}}">Evaluasi Mingguan Pengadaan</a></li>
-                                <li><a href="{{url('manager/harian_gudang')}}">Harian Gudang</a></li>
-                                <li><a href="{{url('manager/eval_pakai')}}">Evaluasi Pemakaian Material</a></li>
-                                <li><a href="{{url('manager/harian_pakai')}}">Harian Pemakaian Material</a></li>
+                                <li><a href="{{url('Logistik/manager/kartu_gudang')}}">Kartu Gudang</a></li>
+                                <li><a href="{{url('Logistik/manager/eval_mingguan')}}">Evaluasi Mingguan Pengadaan</a></li>
+                                <li><a href="{{url('Logistik/manager/harian_gudang')}}">Harian Gudang</a></li>
+                                <li><a href="{{url('Logistik/manager/eval_pakai')}}">Evaluasi Pemakaian Material</a></li>
+                                <li><a href="{{url('Logistik/manager/harian_pakai')}}">Harian Pemakaian Material</a></li>
                             @endif
                             @if(Auth::user()->role_id == 5)
-                                <li><a href="{{url('pm/kartu_gudang')}}">Kartu Gudang</a></li>
-                                <li><a href="{{url('pm/eval_mingguan')}}">Evaluasi Mingguan Pengadaan</a></li>
-                                <li><a href="{{url('pm/harian_gudang')}}">Harian Gudang</a></li>
-                                <li><a href="{{url('pm/eval_pakai')}}">Evaluasi Pemakaian Material</a></li>
-                                <li><a href="{{url('pm/harian_pakai')}}">Harian Pemakaian Material</a></li>
+                                <li><a href="{{url('Logistik/pm/kartu_gudang')}}">Kartu Gudang</a></li>
+                                <li><a href="{{url('Logistik/pm/eval_mingguan')}}">Evaluasi Mingguan Pengadaan</a></li>
+                                <li><a href="{{url('Logistik/pm/harian_gudang')}}">Harian Gudang</a></li>
+                                <li><a href="{{url('Logistik/pm/eval_pakai')}}">Evaluasi Pemakaian Material</a></li>
+                                <li><a href="{{url('Logistik/pm/harian_pakai')}}">Harian Pemakaian Material</a></li>
                             @endif
                             @if(Auth::user()->role_id == 6)
-                                <li><a href="{{url('admin/kartu_gudang')}}">Kartu Gudang</a></li>
-                                <li><a href="{{url('admin/eval_mingguan')}}">Evaluasi Mingguan Pengadaan</a></li>
-                                <li><a href="{{url('admin/harian_gudang')}}">Harian Gudang</a></li>
-                                <li><a href="{{url('admin/eval_pakai')}}">Evaluasi Pemakaian Material</a></li>
-                                <li><a href="{{url('admin/harian_pakai')}}">Harian Pemakaian Material</a></li>
+                                <li><a href="{{url('Logistik/admin/kartu_gudang')}}">Kartu Gudang</a></li>
+                                <li><a href="{{url('Logistik/admin/eval_mingguan')}}">Evaluasi Mingguan Pengadaan</a></li>
+                                <li><a href="{{url('Logistik/admin/harian_gudang')}}">Harian Gudang</a></li>
+                                <li><a href="{{url('Logistik/admin/eval_pakai')}}">Evaluasi Pemakaian Material</a></li>
+                                <li><a href="{{url('Logistik/admin/harian_pakai')}}">Harian Pemakaian Material</a></li>
                             @endif
                         </ul>
                         <!------------------------- MASTER ---------------------------->
                         <li><a><i class="fa fa-sign-out"></i> Tabel Master <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             @if(Auth::user()->role_id == 6)
-                                <li><a href="{{url('logistik/admin/material/')}}">Material</a></li>
-                                <li><a href="{{url('logistik/admin/lokasi')}}">Lokasi Pekerjaan</a></li>
+                                <li><a href="{{url('Logistik/admin/material/')}}">Material</a></li>
+                                <li><a href="{{url('Logistik/admin/lokasi')}}">Lokasi Pekerjaan</a></li>
                                 <li><a href="{{url('admin/jenis_pekerjaan')}}">Jenis Pekerjaan</a></li>
                             @endif
                         </ul>
@@ -202,7 +202,7 @@
         </div>
         <!-- /sidebar menu -->
         <!-- /menu footer buttons -->
-        <div class="sidebar-footer hidden-small" style="width: 240px;background: #00004E;">
+        <div class="sidebar-footer hidden-small" style="width: 230px;background: #00004E;">
             <a data-toggle="tooltip" data-placement="top" title="Settings" style="background: #000030;">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
             </a>
