@@ -14,4 +14,9 @@ class LogDetailPermintaanMaterial extends Model
     {
         return $this->hasOne('App\Models\LogPermintaanMaterial', 'id', 'permintaan_id');
     }
+
+    public function material()
+    {
+        return $this->belongsTo('App\Models\LogMaterial', 'material_id', 'kode_material');
+    }
 }

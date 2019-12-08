@@ -14,35 +14,44 @@ class PermintaanController extends Controller
         $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->get();
         foreach ($permintaans as $permintaan) {
             if ($permintaan->is_som != 1) {
-                if ($permintaan->is_som == NULL) {
-                    $cekStatus = "Proses Pengecekan";
+                if ($permintaan->is_som == null) {
+                    $status['color'] = "#D63031";
+                    $status['text'] = "Proses Pengecekan";
                 } elseif ($permintaan->is_som == 0) {
-                    $cekStatus = "Rejected By SOM";
+                    $status['color'] = "#D63031";
+                    $status['text'] = "Rejected By SOM";
                 }
             } elseif ($permintaan->is_slem != 1) {
-                if ($permintaan->is_slem == NULL) {
-                    $cekStatus = "Accepted By SOM";
+                if ($permintaan->is_slem == null) {
+                    $status['color'] = "#74B9FF";
+                    $status['text'] = "Accepted By SOM";
                 } elseif ($permintaan->is_slem == 0) {
-                    $cekStatus = "Rejected By SPLEM";
+                    $status['color'] = "#D63031";
+                    $status['text'] = "Rejected By SPLEM";
                 }
             } elseif ($permintaan->is_scarm != 1) {
-                if ($permintaan->is_scarm == NULL) {
-                    $cekStatus = "Acepted By SPLEM";
+                if ($permintaan->is_scarm == null) {
+                    $status['color'] = "";
+                    $status['text'] = "Acepted By SPLEM";
                 } elseif ($permintaan->is_scarm == 0) {
-                    $cekStatus = "Rejected By SCARM";
+                    $status['color'] = "#D63031";
+                    $status['text'] = "Rejected By SCARM";
                 }
             } elseif ($permintaan->is_pm != 1) {
-                if ($permintaan->is_pm == NULL) {
-                    $cekStatus = "Accepted By SPLEM";
+                if ($permintaan->is_pm == null) {
+                    $status['color'] = "#74B9FF";
+                    $status['text'] = "Accepted By SPLEM";
                 } elseif ($permintaan->is_pm == 0) {
-                    $cekStatus = "Rejected By PM";
+                    $status['color'] = "#D63031";
+                    $status['text'] = "Rejected By PM";
                 }
             } elseif ($permintaan->is_pm == 1) {
-                $cekStatus = "Accepted By SPLEM";
+                $status['color'] = "#74B9FF";
+                $status['text'] = "Accepted By SPLEM";
             }
         }
 
-        return view('logistik.admin.permintaan.index', ['permintaans' => $permintaans]);
+        return view('logistik.admin.permintaan.index', ['permintaans' => $permintaans, 'status' => $status]);
     }
 
     public function beforePostPermintaan()
@@ -89,10 +98,76 @@ class PermintaanController extends Controller
                     die();
                 }
             }
-            
             return redirect('Logistik/admin/permintaan');
-
         }
+    }
 
+    public function getDetailByPermintaanId($id)
+    {
+        $details = LogDetailPermintaanMaterial::where(['permintaan_id' => $id, 'soft_delete' => 0])->get();
+        return view('logistik.admin.permintaan.detail', ['details' => $details]);
+    }
+
+    public function getPermintaanById($id)
+    {
+        $permintaan = LogPermintaanMaterial::where('id', $id)->get();
+        $detailPermintaan = LogDetailPermintaanMaterial::where(['permintaan_id' => $id, 'soft_delete' => 0])->get();
+        $materials = LogMaterial::where('soft_delete', 0)->get();
+
+        return view('logistik.admin.permintaan.edit', ['permintaan' => $permintaan, 'detail' => $detailPermintaan, 'materials' => $materials]);
+    }
+
+    public function updatePermintaan($id)
+    {
+        date_default_timezone_set("Asia/Jakarta");
+        $materialId = \Input::get('material');
+        $noPart = \Input::get('no_part');
+        $volume = \Input::get('volume');
+        $satuan = \Input::get('satuan');
+        $keperluan = \Input::get('keperluan');
+
+        $toUpdatePermintaan['updated_at'] = date('Y-m-d');
+        $updatedPermintaan = LogPermintaanMaterial::where('id', $id)->update($toUpdatePermintaan);
+
+        $jmlPermintaan = \Input::get('jumlah_data');
+        for ($i = 0; $i < $jmlPermintaan; $i++) {
+            $addDetailPemintaanMaterial = new LogDetailPermintaanMaterial;
+            $addDetailPemintaanMaterial->permintaan_id = $id;
+            $addDetailPemintaanMaterial->material_id = $materialId[$i];
+            $addDetailPemintaanMaterial->no_part = $noPart[$i];
+            $addDetailPemintaanMaterial->volume = $volume[$i];
+            $addDetailPemintaanMaterial->satuan = $satuan[$i];
+            $addDetailPemintaanMaterial->keperluan = $keperluan[$i];
+            $addDetailPemintaanMaterial->user_id = \Auth::user()->id;
+            $addDetailPemintaanMaterial->soft_delete = 0;
+            $addDetailPemintaanMaterial->created_at = date('Y-m-d');
+
+            if ($addDetailPemintaanMaterial->save()) {
+                $saveStatus = 1;
+            } else {
+                $saveStatus = 0;
+                die();
+            }
+        }
+        return redirect('Logistik/admin/permintaan');
+    }
+
+    public function deleteDetailPermintaanMaterial($detail, $permintaan)
+    {
+        $deleteDetailPermintaan = LogDetailPermintaanMaterial::where('id', $detail)->update(['soft_delete' => 1]);
+
+        return redirect('Logistik/admin/permintaan/edit/' . $permintaan . '');
+
+    }
+
+    public function deletePermintaan()
+    {
+        $dataDelete = \Input::all();
+        $deletePermintaan = LogPermintaanMaterial::where('id', $dataDelete['id_permintaan'])->update(['soft_delete' => 1]);
+
+        if ($deletePermintaan) {
+            $deleteAllDetailPermintaan = LogDetailPermintaanMaterial::where('permintaan_id', $dataDelete['id_permintaan'])->update(['soft_delete' => 1]);
+            return redirect('Logistik/admin/permintaan');
+        }
     }
 }

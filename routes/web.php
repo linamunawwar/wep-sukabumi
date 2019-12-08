@@ -390,26 +390,12 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::delete('/material/delete', 'Logistik\Admin\MaterialController@deleteMaterial');
 
 		//MASTER LOKASI PEKERJAAN
-<<<<<<< HEAD
 		Route::get('/lokasi', 'Logistik\Admin\LokasiController@index');
 		Route::get('/lokasi/create', 'Logistik\Admin\LokasiController@beforePostLocation');
 		Route::post('/lokasi/create', 'Logistik\Admin\LokasiController@postLocation');
 		Route::get('/lokasi/edit/{id}', 'Logistik\Admin\LokasiController@getLocationById');
 		Route::post('/lokasi/edit/{id}', 'Logistik\Admin\LokasiController@updateLocation');
 		Route::delete('/lokasi/delete', 'Logistik\Admin\LokasiController@deleteLocation');
-
-		//PERMINTAAN MATERIAL
-		Route::get('/permintaan', 'Logistik\Admin\PermintaanController@index');
-		Route::get('/permintaan/create', 'Logistik\Admin\PermintaanController@beforePostPermintaan');
-		Route::post('/permintaan/create', 'Logistik\Admin\PermintaanController@postPermintaan');
-
-=======
-		Route::get('/lokasi', 'logistik\Admin\LokasiController@index');
-		Route::get('/lokasi/create', 'logistik\Admin\LokasiController@beforePostLocation');
-		Route::post('/lokasi/create', 'logistik\Admin\LokasiController@postLocation');
-		Route::get('/lokasi/edit/{id}', 'logistik\Admin\LokasiController@getLocationById');
-		Route::post('/lokasi/edit/{id}', 'logistik\Admin\LokasiController@updateLocation');
-		Route::get('/lokasi/delete/{id}', 'logistik\Admin\LokasiController@deleteLocation');
 
 		//MASTER JENIS PEKERJAAN
 		Route::get('/jenis_pekerjaan', 'Logistik\Admin\JenisPekerjaanController@index');
@@ -418,7 +404,16 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/jenis_pekerjaan/edit/{id}', 'Logistik\Admin\JenisPekerjaanController@getJenisById');
 		Route::post('/jenis_pekerjaan/edit/{id}', 'Logistik\Admin\JenisPekerjaanController@updateJenis');
 		Route::delete('/jenis_pekerjaan/delete', 'Logistik\Admin\JenisPekerjaanController@deleteJenis');
->>>>>>> 527d52df8d3f4bfacb7127ecc93304bfeb924f25
+
+		//PERMINTAAN MATERIAL
+		Route::get('/permintaan', 'Logistik\Admin\PermintaanController@index');
+		Route::get('/permintaan/create', 'Logistik\Admin\PermintaanController@beforePostPermintaan');
+		Route::post('/permintaan/create', 'Logistik\Admin\PermintaanController@postPermintaan');
+		Route::get('/permintaan/detail/{id}', 'Logistik\Admin\PermintaanController@getDetailByPermintaanId');
+		Route::get('/permintaan/edit/{id}', 'Logistik\Admin\PermintaanController@getPermintaanById');
+		Route::post('/permintaan/edit/{id}', 'Logistik\Admin\PermintaanController@updatePermintaan');
+		Route::get('/permintaan/deleteDetail/{detailId}/{permintaanId}', 'Logistik\Admin\PermintaanController@deleteDetailPermintaanMaterial');
+		Route::delete('/permintaan/delete', 'Logistik\Admin\PermintaanController@deletePermintaan');
 	});
 
 	//arsip

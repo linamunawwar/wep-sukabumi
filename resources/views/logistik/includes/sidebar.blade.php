@@ -187,15 +187,9 @@
                         <li><a><i class="fa fa-sign-out"></i> Tabel Master <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             @if(Auth::user()->role_id == 6)
-<<<<<<< HEAD
                                 <li><a href="{{url('Logistik/admin/material/')}}">Material</a></li>
                                 <li><a href="{{url('Logistik/admin/lokasi')}}">Lokasi Pekerjaan</a></li>
-                                <li><a href="{{url('admin/jenis_pekerjaan')}}">Jenis Pekerjaan</a></li>
-=======
-                                <li><a href="{{url('logistik/admin/material/')}}">Material</a></li>
-                                <li><a href="{{url('logistik/admin/lokasi')}}">Lokasi Pekerjaan</a></li>
-                                <li><a href="{{url('logistik/admin/jenis_pekerjaan')}}">Jenis Pekerjaan</a></li>
->>>>>>> 527d52df8d3f4bfacb7127ecc93304bfeb924f25
+                                <li><a href="{{url('Logistik/admin/jenis_pekerjaan')}}">Jenis Pekerjaan</a></li>
                             @endif
                         </ul>
                         <!------------------------------------------------------------->

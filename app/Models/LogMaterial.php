@@ -10,3 +10,4 @@ class LogMaterial extends Model
     protected $table = "log_mst_material";
     public $timestamps = true;
 }
+
