@@ -29,7 +29,7 @@
 									<tr>
 									<td>{{ $waste->waste->wasteMaterial->nama }}</td>
 									<td>{{ $waste->waste->wasteJenisKerja->nama }}</td>
-									<td>{{ $waste->waste->bulan }} {{$waste->waste->tahun}}</td>
+									<td>{{ periode($waste->waste->periode)}}</td>
                                     @if($waste->is_splem == 0)
                                         <td><span class="label label-default">Not Approved</span></td>
                                         <td style="text-align: left;">

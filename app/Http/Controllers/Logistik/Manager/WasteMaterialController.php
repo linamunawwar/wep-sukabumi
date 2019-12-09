@@ -69,10 +69,11 @@ class WasteMaterialController extends Controller
         	$pm = Pegawai::where('posisi_id',1)->where('soft_delete',0)->first();
 
         	$data_sebelum = LogWastePengajuan::whereHas('waste', function ($q) use($find_waste){
-        						$q->where('tahun','<=', $find_waste->tahun)
+        						$q->where('periode','<', $find_waste->periode)
         						  ->where('id','!=',$find_waste->id)
         						  ->where('soft_delete',0);
-        					})->get();
+        					})->where('soft_delete',0)->get();
+        	
         	$jml_progress_persen = 0;
         	$jml_progress_vol = 0;
         	$jml_vol_bahan = 0;

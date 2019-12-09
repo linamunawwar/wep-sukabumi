@@ -65,7 +65,7 @@
 									<tr>
 									<td>{{ $waste->wasteMaterial->nama }}</td>
 									<td>{{ $waste->wasteJenisKerja->nama }}</td>
-									<td>{{ $waste->bulan }} {{$waste->tahun}}</td>
+									<td>{{ periode($waste->periode)}}</td>
 									<td style="text-align:center;">
 										<!-- <a class="btn btn-default btn-xs" href="{{url('logistik/admin/waste/edit/'.$waste->id.'')}}"><i class="fa fa-edit"></i>  Edit</a> -->
 										<button class="btn btn-success btn-xs" id_waste='{{$waste->id}}' id="ajukan"><i class="fa fa-arrow-up"></i>  Ajukan</button>
