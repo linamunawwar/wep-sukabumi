@@ -3,55 +3,60 @@
 namespace App\Http\Controllers\Logistik\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Pegawai;
 use App\Models\LogDetailPermintaanMaterial;
 use App\Models\LogMaterial;
 use App\Models\LogPermintaanMaterial;
+
+use PHPExcel_Worksheet_Drawing;
+use PHPExcel_Worksheet_PageSetup;
 
 class PermintaanController extends Controller
 {
     public function index()
     {
         $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->get();
+        $cekStatus = [];
         foreach ($permintaans as $permintaan) {
             if ($permintaan->is_som != 1) {
-                if ($permintaan->is_som == null) {
-                    $status['color'] = "#D63031";
-                    $status['text'] = "Proses Pengecekan";
+                if ($permintaan->is_som == Null) {
+                    $cekStatus['color'] = "#D63031";
+                    $cekStatus['text'] = "Proses Pengecekan";
                 } elseif ($permintaan->is_som == 0) {
-                    $status['color'] = "#D63031";
-                    $status['text'] = "Rejected By SOM";
+                    $cekStatus['color'] = "#D63031";
+                    $cekStatus['text'] = "Rejected By SOM";
                 }
             } elseif ($permintaan->is_slem != 1) {
-                if ($permintaan->is_slem == null) {
-                    $status['color'] = "#74B9FF";
-                    $status['text'] = "Accepted By SOM";
+                if ($permintaan->is_slem == Null) {
+                    $cekStatus['color'] = "#74B9FF";
+                    $cekStatus['text'] = "Accepted By SOM";
                 } elseif ($permintaan->is_slem == 0) {
-                    $status['color'] = "#D63031";
-                    $status['text'] = "Rejected By SPLEM";
+                    $cekStatus['color'] = "#D63031";
+                    $cekStatus['text'] = "Rejected By SPLEM";
                 }
             } elseif ($permintaan->is_scarm != 1) {
-                if ($permintaan->is_scarm == null) {
-                    $status['color'] = "";
-                    $status['text'] = "Acepted By SPLEM";
+                if ($permintaan->is_scarm == Null) {
+                    $cekStatus['color'] = "#74B9FF";
+                    $cekStatus['text'] = "Acepted By SPLEM";
                 } elseif ($permintaan->is_scarm == 0) {
-                    $status['color'] = "#D63031";
-                    $status['text'] = "Rejected By SCARM";
+                    $cekStatus['color'] = "#D63031";
+                    $cekStatus['text'] = "Rejected By SCARM";
                 }
             } elseif ($permintaan->is_pm != 1) {
-                if ($permintaan->is_pm == null) {
-                    $status['color'] = "#74B9FF";
-                    $status['text'] = "Accepted By SPLEM";
+                if ($permintaan->is_pm == Null) {
+                    $cekStatus['color'] = "#74B9FF";
+                    $cekStatus['text'] = "Accepted By SPLEM";
                 } elseif ($permintaan->is_pm == 0) {
-                    $status['color'] = "#D63031";
-                    $status['text'] = "Rejected By PM";
+                    $cekStatus['color'] = "#D63031";
+                    $cekStatus['text'] = "Rejected By PM";
                 }
             } elseif ($permintaan->is_pm == 1) {
-                $status['color'] = "#74B9FF";
-                $status['text'] = "Accepted By SPLEM";
+                $cekStatus['color'] = "#74B9FF";
+                $cekStatus['text'] = "Accepted By SPLEM";
             }
         }
 
-        return view('logistik.admin.permintaan.index', ['permintaans' => $permintaans, 'status' => $status]);
+        return view('logistik.admin.permintaan.index', ['permintaans' => $permintaans, 'cekStatus' => $cekStatus]);
     }
 
     public function beforePostPermintaan()
@@ -99,6 +104,74 @@ class PermintaanController extends Controller
                 }
             }
             return redirect('Logistik/admin/permintaan');
+        }
+    }
+
+    public function getUnduhPermintaan($id)
+    {
+        $findPermintaan = LogPermintaanMaterial::where('id', $id)->where('soft_delete', 0)->first();
+        $getDetailPermintaan = LogDetailPermintaanMaterial::where('permintaan_id', $findPermintaan->id)->where('soft_delete', 0)->get();
+        if ($findPermintaan) {
+            $som = Pegawai::where('posisi_id', 8)->where('soft_delete', 0)->first();
+            $splem = Pegawai::where('posisi_id',7)->where('soft_delete',0)->first();
+        	$scarm = Pegawai::where('posisi_id',5)->where('soft_delete',0)->first();
+        	$pm = Pegawai::where('posisi_id',1)->where('soft_delete',0)->first();
+        
+            $excel = \Excel::create('Formulir_Permintaan_Material', function($excel) use ($findPermintaan, $getDetailPermintaan, $som, $splem, $scarm, $pm){
+                $excel->sheet('New Sheet', function($sheet) use ($findPermintaan, $getDetailPermintaan, $som, $splem, $scarm, $pm){
+                    $sheet->loadview('logistik.admin.permintaan.unduh',
+                                    ['permintaan'=>$findPermintaan, 
+                                    'detailPermintaan'=>$getDetailPermintaan, 
+                                    'som'=>$som, 
+                                    'splem'=>$splem, 
+                                    'pm'=>$pm]);
+                    $objDrawing = new PHPExcel_Worksheet_Drawing;
+                    $objDrawing->setPath(public_path('img/Waskita.png'));
+                    $objDrawing->setCoordinates('C1');
+                    $objDrawing->setWorksheet($sheet);
+                    $objDrawing->setResizeProportional(false);
+
+                    // set width later
+                    $objDrawing->setWidth(40);
+                    $objDrawing->setHeight(35);
+                    $sheet->getStyle('C1')->getAlignment()->setIndent(1);
+                    $sheet->getStyle('A13:N15')->getAlignment()->setWrapText(true);
+                    $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
+                    $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
+                        array('horizontal' => 'center')
+                    );
+                    $sheet->cells('A9:M11', function ($cells) {
+                        $cells->setValignment('center');
+                        $cells->setFontFamily('Tahoma');
+                    });
+
+                    $sheet->cell('D9:E11', function($cell){
+                        $cell->setValignment('center');
+                    });
+                    $sheet->cell('D8:E8', function($cell){
+                        $cell->setBorder('','','thin','');
+                    });
+                    $sheet->cell('N2:N3', function($cell){
+                        $cell->setBorder('','','','thin');
+                    });
+                    $sheet->cell('C4', function($cell){
+                        $cell->setBorder('thin','thin','thin','thin');
+                    });
+                    $sheet->cell('C6', function($cell){
+                        $cell->setalignment('center');
+                        $cell->setValignment('center');
+                        $cell->setBorder('thin','thin','thin','thin');
+                    });
+                });
+            });
+            $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+            $styleArray = array(
+            'font'  => array(
+                'name'  => 'Tahoma'
+            ));      
+            $excel->getDefaultStyle()
+            ->applyFromArray($styleArray);
+            return $excel->export('xls');
         }
     }
 
