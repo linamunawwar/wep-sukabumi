@@ -17,7 +17,7 @@ Route::get('/password', 'PegawaiController@showResetForm');
 Route::post('/password', 'PegawaiController@postReset');
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/', 'HomeController@index');
-	Route::get('/logistik', 'Logistik\HomeController@index');
+	Route::get('/Logistik', 'Logistik\HomeController@index');
 
 	Route::group(['prefix' => '/admin'], function () {
 		// Route::get('/', ['as' => 'users.countdown', 'uses' => 'HomeController@countdown']);
@@ -380,22 +380,22 @@ Route::group(['middleware' => 'auth'], function () {
 	});
 
 	//Logistik Admin
-	Route::group(['prefix' => '/logistik/admin'], function () {
+	Route::group(['prefix' => '/Logistik/admin'], function () {
 		//MASTER MATERIAL
-		Route::get('/material', 'logistik\Admin\MaterialController@index');
-		Route::get('/material/create', 'logistik\Admin\MaterialController@beforePostMaterial');
-		Route::post('/material/create', 'logistik\Admin\MaterialController@postMaterial');
-		Route::get('/material/edit/{id}', 'logistik\Admin\MaterialController@getMaterialById');
-		Route::post('/material/edit/{id}', 'logistik\Admin\MaterialController@updateMaterial');
-		Route::get('/material/delete/{id}', 'logistik\Admin\MaterialController@deleteMaterial');
+		Route::get('/material', 'Logistik\Admin\MaterialController@index');
+		Route::get('/material/create', 'Logistik\Admin\MaterialController@beforePostMaterial');
+		Route::post('/material/create', 'Logistik\Admin\MaterialController@postMaterial');
+		Route::get('/material/edit/{id}', 'Logistik\Admin\MaterialController@getMaterialById');
+		Route::post('/material/edit/{id}', 'Logistik\Admin\MaterialController@updateMaterial');
+		Route::delete('/material/delete', 'Logistik\Admin\MaterialController@deleteMaterial');
 
 		//MASTER LOKASI PEKERJAAN
-		Route::get('/lokasi', 'logistik\Admin\LokasiController@index');
-		Route::get('/lokasi/create', 'logistik\Admin\LokasiController@beforePostLocation');
-		Route::post('/lokasi/create', 'logistik\Admin\LokasiController@postLocation');
-		Route::get('/lokasi/edit/{id}', 'logistik\Admin\LokasiController@getLocationById');
-		Route::post('/lokasi/edit/{id}', 'logistik\Admin\LokasiController@updateLocation');
-		Route::get('/lokasi/delete/{id}', 'logistik\Admin\LokasiController@deleteLocation');
+		Route::get('/lokasi', 'Logistik\Admin\LokasiController@index');
+		Route::get('/lokasi/create', 'Logistik\Admin\LokasiController@beforePostLocation');
+		Route::post('/lokasi/create', 'Logistik\Admin\LokasiController@postLocation');
+		Route::get('/lokasi/edit/{id}', 'Logistik\Admin\LokasiController@getLocationById');
+		Route::post('/lokasi/edit/{id}', 'Logistik\Admin\LokasiController@updateLocation');
+		Route::delete('/lokasi/delete', 'Logistik\Admin\LokasiController@deleteLocation');
 
 		//MASTER JENIS PEKERJAAN
 		Route::get('/jenis_pekerjaan', 'Logistik\Admin\JenisPekerjaanController@index');
@@ -404,6 +404,16 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/jenis_pekerjaan/edit/{id}', 'Logistik\Admin\JenisPekerjaanController@getJenisById');
 		Route::post('/jenis_pekerjaan/edit/{id}', 'Logistik\Admin\JenisPekerjaanController@updateJenis');
 		Route::delete('/jenis_pekerjaan/delete', 'Logistik\Admin\JenisPekerjaanController@deleteJenis');
+
+		//PERMINTAAN MATERIAL
+		Route::get('/permintaan', 'Logistik\Admin\PermintaanController@index');
+		Route::get('/permintaan/create', 'Logistik\Admin\PermintaanController@beforePostPermintaan');
+		Route::post('/permintaan/create', 'Logistik\Admin\PermintaanController@postPermintaan');
+		Route::get('/permintaan/detail/{id}', 'Logistik\Admin\PermintaanController@getDetailByPermintaanId');
+		Route::get('/permintaan/edit/{id}', 'Logistik\Admin\PermintaanController@getPermintaanById');
+		Route::post('/permintaan/edit/{id}', 'Logistik\Admin\PermintaanController@updatePermintaan');
+		Route::get('/permintaan/deleteDetail/{detailId}/{permintaanId}', 'Logistik\Admin\PermintaanController@deleteDetailPermintaanMaterial');
+		Route::delete('/permintaan/delete', 'Logistik\Admin\PermintaanController@deletePermintaan');
 
 		//Waste Material
 		Route::get('/waste', 'Logistik\Admin\WasteMaterialController@index');
@@ -420,22 +430,22 @@ Route::group(['middleware' => 'auth'], function () {
 	});
 
 	//Logistik Manager
-	Route::group(['prefix' => '/logistik/manager'], function () {
+	Route::group(['prefix' => '/Logistik/manager'], function () {
 		//MASTER MATERIAL
-		Route::get('/material', 'logistik\Admin\MaterialController@index');
-		Route::get('/material/create', 'logistik\Admin\MaterialController@beforePostMaterial');
-		Route::post('/material/create', 'logistik\Admin\MaterialController@postMaterial');
-		Route::get('/material/edit/{id}', 'logistik\Admin\MaterialController@getMaterialById');
-		Route::post('/material/edit/{id}', 'logistik\Admin\MaterialController@updateMaterial');
-		Route::get('/material/delete/{id}', 'logistik\Admin\MaterialController@deleteMaterial');
+		Route::get('/material', 'Logistik\Admin\MaterialController@index');
+		Route::get('/material/create', 'Logistik\Admin\MaterialController@beforePostMaterial');
+		Route::post('/material/create', 'Logistik\Admin\MaterialController@postMaterial');
+		Route::get('/material/edit/{id}', 'Logistik\Admin\MaterialController@getMaterialById');
+		Route::post('/material/edit/{id}', 'Logistik\Admin\MaterialController@updateMaterial');
+		Route::get('/material/delete/{id}', 'Logistik\Admin\MaterialController@deleteMaterial');
 
 		//MASTER LOKASI PEKERJAAN
-		Route::get('/lokasi', 'logistik\Admin\LokasiController@index');
-		Route::get('/lokasi/create', 'logistik\Admin\LokasiController@beforePostLocation');
-		Route::post('/lokasi/create', 'logistik\Admin\LokasiController@postLocation');
-		Route::get('/lokasi/edit/{id}', 'logistik\Admin\LokasiController@getLocationById');
-		Route::post('/lokasi/edit/{id}', 'logistik\Admin\LokasiController@updateLocation');
-		Route::get('/lokasi/delete/{id}', 'logistik\Admin\LokasiController@deleteLocation');
+		Route::get('/lokasi', 'Logistik\Admin\LokasiController@index');
+		Route::get('/lokasi/create', 'Logistik\Admin\LokasiController@beforePostLocation');
+		Route::post('/lokasi/create', 'Logistik\Admin\LokasiController@postLocation');
+		Route::get('/lokasi/edit/{id}', 'Logistik\Admin\LokasiController@getLocationById');
+		Route::post('/lokasi/edit/{id}', 'Logistik\Admin\LokasiController@updateLocation');
+		Route::get('/lokasi/delete/{id}', 'Logistik\Admin\LokasiController@deleteLocation');
 
 		//MASTER JENIS PEKERJAAN
 		Route::get('/jenis_pekerjaan', 'Logistik\Admin\JenisPekerjaanController@index');
@@ -454,7 +464,7 @@ Route::group(['middleware' => 'auth'], function () {
 	});
 
 	//Logistik PM
-	Route::group(['prefix' => '/logistik/pm'], function () {
+	Route::group(['prefix' => '/Logistik/pm'], function () {
 		//Waste Material
 		Route::get('/waste', 'Logistik\PM\WasteMaterialController@index');
 		Route::get('/waste/approve/{id}', 'Logistik\PM\WasteMaterialController@getApprove');

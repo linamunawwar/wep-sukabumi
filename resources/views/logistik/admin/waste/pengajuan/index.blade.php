@@ -68,7 +68,7 @@
                                             <span class="label label-primary">Approved By PM</span>
                                         </td>
                                         <td style="text-align: left;">
-                                            <a class="btn btn-success btn-xs" href="{{url('logistik/admin/waste/unduh/'.$waste->id.'')}}"><i class="fa fa-download"></i>  Unduh</a>
+                                            <a class="btn btn-success btn-xs" href="{{url('Logistik/admin/waste/unduh/'.$waste->id.'')}}"><i class="fa fa-download"></i>  Unduh</a>
                                               <button data-toggle="modal"  id_waste='{{$waste->id}}' data-target="#DeleteModal" class="btn btn-xs btn-danger" id="modal-delete" onclick='deleteData("{{$waste->id}}")'><i class="fa fa-trash"></i> Delete</button><br>
                                        </td>
                                     @endif
@@ -85,7 +85,7 @@
      <div id="DeleteModal" class="modal fade text-danger" role="dialog">
    <div class="modal-dialog ">
      <!-- Modal content-->
-     <form action="{{ url("logistik/admin/waste/delete") }}" id="deleteForm" method="post" >
+     <form action="{{ url("Logistik/admin/waste/pengajuan/delete") }}" id="deleteForm" method="post" >
          <div class="modal-content">
              <div class="modal-header bg-danger">
                  <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -118,7 +118,7 @@
      function deleteData(id)
      {
          var id = id;
-         var url = '{{ url("logistik/admin/waste/delete") }}';
+         var url = '{{ url("Logistik/admin/waste/pengajuan/delete") }}';
          // url = url.replace(':id', id);
          console.log(id);
          $('#id_waste').val(id);
@@ -134,7 +134,7 @@
      	var id_waste = $(this).attr('id_waste');
      	$.ajax({
             type: 'get',
-            url : '{{ url('logistik/admin/waste/ajukan') }}/'+id_waste,
+            url : '{{ url('Logistik/admin/waste/ajukan') }}/'+id_waste,
             success: function(response){
             	console.log(response)
             	if(response == 1){

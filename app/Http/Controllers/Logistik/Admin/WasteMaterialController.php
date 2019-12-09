@@ -116,7 +116,7 @@ class WasteMaterialController extends Controller
                 die();
             }
         }
-        return redirect('logistik/admin/waste');
+        return redirect('Logistik/admin/waste');
     }
 
     public function deleteWaste()
@@ -127,9 +127,10 @@ class WasteMaterialController extends Controller
     	if($find){
     		$update_waste = LogWaste::where('id',$id)->update(['soft_delete'=>1]);
     		$update_detail_waste = LogWasteDetail::where('waste_id',$id)->update(['soft_delete'=>1]);
+    		$update_waste_pengajuan = LogWastePengajuan::where('waste_id',$id)->update(['soft_delete'=>1]);
     	}
 
-    	return redirect('logistik/admin/waste');
+    	return redirect('Logistik/admin/waste');
     }
 
     public function getAjukan($id)
@@ -168,6 +169,6 @@ class WasteMaterialController extends Controller
     		$update_waste = LogWastePengajuan::where('id',$id)->update(['soft_delete'=>1]);
     	}
 
-    	return redirect('logistik/admin/waste/pengajuan');
+    	return redirect('Logistik/admin/waste/pengajuan');
     }
 }

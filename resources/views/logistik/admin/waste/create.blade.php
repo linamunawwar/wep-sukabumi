@@ -130,7 +130,7 @@
 								<tr>
 									<td></td>
 									<td>
-										<select class="form-control lokasi" name="lokasi" required="required" id="lokasi">
+										<select class="form-control lokasi" name="lokasi" id="lokasi">
 											<option value="">Pilih Lokasi</option>
 											@foreach($lokasis as $lokasi)
 												<option value="{{$lokasi->id}}">{{$lokasi->nama}}</option>
@@ -138,7 +138,7 @@
 										</select>
 									</td>
 									<td>
-										<select class="form-control pelaksana" name="pelaksana" required="required" id="pelaksana" style="width: 100%; !important">
+										<select class="form-control pelaksana" name="pelaksana" id="pelaksana" style="width: 100%; !important">
 											<option value="">Pilih Pelaksana</option>
 											@foreach($pelaksanas as $pelaksana)
 												<option value="{{$pelaksana->nip}}">{{$pelaksana->nama}}</option>
@@ -183,7 +183,7 @@
 							<div class="ln_solid"></div>
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-									<a class="btn btn-primary" href="{{url('/logistik/admin/waste')}}">Cancel</a>
+									<a class="btn btn-primary" href="{{url('/Logistik/admin/waste')}}">Cancel</a>
 									<button type="submit" class="btn btn-success">Submit</button>
 								</div>
 							</div>
@@ -212,7 +212,7 @@
 	  console.log(material,bulan,tahun);
 	  $.ajax({
             type: 'post',
-            url : '{{ url('logistik/admin/waste/cekData') }}',
+            url : '{{ url('Logistik/admin/waste/cekData') }}',
             data: {
                 'material' : material,
                 'jenis_kerja' : jenis_kerja,

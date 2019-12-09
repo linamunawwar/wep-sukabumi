@@ -41,6 +41,6 @@ class WasteMaterialController extends Controller
         		$dt['note_pm'] = \Input::get('note');;
         		$update = LogWastePengajuan::where('id',$id)->update($dt);
         }
-        return redirect('logistik/pm/waste');
+        return redirect('Logistik/pm/waste');
     }
 }

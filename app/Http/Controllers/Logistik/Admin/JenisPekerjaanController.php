@@ -31,7 +31,7 @@ class JenisPekerjaanController extends Controller
         $addJenis->created_at = date('Y-m-d H:i:s');
         $addJenis->save();
 
-        return redirect('/logistik/admin/jenis_pekerjaan');
+        return redirect('/Logistik/admin/jenis_pekerjaan');
 
     }
 
@@ -54,7 +54,7 @@ class JenisPekerjaanController extends Controller
             $UpdatedJenis = LogJenis::where('id', $data['id'])->update($toUpdateJenis);
         }
 
-        return redirect('/logistik/admin/jenis_pekerjaan');
+        return redirect('/Logistik/admin/jenis_pekerjaan');
 
     }
 
@@ -64,7 +64,7 @@ class JenisPekerjaanController extends Controller
         $deletedJenis = LogJenis::where('id', $data['id_jenis'])->update(['soft_delete' => 1]);
         if ($deletedJenis) {
 
-            return redirect('/logistik/admin/jenis_pekerjaan');
+            return redirect('/Logistik/admin/jenis_pekerjaan');
 
         }
     }

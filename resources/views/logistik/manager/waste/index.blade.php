@@ -35,7 +35,7 @@
                                         <td style="text-align: left;">
                                             <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button>
                                             @if(\Auth::user()->pegawai->posisi_id == 7)
-									           <a class="btn btn-success btn-xs" href="{{url('logistik/manager/waste/approve/'.$waste->id.'')}}"><i class="fa fa-check"></i>  Approve</a>
+									           <a class="btn btn-success btn-xs" href="{{url('Logistik/manager/waste/approve/'.$waste->id.'')}}"><i class="fa fa-check"></i>  Approve</a>
                                             @else
                                                 <a class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</a>
                                             @endif
@@ -45,7 +45,7 @@
                                         <td style="text-align: left;">
                                             <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button>
                                             @if(\Auth::user()->pegawai->posisi_id == 4)
-                                               <a class="btn btn-success btn-xs" href="{{url('logistik/manager/waste/approve/'.$waste->id.'')}}"><i class="fa fa-check"></i>  Approve</a>
+                                               <a class="btn btn-success btn-xs" href="{{url('Logistik/manager/waste/approve/'.$waste->id.'')}}"><i class="fa fa-check"></i>  Approve</a>
                                             @else
                                                 <a class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</a>
                                             @endif
@@ -57,7 +57,7 @@
                                         <td style="text-align: left;">
                                             <button class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Unduh</button>
                                             @if(\Auth::user()->pegawai->posisi_id == 5)
-                                               <a class="btn btn-success btn-xs" href="{{url('logistik/manager/waste/approve/'.$waste->id.'')}}"><i class="fa fa-check"></i>  Approve</a>
+                                               <a class="btn btn-success btn-xs" href="{{url('Logistik/manager/waste/approve/'.$waste->id.'')}}"><i class="fa fa-check"></i>  Approve</a>
                                             @else
                                                 <a class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</a>
                                             @endif
@@ -79,7 +79,7 @@
                                             <span class="label label-primary">Approved By PM</span>
                                         </td>
                                         <td style="text-align: left;">
-                                            <a class="btn btn-success btn-xs" href="{{url('logistik/pm/waste/unduh/'.$waste->id.'')}}"><i class="fa fa-download"></i>  Unduh</a>
+                                            <a class="btn btn-success btn-xs" href="{{url('Logistik/pm/waste/unduh/'.$waste->id.'')}}"><i class="fa fa-download"></i>  Unduh</a>
                                        </td>
                                     @endif
 									</tr>
@@ -91,60 +91,17 @@
 			</div>
 		</div>
     </div>
-    <!-- /page content -->
-     <div id="DeleteModal" class="modal fade text-danger" role="dialog">
-   <div class="modal-dialog ">
-     <!-- Modal content-->
-     <form action="{{ url("logistik/admin/waste/delete") }}" id="deleteForm" method="post" >
-         <div class="modal-content">
-             <div class="modal-header bg-danger">
-                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                 <h4 class="modal-title text-center">DELETE CONFIRMATION</h4>
-             </div>
-             <div class="modal-body">
-                 {{ csrf_field() }}
-                 {{ method_field('DELETE') }}
-                 <p class="text-center">Anda yakin ingin menghapus data ini ?</p>
-                 <input type="hidden" name="id_waste" id="id_waste">
-             </div>
-             <div class="modal-footer">
-                 <center>
-                     <button type="button" class="btn btn-success" data-dismiss="modal">Batal</button>
-                     <button type="submit" name="" class="btn btn-danger" data-dismiss="modal" onclick="formSubmit()">Ya, Hapus</button>
-                 </center>
-             </div>
-         </div>
-     </form>
-   </div>
-  </div>
+
 @endsection
 @push('scripts')
   <script type="text/javascript">
-  	$('#modal-delete').on("click",function(){
-  		var id_waste = $(this).attr('id_waste');
-         $('#id_waste').val(id_waste);
-     
-  	});
-     function deleteData(id)
-     {
-         var id = id;
-         var url = '{{ url("logistik/admin/waste/delete") }}';
-         // url = url.replace(':id', id);
-         console.log(id);
-         $('#id_waste').val(id);
-         $("#deleteForm").attr('action', url);
-     }
 
-     function formSubmit()
-     {
-         $("#deleteForm").submit();
-     }
 
      $(document).on("click", "button#ajukan", function(e){
      	var id_waste = $(this).attr('id_waste');
      	$.ajax({
             type: 'get',
-            url : '{{ url('logistik/admin/waste/ajukan') }}/'+id_waste,
+            url : '{{ url('Logistik/admin/waste/ajukan') }}/'+id_waste,
             success: function(response){
             	console.log(response)
             	if(response == 1){

@@ -54,7 +54,7 @@ class WasteMaterialController extends Controller
         		$update = LogWastePengajuan::where('id',$id)->update($dt);
         	}
         }
-        return redirect('logistik/manager/waste');
+        return redirect('Logistik/manager/waste');
     }
 
     public function getUnduh($id)
@@ -70,7 +70,8 @@ class WasteMaterialController extends Controller
 
         	$data_sebelum = LogWastePengajuan::whereHas('waste', function ($q) use($find_waste){
         						$q->where('tahun','<=', $find_waste->tahun)
-        						  ->where('id','!=',$find_waste->id);
+        						  ->where('id','!=',$find_waste->id)
+        						  ->where('soft_delete',0);
         					})->get();
         	$jml_progress_persen = 0;
         	$jml_progress_vol = 0;

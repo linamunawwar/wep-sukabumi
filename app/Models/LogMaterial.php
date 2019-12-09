@@ -15,3 +15,4 @@ class LogMaterial extends Model
         return $this->hasOne('App\Models\LogWaste','id','material_id');
     }
 }
+

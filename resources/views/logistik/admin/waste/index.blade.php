@@ -40,7 +40,7 @@
 					<div class="x_title">
 						<h2>Waste Material </h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('logistik/admin/waste/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
+							<li><a href="{{url('Logistik/admin/waste/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
@@ -84,7 +84,7 @@
      <div id="DeleteModal" class="modal fade text-danger" role="dialog">
    <div class="modal-dialog ">
      <!-- Modal content-->
-     <form action="{{ url("logistik/admin/waste/delete") }}" id="deleteForm" method="post" >
+     <form action="{{ url("Logistik/admin/waste/delete") }}" id="deleteForm" method="post" >
          <div class="modal-content">
              <div class="modal-header bg-danger">
                  <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -117,7 +117,7 @@
      function deleteData(id)
      {
          var id = id;
-         var url = '{{ url("logistik/admin/waste/delete") }}';
+         var url = '{{ url("Logistik/admin/waste/delete") }}';
          // url = url.replace(':id', id);
          console.log(id);
          $('#id_waste').val(id);
@@ -133,7 +133,7 @@
      	var id_waste = $(this).attr('id_waste');
      	$.ajax({
             type: 'get',
-            url : '{{ url('logistik/admin/waste/ajukan') }}/'+id_waste,
+            url : '{{ url('Logistik/admin/waste/ajukan') }}/'+id_waste,
             success: function(response){
             	console.log(response)
             	if(response == 1){

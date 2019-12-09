@@ -32,7 +32,7 @@ class MaterialController extends Controller
         $addMaterial->created_at = date('Y-m-d H:i:s');
         $addMaterial->save();
 
-        return redirect('/logistik/admin/material');
+        return redirect('/Logistik/admin/material');
 
     }
 
@@ -55,16 +55,16 @@ class MaterialController extends Controller
 
         $updateMaterial = LogMaterial::where('kode_material', $data['kode_material'])->update($material);
 
-        return redirect('/logistik/admin/material');
+        return redirect('/Logistik/admin/material');
     }
 
-    public function deleteMaterial($id)
+    public function deleteMaterial()
     {
-        
-        $deleteMaterial = LogMaterial::where('id',$id)->update(['soft_delete'=>1]);
+        $dataDelete = \Input::all();
+        $deleteMaterial = LogMaterial::where('id', $dataDelete['id_material'])->update(['soft_delete'=>1]);
 
         if ($deleteMaterial) {
-            return redirect('/logistik/admin/material');
+            return redirect('/Logistik/admin/material');
 
         }
     }
