@@ -109,7 +109,7 @@ class PermintaanController extends Controller
 
     public function getUnduhPermintaan($id)
     {
-        $findPermintaan = LogPermintaanMaterial::where('id', $id)->where('soft_delete', 0)->first();
+        $findPermintaan = LogPermintaanMaterial::find($id);
         $getDetailPermintaan = LogDetailPermintaanMaterial::where('permintaan_id', $findPermintaan->id)->where('soft_delete', 0)->get();
         if ($findPermintaan) {
             $som = Pegawai::where('posisi_id', 8)->where('soft_delete', 0)->first();

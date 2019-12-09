@@ -31,7 +31,7 @@
 											<select class="form-control col-md-7 col-xs-12 material" id="material" name="material">
 												<option value="">Pilih Material / Bahan</option>
 												@foreach($materials as $material)
-													<option value="{{$material->kode_material}}">{{$material->nama}}</option>
+													<option value="{{$material->id}}">{{$material->nama}}</option>
 												@endforeach
 											</select>
 										</div>

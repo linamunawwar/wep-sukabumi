@@ -14,5 +14,11 @@ class LogMaterial extends Model
     {
         return $this->hasOne('App\Models\LogWaste','id','material_id');
     }
+    
+    public function materialDetailPermintaan()
+    {
+        return $this->hasOne('App\Models\LogDetailPermintaanMaterial','id','material_id');
+    }
+    
 }
 

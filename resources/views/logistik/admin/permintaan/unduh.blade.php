@@ -134,24 +134,20 @@
         <td style="border: 1px double #000000;"  align="center">11</td>
         <td style="border: 1px double #000000;"  align="center">12</td>
       </tr>
-    <?php $i =1; ?>
-    @foreach($detailPermintaan as $data)
+    
       <tr>
         <td></td>
         <td></td>
-        <td style="border: 1px solid #000000;" align="center">{{$i++}}</td>
-        <td style="border: 1px solid #000000;"  align="center" colspan="2" >{{$data->material->nama}}</td>
-        <td style="border: 1px solid #000000;"  align="center" >{{$data->no_part}}</td>
-        <td style="border: 1px solid #000000;"  align="center">{{$data->volume}}</td>
-        <td style="border: 1px solid #000000;"  align="center">{{$data->satuan}}</td>
-        <td style="border: 1px solid #000000;"  align="center">{{$data->keperluan}}</td>
+        <td style="border: 1px solid #000000;" align="center"></td>
+        <td style="border: 1px solid #000000;"  align="center" colspan="2" ></td>
+        <td style="border: 1px solid #000000;"  align="center" ></td>
+        <td style="border: 1px solid #000000;"  align="center"></td>
+        <td style="border: 1px solid #000000;"  align="center"></td>
+        <td style="border: 1px solid #000000;"  align="center"></td>
         <td style="border: 1px solid #000000;"  align="center"></td>
         <td style="border: 1px solid #000000;"  align="center"></td>
       </tr>
-    @endforeach
-    @if(count($detailPermintaan) < 12)
-      <?php
-        for($i=count($detailPermintaan);$i<=12;$i++){
+    
           echo '<tr>
                 <td></td>
                 <td></td>
@@ -169,8 +165,7 @@
                 <td style="border: 1px solid #000000;"  align="center"></td>
               </tr>';
         }
-      ?>
-    @endif
+      
     <tr></tr>
     <tr></tr>
     <tr>
@@ -188,60 +183,15 @@
       <td></td>
       <td></td>
       <td></td>
-      <td></td>
-      <td align="center">Menyetujui,</td>
-      <td></td>
+      <td align="center">Disetujui</td>
       <td></td>
       <td></td>
       <td></td>
       <td></td>
       <td></td>
-      <td></td>
-      <td></td>
-      <td align="center">Yang Mengusulkan,</td>
+      <td>Dibuat Oleh</td>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td style="text-align: center;">
-        @if(file_exists("upload/pegawai/$pm->nip/$pm->ttd"))
-          <img src="upload/pegawai/{{$pm->nip}}/{{$pm->ttd}}" width="150" align="center">
-        @endif
-      </td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td style="text-align: center;">
-        @if(file_exists("upload/pegawai/$pm->nip/$pm->ttd"))
-          <img src="upload/pegawai/{{$pm->nip}}/{{$pm->ttd}}" width="150" align="center">
-        @endif
-      </td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td align="center">{{$pm->nama}}</td>
-      <td></td>
-      <td><</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td align="center">{{$pm->nama}}</td>
-    </tr>
-    <tr>
-      <td></td>
       <td></td>
       <td></td>
       <td></td>
@@ -251,10 +201,43 @@
       <td></td>
       <td></td>
       <td></td>
+      <td align="center" >SPLEM</td>
+      <td colspan="2"  >SOM</td>
+      <td colspan="2" >SCARM</td>
+    </tr>
+    <tr>
       <td></td>
       <td></td>
       <td></td>
-      <td align="center" colspan="2"></td>
+      <td style="text-align: center; height: 15;" height="15" colspan="2">
+       
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td style="text-align: center;">
+        
+      </td>
+      <td style="text-align: center;" colspan="2">
+        
+      </td>
+      <td style="text-align: center;" colspan="2">
+        
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td align="center"></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td align="center"></td>
+      <td colspan="2"></td>
+      <td colspan="2"></td>
     </tr>
   </table>
-    

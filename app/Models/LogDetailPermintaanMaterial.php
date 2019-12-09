@@ -10,13 +10,15 @@ class LogDetailPermintaanMaterial extends Model
     protected $table = 'log_tr_permintaan_detail';
     public $timestamps = true;
 
-    public function permintaan()
+    public function detailPermintaan()
     {
-        return $this->hasOne('App\Models\LogPermintaanMaterial', 'id', 'permintaan_id');
+        return $this->hasOne('App\Models\LogPermintaanMaterial', 'permintaan_id', 'id');
     }
 
-    public function material()
+    public function detailPermintaanMaterial()
     {
-        return $this->belongsTo('App\Models\LogMaterial', 'material_id', 'kode_material');
+        return $this->belongsTo('App\Models\LogMaterial', 'material_id', 'id');
     }
+
+   
 }
