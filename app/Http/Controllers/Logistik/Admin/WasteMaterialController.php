@@ -33,9 +33,10 @@ class WasteMaterialController extends Controller
     {
     	$bulan = \Input::get('bulan');
     	$tahun = \Input::get('tahun');
+    	$periode = $tahun.$bulan;
     	$material_id = \Input::get('material');
     	$jenis_id = \Input::get('jenis_kerja');
-    	$waste = LogWaste::where('bulan',$bulan)->where('tahun',$tahun)->where('material_id',$material_id)->where('jenis_pekerjaan_id',$jenis_id)->first();
+    	$waste = LogWaste::where('periode',$periode)->where('material_id',$material_id)->where('jenis_pekerjaan_id',$jenis_id)->first();
     	if($waste){
     		$datas = LogWasteDetail::where('waste_id',$waste->id)->where('soft_delete',0)->get();
     	}else{
@@ -60,6 +61,7 @@ class WasteMaterialController extends Controller
         $volume_pekerjaan = \Input::get('volume_pekerjaan');
         $bulan = \Input::get('bulan');
         $tahun = \Input::get('tahun');
+        $periode = $tahun.$bulan;
         $lokasi = \Input::get('lokasi');
         $pelaksana = \Input::get('pelaksana');
         $progress_persen = \Input::get('progress_persen');
@@ -72,12 +74,11 @@ class WasteMaterialController extends Controller
         $waste_deviasi = \Input::get('waste_deviasi');
         $keterangan = \Input::get('keterangan');
 
-        $find = LogWaste::where('bulan',$bulan)->where('tahun',$tahun)->where('material_id',$material_id)->where('jenis_pekerjaan_id',$jenis_pekerjaan_id)->first();
+        $find = LogWaste::where('periode',$periode)->where('material_id',$material_id)->where('jenis_pekerjaan_id',$jenis_pekerjaan_id)->first();
         if(!$find){
         	$logWaste = new LogWaste;
 	        $logWaste->material_id = $material_id;
-	        $logWaste->bulan = $bulan;
-	        $logWaste->tahun = $tahun;
+	        $logWaste->periode = $periode;
 	        $logWaste->jenis_pekerjaan_id = $jenis_pekerjaan_id;
 	        $logWaste->volume_pekerjaan = $volume_pekerjaan;
 	        $logWaste->user_id = \Auth::user()->id;
