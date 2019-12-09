@@ -91,4 +91,9 @@ class Pegawai extends Model
     {
         return $this->hasOne('App\Pelatihan','nip','nip');
     }
+
+    public function pegawaiPelaksana()
+    {
+        return $this->hasOne('App\Models\LogWasteDetail','nip','pelaksana');
+    }
 }

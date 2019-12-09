@@ -404,6 +404,63 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/jenis_pekerjaan/edit/{id}', 'Logistik\Admin\JenisPekerjaanController@getJenisById');
 		Route::post('/jenis_pekerjaan/edit/{id}', 'Logistik\Admin\JenisPekerjaanController@updateJenis');
 		Route::delete('/jenis_pekerjaan/delete', 'Logistik\Admin\JenisPekerjaanController@deleteJenis');
+
+		//Waste Material
+		Route::get('/waste', 'Logistik\Admin\WasteMaterialController@index');
+		Route::get('/waste/create', 'Logistik\Admin\WasteMaterialController@beforePostWaste');
+		Route::post('/waste/cekData', 'Logistik\Admin\WasteMaterialController@cekData');
+		Route::post('/waste/create', 'Logistik\Admin\WasteMaterialController@postWaste');
+		Route::get('/waste/ajukan/{id}', 'Logistik\Admin\WasteMaterialController@getAjukan');
+		Route::delete('/waste/delete', 'Logistik\Admin\WasteMaterialController@deleteWaste');
+
+		Route::get('/waste/pengajuan', 'Logistik\Admin\WasteMaterialController@indexPengajuan');
+		Route::delete('/waste/pengajuan/delete', 'Logistik\Admin\WasteMaterialController@deleteWastePengajuan');
+		Route::get('/waste/unduh/{id}', 'Logistik\Manager\WasteMaterialController@getUnduh');
+
+	});
+
+	//Logistik Manager
+	Route::group(['prefix' => '/logistik/manager'], function () {
+		//MASTER MATERIAL
+		Route::get('/material', 'logistik\Admin\MaterialController@index');
+		Route::get('/material/create', 'logistik\Admin\MaterialController@beforePostMaterial');
+		Route::post('/material/create', 'logistik\Admin\MaterialController@postMaterial');
+		Route::get('/material/edit/{id}', 'logistik\Admin\MaterialController@getMaterialById');
+		Route::post('/material/edit/{id}', 'logistik\Admin\MaterialController@updateMaterial');
+		Route::get('/material/delete/{id}', 'logistik\Admin\MaterialController@deleteMaterial');
+
+		//MASTER LOKASI PEKERJAAN
+		Route::get('/lokasi', 'logistik\Admin\LokasiController@index');
+		Route::get('/lokasi/create', 'logistik\Admin\LokasiController@beforePostLocation');
+		Route::post('/lokasi/create', 'logistik\Admin\LokasiController@postLocation');
+		Route::get('/lokasi/edit/{id}', 'logistik\Admin\LokasiController@getLocationById');
+		Route::post('/lokasi/edit/{id}', 'logistik\Admin\LokasiController@updateLocation');
+		Route::get('/lokasi/delete/{id}', 'logistik\Admin\LokasiController@deleteLocation');
+
+		//MASTER JENIS PEKERJAAN
+		Route::get('/jenis_pekerjaan', 'Logistik\Admin\JenisPekerjaanController@index');
+		Route::get('/jenis_pekerjaan/create', 'Logistik\Admin\JenisPekerjaanController@beforePostJenis');
+		Route::post('/jenis_pekerjaan/create', 'Logistik\Admin\JenisPekerjaanController@postJenis');
+		Route::get('/jenis_pekerjaan/edit/{id}', 'Logistik\Admin\JenisPekerjaanController@getJenisById');
+		Route::post('/jenis_pekerjaan/edit/{id}', 'Logistik\Admin\JenisPekerjaanController@updateJenis');
+		Route::delete('/jenis_pekerjaan/delete', 'Logistik\Admin\JenisPekerjaanController@deleteJenis');
+
+		//Waste Material
+		Route::get('/waste', 'Logistik\Manager\WasteMaterialController@index');
+		Route::get('/waste/approve/{id}', 'Logistik\Manager\WasteMaterialController@getApprove');
+		Route::post('/waste/approve/{id}', 'Logistik\Manager\WasteMaterialController@postApprove');
+		Route::get('/waste/unduh/{id}', 'Logistik\Manager\WasteMaterialController@getUnduh');
+
+	});
+
+	//Logistik PM
+	Route::group(['prefix' => '/logistik/pm'], function () {
+		//Waste Material
+		Route::get('/waste', 'Logistik\PM\WasteMaterialController@index');
+		Route::get('/waste/approve/{id}', 'Logistik\PM\WasteMaterialController@getApprove');
+		Route::post('/waste/approve/{id}', 'Logistik\PM\WasteMaterialController@postApprove');
+		Route::get('/waste/unduh/{id}', 'Logistik\Manager\WasteMaterialController@getUnduh');
+
 	});
 
 	//arsip

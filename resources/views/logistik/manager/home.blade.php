@@ -11,7 +11,7 @@
 	    <div class="right_col" role="main">
 	    	<div class="row tile_count">
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
-					<a href="{{url('logistik/admin/material')}}">
+					<a href="{{url('logistik/manager/material')}}">
 						<span class="count_top"><i class="fa fa-user"></i> Material</span><br/>
 						<div class="count green">{{$materials}}</div>
 					</a>
