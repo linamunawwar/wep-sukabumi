@@ -429,6 +429,18 @@ Route::group(['middleware' => 'auth'], function () {
 
 	});
 
+	Route::group(['prefix' => '/Logistik/pelaksana'], function () {
+		//Pengajuan PEMAKAIAN MATERIAL
+		Route::get('/pengajuan', 'Logistik\Pelaksana\PengajuanPemakaianController@index');
+		Route::get('/pengajuan/create', 'Logistik\Pelaksana\PengajuanPemakaianController@beforePostPermintaan');
+		Route::post('/pengajuan/create', 'Logistik\Pelaksana\PengajuanPemakaianController@postPermintaan');
+		Route::get('/pengajuan/detail/{id}', 'Logistik\Pelaksana\PengajuanPemakaianController@getDetailByPermintaanId');
+		Route::get('/pengajuan/edit/{id}', 'Logistik\Pelaksana\PengajuanPemakaianController@getPermintaanById');
+		Route::post('/pengajuan/edit/{id}', 'Logistik\Pelaksana\PengajuanPemakaianController@updatePermintaan');
+		Route::get('/pengajuan/deleteDetail/{detailId}/{permintaanId}', 'Logistik\Pelaksana\PengajuanPemakaianController@deleteDetailPermintaanMaterial');
+		Route::delete('/pengajuan/delete', 'Logistik\Pelaksana\PengajuanPemakaianController@deletePermintaan');
+	});
+
 	//Logistik Manager
 	Route::group(['prefix' => '/Logistik/manager'], function () {
 		//MASTER MATERIAL

@@ -85,7 +85,14 @@
                         @endif
                         <!--------------------------------------------------->
                         <!--------------Pengajuan Pemakaian------------------>
-                        @if(Auth::user()->role_id == 2)
+                        @if((Auth::user()->role_id == 2) && (Auth::user()->pegawai->posisi_id == 46))
+                            <li>
+                                <a href="{{url('Logistik/pelaksana/pengajuan')}}">
+                                    <i class="fa fa-list"></i>
+                                    Pengajuan Pemakaian
+                                </a>
+                            </li>
+                        @elseif(Auth::user()->role_id == 2)
                             <li>
                                 <a href="{{url('Logistik/user/pengajuan')}}">
                                     <i class="fa fa-list"></i>
@@ -119,14 +126,6 @@
                         @endif
                         <!---------------------------------------------------->
                         <!--------------------------WASTE MATERIAL------------>
-                        @if(Auth::user()->role_id == 2)
-                            <li>
-                                <a href="{{url('Logistik/user/waste')}}">
-                                    <i class="fa fa-list"></i>
-                                    Waste Material
-                                </a>
-                            </li>
-                        @endif
                         @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
                             <li>
                                 <a href="{{url('Logistik/manager/waste')}}">
@@ -184,14 +183,14 @@
                             @endif
                         </ul>
                         <!------------------------- MASTER ---------------------------->
-                        <li><a><i class="fa fa-sign-out"></i> Tabel Master <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            @if(Auth::user()->role_id == 6)
-                                <li><a href="{{url('Logistik/admin/material/')}}">Material</a></li>
-                                <li><a href="{{url('Logistik/admin/lokasi')}}">Lokasi Pekerjaan</a></li>
-                                <li><a href="{{url('Logistik/admin/jenis_pekerjaan')}}">Jenis Pekerjaan</a></li>
-                            @endif
-                        </ul>
+                        @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 6))
+                            <li><a><i class="fa fa-sign-out"></i> Tabel Master <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                    <li><a href="{{url('Logistik/admin/material/')}}">Material</a></li>
+                                    <li><a href="{{url('Logistik/admin/lokasi')}}">Lokasi Pekerjaan</a></li>
+                                    <li><a href="{{url('Logistik/admin/jenis_pekerjaan')}}">Jenis Pekerjaan</a></li>
+                            </ul>
+                        @endif
                         <!------------------------------------------------------------->
                     @endif
                     
