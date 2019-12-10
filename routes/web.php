@@ -494,6 +494,20 @@ Route::group(['middleware' => 'auth'], function () {
 
 	});
 
+	//Logistik USER
+	Route::group(['prefix' => '/Logistik/user'], function () {
+		//PERMINTAAN MATERIAL
+		Route::get('/permintaan', 'Logistik\Pelaksana\PermintaanController@index');
+		Route::get('/permintaan/create', 'Logistik\Pelaksana\PermintaanController@beforePostPermintaan');
+		Route::post('/permintaan/create', 'Logistik\Pelaksana\PermintaanController@postPermintaan');
+		Route::get('/permintaan/detail/{id}', 'Logistik\Pelaksana\PermintaanController@getDetailByPermintaanId');
+		Route::get('/permintaan/edit/{id}', 'Logistik\Pelaksana\PermintaanController@getPermintaanById');
+		Route::post('/permintaan/edit/{id}', 'Logistik\Pelaksana\PermintaanController@updatePermintaan');
+		Route::get('/permintaan/deleteDetail/{detailId}/{permintaanId}', 'Logistik\Pelaksana\PermintaanController@deleteDetailPermintaanMaterial');
+		Route::delete('/permintaan/delete', 'Logistik\Pelaksana\PermintaanController@deletePermintaan');
+		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
+	});
+
 	//arsip
 		Route::get('/arsip', 'ArsipController@index');
 		Route::get('/arsip/unduh/{id}', 'ArsipController@getUnduh');	

@@ -8,7 +8,7 @@
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu" style="background: #00004E;">
             <div class="menu_section">
                 <ul class="nav side-menu">
-                    @if((Auth::user()->pegawai->kode_bagian == 'SL') || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))
+                    @if((Auth::user()->pegawai->kode_bagian == 'SL') || (Auth::user()->role_id == 2) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))
                         <li>
                             <a href="{{url('/Logistik')}}">
                                 <i class="fa fa-laptop"></i>
@@ -33,7 +33,7 @@
                                 </a>
                             </li>
                         @endif
-                         @if(Auth::user()->role_id == 5)
+                        @if(Auth::user()->role_id == 5)
                             <li>
                                 <a href="{{url('Logistik/pm/permintaan')}}">
                                     <i class="fa fa-list"></i>
@@ -184,14 +184,14 @@
                             @endif
                         </ul>
                         <!------------------------- MASTER ---------------------------->
+                        @if(Auth::user()->role_id == 6)
                         <li><a><i class="fa fa-sign-out"></i> Tabel Master <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            @if(Auth::user()->role_id == 6)
+                        <ul class="nav child_menu">                            
                                 <li><a href="{{url('Logistik/admin/material/')}}">Material</a></li>
                                 <li><a href="{{url('Logistik/admin/lokasi')}}">Lokasi Pekerjaan</a></li>
                                 <li><a href="{{url('Logistik/admin/jenis_pekerjaan')}}">Jenis Pekerjaan</a></li>
-                            @endif
                         </ul>
+                        @endif
                         <!------------------------------------------------------------->
                     @endif
                     

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Logistik\PM;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\LogDetailPermintaanMaterial;
 use App\Models\LogMaterial;
