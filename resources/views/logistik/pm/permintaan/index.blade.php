@@ -22,9 +22,9 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Permintaan Material </h2>
+						<h2>Permintaan Material</h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('Logistik/manager/permintaan/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
+							<li><a href="{{url('Logistik/pm/permintaan/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
@@ -42,17 +42,17 @@
 							<tbody>	
 								<?php $no = 0 ?>
 								@foreach ($permintaans as $permintaan)
-							   	<?php $no++ ?>
+								<?php $no++ ?>
 									<tr>
 									<td>{{ $no }}</td>
 									<td>{{ $permintaan->kode_permintaan }}</td>
 									<td>{{ $permintaan->tanggal }}</td>
 									<td style="color:{{ $permintaan->color }};">{{ $permintaan->text }}</td>
 									<td style="text-align:center;">
-										<a class="btn btn-default btn-xs" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/manager/permintaan/detail/'.$permintaan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>  </a>
-										<a class="btn btn-default btn-xs" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/manager/permintaan/edit/'.$permintaan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
+										<a class="btn btn-default btn-xs" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/pm/permintaan/detail/'.$permintaan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>  </a>
+										<a class="btn btn-default btn-xs" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/pm/permintaan/edit/'.$permintaan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
 										<button data-toggle="modal"  id_permintaan='{{$permintaan->id}}' data-target="#DeleteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-delete" onclick='deleteData("{{$permintaan->id}}")'><i class="fa fa-trash" style="font-size:15px;"></i></button>
-										<a class="btn btn-default btn-xs" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/manager/permintaan/unduh/'.$permintaan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>
+										<a class="btn btn-default btn-xs" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/pm/permintaan/unduh/'.$permintaan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>
 									</td>
 									</tr>
 								@endforeach							
@@ -67,7 +67,7 @@
 	<div id="DeleteModal" class="modal fade text-danger" role="dialog">
 			<div class="modal-dialog ">
 				<!-- Modal content-->
-				<form action="{{ url("Logistik/manager/permintaan/delete") }}" id="deleteForm" method="post" >
+				<form action="{{ url("Logistik/pm/permintaan/delete") }}" id="deleteForm" method="post" >
 					<div class="modal-content">
 						<div class="modal-header bg-danger">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -100,7 +100,7 @@
      function deleteData(id)
      {
          var id = id;
-         var url = '{{ url("Logistik/manager/permintaan/delete") }}';
+         var url = '{{ url("Logistik/pm/permintaan/delete") }}';
          // url = url.replace(':id', id);
          console.log(id);
          $('#id_permintaan').val(id);

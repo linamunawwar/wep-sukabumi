@@ -475,6 +475,17 @@ Route::group(['middleware' => 'auth'], function () {
 
 	//Logistik PM
 	Route::group(['prefix' => '/Logistik/pm'], function () {
+		//PERMINTAAN MATERIAL
+		Route::get('/permintaan', 'Logistik\PM\PermintaanController@index');
+		Route::get('/permintaan/create', 'Logistik\PM\PermintaanController@beforePostPermintaan');
+		Route::post('/permintaan/create', 'Logistik\PM\PermintaanController@postPermintaan');
+		Route::get('/permintaan/detail/{id}', 'Logistik\PM\PermintaanController@getDetailByPermintaanId');
+		Route::get('/permintaan/edit/{id}', 'Logistik\PM\PermintaanController@getPermintaanById');
+		Route::post('/permintaan/edit/{id}', 'Logistik\PM\PermintaanController@updatePermintaan');
+		Route::get('/permintaan/deleteDetail/{detailId}/{permintaanId}', 'Logistik\PM\PermintaanController@deleteDetailPermintaanMaterial');
+		Route::delete('/permintaan/delete', 'Logistik\PM\PermintaanController@deletePermintaan');
+		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
+
 		//Waste Material
 		Route::get('/waste', 'Logistik\PM\WasteMaterialController@index');
 		Route::get('/waste/approve/{id}', 'Logistik\PM\WasteMaterialController@getApprove');

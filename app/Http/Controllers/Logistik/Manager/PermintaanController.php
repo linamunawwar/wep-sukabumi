@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers\Logistik\Manager;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Pegawai;
 use App\Models\LogDetailPermintaanMaterial;
 use App\Models\LogMaterial;
 use App\Models\LogPermintaanMaterial;
-use PHPExcel_Worksheet_Drawing;
-use PHPExcel_Worksheet_PageSetup;
 
 class PermintaanController extends Controller
 {
@@ -18,7 +14,7 @@ class PermintaanController extends Controller
         $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->get();
         foreach ($permintaans as $permintaan) {
             if ($permintaan->is_som != 1) {
-                if ($permintaan->is_som == Null) {
+                if ($permintaan->is_som == null) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Proses Pengecekan";
                 } elseif ($permintaan->is_som == 0) {
@@ -26,7 +22,7 @@ class PermintaanController extends Controller
                     $permintaan->text = "Rejected By SOM";
                 }
             } elseif ($permintaan->is_slem != 1) {
-                if ($permintaan->is_slem == Null) {
+                if ($permintaan->is_slem == null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Accepted By SOM";
                 } elseif ($permintaan->is_slem == 0) {
@@ -34,7 +30,7 @@ class PermintaanController extends Controller
                     $permintaan->text = "Rejected By SPLEM";
                 }
             } elseif ($permintaan->is_scarm != 1) {
-                if ($permintaan->is_scarm == Null) {
+                if ($permintaan->is_scarm == null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Acepted By SPLEM";
                 } elseif ($permintaan->is_scarm == 0) {
@@ -42,7 +38,7 @@ class PermintaanController extends Controller
                     $permintaan->text = "Rejected By SCARM";
                 }
             } elseif ($permintaan->is_pm != 1) {
-                if ($permintaan->is_pm == Null) {
+                if ($permintaan->is_pm == null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Accepted By SPLEM";
                 } elseif ($permintaan->is_pm == 0) {

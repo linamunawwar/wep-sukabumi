@@ -40,9 +40,9 @@
 								</tr>
 							</thead>
 							<tbody>	
-                                    {{ $no = 0 }}
-                                    @foreach ($permintaans as $permintaan)
-                                    {{ $no++ }}
+								<?php $no = 0 ?>
+								@foreach ($permintaans as $permintaan)
+								<?php $no++ ?>
 									<tr>
 									<td>{{ $no }}</td>
 									<td>{{ $permintaan->kode_permintaan }}</td>
