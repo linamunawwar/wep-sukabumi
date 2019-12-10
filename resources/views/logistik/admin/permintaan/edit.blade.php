@@ -131,6 +131,7 @@
 		$(document).on("click", "button.tambah", function(e){
 			e.preventDefault();
 			var material = $('#material').val();    
+			var nama_material = $('#material').find('option:selected').text();
 			var no_part = $('#no_part').val();
 			var volume = $('#volume').val();
 			var satuan = $('#satuan').val();
@@ -140,7 +141,7 @@
 	        $('#jumlah_data').val(jumlah_data);
 	        
 			var table = "<tr  class='data_"+jumlah_data+"'>";
-				table += "<td>"+material+"<input type='hidden' name='material[]' value='"+material+"' id='material_"+jumlah_data+"'></td>";
+				table += "<td>"+nama_material+"<input type='hidden' name='material[]' value='"+material+"' id='material_"+jumlah_data+"'></td>";
 				table += "<td>"+no_part+"<input type='hidden' name='no_part[]' value='"+no_part+"' id='no_part_"+jumlah_data+"'></td>";
 				table += "<td>"+volume+"<input type='hidden' name='volume[]' value='"+volume+"' id='volume_"+jumlah_data+"'></td>";
 				table += "<td>"+satuan+"<input type='hidden' name='satuan[]' value='"+satuan+"' id='satuan_"+jumlah_data+"'></td>";

@@ -16,47 +16,46 @@ class PermintaanController extends Controller
     public function index()
     {
         $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->get();
-        $cekStatus = [];
         foreach ($permintaans as $permintaan) {
             if ($permintaan->is_som != 1) {
                 if ($permintaan->is_som == Null) {
-                    $cekStatus['color'] = "#D63031";
-                    $cekStatus['text'] = "Proses Pengecekan";
+                    $permintaan->color = "#D63031";
+                    $permintaan->text = "Proses Pengecekan";
                 } elseif ($permintaan->is_som == 0) {
-                    $cekStatus['color'] = "#D63031";
-                    $cekStatus['text'] = "Rejected By SOM";
+                    $permintaan->color = "#D63031";
+                    $permintaan->text = "Rejected By SOM";
                 }
             } elseif ($permintaan->is_slem != 1) {
                 if ($permintaan->is_slem == Null) {
-                    $cekStatus['color'] = "#74B9FF";
-                    $cekStatus['text'] = "Accepted By SOM";
+                    $permintaan->color = "#74B9FF";
+                    $permintaan->text = "Accepted By SOM";
                 } elseif ($permintaan->is_slem == 0) {
-                    $cekStatus['color'] = "#D63031";
-                    $cekStatus['text'] = "Rejected By SPLEM";
+                    $permintaan->color = "#D63031";
+                    $permintaan->text = "Rejected By SPLEM";
                 }
             } elseif ($permintaan->is_scarm != 1) {
                 if ($permintaan->is_scarm == Null) {
-                    $cekStatus['color'] = "#74B9FF";
-                    $cekStatus['text'] = "Acepted By SPLEM";
+                    $permintaan->color = "#74B9FF";
+                    $permintaan->text = "Acepted By SPLEM";
                 } elseif ($permintaan->is_scarm == 0) {
-                    $cekStatus['color'] = "#D63031";
-                    $cekStatus['text'] = "Rejected By SCARM";
+                    $permintaan->color = "#D63031";
+                    $permintaan->text = "Rejected By SCARM";
                 }
             } elseif ($permintaan->is_pm != 1) {
                 if ($permintaan->is_pm == Null) {
-                    $cekStatus['color'] = "#74B9FF";
-                    $cekStatus['text'] = "Accepted By SPLEM";
+                    $permintaan->color = "#74B9FF";
+                    $permintaan->text = "Accepted By SPLEM";
                 } elseif ($permintaan->is_pm == 0) {
-                    $cekStatus['color'] = "#D63031";
-                    $cekStatus['text'] = "Rejected By PM";
+                    $permintaan->color = "#D63031";
+                    $permintaan->text = "Rejected By PM";
                 }
             } elseif ($permintaan->is_pm == 1) {
-                $cekStatus['color'] = "#74B9FF";
-                $cekStatus['text'] = "Accepted By SPLEM";
+                $permintaan->color = "#74B9FF";
+                $permintaan->text = "Accepted By SPLEM";
             }
         }
 
-        return view('logistik.admin.permintaan.index', ['permintaans' => $permintaans, 'cekStatus' => $cekStatus]);
+        return view('logistik.admin.permintaan.index', ['permintaans' => $permintaans]);
     }
 
     public function beforePostPermintaan()
@@ -135,12 +134,12 @@ class PermintaanController extends Controller
                     $objDrawing->setWidth(40);
                     $objDrawing->setHeight(35);
                     $sheet->getStyle('C1')->getAlignment()->setIndent(1);
-                    $sheet->getStyle('A13:N15')->getAlignment()->setWrapText(true);
-                    $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
-                    $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
+                    $sheet->getStyle('A13:H14')->getAlignment()->setWrapText(true);
+                    $sheet->getStyle('A2:H36')->getFont()->setName('Tahoma');
+                    $sheet->getStyle('A13:H15')->getAlignment()->applyFromArray(
                         array('horizontal' => 'center')
                     );
-                    $sheet->cells('A9:M11', function ($cells) {
+                    $sheet->cells('A9:H11', function ($cells) {
                         $cells->setValignment('center');
                         $cells->setFontFamily('Tahoma');
                     });
@@ -151,7 +150,7 @@ class PermintaanController extends Controller
                     $sheet->cell('D8:E8', function($cell){
                         $cell->setBorder('','','thin','');
                     });
-                    $sheet->cell('N2:N3', function($cell){
+                    $sheet->cell('K2:K3', function($cell){
                         $cell->setBorder('','','','thin');
                     });
                     $sheet->cell('C4', function($cell){

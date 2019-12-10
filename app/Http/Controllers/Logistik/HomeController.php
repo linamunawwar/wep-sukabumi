@@ -18,7 +18,7 @@ class HomeController extends Controller
             $materials = LogMaterial::where('soft_delete',0)->count();
             return view('logistik.admin.home',['materials'=>$materials]);
         }
-
+        
         if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4)){
             $materials = LogMaterial::where('soft_delete',0)->count();
             return view('logistik.manager.home',['materials'=>$materials]);
