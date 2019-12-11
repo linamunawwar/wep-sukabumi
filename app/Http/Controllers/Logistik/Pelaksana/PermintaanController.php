@@ -9,6 +9,24 @@ use App\Models\LogPermintaanMaterial;
 
 class PermintaanController extends Controller
 {
+    public function randomKey()
+    {
+        $panjang = 5;
+        $Huruf = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        $Angka = "1234567890";
+        $kodeHuruf = '';
+        $kodeAngka = '';
+        $kode = '';
+
+        for ($i = 0; $i < $panjang; $i++) {
+            $kodeHuruf .= $Huruf[rand(0, strlen($Huruf) - 1)];
+            $kodeAngka .= $Angka[rand(0, strlen($Angka) - 1)];
+        }
+
+        $kode = $kodeHuruf . "" . $kodeAngka;
+        return $kode;
+    }
+
     public function index()
     {
         $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->get();
@@ -69,7 +87,14 @@ class PermintaanController extends Controller
         $satuan = \Input::get('satuan');
         $keperluan = \Input::get('keperluan');
 
+        $kodePermintaan = PermintaanController::randomKey();
+        $getKodePermintaan = LogPermintaanMaterial::where('kode_permintaan', $kodePermintaan)->get();
+        while (empty($getKodePermintaan)) {
+            $kodePermintaan = PermintaanController::randomKey();
+        }
+
         $addPermintaan = new LogPermintaanMaterial;
+        $addPermintaan->kode_permintaan = $kodePermintaan;
         $addPermintaan->tanggal = date('Y-m-d');
         $addPermintaan->user_id = \Auth::user()->id;
         $addPermintaan->soft_delete = 0;

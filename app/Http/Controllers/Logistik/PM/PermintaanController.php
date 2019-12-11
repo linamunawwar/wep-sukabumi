@@ -9,6 +9,24 @@ use App\Models\LogPermintaanMaterial;
 
 class PermintaanController extends Controller
 {
+    public function randomKey()
+    {
+        $panjang = 5;
+        $Huruf = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        $Angka = "1234567890";
+        $kodeHuruf = '';
+        $kodeAngka = '';
+        $kode = '';
+
+        for ($i = 0; $i < $panjang; $i++) {
+            $kodeHuruf .= $Huruf[rand(0, strlen($Huruf) - 1)];
+            $kodeAngka .= $Angka[rand(0, strlen($Angka) - 1)];
+        }
+
+        $kode = $kodeHuruf . "" . $kodeAngka;
+        return $kode;
+    }
+
     public function index()
     {
         $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->get();
@@ -69,7 +87,14 @@ class PermintaanController extends Controller
         $satuan = \Input::get('satuan');
         $keperluan = \Input::get('keperluan');
 
+        $kodePermintaan = PermintaanController::randomKey();
+        $getKodePermintaan = LogPermintaanMaterial::where('kode_permintaan', $kodePermintaan)->get();
+        while (empty($getKodePermintaan)) {
+            $kodePermintaan = PermintaanController::randomKey();
+        }
+
         $addPermintaan = new LogPermintaanMaterial;
+        $addPermintaan->kode_permintaan = $kodePermintaan;
         $addPermintaan->tanggal = date('Y-m-d');
         $addPermintaan->user_id = \Auth::user()->id;
         $addPermintaan->soft_delete = 0;
@@ -157,7 +182,7 @@ class PermintaanController extends Controller
         if ($findPermintaan) {
             $getDetailPermintaan = logDetailPermintaanMaterial::where('permintaan_id', $findPermintaan->id)->where('soft_delete', 0)->get();
         }
-        
+
         return view('logistik.pm.permintaan.approve', ['permintaans' => $findPermintaan, 'details' => $getDetailPermintaan]);
     }
 
@@ -168,12 +193,12 @@ class PermintaanController extends Controller
         if ($find) {
             $cekApprove = \Input::get('approve');
             $cekReject = \Input::get('reject');
-            if (\Auth::user()->pegawai->posisi_id == 1) {//splem
+            if (\Auth::user()->pegawai->posisi_id == 1) { //splem
                 if (isset($cekApprove)) {
                     $dt['is_pm'] = 1;
                     $dt['is_pm_at'] = date('Y-m-d H:i:s');
                     $dt['note_pm'] = \Input::get('note');
-                }elseif (isset($cekReject)) {
+                } elseif (isset($cekReject)) {
                     $dt['is_pm'] = 0;
                     $dt['is_pm_at'] = date('Y-m-d H:i:s');
                     $dt['note_pm'] = \Input::get('note');

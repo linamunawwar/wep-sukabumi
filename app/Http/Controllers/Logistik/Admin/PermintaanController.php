@@ -3,22 +3,39 @@
 namespace App\Http\Controllers\Logistik\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Pegawai;
 use App\Models\LogDetailPermintaanMaterial;
 use App\Models\LogMaterial;
 use App\Models\LogPermintaanMaterial;
-
+use App\Pegawai;
 use PHPExcel_Worksheet_Drawing;
 use PHPExcel_Worksheet_PageSetup;
 
 class PermintaanController extends Controller
 {
+    public function randomKey()
+    {
+        $panjang = 5;
+        $Huruf = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        $Angka = "1234567890";
+        $kodeHuruf = '';
+        $kodeAngka = '';
+        $kode = '';
+
+        for ($i = 0; $i < $panjang; $i++) {
+            $kodeHuruf .= $Huruf[rand(0, strlen($Huruf) - 1)];
+            $kodeAngka .= $Angka[rand(0, strlen($Angka) - 1)];
+        }
+
+        $kode = $kodeHuruf . "" . $kodeAngka;
+        return $kode;
+    }
+
     public function index()
     {
         $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->get();
         foreach ($permintaans as $permintaan) {
             if ($permintaan->is_som != 1) {
-                if ($permintaan->is_som == Null) {
+                if ($permintaan->is_som == null) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Proses Pengecekan";
                 } elseif ($permintaan->is_som == 0) {
@@ -26,7 +43,7 @@ class PermintaanController extends Controller
                     $permintaan->text = "Rejected By SOM";
                 }
             } elseif ($permintaan->is_slem != 1) {
-                if ($permintaan->is_slem == Null) {
+                if ($permintaan->is_slem == null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Accepted By SOM";
                 } elseif ($permintaan->is_slem == 0) {
@@ -34,7 +51,7 @@ class PermintaanController extends Controller
                     $permintaan->text = "Rejected By SPLEM";
                 }
             } elseif ($permintaan->is_scarm != 1) {
-                if ($permintaan->is_scarm == Null) {
+                if ($permintaan->is_scarm == null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Acepted By SPLEM";
                 } elseif ($permintaan->is_scarm == 0) {
@@ -42,7 +59,7 @@ class PermintaanController extends Controller
                     $permintaan->text = "Rejected By SCARM";
                 }
             } elseif ($permintaan->is_pm != 1) {
-                if ($permintaan->is_pm == Null) {
+                if ($permintaan->is_pm == null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Accepted By SPLEM";
                 } elseif ($permintaan->is_pm == 0) {
@@ -74,7 +91,14 @@ class PermintaanController extends Controller
         $satuan = \Input::get('satuan');
         $keperluan = \Input::get('keperluan');
 
+        $kodePermintaan = PermintaanController::randomKey();
+        $getKodePermintaan = LogPermintaanMaterial::where('kode_permintaan', $kodePermintaan)->get();
+        while (empty($getKodePermintaan)) {
+            $kodePermintaan = PermintaanController::randomKey();
+        }
+
         $addPermintaan = new LogPermintaanMaterial;
+        $addPermintaan->kode_permintaan = $kodePermintaan;
         $addPermintaan->tanggal = date('Y-m-d');
         $addPermintaan->user_id = \Auth::user()->id;
         $addPermintaan->soft_delete = 0;
@@ -112,18 +136,18 @@ class PermintaanController extends Controller
         $getDetailPermintaan = LogDetailPermintaanMaterial::where('permintaan_id', $findPermintaan->id)->where('soft_delete', 0)->get();
         if ($findPermintaan) {
             $som = Pegawai::where('posisi_id', 8)->where('soft_delete', 0)->first();
-            $splem = Pegawai::where('posisi_id',7)->where('soft_delete',0)->first();
-        	$scarm = Pegawai::where('posisi_id',5)->where('soft_delete',0)->first();
-        	$pm = Pegawai::where('posisi_id',1)->where('soft_delete',0)->first();
-        
-            $excel = \Excel::create('Formulir_Permintaan_Material', function($excel) use ($findPermintaan, $getDetailPermintaan, $som, $splem, $scarm, $pm){
-                $excel->sheet('New Sheet', function($sheet) use ($findPermintaan, $getDetailPermintaan, $som, $splem, $scarm, $pm){
+            $splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
+            $scarm = Pegawai::where('posisi_id', 5)->where('soft_delete', 0)->first();
+            $pm = Pegawai::where('posisi_id', 1)->where('soft_delete', 0)->first();
+
+            $excel = \Excel::create('Formulir_Permintaan_Material', function ($excel) use ($findPermintaan, $getDetailPermintaan, $som, $splem, $scarm, $pm) {
+                $excel->sheet('New Sheet', function ($sheet) use ($findPermintaan, $getDetailPermintaan, $som, $splem, $scarm, $pm) {
                     $sheet->loadview('logistik.admin.permintaan.unduh',
-                                    ['permintaan'=>$findPermintaan, 
-                                    'detailPermintaan'=>$getDetailPermintaan, 
-                                    'som'=>$som, 
-                                    'splem'=>$splem, 
-                                    'pm'=>$pm]);
+                        ['permintaan' => $findPermintaan,
+                            'detailPermintaan' => $getDetailPermintaan,
+                            'som' => $som,
+                            'splem' => $splem,
+                            'pm' => $pm]);
                     $objDrawing = new PHPExcel_Worksheet_Drawing;
                     $objDrawing->setPath(public_path('img/Waskita.png'));
                     $objDrawing->setCoordinates('C1');
@@ -144,32 +168,32 @@ class PermintaanController extends Controller
                         $cells->setFontFamily('Tahoma');
                     });
 
-                    $sheet->cell('D9:E11', function($cell){
+                    $sheet->cell('D9:E11', function ($cell) {
                         $cell->setValignment('center');
                     });
-                    $sheet->cell('D8:E8', function($cell){
-                        $cell->setBorder('','','thin','');
+                    $sheet->cell('D8:E8', function ($cell) {
+                        $cell->setBorder('', '', 'thin', '');
                     });
-                    $sheet->cell('K2:K3', function($cell){
-                        $cell->setBorder('','','','thin');
+                    $sheet->cell('K2:K3', function ($cell) {
+                        $cell->setBorder('', '', '', 'thin');
                     });
-                    $sheet->cell('C4', function($cell){
-                        $cell->setBorder('thin','thin','thin','thin');
+                    $sheet->cell('C4', function ($cell) {
+                        $cell->setBorder('thin', 'thin', 'thin', 'thin');
                     });
-                    $sheet->cell('C6', function($cell){
+                    $sheet->cell('C6', function ($cell) {
                         $cell->setalignment('center');
                         $cell->setValignment('center');
-                        $cell->setBorder('thin','thin','thin','thin');
+                        $cell->setBorder('thin', 'thin', 'thin', 'thin');
                     });
                 });
             });
             $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
             $styleArray = array(
-            'font'  => array(
-                'name'  => 'Tahoma'
-            ));      
+                'font' => array(
+                    'name' => 'Tahoma',
+                ));
             $excel->getDefaultStyle()
-            ->applyFromArray($styleArray);
+                ->applyFromArray($styleArray);
             return $excel->export('xls');
         }
     }

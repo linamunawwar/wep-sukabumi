@@ -550,16 +550,16 @@
             "time": "2018-03-21T22:21:57+00:00"
         },
         {
-            "name": "kylekatarnls/update-helper",
+            "name": "kylekatarnls/update-",
             "version": "1.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/kylekatarnls/update-helper.git",
+                "url": "https://github.com/kylekatarnls/update-.git",
                 "reference": "5786fa188e0361b9adf9e8199d7280d1b2db165e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kylekatarnls/update-helper/zipball/5786fa188e0361b9adf9e8199d7280d1b2db165e",
+                "url": "https://api.github.com/repos/kylekatarnls/update-/zipball/5786fa188e0361b9adf9e8199d7280d1b2db165e",
                 "reference": "5786fa188e0361b9adf9e8199d7280d1b2db165e",
                 "shasum": ""
             },
@@ -574,11 +574,11 @@
             },
             "type": "composer-plugin",
             "extra": {
-                "class": "UpdateHelper\\ComposerPlugin"
+                "class": "Update\\ComposerPlugin"
             },
             "autoload": {
                 "psr-0": {
-                    "UpdateHelper\\": "src/"
+                    "Update\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -591,7 +591,7 @@
                     "email": "kylekatarnls@gmail.com"
                 }
             ],
-            "description": "Update helper",
+            "description": "Update ",
             "time": "2019-07-29T11:03:54+00:00"
         },
         {
@@ -698,8 +698,8 @@
             },
             "autoload": {
                 "files": [
-                    "src/Illuminate/Foundation/helpers.php",
-                    "src/Illuminate/Support/helpers.php"
+                    "src/Illuminate/Foundation/s.php",
+                    "src/Illuminate/Support/s.php"
                 ],
                 "psr-4": {
                     "Illuminate\\": "src/Illuminate/"
@@ -756,7 +756,7 @@
                     "Collective\\Html\\": "src/"
                 },
                 "files": [
-                    "src/helpers.php"
+                    "src/s.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1076,7 +1076,7 @@
                 "shasum": ""
             },
             "require": {
-                "kylekatarnls/update-helper": "^1.1",
+                "kylekatarnls/update-": "^1.1",
                 "php": ">=5.3.9",
                 "symfony/translation": "~2.6 || ~3.0 || ~4.0"
             },
@@ -1090,7 +1090,7 @@
             ],
             "type": "library",
             "extra": {
-                "update-helper": "Carbon\\Upgrade",
+                "update-": "Carbon\\Upgrade",
                 "laravel": {
                     "providers": [
                         "Carbon\\Laravel\\ServiceProvider"
@@ -1636,7 +1636,7 @@
                     "Spatie\\Permission\\": "src"
                 },
                 "files": [
-                    "src/helpers.php"
+                    "src/s.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2943,7 +2943,7 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Laravel 5 Gravatar helper",
+            "description": "Laravel 5 Gravatar ",
             "homepage": "https://github.com/thomaswelton/laravel-gravatar",
             "keywords": [
                 "gravatar",
