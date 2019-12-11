@@ -109,11 +109,11 @@ class PermintaanController extends Controller
 
     public function getPermintaanById($id)
     {
-        $permintaan = LogPermintaanMaterial::where('id', $id)->get();
-        $detailPermintaan = LogDetailPermintaanMaterial::where(['permintaan_id' => $id, 'soft_delete' => 0])->get();
+        $permintaan = LogPermintaanMaterial::where(['id' => $id, 'soft_delete' => 0])->first();
+        $detailPermintaan = LogDetailPermintaanMaterial::where(['permintaan_id' => $permintaan->id, 'soft_delete' => 0])->get();
         $materials = LogMaterial::where('soft_delete', 0)->get();
 
-        return view('logistik.manager.permintaan.edit', ['permintaan' => $permintaan, 'detail' => $detailPermintaan, 'materials' => $materials]);
+        return view('logistik.pm.permintaan.edit', ['permintaan' => $permintaan, 'detail' => $detailPermintaan, 'materials' => $materials]);
     }
 
     public function updatePermintaan($id)
@@ -146,6 +146,61 @@ class PermintaanController extends Controller
             } else {
                 $saveStatus = 0;
                 die();
+            }
+        }
+        return redirect('Logistik/manager/permintaan');
+    }
+
+    public function beforeApprovePermintaan($id)
+    {
+        $findPermintaan = LogPermintaanMaterial::where('id', $id)->where('soft_delete', 0)->first();
+        if ($findPermintaan) {
+            $getDetailPermintaan = logDetailPermintaanMaterial::where('permintaan_id', $findPermintaan->id)->where('soft_delete', 0)->get();
+        }
+        
+        return view('logistik.manager.permintaan.approve', ['permintaans' => $findPermintaan, 'details' => $getDetailPermintaan]);
+    }
+
+    public function approvePermintaan($id)
+    {
+        date_default_timezone_set("Asia/Jakarta");
+        $find = LogPermintaanMaterial::where('id', $id)->where('soft_delete', 0)->first();
+        if ($find) {
+            $cekApprove = \Input::get('approve');
+            $cekReject = \Input::get('reject');
+            if (\Auth::user()->pegawai->posisi_id == 8) {//splem
+                if (isset($cekApprove)) {
+                    $dt['is_som'] = 1;
+                    $dt['is_som_at'] = date('Y-m-d H:i:s');
+                    $dt['note_som'] = \Input::get('note');
+                }elseif (isset($cekReject)) {
+                    $dt['is_som'] = 0;
+                    $dt['is_som_at'] = date('Y-m-d H:i:s');
+                    $dt['note_som'] = \Input::get('note');
+                }
+                $update = LogPermintaanMaterial::where('id', $id)->update($dt);
+            } elseif (\Auth::user()->pegawai->posisi_id == 7) { //sem
+                if (isset($cekApprove)) {
+                    $dt['is_slem'] = 1;
+                    $dt['is_slem_at'] = date('Y-m-d H:i:s');
+                    $dt['note_slem'] = \Input::get('note');
+                }elseif (isset($cekReject)) {
+                    $dt['is_slem'] = 1;
+                    $dt['is_slem_at'] = date('Y-m-d H:i:s');
+                    $dt['note_slem'] = \Input::get('note');
+                }                
+                $update = LogPermintaanMaterial::where('id', $id)->update($dt);
+            } elseif (\Auth::user()->pegawai->posisi_id == 5) { //scarm
+                if (isset($cekApprove)) {
+                    $dt['is_scarm'] = 1;
+                    $dt['is_scarm_at'] = date('Y-m-d H:i:s');
+                    $dt['note_scarm'] = \Input::get('note');
+                }elseif (isset($cekReject)) {
+                    $dt['is_scarm'] = 1;
+                    $dt['is_scarm_at'] = date('Y-m-d H:i:s');
+                    $dt['note_scarm'] = \Input::get('note');
+                }                
+                $update = LogPermintaanMaterial::where('id', $id)->update($dt);
             }
         }
         return redirect('Logistik/manager/permintaan');

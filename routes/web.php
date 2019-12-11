@@ -464,6 +464,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/permintaan/edit/{id}', 'Logistik\Manager\PermintaanController@updatePermintaan');
 		Route::get('/permintaan/deleteDetail/{detailId}/{permintaanId}', 'Logistik\Manager\PermintaanController@deleteDetailPermintaanMaterial');
 		Route::delete('/permintaan/delete', 'Logistik\Manager\PermintaanController@deletePermintaan');
+		Route::get('/permintaan/approve/{id}', 'Logistik\Manager\PermintaanController@beforeApprovePermintaan');
+		Route::post('/permintaan/approve/{id}', 'Logistik\Manager\PermintaanController@approvePermintaan');
 		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
 
 		//Waste Material
@@ -484,6 +486,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/permintaan/edit/{id}', 'Logistik\PM\PermintaanController@updatePermintaan');
 		Route::get('/permintaan/deleteDetail/{detailId}/{permintaanId}', 'Logistik\PM\PermintaanController@deleteDetailPermintaanMaterial');
 		Route::delete('/permintaan/delete', 'Logistik\PM\PermintaanController@deletePermintaan');
+		Route::get('/permintaan/approve/{id}', 'Logistik\PM\PermintaanController@beforeApprovePermintaan');
+		Route::post('/permintaan/approve/{id}', 'Logistik\PM\PermintaanController@approvePermintaan');
 		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
 
 		//Waste Material

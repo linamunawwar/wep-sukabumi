@@ -46,7 +46,7 @@
 									<tr>
 									<td>{{ $no }}</td>
 									<td>{{ $permintaan->kode_permintaan }}</td>
-									<td>{{ $permintaan->tanggal }}</td>
+									<td>{{ date('d F Y', strtotime($permintaan->tanggal)) }}</td>
 									<td style="color:{{ $permintaan->color }};">{{ $permintaan->text }}</td>
 									<td style="text-align:center;">
 										<a class="btn btn-default btn-xs" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/permintaan/detail/'.$permintaan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>  </a>

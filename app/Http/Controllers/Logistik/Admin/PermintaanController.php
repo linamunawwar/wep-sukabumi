@@ -182,11 +182,11 @@ class PermintaanController extends Controller
 
     public function getPermintaanById($id)
     {
-        $permintaan = LogPermintaanMaterial::where('id', $id)->get();
-        $detailPermintaan = LogDetailPermintaanMaterial::where(['permintaan_id' => $id, 'soft_delete' => 0])->get();
+        $permintaan = LogPermintaanMaterial::where(['id' => $id, 'soft_delete' => 0])->first();
+        $detailPermintaan = LogDetailPermintaanMaterial::where(['permintaan_id' => $permintaan->id, 'soft_delete' => 0])->get();
         $materials = LogMaterial::where('soft_delete', 0)->get();
 
-        return view('logistik.admin.permintaan.edit', ['permintaan' => $permintaan, 'detail' => $detailPermintaan, 'materials' => $materials]);
+        return view('logistik.pm.permintaan.edit', ['permintaan' => $permintaan, 'detail' => $detailPermintaan, 'materials' => $materials]);
     }
 
     public function updatePermintaan($id)

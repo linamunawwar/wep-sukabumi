@@ -109,8 +109,8 @@ class PermintaanController extends Controller
 
     public function getPermintaanById($id)
     {
-        $permintaan = LogPermintaanMaterial::where('id', $id)->get();
-        $detailPermintaan = LogDetailPermintaanMaterial::where(['permintaan_id' => $id, 'soft_delete' => 0])->get();
+        $permintaan = LogPermintaanMaterial::where(['id' => $id, 'soft_delete' => 0])->first();
+        $detailPermintaan = LogDetailPermintaanMaterial::where(['permintaan_id' => $permintaan->id, 'soft_delete' => 0])->get();
         $materials = LogMaterial::where('soft_delete', 0)->get();
 
         return view('logistik.pm.permintaan.edit', ['permintaan' => $permintaan, 'detail' => $detailPermintaan, 'materials' => $materials]);
@@ -146,6 +146,39 @@ class PermintaanController extends Controller
             } else {
                 $saveStatus = 0;
                 die();
+            }
+        }
+        return redirect('Logistik/pm/permintaan');
+    }
+
+    public function beforeApprovePermintaan($id)
+    {
+        $findPermintaan = LogPermintaanMaterial::where('id', $id)->where('soft_delete', 0)->first();
+        if ($findPermintaan) {
+            $getDetailPermintaan = logDetailPermintaanMaterial::where('permintaan_id', $findPermintaan->id)->where('soft_delete', 0)->get();
+        }
+        
+        return view('logistik.pm.permintaan.approve', ['permintaans' => $findPermintaan, 'details' => $getDetailPermintaan]);
+    }
+
+    public function approvePermintaan($id)
+    {
+        date_default_timezone_set("Asia/Jakarta");
+        $find = LogPermintaanMaterial::where('id', $id)->where('soft_delete', 0)->first();
+        if ($find) {
+            $cekApprove = \Input::get('approve');
+            $cekReject = \Input::get('reject');
+            if (\Auth::user()->pegawai->posisi_id == 1) {//splem
+                if (isset($cekApprove)) {
+                    $dt['is_pm'] = 1;
+                    $dt['is_pm_at'] = date('Y-m-d H:i:s');
+                    $dt['note_pm'] = \Input::get('note');
+                }elseif (isset($cekReject)) {
+                    $dt['is_pm'] = 0;
+                    $dt['is_pm_at'] = date('Y-m-d H:i:s');
+                    $dt['note_pm'] = \Input::get('note');
+                }
+                $update = LogPermintaanMaterial::where('id', $id)->update($dt);
             }
         }
         return redirect('Logistik/pm/permintaan');

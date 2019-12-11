@@ -20,8 +20,8 @@
 						<form id="demo-form2" data-parsley-validate  method="POST">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							Permintaan Material
-							<span style="float:right;"> Tanggal Permintaan : {{ date('d F Y') }} </span>
-							<input type="hidden" name="tanggal" value="{{ date('d F Y') }}">
+							<span style="float:right;"> Tanggal Permintaan : {{ date('d F Y', strtotime($permintaan->tanggal)) }} </span>
+							<input type="hidden" name="tanggal" value="{{ date('d F Y', strtotime($permintaan->tanggal)) }}">
 							<hr>
 							<div class="row"> 
 								<div class="col-md-6">
