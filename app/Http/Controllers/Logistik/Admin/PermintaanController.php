@@ -20,39 +20,39 @@ class PermintaanController extends Controller
         foreach ($permintaans as $permintaan) {
             if ($permintaan->is_som != 1) {
                 if ($permintaan->is_som == Null) {
-                    $cekStatus['color'] = "#D63031";
-                    $cekStatus['text'] = "Proses Pengecekan";
+                    $permintaan->color = "#D63031";
+                    $permintaan->text = "Proses Pengecekan";
                 } elseif ($permintaan->is_som == 0) {
-                    $cekStatus['color'] = "#D63031";
-                    $cekStatus['text'] = "Rejected By SOM";
+                    $permintaan->color = "#D63031";
+                    $permintaan->text = "Rejected By SOM";
                 }
             } elseif ($permintaan->is_slem != 1) {
                 if ($permintaan->is_slem == Null) {
-                    $cekStatus['color'] = "#74B9FF";
-                    $cekStatus['text'] = "Accepted By SOM";
+                    $permintaan->color = "#74B9FF";
+                    $permintaan->text = "Accepted By SOM";
                 } elseif ($permintaan->is_slem == 0) {
-                    $cekStatus['color'] = "#D63031";
-                    $cekStatus['text'] = "Rejected By SPLEM";
+                    $permintaan->color = "#D63031";
+                    $permintaan->text = "Rejected By SPLEM";
                 }
             } elseif ($permintaan->is_scarm != 1) {
                 if ($permintaan->is_scarm == Null) {
-                    $cekStatus['color'] = "#74B9FF";
-                    $cekStatus['text'] = "Acepted By SPLEM";
+                    $permintaan->color = "#74B9FF";
+                    $permintaan->text = "Acepted By SPLEM";
                 } elseif ($permintaan->is_scarm == 0) {
-                    $cekStatus['color'] = "#D63031";
-                    $cekStatus['text'] = "Rejected By SCARM";
+                    $permintaan->color = "#D63031";
+                    $permintaan->text = "Rejected By SCARM";
                 }
             } elseif ($permintaan->is_pm != 1) {
                 if ($permintaan->is_pm == Null) {
-                    $cekStatus['color'] = "#74B9FF";
-                    $cekStatus['text'] = "Accepted By SPLEM";
+                    $permintaan->color = "#74B9FF";
+                    $permintaan->text = "Accepted By SPLEM";
                 } elseif ($permintaan->is_pm == 0) {
-                    $cekStatus['color'] = "#D63031";
-                    $cekStatus['text'] = "Rejected By PM";
+                    $permintaan->color = "#D63031";
+                    $permintaan->text = "Rejected By PM";
                 }
             } elseif ($permintaan->is_pm == 1) {
-                $cekStatus['color'] = "#74B9FF";
-                $cekStatus['text'] = "Accepted By SPLEM";
+                $permintaan->color = "#74B9FF";
+                $permintaan->text = "Accepted By SPLEM";
             }
         }
 

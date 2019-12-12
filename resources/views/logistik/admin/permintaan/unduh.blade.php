@@ -134,7 +134,7 @@
         <td style="border: 1px double #000000;"  align="center">11</td>
         <td style="border: 1px double #000000;"  align="center">12</td>
       </tr>
-    <?php $i =1; ?>
+    <?php $i =1;?>
     @foreach($detailPermintaan as $data)
       <tr>
         <td></td>

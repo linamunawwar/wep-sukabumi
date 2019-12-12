@@ -18,39 +18,39 @@ class PengajuanPemakaianController extends Controller
         foreach ($pengajuans as $pengajuan) {
             if ($pengajuan->is_som != 1) {
                 if ($pengajuan->is_som == null) {
-                    $status['color'] = "#D63031";
-                    $status['text'] = "Proses Pengecekan";
+                    $pengajuan->color = "#D63031";
+                    $pengajuan->text = "Proses Pengecekan";
                 } elseif ($pengajuan->is_som == 0) {
-                    $status['color'] = "#D63031";
-                    $status['text'] = "Rejected By SOM";
+                    $pengajuan->color = "#D63031";
+                    $pengajuan->text = "Rejected By SOM";
                 }
             } elseif ($pengajuan->is_slem != 1) {
                 if ($pengajuan->is_slem == null) {
-                    $status['color'] = "#74B9FF";
-                    $status['text'] = "Accepted By SOM";
+                    $pengajuan->color = "#74B9FF";
+                    $pengajuan->text = "Accepted By SOM";
                 } elseif ($pengajuan->is_slem == 0) {
-                    $status['color'] = "#D63031";
-                    $status['text'] = "Rejected By SPLEM";
+                    $pengajuan->color = "#D63031";
+                    $pengajuan->text = "Rejected By SPLEM";
                 }
             } elseif ($pengajuan->is_scarm != 1) {
                 if ($pengajuan->is_scarm == null) {
-                    $status['color'] = "";
-                    $status['text'] = "Acepted By SPLEM";
+                    $pengajuan->color = "";
+                    $pengajuan->text = "Acepted By SPLEM";
                 } elseif ($pengajuan->is_scarm == 0) {
-                    $status['color'] = "#D63031";
-                    $status['text'] = "Rejected By SCARM";
+                    $pengajuan->color = "#D63031";
+                    $pengajuan->text = "Rejected By SCARM";
                 }
             } elseif ($pengajuan->is_pm != 1) {
                 if ($pengajuan->is_pm == null) {
-                    $status['color'] = "#74B9FF";
-                    $status['text'] = "Accepted By SPLEM";
+                    $pengajuan->color = "#74B9FF";
+                    $pengajuan->text = "Accepted By SPLEM";
                 } elseif ($pengajuan->is_pm == 0) {
-                    $status['color'] = "#D63031";
-                    $status['text'] = "Rejected By PM";
+                    $pengajuan->color = "#D63031";
+                    $pengajuan->text = "Rejected By PM";
                 }
             } elseif ($pengajuan->is_pm == 1) {
-                $status['color'] = "#74B9FF";
-                $status['text'] = "Accepted By SPLEM";
+                $pengajuan->color = "#74B9FF";
+                $pengajuan->text = "Accepted By SPLEM";
             }
         }
         return view('logistik.pelaksana.pengajuan.index', ['pengajuans' => $pengajuans,'status'=>$status]);
@@ -63,5 +63,24 @@ class PengajuanPemakaianController extends Controller
         $jenis_kerjas = Logjenis::where('soft_delete',0)->get();
     	$lokasis = LogLokasi::where('soft_delete',0)->get();
         return view('logistik.pelaksana.pengajuan.create', ['materials' => $materials,'jenis_kerjas'=>$jenis_kerjas,'lokasis'=>$lokasis]);
+    }
+
+    public function cekData()
+    {
+    	$kode_penerimaan = \Input::get('kode_penerimaan');
+    	
+    	$penerimaan = LogPenerimaan::where('kode_penerimaan',$kode_penerimaan)->where('soft_delete',0)->first();
+    	if($waste){
+    		$datas = LogWasteDetail::where('waste_id',$waste->id)->where('soft_delete',0)->get();
+    	}else{
+    		$datas = null;
+    	}
+    	if($datas){
+	    	foreach ($datas as $key => $data) {
+	    		$data->pelaksana_nama = $data->pelaksanaPegawai->nama;
+	    		$data->lokasi = $data->wasteLokasi->nama;
+	    	}
+	    }	
+    	return json_encode($datas);
     }
 }

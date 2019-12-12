@@ -416,6 +416,18 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::delete('/permintaan/delete', 'Logistik\Admin\PermintaanController@deletePermintaan');
 		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
 
+		//penerimaan MATERIAL
+		Route::get('/penerimaan', 'Logistik\Admin\PenerimaanController@index');
+		Route::get('/penerimaan/create', 'Logistik\Admin\PenerimaanController@beforePostpenerimaan');
+		Route::post('/penerimaan/cekData', 'Logistik\Admin\PenerimaanController@cekData');
+		Route::post('/penerimaan/create', 'Logistik\Admin\PenerimaanController@postpenerimaan');
+		Route::get('/penerimaan/detail/{id}', 'Logistik\Admin\PenerimaanController@getDetailBypenerimaanId');
+		Route::get('/penerimaan/edit/{id}', 'Logistik\Admin\PenerimaanController@getpenerimaanById');
+		Route::post('/penerimaan/edit/{id}', 'Logistik\Admin\PenerimaanController@updatepenerimaan');
+		Route::get('/penerimaan/deleteDetail/{detailId}/{penerimaanId}', 'Logistik\Admin\PenerimaanController@deleteDetailpenerimaanMaterial');
+		Route::delete('/penerimaan/delete', 'Logistik\Admin\PenerimaanController@deletepenerimaan');
+		Route::get('/penerimaan/unduh/{id}', 'Logistik\Admin\PenerimaanController@getUnduhpenerimaan');
+
 		//Waste Material
 		Route::get('/waste', 'Logistik\Admin\WasteMaterialController@index');
 		Route::get('/waste/create', 'Logistik\Admin\WasteMaterialController@beforePostWaste');

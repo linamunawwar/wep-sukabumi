@@ -5,6 +5,14 @@
 	<!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
 @endpush
 <style>
+	#datatable thead tr th {
+		text-align: center;
+		vertical-align: middle;
+		font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
+		font-size: 13px;
+		font-weight: 400;
+	}
+
 	#datatable tbody tr td {
 		text-align: center;
 		vertical-align: middle;
@@ -22,9 +30,9 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Permintaan Material </h2>
+						<h2>Penerimaan Material </h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('Logistik/admin/permintaan/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
+							<li><a href="{{url('Logistik/admin/penerimaan/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
@@ -33,26 +41,30 @@
 							<thead>
 								<tr>
 									<th scope="col"> No </th>
-									<th scope="col"> Kode Permintaan </th>
+									<th scope="col"> Kode penerimaan </th>
 									<th scope="col"> Tanggal </th>
 									<th scope="col"> Status </th>
 									<th scope="col"> Action </th>
 								</tr>
 							</thead>
 							<tbody>	
-                                    {{ $no = 0 }}
-                                    @foreach ($permintaans as $permintaan)
-                                    {{ $no++ }}
+                                    <?php $no = 0; ?>
+                                    @foreach ($penerimaans as $penerimaan)
+                                    <?php $no++; ?>
 									<tr>
 									<td>{{ $no }}</td>
-									<td>{{ $permintaan->kode_permintaan }}</td>
-									<td>{{ $permintaan->tanggal }}</td>
-									<td style="color:{{ $permintaan->color }};">{{ $permintaan->text }}</td>
+									<td>{{ $penerimaan->kode_penerimaan }}</td>
+									<td>{{ $penerimaan->tanggal }}</td>
+									<td style="color:{{ $penerimaan->color }};">{{ $penerimaan->text }}</td>
 									<td style="text-align:center;">
-										<a class="btn btn-default btn-xs" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/permintaan/detail/'.$permintaan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>  </a>
-										<a class="btn btn-default btn-xs" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/permintaan/edit/'.$permintaan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
-										<button data-toggle="modal"  id_permintaan='{{$permintaan->id}}' data-target="#DeleteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-delete" onclick='deleteData("{{$permintaan->id}}")'><i class="fa fa-trash" style="font-size:15px;"></i></button>
-										<a class="btn btn-default btn-xs" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/permintaan/unduh/'.$permintaan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>
+										<a class="btn btn-default btn-xs" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/penerimaan/detail/'.$penerimaan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>  </a>
+										<a class="btn btn-default btn-xs" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/penerimaan/edit/'.$penerimaan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
+										<button data-toggle="modal"  id_penerimaan='{{$penerimaan->id}}' data-target="#DeleteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-delete" onclick='deleteData("{{$penerimaan->id}}")'><i class="fa fa-trash" style="font-size:15px;"></i></button>
+										@if($penerimaan->is_pm == 1)
+											<a class="btn btn-default btn-xs" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/penerimaan/unduh/'.$penerimaan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>
+										@else
+											<a class="btn btn-dark btn-xs" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em; opacity: 0.5;"><i class="fa fa-download" style="font-size:15px;opacity: 0.5;"></i>  </a>
+										@endif
 									</td>
 									</tr>
 								@endforeach							
@@ -67,7 +79,7 @@
 	<div id="DeleteModal" class="modal fade text-danger" role="dialog">
 			<div class="modal-dialog ">
 				<!-- Modal content-->
-				<form action="{{ url("Logistik/admin/permintaan/delete") }}" id="deleteForm" method="post" >
+				<form action="{{ url("Logistik/admin/penerimaan/delete") }}" id="deleteForm" method="post" >
 					<div class="modal-content">
 						<div class="modal-header bg-danger">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -77,7 +89,7 @@
 							{{ csrf_field() }}
 							{{ method_field('DELETE') }}
 							<p class="text-center">Anda yakin ingin menghapus data ini ?</p>
-							<input type="hidden" name="id_permintaan" id="id_permintaan">
+							<input type="hidden" name="id_penerimaan" id="id_penerimaan">
 						</div>
 						<div class="modal-footer">
 							<center>
@@ -93,17 +105,17 @@
 @push('scripts')
   <script type="text/javascript">
   	$('#modal-delete').on("click",function(){
-  		var id_permintaan = $(this).attr('id_permintaan');
-         $('#id_permintaan').val(id_permintaan);
+  		var id_penerimaan = $(this).attr('id_penerimaan');
+         $('#id_penerimaan').val(id_penerimaan);
      
   	});
      function deleteData(id)
      {
          var id = id;
-         var url = '{{ url("Logistik/admin/permintaan/delete") }}';
+         var url = '{{ url("Logistik/admin/penerimaan/delete") }}';
          // url = url.replace(':id', id);
          console.log(id);
-         $('#id_permintaan').val(id);
+         $('#id_penerimaan').val(id);
          $("#deleteForm").attr('action', url);
      }
 

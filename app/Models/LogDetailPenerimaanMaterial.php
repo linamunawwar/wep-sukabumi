@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class LogDetailPermintaanMaterial extends Model
+class LogDetailPenerimaanMaterial extends Model
 {
     protected $connection = 'mysql';
-    protected $table = 'log_tr_permintaan_detail';
+    protected $table = 'log_tr_penerimaan_detail';
     public $timestamps = true;
 
-    public function permintaan()
+    public function penerimaan()
     {
-        return $this->hasOne('App\Models\LogPermintaanMaterial', 'id', 'permintaan_id');
+        return $this->hasOne('App\Models\LogPenerimaanMaterial', 'id', 'penerimaan_id');
     }
 
     public function material()
