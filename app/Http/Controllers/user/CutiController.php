@@ -75,15 +75,47 @@ class CutiController extends Controller
       $pecat->is_verif_pengganti = 0;
       $pecat->verif_pengganti_by = 0;
       $pecat->verify_pengganti_time = 0;
-      $pecat->is_verif_mngr = 0;
-      $pecat->verif_mngr_by = 0;
-      $pecat->verify_mngr_time = 0;
-      $pecat->is_verif_sdm = 0;
-      $pecat->verif_sdm_by = 0;
-      $pecat->verify_sdm_time = 0;
-      $pecat->is_verif_pm = 0;
-      $pecat->verif_pm_by = 0;
-      $pecat->verify_pm_time = 0;
+      if(\Auth::user()->role_id==2){
+        $pecat->is_verif_mngr = 0;
+        $pecat->verif_mngr_by = 0;
+        $pecat->verify_mngr_time = 0;
+        $pecat->is_verif_sdm = 0;
+        $pecat->verif_sdm_by = 0;
+        $pecat->verify_sdm_time = 0;
+        $pecat->is_verif_pm = 0;
+        $pecat->verif_pm_by = 0;
+        $pecat->verify_pm_time = 0;
+      }elseif(\Auth::user()->role_id == 3){
+        $pecat->is_verif_mngr = 1;
+        $pecat->verif_mngr_by = \Auth::user()->pegawai_id;
+        $pecat->verify_mngr_time = date('Y-m-d H:i:s');
+        $pecat->is_verif_sdm = 0;
+        $pecat->verif_sdm_by = 0;
+        $pecat->verify_sdm_time = 0;
+        $pecat->is_verif_pm = 0;
+        $pecat->verif_pm_by = 0;
+        $pecat->verify_pm_time = 0;
+      }elseif(\Auth::user()->role_id == 4){
+        $pecat->is_verif_mngr = 1;
+        $pecat->verif_mngr_by = \Auth::user()->pegawai_id;
+        $pecat->verify_mngr_time = date('Y-m-d H:i:s');
+        $pecat->is_verif_sdm = 1;
+        $pecat->verif_sdm_by = \Auth::user()->pegawai_id;
+        $pecat->verify_sdm_time = date('Y-m-d H:i:s');
+        $pecat->is_verif_pm = 0;
+        $pecat->verif_pm_by = 0;
+        $pecat->verify_pm_time = 0;
+      }elseif(\Auth::user()->role_id == 5){
+        $pecat->is_verif_mngr = 1;
+        $pecat->verif_mngr_by = \Auth::user()->pegawai_id;
+        $pecat->verify_mngr_time = date('Y-m-d H:i:s');
+        $pecat->is_verif_sdm = 1;
+        $pecat->verif_sdm_by = \Auth::user()->pegawai_id;
+        $pecat->verify_sdm_time = date('Y-m-d H:i:s');
+        $pecat->is_verif_pm = 1;
+        $pecat->verif_pm_by = \Auth::user()->pegawai_id;
+        $pecat->verify_pm_time = date('Y-m-d H:i:s');
+      }
       $pecat->user_id = \Auth::user()->id;
       $pecat->role_id = \Auth::user()->role_id;
 
