@@ -479,6 +479,19 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/jenis_pekerjaan/edit/{id}', 'Logistik\Admin\JenisPekerjaanController@updateJenis');
 		Route::delete('/jenis_pekerjaan/delete', 'Logistik\Admin\JenisPekerjaanController@deleteJenis');
 
+		//PERMINTAAN MATERIAL
+		Route::get('/permintaan', 'Logistik\Manager\PermintaanController@index');
+		Route::get('/permintaan/create', 'Logistik\Manager\PermintaanController@beforePostPermintaan');
+		Route::post('/permintaan/create', 'Logistik\Manager\PermintaanController@postPermintaan');
+		Route::get('/permintaan/detail/{id}', 'Logistik\Manager\PermintaanController@getDetailByPermintaanId');
+		Route::get('/permintaan/edit/{id}', 'Logistik\Manager\PermintaanController@getPermintaanById');
+		Route::post('/permintaan/edit/{id}', 'Logistik\Manager\PermintaanController@updatePermintaan');
+		Route::get('/permintaan/deleteDetail/{detailId}/{permintaanId}', 'Logistik\Manager\PermintaanController@deleteDetailPermintaanMaterial');
+		Route::delete('/permintaan/delete', 'Logistik\Manager\PermintaanController@deletePermintaan');
+		Route::get('/permintaan/approve/{id}', 'Logistik\Manager\PermintaanController@beforeApprovePermintaan');
+		Route::post('/permintaan/approve/{id}', 'Logistik\Manager\PermintaanController@approvePermintaan');
+		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
+
 		//Waste Material
 		Route::get('/waste', 'Logistik\Manager\WasteMaterialController@index');
 		Route::get('/waste/approve/{id}', 'Logistik\Manager\WasteMaterialController@getApprove');
@@ -488,12 +501,39 @@ Route::group(['middleware' => 'auth'], function () {
 
 	//Logistik PM
 	Route::group(['prefix' => '/Logistik/pm'], function () {
+		//PERMINTAAN MATERIAL
+		Route::get('/permintaan', 'Logistik\PM\PermintaanController@index');
+		Route::get('/permintaan/create', 'Logistik\PM\PermintaanController@beforePostPermintaan');
+		Route::post('/permintaan/create', 'Logistik\PM\PermintaanController@postPermintaan');
+		Route::get('/permintaan/detail/{id}', 'Logistik\PM\PermintaanController@getDetailByPermintaanId');
+		Route::get('/permintaan/edit/{id}', 'Logistik\PM\PermintaanController@getPermintaanById');
+		Route::post('/permintaan/edit/{id}', 'Logistik\PM\PermintaanController@updatePermintaan');
+		Route::get('/permintaan/deleteDetail/{detailId}/{permintaanId}', 'Logistik\PM\PermintaanController@deleteDetailPermintaanMaterial');
+		Route::delete('/permintaan/delete', 'Logistik\PM\PermintaanController@deletePermintaan');
+		Route::get('/permintaan/approve/{id}', 'Logistik\PM\PermintaanController@beforeApprovePermintaan');
+		Route::post('/permintaan/approve/{id}', 'Logistik\PM\PermintaanController@approvePermintaan');
+		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
+
 		//Waste Material
 		Route::get('/waste', 'Logistik\PM\WasteMaterialController@index');
 		Route::get('/waste/approve/{id}', 'Logistik\PM\WasteMaterialController@getApprove');
 		Route::post('/waste/approve/{id}', 'Logistik\PM\WasteMaterialController@postApprove');
 		Route::get('/waste/unduh/{id}', 'Logistik\Manager\WasteMaterialController@getUnduh');
 
+	});
+
+	//Logistik USER
+	Route::group(['prefix' => '/Logistik/user'], function () {
+		//PERMINTAAN MATERIAL
+		Route::get('/permintaan', 'Logistik\Pelaksana\PermintaanController@index');
+		Route::get('/permintaan/create', 'Logistik\Pelaksana\PermintaanController@beforePostPermintaan');
+		Route::post('/permintaan/create', 'Logistik\Pelaksana\PermintaanController@postPermintaan');
+		Route::get('/permintaan/detail/{id}', 'Logistik\Pelaksana\PermintaanController@getDetailByPermintaanId');
+		Route::get('/permintaan/edit/{id}', 'Logistik\Pelaksana\PermintaanController@getPermintaanById');
+		Route::post('/permintaan/edit/{id}', 'Logistik\Pelaksana\PermintaanController@updatePermintaan');
+		Route::get('/permintaan/deleteDetail/{detailId}/{permintaanId}', 'Logistik\Pelaksana\PermintaanController@deleteDetailPermintaanMaterial');
+		Route::delete('/permintaan/delete', 'Logistik\Pelaksana\PermintaanController@deletePermintaan');
+		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
 	});
 
 	//arsip

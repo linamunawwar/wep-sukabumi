@@ -33,7 +33,7 @@
                                 </a>
                             </li>
                         @endif
-                         @if(Auth::user()->role_id == 5)
+                        @if(Auth::user()->role_id == 5)
                             <li>
                                 <a href="{{url('Logistik/pm/permintaan')}}">
                                     <i class="fa fa-list"></i>

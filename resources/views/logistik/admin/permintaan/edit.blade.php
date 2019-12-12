@@ -20,8 +20,8 @@
 						<form id="demo-form2" data-parsley-validate  method="POST">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							Permintaan Material
-							<span style="float:right;"> Tanggal Permintaan : {{ date('d F Y') }} </span>
-							<input type="hidden" name="tanggal" value="{{ date('d F Y') }}">
+							<span style="float:right;"> Tanggal Permintaan : {{ date('d F Y', strtotime($permintaan->tanggal)) }} </span>
+							<input type="hidden" name="tanggal" value="{{ date('d F Y', strtotime($permintaan->tanggal)) }}">
 							<hr>
 							<div class="row"> 
 								<div class="col-md-6">
@@ -31,7 +31,7 @@
 											<select class="form-control col-md-7 col-xs-12 material" id="material" name="material">
 												<option value="">Pilih Material / Bahan</option>
 												@foreach($materials as $material)
-													<option value="{{$material->kode_material}}">{{$material->nama}}</option>
+													<option value="{{$material->id}}">{{$material->nama}}</option>
 												@endforeach
 											</select>
 										</div>
@@ -97,14 +97,14 @@
 								<tbody class="data">   
                                     @foreach ($detail as $detail)    
                                     <tr>                            
-                                            <td>{{ $detail->material->nama }} </td>
-                                            <td>{{ $detail->no_part }} </td>
-                                            <td>{{ $detail->volume }} </td>
-                                            <td>{{ $detail->satuan }} </td>
-                                            <td>{{ $detail->keperluan }} </td>
-                                            <td> 
-                                                <a href="{{url('Logistik/admin/permintaan/deleteDetail/'.$detail->id.'/'.$detail->permintaan_id.'')}}" class="btn btn-sm btn-block btn-danger" style="width:40px;"><span class="fa fa-trash"></span></a> 
-                                            </td>                                           
+										<td>{{ $detail->detailPermintaanMaterial->nama }} </td>
+										<td>{{ $detail->no_part }} </td>
+										<td>{{ $detail->volume }} </td>
+										<td>{{ $detail->satuan }} </td>
+										<td>{{ $detail->keperluan }} </td>
+										<td> 
+											<a href="{{url('Logistik/admin/permintaan/deleteDetail/'.$detail->id.'/'.$detail->permintaan_id.'')}}" class="btn btn-sm btn-block btn-danger" style="width:40px;"><span class="fa fa-trash"></span></a> 
+										</td>                                           
                                     </tr>					
                                     @endforeach	
 								</tbody>
@@ -131,6 +131,7 @@
 		$(document).on("click", "button.tambah", function(e){
 			e.preventDefault();
 			var material = $('#material').val();    
+			var nama_material = $('#material').find('option:selected').text();
 			var no_part = $('#no_part').val();
 			var volume = $('#volume').val();
 			var satuan = $('#satuan').val();
@@ -140,7 +141,7 @@
 	        $('#jumlah_data').val(jumlah_data);
 	        
 			var table = "<tr  class='data_"+jumlah_data+"'>";
-				table += "<td>"+material+"<input type='hidden' name='material[]' value='"+material+"' id='material_"+jumlah_data+"'></td>";
+				table += "<td>"+nama_material+"<input type='hidden' name='material[]' value='"+material+"' id='material_"+jumlah_data+"'></td>";
 				table += "<td>"+no_part+"<input type='hidden' name='no_part[]' value='"+no_part+"' id='no_part_"+jumlah_data+"'></td>";
 				table += "<td>"+volume+"<input type='hidden' name='volume[]' value='"+volume+"' id='volume_"+jumlah_data+"'></td>";
 				table += "<td>"+satuan+"<input type='hidden' name='satuan[]' value='"+satuan+"' id='satuan_"+jumlah_data+"'></td>";

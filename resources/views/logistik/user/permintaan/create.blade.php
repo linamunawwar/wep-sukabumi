@@ -117,11 +117,13 @@
 @push('scripts')
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('.material').select2();
+		$('.material').select2();	
 		$(document).on("click", "button.tambah", function(e){
 			e.preventDefault();
 			var material = $('#material').val();
 			var nama_material = $('#material').find('option:selected').text();
+			console.log(nama_material);
+			console.log('material');
 			var no_part = $('#no_part').val();
 			var volume = $('#volume').val();
 			var satuan = $('#satuan').val();
