@@ -104,7 +104,7 @@ class HomeController extends Controller
               })->count();
 
 
-              $resign_hs = Izin::whereHas('pegawai',function ($q){
+              $resign_hs = Resign::whereHas('pegawai',function ($q){
                   $q->where('kode_bagian', 'HS');
               })->count();
 

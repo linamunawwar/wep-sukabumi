@@ -13,13 +13,21 @@ class CutiController extends Controller
     public function index()
     {
     	if(\Auth::user()->pegawai->kode_bagian == 'SA'){
-	        $cutis = Cuti::get();
+	        $cutis = Cuti::where('soft_delete',0)->get();
 	      }elseif(\Auth::user()->pegawai->kode_bagian == 'QHSE'){
-          $cutis_qc = Cuti::whereHas('pegawai',function ($q){
+          $cutis_qhse = Cuti::whereHas('pegawai',function ($q){
               $q->where('kode_bagian', 'QC');
-          })->get();
+          })->where('soft_delete',0)->get();
 
           $cutis = [];
+
+          foreach ($cutis_qhse as $key => $value) {
+            $cutis[] = $value;
+          }
+
+          $cutis_qc = Cuti::whereHas('pegawai',function ($q){
+              $q->where('kode_bagian', 'QC');
+          })->where('soft_delete',0)->get();
 
           foreach ($cutis_qc as $key => $value) {
             $cutis[] = $value;
@@ -27,7 +35,7 @@ class CutiController extends Controller
 
           $cutis_hs = Cuti::whereHas('pegawai',function ($q){
               $q->where('kode_bagian', 'HS');
-          })->get();
+          })->where('soft_delete',0)->get();
 
           foreach ($cutis_hs as $key => $value) {
             $cutis[] = $value;
@@ -36,7 +44,7 @@ class CutiController extends Controller
         }else{
 	        $cutis = Cuti::whereHas('pegawai',function ($q){
 	            $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
-	        })->get();
+	        })->where('soft_delete',0)->get();
 
 	      }
         return view('manager.cuti_izin.cuti.index',['cutis'=>$cutis]);
@@ -135,9 +143,9 @@ class CutiController extends Controller
       $pecat->is_verif_pengganti = 0;
       $pecat->verif_pengganti_by = 0;
       $pecat->verify_pengganti_time = 0;
-      $pecat->is_verif_mngr = 0;
-      $pecat->verif_mngr_by = 0;
-      $pecat->verify_mngr_time = 0;
+      $pecat->is_verif_mngr = 1;
+      $pecat->verif_mngr_by = \Auth::user()->pegawai_id;
+      $pecat->verify_mngr_time = date('Y-m-d H:i:s');
       $pecat->is_verif_sdm = 0;
       $pecat->verif_sdm_by = 0;
       $pecat->verify_sdm_time = 0;

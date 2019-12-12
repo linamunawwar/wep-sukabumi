@@ -12,7 +12,7 @@ class CutiController extends Controller
 {
     public function index()
     {
-    	$cutis = Cuti::get();
+    	$cutis = Cuti::where('soft_delete',0)->get();
 
         return view('pm.cuti_izin.cuti.index',['cutis'=>$cutis]);
     }
