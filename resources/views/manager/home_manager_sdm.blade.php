@@ -38,14 +38,14 @@
 					</a>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
-					<a href="{{url('manager/pecat')}}">
+					<a href="{{url('manager/pegawai/pecat')}}">
 						<span class="count_top"><i class="fa fa-sign-out"></i> Pemberhentian Kerja</span>
 						<div class="count green">{{$pecat}}</div>
 						<span class="count_bottom"><i class="green">Need To be Approved</i></span>
 					</a>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
-					<a href="{{url('manager/resign')}}">
+					<a href="{{url('manager/pegawai/resign')}}">
 						<span class="count_top"><i class="fa fa-sign-out"></i> Resign</span>
 						<div class="count green">{{$resign}}</div>
 						<span class="count_bottom"><i class="green">Need To be Approved</i></span>

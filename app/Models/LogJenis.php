@@ -9,4 +9,9 @@ class LogJenis extends Model
     protected $connection = 'mysql';
     protected $table = "log_mst_jenis_pekerjaan";
     public $timestamps = true;
+
+    public function jenisWaste()
+    {
+        return $this->hasOne('App\Models\LogWaste','id','jenis_pekerjaan_id');
+    }
 }

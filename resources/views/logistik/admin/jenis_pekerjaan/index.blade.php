@@ -15,7 +15,7 @@
 					<div class="x_title">
 						<h2>Jenis Pekerjaan </h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('logistik/admin/jenis_pekerjaan/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
+							<li><a href="{{url('Logistik/admin/jenis_pekerjaan/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
@@ -34,7 +34,7 @@
 									<td>{{ $jenis->nama }}</td>
 									<td>{{ $jenis->keterangan }}</td>
 									<td style="text-align:center;">
-										<a class="btn btn-default btn-xs" href="{{url('logistik/admin/jenis_pekerjaan/edit/'.$jenis->id.'')}}"><i class="fa fa-edit"></i>  Edit</a>
+										<a class="btn btn-default btn-xs" href="{{url('Logistik/admin/jenis_pekerjaan/edit/'.$jenis->id.'')}}"><i class="fa fa-edit"></i>  Edit</a>
 										<button data-toggle="modal"  id_jenis='{{$jenis->id}}' data-target="#DeleteModal" class="btn btn-xs btn-danger" id="modal-delete" onclick='deleteData("{{$jenis->id}}")'><i class="fa fa-trash"></i> Delete</button><br>
 									</td>
 									</tr>
@@ -50,7 +50,7 @@
      <div id="DeleteModal" class="modal fade text-danger" role="dialog">
    <div class="modal-dialog ">
      <!-- Modal content-->
-     <form action="{{ url("logistik/admin/jenis_pekerjaan/delete") }}" id="deleteForm" method="post" >
+     <form action="{{ url("Logistik/admin/jenis_pekerjaan/delete") }}" id="deleteForm" method="post" >
          <div class="modal-content">
              <div class="modal-header bg-danger">
                  <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -83,7 +83,7 @@
      function deleteData(id)
      {
          var id = id;
-         var url = '{{ url("logistik/admin/jenis_pekerjaan/delete") }}';
+         var url = '{{ url("Logistik/admin/jenis_pekerjaan/delete") }}';
          // url = url.replace(':id', id);
          console.log(id);
          $('#id_jenis').val(id);

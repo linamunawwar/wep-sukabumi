@@ -36,7 +36,7 @@
 							<div class="ln_solid"></div>
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-									<a class="btn btn-primary" type="button" href="{{url('logistik/admin/jenis_pekerjaan')}}">Cancel</a>
+									<a class="btn btn-primary" type="button" href="{{url('Logistik/admin/jenis_pekerjaan')}}">Cancel</a>
 									<button class="btn btn-primary" type="reset">Reset</button>
 									<button type="submit" class="btn btn-success">Submit</button>
 								</div>
