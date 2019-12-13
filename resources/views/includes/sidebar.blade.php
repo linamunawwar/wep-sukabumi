@@ -10,7 +10,7 @@
                 <ul class="nav side-menu">
                     @if((Auth::user()->pegawai->kode_bagian == 'SL') || (\Auth::user()->role_id == 3) || (\Auth::user()->role_id == 4) || (\Auth::user()->role_id == 5))
                         <li>
-                            <a>
+                            <a href="{{url('/Logistik')}}">
                                 <i class="fa fa-laptop"></i>
                                 LOGISTIK
                             </a>

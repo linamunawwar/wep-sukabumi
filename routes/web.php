@@ -492,6 +492,13 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/permintaan/approve/{id}', 'Logistik\Manager\PermintaanController@approvePermintaan');
 		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
 
+		//PENERIMAAN MATERIAL
+		Route::get('/penerimaan', 'Logistik\Manager\PenerimaanController@index');
+		Route::get('/penerimaan/detail/{id}', 'Logistik\Manager\PenerimaanController@getDetailBypenerimaanId');
+		Route::get('/penerimaan/approve/{id}', 'Logistik\Manager\PenerimaanController@beforeApprovePenerimaan');
+		Route::post('/penerimaan/approve/{id}', 'Logistik\Manager\PenerimaanController@approvePenerimaan');
+		Route::get('/penerimaan/unduh/{id}', 'Logistik\Admin\PenerimaanController@getUnduhPenerimaan');
+
 		//Waste Material
 		Route::get('/waste', 'Logistik\Manager\WasteMaterialController@index');
 		Route::get('/waste/approve/{id}', 'Logistik\Manager\WasteMaterialController@getApprove');
@@ -513,6 +520,13 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/permintaan/approve/{id}', 'Logistik\PM\PermintaanController@beforeApprovePermintaan');
 		Route::post('/permintaan/approve/{id}', 'Logistik\PM\PermintaanController@approvePermintaan');
 		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
+
+		//PENERIMAAN MATERIAL
+		Route::get('/penerimaan', 'Logistik\PM\PenerimaanController@index');
+		Route::get('/penerimaan/detail/{id}', 'Logistik\PM\PenerimaanController@getDetailBypenerimaanId');
+		Route::get('/penerimaan/approve/{id}', 'Logistik\PM\PenerimaanController@beforeApprovePenerimaan');
+		Route::post('/penerimaan/approve/{id}', 'Logistik\PM\PenerimaanController@approvePenerimaan');
+		Route::get('/penerimaan/unduh/{id}', 'Logistik\Admin\PenerimaanController@getUnduhPenerimaan');
 
 		//Waste Material
 		Route::get('/waste', 'Logistik\PM\WasteMaterialController@index');

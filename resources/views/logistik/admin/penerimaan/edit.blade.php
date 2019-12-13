@@ -68,7 +68,7 @@
 					                		<input type='hidden' name='material[]' value="{{$detail->material_id}}" id="material_{{$no}}">
 					                		</td>
 					                		<td>
-					                		<input type='text' class='form-control vol_permintaan' id_data="{{$no}}" name='vol_permintaan[]' value="{{$detail->penerimaan->permintaan->detailPermintaan[$i]->volume}}" id="vol_permintaan_{{$no}}">
+					                		<input type='text' class='form-control vol_permintaan' id_data="{{$no}}" name='vol_permintaan[]' value="{{$detail->penerimaan->permintaan->permintaanDetail[$i]->volume}}" id="vol_permintaan_{{$no}}">
 					                		</td>
 					                		<td><input type='text' class='form-control vol_lalu' id_data="{{$no}}" name='vol_lalu[]' value="{{$detail->vol_lalu}}" id="vol_lalu_{{$no}}">
 					                		</td>

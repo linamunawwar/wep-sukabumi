@@ -69,7 +69,7 @@
                         @endif
                          @if(Auth::user()->role_id == 5)
                             <li>
-                                <a href="{{url('Logistik/pm/penerimaah')}}">
+                                <a href="{{url('Logistik/pm/penerimaan')}}">
                                     <i class="fa fa-list"></i>
                                     Penerimaan Barang
                                 </a>
