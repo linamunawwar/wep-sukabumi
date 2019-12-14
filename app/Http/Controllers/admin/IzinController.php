@@ -70,7 +70,7 @@ class IzinController extends Controller
 
     public function getDelete(){
       $data = \Input::all();
-      $del = Izin::where('id',$data['id_cuti'])->update(['soft_delete'=>1]);
+      $del = Izin::where('id',$data['id_izin'])->update(['soft_delete'=>1]);
 
       if($del){
         return redirect('admin/izin');

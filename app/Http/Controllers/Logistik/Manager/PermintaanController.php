@@ -64,7 +64,7 @@ class PermintaanController extends Controller
                 }
             } elseif ($permintaan->is_pm == 1) {
                 $permintaan->color = "#74B9FF";
-                $permintaan->text = "Accepted By SPLEM";
+                $permintaan->text = "Accepted By PM";
             }
         }
         return view('logistik.manager.permintaan.index', ['permintaans' => $permintaans]);
@@ -209,7 +209,7 @@ class PermintaanController extends Controller
                     $dt['is_slem_at'] = date('Y-m-d H:i:s');
                     $dt['note_slem'] = \Input::get('note');
                 } elseif (isset($cekReject)) {
-                    $dt['is_slem'] = 1;
+                    $dt['is_slem'] = 0;
                     $dt['is_slem_at'] = date('Y-m-d H:i:s');
                     $dt['note_slem'] = \Input::get('note');
                 }
@@ -220,7 +220,7 @@ class PermintaanController extends Controller
                     $dt['is_scarm_at'] = date('Y-m-d H:i:s');
                     $dt['note_scarm'] = \Input::get('note');
                 } elseif (isset($cekReject)) {
-                    $dt['is_scarm'] = 1;
+                    $dt['is_scarm'] = 0;
                     $dt['is_scarm_at'] = date('Y-m-d H:i:s');
                     $dt['note_scarm'] = \Input::get('note');
                 }

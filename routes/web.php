@@ -416,6 +416,18 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::delete('/permintaan/delete', 'Logistik\Admin\PermintaanController@deletePermintaan');
 		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
 
+		//penerimaan MATERIAL
+		Route::get('/penerimaan', 'Logistik\Admin\PenerimaanController@index');
+		Route::get('/penerimaan/create', 'Logistik\Admin\PenerimaanController@beforePostpenerimaan');
+		Route::post('/penerimaan/cekData', 'Logistik\Admin\PenerimaanController@cekData');
+		Route::post('/penerimaan/create', 'Logistik\Admin\PenerimaanController@postpenerimaan');
+		Route::get('/penerimaan/detail/{id}', 'Logistik\Admin\PenerimaanController@getDetailBypenerimaanId');
+		Route::get('/penerimaan/edit/{id}', 'Logistik\Admin\PenerimaanController@getpenerimaanById');
+		Route::post('/penerimaan/edit/{id}', 'Logistik\Admin\PenerimaanController@updatepenerimaan');
+		Route::get('/penerimaan/deleteDetail/{detailId}/{penerimaanId}', 'Logistik\Admin\PenerimaanController@deleteDetailpenerimaanMaterial');
+		Route::delete('/penerimaan/delete', 'Logistik\Admin\PenerimaanController@deletepenerimaan');
+		Route::get('/penerimaan/unduh/{id}', 'Logistik\Admin\PenerimaanController@getUnduhpenerimaan');
+
 		//Waste Material
 		Route::get('/waste', 'Logistik\Admin\WasteMaterialController@index');
 		Route::get('/waste/create', 'Logistik\Admin\WasteMaterialController@beforePostWaste');
@@ -427,6 +439,18 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::delete('/waste/pengajuan/delete', 'Logistik\Admin\WasteMaterialController@deleteWastePengajuan');
 		Route::get('/waste/unduh/{id}', 'Logistik\Manager\WasteMaterialController@getUnduh');
 
+	});
+
+	Route::group(['prefix' => '/Logistik/pelaksana'], function () {
+		//Pengajuan PEMAKAIAN MATERIAL
+		Route::get('/pengajuan', 'Logistik\Pelaksana\PengajuanPemakaianController@index');
+		Route::get('/pengajuan/create', 'Logistik\Pelaksana\PengajuanPemakaianController@beforePostPermintaan');
+		Route::post('/pengajuan/create', 'Logistik\Pelaksana\PengajuanPemakaianController@postPermintaan');
+		Route::get('/pengajuan/detail/{id}', 'Logistik\Pelaksana\PengajuanPemakaianController@getDetailByPermintaanId');
+		Route::get('/pengajuan/edit/{id}', 'Logistik\Pelaksana\PengajuanPemakaianController@getPermintaanById');
+		Route::post('/pengajuan/edit/{id}', 'Logistik\Pelaksana\PengajuanPemakaianController@updatePermintaan');
+		Route::get('/pengajuan/deleteDetail/{detailId}/{permintaanId}', 'Logistik\Pelaksana\PengajuanPemakaianController@deleteDetailPermintaanMaterial');
+		Route::delete('/pengajuan/delete', 'Logistik\Pelaksana\PengajuanPemakaianController@deletePermintaan');
 	});
 
 	//Logistik Manager
@@ -468,6 +492,13 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/permintaan/approve/{id}', 'Logistik\Manager\PermintaanController@approvePermintaan');
 		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
 
+		//PENERIMAAN MATERIAL
+		Route::get('/penerimaan', 'Logistik\Manager\PenerimaanController@index');
+		Route::get('/penerimaan/detail/{id}', 'Logistik\Manager\PenerimaanController@getDetailBypenerimaanId');
+		Route::get('/penerimaan/approve/{id}', 'Logistik\Manager\PenerimaanController@beforeApprovePenerimaan');
+		Route::post('/penerimaan/approve/{id}', 'Logistik\Manager\PenerimaanController@approvePenerimaan');
+		Route::get('/penerimaan/unduh/{id}', 'Logistik\Admin\PenerimaanController@getUnduhPenerimaan');
+
 		//Waste Material
 		Route::get('/waste', 'Logistik\Manager\WasteMaterialController@index');
 		Route::get('/waste/approve/{id}', 'Logistik\Manager\WasteMaterialController@getApprove');
@@ -489,6 +520,13 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/permintaan/approve/{id}', 'Logistik\PM\PermintaanController@beforeApprovePermintaan');
 		Route::post('/permintaan/approve/{id}', 'Logistik\PM\PermintaanController@approvePermintaan');
 		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
+
+		//PENERIMAAN MATERIAL
+		Route::get('/penerimaan', 'Logistik\PM\PenerimaanController@index');
+		Route::get('/penerimaan/detail/{id}', 'Logistik\PM\PenerimaanController@getDetailBypenerimaanId');
+		Route::get('/penerimaan/approve/{id}', 'Logistik\PM\PenerimaanController@beforeApprovePenerimaan');
+		Route::post('/penerimaan/approve/{id}', 'Logistik\PM\PenerimaanController@approvePenerimaan');
+		Route::get('/penerimaan/unduh/{id}', 'Logistik\Admin\PenerimaanController@getUnduhPenerimaan');
 
 		//Waste Material
 		Route::get('/waste', 'Logistik\PM\WasteMaterialController@index');
