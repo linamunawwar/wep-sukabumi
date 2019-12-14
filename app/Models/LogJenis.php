@@ -14,4 +14,8 @@ class LogJenis extends Model
     {
         return $this->hasOne('App\Models\LogWaste','id','jenis_pekerjaan_id');
     }
+    public function jenisPengajuan()
+    {
+        return $this->hasOne('App\Models\LogPengajuanMaterial','id','jenis_pekerjaan_id');
+    }
 }

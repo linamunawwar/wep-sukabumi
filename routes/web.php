@@ -510,6 +510,12 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/permintaan/deleteDetail/{detailId}/{permintaanId}', 'Logistik\Pelaksana\PermintaanController@deleteDetailPermintaanMaterial');
 		Route::delete('/permintaan/delete', 'Logistik\Pelaksana\PermintaanController@deletePermintaan');
 		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
+
+		//PENGAJUAN MATERIAL
+		Route::get('/pengajuan', 'Logistik\Pelaksana\PengajuanController@index');
+		Route::get('/pengajuan/create', 'Logistik\Pelaksana\PengajuanController@beforePostPengajuan');
+		Route::post('/pengajuan/create', 'Logistik\Pelaksana\PengajuanController@postPermintaan');
+		Route::get('/pengajuan/detail/{id}', 'Logistik\Pelaksana\PengajuanController@getDetailByPengajuanId');
 	});
 
 	//arsip
