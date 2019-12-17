@@ -12,7 +12,7 @@ class LogPermintaanMaterial extends Model
 
     public function permintaanDetail()
     {
-        return $this->belongsTo('App\Models\LogDetailPermintaanMaterial', 'id', 'permintaan_id');
+        return $this->hasMany('App\Models\LogDetailPermintaanMaterial', 'permintaan_id', 'id');
     }
 
     public function penerimaan()

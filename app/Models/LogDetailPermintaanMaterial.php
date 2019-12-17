@@ -12,7 +12,7 @@ class LogDetailPermintaanMaterial extends Model
 
     public function detailPermintaan()
     {
-        return $this->hasOne('App\Models\LogPermintaanMaterial', 'permintaan_id', 'id');
+        return $this->belongsTo('App\Models\LogPermintaanMaterial', 'permintaan_id', 'id');
     }
 
     public function detailPermintaanMaterial()

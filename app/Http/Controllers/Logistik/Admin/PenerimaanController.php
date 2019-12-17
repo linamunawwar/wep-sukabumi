@@ -20,29 +20,13 @@ class PenerimaanController extends Controller
     {
         $penerimaans = LogPenerimaanMaterial::where('soft_delete', 0)->get();
         foreach ($penerimaans as $penerimaan) {
-            if ($penerimaan->is_som != 1) {
-                if ($penerimaan->is_som == null) {
+            if ($penerimaan->is_splem != 1) {
+                if ($penerimaan->is_splem == null) {
                     $penerimaan->color = "#D63031";
                     $penerimaan->text = "Proses Pengecekan";
-                } elseif ($penerimaan->is_som == 0) {
-                    $penerimaan->color = "#D63031";
-                    $penerimaan->text = "Rejected By SOM";
-                }
-            } elseif ($penerimaan->is_slem != 1) {
-                if ($penerimaan->is_slem == null) {
-                    $penerimaan->color = "#74B9FF";
-                    $penerimaan->text = "Accepted By SOM";
                 } elseif ($penerimaan->is_slem == 0) {
                     $penerimaan->color = "#D63031";
                     $penerimaan->text = "Rejected By SPLEM";
-                }
-            } elseif ($penerimaan->is_scarm != 1) {
-                if ($penerimaan->is_scarm == null) {
-                    $penerimaan->color = "";
-                    $penerimaan->text = "Acepted By SPLEM";
-                } elseif ($penerimaan->is_scarm == 0) {
-                    $penerimaan->color = "#D63031";
-                    $penerimaan->text = "Rejected By SCARM";
                 }
             } elseif ($penerimaan->is_pm != 1) {
                 if ($penerimaan->is_pm == null) {
@@ -54,7 +38,7 @@ class PenerimaanController extends Controller
                 }
             } elseif ($penerimaan->is_pm == 1) {
                 $penerimaan->color = "#74B9FF";
-                $penerimaan->text = "Accepted By SPLEM";
+                $penerimaan->text = "Accepted By PM";
             }
         }
         return view('logistik.admin.penerimaan.index', ['penerimaans' => $penerimaans]);

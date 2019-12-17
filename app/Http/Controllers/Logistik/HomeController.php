@@ -27,6 +27,7 @@ class HomeController extends Controller
         if((Auth::user()->role_id == 2) && (Auth::user()->pegawai->posisi_id == 46)){
             $materials = LogMaterial::where('soft_delete',0)->count();
             return view('logistik.pelaksana.home',['materials'=>$materials]);
+        }
 
         if(Auth::user()->role_id == 5){
             $materials = LogMaterial::where('soft_delete',0)->count();
