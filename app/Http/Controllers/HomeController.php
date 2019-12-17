@@ -170,7 +170,7 @@ class HomeController extends Controller
             $cuti = Cuti::where('is_verif_pm',0)->where('soft_delete',0)->count();
             $pecat = Pecat::where('is_verif_pm',0)->where('soft_delete',0)->count();
             $resign = Resign::where('is_verif_pm',0)->where('soft_delete',0)->count();
-            $disposisi = DisposisiTugas::where('status','!=',1)->where('soft_delete',0)->where('posisi_id',\Auth::user()->pegawai->posisi_id)->count();
+            $disposisi = Disposisi::where('note_pm',null)->where('soft_delete',0)->count();
             $rkp = Rkp::where('is_verif_pm',0)->where('soft_delete',0)->count();
 
             return view('pm.home_pm',['pegawai'=>$pegawai,'memo'=>$memo,'cuti'=>$cuti,'pecat'=>$pecat,'resign'=>$resign,'disposisi'=>$disposisi,'rkp'=>$rkp]);
