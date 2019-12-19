@@ -120,7 +120,12 @@ class DisposisiController extends Controller
         // dd($disposisis);
         foreach ($disposisis as $key => $disposisi) {
             $tugass = DisposisiTugas::where('disposisi_id',$disposisi->id)->where('soft_delete',0)->get()->toArray();
-            $disposisi->status = array_search('', array_column($tugass, 'status'));
+            if($tugass){
+                $disposisi->status = array_search('', array_column($tugass, 'status'));
+            }else{
+                $disposisi->status = true;
+            }
+
         }
         return view('admin.disposisi.index',['disposisis'=>$disposisis]);
     }
