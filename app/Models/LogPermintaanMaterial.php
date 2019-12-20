@@ -19,4 +19,9 @@ class LogPermintaanMaterial extends Model
     {
         return $this->hasMany('App\Models\LogPenerimaanMaterial', 'kode_permintaan', 'kode_permintaan');
     }
+
+    public function penerimaanPengajuan()
+    {
+        return $this->hasMany('App\Models\LogPengajuanMaterial', 'kode_penerimaan', 'kode_penerimaan');
+    }
 }

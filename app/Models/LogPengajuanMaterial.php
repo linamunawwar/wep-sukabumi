@@ -15,6 +15,11 @@ class LogPengajuanMaterial extends Model
         return $this->belongsTo('App\Models\LogDetailPengajuanMaterial', 'id', 'pengajuan_id');
     }
 
+    public function pengajuanPenerimaanMaterial()
+    {
+        return $this->belongsTo('App\Models\LogPermintaanMaterial', 'kode_penerimaan', 'kode_penerimaan');
+    }
+
     public function pengajuanJenisPekerjaan()
     {
         return $this->belongsTo('App\Models\LogJenis', 'jenis_pekerjaan_id', 'id');

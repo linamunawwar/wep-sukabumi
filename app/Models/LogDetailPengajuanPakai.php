@@ -17,6 +17,6 @@ class LogDetailPengajuanPakai extends Model
 
     public function material()
     {
-        return $this->belongsTo('App\Models\LogMaterial', 'material_id', 'kode_material');
+        return $this->belongsTo('App\Models\LogMaterial', 'material_id', 'id');
     }
 }

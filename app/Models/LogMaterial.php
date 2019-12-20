@@ -24,6 +24,11 @@ class LogMaterial extends Model
     {
         return $this->hasOne('App\Models\LogDetailPermintaanMaterial','id','material_id');
     }
+
+    public function materialDetailPengajuan()
+    {
+        return $this->hasOne('App\Models\LogDetailPengajuanMaterial','id','material_id');
+    }
     
 }
 

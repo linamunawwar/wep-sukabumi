@@ -32,7 +32,7 @@
 					<div class="x_title">
 						<h2>Detail Pengajuan Material </h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('Logistik/user/pengajuan/')}}"><button class="btn btn-success"> Kembali </button></a></li>
+							<li><a href="{{url('Logistik/manager/pengajuan/')}}"><button class="btn btn-success"> Kembali </button></a></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
