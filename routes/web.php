@@ -448,6 +448,10 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::delete('/waste/pengajuan/delete', 'Logistik\Admin\WasteMaterialController@deleteWastePengajuan');
 		Route::get('/waste/unduh/{id}', 'Logistik\Manager\WasteMaterialController@getUnduh');
 
+		//LAPORAN KARTU GUDANG
+		Route::get('/kartu_gudang', 'Logistik\Admin\KartuGudangController@index');
+		Route::post('/kartu_gudang/cekData', 'Logistik\Admin\KartuGudangController@cekData');
+
 	});
 
 	Route::group(['prefix' => '/Logistik/pelaksana'], function () {
