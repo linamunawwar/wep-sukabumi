@@ -439,6 +439,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::delete('/waste/pengajuan/delete', 'Logistik\Admin\WasteMaterialController@deleteWastePengajuan');
 		Route::get('/waste/unduh/{id}', 'Logistik\Manager\WasteMaterialController@getUnduh');
 
+		Route::get('/eval_pakai', 'Logistik\Admin\LaporanController@getLog06');
+		Route::post('/eval_pakai', 'Logistik\Admin\LaporanController@postLog06');
+
 	});
 
 	Route::group(['prefix' => '/Logistik/pelaksana'], function () {
