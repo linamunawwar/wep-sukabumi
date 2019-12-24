@@ -12,7 +12,7 @@ class LogPengajuanMaterial extends Model
 
     public function pengajuanDetail()
     {
-        return $this->belongsTo('App\Models\LogDetailPengajuanMaterial', 'id', 'pengajuan_id');
+        return $this->hasMany('App\Models\LogDetailPengajuanMaterial', 'pengajuan_id', 'id');
     }
 
     public function pengajuanPenerimaanMaterial()
