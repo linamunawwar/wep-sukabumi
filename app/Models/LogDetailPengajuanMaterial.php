@@ -12,7 +12,7 @@ class LogDetailPengajuanMaterial extends Model
 
     public function detailPengajuan()
     {
-        return $this->hasOne('App\Models\LogPengajuanMaterial', 'pengajuan_id', 'id');
+        return $this->hasOne('App\Models\LogPengajuanMaterial', 'id', 'pengajuan_id');
     }
 
     public function detailPengajuanMaterial()

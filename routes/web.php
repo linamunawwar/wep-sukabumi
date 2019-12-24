@@ -451,6 +451,8 @@ Route::group(['middleware' => 'auth'], function () {
 		//Laporan Evaluasi Pemakaian Material
 		Route::get('/eval_pakai', 'Logistik\Admin\LaporanController@getLog06');
 		Route::post('/eval_pakai', 'Logistik\Admin\LaporanController@postLog06');
+		Route::get('/harian_pakai', 'Logistik\Admin\LaporanController@getLog07');
+		Route::post('/harian_pakai', 'Logistik\Admin\LaporanController@postLog07');
 
 		//LAPORAN KARTU GUDANG
 		Route::get('/kartu_gudang', 'Logistik\Admin\LaporanController@getLog02');
