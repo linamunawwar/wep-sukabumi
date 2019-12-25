@@ -166,6 +166,10 @@ class LaporanController extends Controller
         $selisih = date_diff(date_create($data['tanggal_mulai']),date_create($data['tanggal_selesai']));
         $selisih = (int)$selisih->format("%a");
         $materials = [];
+        $bulan = explode('-', $data['tanggal_selesai']);
+        $bulan_ini = $bulan[1];
+        $bulan_lalu = (int)$bulan[1]-1;
+        $tahun = $bulan[0];
         //initiate array tanggal
         for ($j=0; $j <=$selisih ; $j++) {
             $tanggal[] = $init_tanggal;
@@ -192,17 +196,30 @@ class LaporanController extends Controller
                               $q->where('tanggal', $tanggal_mulai);
                             })->where('material_id',$detail->material_id)->where('soft_delete',0)->get();
 
+                           $dt_detail_lalu  = LogDetailPengajuanMaterial::whereHas('detailPengajuan',function ($q) use($bulan_lalu,$tahun){
+                              $q->whereMonth('tanggal', $bulan_lalu)
+                                ->whereYear('tanggal',$tahun);
+                            })->where('material_id',$detail->material_id)->where('soft_delete',0)->get();
+
                            foreach ($dt_detail as $key => $dtl) {
                                $jumlah = $jumlah + $dtl->pemyerahan_jumlah;
                            }
+                           $jumlah_lalu = 0;
+                           foreach ($dt_detail_lalu as $key => $dtl_lalu) {
+                               $jumlah_lalu = $jumlah_lalu + $dtl_lalu->pemyerahan_jumlah;
+                           }
+                           $materials[$count]['jumlah_lalu']= $jumlah_lalu;
+
                         }
                         $materials[$count]['jumlah'][$tanggal_mulai] = $jumlah;
                         $tanggal_mulai = date('Y-m-d', strtotime("+1 day", strtotime($tanggal_mulai))); 
                     }
+                    
                     $count++;
                 }
             }
         }
+
 
         $splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
         $admin = Pegawai::where('posisi_id', \Auth::user()->pegawai->posisi_id)->where('soft_delete', 0)->first();
@@ -245,14 +262,6 @@ class LaporanController extends Controller
                     $sheet->cell('C16:C17', function ($cell) {
                         $cell->setBorder('', '', '', 'double');
                     });
-                    $sheet->cell('C4', function ($cell) {
-                        $cell->setBorder('thin', 'thin', 'thin', 'thin');
-                    });
-                    $sheet->cell('C6', function ($cell) {
-                        $cell->setalignment('center');
-                        $cell->setValignment('center');
-                        $cell->setBorder('thin', 'thin', 'thin', 'thin');
-                    });
                     // $sheet->cell('B14:E14', function($cell){
                     //     $cell->setBorder('','','','thin');
                     // });
@@ -276,7 +285,13 @@ class LaporanController extends Controller
             for ($i=19; $i <=50 ; $i++) { 
                 $excel->getActiveSheet()->getRowDimension($i)->setRowHeight(13);
             }
-            
+            $excel->getActiveSheet()->getPageMargins()->setLeft(0.5);
+            $excel->getActiveSheet()->getPageMargins()->setRight(0.28);
+            $excel->getDefaultStyle()->getAlignment()->setWrapText(true);
+            $excel->getActiveSheet()->getStyle('A1:Z'.$excel->getActiveSheet()->getHighestRow())->getAlignment()->setWrapText(true); 
+            $excel->getActiveSheet()->cells('A1:Z'.$excel->getActiveSheet()->getHighestRow(),  function ($cells) {
+                $cells->setValignment('center');
+            });
 
             // $excel->getDefaultStyle()
             //     ->applyFromArray($styleArray);

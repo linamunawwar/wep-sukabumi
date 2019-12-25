@@ -41,7 +41,7 @@
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label for="tgl_lahir" class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Mulai :</label>
+										<label for="tgl_lahir" class="control-label col-md-4 col-sm-4 col-xs-12">Tanggal Mulai :</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<div class='input-group date' id='datepicker1' class="datepicker">
 												<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
@@ -65,7 +65,7 @@
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Lokasi <span class="required">*</span>:</label>
+										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Lokasi <span class="required">*</span>:</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<select class="form-control col-md-7 col-xs-12 lokasi" id="lokasi" name="lokasi" required="required">
 												<option value="">Pilih Lokasi</option>
