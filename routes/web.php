@@ -541,6 +541,10 @@ Route::group(['middleware' => 'auth'], function () {
 		//LAPORAN KARTU GUDANG
 		Route::get('/kartu_gudang', 'Logistik\Admin\LaporanController@getLog02');
 		Route::post('/kartu_gudang', 'Logistik\Admin\LaporanController@postLog02');
+
+		//LAPORAN HARIAN KARTU GUDANG
+		Route::get('/harian_gudang', 'Logistik\Admin\LaporanController@getLog05');
+		Route::post('/harian_gudang', 'Logistik\Admin\LaporanController@postLog05');
 	});
 
 	//Logistik PM
@@ -573,7 +577,11 @@ Route::group(['middleware' => 'auth'], function () {
 
 		//LAPORAN KARTU GUDANG
 		Route::get('/kartu_gudang', 'Logistik\Admin\LaporanController@getLog02');
-		Route::post('/kartu_gudang', 'Logistik\Admin\LaporanController@postLog02');
+		Route::post('/kartu_gudang', 'Logistik\Admin\LaporanController@postLog02');\
+
+		//LAPORAN HARIAN KARTU GUDANG
+		Route::get('/harian_gudang', 'Logistik\Admin\LaporanController@getLog05');
+		Route::post('/harian_gudang', 'Logistik\Admin\LaporanController@postLog05');
 
 	});
 
@@ -604,6 +612,10 @@ Route::group(['middleware' => 'auth'], function () {
 		//LAPORAN KARTU GUDANG
 		Route::get('/kartu_gudang', 'Logistik\Admin\LaporanController@getLog02');
 		Route::post('/kartu_gudang', 'Logistik\Admin\LaporanController@postLog02');
+
+		//LAPORAN HARIAN KARTU GUDANG
+		Route::get('/harian_gudang', 'Logistik\Admin\LaporanController@getLog05');
+		Route::post('/harian_gudang', 'Logistik\Admin\LaporanController@postLog05');
 
 	});
 
