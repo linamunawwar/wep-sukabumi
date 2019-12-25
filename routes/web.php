@@ -448,11 +448,19 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::delete('/waste/pengajuan/delete', 'Logistik\Admin\WasteMaterialController@deleteWastePengajuan');
 		Route::get('/waste/unduh/{id}', 'Logistik\Manager\WasteMaterialController@getUnduh');
 
+		//Laporan Evaluasi Pemakaian Material
 		Route::get('/eval_pakai', 'Logistik\Admin\LaporanController@getLog06');
 		Route::post('/eval_pakai', 'Logistik\Admin\LaporanController@postLog06');
 		Route::get('/harian_pakai', 'Logistik\Admin\LaporanController@getLog07');
 		Route::post('/harian_pakai', 'Logistik\Admin\LaporanController@postLog07');
 
+		//LAPORAN KARTU GUDANG
+		Route::get('/kartu_gudang', 'Logistik\Admin\LaporanController@getLog02');
+		Route::post('/kartu_gudang', 'Logistik\Admin\LaporanController@postLog02');
+
+		//LAPORAN HARIAN KARTU GUDANG
+		Route::get('/harian_gudang', 'Logistik\Admin\LaporanController@getLog05');
+		Route::post('/harian_gudang', 'Logistik\Admin\LaporanController@postLog05');
 	});
 
 	Route::group(['prefix' => '/Logistik/pelaksana'], function () {
@@ -529,6 +537,14 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/waste/approve/{id}', 'Logistik\Manager\WasteMaterialController@getApprove');
 		Route::post('/waste/approve/{id}', 'Logistik\Manager\WasteMaterialController@postApprove');
 		Route::get('/waste/unduh/{id}', 'Logistik\Manager\WasteMaterialController@getUnduh');
+
+		//LAPORAN KARTU GUDANG
+		Route::get('/kartu_gudang', 'Logistik\Admin\LaporanController@getLog02');
+		Route::post('/kartu_gudang', 'Logistik\Admin\LaporanController@postLog02');
+
+		//LAPORAN HARIAN KARTU GUDANG
+		Route::get('/harian_gudang', 'Logistik\Admin\LaporanController@getLog05');
+		Route::post('/harian_gudang', 'Logistik\Admin\LaporanController@postLog05');
 	});
 
 	//Logistik PM
@@ -559,6 +575,14 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/waste/approve/{id}', 'Logistik\PM\WasteMaterialController@postApprove');
 		Route::get('/waste/unduh/{id}', 'Logistik\Manager\WasteMaterialController@getUnduh');
 
+		//LAPORAN KARTU GUDANG
+		Route::get('/kartu_gudang', 'Logistik\Admin\LaporanController@getLog02');
+		Route::post('/kartu_gudang', 'Logistik\Admin\LaporanController@postLog02');\
+
+		//LAPORAN HARIAN KARTU GUDANG
+		Route::get('/harian_gudang', 'Logistik\Admin\LaporanController@getLog05');
+		Route::post('/harian_gudang', 'Logistik\Admin\LaporanController@postLog05');
+
 	});
 
 	//Logistik USER
@@ -584,6 +608,14 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/pengajuan/edit/{id}', 'Logistik\Pelaksana\PengajuanController@updatePengajuan');
 		Route::delete('/pengajuan/delete', 'Logistik\Pelaksana\PengajuanController@deletePengajuan');
 		Route::get('/pengajuan/unduh/{id}', 'Logistik\Admin\PengajuanController@getUnduhPengajuan');
+
+		//LAPORAN KARTU GUDANG
+		Route::get('/kartu_gudang', 'Logistik\Admin\LaporanController@getLog02');
+		Route::post('/kartu_gudang', 'Logistik\Admin\LaporanController@postLog02');
+
+		//LAPORAN HARIAN KARTU GUDANG
+		Route::get('/harian_gudang', 'Logistik\Admin\LaporanController@getLog05');
+		Route::post('/harian_gudang', 'Logistik\Admin\LaporanController@postLog05');
 
 	});
 

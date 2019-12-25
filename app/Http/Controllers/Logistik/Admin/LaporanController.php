@@ -136,9 +136,9 @@ class LaporanController extends Controller
             $excel->getDefaultStyle()
                 ->applyFromArray($styleArray);
             return $excel->export('xls');
-    }
+	}
 
-    public function getLog07()
+	public function getLog07()
     {
         $jeniss = LogJenis::where('soft_delete',0)->get();
         $lokasis = LogLokasi::where('soft_delete',0)->get();
@@ -297,4 +297,259 @@ class LaporanController extends Controller
             //     ->applyFromArray($styleArray);
             return $excel->export('xls');
     }
+	
+	public function getLog02()
+    {
+        $namaBulan = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
+		$idBulan = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
+		$getMaterial = LogMaterial::where('soft_delete', 0)->get();
+
+        return view('logistik.admin.log02.index', ['bln' => $namaBulan, 'idBln' => $idBulan, 'materials' => $getMaterial]);
+	}
+	
+	public function postLog02()
+	{
+		$data = \Input::all();
+    	$data['tanggal_mulai'] = $data['tahun'].'-'.$data['bulan'].'-01';
+		$data['tanggal_selesai'] = $data['tahun'].'-'.$data['bulan'].'-31';
+		$bulan = array(1 => "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
+
+		for ($i=01; $i <= 12; $i++) { 
+			if ($i == $data['bulan']) {
+				$getBulan = $bulan[$i];
+			break;
+			}
+		}
+
+		$getMaterial = LogMaterial::select('nama')
+									->where('id', $data['material'])
+									->where('soft_delete', 0)
+									->get();
+		$dt = [];
+		for ($i=1; $i <=31 ; $i++) { 
+			$dt[$i]['jml_terima'] = 0;
+			$dt[$i]['trs_terima'] = 0;
+			$dt[$i]['jml_keluar'] = 0;
+			$dt[$i]['trs_keluar'] = 0;
+			$dt[$i]['sisa'] = 0;
+			$tampung = 0;
+			$tgl = $i;
+
+			if (count($i) == 1) {
+				$tgl = '0'.$i;
+			}
+			$penerimaans = LogPenerimaanMaterial::where('tanggal','=',$data['tahun'].'-'.$data['bulan'].'-'.$tgl)
+											->where('soft_delete',0)
+											->get();
+			foreach ($penerimaans as $key => $penerimaan) {
+				$penerimaanDetails = LogDetailPenerimaanMaterial::where('penerimaan_id', $penerimaan->id)
+																->where('material_id',$data['material'])
+																->where('soft_delete',0)
+																->get();
+				
+				foreach ($penerimaanDetails as $key => $value) {					
+					$dt[$i]['jml_terima'] = $dt[$i]['jml_terima'] + $value->volume;
+					if ($i == 1) {
+						$dt[$i]['trs_terima'] = 0;
+					}elseif($i > 1){
+						$dt[$i]['trs_terima'] = $dt[$i-1]['trs_terima'] + $dt[$i]['jml_terima'];
+					}
+				}
+			}
+			
+
+			$pengajuans = LogPengajuanMaterial::where('tanggal','=',$data['tahun'].'-'.$data['bulan'].'-'.$tgl)
+											->where('soft_delete',0)
+											->get();
+												
+			foreach ($pengajuans as $key => $pengajuan) {
+				$pengajuanDetails = LogDetailPengajuanPakai::where('pengajuan_id', $pengajuan->id)
+																->where('soft_delete',0)
+																->get();
+				if ($pengajuanDetails) {					
+					foreach ($pengajuanDetails as $key => $value) {
+						$dt[$i]['jml_keluar'] = $dt[$i]['jml_keluar'] + $value->permintaan_jumlah;
+						if ($i == 1) {
+							$dt[$i]['trs_keluar'] = 0;
+						}else{
+							$dt[$i]['trs_keluar'] = $dt[$i]['trs_keluar'] + $value->permintaan_jumlah;
+						}
+					}
+				}
+			}
+			$dt[$i]['sisa'] = $dt[$i]['jml_terima'] - $dt[$i]['jml_keluar'];
+		}	
+
+		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
+    	$excel = \Excel::create("Form Log-02 Laporan Kartu Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($getBulan, $getMaterial, $dt,$splem) {
+
+                $excel->sheet('New sheet', function ($sheet) use ($getBulan, $getMaterial, $dt,$splem) {
+
+                    $sheet->loadView('logistik.admin.log02.unduh', ['data' => $dt, 'bulan' => $getBulan, 'material' => $getMaterial, 'splem' => $splem]);
+                    $objDrawing = new PHPExcel_Worksheet_Drawing;
+                    $objDrawing->setPath(public_path('img/Waskita.png'));
+                    $objDrawing->setCoordinates('C1');
+                    $objDrawing->setWorksheet($sheet);
+                    $objDrawing->setResizeProportional(false);
+                    // set width later
+                    $objDrawing->setWidth(40);
+                    $objDrawing->setHeight(35);
+                    $sheet->getStyle('C1')->getAlignment()->setIndent(1);
+
+                    $sheet->getStyle('A13:N63')->getAlignment()->setWrapText(true);
+                    $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
+                    $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
+                        array('horizontal' => 'center')
+                    );
+                    $sheet->cells('A9:M11', function ($cells) {
+                        $cells->setValignment('center');
+                        $cells->setFontFamily('Tahoma');
+                    });
+
+                    $sheet->cell('D9:E11', function ($cell) {
+                        $cell->setValignment('center');
+                    });
+                    $sheet->cell('D8:E8', function ($cell) {
+                        $cell->setBorder('', '', 'thin', '');
+                    });
+                    $sheet->cell('C4', function ($cell) {
+                        $cell->setBorder('thin', 'thin', 'thin', 'thin');
+                    });
+                    $sheet->cell('C6', function ($cell) {
+                        $cell->setalignment('center');
+                        $cell->setValignment('center');
+                        $cell->setBorder('thin', 'thin', 'thin', 'thin');
+                    });
+                    // $sheet->cell('B14:E14', function($cell){
+                    //     $cell->setBorder('','','','thin');
+                    // });
+                });
+            });
+            $styleArray = array(
+                'font' => array(
+                    'name' => 'Tahoma',
+                ));
+            $excel->getDefaultStyle()
+                ->applyFromArray($styleArray);
+            return $excel->export('xls');
+	}
+
+	public function getLog05()
+    {
+        $namaBulan = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
+		$idBulan = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
+		$getMaterial = LogMaterial::where('soft_delete', 0)->get();
+
+        return view('logistik.admin.log05.index');
+	}
+	
+	public function postLog05()
+	{		
+		$data = \Input::all();
+		$tgl_mulai=konversi_tanggal($data['tanggal_mulai']);
+		$tgl_selesai=konversi_tanggal($data['tanggal_selesai']);
+		$dt = [];
+		$i = 1;
+		
+		while($tgl_mulai <= $tgl_selesai){				
+			$dt[$i]['material'] = '';
+			$dt[$i]['satuan'] = '';
+			$dt[$i]['tanggal'] = '';
+			$dt[$i]['jml_terima'] = 0;
+			$dt[$i]['jml_keluar'] = 0;	
+			
+			$dt[$i]['tanggal'] = $tgl_mulai;
+			
+			$penerimaans = LogPenerimaanMaterial::where('tanggal','=',$tgl_mulai)
+											->where('soft_delete',0)
+											->get();
+			
+			foreach ($penerimaans as $key => $penerimaan) {
+				$penerimaanDetails = LogDetailPenerimaanMaterial::where('penerimaan_id', $penerimaan->id)
+																->where('soft_delete',0)
+																->get();
+				
+				foreach ($penerimaanDetails as $key => $value) {					
+					$dt[$i]['material'] = $value->material->nama;
+					$dt[$i]['satuan'] = $value->material->satuan;
+					$dt[$i]['jml_terima'] = $dt[$i]['jml_terima'] + $value->volume;
+				}
+			}
+			
+
+			$pengajuans = LogPengajuanMaterial::where('tanggal','=',date('Y-m-d',strtotime($tgl_mulai)))
+											->where('soft_delete',0)
+											->get();
+												
+			foreach ($pengajuans as $key => $pengajuan) {
+				$pengajuanDetails = LogDetailPengajuanPakai::where('pengajuan_id', $pengajuan->id)
+															->where('soft_delete',0)
+															->get();
+				if ($pengajuanDetails) {					
+					foreach ($pengajuanDetails as $key => $value) {
+						$dt[$i]['material'] = $value->material->nama;
+						$dt[$i]['satuan'] = $value->material->satuan;
+						$dt[$i]['jml_keluar'] = $dt[$i]['jml_keluar'] + $value->permintaan_jumlah;
+					}
+				}
+			}
+			
+			$i++;
+			$tgl_mulai = date('Y-m-d',strtotime('+1 days',strtotime($tgl_mulai)));
+		}
+	
+
+		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
+    	$excel = \Excel::create("Form Log-02 Laporan Kartu Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($dt, $splem) {
+
+                $excel->sheet('New sheet', function ($sheet) use ($dt, $splem) {
+
+                    $sheet->loadView('logistik.admin.log05.unduh', ['data' => $dt, 'splem' => $splem]);
+                    $objDrawing = new PHPExcel_Worksheet_Drawing;
+                    $objDrawing->setPath(public_path('img/Waskita.png'));
+                    $objDrawing->setCoordinates('C1');
+                    $objDrawing->setWorksheet($sheet);
+                    $objDrawing->setResizeProportional(false);
+                    // set width later
+                    $objDrawing->setWidth(40);
+                    $objDrawing->setHeight(35);
+                    $sheet->getStyle('C1')->getAlignment()->setIndent(1);
+
+                    $sheet->getStyle('A13:N63')->getAlignment()->setWrapText(true);
+                    $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
+                    $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
+                        array('horizontal' => 'center')
+                    );
+                    $sheet->cells('A9:M11', function ($cells) {
+                        $cells->setValignment('center');
+                        $cells->setFontFamily('Tahoma');
+                    });
+
+                    $sheet->cell('D9:E11', function ($cell) {
+                        $cell->setValignment('center');
+                    });
+                    $sheet->cell('D8:E8', function ($cell) {
+                        $cell->setBorder('', '', 'thin', '');
+                    });
+                    $sheet->cell('C4', function ($cell) {
+                        $cell->setBorder('thin', 'thin', 'thin', 'thin');
+                    });
+                    $sheet->cell('C6', function ($cell) {
+                        $cell->setalignment('center');
+                        $cell->setValignment('center');
+                        $cell->setBorder('thin', 'thin', 'thin', 'thin');
+                    });
+                    // $sheet->cell('B14:E14', function($cell){
+                    //     $cell->setBorder('','','','thin');
+                    // });
+                });
+            });
+            $styleArray = array(
+                'font' => array(
+                    'name' => 'Tahoma',
+                ));
+            $excel->getDefaultStyle()
+                ->applyFromArray($styleArray);
+            return $excel->export('xls');
+	}
 }
