@@ -30,7 +30,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Evaluasi Pemakaian Material (Log-06) </h2>
+						<h2>Buku Harian Gudang (Log-05) </h2>
 						<ul class="nav navbar-right panel_toolbox">
 						</ul>
 						<div class="clearfix"></div>
