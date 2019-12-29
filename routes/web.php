@@ -461,6 +461,10 @@ Route::group(['middleware' => 'auth'], function () {
 		//LAPORAN HARIAN KARTU GUDANG
 		Route::get('/harian_gudang', 'Logistik\Admin\LaporanController@getLog05');
 		Route::post('/harian_gudang', 'Logistik\Admin\LaporanController@postLog05');
+
+		//LAPORAN EVALUASI MINGGUAN PENGADAAN BAHAN
+		Route::get('/eval_mingguan', 'Logistik\Admin\LaporanController@getLog03');
+		Route::post('/eval_mingguan', 'Logistik\Admin\LaporanController@postLog03');
 	});
 
 	Route::group(['prefix' => '/Logistik/pelaksana'], function () {
@@ -545,6 +549,10 @@ Route::group(['middleware' => 'auth'], function () {
 		//LAPORAN HARIAN KARTU GUDANG
 		Route::get('/harian_gudang', 'Logistik\Admin\LaporanController@getLog05');
 		Route::post('/harian_gudang', 'Logistik\Admin\LaporanController@postLog05');
+
+		//LAPORAN EVALUASI MINGGUAN PENGADAAN BAHAN
+		Route::get('/eval_mingguan', 'Logistik\Admin\LaporanController@getLog03');
+		Route::post('/eval_mingguan', 'Logistik\Admin\LaporanController@postLog03');
 	});
 
 	//Logistik PM
@@ -583,6 +591,10 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/harian_gudang', 'Logistik\Admin\LaporanController@getLog05');
 		Route::post('/harian_gudang', 'Logistik\Admin\LaporanController@postLog05');
 
+		//LAPORAN EVALUASI MINGGUAN PENGADAAN BAHAN
+		Route::get('/eval_mingguan', 'Logistik\Admin\LaporanController@getLog03');
+		Route::post('/eval_mingguan', 'Logistik\Admin\LaporanController@postLog03');
+
 	});
 
 	//Logistik USER
@@ -616,6 +628,10 @@ Route::group(['middleware' => 'auth'], function () {
 		//LAPORAN HARIAN KARTU GUDANG
 		Route::get('/harian_gudang', 'Logistik\Admin\LaporanController@getLog05');
 		Route::post('/harian_gudang', 'Logistik\Admin\LaporanController@postLog05');
+
+		//LAPORAN EVALUASI MINGGUAN PENGADAAN BAHAN
+		Route::get('/eval_mingguan', 'Logistik\Admin\LaporanController@getLog03');
+		Route::post('/eval_mingguan', 'Logistik\Admin\LaporanController@postLog03');
 
 	});
 

@@ -10,6 +10,7 @@ use App\Models\LogDetailPenerimaanMaterial;
 use App\Models\LogPengajuanMaterial;
 use App\Models\LogDetailPengajuanPakai;
 use App\Models\LogDetailPengajuanMaterial;
+use App\Models\LogMaterial;
 use App\Models\LogJenis;
 use App\Models\LogLokasi;
 use App\Pegawai;
@@ -339,8 +340,8 @@ class LaporanController extends Controller
 				$tgl = '0'.$i;
 			}
 			$penerimaans = LogPenerimaanMaterial::where('tanggal','=',$data['tahun'].'-'.$data['bulan'].'-'.$tgl)
-											->where('soft_delete',0)
-											->get();
+												->where('soft_delete',0)
+												->get();
 			foreach ($penerimaans as $key => $penerimaan) {
 				$penerimaanDetails = LogDetailPenerimaanMaterial::where('penerimaan_id', $penerimaan->id)
 																->where('material_id',$data['material'])
@@ -436,10 +437,6 @@ class LaporanController extends Controller
 
 	public function getLog05()
     {
-        $namaBulan = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
-		$idBulan = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
-		$getMaterial = LogMaterial::where('soft_delete', 0)->get();
-
         return view('logistik.admin.log05.index');
 	}
 	
@@ -505,6 +502,114 @@ class LaporanController extends Controller
                 $excel->sheet('New sheet', function ($sheet) use ($dt, $splem) {
 
                     $sheet->loadView('logistik.admin.log05.unduh', ['data' => $dt, 'splem' => $splem]);
+                    $objDrawing = new PHPExcel_Worksheet_Drawing;
+                    $objDrawing->setPath(public_path('img/Waskita.png'));
+                    $objDrawing->setCoordinates('C1');
+                    $objDrawing->setWorksheet($sheet);
+                    $objDrawing->setResizeProportional(false);
+                    // set width later
+                    $objDrawing->setWidth(40);
+                    $objDrawing->setHeight(35);
+                    $sheet->getStyle('C1')->getAlignment()->setIndent(1);
+
+                    $sheet->getStyle('A13:N63')->getAlignment()->setWrapText(true);
+                    $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
+                    $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
+                        array('horizontal' => 'center')
+                    );
+                    $sheet->cells('A9:M11', function ($cells) {
+                        $cells->setValignment('center');
+                        $cells->setFontFamily('Tahoma');
+                    });
+
+                    $sheet->cell('D9:E11', function ($cell) {
+                        $cell->setValignment('center');
+                    });
+                    $sheet->cell('D8:E8', function ($cell) {
+                        $cell->setBorder('', '', 'thin', '');
+                    });
+                    $sheet->cell('C4', function ($cell) {
+                        $cell->setBorder('thin', 'thin', 'thin', 'thin');
+                    });
+                    $sheet->cell('C6', function ($cell) {
+                        $cell->setalignment('center');
+                        $cell->setValignment('center');
+                        $cell->setBorder('thin', 'thin', 'thin', 'thin');
+                    });
+                    // $sheet->cell('B14:E14', function($cell){
+                    //     $cell->setBorder('','','','thin');
+                    // });
+                });
+            });
+            $styleArray = array(
+                'font' => array(
+                    'name' => 'Tahoma',
+                ));
+            $excel->getDefaultStyle()
+                ->applyFromArray($styleArray);
+            return $excel->export('xls');
+	}
+
+	public function getLog03()
+    {
+        return view('logistik.admin.log03.index');
+	}
+	
+	public function postLog03()
+	{
+        $data = \Input::all();
+        $kodePermintaan = $data['kodePermintaan'];
+        $materials = [];
+        $count = count($materials);
+
+        $permintaans = LogPermintaanMaterial::where('kode_permintaan', $kodePermintaan)
+    										->where('soft_delete', 0)
+                                            ->get();
+                                            
+        foreach ($permintaans as $key => $permintaan) {
+            foreach ($permintaan->permintaanDetail as $key => $detail) {
+                if (array_search($detail->material_id, array_column($materials,'material_id')) === false) {
+                    $materials[$count]['material_id'] = (int)$detail->material_id;
+                    $materials[$count]['nama'] = $detail->detailPermintaanMaterial->nama;
+                    $materials[$count]['satuan'] = $detail->detailPermintaanMaterial->satuan;
+                    $materials[$count]['rencana'] = (int)$detail->volume;
+                    $materials[$count]['realisasi'] = 0;
+                    $materials[$count]['sesuai'] = 0;
+                    $materials[$count]['tidakSesuai'] = 0;
+                    $count++;
+                }else{
+                    $index = array_search($detail->material_id,array_column($materials,'material_id'));
+    				$materials[$index]['rencana'] = (int)$materials[$index]['rencana'] + (int)$detail->volume;
+                }
+            }            
+        }
+
+        foreach ($materials as $key => $material) {
+            $penerimaans = LogDetailPenerimaanMaterial::where('material_id',$material['material_id'])
+                                                    ->where('soft_delete',0)
+                                                    ->get();
+
+            foreach ($penerimaans as $key => $detail) {
+                if(array_search($detail->material_id, array_column($materials,'material_id')) !== false){
+                    $index = array_search($detail->material_id, array_column($materials,'material_id'));
+                    $materials[$index]['realisasi'] = (int)$materials[$index]['realisasi'] + (int)$detail->volume;                    
+                }
+            }
+        }
+
+        if ($materials[$index]['rencana'] <= $materials[$index]['realisasi']) {
+            $materials[$index]['sesuai'] = $materials[$index]['realisasi'] - $materials[$index]['rencana'];
+        }elseif ($materials[$index]['rencana'] >= $materials[$index]['realisasi']) {
+            $materials[$index]['sesuai'] = $materials[$index]['rencana'] - $materials[$index]['realisasi'];
+        }
+
+		$pm = Pegawai::where('posisi_id', 1)->where('soft_delete', 0)->first();
+		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
+    	$excel = \Excel::create("Form Log-03 Laporan Evaluasi Mingguan Pengadaan Bahan", function ($excel) use ($materials, $pm, $splem) {
+
+                $excel->sheet('New sheet', function ($sheet) use ($materials, $pm, $splem) {
+
+                    $sheet->loadView('logistik.admin.log03.unduh', ['data' => $materials, 'pm' => $pm, 'splem' => $splem]);
                     $objDrawing = new PHPExcel_Worksheet_Drawing;
                     $objDrawing->setPath(public_path('img/Waskita.png'));
                     $objDrawing->setCoordinates('C1');
