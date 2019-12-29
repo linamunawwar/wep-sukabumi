@@ -14,4 +14,10 @@ class LogLokasi extends Model
     {
         return $this->hasMany('App\Models\LogWasteDetail','id','lokasi_kerja_id');
     }
+
+    public function lokasiPengajuan()
+    {
+        return $this->hasMany('App\Models\Log PengajuanMaterial','id','lokasi_kerja_id');
+    }
+    
 }

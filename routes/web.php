@@ -428,6 +428,15 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::delete('/penerimaan/delete', 'Logistik\Admin\PenerimaanController@deletepenerimaan');
 		Route::get('/penerimaan/unduh/{id}', 'Logistik\Admin\PenerimaanController@getUnduhpenerimaan');
 
+		//PENGAJUAN MATERIAL
+		Route::get('/pengajuan', 'Logistik\Admin\PengajuanController@index');
+		Route::get('/pengajuan/detail/{id}', 'Logistik\Admin\PengajuanController@getDetailByPengajuanId');
+		Route::get('/pengajuan/edit/{id}', 'Logistik\Admin\PengajuanController@getPengajuanById');
+		Route::post('/pengajuan/edit/{id}', 'Logistik\Admin\PengajuanController@updatePengajuan');
+		Route::get('/pengajuan/approve/{id}', 'Logistik\Admin\PengajuanController@beforeApprovePengajuan');
+		Route::post('/pengajuan/approve/{id}', 'Logistik\Admin\PengajuanController@approvePengajuan');
+		Route::get('/pengajuan/unduh/{id}', 'Logistik\Admin\PengajuanController@getUnduhPengajuan');
+
 		//Waste Material
 		Route::get('/waste', 'Logistik\Admin\WasteMaterialController@index');
 		Route::get('/waste/create', 'Logistik\Admin\WasteMaterialController@beforePostWaste');
@@ -439,18 +448,36 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::delete('/waste/pengajuan/delete', 'Logistik\Admin\WasteMaterialController@deleteWastePengajuan');
 		Route::get('/waste/unduh/{id}', 'Logistik\Manager\WasteMaterialController@getUnduh');
 
+		//Laporan Evaluasi Pemakaian Material
+		Route::get('/eval_pakai', 'Logistik\Admin\LaporanController@getLog06');
+		Route::post('/eval_pakai', 'Logistik\Admin\LaporanController@postLog06');
+		Route::get('/harian_pakai', 'Logistik\Admin\LaporanController@getLog07');
+		Route::post('/harian_pakai', 'Logistik\Admin\LaporanController@postLog07');
+
+		//LAPORAN KARTU GUDANG
+		Route::get('/kartu_gudang', 'Logistik\Admin\LaporanController@getLog02');
+		Route::post('/kartu_gudang', 'Logistik\Admin\LaporanController@postLog02');
+
+		//LAPORAN HARIAN KARTU GUDANG
+		Route::get('/harian_gudang', 'Logistik\Admin\LaporanController@getLog05');
+		Route::post('/harian_gudang', 'Logistik\Admin\LaporanController@postLog05');
+
+		//LAPORAN EVALUASI MINGGUAN PENGADAAN BAHAN
+		Route::get('/eval_mingguan', 'Logistik\Admin\LaporanController@getLog03');
+		Route::post('/eval_mingguan', 'Logistik\Admin\LaporanController@postLog03');
 	});
 
 	Route::group(['prefix' => '/Logistik/pelaksana'], function () {
 		//Pengajuan PEMAKAIAN MATERIAL
 		Route::get('/pengajuan', 'Logistik\Pelaksana\PengajuanPemakaianController@index');
 		Route::get('/pengajuan/create', 'Logistik\Pelaksana\PengajuanPemakaianController@beforePostPermintaan');
-		Route::post('/pengajuan/create', 'Logistik\Pelaksana\PengajuanPemakaianController@postPermintaan');
+		Route::post('/pengajuan/create', 'Logistik\Pelaksana\PengajuanPemakaianController@postPermintaan');		
 		Route::get('/pengajuan/detail/{id}', 'Logistik\Pelaksana\PengajuanPemakaianController@getDetailByPermintaanId');
 		Route::get('/pengajuan/edit/{id}', 'Logistik\Pelaksana\PengajuanPemakaianController@getPermintaanById');
 		Route::post('/pengajuan/edit/{id}', 'Logistik\Pelaksana\PengajuanPemakaianController@updatePermintaan');
 		Route::get('/pengajuan/deleteDetail/{detailId}/{permintaanId}', 'Logistik\Pelaksana\PengajuanPemakaianController@deleteDetailPermintaanMaterial');
 		Route::delete('/pengajuan/delete', 'Logistik\Pelaksana\PengajuanPemakaianController@deletePermintaan');
+
 	});
 
 	//Logistik Manager
@@ -499,11 +526,33 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/penerimaan/approve/{id}', 'Logistik\Manager\PenerimaanController@approvePenerimaan');
 		Route::get('/penerimaan/unduh/{id}', 'Logistik\Admin\PenerimaanController@getUnduhPenerimaan');
 
+		//PENGAJUAN MATERIAL
+		Route::get('/pengajuan', 'Logistik\Manager\PengajuanController@index');
+		Route::get('/pengajuan/detail/{id}', 'Logistik\Manager\PengajuanController@getDetailByPengajuanId');
+		Route::get('/pengajuan/edit/{id}', 'Logistik\Manager\PengajuanController@getPengajuanById');
+		Route::post('/pengajuan/edit/{id}', 'Logistik\Manager\PengajuanController@updatePengajuan');
+		Route::get('/pengajuan/approve/{id}', 'Logistik\Manager\PengajuanController@beforeApprovePengajuan');
+		Route::post('/pengajuan/approve/{id}', 'Logistik\Manager\PengajuanController@approvePengajuan');
+		Route::get('/pengajuan/unduh/{id}', 'Logistik\Manager\PengajuanController@getUnduhPengajuan');
+		Route::get('/pengajuan/unduh/{id}', 'Logistik\Admin\PengajuanController@getUnduhPengajuan');	
+
 		//Waste Material
 		Route::get('/waste', 'Logistik\Manager\WasteMaterialController@index');
 		Route::get('/waste/approve/{id}', 'Logistik\Manager\WasteMaterialController@getApprove');
 		Route::post('/waste/approve/{id}', 'Logistik\Manager\WasteMaterialController@postApprove');
 		Route::get('/waste/unduh/{id}', 'Logistik\Manager\WasteMaterialController@getUnduh');
+
+		//LAPORAN KARTU GUDANG
+		Route::get('/kartu_gudang', 'Logistik\Admin\LaporanController@getLog02');
+		Route::post('/kartu_gudang', 'Logistik\Admin\LaporanController@postLog02');
+
+		//LAPORAN HARIAN KARTU GUDANG
+		Route::get('/harian_gudang', 'Logistik\Admin\LaporanController@getLog05');
+		Route::post('/harian_gudang', 'Logistik\Admin\LaporanController@postLog05');
+
+		//LAPORAN EVALUASI MINGGUAN PENGADAAN BAHAN
+		Route::get('/eval_mingguan', 'Logistik\Admin\LaporanController@getLog03');
+		Route::post('/eval_mingguan', 'Logistik\Admin\LaporanController@postLog03');
 	});
 
 	//Logistik PM
@@ -534,6 +583,18 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/waste/approve/{id}', 'Logistik\PM\WasteMaterialController@postApprove');
 		Route::get('/waste/unduh/{id}', 'Logistik\Manager\WasteMaterialController@getUnduh');
 
+		//LAPORAN KARTU GUDANG
+		Route::get('/kartu_gudang', 'Logistik\Admin\LaporanController@getLog02');
+		Route::post('/kartu_gudang', 'Logistik\Admin\LaporanController@postLog02');\
+
+		//LAPORAN HARIAN KARTU GUDANG
+		Route::get('/harian_gudang', 'Logistik\Admin\LaporanController@getLog05');
+		Route::post('/harian_gudang', 'Logistik\Admin\LaporanController@postLog05');
+
+		//LAPORAN EVALUASI MINGGUAN PENGADAAN BAHAN
+		Route::get('/eval_mingguan', 'Logistik\Admin\LaporanController@getLog03');
+		Route::post('/eval_mingguan', 'Logistik\Admin\LaporanController@postLog03');
+
 	});
 
 	//Logistik USER
@@ -548,6 +609,30 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/permintaan/deleteDetail/{detailId}/{permintaanId}', 'Logistik\Pelaksana\PermintaanController@deleteDetailPermintaanMaterial');
 		Route::delete('/permintaan/delete', 'Logistik\Pelaksana\PermintaanController@deletePermintaan');
 		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
+
+		//PENGAJUAN MATERIAL
+		Route::get('/pengajuan', 'Logistik\Pelaksana\PengajuanController@index');
+		Route::get('/pengajuan/create', 'Logistik\Pelaksana\PengajuanController@beforePostPengajuan');
+		Route::post('/pengajuan/cekData', 'Logistik\Pelaksana\PengajuanController@cekData');
+		Route::post('/pengajuan/create', 'Logistik\Pelaksana\PengajuanController@postPengajuan');
+		Route::get('/pengajuan/detail/{id}', 'Logistik\Pelaksana\PengajuanController@getPengajuanById');
+		Route::get('/pengajuan/edit/{id}', 'Logistik\Pelaksana\PengajuanController@getPengajuanById');
+		Route::post('/pengajuan/edit/{id}', 'Logistik\Pelaksana\PengajuanController@updatePengajuan');
+		Route::delete('/pengajuan/delete', 'Logistik\Pelaksana\PengajuanController@deletePengajuan');
+		Route::get('/pengajuan/unduh/{id}', 'Logistik\Admin\PengajuanController@getUnduhPengajuan');
+
+		//LAPORAN KARTU GUDANG
+		Route::get('/kartu_gudang', 'Logistik\Admin\LaporanController@getLog02');
+		Route::post('/kartu_gudang', 'Logistik\Admin\LaporanController@postLog02');
+
+		//LAPORAN HARIAN KARTU GUDANG
+		Route::get('/harian_gudang', 'Logistik\Admin\LaporanController@getLog05');
+		Route::post('/harian_gudang', 'Logistik\Admin\LaporanController@postLog05');
+
+		//LAPORAN EVALUASI MINGGUAN PENGADAAN BAHAN
+		Route::get('/eval_mingguan', 'Logistik\Admin\LaporanController@getLog03');
+		Route::post('/eval_mingguan', 'Logistik\Admin\LaporanController@postLog03');
+
 	});
 
 	//arsip

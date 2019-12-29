@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Logistik\Pelaksana;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\LogPenerimaanMaterial;
 use App\Models\LogPengajuanPakai;
 use App\Models\LogDetailPengajuanPakai;
 use App\Models\LogMaterial;
@@ -65,22 +66,22 @@ class PengajuanPemakaianController extends Controller
         return view('logistik.pelaksana.pengajuan.create', ['materials' => $materials,'jenis_kerjas'=>$jenis_kerjas,'lokasis'=>$lokasis]);
     }
 
-    public function cekData()
-    {
-    	$kode_penerimaan = \Input::get('kode_penerimaan');
+    // public function cekData()
+    // {
+    // 	$kode_penerimaan = \Input::get('kode_penerimaan');
     	
-    	$penerimaan = LogPenerimaan::where('kode_penerimaan',$kode_penerimaan)->where('soft_delete',0)->first();
-    	if($waste){
-    		$datas = LogWasteDetail::where('waste_id',$waste->id)->where('soft_delete',0)->get();
-    	}else{
-    		$datas = null;
-    	}
-    	if($datas){
-	    	foreach ($datas as $key => $data) {
-	    		$data->pelaksana_nama = $data->pelaksanaPegawai->nama;
-	    		$data->lokasi = $data->wasteLokasi->nama;
-	    	}
-	    }	
-    	return json_encode($datas);
-    }
+    // 	$penerimaan = LogPenerimaanMaterial::where('kode_penerimaan',$kode_penerimaan)->where('soft_delete',0)->first();
+    // 	if($waste){
+    // 		$datas = LogWasteDetail::where('waste_id',$waste->id)->where('soft_delete',0)->get();
+    // 	}else{
+    // 		$datas = null;
+    // 	}
+    // 	if($datas){
+	//     	foreach ($datas as $key => $data) {
+	//     		$data->pelaksana_nama = $data->pelaksanaPegawai->nama;
+	//     		$data->lokasi = $data->wasteLokasi->nama;
+	//     	}
+	//     }	
+    // 	return json_encode($datas);
+    // }
 }
