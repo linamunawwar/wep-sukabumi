@@ -81,7 +81,7 @@
       <td></td>
       <td></td>
       <td style="border: 1px solid #000000;" align="center">{{$i++}}</td>
-      <td style="border: 1px solid #000000;"  align="left" >{{$data->material->nama}}<br>{{$data->keterangan}}</td>
+      <td style="border: 1px solid #000000;"  align="left" >{{$data->detailPermintaanMaterial->nama}}<br>{{$data->keterangan}}</td>
       <td style="border: 1px solid #000000;"  align="center">{{$data->penerimaan->permintaan->detailPermintaan[$key]->volume}}</td>
       <td style="border: 1px solid #000000;"  align="right">{{$data->vol_lalu}}</td>
       <td style="border: 1px solid #000000;"  align="right">{{$data->vol_saat_ini}}</td>
