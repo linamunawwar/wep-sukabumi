@@ -65,7 +65,7 @@ class PenerimaanController extends Controller
     	}
     	if($datas){
 	    	foreach ($datas as $key => $data) {
-	    		$data->material_nama = $data->material->nama;
+	    		$data->material_nama = $data->detailPermintaanMaterial->nama;
 	    		$jumlah_material = 0;
 	    		if($penerimaans){
 		    		foreach ($penerimaans as $key => $penerimaan) {

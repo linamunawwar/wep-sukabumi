@@ -53,7 +53,7 @@
                         <!-------------------------PENERIMAAN ------------------------->
                         @if(Auth::user()->role_id == 2)
                             <li>
-                                <a href="{{url('Logistik/user/permintaan')}}">
+                                <a href="{{url('Logistik/user/penerimaan')}}">
                                     <i class="fa fa-list"></i>
                                     Penerimaan Barang
                                 </a>
@@ -87,7 +87,7 @@
                         <!--------------Pengajuan Pemakaian------------------>
                         @if((Auth::user()->role_id == 2) && (Auth::user()->pegawai->posisi_id == 46))
                             <li>
-                                <a href="{{url('Logistik/pelaksana/pengajuan')}}">
+                                <a href="{{url('Logistik/user/pengajuan')}}">
                                     <i class="fa fa-list"></i>
                                     Pengajuan Pemakaian
                                 </a>

@@ -610,6 +610,10 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::delete('/permintaan/delete', 'Logistik\Pelaksana\PermintaanController@deletePermintaan');
 		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
 
+		//penerimaan MATERIAL
+		Route::get('/penerimaan', 'Logistik\Pelaksana\PenerimaanController@index');
+		Route::get('/penerimaan/unduh/{id}', 'Logistik\Admin\PenerimaanController@getUnduhpenerimaan');
+
 		//PENGAJUAN MATERIAL
 		Route::get('/pengajuan', 'Logistik\Pelaksana\PengajuanController@index');
 		Route::get('/pengajuan/create', 'Logistik\Pelaksana\PengajuanController@beforePostPengajuan');
