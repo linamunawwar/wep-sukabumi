@@ -196,7 +196,7 @@ class PermintaanController extends Controller
         if ($find) {
             $cekApprove = \Input::get('approve');
             $cekReject = \Input::get('reject');
-            if (\Auth::user()->pegawai->posisi_id == 8) { //splem
+            if (\Auth::user()->pegawai->posisi_id == 8) { //SOM
                 if (isset($cekApprove)) {
                     $dt['is_som'] = 1;
                     $dt['is_som_at'] = date('Y-m-d H:i:s');
@@ -207,7 +207,7 @@ class PermintaanController extends Controller
                     $dt['note_som'] = \Input::get('note');
                 }
                 $update = LogPermintaanMaterial::where('id', $id)->update($dt);
-            } elseif (\Auth::user()->pegawai->posisi_id == 7) { //sem
+            } elseif (\Auth::user()->pegawai->posisi_id == 7) { //SPLEM, SLEM
                 if (isset($cekApprove)) {
                     $dt['is_slem'] = 1;
                     $dt['is_slem_at'] = date('Y-m-d H:i:s');
@@ -216,9 +216,13 @@ class PermintaanController extends Controller
                     $dt['is_slem'] = 0;
                     $dt['is_slem_at'] = date('Y-m-d H:i:s');
                     $dt['note_slem'] = \Input::get('note');
+
+                    $dt['is_som'] = Null;
+                    $dt['is_som_at'] = Null;
+                    $dt['note_som'] = Null;
                 }
                 $update = LogPermintaanMaterial::where('id', $id)->update($dt);
-            } elseif (\Auth::user()->pegawai->posisi_id == 5) { //scarm
+            } elseif (\Auth::user()->pegawai->posisi_id == 5) { //SCARM
                 if (isset($cekApprove)) {
                     $dt['is_scarm'] = 1;
                     $dt['is_scarm_at'] = date('Y-m-d H:i:s');
@@ -227,6 +231,14 @@ class PermintaanController extends Controller
                     $dt['is_scarm'] = 0;
                     $dt['is_scarm_at'] = date('Y-m-d H:i:s');
                     $dt['note_scarm'] = \Input::get('note');
+
+                    $dt['is_som'] = Null;
+                    $dt['is_som_at'] = Null;
+                    $dt['note_som'] = Null;
+                    
+                    $dt['is_slem'] = Null;
+                    $dt['is_slem_at'] = Null;
+                    $dt['note_slem'] = Null;
                 }
                 $update = LogPermintaanMaterial::where('id', $id)->update($dt);
             }

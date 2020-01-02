@@ -126,7 +126,16 @@
 							<div class="form-group" style="margin-left:65em;">
 								<div class="col-md-12">
 									<a href="{{url('Logistik/admin/permintaan/')}}"><button class="btn btn-primary" type="button">Cancel</button></a>									
-									<button type="submit" class="btn btn-success">Submit</button>
+									@if(
+										(($permintaan->is_som == 0) || ($permintaan->is_som == 1)) ||
+										(($permintaan->is_slem == 0) || ($permintaan->is_slem == 1)) ||
+										(($permintaan->is_scarm == 0) || ($permintaan->is_scarm == 1)) ||
+										(($permintaan->is_pm == 0) || ($permintaan->is_pm == 1))
+										)
+										<button type="submit" name="koreksi" class="btn btn-success">Koreksi</button>
+									@else
+										<button type="submit" class="btn btn-success">Submit</button>
+									@endif
 								</div>
 							</div>
 						</form>

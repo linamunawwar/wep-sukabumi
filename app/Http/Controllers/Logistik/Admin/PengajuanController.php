@@ -17,7 +17,10 @@ class PengajuanController extends Controller
     {
         $pengajuans = LogPengajuanMaterial::where('soft_delete', 0)->get();
         foreach ($pengajuans as $pengajuan) {
-            if ($pengajuan->is_admin != 1) {
+            if($pengajuan->is_pelaksana == 1){
+                $pengajuan->color = "#D63031";
+                $pengajuan->text = "Edited By Pelaksana";
+            }elseif ($pengajuan->is_admin != 1) {
                 if ($pengajuan->is_admin == null) {
                     $pengajuan->color = "#D63031";
                     $pengajuan->text = "Proses Pengecekan";
@@ -47,6 +50,22 @@ class PengajuanController extends Controller
             }
         }
         return view('logistik.admin.pengajuan.index', ['pengajuans' => $pengajuans]);
+    }
+
+    public function getNote($id)
+    {
+        $pengajuan = LogPengajuanMaterial::where('id', $id)->where('soft_delete',0)->first();
+        $note = '';
+        if($pengajuan){
+            if($pengajuan->is_splem === '0') {
+                $note = $pengajuan->note_splem;
+            }elseif($pengajuan->is_som === '0'){
+                $note = $pengajuan->note_som ;
+            }
+        }
+        
+        return $note;
+      
     }
 
     public function beforeApprovePengajuan($id)

@@ -34,35 +34,38 @@ class PermintaanController extends Controller
     {
         $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->get();
         foreach ($permintaans as $permintaan) {
-            if ($permintaan->is_som != 1) {
-                if ($permintaan->is_som == Null) {
+            if($permintaan->is_admin == 1){
+                $permintaan->color = "#D63031";
+                $permintaan->text = "Edited By Admin";
+            }elseif ($permintaan->is_som != 1) {
+                if ($permintaan->is_som == Null && $permintaan->is_som_at == Null) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Proses Pengecekan";
-                } elseif ($permintaan->is_som == 0) {
+                } elseif ($permintaan->is_som == 0 && $permintaan->is_som_at != Null) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Rejected By SOM";
                 }
             } elseif ($permintaan->is_slem != 1) {
-                if ($permintaan->is_slem == Null) {
+                if ($permintaan->is_slem == Null && $permintaan->is_slem_at == Null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Accepted By SOM";
-                } elseif ($permintaan->is_slem == 0) {
+                } elseif ($permintaan->is_slem == 0 && $permintaan->is_slem_at != Null) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Rejected By SPLEM";
                 }
             } elseif ($permintaan->is_scarm != 1) {
-                if ($permintaan->is_scarm == Null) {
+                if ($permintaan->is_scarm == Null && $permintaan->is_scarm_at == Null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Acepted By SPLEM";
-                } elseif ($permintaan->is_scarm == 0) {
+                } elseif ($permintaan->is_scarm == 0 && $permintaan->is_scarm_at != Null) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Rejected By SCARM";
                 }
             } elseif ($permintaan->is_pm != 1) {
-                if ($permintaan->is_pm == Null) {
+                if ($permintaan->is_pm == Null && $permintaan->is_pm_at == Null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Accepted By SPLEM";
-                } elseif ($permintaan->is_pm == 0) {
+                } elseif ($permintaan->is_pm == 0 && $permintaan->is_pm_at != Null) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Rejected By PM";
                 }
@@ -73,6 +76,26 @@ class PermintaanController extends Controller
         }
 
         return view('logistik.admin.permintaan.index', ['permintaans' => $permintaans]);
+    }
+
+    public function getNote($id)
+    {
+        $permintaan = LogPermintaanMaterial::where('id', $id)->where('soft_delete',0)->first();
+        $note = '';
+        if($permintaan){
+            if($permintaan->is_pm === '0') {
+                $note = $permintaan->note_pm;
+            }elseif($permintaan->is_scarm === '0'){
+                $note = $permintaan->note_scarm ;
+            }elseif($permintaan->is_slem === '0'){
+                $note = $permintaan->note_slem ;
+            }elseif($permintaan->is_som === '0'){
+                $note = $permintaan->note_som ;
+            }
+        }
+        
+        return $note;
+      
     }
 
     public function beforePostPermintaan()
@@ -207,6 +230,8 @@ class PermintaanController extends Controller
         return view('logistik.admin.permintaan.detail', ['details' => $details]);
     }
 
+    
+
     public function getPermintaanById($id)
     {
         $permintaan = LogPermintaanMaterial::where(['id' => $id, 'soft_delete' => 0])->first();
@@ -225,8 +250,17 @@ class PermintaanController extends Controller
         $satuan = \Input::get('satuan');
         $keperluan = \Input::get('keperluan');
         $keterangan = \Input::get('keterangan');
-
+        $cekKoreksi = \Input::get('koreksi');
+        
         $toUpdatePermintaan['updated_at'] = date('Y-m-d');
+        if (isset($cekKoreksi)) {
+            $toUpdatePermintaan['is_admin'] = 1;
+            $toUpdatePermintaan['is_admin_at'] = date('Y-m-d H:i:s');
+            $toUpdatePermintaan['is_som'] = null;
+            $toUpdatePermintaan['is_slem'] = null;
+            $toUpdatePermintaan['is_scarm'] = null;
+            $toUpdatePermintaan['is_pm'] = null;
+        }
         $updatedPermintaan = LogPermintaanMaterial::where('id', $id)->update($toUpdatePermintaan);
 
         $jmlPermintaan = \Input::get('jumlah_data');
@@ -250,6 +284,8 @@ class PermintaanController extends Controller
                 die();
             }
         }
+        
+
         return redirect('Logistik/admin/permintaan');
     }
 
