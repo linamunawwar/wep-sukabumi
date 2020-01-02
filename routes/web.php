@@ -427,6 +427,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/penerimaan/deleteDetail/{detailId}/{penerimaanId}', 'Logistik\Admin\PenerimaanController@deleteDetailpenerimaanMaterial');
 		Route::delete('/penerimaan/delete', 'Logistik\Admin\PenerimaanController@deletepenerimaan');
 		Route::get('/penerimaan/unduh/{id}', 'Logistik\Admin\PenerimaanController@getUnduhpenerimaan');
+		Route::get('/penerimaan/note/{id}', 'Logistik\Admin\PenerimaanController@getNote');
 
 		//PENGAJUAN MATERIAL
 		Route::get('/pengajuan', 'Logistik\Admin\PengajuanController@index');

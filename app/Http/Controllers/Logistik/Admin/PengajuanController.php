@@ -71,7 +71,7 @@ class PengajuanController extends Controller
             $penyerahanSatuan = \input::get('penyerahanSatuan');
             $penyerahanJumlah = \input::get('penyerahanJumlah');
 
-            if (\Auth::user()->pegawai->posisi_id == 30) { //splem
+            if (\Auth::user()->role_id == 6) { //splem
                 if (isset($cekApprove)) {
                     $dt['is_admin'] = 1;
                     $dt['is_admin_at'] = date('Y-m-d H:i:s');

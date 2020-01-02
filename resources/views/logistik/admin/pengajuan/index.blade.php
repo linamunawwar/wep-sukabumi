@@ -63,13 +63,12 @@
 												<a class="btn btn-default btn-xs" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/edit/'.$pengajuan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
                                                 <a class="btn btn-default btn-xs" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/unduh/'.$pengajuan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>
                                                 @if (
-                                                        ((\Auth::user()->pegawai->posisi_id == 30) && ($pengajuan->is_admin != 1)) ||
-                                                        ((\Auth::user()->pegawai->posisi_id == 8) && ($pengajuan->is_som != 1) && ($pengajuan->is_admin == 1)) || 
-                                                        ((\Auth::user()->pegawai->posisi_id == 7) && ($pengajuan->is_admin == 1) && ($pengajuan->is_som == 1) && ($pengajuan->is_splem != 1)) || 
-                                                        ((\Auth::user()->pegawai->posisi_id == 5) && ($pengajuan->is_som == 1) && ($pengajuan->is_splem == 1) && ($pengajuan->is_scarm != 1))
+                                                        \Auth::user()->role_id == 6 && $pengajuan->is_admin != 1
                                                     )
                                                     <br><a class="btn btn-default btn-xs" title="Approve" style="background-color:#049372; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/approve/'.$pengajuan->id.'')}}"><i class="fa fa-check" title="Approve" style="font-size:15px;"></i> Approve </a>
-                                                @elseif(((\Auth::user()->pegawai->posisi_id == 8) && ($pengajuan->is_som == 1)) || ((\Auth::user()->pegawai->posisi_id == 7) && ($pengajuan->is_som == 1) && ($pengajuan->is_splem == 1)) || ((\Auth::user()->pegawai->posisi_id == 5) && ($pengajuan->is_som == 1) && ($pengajuan->is_splem == 1) && ($pengajuan->is_scarm == 1)))
+                                                @elseif(
+                                                		\Auth::user()->role_id == 6 && $pengajuan->is_admin == 1
+                                                )
                                                     <br><a class="btn btn-default btn-xs" style="background-color:#607D8B; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;"><i class="fa fa-close" style="font-size:15px;"></i> Approve </a>
                                                 @endif												
 											</td>										
