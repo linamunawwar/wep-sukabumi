@@ -415,6 +415,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/permintaan/deleteDetail/{detailId}/{permintaanId}', 'Logistik\Admin\PermintaanController@deleteDetailPermintaanMaterial');
 		Route::delete('/permintaan/delete', 'Logistik\Admin\PermintaanController@deletePermintaan');
 		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
+		Route::get('/permintaan/note/{id}', 'Logistik\Admin\PermintaanController@getNote');
 
 		//penerimaan MATERIAL
 		Route::get('/penerimaan', 'Logistik\Admin\PenerimaanController@index');
@@ -437,6 +438,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pengajuan/approve/{id}', 'Logistik\Admin\PengajuanController@beforeApprovePengajuan');
 		Route::post('/pengajuan/approve/{id}', 'Logistik\Admin\PengajuanController@approvePengajuan');
 		Route::get('/pengajuan/unduh/{id}', 'Logistik\Admin\PengajuanController@getUnduhPengajuan');
+		Route::get('/pengajuan/note/{id}', 'Logistik\Admin\PengajuanController@getNote');
 
 		//Waste Material
 		Route::get('/waste', 'Logistik\Admin\WasteMaterialController@index');

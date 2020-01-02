@@ -32,7 +32,7 @@ class PermintaanController extends Controller
         $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->get();
         foreach ($permintaans as $permintaan) {
             if ($permintaan->is_som != 1) {
-                if ($permintaan->is_som == null) {
+                if ($permintaan->is_som == Null) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Proses Pengecekan";
                 } elseif ($permintaan->is_som == 0) {
@@ -40,7 +40,7 @@ class PermintaanController extends Controller
                     $permintaan->text = "Rejected By SOM";
                 }
             } elseif ($permintaan->is_slem != 1) {
-                if ($permintaan->is_slem == null) {
+                if ($permintaan->is_slem == Null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Accepted By SOM";
                 } elseif ($permintaan->is_slem == 0) {
@@ -48,7 +48,7 @@ class PermintaanController extends Controller
                     $permintaan->text = "Rejected By SPLEM";
                 }
             } elseif ($permintaan->is_scarm != 1) {
-                if ($permintaan->is_scarm == null) {
+                if ($permintaan->is_scarm == Null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Acepted By SPLEM";
                 } elseif ($permintaan->is_scarm == 0) {
@@ -56,7 +56,7 @@ class PermintaanController extends Controller
                     $permintaan->text = "Rejected By SCARM";
                 }
             } elseif ($permintaan->is_pm != 1) {
-                if ($permintaan->is_pm == null) {
+                if ($permintaan->is_pm == Null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Accepted By SPLEM";
                 } elseif ($permintaan->is_pm == 0) {
@@ -65,7 +65,7 @@ class PermintaanController extends Controller
                 }
             } elseif ($permintaan->is_pm == 1) {
                 $permintaan->color = "#74B9FF";
-                $permintaan->text = "Accepted By SPLEM";
+                $permintaan->text = "Accepted By PM";
             }
         }
         return view('logistik.user.permintaan.index', ['permintaans' => $permintaans]);

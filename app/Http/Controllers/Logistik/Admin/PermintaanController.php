@@ -38,34 +38,34 @@ class PermintaanController extends Controller
                 $permintaan->color = "#D63031";
                 $permintaan->text = "Edited By Admin";
             }elseif ($permintaan->is_som != 1) {
-                if ($permintaan->is_som == Null && $permintaan->is_som_at == Null) {
+                if ($permintaan->is_som == Null) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Proses Pengecekan";
-                } elseif ($permintaan->is_som == 0 && $permintaan->is_som_at != Null) {
+                } elseif ($permintaan->is_som == 0) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Rejected By SOM";
                 }
             } elseif ($permintaan->is_slem != 1) {
-                if ($permintaan->is_slem == Null && $permintaan->is_slem_at == Null) {
+                if ($permintaan->is_slem == Null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Accepted By SOM";
-                } elseif ($permintaan->is_slem == 0 && $permintaan->is_slem_at != Null) {
+                } elseif ($permintaan->is_slem == 0) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Rejected By SPLEM";
                 }
             } elseif ($permintaan->is_scarm != 1) {
-                if ($permintaan->is_scarm == Null && $permintaan->is_scarm_at == Null) {
+                if ($permintaan->is_scarm == Null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Acepted By SPLEM";
-                } elseif ($permintaan->is_scarm == 0 && $permintaan->is_scarm_at != Null) {
+                } elseif ($permintaan->is_scarm == 0) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Rejected By SCARM";
                 }
             } elseif ($permintaan->is_pm != 1) {
-                if ($permintaan->is_pm == Null && $permintaan->is_pm_at == Null) {
+                if ($permintaan->is_pm == Null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Accepted By SPLEM";
-                } elseif ($permintaan->is_pm == 0 && $permintaan->is_pm_at != Null) {
+                } elseif ($permintaan->is_pm == 0) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Rejected By PM";
                 }

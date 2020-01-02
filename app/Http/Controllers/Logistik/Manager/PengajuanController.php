@@ -80,6 +80,8 @@ class PengajuanController extends Controller
                 } elseif (isset($cekReject)) {
                     $dt['is_som'] = 0;
                     $dt['is_som_at'] = date('Y-m-d H:i:s');
+
+                    $dt['is_admin'] = Null; 
                 }
                 $dt['note_som'] = \Input::get('note');
                 $update = LogPengajuanMaterial::where('id', $id)->update($dt);

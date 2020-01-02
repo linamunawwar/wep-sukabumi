@@ -17,7 +17,10 @@ class PengajuanController extends Controller
     {
         $pengajuans = LogPengajuanMaterial::where('soft_delete', 0)->get();
         foreach ($pengajuans as $pengajuan) {
-            if ($pengajuan->is_admin != 1) {
+            if($pengajuan->is_pelaksana == 1){
+                $pengajuan->color = "#D63031";
+                $pengajuan->text = "Edited By Pelaksana";
+            }elseif ($pengajuan->is_admin != 1) {
                 if ($pengajuan->is_admin == null) {
                     $pengajuan->color = "#D63031";
                     $pengajuan->text = "Proses Pengecekan";
@@ -161,12 +164,20 @@ class PengajuanController extends Controller
         $material = \Input::get('material');
         $permintaan_satuan = \Input::get('permintaanSatuan');
         $permintaan_jumlah = \Input::get('permintaan_jumlah');
+        $cekKoreksi = \Input::get('koreksi');
 
         $toUpdatePengajuanMaterial['jenis_pekerjaan_id'] = $jenis_pekerjaan;
         $toUpdatePengajuanMaterial['lokasi_kerja_id'] = $lokasi_pekerjaan;
         $toUpdatePengajuanMaterial['volume'] = $volume;
         $toUpdatePengajuanMaterial['no_wbs'] = $no_wbs;
         $toUpdatePengajuanMaterial['updated_at'] = date('Y-m-d');
+        if (isset($cekKoreksi)) {
+            $toUpdatePengajuanMaterial['is_pelaksana'] = 1;
+            $toUpdatePengajuanMaterial['is_pelaksana_at'] = date('Y-m-d H:i:s');
+            $toUpdatePengajuanMaterial['is_admin'] = null;
+            $toUpdatePengajuanMaterial['is_som'] = null;
+            $toUpdatePengajuanMaterial['is_splem'] = null;
+        }
         $updatedPengajuanMaterial = LogPengajuanMaterial::where(['id' => $id, 'kode_penerimaan' => $kode_penerimaan])->update($toUpdatePengajuanMaterial);
 
         for ($i=0; $i < $jml; $i++) { 

@@ -61,7 +61,7 @@
 											{{ $pengajuan->text }}
 											@if(($pengajuan->is_som == 0) || ($pengajuan->is_slem == 0) || ($pengajuan->is_scarm == 0) || ($pengajuan->is_pm == 0))
 												<br>
-												<a data-toggle="modal"  id_pengajuan='{{$pengajuan->id}}' data-target="#NoteModal" class="btn" style="color:#000000; margin-bottom:-0.7em; padding-bottom:1px;  font-size: 12px; font-weight: 400;" id="modal-note" onclick='noteData("{{$pengajuan->id}}")'>Note</a>
+												<button data-toggle="modal"  id_pengajuan='{{$pengajuan->id}}' data-target="#NoteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-note" onclick='noteData("{{$pengajuan->id}}")'>Note</button>
 											@endif
 										</td>										
 										<td style="text-align:center;">
