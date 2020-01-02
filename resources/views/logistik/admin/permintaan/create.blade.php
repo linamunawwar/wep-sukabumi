@@ -75,7 +75,18 @@
 										</div>
 									</div>
 								</div>
-							</div>						
+							</div>
+							<br>	
+							<div class="row"> 								
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-6 col-sm-6 col-xs-12" for="nama">Keterangan <sup>(Optional)</sup> :</label>
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<textarea id="keterangan" name="keterangan" rows="10" class="keterangan form-control col-md-7 col-xs-12" style="width:48.2em;"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>					
 							
 							<div class="ln_solid"></div>
 							<div class="form-group" >
@@ -93,6 +104,7 @@
 									<th>Persyaratan Jabatan</th>
 									<th>Jumlah Yang Dibutuhkan</th>
 									<th>Waktu Penempatan</th>
+									<th>Keterangan</th>
 									<th>Action</th>
 								</tr>
 								<tbody class="data">
@@ -126,6 +138,7 @@
 			var volume = $('#volume').val();
 			var satuan = $('#satuan').val();
 			var keperluan = $('#keperluan').val();
+			var keterangan = $('#keterangan').val();
 			var jumlah_data = $('#jumlah_data').val();
 	        	jumlah_data++;
 	        $('#jumlah_data').val(jumlah_data);
@@ -137,6 +150,7 @@
 				table += "<td>"+volume+"<input type='hidden' name='volume[]' value='"+volume+"' id='volume_"+jumlah_data+"'></td>";
 				table += "<td>"+satuan+"<input type='hidden' name='satuan[]' value='"+satuan+"' id='satuan_"+jumlah_data+"'></td>";
 				table += "<td>"+keperluan+"<input type='hidden' name='keperluan[]' value='"+keperluan+"' id='keperluan_"+jumlah_data+"'></td>";
+				table += "<td>"+keterangan+"<input type='hidden' name='keterangan[]' value='"+keterangan+"' id='keterangan_"+jumlah_data+"'></td>";
 				table+="<td>";
 				table+="<a class='btn btn-sm btn-block btn-danger del' idsub='"+jumlah_data+"' style='width:40px;'><span class='fa fa-trash'></span></a>";
 				table+="</td>";
@@ -149,6 +163,7 @@
 			$('#volume').val('');
 			$('#satuan').val('');
 			$('#keperluan').val('');
+			$('#keterangan').val('');
 		});
 
 		$(document).on("click", "a.del", function(e){

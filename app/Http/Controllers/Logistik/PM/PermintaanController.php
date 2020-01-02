@@ -86,6 +86,7 @@ class PermintaanController extends Controller
         $volume = \Input::get('volume');
         $satuan = \Input::get('satuan');
         $keperluan = \Input::get('keperluan');
+        $keterangan = \Input::get('keterangan');
 
         $kodePermintaan = PermintaanController::randomKey();
         $getKodePermintaan = LogPermintaanMaterial::where('kode_permintaan', $kodePermintaan)->get();
@@ -111,6 +112,7 @@ class PermintaanController extends Controller
                 $addDetailPemintaanMaterial->volume = $volume[$i];
                 $addDetailPemintaanMaterial->satuan = $satuan[$i];
                 $addDetailPemintaanMaterial->keperluan = $keperluan[$i];
+                $addDetailPemintaanMaterial->keterangan = $keterangan[$i];
                 $addDetailPemintaanMaterial->user_id = \Auth::user()->id;
                 $addDetailPemintaanMaterial->soft_delete = 0;
                 $addDetailPemintaanMaterial->created_at = date('Y-m-d');
@@ -149,6 +151,7 @@ class PermintaanController extends Controller
         $volume = \Input::get('volume');
         $satuan = \Input::get('satuan');
         $keperluan = \Input::get('keperluan');
+        $keterangan = \Input::get('keterangan');
 
         $toUpdatePermintaan['updated_at'] = date('Y-m-d');
         $updatedPermintaan = LogPermintaanMaterial::where('id', $id)->update($toUpdatePermintaan);
@@ -162,6 +165,7 @@ class PermintaanController extends Controller
             $addDetailPemintaanMaterial->volume = $volume[$i];
             $addDetailPemintaanMaterial->satuan = $satuan[$i];
             $addDetailPemintaanMaterial->keperluan = $keperluan[$i];
+            $addDetailPemintaanMaterial->keterangan = $keterangan[$i];
             $addDetailPemintaanMaterial->user_id = \Auth::user()->id;
             $addDetailPemintaanMaterial->soft_delete = 0;
             $addDetailPemintaanMaterial->created_at = date('Y-m-d');

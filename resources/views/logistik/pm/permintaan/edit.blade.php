@@ -20,8 +20,8 @@
 						<form id="demo-form2" data-parsley-validate  method="POST">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							Permintaan Material
-							<span style="float:right;"> Tanggal Permintaan : {{ date('d F Y', strtotime($permintaan->tanggal)) }} </span>
-							<input type="hidden" name="tanggal" value="{{ date('d F Y', strtotime($permintaan->tanggal)) }}">
+							<span style="float:right;"> Tanggal : {{ date('d F Y') }} </span>
+							<input type="hidden" name="tanggal" value="{{ date('d F Y') }}">
 							<hr>
 							<div class="row"> 
 								<div class="col-md-6">
@@ -75,7 +75,18 @@
 										</div>
 									</div>
 								</div>
-							</div>						
+							</div>
+							<br>	
+							<div class="row"> 								
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-6 col-sm-6 col-xs-12" for="nama">Keterangan <sup>(Optional)</sup> :</label>
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<textarea id="keterangan" name="keterangan" rows="10" class="keterangan form-control col-md-7 col-xs-12" style="width:48.2em;"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>					
 							
 							<div class="ln_solid"></div>
 							<div class="form-group" >
@@ -87,32 +98,23 @@
 							<input type="hidden" name="jumlah_data" class="jumlah_data" id="jumlah_data" value="0">
 							<table class="table table-bordered permintaan" id="table_permintaan">
 								<tr>
+									<th>No.</th>
 									<th>Nama Material</th>
 									<th>Uraian Tugas Pokok</th>
 									<th>Persyaratan Jabatan</th>
 									<th>Jumlah Yang Dibutuhkan</th>
 									<th>Waktu Penempatan</th>
+									<th>Keterangan</th>
 									<th>Action</th>
 								</tr>
-								<tbody class="data">   
-                                    @foreach ($detail as $detail)    
-                                    <tr>                            
-										<td>{{ $detail->detailPermintaanMaterial->nama }} </td>
-										<td>{{ $detail->no_part }} </td>
-										<td>{{ $detail->volume }} </td>
-										<td>{{ $detail->satuan }} </td>
-										<td>{{ $detail->keperluan }} </td>
-										<td> 
-											<a href="{{url('Logistik/pm/permintaan/deleteDetail/'.$detail->id.'/'.$detail->permintaan_id.'')}}" class="btn btn-sm btn-block btn-danger" style="width:40px;"><span class="fa fa-trash"></span></a> 
-										</td>                                           
-                                    </tr>					
-                                    @endforeach	
+								<tbody class="data">
+									
 								</tbody>
 							</table>
 							<div class="ln_solid"></div>
-							<div class="form-group" style="margin-left:65em;">
+							<div class="form-group" style="margin-left:60em;">
 								<div class="col-md-12">
-									<a href="{{url('Logistik/pm/permintaan/')}}"><button class="btn btn-primary" type="button">Cancel</button></a>									
+									<button class="btn btn-primary" type="button">Cancel</button>
 									<button type="submit" class="btn btn-success">Submit</button>
 								</div>
 							</div>
@@ -130,22 +132,25 @@
 		$('.material').select2();
 		$(document).on("click", "button.tambah", function(e){
 			e.preventDefault();
-			var material = $('#material').val();    
+			var material = $('#material').val();
 			var nama_material = $('#material').find('option:selected').text();
 			var no_part = $('#no_part').val();
 			var volume = $('#volume').val();
 			var satuan = $('#satuan').val();
 			var keperluan = $('#keperluan').val();
+			var keterangan = $('#keterangan').val();
 			var jumlah_data = $('#jumlah_data').val();
 	        	jumlah_data++;
 	        $('#jumlah_data').val(jumlah_data);
 	        
 			var table = "<tr  class='data_"+jumlah_data+"'>";
+				table += "<td>"+jumlah_data+"</td>";
 				table += "<td>"+nama_material+"<input type='hidden' name='material[]' value='"+material+"' id='material_"+jumlah_data+"'></td>";
 				table += "<td>"+no_part+"<input type='hidden' name='no_part[]' value='"+no_part+"' id='no_part_"+jumlah_data+"'></td>";
 				table += "<td>"+volume+"<input type='hidden' name='volume[]' value='"+volume+"' id='volume_"+jumlah_data+"'></td>";
 				table += "<td>"+satuan+"<input type='hidden' name='satuan[]' value='"+satuan+"' id='satuan_"+jumlah_data+"'></td>";
 				table += "<td>"+keperluan+"<input type='hidden' name='keperluan[]' value='"+keperluan+"' id='keperluan_"+jumlah_data+"'></td>";
+				table += "<td>"+keterangan+"<input type='hidden' name='keterangan[]' value='"+keterangan+"' id='keterangan_"+jumlah_data+"'></td>";
 				table+="<td>";
 				table+="<a class='btn btn-sm btn-block btn-danger del' idsub='"+jumlah_data+"' style='width:40px;'><span class='fa fa-trash'></span></a>";
 				table+="</td>";
@@ -158,6 +163,7 @@
 			$('#volume').val('');
 			$('#satuan').val('');
 			$('#keperluan').val('');
+			$('#keterangan').val('');
 		});
 
 		$(document).on("click", "a.del", function(e){

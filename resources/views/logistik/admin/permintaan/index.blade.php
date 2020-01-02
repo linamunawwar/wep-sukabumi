@@ -40,19 +40,28 @@
 								</tr>
 							</thead>
 							<tbody>	
-								<?php $no = 0 ?>
+								<?php $no = 1 ?>
 								@foreach ($permintaans as $permintaan)
-								<?php $no++ ?>
 									<tr>
-									<td>{{ $no }}</td>
+									<td>{{ $no++ }}</td>
 									<td>{{ $permintaan->kode_permintaan }}</td>
 									<td>{{ date('d F Y', strtotime($permintaan->tanggal)) }}</td>
-									<td style="color:{{ $permintaan->color }};">{{ $permintaan->text }}</td>
+									<td style="color:{{ $permintaan->color }};">
+										{{ $permintaan->text }}
+										@if(($permintaan->is_som == 0) || ($permintaan->is_slem == 0) || ($permintaan->is_scarm == 0) || ($permintaan->is_pm == 0))
+											<br>
+											<a data-toggle="modal"  id_permintaan='{{$permintaan->id}}' data-target="#NoteModal" class="btn" style="color:#000000; margin-bottom:-0.7em; padding-bottom:1px;  font-size: 12px; font-weight: 400;" id="modal-note" onclick='noteData("{{$permintaan->id}}")'>Note</a>
+										@endif
+									</td>
 									<td style="text-align:center;">
 										<a class="btn btn-default btn-xs" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/permintaan/detail/'.$permintaan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>  </a>
 										<a class="btn btn-default btn-xs" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/permintaan/edit/'.$permintaan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
 										<button data-toggle="modal"  id_permintaan='{{$permintaan->id}}' data-target="#DeleteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-delete" onclick='deleteData("{{$permintaan->id}}")'><i class="fa fa-trash" style="font-size:15px;"></i></button>
+										@if ($permintaan->is_pm == 1)
 										<a class="btn btn-default btn-xs" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/permintaan/unduh/'.$permintaan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>
+										@else
+										<a class="btn btn-dark btn-xs" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em; opacity: 0.5;"><i class="fa fa-download" style="font-size:15px;opacity: 0.5;"></i>  </a>
+										@endif
 									</td>
 									</tr>
 								@endforeach							
@@ -89,6 +98,28 @@
 				</form>
 			</div>
 		</div>
+		<div id="NoteModal" class="modal fade text-danger" role="dialog">
+			<div class="modal-dialog ">
+				<!-- Modal content-->
+				<form method="post" >
+					<div class="modal-content">
+						<div class="modal-header bg-danger">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title text-center">Note</h4>
+						</div>
+						<div class="modal-body">
+							{{ csrf_field() }}
+							Note : <p id="note"></p>
+						</div>
+						<div class="modal-footer">
+							<center>
+								<button type="button" class="btn btn-success" data-dismiss="modal">Tutup</button>
+							</center>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 @endsection
 @push('scripts')
   <script type="text/javascript">
@@ -96,8 +127,26 @@
   		var id_permintaan = $(this).attr('id_permintaan');
          $('#id_permintaan').val(id_permintaan);
      
-  	});
-     function deleteData(id)
+	  });
+
+	function noteData(id)
+     {
+         var id = id;
+         var url = '{{ url("Logistik/admin/permintaan/note") }}';
+         // url = url.replace(':id', id);
+         console.log(id);
+         $('#id_permintaan').val(id);
+         $.ajax({
+	            url  : '{{ url("Logistik/admin/permintaan/note") }}/'+id,
+	            type : 'get',
+	            success:function(response){
+	            	console.log(response)
+	                $('#note').html(response);
+	            }
+	        });
+	 }
+	 
+    function deleteData(id)
      {
          var id = id;
          var url = '{{ url("Logistik/admin/permintaan/delete") }}';
@@ -107,7 +156,7 @@
          $("#deleteForm").attr('action', url);
      }
 
-     function formSubmit()
+    function formSubmit()
      {
          $("#deleteForm").submit();
      }
