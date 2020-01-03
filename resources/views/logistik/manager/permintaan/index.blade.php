@@ -42,9 +42,8 @@
 							<tbody>	
 								<?php $no = 0 ?>
 								@foreach ($permintaans as $permintaan)
-							   	<?php $no++ ?>
 									<tr>
-									<td>{{ $no }}</td>
+									<td>{{ $no++ }}</td>
 									<td>{{ $permintaan->kode_permintaan }}</td>
 									<td>{{ date('d F Y', strtotime($permintaan->tanggal)) }}</td>
 									<td style="color:{{ $permintaan->color }};">{{ $permintaan->text }}</td>
@@ -52,8 +51,8 @@
 										<a class="btn btn-default btn-xs" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/manager/permintaan/detail/'.$permintaan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>  </a>
 										<a class="btn btn-default btn-xs" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/manager/permintaan/edit/'.$permintaan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
 										<button data-toggle="modal"  id_permintaan='{{$permintaan->id}}' data-target="#DeleteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-delete" onclick='deleteData("{{$permintaan->id}}")'><i class="fa fa-trash" style="font-size:15px;"></i></button>
-										@if ($permintaan->is_scarm == 1)
-											<a class="btn btn-default btn-xs" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/manager/permintaan/unduh/'.$permintaan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>
+										@if ($permintaan->is_pm == 1)
+										<a class="btn btn-default btn-xs" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/permintaan/unduh/'.$permintaan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>
 										@else
 										<a class="btn btn-dark btn-xs" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em; opacity: 0.5;"><i class="fa fa-download" style="font-size:15px;opacity: 0.5;"></i>  </a>
 										@endif

@@ -34,7 +34,10 @@ class PermintaanController extends Controller
     {
         $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->get();
         foreach ($permintaans as $permintaan) {
-            if ($permintaan->is_som != 1) {
+            if($permintaan->is_admin == 1){
+                $permintaan->color = "#D63031";
+                $permintaan->text = "Edited By Admin";
+            }elseif ($permintaan->is_som != 1) {
                 if ($permintaan->is_som == Null) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Proses Pengecekan";
@@ -75,6 +78,26 @@ class PermintaanController extends Controller
         return view('logistik.admin.permintaan.index', ['permintaans' => $permintaans]);
     }
 
+    public function getNote($id)
+    {
+        $permintaan = LogPermintaanMaterial::where('id', $id)->where('soft_delete',0)->first();
+        $note = '';
+        if($permintaan){
+            if($permintaan->is_pm === '0') {
+                $note = $permintaan->note_pm;
+            }elseif($permintaan->is_scarm === '0'){
+                $note = $permintaan->note_scarm ;
+            }elseif($permintaan->is_slem === '0'){
+                $note = $permintaan->note_slem ;
+            }elseif($permintaan->is_som === '0'){
+                $note = $permintaan->note_som ;
+            }
+        }
+        
+        return $note;
+      
+    }
+
     public function beforePostPermintaan()
     {
 
@@ -90,6 +113,7 @@ class PermintaanController extends Controller
         $volume = \Input::get('volume');
         $satuan = \Input::get('satuan');
         $keperluan = \Input::get('keperluan');
+        $keterangan = \Input::get('keterangan');
 
         $kodePermintaan = PermintaanController::randomKey();
         $getKodePermintaan = LogPermintaanMaterial::where('kode_permintaan', $kodePermintaan)->get();
@@ -115,6 +139,7 @@ class PermintaanController extends Controller
                 $addDetailPemintaanMaterial->volume = $volume[$i];
                 $addDetailPemintaanMaterial->satuan = $satuan[$i];
                 $addDetailPemintaanMaterial->keperluan = $keperluan[$i];
+                $addDetailPemintaanMaterial->keterangan = $keterangan[$i];
                 $addDetailPemintaanMaterial->user_id = \Auth::user()->id;
                 $addDetailPemintaanMaterial->soft_delete = 0;
                 $addDetailPemintaanMaterial->created_at = date('Y-m-d');
@@ -147,6 +172,7 @@ class PermintaanController extends Controller
                             'detailPermintaan' => $getDetailPermintaan,
                             'som' => $som,
                             'splem' => $splem,
+                            'scarm' => $scarm,
                             'pm' => $pm]);
                     $objDrawing = new PHPExcel_Worksheet_Drawing;
                     $objDrawing->setPath(public_path('img/Waskita.png'));
@@ -204,13 +230,15 @@ class PermintaanController extends Controller
         return view('logistik.admin.permintaan.detail', ['details' => $details]);
     }
 
+    
+
     public function getPermintaanById($id)
     {
         $permintaan = LogPermintaanMaterial::where(['id' => $id, 'soft_delete' => 0])->first();
         $detailPermintaan = LogDetailPermintaanMaterial::where(['permintaan_id' => $permintaan->id, 'soft_delete' => 0])->get();
         $materials = LogMaterial::where('soft_delete', 0)->get();
 
-        return view('logistik.pm.permintaan.edit', ['permintaan' => $permintaan, 'detail' => $detailPermintaan, 'materials' => $materials]);
+        return view('logistik.admin.permintaan.edit', ['permintaan' => $permintaan, 'detail' => $detailPermintaan, 'materials' => $materials]);
     }
 
     public function updatePermintaan($id)
@@ -221,8 +249,18 @@ class PermintaanController extends Controller
         $volume = \Input::get('volume');
         $satuan = \Input::get('satuan');
         $keperluan = \Input::get('keperluan');
-
+        $keterangan = \Input::get('keterangan');
+        $cekKoreksi = \Input::get('koreksi');
+        
         $toUpdatePermintaan['updated_at'] = date('Y-m-d');
+        if (isset($cekKoreksi)) {
+            $toUpdatePermintaan['is_admin'] = 1;
+            $toUpdatePermintaan['is_admin_at'] = date('Y-m-d H:i:s');
+            $toUpdatePermintaan['is_som'] = null;
+            $toUpdatePermintaan['is_slem'] = null;
+            $toUpdatePermintaan['is_scarm'] = null;
+            $toUpdatePermintaan['is_pm'] = null;
+        }
         $updatedPermintaan = LogPermintaanMaterial::where('id', $id)->update($toUpdatePermintaan);
 
         $jmlPermintaan = \Input::get('jumlah_data');
@@ -234,6 +272,7 @@ class PermintaanController extends Controller
             $addDetailPemintaanMaterial->volume = $volume[$i];
             $addDetailPemintaanMaterial->satuan = $satuan[$i];
             $addDetailPemintaanMaterial->keperluan = $keperluan[$i];
+            $addDetailPemintaanMaterial->keterangan = $keterangan[$i];
             $addDetailPemintaanMaterial->user_id = \Auth::user()->id;
             $addDetailPemintaanMaterial->soft_delete = 0;
             $addDetailPemintaanMaterial->created_at = date('Y-m-d');
@@ -245,6 +284,8 @@ class PermintaanController extends Controller
                 die();
             }
         }
+        
+
         return redirect('Logistik/admin/permintaan');
     }
 

@@ -31,34 +31,34 @@ class PermintaanController extends Controller
         $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->get();
         foreach ($permintaans as $permintaan) {
             if ($permintaan->is_som != 1) {
-                if ($permintaan->is_som == null) {
+                if ($permintaan->is_som == Null && $permintaan->is_som_at == Null) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Proses Pengecekan";
-                } elseif ($permintaan->is_som == 0) {
+                } elseif ($permintaan->is_som == 0 && $permintaan->is_som_at != Null) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Rejected By SOM";
                 }
             } elseif ($permintaan->is_slem != 1) {
-                if ($permintaan->is_slem == null) {
+                if ($permintaan->is_slem == Null && $permintaan->is_slem_at == Null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Accepted By SOM";
-                } elseif ($permintaan->is_slem == 0) {
+                } elseif ($permintaan->is_slem == 0 && $permintaan->is_slem_at != Null) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Rejected By SPLEM";
                 }
             } elseif ($permintaan->is_scarm != 1) {
-                if ($permintaan->is_scarm == null) {
+                if ($permintaan->is_scarm == Null && $permintaan->is_scarm_at == Null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Acepted By SPLEM";
-                } elseif ($permintaan->is_scarm == 0) {
+                } elseif ($permintaan->is_scarm == 0 && $permintaan->is_scarm_at != Null) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Rejected By SCARM";
                 }
             } elseif ($permintaan->is_pm != 1) {
-                if ($permintaan->is_pm == null) {
+                if ($permintaan->is_pm == Null && $permintaan->is_pm_at == Null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Accepted By SPLEM";
-                } elseif ($permintaan->is_pm == 0) {
+                } elseif ($permintaan->is_pm == 0 && $permintaan->is_pm_at != Null) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Rejected By PM";
                 }
@@ -85,6 +85,7 @@ class PermintaanController extends Controller
         $volume = \Input::get('volume');
         $satuan = \Input::get('satuan');
         $keperluan = \Input::get('keperluan');
+        $keterangan = \Input::get('keterangan');
 
         $kodePermintaan = PermintaanController::randomKey();
         $getKodePermintaan = LogPermintaanMaterial::where('kode_permintaan', $kodePermintaan)->get();
@@ -110,6 +111,7 @@ class PermintaanController extends Controller
                 $addDetailPemintaanMaterial->volume = $volume[$i];
                 $addDetailPemintaanMaterial->satuan = $satuan[$i];
                 $addDetailPemintaanMaterial->keperluan = $keperluan[$i];
+                $addDetailPemintaanMaterial->keterangan = $keterangan[$i];
                 $addDetailPemintaanMaterial->user_id = \Auth::user()->id;
                 $addDetailPemintaanMaterial->soft_delete = 0;
                 $addDetailPemintaanMaterial->created_at = date('Y-m-d');
@@ -137,7 +139,7 @@ class PermintaanController extends Controller
         $detailPermintaan = LogDetailPermintaanMaterial::where(['permintaan_id' => $permintaan->id, 'soft_delete' => 0])->get();
         $materials = LogMaterial::where('soft_delete', 0)->get();
 
-        return view('logistik.pm.permintaan.edit', ['permintaan' => $permintaan, 'detail' => $detailPermintaan, 'materials' => $materials]);
+        return view('logistik.manager.permintaan.edit', ['permintaan' => $permintaan, 'detail' => $detailPermintaan, 'materials' => $materials]);
     }
 
     public function updatePermintaan($id)
@@ -148,6 +150,7 @@ class PermintaanController extends Controller
         $volume = \Input::get('volume');
         $satuan = \Input::get('satuan');
         $keperluan = \Input::get('keperluan');
+        $keterangan = \Input::get('keterangan');
 
         $toUpdatePermintaan['updated_at'] = date('Y-m-d');
         $updatedPermintaan = LogPermintaanMaterial::where('id', $id)->update($toUpdatePermintaan);
@@ -161,6 +164,7 @@ class PermintaanController extends Controller
             $addDetailPemintaanMaterial->volume = $volume[$i];
             $addDetailPemintaanMaterial->satuan = $satuan[$i];
             $addDetailPemintaanMaterial->keperluan = $keperluan[$i];
+            $addDetailPemintaanMaterial->keterangan = $keterangan[$i];
             $addDetailPemintaanMaterial->user_id = \Auth::user()->id;
             $addDetailPemintaanMaterial->soft_delete = 0;
             $addDetailPemintaanMaterial->created_at = date('Y-m-d');
@@ -192,7 +196,7 @@ class PermintaanController extends Controller
         if ($find) {
             $cekApprove = \Input::get('approve');
             $cekReject = \Input::get('reject');
-            if (\Auth::user()->pegawai->posisi_id == 8) { //splem
+            if (\Auth::user()->pegawai->posisi_id == 8) { //SOM
                 if (isset($cekApprove)) {
                     $dt['is_som'] = 1;
                     $dt['is_som_at'] = date('Y-m-d H:i:s');
@@ -203,7 +207,7 @@ class PermintaanController extends Controller
                     $dt['note_som'] = \Input::get('note');
                 }
                 $update = LogPermintaanMaterial::where('id', $id)->update($dt);
-            } elseif (\Auth::user()->pegawai->posisi_id == 7) { //sem
+            } elseif (\Auth::user()->pegawai->posisi_id == 7) { //SPLEM, SLEM
                 if (isset($cekApprove)) {
                     $dt['is_slem'] = 1;
                     $dt['is_slem_at'] = date('Y-m-d H:i:s');
@@ -214,7 +218,7 @@ class PermintaanController extends Controller
                     $dt['note_slem'] = \Input::get('note');
                 }
                 $update = LogPermintaanMaterial::where('id', $id)->update($dt);
-            } elseif (\Auth::user()->pegawai->posisi_id == 5) { //scarm
+            } elseif (\Auth::user()->pegawai->posisi_id == 5) { //SCARM
                 if (isset($cekApprove)) {
                     $dt['is_scarm'] = 1;
                     $dt['is_scarm_at'] = date('Y-m-d H:i:s');

@@ -32,7 +32,7 @@ class PermintaanController extends Controller
         $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->get();
         foreach ($permintaans as $permintaan) {
             if ($permintaan->is_som != 1) {
-                if ($permintaan->is_som == null) {
+                if ($permintaan->is_som == Null) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Proses Pengecekan";
                 } elseif ($permintaan->is_som == 0) {
@@ -40,7 +40,7 @@ class PermintaanController extends Controller
                     $permintaan->text = "Rejected By SOM";
                 }
             } elseif ($permintaan->is_slem != 1) {
-                if ($permintaan->is_slem == null) {
+                if ($permintaan->is_slem == Null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Accepted By SOM";
                 } elseif ($permintaan->is_slem == 0) {
@@ -48,7 +48,7 @@ class PermintaanController extends Controller
                     $permintaan->text = "Rejected By SPLEM";
                 }
             } elseif ($permintaan->is_scarm != 1) {
-                if ($permintaan->is_scarm == null) {
+                if ($permintaan->is_scarm == Null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Acepted By SPLEM";
                 } elseif ($permintaan->is_scarm == 0) {
@@ -56,7 +56,7 @@ class PermintaanController extends Controller
                     $permintaan->text = "Rejected By SCARM";
                 }
             } elseif ($permintaan->is_pm != 1) {
-                if ($permintaan->is_pm == null) {
+                if ($permintaan->is_pm == Null) {
                     $permintaan->color = "#74B9FF";
                     $permintaan->text = "Accepted By SPLEM";
                 } elseif ($permintaan->is_pm == 0) {
@@ -86,6 +86,7 @@ class PermintaanController extends Controller
         $volume = \Input::get('volume');
         $satuan = \Input::get('satuan');
         $keperluan = \Input::get('keperluan');
+        $keterangan = \Input::get('keterangan');
 
         $kodePermintaan = PermintaanController::randomKey();
         $getKodePermintaan = LogPermintaanMaterial::where('kode_permintaan', $kodePermintaan)->get();
@@ -111,6 +112,7 @@ class PermintaanController extends Controller
                 $addDetailPemintaanMaterial->volume = $volume[$i];
                 $addDetailPemintaanMaterial->satuan = $satuan[$i];
                 $addDetailPemintaanMaterial->keperluan = $keperluan[$i];
+                $addDetailPemintaanMaterial->keterangan = $keterangan[$i];
                 $addDetailPemintaanMaterial->user_id = \Auth::user()->id;
                 $addDetailPemintaanMaterial->soft_delete = 0;
                 $addDetailPemintaanMaterial->created_at = date('Y-m-d');
@@ -149,6 +151,7 @@ class PermintaanController extends Controller
         $volume = \Input::get('volume');
         $satuan = \Input::get('satuan');
         $keperluan = \Input::get('keperluan');
+        $keterangan = \Input::get('keterangan');
 
         $toUpdatePermintaan['updated_at'] = date('Y-m-d');
         $updatedPermintaan = LogPermintaanMaterial::where('id', $id)->update($toUpdatePermintaan);
@@ -162,6 +165,7 @@ class PermintaanController extends Controller
             $addDetailPemintaanMaterial->volume = $volume[$i];
             $addDetailPemintaanMaterial->satuan = $satuan[$i];
             $addDetailPemintaanMaterial->keperluan = $keperluan[$i];
+            $addDetailPemintaanMaterial->keterangan = $keterangan[$i];
             $addDetailPemintaanMaterial->user_id = \Auth::user()->id;
             $addDetailPemintaanMaterial->soft_delete = 0;
             $addDetailPemintaanMaterial->created_at = date('Y-m-d');

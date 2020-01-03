@@ -139,10 +139,26 @@
       <td></td>
       <td></td>
       <td></td>
-      <td align="center" style="height: 50;"></td>
-      <td align="center" style="height: 50;"></td>
-      <td colspan="2" align="center" style="height: 50;"></td>
-      <td align="center" style="height: 55;"></td>
+      <td align="center" style="height: 50;">
+        @if(file_exists("upload/pegawai/$pm->nip/$pm->ttd"))
+            <img src="upload/pegawai/{{$pm->nip}}/{{$pm->ttd}}" width="100" align="center">
+        @endif
+      </td>
+      <td align="center" style="height: 50;">
+        @if(file_exists("upload/pegawai/$som->nip/$som->ttd"))
+            <img src="upload/pegawai/{{$som->nip}}/{{$som->ttd}}" width="100" align="center">
+        @endif
+      </td>
+      <td colspan="2" align="center" style="height: 50;">
+        @if(file_exists("upload/pegawai/$splem->nip/$splem->ttd"))
+            <img src="upload/pegawai/{{$splem->nip}}/{{$splem->ttd}}" width="100" align="center">
+        @endif
+      </td>
+      <td align="center" style="height: 55;">
+        @if(file_exists("upload/pegawai/$scarm->nip/$scarm->ttd"))
+            <img src="upload/pegawai/{{$scarm->nip}}/{{$scarm->ttd}}" width="100" align="center">
+        @endif
+      </td>
     </tr>
     </tr>
     <tr>
@@ -152,6 +168,6 @@
       <td align="center">{{$pm->nama}}</td>
       <td align="center">{{$som->nama}}</td>
       <td colspan="2" align="center">{{$splem->nama}}</td>
-      <td align="center"></td>
+      <td align="center">{{ $scarm->nama }}</td>
     </tr>
   </table>
