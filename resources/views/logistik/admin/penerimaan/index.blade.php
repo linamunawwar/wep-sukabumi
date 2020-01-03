@@ -55,7 +55,14 @@
 									<td>{{ $no }}</td>
 									<td>{{ $penerimaan->kode_penerimaan }}</td>
 									<td>{{ $penerimaan->tanggal }}</td>
-									<td style="color:{{ $penerimaan->color }};">{{ $penerimaan->text }}</td>
+									<td style="color:{{ $penerimaan->color }};">
+										{{ $penerimaan->text }}
+										@if(($penerimaan->is_splem == 0) || ($penerimaan->is_pm == 0))
+											<br>
+											<button data-toggle="modal"  id_penerimaan='{{$penerimaan->id}}' data-target="#NoteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-note" onclick='noteData("{{$penerimaan->id}}")'>Note</button>
+										@endif
+
+									</td>
 									<td style="text-align:center;">
 										<a class="btn btn-default btn-xs" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/penerimaan/detail/'.$penerimaan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>  </a>
 										<a class="btn btn-default btn-xs" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/penerimaan/edit/'.$penerimaan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
@@ -101,9 +108,53 @@
 				</form>
 			</div>
 		</div>
+		<div id="NoteModal" class="modal fade text-danger" role="dialog">
+			<div class="modal-dialog ">
+				<!-- Modal content-->
+				<form method="post" >
+					<div class="modal-content">
+						<div class="modal-header bg-danger">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title text-center">Note</h4>
+						</div>
+						<div class="modal-body">
+							{{ csrf_field() }}
+							Note : <p id="note"></p>
+						</div>
+						<div class="modal-footer">
+							<center>
+								<button type="button" class="btn btn-success" data-dismiss="modal">Tutup</button>
+							</center>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 @endsection
 @push('scripts')
   <script type="text/javascript">
+  	$('#modal-note').on("click",function(){
+  		var id_penerimaan = $(this).attr('id_penerimaan');
+         $('#id_penerimaan').val(id_penerimaan);
+     
+  	});
+     function noteData(id)
+     {
+         var id = id;
+         var url = '{{ url("Logistik/admin/penerimaan/note") }}';
+         // url = url.replace(':id', id);
+         console.log(id);
+         $('#id_penerimaan').val(id);
+         $.ajax({
+	            url  : '{{ url("Logistik/admin/penerimaan/note") }}/'+id,
+	            type : 'get',
+	            success:function(response){
+	            	console.log(response)
+	                $('#note').html(response);
+	            }
+	        });
+     }
+
   	$('#modal-delete').on("click",function(){
   		var id_penerimaan = $(this).attr('id_penerimaan');
          $('#id_penerimaan').val(id_penerimaan);

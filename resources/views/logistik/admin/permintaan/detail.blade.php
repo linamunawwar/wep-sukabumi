@@ -32,11 +32,10 @@
 								</tr>
 							</thead>
 							<tbody>	
-                                    {{ $no = 0 }}
+                                    <?php $no = 1; ?> 
                                     @foreach ($details as $detail)
-                                    {{ $no++ }}
 									<tr>
-									<td>{{ $no }}</td>
+									<td>{{ $no++ }}</td>
 									<td>{{ $detail->detailPermintaanMaterial->nama }}</td>
 									<td>{{ $detail->no_part }}</td>
 									<td>{{ $detail->volume }}</td>

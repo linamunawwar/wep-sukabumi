@@ -20,7 +20,10 @@ class PenerimaanController extends Controller
     {
         $penerimaans = LogPenerimaanMaterial::where('soft_delete', 0)->get();
         foreach ($penerimaans as $penerimaan) {
-            if ($penerimaan->is_splem != 1) {
+            if($penerimaan->is_admin == 1){
+                $penerimaan->color = "#D63031";
+                $penerimaan->text = "Edited By Admin";
+            }elseif ($penerimaan->is_splem != 1) {
                 if ($penerimaan->is_splem == null) {
                     $penerimaan->color = "#D63031";
                     $penerimaan->text = "Proses Pengecekan";
@@ -185,6 +188,22 @@ class PenerimaanController extends Controller
         return view('logistik.admin.penerimaan.detail', ['details' => $details]);
     }
 
+    public function getNote($id)
+    {
+        $penerimaan = LogPenerimaanMaterial::where('id', $id)->where('soft_delete',0)->first();
+        $note = '';
+        if($penerimaan){
+            if($penerimaan->is_pm === '0') {
+                $note = $penerimaan->note_pm;
+            }elseif($penerimaan->is_splem === '0'){
+                $note = $penerimaan->note_splem ;
+            }
+        }
+        
+        return $note;
+      
+    }
+
     public function getPenerimaanById($id)
     {
         $penerimaan = LogPenerimaanMaterial::where('id', $id)->where('soft_delete',0)->first();
@@ -257,6 +276,16 @@ class PenerimaanController extends Controller
 		        }else{
 		        	$update = LogDetailPermintaanMaterial::where('material_id',$materialId[$i])->where('permintaan_id',$find_permintaan->id)->update(['is_sesuai'=> 0,'is_sesuai_at'=>date('0000-00-00 00:00:00')]);
 		        }
+            }
+
+            //cek apakah ini edit atau koreksi
+            $cekKoreksi = \Input::get('koreksi');
+            if (isset($cekKoreksi)) {
+                $dt['is_admin'] = 1;
+                $dt['is_admin_at'] = date('Y-m-d H:i:s');
+                $dt['is_splem'] = null;
+                $dt['is_pm'] = null;
+                $koreksi = LogPenerimaanMaterial::where('kode_penerimaan',$kode_penerimaan)->where('soft_delete',0)->update($dt);
             }
             //cek apakah semua barang permintaan sudah sesuai
             $all_detail_permintaan = LogDetailPermintaanMaterial::where('permintaan_id',$find_permintaan->id)->where('soft_delete',0)->get();

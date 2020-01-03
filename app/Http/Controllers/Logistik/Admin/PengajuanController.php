@@ -17,15 +17,15 @@ class PengajuanController extends Controller
     {
         $pengajuans = LogPengajuanMaterial::where('soft_delete', 0)->get();
         foreach ($pengajuans as $pengajuan) {
-            if ($pengajuan->id_admin != 1) {
-                if ($pengajuan->id_admin == null) {
+            if ($pengajuan->is_admin != 1) {
+                if ($pengajuan->is_admin == null) {
                     $pengajuan->color = "#D63031";
                     $pengajuan->text = "Proses Pengecekan";
-                } elseif ($pengajuan->id_admin == 0) {
+                } elseif ($pengajuan->is_admin == 0) {
                     $pengajuan->color = "#D63031";
                     $pengajuan->text = "Rejected By Admin";
                 }
-            } elseif ($pengajuan->is_som != 1) {
+            }elseif ($pengajuan->is_som != 1) {
                 if ($pengajuan->is_som == null) {
                     $pengajuan->color = "#74B9FF";
                     $pengajuan->text = "Accepted By ADMIN";
@@ -33,20 +33,38 @@ class PengajuanController extends Controller
                     $pengajuan->color = "#D63031";
                     $pengajuan->text = "Rejected By SOM";
                 }
-            } elseif ($pengajuan->id_splem != 1) {
-                if ($pengajuan->id_splem == null) {
+            } elseif ($pengajuan->is_splem != 1) {
+                if ($pengajuan->is_splem == null) {
                     $pengajuan->color = "#74B9FF";
                     $pengajuan->text = "Acepted By SOM";
-                } elseif ($pengajuan->id_splem == 0) {
+                } elseif ($pengajuan->is_splem == 0) {
                     $pengajuan->color = "#D63031";
                     $pengajuan->text = "Rejected By SPLEM";
                 }
-            } elseif ($pengajuan->id_splem == 1) {
+            } elseif ($pengajuan->is_splem == 1) {
                 $pengajuan->color = "#74B9FF";
                 $pengajuan->text = "Accepted By SPLEM";
             }
         }
         return view('logistik.admin.pengajuan.index', ['pengajuans' => $pengajuans]);
+    }
+
+    public function getNote($id)
+    {
+        $pengajuan = LogPengajuanMaterial::where('id', $id)->where('soft_delete',0)->first();
+        $note = '';
+        if($pengajuan){
+            if($pengajuan->is_splem === '0') {
+                $note = $pengajuan->note_splem;
+            }elseif($pengajuan->is_som === '0'){
+                $note = $pengajuan->note_som ;
+            }elseif($pengajuan->is_admin === '0'){
+                $note = $pengajuan->note_admin ;
+            }
+        }
+        
+        return $note;
+      
     }
 
     public function beforeApprovePengajuan($id)
@@ -71,7 +89,7 @@ class PengajuanController extends Controller
             $penyerahanSatuan = \input::get('penyerahanSatuan');
             $penyerahanJumlah = \input::get('penyerahanJumlah');
 
-            if (\Auth::user()->pegawai->posisi_id == 30) { //splem
+            if (\Auth::user()->role_id == 6) { //splem
                 if (isset($cekApprove)) {
                     $dt['is_admin'] = 1;
                     $dt['is_admin_at'] = date('Y-m-d H:i:s');

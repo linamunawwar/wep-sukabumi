@@ -136,7 +136,15 @@
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 									<a class="btn btn-primary" href="{{url('/Logistik/user/pengajuan')}}">Cancel</a>
-									<button type="submit" class="btn btn-success">Submit</button>
+									@if(
+										(($pengajuan->is_admin == 0) || ($pengajuan->is_admin == 1)) ||
+										(($pengajuan->is_som == 0) || ($pengajuan->is_som == 1)) ||
+										(($pengajuan->is_splem == 0) || ($pengajuan->is_splem == 1))
+										)
+										<button type="submit" name="koreksi" class="btn btn-success">Koreksi</button>
+									@else
+										<button type="submit" class="btn btn-success">Submit</button>
+									@endif
 								</div>
 							</div>
                         </div>

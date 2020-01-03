@@ -46,6 +46,7 @@ class CreateTrPermintaanDanTrPermintaanDetail extends Migration
             $table->string('volume')->nullable();
             $table->string('satuan')->nullable();
             $table->string('keperluan')->nullable();
+            $table->string('keterangan')->nullable();
             $table->string('user_id')->nullable();
             $table->boolean('soft_delete')->nullable()->default(0);
             $table->timestamps();

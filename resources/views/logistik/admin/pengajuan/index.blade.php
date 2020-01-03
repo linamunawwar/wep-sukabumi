@@ -57,19 +57,24 @@
 										<td>{{ date('d F Y', strtotime($pengajuan->tanggal)) }}</td>										
 										<td>{{ $pengajuan->pengajuanJenisPekerjaan->nama }}</td>										
 										<td>{{ $pengajuan->pengajuanLokasiPekerjaan->nama }}</td>										
-										<td style="color:{{ $pengajuan->color }};">{{ $pengajuan->text }}</td>										
+										<td style="color:{{ $pengajuan->color }};">
+											{{ $pengajuan->text }}
+											@if(($pengajuan->is_som == 0) || ($pengajuan->is_slem == 0) || ($pengajuan->is_scarm == 0) || ($pengajuan->is_pm == 0))
+												<br>
+												<button data-toggle="modal"  id_pengajuan='{{$pengajuan->id}}' data-target="#NoteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-note" onclick='noteData("{{$pengajuan->id}}")'>Note</button>
+											@endif
+										</td>										
 										<td style="text-align:center;">
 												<a class="btn btn-default btn-xs" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/detail/'.$pengajuan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>  </a>
 												<a class="btn btn-default btn-xs" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/edit/'.$pengajuan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
                                                 <a class="btn btn-default btn-xs" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/unduh/'.$pengajuan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>
                                                 @if (
-                                                        ((\Auth::user()->pegawai->posisi_id == 30) && ($pengajuan->is_admin != 1)) ||
-                                                        ((\Auth::user()->pegawai->posisi_id == 8) && ($pengajuan->is_som != 1) && ($pengajuan->is_admin == 1)) || 
-                                                        ((\Auth::user()->pegawai->posisi_id == 7) && ($pengajuan->is_admin == 1) && ($pengajuan->is_som == 1) && ($pengajuan->is_splem != 1)) || 
-                                                        ((\Auth::user()->pegawai->posisi_id == 5) && ($pengajuan->is_som == 1) && ($pengajuan->is_splem == 1) && ($pengajuan->is_scarm != 1))
+                                                        \Auth::user()->role_id == 6 && $pengajuan->is_admin != 1
                                                     )
                                                     <br><a class="btn btn-default btn-xs" title="Approve" style="background-color:#049372; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/approve/'.$pengajuan->id.'')}}"><i class="fa fa-check" title="Approve" style="font-size:15px;"></i> Approve </a>
-                                                @elseif(((\Auth::user()->pegawai->posisi_id == 8) && ($pengajuan->is_som == 1)) || ((\Auth::user()->pegawai->posisi_id == 7) && ($pengajuan->is_som == 1) && ($pengajuan->is_splem == 1)) || ((\Auth::user()->pegawai->posisi_id == 5) && ($pengajuan->is_som == 1) && ($pengajuan->is_splem == 1) && ($pengajuan->is_scarm == 1)))
+                                                @elseif(
+                                                		\Auth::user()->role_id == 6 && $pengajuan->is_admin == 1
+                                                )
                                                     <br><a class="btn btn-default btn-xs" style="background-color:#607D8B; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;"><i class="fa fa-close" style="font-size:15px;"></i> Approve </a>
                                                 @endif												
 											</td>										
@@ -108,6 +113,28 @@
 				</form>
 			</div>
 		</div>
+		<div id="NoteModal" class="modal fade text-danger" role="dialog">
+			<div class="modal-dialog ">
+				<!-- Modal content-->
+				<form method="post" >
+					<div class="modal-content">
+						<div class="modal-header bg-danger">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title text-center">Note</h4>
+						</div>
+						<div class="modal-body">
+							{{ csrf_field() }}
+							Note : <p id="note"></p>
+						</div>
+						<div class="modal-footer">
+							<center>
+								<button type="button" class="btn btn-success" data-dismiss="modal">Tutup</button>
+							</center>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 @endsection
 @push('scripts')
   <script type="text/javascript">
@@ -115,7 +142,25 @@
   		var id_pengajuan = $(this).attr('id_pengajuan');
          $('#id_pengajuan').val(id_pengajuan);
      
-  	});
+	  });
+	  
+	  function noteData(id)
+     {
+         var id = id;
+         var url = '{{ url("Logistik/admin/pengajuan/note") }}';
+         // url = url.replace(':id', id);
+         console.log(id);
+         $('#id_pengajuan').val(id);
+         $.ajax({
+	            url  : '{{ url("Logistik/admin/pengajuan/note") }}/'+id,
+	            type : 'get',
+	            success:function(response){
+	            	console.log(response)
+	                $('#note').html(response);
+	            }
+	        });
+	 }
+
      function deleteData(id)
      {
          var id = id;
