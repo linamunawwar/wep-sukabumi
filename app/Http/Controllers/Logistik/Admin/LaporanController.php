@@ -336,7 +336,7 @@ class LaporanController extends Controller
 			$tampung = 0;
 			$tgl = $i;
 
-			if (count($i) == 1) {
+			if (strlen($i) == 1) {
 				$tgl = '0'.$i;
 			}
 			$penerimaans = LogPenerimaanMaterial::where('tanggal','=',$data['tahun'].'-'.$data['bulan'].'-'.$tgl)
