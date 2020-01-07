@@ -327,58 +327,60 @@ class LaporanController extends Controller
 									->where('soft_delete', 0)
 									->get();
 		$dt = [];
+        $trs_keluar = 0;
+        $trs_terima = 0;
 		for ($i=1; $i <=31 ; $i++) { 
 			$dt[$i]['jml_terima'] = 0;
-			$dt[$i]['trs_terima'] = 0;
 			$dt[$i]['jml_keluar'] = 0;
-			$dt[$i]['trs_keluar'] = 0;
 			$dt[$i]['sisa'] = 0;
 			$tampung = 0;
 			$tgl = $i;
+            if ($i == 1) {
+                $dt[$i]['trs_terima'] = 0;
+                $dt[$i]['trs_keluar'] = 0;
+            }
+
 
 			if (strlen($i) == 1) {
 				$tgl = '0'.$i;
 			}
-			$penerimaans = LogPenerimaanMaterial::where('tanggal','=',$data['tahun'].'-'.$data['bulan'].'-'.$tgl)
-												->where('soft_delete',0)
-												->get();
-			foreach ($penerimaans as $key => $penerimaan) {
-				$penerimaanDetails = LogDetailPenerimaanMaterial::where('penerimaan_id', $penerimaan->id)
-																->where('material_id',$data['material'])
+			// $penerimaans = LogPenerimaanMaterial::where('tanggal','=',$data['tahun'].'-'.$data['bulan'].'-'.$tgl)
+			// 									->where('soft_delete',0)
+			// 									->get();
+   //          var_dump($i);
+   //          var_dump(count($penerimaans));
+			// foreach ($penerimaans as $key => $penerimaan) {
+				$penerimaanDetails = LogDetailPenerimaanMaterial::where('material_id',$data['material'])
 																->where('soft_delete',0)
-																->get();
-				
-				foreach ($penerimaanDetails as $key => $value) {					
-					$dt[$i]['jml_terima'] = $dt[$i]['jml_terima'] + $value->volume;
-					if ($i == 1) {
-						$dt[$i]['trs_terima'] = 0;
-					}elseif($i > 1){
-						$dt[$i]['trs_terima'] = $dt[$i-1]['trs_terima'] + $dt[$i]['jml_terima'];
-					}
-				}
-			}
+                                                                ->whereHas('penerimaan',function ($q) use($data,$tgl){
+                                                                    $q->where('tanggal','=',$data['tahun'].'-'.$data['bulan'].'-'.$tgl);
+                                                                })->get();
+				if(count($penerimaanDetails) != 0){
+    				foreach ($penerimaanDetails as $key => $value) {				
+    					$dt[$i]['jml_terima'] = $dt[$i]['jml_terima'] + $value->vol_saat_ini;
+    					$trs_terima = $trs_terima + $dt[$i]['jml_terima'];
+                        $dt[$i]['trs_terima'] = $trs_terima;
+    				}
+                }else{
+                    $dt[$i]['trs_terima'] = $trs_terima;
+                }
 			
-
-			$pengajuans = LogPengajuanMaterial::where('tanggal','=',$data['tahun'].'-'.$data['bulan'].'-'.$tgl)
-											->where('soft_delete',0)
-											->get();
-												
-			foreach ($pengajuans as $key => $pengajuan) {
-				$pengajuanDetails = LogDetailPengajuanPakai::where('pengajuan_id', $pengajuan->id)
+				$pengajuanDetails = LogDetailPengajuanPakai::where('material_id',$data['material'])
 																->where('soft_delete',0)
-																->get();
-				if ($pengajuanDetails) {					
+																->whereHas('pengajuan',function ($q) use($data,$tgl){
+                                                                    $q->where('tanggal','=',$data['tahun'].'-'.$data['bulan'].'-'.$tgl);
+                                                                })->get();
+				if (count($pengajuanDetails) != 0) {					
 					foreach ($pengajuanDetails as $key => $value) {
 						$dt[$i]['jml_keluar'] = $dt[$i]['jml_keluar'] + $value->permintaan_jumlah;
-						if ($i == 1) {
-							$dt[$i]['trs_keluar'] = 0;
-						}else{
-							$dt[$i]['trs_keluar'] = $dt[$i]['trs_keluar'] + $value->permintaan_jumlah;
-						}
+                        $trs_keluar = $trs_keluar + $dt[$i]['jml_keluar'];
+						$dt[$i]['trs_keluar'] = $trs_keluar;
 					}
-				}
-			}
-			$dt[$i]['sisa'] = $dt[$i]['jml_terima'] - $dt[$i]['jml_keluar'];
+				}else{
+                    $dt[$i]['trs_keluar'] = $trs_keluar;
+                }
+
+			$dt[$i]['sisa'] = $dt[$i]['trs_terima'] - $dt[$i]['trs_keluar'];
 		}	
 
 		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
@@ -467,9 +469,9 @@ class LaporanController extends Controller
 																->get();
 				
 				foreach ($penerimaanDetails as $key => $value) {					
-					$dt[$i]['material'] = $value->material->nama;
-					$dt[$i]['satuan'] = $value->material->satuan;
-					$dt[$i]['jml_terima'] = $dt[$i]['jml_terima'] + $value->volume;
+					$dt[$i][$tgl_mulai]['material'] = $value->material->nama;
+					$dt[$i][$tgl_mulai]['satuan'] = $value->material->satuan;
+					$dt[$i][$tgl_mulai]['jml_terima'] = $dt[$i]['jml_terima'] + $value->volume;
 				}
 			}
 			
@@ -484,9 +486,9 @@ class LaporanController extends Controller
 															->get();
 				if ($pengajuanDetails) {					
 					foreach ($pengajuanDetails as $key => $value) {
-						$dt[$i]['material'] = $value->material->nama;
-						$dt[$i]['satuan'] = $value->material->satuan;
-						$dt[$i]['jml_keluar'] = $dt[$i]['jml_keluar'] + $value->permintaan_jumlah;
+						$dt[$i][$tgl_mulai]['material'] = $value->material->nama;
+						$dt[$i][$tgl_mulai]['satuan'] = $value->material->satuan;
+						$dt[$i][$tgl_mulai]['jml_keluar'] = $dt[$i]['jml_keluar'] + $value->permintaan_jumlah;
 					}
 				}
 			}
@@ -494,10 +496,11 @@ class LaporanController extends Controller
 			$i++;
 			$tgl_mulai = date('Y-m-d',strtotime('+1 days',strtotime($tgl_mulai)));
 		}
+        dd($dt);
 	
 
 		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
-    	$excel = \Excel::create("Form Log-02 Laporan Kartu Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($dt, $splem) {
+    	$excel = \Excel::create("Form Log-05 Laporan Harian Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($dt, $splem) {
 
                 $excel->sheet('New sheet', function ($sheet) use ($dt, $splem) {
 
