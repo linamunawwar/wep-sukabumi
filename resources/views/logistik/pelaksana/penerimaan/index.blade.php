@@ -58,9 +58,9 @@
 									<td style="color:{{ $penerimaan->color }};">{{ $penerimaan->text }}</td>
 									<td style="text-align:center;">
 										@if($penerimaan->is_pm == 1)
-											<a class="btn btn-default btn-xs" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/penerimaan/unduh/'.$penerimaan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>
+											<a class="btn btn-default btn-xs" title="Download" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/penerimaan/unduh/'.$penerimaan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>
 										@else
-											<a class="btn btn-dark btn-xs" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em; opacity: 0.5;"><i class="fa fa-download" style="font-size:15px;opacity: 0.5;"></i>  </a>
+											<a class="btn btn-dark btn-xs" title="Download" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em; opacity: 0.5;"><i class="fa fa-download" style="font-size:15px;opacity: 0.5;"></i>  </a>
 										@endif
 									</td>
 									</tr>

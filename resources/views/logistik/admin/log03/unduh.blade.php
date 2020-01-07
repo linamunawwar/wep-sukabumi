@@ -11,7 +11,7 @@
     <th colspan="3"><b style="font-weight: 3; font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
     <th></th>
     <th></th>
-    <td style="border: 1px solid #000000;  " colspan="2" align="center">Formulir Log-06</td>
+    <td style="border: 1px solid #000000;  " colspan="2" align="center">Formulir Log-03</td>
   </tr>
   <tr>
     <td></td>
@@ -49,7 +49,7 @@
   <tr>
     <td></td>
     <td></td>
-    <td colspan="8" style="text-align: center;border: 1px solid #000000"><h4><b>BUKU HARIAN GUDANG</b></h4></td>
+    <td colspan="8" style="text-align: center;border: 1px solid #000000"><h4><b>LAPORAN EVALUASI MINGGUAN PENGADAAN BAHAN</b></h4></td>
   </tr>
   <tr></tr>
   <tr>
