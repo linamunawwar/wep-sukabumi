@@ -54,7 +54,7 @@
 									<tr>
 									<td>{{ $no }}</td>
 									<td>{{ $penerimaan->kode_penerimaan }}</td>
-									<td>{{ $penerimaan->tanggal }}</td>
+									<td>{{ date('d F Y', strtotime($penerimaan->tanggal)) }}</td>
 									<td style="color:{{ $penerimaan->color }};">
 										{{ $penerimaan->text }}
 										@if(($penerimaan->is_splem == 0) || ($penerimaan->is_pm == 0))
