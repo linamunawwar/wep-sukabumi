@@ -52,8 +52,8 @@
 								<div class="col-md-3 col-sm-3 col-xs-3">
 									<div class="form-group">
 										<label style="display: inline-block;" for="nama">Jenis Pekerjaan </label>
-										<p style="display: inline-block;" id="jenisPekerjaan">
-											<select class="form-control jenisPekerjaan" name="jenisPekerjaan" id="jenisPekerjaan" style="width: 100%; !important">
+										<p style="display: inline-block;">
+											<select class="form-control jenisPekerjaan" name="jenisPekerjaan" id="jenisPekerjaan" style="width: 110%; !important">
 												<option value="">Pilih jenisPekerjaan</option>
 												@foreach($jenisPekerjaans as $jenisPekerjaan)
 													<option value="{{$jenisPekerjaan->id}}">{{$jenisPekerjaan->nama}}</option>
@@ -65,8 +65,8 @@
 								<div class="col-md-3 col-sm-3 col-xs-3">
 									<div class="form-group">
 										<label style="display: inline-block;" for="nama">Lokasi Pekerjaan </label>
-										<p style="display: inline-block;" id="lokasiPekerjaan">
-											<select class="form-control lokasiPekerjaan" name="lokasiPekerjaan" id="lokasiPekerjaan" style="width: 100%; !important">
+										<p style="display: inline-block;">
+											<select class="form-control lokasiPekerjaan" name="lokasiPekerjaan" id="lokasiPekerjaan" style="width: 130%; !important">
 												<option value="">Pilih lokasiPekerjaan</option>
 												@foreach($lokasiPekerjaans as $lokasiPekerjaan)
 													<option value="{{$lokasiPekerjaan->id}}">{{$lokasiPekerjaan->nama}}</option>
@@ -97,6 +97,7 @@
 							<table class="table table-bordered waste" id="table_waste">
 								<tr>
 									<th rowspan="2">No.</th>
+									<th rowspan="2" style="width: 200px;">Tanggal Pengajuan</th>
 									<th rowspan="2" style="width: 200px;">Element Activity</th>
 									<th rowspan="2" align="center" style="text-align: center;">Nama Material</th>
 									<th colspan="2" align="center" style="text-align: center;">Permintaan</th>
@@ -126,6 +127,13 @@
 @endsection
 @push('scripts')
   <script type="text/javascript">
+	$('#jenisPekerjaan').select2();
+	$('#lokasiPekerjaan').select2();
+	$('#datepicker1').datepicker({
+        format: 'dd-mm-yyyy',
+        autoclose: true
+	});
+
   	$('#search').on('click', function() {
 	  var kode_penerimaan = $('#kode_penerimaan').val();
 	  var _token = $('#_token').val();
@@ -155,6 +163,9 @@
 					        dt += "<tr  class='data_"+jumlah_data+"'>";
 							dt += "<td>"+nomor+"</td>";
 							dt +=  "<td>";
+							dt +=  "<div class='input-group date' class='datepicker'><span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span><input type='date' id='tanggal_pengajuan"+jumlah_data+"' id_data='"+jumlah_data+"' name='tanggal_pengajuan[]' class='form-control' required='required' placeholder='dd-mm-yyyy' /></div>";
+							dt +=  '</td>';
+							dt +=  "<td>";
 							dt +=  "<input type='text' class='form-control element_activity' id_data='"+jumlah_data+"' name='element_activity[]' value='' id='element_activity_"+jumlah_data+"'>";
 							dt +=  '</td>';
 	                		dt +=  "<td style='text-align: center; vertical-align: middle;'>"+data[i].material_nama;
@@ -177,7 +188,6 @@
             }
         });	  
 	});
-
-
+	
   </script>
 @endpush
