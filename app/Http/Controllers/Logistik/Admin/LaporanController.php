@@ -586,21 +586,24 @@ class LaporanController extends Controller
                         $index = array_search($detail->material_id,array_column($materials,'material_id'));
                         $materials[$index]['rencana'] = (int)$materials[$index]['rencana'] + (int)$detail->volume;
                     }
-                }            
-            }
 
-            foreach ($materials as $key => $material) {
-                $penerimaans = LogDetailPenerimaanMaterial::where('material_id',$material['material_id'])
-                                                        ->where('soft_delete',0)
-                                                        ->get();
+                    foreach ($materials as $key => $material) {
+                        $penerimaans = LogDetailPenerimaanMaterial::where('material_id',$detail->material_id)
+                                                                ->where('soft_delete',0)
+                                                                ->get();
 
-                foreach ($penerimaans as $key => $detail) {
-                    if(array_search($detail->material_id, array_column($materials,'material_id')) !== false){
-                        $index = array_search($detail->material_id, array_column($materials,'material_id'));
-                        $materials[$index]['realisasi'] = (int)$materials[$index]['realisasi'] + (int)$detail->vol_saat_ini;                    
+                        foreach ($penerimaans as $key => $detail) {
+                            if(array_search($detail->material_id, array_column($materials,'material_id')) !== false){
+                                $index = array_search($detail->material_id, array_column($materials,'material_id'));
+                                $materials[$index]['realisasi'] = (int)$materials[$index]['realisasi'] + (int)$detail->vol_saat_ini;                    
+                                var_dump('i'.$index.' '.$materials[$index]['realisasi']);
+                            }
+                        } 
                     }
                 }
             }
+
+            
 
             // if ($materials[$index]['rencana'] <= $materials[$index]['realisasi']) {
             //     $materials[$index]['sesuai'] = $materials[$index]['realisasi'] - $materials[$index]['rencana'];

@@ -62,7 +62,7 @@ class PengajuanController extends Controller
     }
 
     public function cekData()
-    {
+    {        
         $kode_penerimaan = \Input::get('kode_penerimaan');
         $penerimaans = LogPenerimaanMaterial::where(['kode_penerimaan' => $kode_penerimaan, 'soft_delete' => 0])->get();
         if ($penerimaans) {
@@ -75,7 +75,7 @@ class PengajuanController extends Controller
         if ($datas) {
             foreach ($datas as $key => $data) {
                 $data->material_nama = $data->material->nama;
-                $data->material_satuan = $data->satuan;
+                $data->material_satuan = $data->material->satuan;
                 if ($penerimaans) {
                     foreach ($penerimaans as $key => $penerimaan) {
                         $material = LogDetailPenerimaanMaterial::where('penerimaan_id', $penerimaan->id)->where('material_id', $data->material_id)->where('soft_delete', 0)->first();
@@ -83,6 +83,7 @@ class PengajuanController extends Controller
                 }
             }
         }
+        // dd($kode_penerimaan);
         return json_encode($datas);
     }
 
