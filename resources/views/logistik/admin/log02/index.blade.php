@@ -76,3 +76,10 @@
     </div>
     <!-- /page content -->
 @endsection
+@push('scripts')
+  <script type="text/javascript">
+	$('#material').select2();
+	$('#bulan').select2();
+	$('#tahun').select2();
+  </script>
+ @endpush
