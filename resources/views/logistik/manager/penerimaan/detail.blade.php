@@ -24,6 +24,7 @@
 							<tr>
 								<th rowspan="2">No.</th>
 								<th rowspan="2" style="width: 200px;">Nama Material</th>
+								<th rowspan="2" style="width: 150px;">Tanggal Terima</th>
 								<th colspan="5" align="center" style="text-align: center;">VOLUME</th>
 								<th rowspan="2">Satuan</th>
 								<th rowspan="2" style="width: 120px;">Harga Satuan</th>
@@ -43,6 +44,7 @@
 									<tr>
 										<td>{{ $no }}</td>
 										<td>{{ $detail->material->nama }}</td>
+										<td>{{ konversi_tanggal($detail->tanggal_terima) }}</td>
 										<td>{{ $detail->penerimaan->permintaan->permintaanDetail[$i]->volume }}</td>
 										<td>{{ $detail->vol_lalu }}</td>
 										<td>{{ $detail->vol_saat_ini }}</td>
