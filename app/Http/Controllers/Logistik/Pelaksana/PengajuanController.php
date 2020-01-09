@@ -62,7 +62,7 @@ class PengajuanController extends Controller
     }
 
     public function cekData()
-    {
+    {        
         $kode_penerimaan = \Input::get('kode_penerimaan');
         $penerimaans = LogPenerimaanMaterial::where(['kode_penerimaan' => $kode_penerimaan, 'soft_delete' => 0])->get();
         if ($penerimaans) {
@@ -75,7 +75,7 @@ class PengajuanController extends Controller
         if ($datas) {
             foreach ($datas as $key => $data) {
                 $data->material_nama = $data->material->nama;
-                $data->material_satuan = $data->satuan;
+                $data->material_satuan = $data->material->satuan;
                 if ($penerimaans) {
                     foreach ($penerimaans as $key => $penerimaan) {
                         $material = LogDetailPenerimaanMaterial::where('penerimaan_id', $penerimaan->id)->where('material_id', $data->material_id)->where('soft_delete', 0)->first();
@@ -83,6 +83,7 @@ class PengajuanController extends Controller
                 }
             }
         }
+        // dd($kode_penerimaan);
         return json_encode($datas);
     }
 
@@ -97,6 +98,7 @@ class PengajuanController extends Controller
         $volume = \Input::get('volume');
         $no_wbs = \Input::get('no_wbs');
 
+        $tanggal_pengajuan = \Input::get('tanggal_pengajuan');
         $element_activity = \Input::get('element_activity');
         $material = \Input::get('material');
         $permintaan_satuan = \Input::get('permintaan_satuan');
@@ -119,6 +121,7 @@ class PengajuanController extends Controller
             for ($i = 0; $i < $jml; $i++) {
                 $addDetailPengajuanMaterial = new LogDetailPengajuanMaterial;
                 $addDetailPengajuanMaterial->pengajuan_id = $pengajuanId;
+                $addDetailPengajuanMaterial->tanggal_pengajuan = $tanggal_pengajuan[$i];
                 $addDetailPengajuanMaterial->element_activity = $element_activity[$i];
                 $addDetailPengajuanMaterial->material_id = $material[$i];
                 $addDetailPengajuanMaterial->permintaan_satuan = $permintaan_satuan[$i];
@@ -160,6 +163,7 @@ class PengajuanController extends Controller
         $no_wbs = \Input::get('no_wbs');
 
         $detailPengajuanId = \Input::get('detailPengajuanId');
+        $tanggal_pengajuan = \Input::get('tanggalPengajuan');
         $element_activity = \Input::get('elementActivity');
         $material = \Input::get('material');
         $permintaan_satuan = \Input::get('permintaanSatuan');
@@ -181,6 +185,7 @@ class PengajuanController extends Controller
         $updatedPengajuanMaterial = LogPengajuanMaterial::where(['id' => $id, 'kode_penerimaan' => $kode_penerimaan])->update($toUpdatePengajuanMaterial);
 
         for ($i=0; $i < $jml; $i++) { 
+            $toUpdateDetailPengajuanMaterial['tanggal_pengajuan'] = $tanggal_pengajuan[$i];
             $toUpdateDetailPengajuanMaterial['element_activity'] = $element_activity[$i];
             $toUpdateDetailPengajuanMaterial['material_id'] = $material[$i];
             $toUpdateDetailPengajuanMaterial['permintaan_satuan'] = $permintaan_satuan[$i];

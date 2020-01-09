@@ -87,12 +87,13 @@
 							<table class="table table-bordered waste" id="table_waste">
 								<tr>
 									<th rowspan="2">No.</th>
-									<th rowspan="2" style="width: 200px;">Nama Material</th>
+									<th rowspan="2" style="width: 150px;">Nama Material</th>
+									<th rowspan="2" style="width: 100px;">Tanggal Terima</th>
 									<th colspan="5" align="center" style="text-align: center;">VOLUME</th>
 									<th rowspan="2">Satuan</th>
-									<th rowspan="2" style="width: 120px;">Harga Satuan</th>
+									<th rowspan="2" style="width: 100px;">Harga Satuan</th>
 									<th rowspan="2">Status (*)</th>
-									<th rowspan="2" style="width: 150px;">Keterangan/ Uraian</th>
+									<th rowspan="2" style="width: 120px;">Keterangan/ Uraian</th>
 								</tr>
 								<tr>
 									<th>Total Permintaan</th>
@@ -159,6 +160,9 @@
 	                		dt +=  "<input type='hidden' name='material[]' value='"+data[i].material_id+"' id='material_"+jumlah_data+"'>";
 	                		dt +=  '</td>';
 	                		dt +=  "<td>";
+                            dt += "<input type='date' value='' name='tanggal_terima[]' style='width:140px;' class='form-control datepicker' id='tanggal_terima_"+jumlah_data+"' required='required' placeholder='dd-mm-yyyy' />";
+	                		dt +=  '</td>';
+	                		dt +=  "<td>";
 	                		dt +=  "<input type='text' class='form-control vol_permintaan' id_data='"+jumlah_data+"' name='vol_permintaan[]' value='"+data[i].volume+"' id='vol_permintaan_"+jumlah_data+"'>";
 	                		dt +=  '</td>';
 	                		dt +=  "<td><input type='text' class='form-control vol_lalu' id_data='"+jumlah_data+"' name='vol_lalu[]' value='"+data[i].jumlah_lalu+"' id='vol_lalu_"+jumlah_data+"'>";
@@ -189,7 +193,8 @@
 	                		dt += '</tr>';
 	                			nomor++;
 	                	}
-	                	$('#table_waste tbody.data').append(dt);
+	                	$('#table_waste tbody.data').append(dt);	
+	                	
 	                }else{
 	                	$('.alert-danger').show();
 	                }
@@ -200,7 +205,7 @@
         });
 	  
 	});
-
+	
 	$(document).on("change", ".vol_saat_ini", function(e){
 		console.log($(this).val());
 		var vol_saat_ini = $(this).val();
@@ -215,6 +220,6 @@
 
 	});
 
-
+	
   </script>
 @endpush

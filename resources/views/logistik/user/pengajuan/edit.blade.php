@@ -49,7 +49,7 @@
                                 <div class="form-group">
                                     <label style="display: inline-block;" for="nama">Jenis Pekerjaan </label>
                                     <p style="display: inline-block;" id="jenisPekerjaan">
-                                        <select class="form-control jenisPekerjaan" name="jenisPekerjaan" id="jenisPekerjaan" style="width: 100%; !important">
+                                        <select class="form-control jenisPekerjaan" name="jenisPekerjaan" id="jenisPekerjaan" style="width: 100%; !important" required='required'>
                                             <option value="{{$pengajuan->jenis_pekerjaan_id}}">{{$pengajuan->pengajuanJenisPekerjaan->nama}}</option>
                                             <option value="">-----------------------------</option>
                                             <option value="">Pilih jenisPekerjaan</option>
@@ -64,7 +64,7 @@
                                 <div class="form-group">
                                     <label style="display: inline-block;" for="nama">Lokasi Pekerjaan </label>
                                     <p style="display: inline-block;" id="lokasiPekerjaan">
-                                        <select class="form-control lokasiPekerjaan" name="lokasiPekerjaan" id="lokasiPekerjaan" style="width: 100%; !important">
+                                        <select class="form-control lokasiPekerjaan" name="lokasiPekerjaan" id="lokasiPekerjaan" style="width: 100%; !important" required='required'>
                                             <option value="{{$pengajuan->lokasi_kerja_id}}">{{$pengajuan->pengajuanLokasiPekerjaan->nama}}</option>
                                             <option value="">------------------------------------------------</option>
                                             <option value="">Pilih lokasiPekerjaan</option>
@@ -79,7 +79,7 @@
                                 <div class="form-group">
                                     <label style="display: inline-block;" for="nama"> Volume. </label>
                                     <p style="display: inline-block;">
-                                        <input type="text" name="volume" class='form-control no_wbs' value="{{ $pengajuan->volume }}">
+                                        <input type="text" name="volume" class='form-control no_wbs' value="{{ $pengajuan->volume }}" required='required'>
                                     </p>
                                 </div>
                             </div>
@@ -87,18 +87,19 @@
                                 <div class="form-group">
                                     <label style="display: inline-block;" for="nama">No. WBS </label>
                                     <p style="display: inline-block;">
-                                        <input type="text" name="no_wbs" class='form-control no_wbs' value="{{ $pengajuan->no_wbs }}">
+                                        <input type="text" name="no_wbs" class='form-control no_wbs' value="{{ $pengajuan->no_wbs }}" required='required'>
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <br>
                         <div class="x_content">
-                            <input type="hidden" name="jumlah_data" class="jumlah_data" id="jumlah_data" value="{{count($details)}}">
+                            <input type="hidden" name="jumlah_data" class="jumlah_data" id="jumlah_data" value="{{count($details)}}" required='required'>
                             <table id="table_waste" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th scope="col" rowspan="2"><b> No</b> </th>
+                                        <th scope="col" rowspan="2"><b> Tanggal Pengajuan</b> </th>
                                         <th scope="col" rowspan="2"><b> Element Activity</b> </th>
                                         <th scope="col" rowspan="2"><b> Material</b> </th>
                                         <th scope="col" colspan="2"><b> Permintaan</b> </th>
@@ -115,17 +116,23 @@
                                         <tr>
                                             <td scope="col"> {{ $no++ }} </td>
                                             <td scope="col"> 
-                                                <input type='text' size="1" class='form-control elementActivity' id_data="{{$no}}" name='elementActivity[]' value="{{$detail->element_activity}}" id="elementActivity_{{$no}}">
+                                                <div class='input-group date' class='datepicker'>
+                                                    <span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
+                                                    <input type='date' id_data="{{$no}}" name='tanggalPengajuan[]' class='form-control tanggalPengajuan' required='required' value="{{$detail->tanggal_pengajuan}}" placeholder='dd-mm-yyyy' id="tanggalPengajuan_{{$no}}"/>
+                                                </div>
                                             </td>
                                             <td scope="col"> 
-                                                {{ $detail->id }}
-                                                <input type='hidden' size="1" class='form-control material' id_data="{{$no}}" name='material[]' value="{{ $detail->material_id }}" id="material_{{$no}}">                             
+                                                <input type='text' size="1" class='form-control elementActivity' id_data="{{$no}}" name='elementActivity[]' required='required' value="{{$detail->element_activity}}" id="elementActivity_{{$no}}">
                                             </td>
                                             <td scope="col"> 
-                                                <input type='text' size="1" class='form-control permintaanSatuan' id_data="{{$no}}" name='permintaanSatuan[]' value="{{ $detail->permintaan_satuan }}" id="permintaanSatuan_{{$no}}">                                             
+                                                {{ $detail->detailPengajuanMaterial->nama }}
+                                                <input type='hidden' size="1" class='form-control material' id_data="{{$no}}" name='material[]' required='required' value="{{ $detail->material_id }}" id="material_{{$no}}">                             
                                             </td>
                                             <td scope="col"> 
-                                                <input type='text' size="1" class='form-control permintaan_jumlah' id_data="{{$no}}" name='permintaan_jumlah[]' value="{{ $detail->permintaan_jumlah }}" id="permintaan_jumlah_{{$no}}">                                             
+                                                <input type='text' size="1" class='form-control permintaanSatuan' id_data="{{$no}}" name='permintaanSatuan[]' required='required' value="{{ $detail->permintaan_satuan }}" id="permintaanSatuan_{{$no}}">                                             
+                                            </td>
+                                            <td scope="col"> 
+                                                <input type='text' size="1" class='form-control permintaan_jumlah' id_data="{{$no}}" name='permintaan_jumlah[]' required='required' value="{{ $detail->permintaan_jumlah }}" id="permintaan_jumlah_{{$no}}">                                             
                                             </td>
                                         </tr>
                                     <?php $i++; ?>

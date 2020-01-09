@@ -27,64 +27,76 @@ class LaporanController extends Controller
     public function postLog06()
     {
     	$data = \Input::all();
-    	$data['tanggal_mulai']=konversi_tanggal($data['tanggal_mulai']);
-    	$data['tanggal_selesai']=konversi_tanggal($data['tanggal_selesai']);
-    	$permintaans = LogPermintaanMaterial::where('tanggal','>=',$data['tanggal_mulai'])
-    										->where('tanggal','<=',$data['tanggal_selesai'])
-    										->where('soft_delete',0)
-    										->get();
+    	$tgl_mulai=konversi_tanggal($data['tanggal_mulai']);
+    	$tgl_selesai=konversi_tanggal($data['tanggal_selesai']);
+        $i = 1;
+        $materials = [];
+        $count = count($materials);
+    	while($tgl_mulai <= $tgl_selesai){  
 
-    	$materials = [];
-    	$count = count($materials);
-    	foreach ($permintaans as $key => $permintaan) {
-    		foreach ($permintaan->permintaanDetail as $key1 => $detail) {
-    			if(array_search($detail->material_id,array_column($materials,'material_id')) === false){
+            $i++;
+            $tgl_mulai = date('Y-m-d',strtotime('+1 days',strtotime($tgl_mulai)));
+            $permintaans = LogPermintaanMaterial::where('tanggal','=',$tgl_mulai)
+                                            ->where('soft_delete',0)
+                                            ->get();
+            foreach ($permintaans as $key => $permintaan) {
+                foreach ($permintaan->permintaanDetail as $key1 => $detail) {
+                    if(array_search($detail->material_id,array_column($materials,'material_id')) === false){
+                        $materials[$count]['material_id'] = (int)$detail->material_id;
+                        $materials[$count]['nama'] = $detail->detailPermintaanMaterial->nama;
+                        $materials[$count]['kebutuhan'] = (int)$detail->volume;
+                        $materials[$count]['masuk'] = 0;
+                        $materials[$count]['terpakai'] = 0;
+                        $materials[$count]['harga'] = 0;
+                        $count++;
+                    }else{
+                        $index = array_search($detail->material_id,array_column($materials,'material_id'));
+                        $materials[$index]['kebutuhan'] = (int)$materials[$index]['kebutuhan'] + (int)$detail->volume;
+                    }
+                }
+                
+            }
+
+            $penerimaans = LogDetailPenerimaanMaterial::where('tanggal_terima','=',$tgl_mulai)
+                                            ->where('soft_delete',0)
+                                            ->get();
+            $count = count($materials);
+            foreach ($penerimaans as $key => $detail) {
+                if(array_search($detail->material_id,array_column($materials,'material_id')) !== false){
+                    $index = array_search($detail->material_id,array_column($materials,'material_id'));
+                    $materials[$index]['masuk'] = (int)$materials[$index]['masuk'] + (int)$detail->vol_saat_ini;
+                    $materials[$index]['harga']  = (int)$detail->harga;
+                }else{
                     $materials[$count]['material_id'] = (int)$detail->material_id;
-    				$materials[$count]['nama'] = $detail->detailPermintaanMaterial->nama;
-    				$materials[$count]['kebutuhan'] = (int)$detail->volume;
-    				$materials[$count]['masuk'] = 0;
-    				$materials[$count]['terpakai'] = 0;
-    				$materials[$count]['harga'] = 0;
-    				$count++;
-    			}else{
-    				$index = array_search($detail->material_id,array_column($materials,'material_id'));
-    				$materials[$index]['kebutuhan'] = (int)$materials[$index]['kebutuhan'] + (int)$detail->volume;
-    			}
-    		}
-    		
-    	}
+                    $materials[$count]['nama'] = $detail->material->nama;
+                    $materials[$count]['kebutuhan'] = 0;
+                    $materials[$count]['masuk'] = (int)$detail->vol_saat_ini;
+                    $materials[$count]['terpakai'] = 0;
+                    $materials[$count]['harga'] = 0;
+                    $count++;
+                }
+            }
 
-    	foreach ($materials as $key => $material) {
-    		$penerimaans = LogDetailPenerimaanMaterial::where('material_id',$material['material_id'])
-    										->whereDate('created_at','>=',$data['tanggal_mulai'])
-    										->whereDate('created_at','<=',$data['tanggal_selesai'])
-    										->where('material_id',$material['material_id'])
-    										->where('soft_delete',0)
-    										->get();
-
-    		foreach ($penerimaans as $key => $detail) {
-    			if(array_search($detail->material_id,array_column($materials,'material_id')) !== false){
-    				$index = array_search($detail->material_id,array_column($materials,'material_id'));
-    				$materials[$index]['masuk'] = (int)$materials[$index]['masuk'] + (int)$detail->vol_saat_ini;
-    				$materials[$index]['harga']  = (int)$detail->harga;
-    			}
-    		}
-
-    		$pengajuans = LogDetailPengajuanPakai::where('material_id',$material['material_id'])
-    										->whereDate('created_at','>=',$data['tanggal_mulai'])
-    										->whereDate('created_at','<=',$data['tanggal_selesai'])
-    										->where('material_id',$material['material_id'])
-    										->where('soft_delete',0)
-    										->get();
-
-    		foreach ($pengajuans as $key => $detail) {
-    			if(array_search($detail->material_id,array_column($materials,'material_id')) !== false){
-    				$index = array_search($detail->material_id,array_column($materials,'material_id'));
-    				$materials[$index]['terpakai'] = (int)$materials[$index]['terpakai'] + (int)$detail->penyerahan_jumlah;
-    			}
-    		}
-    	}
-
+            $pengajuans = LogDetailPengajuanPakai::where('tanggal_pengajuan','=',$tgl_mulai)
+                                            ->where('soft_delete',0)
+                                            ->get();
+            $count = count($materials);
+            foreach ($pengajuans as $key => $detail) {
+                if(array_search($detail->material_id,array_column($materials,'material_id')) !== false){
+                    $index = array_search($detail->material_id,array_column($materials,'material_id'));
+                    $materials[$index]['terpakai'] = (int)$materials[$index]['terpakai'] + (int)$detail->pemerahan_jumlah;
+                }else{
+                    $materials[$count]['material_id'] = (int)$detail->material_id;
+                    $materials[$count]['nama'] = $detail->material->nama;
+                    $materials[$count]['kebutuhan'] = 0;
+                    $materials[$count]['masuk'] = 0;
+                    $materials[$count]['terpakai'] = (int)$detail->pemyerahan_jumlah;
+                    $materials[$count]['harga'] = 0;
+                    $count++;
+                }
+            }
+        }
+// dd($materials);
     	$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
     	$excel = \Excel::create("Form Log-06 Laporan Evaluasi Pemakaian Bahan " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($data,$materials,$splem) {
 
@@ -173,7 +185,7 @@ class LaporanController extends Controller
         $tahun = $bulan[0];
         //initiate array tanggal
         for ($j=0; $j <=$selisih ; $j++) {
-            $tanggal[] = $init_tanggal;
+            $tanggal[] = $init_tanggal; 
             $init_tanggal = date('Y-m-d', strtotime("+1 day", strtotime($init_tanggal))); 
         }
 
@@ -186,32 +198,32 @@ class LaporanController extends Controller
                     $tanggal_mulai = $data['tanggal_mulai'];
                     for ($j=0; $j <=$selisih ; $j++) { 
                         $jumlah = 0;
-                        $dt = LogPengajuanMaterial::where('tanggal', $tanggal_mulai)
-                                                    ->where('soft_delete',0)
+                        $dt = LogPengajuanMaterial::whereHas('pengajuanDetail',function ($q) use($tanggal_mulai){
+                                                      $q->where('tanggal_pengajuan', $tanggal_mulai);
+                                                    })->where('soft_delete',0)
                                                     ->where('jenis_pekerjaan_id',$data['jenis']->id)
                                                     ->where('lokasi_kerja_id',$data['lokasi']->id)
                                                     ->get();
                         
                         foreach ($dt as $key => $value) {
-                           $dt_detail  = LogDetailPengajuanMaterial::whereHas('detailPengajuan',function ($q) use($tanggal_mulai){
-                              $q->where('tanggal', $tanggal_mulai);
-                            })->where('material_id',$detail->material_id)->where('soft_delete',0)->get();
-
-                           $dt_detail_lalu  = LogDetailPengajuanMaterial::whereHas('detailPengajuan',function ($q) use($bulan_lalu,$tahun){
-                              $q->whereMonth('tanggal', $bulan_lalu)
-                                ->whereYear('tanggal',$tahun);
-                            })->where('material_id',$detail->material_id)->where('soft_delete',0)->get();
+                            $jumlah = 0;
+                           $dt_detail  = LogDetailPengajuanMaterial::where('tanggal_pengajuan', $tanggal_mulai)->where('material_id',$detail->material_id)->where('soft_delete',0)->get();
+                           
+                           $dt_detail_lalu  = LogDetailPengajuanMaterial::whereMonth('tanggal_pengajuan', $bulan_lalu)
+                                                                        ->whereYear('tanggal_pengajuan',$tahun)
+                                                                        ->where('material_id',$detail->material_id)->where('soft_delete',0)->get();
 
                            foreach ($dt_detail as $key => $dtl) {
-                               $jumlah = $jumlah + $dtl->pemyerahan_jumlah;
+                               $jumlah = $jumlah +(int)$dtl->pemyerahan_jumlah;
                            }
                            $jumlah_lalu = 0;
                            foreach ($dt_detail_lalu as $key => $dtl_lalu) {
-                               $jumlah_lalu = $jumlah_lalu + $dtl_lalu->pemyerahan_jumlah;
+                               $jumlah_lalu = $jumlah_lalu + (int)$dtl_lalu->pemyerahan_jumlah;
                            }
                            $materials[$count]['jumlah_lalu']= $jumlah_lalu;
 
                         }
+                        
                         $materials[$count]['jumlah'][$tanggal_mulai] = $jumlah;
                         $tanggal_mulai = date('Y-m-d', strtotime("+1 day", strtotime($tanggal_mulai))); 
                     }
@@ -220,7 +232,6 @@ class LaporanController extends Controller
                 }
             }
         }
-
 
         $splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
         $admin = Pegawai::where('posisi_id', \Auth::user()->pegawai->posisi_id)->where('soft_delete', 0)->first();
@@ -279,7 +290,7 @@ class LaporanController extends Controller
             $excel->getActiveSheet()->getRowDimension('9')->setRowHeight(5);
             $excel->getActiveSheet()->getRowDimension('15')->setRowHeight(4);
             $excel->getActiveSheet()->getRowDimension('53')->setRowHeight(4);
-            $excel->getActiveSheet()->getRowDimension('54')->setRowHeight(5);
+            $excel->getActiveSheet()->getRowDimension('54')->setRowHeight(9);
             $excel->getActiveSheet()->getRowDimension('18')->setRowHeight(13);
             $excel->getActiveSheet()->getRowDimension('51')->setRowHeight(13);
             $excel->getActiveSheet()->getRowDimension('52')->setRowHeight(13);
@@ -327,58 +338,58 @@ class LaporanController extends Controller
 									->where('soft_delete', 0)
 									->get();
 		$dt = [];
+        $trs_keluar = 0;
+        $trs_terima = 0;
 		for ($i=1; $i <=31 ; $i++) { 
 			$dt[$i]['jml_terima'] = 0;
-			$dt[$i]['trs_terima'] = 0;
 			$dt[$i]['jml_keluar'] = 0;
-			$dt[$i]['trs_keluar'] = 0;
 			$dt[$i]['sisa'] = 0;
 			$tampung = 0;
 			$tgl = $i;
+            if ($i == 1) {
+                $dt[$i]['trs_terima'] = 0;
+                $dt[$i]['trs_keluar'] = 0;
+            }
+
 
 			if (strlen($i) == 1) {
 				$tgl = '0'.$i;
 			}
-			$penerimaans = LogPenerimaanMaterial::where('tanggal','=',$data['tahun'].'-'.$data['bulan'].'-'.$tgl)
-												->where('soft_delete',0)
-												->get();
-			foreach ($penerimaans as $key => $penerimaan) {
-				$penerimaanDetails = LogDetailPenerimaanMaterial::where('penerimaan_id', $penerimaan->id)
-																->where('material_id',$data['material'])
+			// $penerimaans = LogPenerimaanMaterial::where('tanggal','=',$data['tahun'].'-'.$data['bulan'].'-'.$tgl)
+			// 									->where('soft_delete',0)
+			// 									->get();
+   //          var_dump($i);
+   //          var_dump(count($penerimaans));
+			// foreach ($penerimaans as $key => $penerimaan) {
+				$penerimaanDetails = LogDetailPenerimaanMaterial::where('material_id',$data['material'])
 																->where('soft_delete',0)
-																->get();
-				
-				foreach ($penerimaanDetails as $key => $value) {					
-					$dt[$i]['jml_terima'] = $dt[$i]['jml_terima'] + $value->volume;
-					if ($i == 1) {
-						$dt[$i]['trs_terima'] = 0;
-					}elseif($i > 1){
-						$dt[$i]['trs_terima'] = $dt[$i-1]['trs_terima'] + $dt[$i]['jml_terima'];
-					}
-				}
-			}
+                                                                ->where('tanggal_terima', '=', $data['tahun'].'-'.$data['bulan'].'-'.$tgl)
+                                                                ->get();
+				if(count($penerimaanDetails) != 0){
+    				foreach ($penerimaanDetails as $key => $value) {				
+    					$dt[$i]['jml_terima'] = $dt[$i]['jml_terima'] + $value->vol_saat_ini;
+    					$trs_terima = $trs_terima + $dt[$i]['jml_terima'];
+                        $dt[$i]['trs_terima'] = $trs_terima;
+    				}
+                }else{
+                    $dt[$i]['trs_terima'] = $trs_terima;
+                }
 			
-
-			$pengajuans = LogPengajuanMaterial::where('tanggal','=',$data['tahun'].'-'.$data['bulan'].'-'.$tgl)
-											->where('soft_delete',0)
-											->get();
-												
-			foreach ($pengajuans as $key => $pengajuan) {
-				$pengajuanDetails = LogDetailPengajuanPakai::where('pengajuan_id', $pengajuan->id)
+				$pengajuanDetails = LogDetailPengajuanPakai::where('material_id',$data['material'])
 																->where('soft_delete',0)
-																->get();
-				if ($pengajuanDetails) {					
+																->where('tanggal_pengajuan', '=', $data['tahun'].'-'.$data['bulan'].'-'.$tgl)
+                                                                ->get();
+				if (count($pengajuanDetails) != 0) {					
 					foreach ($pengajuanDetails as $key => $value) {
 						$dt[$i]['jml_keluar'] = $dt[$i]['jml_keluar'] + $value->permintaan_jumlah;
-						if ($i == 1) {
-							$dt[$i]['trs_keluar'] = 0;
-						}else{
-							$dt[$i]['trs_keluar'] = $dt[$i]['trs_keluar'] + $value->permintaan_jumlah;
-						}
+                        $trs_keluar = $trs_keluar + $dt[$i]['jml_keluar'];
+						$dt[$i]['trs_keluar'] = $trs_keluar;
 					}
-				}
-			}
-			$dt[$i]['sisa'] = $dt[$i]['jml_terima'] - $dt[$i]['jml_keluar'];
+				}else{
+                    $dt[$i]['trs_keluar'] = $trs_keluar;
+                }
+
+			$dt[$i]['sisa'] = $dt[$i]['trs_terima'] - $dt[$i]['trs_keluar'];
 		}	
 
 		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
@@ -457,47 +468,36 @@ class LaporanController extends Controller
 			
 			$dt[$i]['tanggal'] = $tgl_mulai;
 			
-			$penerimaans = LogPenerimaanMaterial::where('tanggal','=',$tgl_mulai)
-											->where('soft_delete',0)
-											->get();
+            $penerimaanDetails = LogDetailPenerimaanMaterial::where('tanggal_terima','=',$tgl_mulai)
+                                                            ->where('soft_delete',0)
+                                                            ->get();
+            
+            foreach ($penerimaanDetails as $key => $value) {					
+                $dt[$i]['material'] = $value->material->nama;
+                $dt[$i]['satuan'] = $value->material->satuan;
+                $dt[$i]['jml_terima'] = $value->vol_saat_ini;
+            }
 			
-			foreach ($penerimaans as $key => $penerimaan) {
-				$penerimaanDetails = LogDetailPenerimaanMaterial::where('penerimaan_id', $penerimaan->id)
-																->where('soft_delete',0)
-																->get();
-				
-				foreach ($penerimaanDetails as $key => $value) {					
-					$dt[$i]['material'] = $value->material->nama;
-					$dt[$i]['satuan'] = $value->material->satuan;
-					$dt[$i]['jml_terima'] = $dt[$i]['jml_terima'] + $value->volume;
-				}
-			}
 			
 
-			$pengajuans = LogPengajuanMaterial::where('tanggal','=',date('Y-m-d',strtotime($tgl_mulai)))
-											->where('soft_delete',0)
-											->get();
-												
-			foreach ($pengajuans as $key => $pengajuan) {
-				$pengajuanDetails = LogDetailPengajuanPakai::where('pengajuan_id', $pengajuan->id)
+			$pengajuanDetails = LogDetailPengajuanPakai::where('tanggal_pengajuan','=',$tgl_mulai)
 															->where('soft_delete',0)
-															->get();
-				if ($pengajuanDetails) {					
-					foreach ($pengajuanDetails as $key => $value) {
-						$dt[$i]['material'] = $value->material->nama;
-						$dt[$i]['satuan'] = $value->material->satuan;
-						$dt[$i]['jml_keluar'] = $dt[$i]['jml_keluar'] + $value->permintaan_jumlah;
-					}
-				}
-			}
+                                                            ->get();
+            if ($pengajuanDetails) {					
+                foreach ($pengajuanDetails as $key => $value) {
+                    $dt[$i]['material'] = $value->material->nama;
+                    $dt[$i]['satuan'] = $value->material->satuan;
+                    $dt[$i]['jml_keluar'] = $value->permintaan_jumlah;
+                }
+            }
+			
 			
 			$i++;
 			$tgl_mulai = date('Y-m-d',strtotime('+1 days',strtotime($tgl_mulai)));
 		}
-	
 
 		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
-    	$excel = \Excel::create("Form Log-02 Laporan Kartu Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($dt, $splem) {
+    	$excel = \Excel::create("Form Log-05 Laporan Harian Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($dt, $splem) {
 
                 $excel->sheet('New sheet', function ($sheet) use ($dt, $splem) {
 
@@ -558,50 +558,66 @@ class LaporanController extends Controller
 	public function postLog03()
 	{
         $data = \Input::all();
-        $kodePermintaan = $data['kodePermintaan'];
+        $tgl_mulai=konversi_tanggal($data['tanggal_mulai']);
+		$tgl_selesai=konversi_tanggal($data['tanggal_selesai']);
         $materials = [];
         $count = count($materials);
 
-        $permintaans = LogPermintaanMaterial::where('kode_permintaan', $kodePermintaan)
-    										->where('soft_delete', 0)
-                                            ->get();
+        while ($tgl_mulai <= $tgl_selesai) {
+            $permintaans = LogPermintaanMaterial::where('tanggal', '=', $tgl_mulai)
+                                                ->where('soft_delete', 0)
+                                                ->get();
                                             
-        foreach ($permintaans as $key => $permintaan) {
-            foreach ($permintaan->permintaanDetail as $key => $detail) {
-                if (array_search($detail->material_id, array_column($materials,'material_id')) === false) {
-                    $materials[$count]['material_id'] = (int)$detail->material_id;
-                    $materials[$count]['nama'] = $detail->detailPermintaanMaterial->nama;
-                    $materials[$count]['satuan'] = $detail->detailPermintaanMaterial->satuan;
-                    $materials[$count]['rencana'] = (int)$detail->volume;
-                    $materials[$count]['realisasi'] = 0;
-                    $materials[$count]['sesuai'] = 0;
-                    $materials[$count]['tidakSesuai'] = 0;
-                    $count++;
-                }else{
-                    $index = array_search($detail->material_id,array_column($materials,'material_id'));
-    				$materials[$index]['rencana'] = (int)$materials[$index]['rencana'] + (int)$detail->volume;
-                }
-            }            
-        }
-
-        foreach ($materials as $key => $material) {
-            $penerimaans = LogDetailPenerimaanMaterial::where('material_id',$material['material_id'])
-                                                    ->where('soft_delete',0)
-                                                    ->get();
-
-            foreach ($penerimaans as $key => $detail) {
-                if(array_search($detail->material_id, array_column($materials,'material_id')) !== false){
-                    $index = array_search($detail->material_id, array_column($materials,'material_id'));
-                    $materials[$index]['realisasi'] = (int)$materials[$index]['realisasi'] + (int)$detail->volume;                    
+            foreach ($permintaans as $key => $permintaan) {
+                foreach ($permintaan->permintaanDetail as $key => $detail) {
+                    if (array_search($detail->material_id, array_column($materials,'material_id')) === false) {
+                        $materials[$count]['material_id'] = (int)$detail->material_id;
+                        $materials[$count]['nama'] = $detail->detailPermintaanMaterial->nama;
+                        $materials[$count]['satuan'] = $detail->detailPermintaanMaterial->satuan;
+                        $materials[$count]['rencana'] = (int)$detail->volume;
+                        $materials[$count]['realisasi'] = 0;
+                        $materials[$count]['sesuai'] = 0;
+                        $materials[$count]['tidakSesuai'] = 0;
+                        $count++;
+                    }else{
+                        $index = array_search($detail->material_id,array_column($materials,'material_id'));
+                        $materials[$index]['rencana'] = (int)$materials[$index]['rencana'] + (int)$detail->volume;
+                    }
                 }
             }
-        }
 
-        if ($materials[$index]['rencana'] <= $materials[$index]['realisasi']) {
-            $materials[$index]['sesuai'] = $materials[$index]['realisasi'] - $materials[$index]['rencana'];
-        }elseif ($materials[$index]['rencana'] >= $materials[$index]['realisasi']) {
-            $materials[$index]['sesuai'] = $materials[$index]['rencana'] - $materials[$index]['realisasi'];
+                    
+                    $penerimaans = LogDetailPenerimaanMaterial::where('soft_delete',0)
+                                                            ->where('tanggal_terima', '=', $tgl_mulai)
+                                                            ->get();
+                    // var_dump(count($penerimaans).'tgl'.$tgl_mulai);
+
+                    foreach ($penerimaans as $key => $detail) {
+                        if(array_search($detail->material_id, array_column($materials,'material_id')) !== false){
+                            $index = array_search($detail->material_id, array_column($materials,'material_id'));
+                            $materials[$index]['realisasi'] = (int)$materials[$index]['realisasi'] + (int)$detail->vol_saat_ini;                    
+                            // var_dump($materials[$index]['realisasi']);
+                        }else{
+                            $materials[$count]['material_id'] = (int)$detail->material_id;
+                            $materials[$count]['nama'] = $detail->material->nama;
+                            $materials[$count]['satuan'] = $detail->material->satuan;
+                            $materials[$count]['rencana'] = 0;
+                            $materials[$count]['realisasi'] = (int)$detail->vol_saat_ini;
+                            $materials[$count]['sesuai'] = 0;
+                            $materials[$count]['tidakSesuai'] = 0;
+                            $count++;
+                        }
+                    }
+                
+            $tgl_mulai = date('Y-m-d',strtotime('+1 days',strtotime($tgl_mulai)));
         }
+        foreach ($materials as $key => $material) {
+            if ($material['rencana'] <= $material['realisasi']) {
+                $material[$key]['sesuai'] = $material['realisasi'] - $material['rencana'];
+            }elseif ($material['rencana'] >= $material['realisasi']) {
+                $materials[$key]['tidakSesuai'] = $material['rencana'] - $material['realisasi'];
+            }
+        }        
 
 		$pm = Pegawai::where('posisi_id', 1)->where('soft_delete', 0)->first();
 		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();

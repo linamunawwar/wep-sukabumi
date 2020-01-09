@@ -44,12 +44,13 @@
 							<table class="table table-bordered waste" id="table_waste">
 								<tr>
 									<th rowspan="2">No.</th>
-									<th rowspan="2" style="width: 200px;">Nama Material</th>
+									<th rowspan="2" style="width: 150px;">Nama Material</th>
+									<th rowspan="2">Tanggal Terima</th>
 									<th colspan="5" align="center" style="text-align: center;">VOLUME</th>
 									<th rowspan="2">Satuan</th>
-									<th rowspan="2" style="width: 120px;">Harga Satuan</th>
-									<th rowspan="2" >Sesuai (*)</th>
-									<th rowspan="2" style="width: 150px;">Keterangan/ Uraian</th>
+									<th rowspan="2" style="width: 100px;">Harga Satuan</th>
+									<th rowspan="2">Sesuai (*)</th>
+									<th rowspan="2" style="width: 100px;">Keterangan/ Uraian</th>
 								</tr>
 								<tr>
 									<th>Total Permintaan</th>
@@ -67,6 +68,11 @@
 					                		<td>{{$detail->material->nama}}
 					                		<input type='hidden' name='material[]' value="{{$detail->material_id}}" id="material_{{$no}}">
 					                		</td>
+					                		<td>
+	                							<div class='input-group date datepicker' id="tanggal_terima_{{$no}}">
+                            					<input type='date' value="{{$detail->tanggal_terima}}" name='tanggal_terima[]' class='form-control' required='required' placeholder='dd-mm-yyyy' style="width: 155px;" />
+                            					</div>	
+	                						</td>
 					                		<td>
 					                		<input type='text' class='form-control vol_permintaan' id_data="{{$no}}" name='vol_permintaan[]' value="{{$detail->penerimaan->permintaan->permintaanDetail[$i]->volume}}" id="vol_permintaan_{{$no}}">
 					                		</td>
@@ -108,7 +114,7 @@
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 									<a class="btn btn-primary" href="{{url('/Logistik/admin/penerimaan')}}">Cancel</a>
-									@if(($penerimaan->is_splem == 0) || ($penerimaan->is_splem == 1))
+									@if(($penerimaan->is_splem == '0') || ($penerimaan->is_splem == '1'))
 										<button type="submit" name="koreksi" class="btn btn-success">Koreksi</button>
 									@else
 										<button type="submit" class="btn btn-success">Submit</button>

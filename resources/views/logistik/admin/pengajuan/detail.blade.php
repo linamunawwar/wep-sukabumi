@@ -41,6 +41,7 @@
 							<thead>
 								<tr>
 									<th scope="col" rowspan="2"><b> No</b> </th>
+									<th scope="col" rowspan="2"><b> Tanggal Pengajuan</b> </th>
 									<th scope="col" rowspan="2"><b> Element Activity</b> </th>
 									<th scope="col" rowspan="2"><b> Material</b> </th>
 									<th scope="col" colspan="2"><b> Permintaan</b> </th>
@@ -58,6 +59,7 @@
 								@foreach ($details as $detail)
 									<tr>
 										<td scope="col"> {{ $no++ }} </td>
+										<td scope="col"> {{ $detail->tanggal_pengajuan }} </td>
 										<td scope="col"> {{ $detail->element_activity }} </td>
 										<td scope="col"> {{ $detail->detailPengajuanMaterial->nama }} </td>
 										<td scope="col"> {{ $detail->permintaan_satuan }} </td>
