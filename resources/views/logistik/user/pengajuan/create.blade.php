@@ -52,8 +52,8 @@
 								<div class="col-md-3 col-sm-3 col-xs-3">
 									<div class="form-group">
 										<label style="display: inline-block;" for="nama">Jenis Pekerjaan </label>
-										<p style="display: inline-block;" id="jenisPekerjaan">
-											<select class="form-control jenisPekerjaan" name="jenisPekerjaan" id="jenisPekerjaan" style="width: 100%; !important">
+										<p style="display: inline-block;">
+											<select class="form-control jenisPekerjaan" name="jenisPekerjaan" id="jenisPekerjaan" style="width: 110%; !important" required='required'>
 												<option value="">Pilih jenisPekerjaan</option>
 												@foreach($jenisPekerjaans as $jenisPekerjaan)
 													<option value="{{$jenisPekerjaan->id}}">{{$jenisPekerjaan->nama}}</option>
@@ -65,8 +65,8 @@
 								<div class="col-md-3 col-sm-3 col-xs-3">
 									<div class="form-group">
 										<label style="display: inline-block;" for="nama">Lokasi Pekerjaan </label>
-										<p style="display: inline-block;" id="lokasiPekerjaan">
-											<select class="form-control lokasiPekerjaan" name="lokasiPekerjaan" id="lokasiPekerjaan" style="width: 100%; !important">
+										<p style="display: inline-block;">
+											<select class="form-control lokasiPekerjaan" name="lokasiPekerjaan" id="lokasiPekerjaan" style="width: 130%; !important" required='required'>
 												<option value="">Pilih lokasiPekerjaan</option>
 												@foreach($lokasiPekerjaans as $lokasiPekerjaan)
 													<option value="{{$lokasiPekerjaan->id}}">{{$lokasiPekerjaan->nama}}</option>
@@ -79,7 +79,7 @@
 									<div class="form-group">
 										<label style="display: inline-block;" for="nama">Volume </label>
 										<p style="display: inline-block;">
-											<input type="text" name="volume" class='form-control volume' id="volume">
+											<input type="text" name="volume" class='form-control volume' id="volume" required='required'>
 										</p>
 									</div>
 								</div>
@@ -87,7 +87,7 @@
 									<div class="form-group">
 										<label style="display: inline-block;" for="nama">No. WBS </label>
 										<p style="display: inline-block;">
-											<input type="text" name="no_wbs" class='form-control no_wbs' id="no_wbs">
+											<input type="text" name="no_wbs" class='form-control no_wbs' id="no_wbs" required='required'>
 										</p>
 									</div>
 								</div>
@@ -97,6 +97,7 @@
 							<table class="table table-bordered waste" id="table_waste">
 								<tr>
 									<th rowspan="2">No.</th>
+									<th rowspan="2" style="width: 200px;">Tanggal Pengajuan</th>
 									<th rowspan="2" style="width: 200px;">Element Activity</th>
 									<th rowspan="2" align="center" style="text-align: center;">Nama Material</th>
 									<th colspan="2" align="center" style="text-align: center;">Permintaan</th>
@@ -126,6 +127,13 @@
 @endsection
 @push('scripts')
   <script type="text/javascript">
+	$('#jenisPekerjaan').select2();
+	$('#lokasiPekerjaan').select2();
+	$('#datepicker1').datepicker({
+        format: 'dd-mm-yyyy',
+        autoclose: true
+	});
+
   	$('#search').on('click', function() {
 	  var kode_penerimaan = $('#kode_penerimaan').val();
 	  var _token = $('#_token').val();
@@ -155,14 +163,17 @@
 					        dt += "<tr  class='data_"+jumlah_data+"'>";
 							dt += "<td>"+nomor+"</td>";
 							dt +=  "<td>";
-							dt +=  "<input type='text' class='form-control element_activity' id_data='"+jumlah_data+"' name='element_activity[]' value='' id='element_activity_"+jumlah_data+"'>";
+							dt +=  "<div class='input-group date' class='datepicker'><span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span><input type='date' id='tanggal_pengajuan"+jumlah_data+"' id_data='"+jumlah_data+"' name='tanggal_pengajuan[]' class='form-control' required='required' placeholder='dd-mm-yyyy' /></div>";
+							dt +=  '</td>';
+							dt +=  "<td>";
+							dt +=  "<input type='text' class='form-control element_activity' id_data='"+jumlah_data+"' name='element_activity[]' value='' id='element_activity_"+jumlah_data+"' required='required'>";
 							dt +=  '</td>';
 	                		dt +=  "<td style='text-align: center; vertical-align: middle;'>"+data[i].material_nama;
 	                		dt +=  "<input type='hidden' name='material[]' value='"+data[i].material_id+"' id='material_"+jumlah_data+"'>";
 	                		dt +=  '</td>';	                		
-	                		dt +=  "<td><input type='text' class='form-control permintaan_satuan' id_data='"+jumlah_data+"' name='permintaan_satuan[]' value='"+data[i].material_satuan+"' id='permintaan_satuan_"+jumlah_data+"'>";
+	                		dt +=  "<td><input type='text' class='form-control permintaan_satuan' id_data='"+jumlah_data+"' name='permintaan_satuan[]' value='"+data[i].material_satuan+"' id='permintaan_satuan_"+jumlah_data+"' required='required'>";
 	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' class='form-control permintaan_jumlah' id_data='"+jumlah_data+"' name='permintaan_jumlah[]' value='' id='permintaan_jumlah_"+jumlah_data+"'>";
+	                		dt +=  "<td><input type='text' class='form-control permintaan_jumlah' id_data='"+jumlah_data+"' name='permintaan_jumlah[]' value='' id='permintaan_jumlah_"+jumlah_data+"' required='required'>";
 	                		dt +=  '</td>';
 	                		dt += '</tr>';
 	                			nomor++;
@@ -177,7 +188,6 @@
             }
         });	  
 	});
-
-
+	
   </script>
 @endpush
