@@ -98,6 +98,7 @@ class PengajuanController extends Controller
         $volume = \Input::get('volume');
         $no_wbs = \Input::get('no_wbs');
 
+        $tanggal_pengajuan = \Input::get('tanggal_pengajuan');
         $element_activity = \Input::get('element_activity');
         $material = \Input::get('material');
         $permintaan_satuan = \Input::get('permintaan_satuan');
@@ -120,6 +121,7 @@ class PengajuanController extends Controller
             for ($i = 0; $i < $jml; $i++) {
                 $addDetailPengajuanMaterial = new LogDetailPengajuanMaterial;
                 $addDetailPengajuanMaterial->pengajuan_id = $pengajuanId;
+                $addDetailPengajuanMaterial->tanggal_pengajuan = $tanggal_pengajuan[$i];
                 $addDetailPengajuanMaterial->element_activity = $element_activity[$i];
                 $addDetailPengajuanMaterial->material_id = $material[$i];
                 $addDetailPengajuanMaterial->permintaan_satuan = $permintaan_satuan[$i];
@@ -161,6 +163,7 @@ class PengajuanController extends Controller
         $no_wbs = \Input::get('no_wbs');
 
         $detailPengajuanId = \Input::get('detailPengajuanId');
+        $tanggal_pengajuan = \Input::get('tanggalPengajuan');
         $element_activity = \Input::get('elementActivity');
         $material = \Input::get('material');
         $permintaan_satuan = \Input::get('permintaanSatuan');
@@ -182,6 +185,7 @@ class PengajuanController extends Controller
         $updatedPengajuanMaterial = LogPengajuanMaterial::where(['id' => $id, 'kode_penerimaan' => $kode_penerimaan])->update($toUpdatePengajuanMaterial);
 
         for ($i=0; $i < $jml; $i++) { 
+            $toUpdateDetailPengajuanMaterial['tanggal_pengajuan'] = $tanggal_pengajuan[$i];
             $toUpdateDetailPengajuanMaterial['element_activity'] = $element_activity[$i];
             $toUpdateDetailPengajuanMaterial['material_id'] = $material[$i];
             $toUpdateDetailPengajuanMaterial['permintaan_satuan'] = $permintaan_satuan[$i];

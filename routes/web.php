@@ -622,7 +622,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pengajuan/create', 'Logistik\Pelaksana\PengajuanController@beforePostPengajuan');
 		Route::post('/pengajuan/cekData', 'Logistik\Pelaksana\PengajuanController@cekData');
 		Route::post('/pengajuan/create', 'Logistik\Pelaksana\PengajuanController@postPengajuan');
-		Route::get('/pengajuan/detail/{id}', 'Logistik\Pelaksana\PengajuanController@getPengajuanById');
+		Route::get('/pengajuan/detail/{id}', 'Logistik\Pelaksana\PengajuanController@getDetailByPengajuanId');
 		Route::get('/pengajuan/edit/{id}', 'Logistik\Pelaksana\PengajuanController@getPengajuanById');
 		Route::post('/pengajuan/edit/{id}', 'Logistik\Pelaksana\PengajuanController@updatePengajuan');
 		Route::delete('/pengajuan/delete', 'Logistik\Pelaksana\PengajuanController@deletePengajuan');

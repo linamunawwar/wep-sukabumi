@@ -352,9 +352,8 @@ class LaporanController extends Controller
 			// foreach ($penerimaans as $key => $penerimaan) {
 				$penerimaanDetails = LogDetailPenerimaanMaterial::where('material_id',$data['material'])
 																->where('soft_delete',0)
-                                                                ->whereHas('penerimaan',function ($q) use($data,$tgl){
-                                                                    $q->where('tanggal','=',$data['tahun'].'-'.$data['bulan'].'-'.$tgl);
-                                                                })->get();
+                                                                ->where('tanggal_terima', '=', $data['tahun'].'-'.$data['bulan'].'-'.$tgl)
+                                                                ->get();
 				if(count($penerimaanDetails) != 0){
     				foreach ($penerimaanDetails as $key => $value) {				
     					$dt[$i]['jml_terima'] = $dt[$i]['jml_terima'] + $value->vol_saat_ini;
@@ -367,9 +366,8 @@ class LaporanController extends Controller
 			
 				$pengajuanDetails = LogDetailPengajuanPakai::where('material_id',$data['material'])
 																->where('soft_delete',0)
-																->whereHas('pengajuan',function ($q) use($data,$tgl){
-                                                                    $q->where('tanggal','=',$data['tahun'].'-'.$data['bulan'].'-'.$tgl);
-                                                                })->get();
+																->where('tanggal_pengajuan', '=', $data['tahun'].'-'.$data['bulan'].'-'.$tgl)
+                                                                ->get();
 				if (count($pengajuanDetails) != 0) {					
 					foreach ($pengajuanDetails as $key => $value) {
 						$dt[$i]['jml_keluar'] = $dt[$i]['jml_keluar'] + $value->permintaan_jumlah;
@@ -459,45 +457,33 @@ class LaporanController extends Controller
 			
 			$dt[$i]['tanggal'] = $tgl_mulai;
 			
-			$penerimaans = LogPenerimaanMaterial::where('tanggal','=',$tgl_mulai)
-											->where('soft_delete',0)
-											->get();
+            $penerimaanDetails = LogDetailPenerimaanMaterial::where('tanggal_terima','=',$tgl_mulai)
+                                                            ->where('soft_delete',0)
+                                                            ->get();
+            
+            foreach ($penerimaanDetails as $key => $value) {					
+                $dt[$i]['material'] = $value->material->nama;
+                $dt[$i]['satuan'] = $value->material->satuan;
+                $dt[$i]['jml_terima'] = $value->vol_saat_ini;
+            }
 			
-			foreach ($penerimaans as $key => $penerimaan) {
-				$penerimaanDetails = LogDetailPenerimaanMaterial::where('penerimaan_id', $penerimaan->id)
-																->where('soft_delete',0)
-																->get();
-				
-				foreach ($penerimaanDetails as $key => $value) {					
-					$dt[$i][$tgl_mulai]['material'] = $value->material->nama;
-					$dt[$i][$tgl_mulai]['satuan'] = $value->material->satuan;
-					$dt[$i][$tgl_mulai]['jml_terima'] = $dt[$i]['jml_terima'] + $value->volume;
-				}
-			}
 			
 
-			$pengajuans = LogPengajuanMaterial::where('tanggal','=',date('Y-m-d',strtotime($tgl_mulai)))
-											->where('soft_delete',0)
-											->get();
-												
-			foreach ($pengajuans as $key => $pengajuan) {
-				$pengajuanDetails = LogDetailPengajuanPakai::where('pengajuan_id', $pengajuan->id)
+			$pengajuanDetails = LogDetailPengajuanPakai::where('tanggal_pengajuan','=',$tgl_mulai)
 															->where('soft_delete',0)
-															->get();
-				if ($pengajuanDetails) {					
-					foreach ($pengajuanDetails as $key => $value) {
-						$dt[$i][$tgl_mulai]['material'] = $value->material->nama;
-						$dt[$i][$tgl_mulai]['satuan'] = $value->material->satuan;
-						$dt[$i][$tgl_mulai]['jml_keluar'] = $dt[$i]['jml_keluar'] + $value->permintaan_jumlah;
-					}
-				}
-			}
+                                                            ->get();
+            if ($pengajuanDetails) {					
+                foreach ($pengajuanDetails as $key => $value) {
+                    $dt[$i]['material'] = $value->material->nama;
+                    $dt[$i]['satuan'] = $value->material->satuan;
+                    $dt[$i]['jml_keluar'] = $value->permintaan_jumlah;
+                }
+            }
+			
 			
 			$i++;
 			$tgl_mulai = date('Y-m-d',strtotime('+1 days',strtotime($tgl_mulai)));
 		}
-        dd($dt);
-	
 
 		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
     	$excel = \Excel::create("Form Log-05 Laporan Harian Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($dt, $splem) {
@@ -586,92 +572,94 @@ class LaporanController extends Controller
                         $index = array_search($detail->material_id,array_column($materials,'material_id'));
                         $materials[$index]['rencana'] = (int)$materials[$index]['rencana'] + (int)$detail->volume;
                     }
+                }
+            }
 
                     
-                    $penerimaans = LogDetailPenerimaanMaterial::where('material_id',$detail->material_id)
-                                                            ->where('soft_delete',0)
-                                                            ->whereHas('penerimaan',function ($q) use($permintaan){
-                                                                $q->where('kode_permintaan',$permintaan->kode_permintaan);
-                                                            })->get();
+                    $penerimaans = LogDetailPenerimaanMaterial::where('soft_delete',0)
+                                                            ->where('tanggal_terima', '=', $tgl_mulai)
+                                                            ->get();
+                    // var_dump(count($penerimaans).'tgl'.$tgl_mulai);
 
                     foreach ($penerimaans as $key => $detail) {
                         if(array_search($detail->material_id, array_column($materials,'material_id')) !== false){
                             $index = array_search($detail->material_id, array_column($materials,'material_id'));
                             $materials[$index]['realisasi'] = (int)$materials[$index]['realisasi'] + (int)$detail->vol_saat_ini;                    
-                            var_dump($materials[$index]['realisasi']);
+                            // var_dump($materials[$index]['realisasi']);
+                        }else{
+                            $materials[$count]['material_id'] = (int)$detail->material_id;
+                            $materials[$count]['nama'] = $detail->material->nama;
+                            $materials[$count]['satuan'] = $detail->material->satuan;
+                            $materials[$count]['rencana'] = 0;
+                            $materials[$count]['realisasi'] = (int)$detail->vol_saat_ini;
+                            $materials[$count]['sesuai'] = 0;
+                            $materials[$count]['tidakSesuai'] = 0;
+                            $count++;
                         }
                     }
-                }            
-            }
-
-
-
-            
-
-            // if ($materials[$index]['rencana'] <= $materials[$index]['realisasi']) {
-            //     $materials[$index]['sesuai'] = $materials[$index]['realisasi'] - $materials[$index]['rencana'];
-            // }elseif ($materials[$index]['rencana'] >= $materials[$index]['realisasi']) {
-            //     $materials[$index]['sesuai'] = $materials[$index]['rencana'] - $materials[$index]['realisasi'];
-            // }
-
+                
             $tgl_mulai = date('Y-m-d',strtotime('+1 days',strtotime($tgl_mulai)));
         }
+        foreach ($materials as $key => $material) {
+            if ($material['rencana'] <= $material['realisasi']) {
+                $material[$key]['sesuai'] = $material['realisasi'] - $material['rencana'];
+            }elseif ($material['rencana'] >= $material['realisasi']) {
+                $materials[$key]['tidakSesuai'] = $material['rencana'] - $material['realisasi'];
+            }
+        }        
 
-        dd($materials);
-        
+		$pm = Pegawai::where('posisi_id', 1)->where('soft_delete', 0)->first();
+		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
+    	$excel = \Excel::create("Form Log-03 Laporan Evaluasi Mingguan Pengadaan Bahan", function ($excel) use ($materials, $pm, $splem) {
 
-		// $pm = Pegawai::where('posisi_id', 1)->where('soft_delete', 0)->first();
-		// $splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
-    	// $excel = \Excel::create("Form Log-03 Laporan Evaluasi Mingguan Pengadaan Bahan", function ($excel) use ($materials, $pm, $splem) {
+                $excel->sheet('New sheet', function ($sheet) use ($materials, $pm, $splem) {
 
-        //         $excel->sheet('New sheet', function ($sheet) use ($materials, $pm, $splem) {
+                    $sheet->loadView('logistik.admin.log03.unduh', ['data' => $materials, 'pm' => $pm, 'splem' => $splem]);
+                    $objDrawing = new PHPExcel_Worksheet_Drawing;
+                    $objDrawing->setPath(public_path('img/Waskita.png'));
+                    $objDrawing->setCoordinates('C1');
+                    $objDrawing->setWorksheet($sheet);
+                    $objDrawing->setResizeProportional(false);
+                    // set width later
+                    $objDrawing->setWidth(40);
+                    $objDrawing->setHeight(35);
+                    $sheet->getStyle('C1')->getAlignment()->setIndent(1);
 
-        //             $sheet->loadView('logistik.admin.log03.unduh', ['data' => $materials, 'pm' => $pm, 'splem' => $splem]);
-        //             $objDrawing = new PHPExcel_Worksheet_Drawing;
-        //             $objDrawing->setPath(public_path('img/Waskita.png'));
-        //             $objDrawing->setCoordinates('C1');
-        //             $objDrawing->setWorksheet($sheet);
-        //             $objDrawing->setResizeProportional(false);
-        //             // set width later
-        //             $objDrawing->setWidth(40);
-        //             $objDrawing->setHeight(35);
-        //             $sheet->getStyle('C1')->getAlignment()->setIndent(1);
+                    $sheet->getStyle('A13:N63')->getAlignment()->setWrapText(true);
+                    $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
+                    $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
+                        array('horizontal' => 'center')
+                    );
+                    $sheet->cells('A9:M11', function ($cells) {
+                        $cells->setValignment('center');
+                        $cells->setFontFamily('Tahoma');
+                    });
 
-        //             $sheet->getStyle('A13:N63')->getAlignment()->setWrapText(true);
-        //             $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
-        //             $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
-        //                 array('horizontal' => 'center')
-        //             );
-        //             $sheet->cells('A9:M11', function ($cells) {
-        //                 $cells->setValignment('center');
-        //                 $cells->setFontFamily('Tahoma');
-        //             });
-
-        //             $sheet->cell('D9:E11', function ($cell) {
-        //                 $cell->setValignment('center');
-        //             });
-        //             $sheet->cell('D8:E8', function ($cell) {
-        //                 $cell->setBorder('', '', 'thin', '');
-        //             });
-        //             $sheet->cell('C4', function ($cell) {
-        //                 $cell->setBorder('thin', 'thin', 'thin', 'thin');
-        //             });
-        //             $sheet->cell('C6', function ($cell) {
-        //                 $cell->setalignment('center');
-        //                 $cell->setValignment('center');
-        //                 $cell->setBorder('thin', 'thin', 'thin', 'thin');
-        //             });
-        //             // $sheet->cell('B14:E14', function($cell){
-        //             //     $cell->setBorder('','','','thin');
-        //             // });
-        //         });
-        //     });
-        //     $styleArray = array(
-        //         'font' => array(
-        //             'name' => 'Tahoma',
-        //         ));
-        //     $excel->getDefaultStyle()
-        //         ->applyFromArray($styleArray);
-        //     return $excel->export('xls');
+                    $sheet->cell('D9:E11', function ($cell) {
+                        $cell->setValignment('center');
+                    });
+                    $sheet->cell('D8:E8', function ($cell) {
+                        $cell->setBorder('', '', 'thin', '');
+                    });
+                    $sheet->cell('C4', function ($cell) {
+                        $cell->setBorder('thin', 'thin', 'thin', 'thin');
+                    });
+                    $sheet->cell('C6', function ($cell) {
+                        $cell->setalignment('center');
+                        $cell->setValignment('center');
+                        $cell->setBorder('thin', 'thin', 'thin', 'thin');
+                    });
+                    // $sheet->cell('B14:E14', function($cell){
+                    //     $cell->setBorder('','','','thin');
+                    // });
+                });
+            });
+            $styleArray = array(
+                'font' => array(
+                    'name' => 'Tahoma',
+                ));
+            $excel->getDefaultStyle()
+                ->applyFromArray($styleArray);
+            return $excel->export('xls');
 	}
 }
