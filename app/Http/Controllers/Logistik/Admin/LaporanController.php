@@ -206,22 +206,24 @@ class LaporanController extends Controller
                                                     ->get();
                         
                         foreach ($dt as $key => $value) {
-                           $dt_detail  = LogDetailPengajuanMaterial::where('tanggal_pengajuan', $tanggal_mulai))->where('material_id',$detail->material_id)->where('soft_delete',0)->get();
-
+                            $jumlah = 0;
+                           $dt_detail  = LogDetailPengajuanMaterial::where('tanggal_pengajuan', $tanggal_mulai)->where('material_id',$detail->material_id)->where('soft_delete',0)->get();
+                           
                            $dt_detail_lalu  = LogDetailPengajuanMaterial::whereMonth('tanggal_pengajuan', $bulan_lalu)
                                                                         ->whereYear('tanggal_pengajuan',$tahun)
                                                                         ->where('material_id',$detail->material_id)->where('soft_delete',0)->get();
 
                            foreach ($dt_detail as $key => $dtl) {
-                               $jumlah = $jumlah + $dtl->pemyerahan_jumlah;
+                               $jumlah = $jumlah +(int)$dtl->pemyerahan_jumlah;
                            }
                            $jumlah_lalu = 0;
                            foreach ($dt_detail_lalu as $key => $dtl_lalu) {
-                               $jumlah_lalu = $jumlah_lalu + $dtl_lalu->pemyerahan_jumlah;
+                               $jumlah_lalu = $jumlah_lalu + (int)$dtl_lalu->pemyerahan_jumlah;
                            }
                            $materials[$count]['jumlah_lalu']= $jumlah_lalu;
 
                         }
+                        
                         $materials[$count]['jumlah'][$tanggal_mulai] = $jumlah;
                         $tanggal_mulai = date('Y-m-d', strtotime("+1 day", strtotime($tanggal_mulai))); 
                     }
@@ -230,7 +232,6 @@ class LaporanController extends Controller
                 }
             }
         }
-
 
         $splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
         $admin = Pegawai::where('posisi_id', \Auth::user()->pegawai->posisi_id)->where('soft_delete', 0)->first();
@@ -289,7 +290,7 @@ class LaporanController extends Controller
             $excel->getActiveSheet()->getRowDimension('9')->setRowHeight(5);
             $excel->getActiveSheet()->getRowDimension('15')->setRowHeight(4);
             $excel->getActiveSheet()->getRowDimension('53')->setRowHeight(4);
-            $excel->getActiveSheet()->getRowDimension('54')->setRowHeight(5);
+            $excel->getActiveSheet()->getRowDimension('54')->setRowHeight(9);
             $excel->getActiveSheet()->getRowDimension('18')->setRowHeight(13);
             $excel->getActiveSheet()->getRowDimension('51')->setRowHeight(13);
             $excel->getActiveSheet()->getRowDimension('52')->setRowHeight(13);
