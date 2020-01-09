@@ -93,6 +93,7 @@ class PenerimaanController extends Controller
     {
         date_default_timezone_set("Asia/Jakarta");
         $materialId = \Input::get('material');
+        $tanggal_terima = \Input::get('tanggal_terima');
         $vol_lalu = \Input::get('vol_lalu');
         $vol_saat_ini = \Input::get('vol_saat_ini');
         $vol_jumlah = \Input::get('vol_jumlah');
@@ -132,7 +133,8 @@ class PenerimaanController extends Controller
             for ($i = 0; $i < $jmlPenerimaann; $i++) {
             	//if(($vol_saat_ini[$i] != '') || ($vol_saat_ini[$i] != 0)){
 	                $addDetail = new LogDetailPenerimaanMaterial;
-	                $addDetail->penerimaan_id = $penerimaanId;
+                    $addDetail->penerimaan_id = $penerimaanId;
+	                $addDetail->tanggal_terima = $tanggal_terima[$i];
 	                $addDetail->material_id = $materialId[$i];
 	                $addDetail->vol_lalu = $vol_lalu[$i];
 	                if($vol_saat_ini[$i] == ''){
@@ -227,6 +229,7 @@ class PenerimaanController extends Controller
         $jmlPermintaan = \Input::get('jumlah_data');
         date_default_timezone_set("Asia/Jakarta");
         $materialId = \Input::get('material');
+        $tanggal_terima = \Input::get('tanggal_terima');
         $vol_lalu = \Input::get('vol_lalu');
         $vol_saat_ini = \Input::get('vol_saat_ini');
         $vol_jumlah = \Input::get('vol_jumlah');
@@ -245,7 +248,8 @@ class PenerimaanController extends Controller
             	//if(($vol_saat_ini[$i] != '') || ($vol_saat_ini[$i] != 0)){
 	                $addDetail = new LogDetailPenerimaanMaterial;
 	                $addDetail->penerimaan_id = $id;
-	                $addDetail->material_id = $materialId[$i];
+                    $addDetail->material_id = $materialId[$i];
+	                $addDetail->tanggal_terima = $tanggal_terima[$i];
 	                $addDetail->vol_lalu = $vol_lalu[$i];
 	                if($vol_saat_ini[$i] == ''){
 	                	$vol_saat_ini[$i] =0;
