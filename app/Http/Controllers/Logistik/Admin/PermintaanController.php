@@ -105,6 +105,16 @@ class PermintaanController extends Controller
         return view('logistik.admin.permintaan.create', ['materials' => $materials]);
     }
 
+    public function getSatuanMaterial()
+    {
+        $materialId = \Input::get('material_id');
+        $materials = LogMaterial::where('id', $materialId)
+                                ->where('soft_delete', 0)
+                                ->first();
+
+        return json_encode($materials);
+    }
+
     public function postPermintaan()
     {
         date_default_timezone_set("Asia/Jakarta");
