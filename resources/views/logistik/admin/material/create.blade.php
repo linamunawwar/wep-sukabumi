@@ -32,6 +32,12 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Satuan Material <span class="required">*</span>:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" name="satuan" class='form-control' required="required" />
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Keterangan <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
                                     <textarea name="keterangan" rows="10" style="width:38.1em;"></textarea>
@@ -43,7 +49,6 @@
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 									<a class="btn btn-primary" href="{{url('Logistik/admin/material')}}">Cancel</a>
-									<button class="btn btn-primary" type="reset">Reset</button>
 									<button type="submit" class="btn btn-success">Submit</button>
 								</div>
 							</div>

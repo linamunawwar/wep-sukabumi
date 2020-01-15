@@ -25,6 +25,7 @@
 								<tr>
 									<th scope="col"> Kode Material </th>
 									<th scope="col"> Nama Material </th>
+									<th scope="col"> Satuan Material </th>
 									<th scope="col"> Keterangan </th>
 									<th scope="col"> Action </th>
 								</tr>
@@ -34,6 +35,7 @@
 									<tr>
 									<td>{{ $material->kode_material }}</td>
 									<td>{{ $material->nama }}</td>
+									<td>{{ $material->satuan }}</td>
 									<td>{{ $material->keterangan }}</td>
 									<td style="text-align:center;">
 										<a class="btn btn-default btn-xs" href="{{url('Logistik/admin/material/edit/'.$material->id.'')}}"><i class="fa fa-edit"></i>  Edit</a>
