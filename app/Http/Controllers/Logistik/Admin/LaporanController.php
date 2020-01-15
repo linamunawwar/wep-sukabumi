@@ -457,44 +457,50 @@ class LaporanController extends Controller
 		$tgl_mulai=konversi_tanggal($data['tanggal_mulai']);
 		$tgl_selesai=konversi_tanggal($data['tanggal_selesai']);
 		$dt = [];
-		$i = 1;
-		
-		while($tgl_mulai <= $tgl_selesai){				
-			$dt[$i]['material'] = '';
-			$dt[$i]['satuan'] = '';
-			$dt[$i]['tanggal'] = '';
-			$dt[$i]['jml_terima'] = 0;
-			$dt[$i]['jml_keluar'] = 0;	
+        $i = 1;      
+        
+		while($tgl_mulai <= $tgl_selesai){
+            $j = 0;	
+            $dt[$i]['tanggal'] = '';	
+            $dt[$i]['data'] = [];  
+            $dt[$i]['data'][$j]['material'] = '';
+            $dt[$i]['data'][$j]['satuan'] = '';
+            $dt[$i]['data'][$j]['jml_terima'] = 0;
+            $dt[$i]['data'][$j]['jml_keluar'] = 0;
 			
-			$dt[$i]['tanggal'] = $tgl_mulai;
-			
+			$dt[$i]['tanggal'] = $tgl_mulai;			
             $penerimaanDetails = LogDetailPenerimaanMaterial::where('tanggal_terima','=',$tgl_mulai)
                                                             ->where('soft_delete',0)
                                                             ->get();
-            
-            foreach ($penerimaanDetails as $key => $value) {					
-                $dt[$i]['material'] = $value->material->nama;
-                $dt[$i]['satuan'] = $value->material->satuan;
-                $dt[$i]['jml_terima'] = $value->vol_saat_ini;
-            }
-			
-			
 
-			$pengajuanDetails = LogDetailPengajuanPakai::where('tanggal_pengajuan','=',$tgl_mulai)
-															->where('soft_delete',0)
-                                                            ->get();
-            if ($pengajuanDetails) {					
-                foreach ($pengajuanDetails as $key => $value) {
-                    $dt[$i]['material'] = $value->material->nama;
-                    $dt[$i]['satuan'] = $value->material->satuan;
-                    $dt[$i]['jml_keluar'] = $value->permintaan_jumlah;
+            $pengajuanDetails = LogDetailPengajuanPakai::where('tanggal_pengajuan','=',$tgl_mulai)
+                                                        ->where('soft_delete',0)
+                                                        ->get();
+                                  				
+            foreach ($penerimaanDetails as $key => $penerimaan) {               
+                $dt[$i]['data'][$j]['material'] = $penerimaan->material->nama;
+                $dt[$i]['data'][$j]['satuan'] = $penerimaan->material->satuan;
+                $dt[$i]['data'][$j]['jml_terima'] = $penerimaan->vol_saat_ini;
+                $dt[$i]['data'][$j]['jml_keluar'] = 0;
+
+                foreach ($pengajuanDetails as $key => $pengajuan) {
+                    if ($pengajuan->material_id == $penerimaan->material_id) {
+                        $dt[$i]['data'][$j]['jml_keluar'] = $pengajuan->pemyerahan_jumlah;
+                    }
                 }
+            $j++;                
             }
-			
-			
+
+            foreach ($pengajuanDetails as $key => $pengajuan) {                
+                $dt[$i]['data'][$j]['material'] = $pengajuan->material->nama;
+                $dt[$i]['data'][$j]['satuan'] = $pengajuan->material->satuan;
+                $dt[$i]['data'][$j]['jml_terima'] = 0;
+                $dt[$i]['data'][$j]['jml_keluar'] = $pengajuan->pemyerahan_jumlah;
+                $j++;
+            }       
 			$i++;
 			$tgl_mulai = date('Y-m-d',strtotime('+1 days',strtotime($tgl_mulai)));
-		}
+        }
 
 		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
     	$excel = \Excel::create("Form Log-05 Laporan Harian Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($dt, $splem) {

@@ -73,7 +73,7 @@
 						  </div>
 						</div>
 
-						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"method="POST" style="display: none;">
+						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" style="display: none;">
 							<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 							<input type="hidden" name="kode_permintaan" class="kode_permintaan">
 							<div class="form-group">

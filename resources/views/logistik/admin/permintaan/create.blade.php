@@ -18,7 +18,7 @@
 					</div>
 					<div class="x_content">
 						<form id="demo-form2" data-parsley-validate  method="POST">
-							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 							Permintaan Material
 							<span style="float:right;"> Tanggal : {{ date('d F Y') }} </span>
 							<input type="hidden" name="tanggal" value="{{ date('d F Y') }}">
@@ -128,6 +128,26 @@
 @endsection
 @push('scripts')
 <script type="text/javascript">
+
+	$(document).on("change", ".material", function(){
+		var material_id = $('#material').val();
+		var _token = $('#_token').val();
+		
+		$.ajax({
+			type: "post",
+			url: '{{ url('Logistik/admin/permintaan/getSatuan') }}',
+			data: {
+				'material_id' : material_id,
+                '_token': _token
+			},
+			success: function(response){
+				var data = JSON.parse(response)
+				$('.satuan').val(data.satuan);
+				console.log(data.satuan);
+			}
+		})
+	});
+
 	$(document).ready(function(){
 		$('.material').select2();
 		$(document).on("click", "button.tambah", function(e){
@@ -167,14 +187,15 @@
 		});
 
 		$(document).on("click", "a.del", function(e){
-        e.preventDefault();
-        var sub = $(this).attr('idsub');
-        var jumlahdata = $('#jumlah_data').val();
-        
-        jumlahdata--;
-        $('#jumlah_data').val(jumlahdata);
-        $('.data_'+sub+'').remove();
-    });
+			e.preventDefault();
+			var sub = $(this).attr('idsub');
+			var jumlahdata = $('#jumlah_data').val();
+			
+			jumlahdata--;
+			$('#jumlah_data').val(jumlahdata);
+			$('.data_'+sub+'').remove();
+		});
 	});
+
 </script>
 @endpush

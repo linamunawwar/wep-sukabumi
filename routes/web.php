@@ -408,6 +408,7 @@ Route::group(['middleware' => 'auth'], function () {
 		//PERMINTAAN MATERIAL
 		Route::get('/permintaan', 'Logistik\Admin\PermintaanController@index');
 		Route::get('/permintaan/create', 'Logistik\Admin\PermintaanController@beforePostPermintaan');
+		Route::post('/permintaan/getSatuan', 'Logistik\Admin\PermintaanController@getSatuanMaterial');
 		Route::post('/permintaan/create', 'Logistik\Admin\PermintaanController@postPermintaan');
 		Route::get('/permintaan/detail/{id}', 'Logistik\Admin\PermintaanController@getDetailByPermintaanId');
 		Route::get('/permintaan/edit/{id}', 'Logistik\Admin\PermintaanController@getPermintaanById');

@@ -92,12 +92,29 @@
         <td></td>
         <td style="border: 1px double #000000;">{{ $key }}</td>
         <td style="border: 1px double #000000;">{{ $val['tanggal'] }}</td>
-        <td style="border: 1px double #000000;">{{ $val['material'] }}</td>
-        <td style="border: 1px double #000000;">{{ $val['jml_terima'] }}</td>
-        <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
-        <td style="border: 1px double #000000;">{{ $val['jml_keluar'] }}</td>
-        <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
-        <td style="border: 1px double #000000;"> </td>
+        @foreach ($val['data'] as $key => $val)
+          @if ($val['material'] != '')
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="border: 1px double #000000;">{{ $val['material'] }}</td>
+                <td style="border: 1px double #000000;">{{ $val['jml_terima'] }}</td>
+                <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
+                <td style="border: 1px double #000000;">{{ $val['jml_keluar'] }}</td>
+                <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
+                <td style="border: 1px double #000000;"> </td>
+              </tr>              
+          @else
+            <td style="border: 1px double #000000;">{{ $val['material'] }}</td>
+            <td style="border: 1px double #000000;">{{ $val['jml_terima'] }}</td>
+            <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
+            <td style="border: 1px double #000000;">{{ $val['jml_keluar'] }}</td>
+            <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
+            <td style="border: 1px double #000000;"> </td>
+          @endif
+        @endforeach
     </tr>
     @endforeach
     <tr></tr>
