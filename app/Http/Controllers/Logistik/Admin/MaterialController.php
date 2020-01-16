@@ -26,6 +26,7 @@ class MaterialController extends Controller
         $addMaterial = new logMaterial;
         $addMaterial->kode_material = $data['kode_material'];
         $addMaterial->nama = $data['nama'];
+        $addMaterial->satuan = $data['satuan'];
         $addMaterial->keterangan = $data['keterangan'];
         $addMaterial->user_id = \Auth::user()->id;
         $addMaterial->soft_delete = 0;
@@ -50,6 +51,7 @@ class MaterialController extends Controller
         $data = \Input::all();
         $material['kode_material'] = $data['kode_material'];
         $material['nama'] = $data['nama'];
+        $material['satuan'] = $data['satuan'];
         $material['keterangan'] = $data['keterangan'];
         $material['updated_at'] = date('Y-m-d H:i:s');
 
