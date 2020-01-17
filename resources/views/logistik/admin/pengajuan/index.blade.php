@@ -32,6 +32,9 @@
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>Pengajuan Material </h2>
+						<ul class="nav navbar-right panel_toolbox">
+							<li><a href="{{url('Logistik/admin/pengajuan/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
+						</ul>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
