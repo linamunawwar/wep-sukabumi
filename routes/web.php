@@ -433,6 +433,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 		//PENGAJUAN MATERIAL
 		Route::get('/pengajuan', 'Logistik\Admin\PengajuanController@index');
+		Route::get('/pengajuan/create', 'Logistik\Admin\PengajuanController@beforePostPengajuan');
+		Route::post('/pengajuan/cekData', 'Logistik\Admin\PengajuanController@cekData');
+		Route::post('/pengajuan/create', 'Logistik\Admin\PengajuanController@postPengajuan');
 		Route::get('/pengajuan/detail/{id}', 'Logistik\Admin\PengajuanController@getDetailByPengajuanId');
 		Route::get('/pengajuan/edit/{id}', 'Logistik\Admin\PengajuanController@getPengajuanById');
 		Route::post('/pengajuan/edit/{id}', 'Logistik\Admin\PengajuanController@updatePengajuan');
