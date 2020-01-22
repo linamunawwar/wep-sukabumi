@@ -65,46 +65,54 @@ class HomeController extends Controller
                         ->where('posisi_id',\Auth::user()->pegawai->posisi_id)->count();
 
             if(\Auth::user()->pegawai->kode_bagian == 'QHSE'){
-              $cutis_qc = Cuti::whereHas('pegawai',function ($q){
-                  $q->where('kode_bagian', 'QC');
-              })->count();
+              $cutis_qc = Cuti::where('is_verif_mngr',0)->where('soft_delete',0)
+                                ->whereHas('pegawai',function ($q){
+                          $q->where('kode_bagian', 'QC');
+                      })->count();
 
-              $cutis_hs = Cuti::whereHas('pegawai',function ($q){
-                  $q->where('kode_bagian', 'HS');
-              })->count();
+              $cutis_hs = Cuti::where('is_verif_mngr',0)->where('soft_delete',0)
+                        ->whereHas('pegawai',function ($q){
+                        $q->where('kode_bagian', 'HS');
+                    })->count();
 
               $cuti= $cutis_qc + $cutis_hs;
               
 
               //izin
-              $izin_qc = Izin::whereHas('pegawai',function ($q){
+              $izin_qc = Izin::where('is_verif_mngr',0)->where('soft_delete',0)
+                        ->whereHas('pegawai',function ($q){
                   $q->where('kode_bagian', 'QC');
               })->count();
 
-              $izin_hs = Izin::whereHas('pegawai',function ($q){
+              $izin_hs = Izin::where('is_verif_mngr',0)->where('soft_delete',0)
+                        ->whereHas('pegawai',function ($q){
                   $q->where('kode_bagian', 'HS');
               })->count();
 
                 $izin = $izin_hs + $izin_qc;
 
               //pecat
-              $pecat_qc = Pecat::whereHas('pegawai',function ($q){
+              $pecat_qc = Pecat::where('is_verif_mngr',0)->where('soft_delete',0)
+                        ->whereHas('pegawai',function ($q){
                   $q->where('kode_bagian', 'QC');
               })->count();
 
-              $pecat_hs = Pecat::whereHas('pegawai',function ($q){
+              $pecat_hs = Pecat::where('is_verif_mngr',0)->where('soft_delete',0)
+                        ->whereHas('pegawai',function ($q){
                   $q->where('kode_bagian', 'HS');
               })->count();
 
                 $pecat = $pecat_qc + $pecat_hs;
 
               //resign
-              $resign_qc = Resign::whereHas('pegawai',function ($q){
+              $resign_qc = Resign::where('is_verif_mngr',0)->where('soft_delete',0)
+                        ->whereHas('pegawai',function ($q){
                   $q->where('kode_bagian', 'QC');
               })->count();
 
 
-              $resign_hs = Resign::whereHas('pegawai',function ($q){
+              $resign_hs = Resign::where('is_verif_mngr',0)->where('soft_delete',0)
+                        ->whereHas('pegawai',function ($q){
                   $q->where('kode_bagian', 'HS');
               })->count();
 

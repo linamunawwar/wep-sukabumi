@@ -14,7 +14,7 @@ class MemoController extends Controller
 {
     public function index()
     {
-    	$memos = Memo::where('soft_delete',0)->get();
+    	$memos = Memo::where('soft_delete',0)->orderBy('created_at','desc')->get();
 
         return view('admin.memo.index',['memos'=>$memos]);
     }
