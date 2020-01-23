@@ -45,7 +45,7 @@ class HomeController extends Controller
             $spj = Spj::where('is_verif_sdm',0)->where('soft_delete',0)->count();
             $pecat = Pecat::where('is_verif_sdm',0)->where('soft_delete',0)->count();
             $resign = Resign::where('is_verif_sdm',0)->where('soft_delete',0)->count();
-            $rkp = Rkp::where('soft_delete',0)->count();
+            $rkp = Rkp::where('soft_delete',0)->where('viewed_at',null)->count();
             $disposisi = Disposisi::where('note_pm','!=',null)->where('soft_delete',0)->count();
             return view('admin.home_admin',['pegawai'=>$pegawai,'memo'=>$memo,'cuti'=>$cuti,'spj'=>$spj,'pecat'=>$pecat,'resign'=>$resign,'rkp'=>$rkp,'disposisi'=>$disposisi]);
         }
