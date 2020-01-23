@@ -24,4 +24,15 @@ class RkpController extends Controller
 
     	return $rkp;
     }
+
+    public function getDelete(){
+      $data = \Input::all();
+      $del = Rkp::where('id',$data['id_rkp'])->update(['soft_delete'=>1]);
+      $del2 = DetailRkp::where('id_rkp',$data['id_rkp'])->update(['soft_delete'=>1]);
+
+      if($del && $del2){
+        return redirect('admin/rkp');
+      }
+
+    }
 }

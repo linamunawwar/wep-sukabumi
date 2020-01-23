@@ -104,6 +104,13 @@ class RkpController extends Controller
     public function getForm1($id)
     {
         $rkp = Rkp::find($id);
+        //updated viewed_at, ter-update hanya kalau dilihat admin
+        if(\Auth::user()->role_id == 1){
+            date_default_timezone_set("Asia/Jakarta");
+            $now = date('Y-m-d H:i:s');
+            $updt = Rkp::where('id',$id)->update(['viewed_at'=>$now]);
+        }
+        //----------------------
         $dt_rkp = DetailRkp::where('id_rkp',$id)->where('soft_delete',0)->get();
         $pm = Pegawai::where('posisi_id',1)->where('soft_delete',0)->first();
         switch ($rkp->kode_bagian) {
@@ -189,6 +196,13 @@ class RkpController extends Controller
     public function getForm2($id)
     {
         $rkp = Rkp::find($id);
+        //updated viewed_a
+        if(\Auth::user()->role_id == 1){
+            date_default_timezone_set("Asia/Jakarta");
+            $now = date('Y-m-d H:i:s');
+            $updt = Rkp::where('id',$id)->update(['viewed_at'=>$now]);
+        }
+        //----------------------
         $dt_rkp = DetailRkp::where('id_rkp',$id)->where('soft_delete',0)->get();
         $pm = Pegawai::where('posisi_id',1)->where('soft_delete',0)->first();
         switch ($rkp->kode_bagian) {
@@ -215,6 +229,7 @@ class RkpController extends Controller
                 break;
         }
         $manager = Pegawai::where('posisi_id',$kode)->where('soft_delete',0)->first();
+        
 
         $excel = \Excel::create('Form02_Rencana_Kebutuhan_Pegawai', function($excel) use ($rkp,$dt_rkp,$pm,$manager) {
 
@@ -278,5 +293,14 @@ class RkpController extends Controller
                 return $excel->export('xls');     
     }
 
-     
+     public function getDelete(){
+      $data = \Input::all();
+      $del = Rkp::where('id',$data['id_rkp'])->update(['soft_delete'=>1]);
+      $del2 = DetailRkp::where('id_rkp',$data['id_rkp'])->update(['soft_delete'=>1]);
+
+      if($del && $del2){
+        return redirect('manager/rkp');
+      }
+
+    }
 }

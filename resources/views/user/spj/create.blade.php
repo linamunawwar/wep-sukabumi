@@ -37,6 +37,12 @@
 									<input type='text' value='' name='no_sppd' class='form-control' required="required" placeholder="" />
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Kota / Tujuan <span class="required">*</span>:</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<input type='text' name='tujuan' class='form-control' required="required" placeholder="" />
+								</div>
+							</div>
 							<div class="form-group" style="display: none;">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Pemberi Tugas <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">

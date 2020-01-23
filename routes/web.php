@@ -144,6 +144,7 @@ Route::group(['middleware' => 'auth'], function () {
 		//rkp
 		Route::get('/rkp', 'admin\RkpController@index');
 		Route::get('/rkp/detail/{id}', 'admin\RkpController@getDetail');
+		Route::delete('/rkp/delete', 'admin\RkpController@getDelete');
 		Route::get('/rkp/form1/{id}', 'manager\RkpController@getForm1');
 		Route::get('/rkp/form2/{id}', 'manager\RkpController@getForm2');
 
@@ -301,6 +302,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/rkp', 'manager\RkpController@index');
 		Route::get('/rkp/create', 'manager\RkpController@getCreate');
 		Route::post('/rkp/create', 'manager\RkpController@postCreate');
+		Route::delete('/rkp/delete', 'manager\RkpController@getDelete');
 		Route::get('/rkp/form1/{id}', 'manager\RkpController@getForm1');
 		Route::get('/rkp/form2/{id}', 'manager\RkpController@getForm2');
 
