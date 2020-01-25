@@ -50,6 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pegawai/pecat/create', 'admin\PegawaiController@getCreatePecat');
 		Route::post('/pegawai/pecat/create', 'admin\PegawaiController@postCreatePecat');
 		Route::get('/pegawai/pecat/spk/{id}', 'admin\PegawaiController@getUnduhSPK');
+		Route::delete('/pegawai/pecat/delete', 'admin\PegawaiController@getDeletePecat');
 
 		//resign
 		Route::get('/pegawai/resign', 'admin\PegawaiController@getResign');
