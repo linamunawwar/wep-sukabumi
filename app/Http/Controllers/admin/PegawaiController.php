@@ -1040,8 +1040,20 @@ class PegawaiController extends Controller
 
       $pecat->save();
 
+      $update = Pegawai::where('nip',$data['nip'])->update(['tanggal_keluar'=>$data['terakhir_kerja']]);
+
       return redirect('/admin/pegawai/pecat');
       
+    }
+
+    public function getDeletePecat(){
+      $data = \Input::all();
+      $del = Pecat::where('id',$data['id_pecat'])->delete();
+
+      if($del){
+        return redirect('admin/pegawai/pecat');
+      }
+
     }
 
     public function getUnduhSPK($id)
