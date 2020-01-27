@@ -95,25 +95,25 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Uang Transport *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="uang_transport" class="form-control col-md-7 col-xs-12 uang_transport" value="{{$spj->uang_transport}}">
+									<input type="text" name="uang_transport" class="form-control col-md-7 col-xs-12 uang_transport" value="{{$spj->uang_transport}}" required="required">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Uang Penginapan *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="uang_penginapan" class="form-control col-md-7 col-xs-12 uang_penginapan"  value="{{$spj->uang_penginapan}}">
+									<input type="text" name="uang_penginapan" class="form-control col-md-7 col-xs-12 uang_penginapan"  value="{{$spj->uang_penginapan}}" required="required">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Uang Konsumsi & Akomodasi Setempat*:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="uang_konsumsi" class="form-control col-md-7 col-xs-12 uang_konsumsi"  value="{{$spj->uang_konsumsi}}">
+									<input type="text" name="uang_konsumsi" class="form-control col-md-7 col-xs-12 uang_konsumsi"  value="{{$spj->uang_konsumsi}}" required="required">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Uang Taksi *:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="uang_taksi" class="form-control col-md-7 col-xs-12 uang_taksi"  value="{{$spj->uang_taksi}}">
+									<input type="text" name="uang_taksi" class="form-control col-md-7 col-xs-12 uang_taksi"  value="{{$spj->uang_taksi}}" required="required">
 								</div>
 							</div>
 							<div class="form-group">
