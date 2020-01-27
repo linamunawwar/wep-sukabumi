@@ -58,6 +58,13 @@
 						<span class="count_bottom"><i class="green">Need To be processed</i></span>
 					</a>
 				</div>
+				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
+					<a href="{{url('manager/spj/pengajuan')}}">
+						<span class="count_top"><i class="fa fa-exchange"></i> SPJ</span>
+						<div class="count">{{$spj}}</div>
+						<span class="count_bottom"><i class="green">Need To be Approved</i></span>
+					</a>
+				</div>
 			</div>
 
 	    	<br>
