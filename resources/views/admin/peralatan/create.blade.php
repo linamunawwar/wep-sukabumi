@@ -36,7 +36,7 @@
 									<select class="form-control kode_barang" name="kode_barang" required="required">
 										<option value="">Pilih barang</option>
 										@foreach($alats as $alat)
-											<option value="{{$alat->kode_barang}}">{{$alat->nama_barang}}</option>
+											<option value="{{$alat->kode_barang}}">{{$alat->nama_barang}} ( {{$alat->tipe_barang}} )</option>
 										@endforeach
 									</select>
 								</div>
