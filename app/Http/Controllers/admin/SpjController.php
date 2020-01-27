@@ -84,8 +84,12 @@ class SpjController extends Controller
         $date1 = new \DateTime($data['tanggal_berangkat']);
         $date2 = new \DateTime($data['tanggal_pulang']);
         $days  = $date2->diff($date1)->format('%a');
-        $data['uang_konsumsi'] = $data['uang_konsumsi'] * $days;
-        $data['uang_penginapan'] = $data['uang_penginapan'] * $days;
+        if(is_numeric($data['uang_konsumsi'])){
+          $data['uang_konsumsi'] = $data['uang_konsumsi'] * $days;
+        }
+        if(is_numeric($data['uang_penginapan'])){
+          $data['uang_penginapan'] = $data['uang_penginapan'] * $days;
+        }
         unset($data['_token']);
 
         $spj = Spj::where('id',$id)->update($data);
