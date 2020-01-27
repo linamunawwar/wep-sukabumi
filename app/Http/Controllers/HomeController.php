@@ -166,9 +166,10 @@ class HomeController extends Controller
                     })->count();
             $resign_sdm = Resign::where('is_verif_sdm',0)->where('soft_delete',0)->count();
             $resign = $resign + $resign_sdm;
+            $spj = Spj::where('is_verif_sdm','!=',1)->where('soft_delete',0)->count();
             $disposisi = DisposisiTugas::where('status','!=',1)->where('soft_delete',0)
                     ->where('posisi_id',\Auth::user()->pegawai->posisi_id)->count();
-            return view('manager.home_manager_sdm',['memo'=>$memo,'cuti'=>$cuti,'izin'=>$izin,'pecat'=>$pecat,'resign'=>$resign,'disposisi'=>$disposisi,'slip_gaji'=>$slip_gaji ]);
+            return view('manager.home_manager_sdm',['memo'=>$memo,'cuti'=>$cuti,'izin'=>$izin,'pecat'=>$pecat,'resign'=>$resign,'disposisi'=>$disposisi,'slip_gaji'=>$slip_gaji,'spj'=>$spj ]);
         }
 
         //Project Manager
