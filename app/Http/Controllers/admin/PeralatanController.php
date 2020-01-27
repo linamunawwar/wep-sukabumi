@@ -36,8 +36,14 @@ class PeralatanController extends Controller
         $alat->tanggal_pinjam = konversi_tanggal($data['tanggal_pinjam']);
         $alat->user_id = \Auth::user()->id;
         $alat->role_id = \Auth::user()->role_id;
+        $pegawai = Pegawai::where('nip',$data['nip'])->first();
+        $data['nama_barang'] = $find->nama_barang;
 
-        $alat->save();
+        if($alat->save()){
+            \Mail::send('mail.test',$data, function($message) use ($pegawai,$data) {
+                $message->to($pegawai->email, '')->subject('Peminjaman Barang');
+            });
+        }
 
         return redirect('admin/peralatan');
     }
@@ -66,7 +72,8 @@ class PeralatanController extends Controller
 
     public function getDelete($id)
     {
-        $alat = Peralatan::where('id',$id)->update(['soft_delete'=>1]);
+        // $alat = Peralatan::where('id',$id)->update(['soft_delete'=>1]);
+        $alat = Peralatan::where('id',$id)->delete();
 
         return redirect('admin/peralatan');
     }
@@ -104,7 +111,6 @@ class PeralatanController extends Controller
         $alat->role_id = \Auth::user()->role_id;
 
         $alat->save();
-
         return redirect('admin/peralatan/data');
     }
 
