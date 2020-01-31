@@ -150,7 +150,7 @@ class HomeController extends Controller
                     ->where('is_verif_mngr',1)
                     ->where('is_verif_sdm',0)
                     ->where('soft_delete',0)
-                    ->orwhere('is_verif_mngr',1)
+                    ->orwhere('is_verif_mngr',0)
                     ->where('is_verif_sdm',0)
                     ->where('soft_delete',0)
                     ->count();
