@@ -152,7 +152,11 @@ class HomeController extends Controller
                     ->where('soft_delete',0)
                     ->orwhere('is_verif_mngr',0)
                     ->where('is_verif_sdm',0)
+                    ->where('is_verif_penggannti',1)
                     ->where('soft_delete',0)
+                    ->whereHas('pegawai',function ($q){
+                        $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
+                    })
                     ->count();
             // $cuti = $cuti + $cuti_sdm;
             $izin = Izin::where('is_verif_mngr',0)->where('soft_delete',0)
