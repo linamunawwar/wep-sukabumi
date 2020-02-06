@@ -1,6 +1,6 @@
 <!-- top navigation -->
 <div class="top_nav">
-    <div class="nav_menu" style="margin-left: 10px; margin-bottom: 0px; background: #8C001B; color: white!important;">
+    <div class="nav_menu" style="margin-left: 0px; margin-bottom: 0px; background: #8C001B; color: white!important;">
         <nav>
             <div class="nav toggle">
                 <a id="menu_toggle" style="color: white!important;"><i class="fa fa-bars"></i></a>

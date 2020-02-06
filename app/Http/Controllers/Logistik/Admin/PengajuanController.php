@@ -20,18 +20,10 @@ class PengajuanController extends Controller
     {
         $pengajuans = LogPengajuanMaterial::where('soft_delete', 0)->get();
         foreach ($pengajuans as $pengajuan) {
-            if ($pengajuan->is_admin != 1) {
-                if ($pengajuan->is_admin == null) {
+            if ($pengajuan->is_som != 1) {
+                if ($pengajuan->is_som == null) {
                     $pengajuan->color = "#D63031";
                     $pengajuan->text = "Proses Pengecekan";
-                } elseif ($pengajuan->is_admin == 0) {
-                    $pengajuan->color = "#D63031";
-                    $pengajuan->text = "Rejected By Admin";
-                }
-            }elseif ($pengajuan->is_som != 1) {
-                if ($pengajuan->is_som == null) {
-                    $pengajuan->color = "#74B9FF";
-                    $pengajuan->text = "Accepted By ADMIN";
                 } elseif ($pengajuan->is_som == 0) {
                     $pengajuan->color = "#D63031";
                     $pengajuan->text = "Rejected By SOM";
@@ -151,52 +143,6 @@ class PengajuanController extends Controller
                 $addDetailPengajuanMaterial->created_at = date('Y-m-d');
 
                 $addDetailPengajuanMaterial->save();
-            }
-        }
-        return redirect('Logistik/admin/pengajuan');
-    }
-
-    public function beforeApprovePengajuan($id)
-    {
-        $findPengajuan = LogPengajuanMaterial::where('id', $id)->where('soft_delete', 0)->first();
-        if ($findPengajuan) {
-            $getDetailPengajuan = LogDetailPengajuanMaterial::where('pengajuan_id', $findPengajuan->id)->where('soft_delete', 0)->get();
-        }
-
-        return view('logistik.admin.pengajuan.approve', ['pengajuan' => $findPengajuan, 'details' => $getDetailPengajuan]);
-    }
-
-    public function approvePengajuan($id)
-    {
-        date_default_timezone_set("Asia/Jakarta");
-        $find = LogPengajuanMaterial::where('id', $id)->where('soft_delete', 0)->first();
-        if ($find) {
-            $cekApprove = \Input::get('approve');
-            $cekReject = \Input::get('reject');
-            $jml = \input::get('jumlahData');
-            $detailId = \input::get('detailId');
-            $penyerahanSatuan = \input::get('penyerahanSatuan');
-            $penyerahanJumlah = \input::get('penyerahanJumlah');
-
-            if (\Auth::user()->role_id == 6) { //splem
-                if (isset($cekApprove)) {
-                    $dt['is_admin'] = 1;
-                    $dt['is_admin_at'] = date('Y-m-d H:i:s');
-
-                } elseif (isset($cekReject)) {
-                    $dt['is_admin'] = 0;
-                    $dt['is_admin_at'] = date('Y-m-d H:i:s');
-                }
-                $dt['note_admin'] = \Input::get('note');
-                $update = LogPengajuanMaterial::where('id', $id)->update($dt);
-                if ($update) {
-                    for ($i = 0; $i < $jml; $i++) {
-                        $dp['penyerahan_satuan'] = $penyerahanSatuan[$i];
-                        $dp['pemyerahan_jumlah'] = $penyerahanJumlah[$i];
-
-                        $updateDetail = LogDetailPengajuanMaterial::where(['pengajuan_id' => $id, 'id' => $detailId[$i]])->update($dp);
-                    }
-                }
             }
         }
         return redirect('Logistik/admin/pengajuan');

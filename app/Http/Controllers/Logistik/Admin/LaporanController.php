@@ -591,7 +591,6 @@ class LaporanController extends Controller
                     }
                 }
             }
-
                     
                     $penerimaans = LogDetailPenerimaanMaterial::where('soft_delete',0)
                                                             ->where('tanggal_terima', '=', $tgl_mulai)

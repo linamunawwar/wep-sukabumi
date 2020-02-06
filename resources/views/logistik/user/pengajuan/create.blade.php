@@ -87,7 +87,7 @@
 									<div class="form-group">
 										<label style="display: inline-block;" for="nama">No. WBS </label>
 										<p style="display: inline-block;">
-											<input type="text" name="no_wbs" class='form-control no_wbs' id="no_wbs" required='required'>
+											<input type="text" name="no_wbs" class='form-control no_wbs' id="no_wbs">
 										</p>
 									</div>
 								</div>

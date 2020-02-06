@@ -84,6 +84,10 @@ class SpjController extends Controller
         $date1 = new \DateTime($data['tanggal_berangkat']);
         $date2 = new \DateTime($data['tanggal_pulang']);
         $days  = $date2->diff($date1)->format('%a');
+        if($days == 0){
+          $days = 1;
+        }
+        
         if(is_numeric($data['uang_konsumsi'])){
           $data['uang_konsumsi'] = $data['uang_konsumsi'] * $days;
         }

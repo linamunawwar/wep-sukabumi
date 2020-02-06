@@ -79,7 +79,7 @@
                                 <div class="form-group">
                                     <label style="display: inline-block;" for="nama"> Volume. </label>
                                     <p style="display: inline-block;">
-                                        <input type="text" name="volume" class='form-control no_wbs' value="{{ $pengajuan->volume }}" required='required'>
+                                        <input type="text" name="volume" class='form-control volume' value="{{ $pengajuan->volume }}" required='required'>
                                     </p>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                                 <div class="form-group">
                                     <label style="display: inline-block;" for="nama">No. WBS </label>
                                     <p style="display: inline-block;">
-                                        <input type="text" name="no_wbs" class='form-control no_wbs' value="{{ $pengajuan->no_wbs }}" required='required'>
+                                        <input type="text" name="no_wbs" class='form-control no_wbs' value="{{ $pengajuan->no_wbs }}" >
                                     </p>
                                 </div>
                             </div>

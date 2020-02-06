@@ -159,7 +159,7 @@ class HomeController extends Controller
                     })
                     ->count();
             // $cuti = $cuti + $cuti_sdm;
-            $izin = Izin::where('is_verif_mngr',0)->where('soft_delete',0)
+            $izin = Izin::where('is_verif_sdm','!=',1)->where('soft_delete',0)
                     ->whereHas('pegawai',function ($q){
                         $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
                     })->count();
