@@ -39,6 +39,9 @@ class IzinController extends Controller
       $izin->is_verif_mngr = 0;
       $izin->verif_mngr_by = 0;
       $izin->verify_mngr_time = 0;
+      $izin->is_verif_sdm = 0;
+      $izin->verif_sdm_by = 0;
+      $izin->verify_sdm_time = 0;
       $izin->user_id = \Auth::user()->id;
       $izin->role_id = \Auth::user()->role_id;
 
