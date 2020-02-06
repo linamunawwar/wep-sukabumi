@@ -18,18 +18,10 @@ class PengajuanController extends Controller
     {
         $pengajuans = LogPengajuanMaterial::where('soft_delete', 0)->get();
         foreach ($pengajuans as $pengajuan) {
-            if ($pengajuan->is_admin != 1) {
-                if ($pengajuan->is_admin == null) {
+            if ($pengajuan->is_som != 1) {
+                if ($pengajuan->is_som == null) {
                     $pengajuan->color = "#D63031";
                     $pengajuan->text = "Proses Pengecekan";
-                } elseif ($pengajuan->is_admin == 0) {
-                    $pengajuan->color = "#D63031";
-                    $pengajuan->text = "Rejected By Admin";
-                }
-            } elseif ($pengajuan->is_som != 1) {
-                if ($pengajuan->is_som == null) {
-                    $pengajuan->color = "#74B9FF";
-                    $pengajuan->text = "Accepted By ADMIN";
                 } elseif ($pengajuan->is_som == 0) {
                     $pengajuan->color = "#D63031";
                     $pengajuan->text = "Rejected By SOM";
@@ -97,7 +89,6 @@ class PengajuanController extends Controller
                 if (isset($cekApprove)) {
                     $dt['is_splem'] = 1;
                     $dt['is_splem_at'] = date('Y-m-d H:i:s');
-                    
                 } elseif (isset($cekReject)) {
                     $dt['is_splem'] = 0;
                     $dt['is_splem_at'] = date('Y-m-d H:i:s');

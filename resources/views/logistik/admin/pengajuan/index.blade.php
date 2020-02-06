@@ -60,27 +60,12 @@
 										<td>{{ date('d F Y', strtotime($pengajuan->tanggal)) }}</td>										
 										<td>{{ $pengajuan->pengajuanJenisPekerjaan->nama }}</td>										
 										<td>{{ $pengajuan->pengajuanLokasiPekerjaan->nama }}</td>										
-										<td style="color:{{ $pengajuan->color }};">
-											{{ $pengajuan->text }}
-											@if(($pengajuan->is_som == 0) || ($pengajuan->is_slem == 0) || ($pengajuan->is_scarm == 0) || ($pengajuan->is_pm == 0))
-												<br>
-												<button data-toggle="modal"  id_pengajuan='{{$pengajuan->id}}' data-target="#NoteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-note" onclick='noteData("{{$pengajuan->id}}")'>Note</button>
-											@endif
-										</td>										
+										<td style="color:{{ $pengajuan->color }};"> {{ $pengajuan->text }} </td>										
 										<td style="text-align:center;">
-												<a class="btn btn-default btn-xs" title="Detail" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/detail/'.$pengajuan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>  </a>
-												<a class="btn btn-default btn-xs" title="Edit" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/edit/'.$pengajuan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
-                                                <a class="btn btn-default btn-xs" title="Download" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/unduh/'.$pengajuan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>
-                                                @if (
-                                                        \Auth::user()->role_id == 6 && $pengajuan->is_admin != 1
-                                                    )
-                                                    <br><a class="btn btn-default btn-xs" title="Approve" style="background-color:#049372; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/approve/'.$pengajuan->id.'')}}"><i class="fa fa-check" title="Approve" style="font-size:15px;"></i> Approve </a>
-                                                @elseif(
-                                                		\Auth::user()->role_id == 6 && $pengajuan->is_admin == 1
-                                                )
-                                                    <br><a class="btn btn-default btn-xs" title="approve" style="background-color:#607D8B; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;"><i class="fa fa-close" style="font-size:15px;"></i> Approve </a>
-                                                @endif												
-											</td>										
+											<a class="btn btn-default btn-xs" title="Detail" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/detail/'.$pengajuan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>  </a>
+											<a class="btn btn-default btn-xs" title="Edit" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/edit/'.$pengajuan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
+											<a class="btn btn-default btn-xs" title="Download" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/unduh/'.$pengajuan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>                											
+										</td>										
 									</tr>
 								@endforeach						
 							</tbody>
