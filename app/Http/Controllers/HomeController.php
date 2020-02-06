@@ -169,7 +169,6 @@ class HomeController extends Controller
                         $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
                     })
                     ->count();
-                    dd($izin);
             $slip_gaji = SLipGaji::where('is_verif_sdm',0)->where('soft_delete',0)->count();
                  
             $pecat = Pecat::where('is_verif_mngr',0)->where('soft_delete',0)
