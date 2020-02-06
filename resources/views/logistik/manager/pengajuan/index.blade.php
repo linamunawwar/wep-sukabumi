@@ -67,8 +67,8 @@
 												<a class="btn btn-dark btn-xs" title="Download" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em; opacity: 0.5;"><i class="fa fa-download" style="font-size:15px;opacity: 0.5;"></i>  </a>
 												@endif
 												@if (
-                                                        ((\Auth::user()->pegawai->posisi_id == 8) && ($pengajuan->is_som != 1) && ($pengajuan->is_admin == 1)) || 
-                                                        ((\Auth::user()->pegawai->posisi_id == 7) && ($pengajuan->is_admin == 1) && ($pengajuan->is_som == 1) && ($pengajuan->is_splem != 1)) 
+                                                        ((\Auth::user()->pegawai->posisi_id == 8) && ($pengajuan->is_som != 1)) || 
+                                                        ((\Auth::user()->pegawai->posisi_id == 7) && ($pengajuan->is_som == 1) && ($pengajuan->is_splem != 1)) 
                                                     )
                                                     <br><a class="btn btn-default btn-xs" title="Approve" style="background-color:#049372; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/manager/pengajuan/approve/'.$pengajuan->id.'')}}"><i class="fa fa-check" title="Approve" style="font-size:15px;"></i> Approve </a>
                                                 @elseif(
