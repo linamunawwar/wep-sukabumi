@@ -34,10 +34,7 @@ class PermintaanController extends Controller
     {
         $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->get();
         foreach ($permintaans as $permintaan) {
-            if($permintaan->is_admin == 1){
-                $permintaan->color = "#D63031";
-                $permintaan->text = "Edited By Admin";
-            }elseif ($permintaan->is_som != 1) {
+            if ($permintaan->is_som != 1) {
                 if ($permintaan->is_som == Null) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Proses Pengecekan";
@@ -72,6 +69,16 @@ class PermintaanController extends Controller
             } elseif ($permintaan->is_pm == 1) {
                 $permintaan->color = "#74B9FF";
                 $permintaan->text = "Accepted By PM";
+            }
+
+            if($permintaan->is_notif == 1) {
+                $permintaan->notifColor = "#6C7A89";
+                $permintaan->notifStyle = 'margin-left:-22px; color:#F7CA18;';
+                $permintaan->notifIcon = "fa fa-star ";
+            }else {
+                $permintaan->notifColor = "#FF9800";
+                $permintaan->notifStyle = "";
+                $permintaan->notifIcon = "";
             }
         }
 
