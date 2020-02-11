@@ -5,7 +5,7 @@
 	<!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
 @endpush
 <style>
-	#datatable tbody tr td {
+	#datatable {
 		text-align: center;
 		vertical-align: middle;
 		font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
@@ -34,6 +34,7 @@
 								<tr>
 									<th scope="col"> No </th>
 									<th scope="col"> Kode Permintaan </th>
+									<th scope="col"> Nama Peminta </th>
 									<th scope="col"> Tanggal </th>
 									<th scope="col"> Status </th>
 									<th scope="col"> Action </th>
@@ -45,6 +46,7 @@
 									<tr>
 										<td>{{ $no++ }}</td>
 										<td>{{ $permintaan->kode_permintaan }}</td>
+										<td>{{ $permintaan->permintaanUser->name }}</td>
 										<td>{{ date('d F Y', strtotime($permintaan->tanggal)) }}</td>
 										<td style="color:{{ $permintaan->color }};">
 											{{ $permintaan->text }} 
@@ -54,7 +56,7 @@
 											@endif
 										</td>
 										<td style="text-align:center;">
-											<span style="margin-right:10px;"><a class="btn btn-default btn-xs" title="Detail" style="background-color :{{$permintaan->notifColor}}; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{url('Logistik/admin/permintaan/detail/'.$permintaan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i></a> <sup style="{{$permintaan->notifStyle}}"> <i class="{{$permintaan->notifIcon}}" style='font-size:12px;'> </i> </sup>   </span>
+											<span style="margin-right:10px;"><a href="{{ url('Logistik/admin/permintaan/detail/'.$permintaan->id.'') }}" class="btn btn-default btn-xs" title="Detail" style="background-color :{{$permintaan->notifColor}}; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;"><i class="fa fa-th-list" style="font-size:15px;"></i></a> <sup style="{{$permintaan->notifStyle}}"> <i class="{{$permintaan->notifIcon}}" style='font-size:12px;'> </i> </sup>   </span>
 											<a class="btn btn-default btn-xs" title="Edit" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/permintaan/edit/'.$permintaan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
 											<button data-toggle="modal" title="Hapus"  id_permintaan='{{$permintaan->id}}' data-target="#DeleteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-delete" onclick='deleteData("{{$permintaan->id}}")'><i class="fa fa-trash" style="font-size:15px;"></i></button>
 											@if ($permintaan->is_pm == 1)

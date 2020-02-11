@@ -72,8 +72,8 @@ class PermintaanController extends Controller
             }
 
             if($permintaan->is_notif == 1) {
-                $permintaan->notifColor = "#6C7A89";
-                $permintaan->notifStyle = 'margin-left:-22px; color:#F7CA18;';
+                $permintaan->notifColor = "#FF9800";
+                $permintaan->notifStyle = 'margin-left:-22px; color:#0984E3;';
                 $permintaan->notifIcon = "fa fa-star ";
             }else {
                 $permintaan->notifColor = "#FF9800";
@@ -244,7 +244,9 @@ class PermintaanController extends Controller
     public function getDetailByPermintaanId($id)
     {
         $details = LogDetailPermintaanMaterial::where(['permintaan_id' => $id, 'soft_delete' => 0])->get();
-        return view('logistik.admin.permintaan.detail', ['details' => $details]);
+        $notifPermintaan = LogPermintaanMaterial::where(['id' => $id, 'soft_delete' => 0])->first();
+        
+        return view('logistik.admin.permintaan.detail', ['details' => $details, 'notifPermintaan' => $notifPermintaan]);
     }
 
     

@@ -22,7 +22,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Kode Material <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="text" name="kode_material" class='form-control' required="required" />
+									<input type="text" name="kode_material" class='form-control' value="{{$kodeMaterial}}" readonly />
 								</div>
 							</div>
 							<div class="form-group">

@@ -19,4 +19,9 @@ class LogPenerimaanMaterial extends Model
     {
         return $this->belongsTo('App\Models\LogPermintaanMaterial', 'kode_permintaan', 'kode_permintaan');
     }
+
+    public function pegawai()
+    {
+        return $this->belongsTo('App\Pegawai','pegawai_id','nip');
+    }
 }
