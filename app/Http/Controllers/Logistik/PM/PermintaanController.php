@@ -187,6 +187,7 @@ class PermintaanController extends Controller
             $getDetailPermintaan = logDetailPermintaanMaterial::where('permintaan_id', $findPermintaan->id)->where('soft_delete', 0)->get();
         }
 
+        // dd($getDetailPermintaan);
         return view('logistik.pm.permintaan.approve', ['permintaans' => $findPermintaan, 'details' => $getDetailPermintaan]);
     }
 
