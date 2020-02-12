@@ -5,7 +5,15 @@
 	<!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
 @endpush
 <style>
-	#datatable {
+	#datatable tr th{
+		text-align: center;
+		vertical-align: middle;
+		font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+	}
+
+	#datatable tr td{
 		text-align: center;
 		vertical-align: middle;
 		font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
