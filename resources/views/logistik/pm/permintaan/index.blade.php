@@ -59,7 +59,7 @@
 										@endif
 
 										@if ((\Auth::user()->pegawai->posisi_id == 1) && ($permintaan->is_som == 1) && ($permintaan->is_slem == 1) && ($permintaan->is_scarm == 1) && ($permintaan->is_pm != 1))
-											<br><a class="btn btn-default btn-xs" title="Approve" style="background-color:#049372; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/manager/permintaan/approve/'.$permintaan->id.'')}}"><i class="fa fa-check" title="Approve" style="font-size:15px;"></i> Approve </a>
+											<br><a class="btn btn-default btn-xs" title="Approve" style="background-color:#049372; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/pm/permintaan/approve/'.$permintaan->id.'')}}"><i class="fa fa-check" title="Approve" style="font-size:15px;"></i> Approve </a>
 										@elseif((\Auth::user()->pegawai->posisi_id == 1) && ($permintaan->is_som == 1) && ($permintaan->is_slem == 1) && ($permintaan->is_scarm == 1) && ($permintaan->is_pm == 1))
 											<br><a class="btn btn-default btn-xs" title="Approve" style="background-color:#607D8B; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;"><i class="fa fa-close" style="font-size:15px;"></i> Approve </a>
 										@endif

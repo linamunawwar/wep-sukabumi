@@ -24,4 +24,9 @@ class LogPermintaanMaterial extends Model
     {
         return $this->hasMany('App\Models\LogPengajuanMaterial', 'kode_penerimaan', 'kode_penerimaan');
     }
+
+    public function permintaanUser()
+    {
+        return $this->belongsTo('App\Models\User','user_id','id');
+    }
 }

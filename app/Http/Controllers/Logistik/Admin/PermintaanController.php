@@ -34,10 +34,7 @@ class PermintaanController extends Controller
     {
         $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->get();
         foreach ($permintaans as $permintaan) {
-            if($permintaan->is_admin == 1){
-                $permintaan->color = "#D63031";
-                $permintaan->text = "Edited By Admin";
-            }elseif ($permintaan->is_som != 1) {
+            if ($permintaan->is_som != 1) {
                 if ($permintaan->is_som == Null) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Proses Pengecekan";
@@ -72,6 +69,16 @@ class PermintaanController extends Controller
             } elseif ($permintaan->is_pm == 1) {
                 $permintaan->color = "#74B9FF";
                 $permintaan->text = "Accepted By PM";
+            }
+
+            if($permintaan->is_notif == 1) {
+                $permintaan->notifColor = "#FF9800";
+                $permintaan->notifStyle = 'margin-left:-22px; color:#0984E3;';
+                $permintaan->notifIcon = "fa fa-star ";
+            }else {
+                $permintaan->notifColor = "#FF9800";
+                $permintaan->notifStyle = "";
+                $permintaan->notifIcon = "";
             }
         }
 
@@ -236,8 +243,17 @@ class PermintaanController extends Controller
 
     public function getDetailByPermintaanId($id)
     {
-        $details = LogDetailPermintaanMaterial::where(['permintaan_id' => $id, 'soft_delete' => 0])->get();
-        return view('logistik.admin.permintaan.detail', ['details' => $details]);
+        $notifPermintaan = LogPermintaanMaterial::where(['id' => $id, 'soft_delete' => 0])->first();
+
+        $toUpdateNotificationPermintaan['updated_at'] = date('Y-m-d');
+        $toUpdateNotificationPermintaan['is_notif'] = 0;
+        $updatedPermintaan = LogPermintaanMaterial::where('id', $notifPermintaan->id)->update($toUpdateNotificationPermintaan);
+
+        if ($updatedPermintaan) {     
+            $details = LogDetailPermintaanMaterial::where(['permintaan_id' => $notifPermintaan->id, 'soft_delete' => 0])->get();
+        }
+        
+        return view('logistik.admin.permintaan.detail', ['details' => $details, 'notifPermintaan' => $notifPermintaan]);
     }
 
     

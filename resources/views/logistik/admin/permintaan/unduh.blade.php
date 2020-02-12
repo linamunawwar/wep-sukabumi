@@ -25,7 +25,7 @@
     <td></td>
     <td></td>
     <td></td>   
-    <td colspan="2">Proyek Jalan Tol Becakayu Seksi 2A Ujung</td>
+    <td colspan="3">Proyek Jalan Tol Becakayu Seksi 2A Ujung</td>
     <td></td>
     <td></td>
     <td></td>

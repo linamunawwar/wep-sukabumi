@@ -40,7 +40,7 @@
 								</tr>
 							</thead>
 							<tbody>	
-								<?php $no = 0 ?>
+								<?php $no = 1 ?>
 								@foreach ($permintaans as $permintaan)
 									<tr>
 									<td>{{ $no++ }}</td>

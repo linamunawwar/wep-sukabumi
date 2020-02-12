@@ -54,7 +54,7 @@
 								<?php $no = 0 ?>
 								@foreach ($pengajuans as $pengajuan)
 									<?php $no++ ?>
-									<tr>
+									<tr >
 										<td>{{ $no }}</td>										
 										<td>{{ $pengajuan->kode_penerimaan }}</td>										
 										<td>{{ date('d F Y', strtotime($pengajuan->tanggal)) }}</td>										
