@@ -13,9 +13,33 @@ class MaterialController extends Controller
         return view('logistik.admin.material.index', ['materials' => $materials]);
     }
 
+    public function randomKey()
+    {
+        $panjang = 5;
+        $Huruf = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        $Angka = "1234567890";
+        $kodeHuruf = '';
+        $kodeAngka = '';
+        $kode = '';
+
+        for ($i = 0; $i < $panjang; $i++) {
+            $kodeHuruf .= $Huruf[rand(0, strlen($Huruf) - 1)];
+            $kodeAngka .= $Angka[rand(0, strlen($Angka) - 1)];
+        }
+
+        $kode = $kodeHuruf . "" . $kodeAngka;
+        return $kode;
+    }
+
     public function beforePostMaterial()
     {
-        return view('logistik.admin.material.create');
+        $kodeMaterial = MaterialController::randomKey();
+        $getkodeMaterial = logMaterial::where('kode_material', $kodeMaterial)->get();
+        while (empty($getkodeMaterial)) {
+            $kodeMaterial = MaterialController::randomKey();
+        }
+
+        return view('logistik.admin.material.create', ['kodeMaterial' => $kodeMaterial]);
     }
 
     public function postMaterial()
@@ -63,7 +87,7 @@ class MaterialController extends Controller
     public function deleteMaterial()
     {
         $dataDelete = \Input::all();
-        $deleteMaterial = LogMaterial::where('id', $dataDelete['id_material'])->update(['soft_delete'=>1]);
+        $deleteMaterial = LogMaterial::where('id', $dataDelete['id_material'])->update(['soft_delete' => 1]);
 
         if ($deleteMaterial) {
             return redirect('/Logistik/admin/material');

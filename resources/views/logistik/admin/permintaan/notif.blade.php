@@ -5,15 +5,15 @@
 	<!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
 @endpush
 <style>
-	#datatable thead tr th {
+	#datatable tr th{
 		text-align: center;
 		vertical-align: middle;
 		font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
-		font-size: 15px;
-		font-weight: 400;
+		font-size: 14px;
+		font-weight: 600;
 	}
 
-	#datatable tbody tr td {
+	#datatable tr td{
 		text-align: center;
 		vertical-align: middle;
 		font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
@@ -21,7 +21,6 @@
 		font-weight: 400;
 	}
 </style>
-
 
 @section('main_container')
 
@@ -31,9 +30,8 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Pengajuan Material </h2>
+						<h2>Permintaan Baru Disetujui </h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('Logistik/admin/pengajuan/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
@@ -41,33 +39,33 @@
 						<table id="datatable" class="table table-striped table-bordered">
 							<thead>
 								<tr>
-									<th scope="col"><b> No </b></th>
-									<th scope="col"><b> Kode Penerimaan </b></th>
-									<th scope="col"><b> Tanggal</b> </th>
-									<th scope="col"><b> Jenis Pekerjaan </b></th>
-									<th scope="col"><b> Lokasi Pekerjaan </b></th>
-									<th scope="col"><b> Status </b></th>
-									<th scope="col"><b> Action </b></th>
-                                </tr>
+									<th scope="col"> No </th>
+									<th scope="col"> Kode Permintaan </th>
+									<th scope="col"> Nama Peminta </th>
+									<th scope="col"> Tanggal Disetujui</th>
+									<th scope="col"> Action </th>
+								</tr>
 							</thead>
 							<tbody>	
-								<?php $no = 0 ?>
-								@foreach ($pengajuans as $pengajuan)
-									<?php $no++ ?>
-									<tr >
-										<td>{{ $no }}</td>										
-										<td>{{ $pengajuan->kode_penerimaan }}</td>										
-										<td>{{ date('d F Y', strtotime($pengajuan->tanggal)) }}</td>										
-										<td>{{ $pengajuan->pengajuanJenisPekerjaan->nama }}</td>										
-										<td>{{ $pengajuan->pengajuanLokasiPekerjaan->nama }}</td>										
-										<td style="color:{{ $pengajuan->color }};"> {{ $pengajuan->text }} </td>										
+								<?php $no = 1 ?>
+								@foreach ($permintaans as $permintaan)
+									<tr>
+										<td>{{ $no++ }}</td>
+										<td>{{ $permintaan->kode_permintaan }}</td>
+										<td>{{ $permintaan->permintaanUser->name }}</td>
+										<td>{{ date('d F Y', strtotime($permintaan->is_pm_at)) }}</td>
 										<td style="text-align:center;">
-											<a class="btn btn-default btn-xs" title="Detail" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/detail/'.$pengajuan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>  </a>
-											<a class="btn btn-default btn-xs" title="Edit" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/edit/'.$pengajuan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
-											<a class="btn btn-default btn-xs" title="Download" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/unduh/'.$pengajuan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>                											
-										</td>										
+											<span style="margin-right:10px;"><a href="{{ url('Logistik/admin/permintaan/notif/detail/'.$permintaan->id.'') }}" class="btn btn-default btn-xs" title="Detail" style="background-color :{{$permintaan->notifColor}}; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;"><i class="fa fa-th-list" style="font-size:15px;"></i></a> <sup style="{{$permintaan->notifStyle}}"> <i class="{{$permintaan->notifIcon}}" style='font-size:12px;'> </i> </sup>   </span>
+											<a class="btn btn-default btn-xs" title="Edit" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/permintaan/edit/'.$permintaan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
+											<button data-toggle="modal" title="Hapus"  id_permintaan='{{$permintaan->id}}' data-target="#DeleteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-delete" onclick='deleteData("{{$permintaan->id}}")'><i class="fa fa-trash" style="font-size:15px;"></i></button>
+											@if ($permintaan->is_pm == 1)
+											<a class="btn btn-default btn-xs" title="Download" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/permintaan/unduh/'.$permintaan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>
+											@else
+											<a class="btn btn-dark btn-xs" title="Download" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em; opacity: 0.5;"><i class="fa fa-download" style="font-size:15px;opacity: 0.5;"></i>  </a>
+											@endif		
+										</td>
 									</tr>
-								@endforeach						
+								@endforeach							
 							</tbody>
 						</table>
 					</div>
@@ -79,7 +77,7 @@
 	<div id="DeleteModal" class="modal fade text-danger" role="dialog">
 			<div class="modal-dialog ">
 				<!-- Modal content-->
-				<form action="{{ url("Logistik/admin/pengajuan/delete") }}" id="deleteForm" method="post" >
+				<form action="{{ url("Logistik/admin/permintaan/delete") }}" id="deleteForm" method="post" >
 					<div class="modal-content">
 						<div class="modal-header bg-danger">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -89,7 +87,7 @@
 							{{ csrf_field() }}
 							{{ method_field('DELETE') }}
 							<p class="text-center">Anda yakin ingin menghapus data ini ?</p>
-							<input type="hidden" name="id_pengajuan" id="id_pengajuan">
+							<input type="hidden" name="id_permintaan" id="id_permintaan">
 						</div>
 						<div class="modal-footer">
 							<center>
@@ -127,20 +125,20 @@
 @push('scripts')
   <script type="text/javascript">
   	$('#modal-delete').on("click",function(){
-  		var id_pengajuan = $(this).attr('id_pengajuan');
-         $('#id_pengajuan').val(id_pengajuan);
+  		var id_permintaan = $(this).attr('id_permintaan');
+         $('#id_permintaan').val(id_permintaan);
      
 	  });
-	  
-	  function noteData(id)
+
+	function noteData(id)
      {
          var id = id;
-         var url = '{{ url("Logistik/admin/pengajuan/note") }}';
+         var url = '{{ url("Logistik/admin/permintaan/note") }}';
          // url = url.replace(':id', id);
          console.log(id);
-         $('#id_pengajuan').val(id);
+         $('#id_permintaan').val(id);
          $.ajax({
-	            url  : '{{ url("Logistik/admin/pengajuan/note") }}/'+id,
+	            url  : '{{ url("Logistik/admin/permintaan/note") }}/'+id,
 	            type : 'get',
 	            success:function(response){
 	            	console.log(response)
@@ -148,18 +146,18 @@
 	            }
 	        });
 	 }
-
-     function deleteData(id)
+	 
+    function deleteData(id)
      {
          var id = id;
-         var url = '{{ url("Logistik/admin/pengajuan/delete") }}';
+         var url = '{{ url("Logistik/admin/permintaan/delete") }}';
          // url = url.replace(':id', id);
          console.log(id);
-         $('#id_pengajuan').val(id);
+         $('#id_permintaan').val(id);
          $("#deleteForm").attr('action', url);
      }
 
-     function formSubmit()
+    function formSubmit()
      {
          $("#deleteForm").submit();
      }

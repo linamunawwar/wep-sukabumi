@@ -70,6 +70,7 @@ class PenerimaanController extends Controller
                     $dt['is_pm'] = 1;
                     $dt['is_pm_at'] = date('Y-m-d H:i:s');
                     $dt['note_pm'] = \Input::get('note');
+                    $dt['is_notif'] = 1;
                 } elseif (isset($cekReject)) {
                     $dt['is_pm'] = 0;
                     $dt['is_pm_at'] = date('Y-m-d H:i:s');
