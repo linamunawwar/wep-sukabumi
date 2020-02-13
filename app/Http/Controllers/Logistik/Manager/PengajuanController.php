@@ -89,6 +89,7 @@ class PengajuanController extends Controller
                 if (isset($cekApprove)) {
                     $dt['is_splem'] = 1;
                     $dt['is_splem_at'] = date('Y-m-d H:i:s');
+                    $dt['is_notif'] = 1;
                 } elseif (isset($cekReject)) {
                     $dt['is_splem'] = 0;
                     $dt['is_splem_at'] = date('Y-m-d H:i:s');

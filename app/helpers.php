@@ -1,5 +1,34 @@
 <?php
 use App\Pegawai;
+use App\Models\LogPermintaanMaterial;
+use App\Models\LogPenerimaanMaterial;
+
+function notif_permintaan_penyerahan()
+{
+    $permintaan_disetujui = LogPermintaanMaterial::where('soft_delete',0)
+            ->where('is_pm',1)
+            ->where('is_notif',1)
+            ->get();
+    return $permintaan_disetujui;
+}
+
+function notif_order_diterima()
+{
+    $penerimaan = LogPenerimaanMaterial::where('soft_delete',0)
+            ->where('is_pm',1)
+            ->where('is_notif',1)
+            ->get();
+    return $penerimaan;
+}
+
+function notif_permintaan_disetujui()
+{
+    $permintaan_disetujui = LogPermintaanMaterial::where('soft_delete',0)
+            ->where('is_pm',1)
+            ->where('is_notif',1)
+            ->get();
+    return $permintaan_disetujui;
+}
 
 function formatTanggalPanjang($tanggal) {
     $aBulan = array(1=> "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");

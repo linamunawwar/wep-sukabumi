@@ -16,7 +16,9 @@
 						<h2>Penerimaan Material </h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li><a href="{{url('Logistik/admin/penerimaan/')}}"><button class="btn btn-success"> Kembali </button></a></li>
-						</ul>
+						</ul><br><br>
+						<p>Kode Permintaan : {{$details[0]->penerimaan->kode_permintaan}}</p>
+						<p>Kode Penerimaan : {{$details[0]->penerimaan->kode_penerimaan}}</p>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">

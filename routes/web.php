@@ -414,12 +414,14 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/permintaan/getSatuan', 'Logistik\Admin\PermintaanController@getSatuanMaterial');
 		Route::post('/permintaan/create', 'Logistik\Admin\PermintaanController@postPermintaan');
 		Route::get('/permintaan/detail/{id}', 'Logistik\Admin\PermintaanController@getDetailByPermintaanId');
+		Route::get('/permintaan/notif/detail/{id}', 'Logistik\Admin\PermintaanController@getDetailNotifByPermintaanId');
 		Route::get('/permintaan/edit/{id}', 'Logistik\Admin\PermintaanController@getPermintaanById');
 		Route::post('/permintaan/edit/{id}', 'Logistik\Admin\PermintaanController@updatePermintaan');
 		Route::get('/permintaan/deleteDetail/{detailId}/{permintaanId}', 'Logistik\Admin\PermintaanController@deleteDetailPermintaanMaterial');
 		Route::delete('/permintaan/delete', 'Logistik\Admin\PermintaanController@deletePermintaan');
 		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
 		Route::get('/permintaan/note/{id}', 'Logistik\Admin\PermintaanController@getNote');
+		Route::get('notif/permintaan_disetujui', 'Logistik\Admin\PermintaanController@getAllNotif');
 
 		//penerimaan MATERIAL
 		Route::get('/penerimaan', 'Logistik\Admin\PenerimaanController@index');
@@ -427,12 +429,14 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/penerimaan/cekData', 'Logistik\Admin\PenerimaanController@cekData');
 		Route::post('/penerimaan/create', 'Logistik\Admin\PenerimaanController@postpenerimaan');
 		Route::get('/penerimaan/detail/{id}', 'Logistik\Admin\PenerimaanController@getDetailBypenerimaanId');
+		Route::get('/penerimaan/notif/detail/{id}', 'Logistik\Admin\PenerimaanController@getDetailNotifBypenerimaanId');
 		Route::get('/penerimaan/edit/{id}', 'Logistik\Admin\PenerimaanController@getpenerimaanById');
 		Route::post('/penerimaan/edit/{id}', 'Logistik\Admin\PenerimaanController@updatepenerimaan');
 		Route::get('/penerimaan/deleteDetail/{detailId}/{penerimaanId}', 'Logistik\Admin\PenerimaanController@deleteDetailpenerimaanMaterial');
 		Route::delete('/penerimaan/delete', 'Logistik\Admin\PenerimaanController@deletepenerimaan');
 		Route::get('/penerimaan/unduh/{id}', 'Logistik\Admin\PenerimaanController@getUnduhpenerimaan');
 		Route::get('/penerimaan/note/{id}', 'Logistik\Admin\PenerimaanController@getNote');
+		Route::get('notif/order_diterima', 'Logistik\Admin\PenerimaanController@getAllNotif');
 
 		//PENGAJUAN MATERIAL
 		Route::get('/pengajuan', 'Logistik\Admin\PengajuanController@index');

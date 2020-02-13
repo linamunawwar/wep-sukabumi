@@ -23,7 +23,8 @@
 								@endif
 							</li>
 							<li><a href="{{url('Logistik/admin/permintaan/')}}"><button class="btn btn-success"> Kembali </button></a></li>
-						</ul>
+						</ul><br><br>
+						<p>Kode Permintaan : {{$details[0]->detailPermintaan->kode_permintaan}}</p>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">

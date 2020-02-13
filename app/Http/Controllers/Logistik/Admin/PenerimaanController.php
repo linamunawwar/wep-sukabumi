@@ -190,6 +190,17 @@ class PenerimaanController extends Controller
         return view('logistik.admin.penerimaan.detail', ['details' => $details]);
     }
 
+    public function getDetailNotifByPenerimaanId($id)
+    {
+        $toUpdateNotificationPenerimaan['updated_at'] = date('Y-m-d');
+        $toUpdateNotificationPenerimaan['is_notif'] = -1;
+        $updatedPermintaan = LogPenerimaanMaterial::where('id', $id)->update($toUpdateNotificationPenerimaan);
+
+        $details = LogDetailPenerimaanMaterial::where(['penerimaan_id' => $id, 'soft_delete' => 0])->get();
+
+        return view('logistik.admin.penerimaan.detail', ['details' => $details]);
+    }
+
     public function getNote($id)
     {
         $penerimaan = LogPenerimaanMaterial::where('id', $id)->where('soft_delete',0)->first();
@@ -384,4 +395,36 @@ class PenerimaanController extends Controller
 	                return $excel->export('xls');
         }     
     }
+
+    public function getAllNotif()
+    {
+        $penerimaans = LogPenerimaanMaterial::where('soft_delete', 0)->where('is_pm',1)->where('is_notif',1)->get();
+        foreach ($penerimaans as $penerimaan) {
+            if($penerimaan->is_admin == 1){
+                $penerimaan->color = "#D63031";
+                $penerimaan->text = "Edited By Admin";
+            }elseif ($penerimaan->is_splem != 1) {
+                if ($penerimaan->is_splem == null) {
+                    $penerimaan->color = "#D63031";
+                    $penerimaan->text = "Proses Pengecekan";
+                } elseif ($penerimaan->is_slem == 0) {
+                    $penerimaan->color = "#D63031";
+                    $penerimaan->text = "Rejected By SPLEM";
+                }
+            } elseif ($penerimaan->is_pm != 1) {
+                if ($penerimaan->is_pm == null) {
+                    $penerimaan->color = "#74B9FF";
+                    $penerimaan->text = "Accepted By SPLEM";
+                } elseif ($penerimaan->is_pm == 0) {
+                    $penerimaan->color = "#D63031";
+                    $penerimaan->text = "Rejected By PM";
+                }
+            } elseif ($penerimaan->is_pm == 1) {
+                $penerimaan->color = "#74B9FF";
+                $penerimaan->text = "Accepted By PM";
+            }
+        }
+        return view('logistik.admin.penerimaan.notif', ['penerimaans' => $penerimaans]);
+    }
+
 }

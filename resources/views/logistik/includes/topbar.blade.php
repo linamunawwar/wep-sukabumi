@@ -40,6 +40,7 @@
                             <i class="fa fa-envelope-o"></i>
                         </a>
                     @endif
+
                     <!-- <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
                         <i class="fa fa-envelope-o"></i>
                     </a> -->
@@ -102,6 +103,130 @@
                         </li>
                     </ul> -->
                 </li>
+                @if(Auth::user()->role_id == 6)
+                    <li>
+                        <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
+                            Permintaan Penyerahan 
+                            @if(count(notif_permintaan_penyerahan()) != 0)
+                                <span class="badge bg" style="background-color: #1AAD19; ">
+                                    {{count(notif_permintaan_penyerahan())}}
+                                </span>
+                            @endif
+                        </a>
+                        <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                            @foreach(notif_permintaan_penyerahan() as $key=>$serah)
+                            <li>
+                                <a href='{{url("Logistik/admin/permintaan/notif/detail/$serah->id")}}'>
+                                    <span>
+                                      <span>{{$serah->kode_permintaan}}</span>
+                                      <?php
+                                        $tgl = explode(' ',$serah->is_pm_at);
+                                        $tgl[0] = konversi_tanggal($tgl[0]);
+                                      ?>
+                                      <span class="time">{{$tgl[0]}}  {{$tgl[1]}}</span>
+                                        <span class="message">
+                                          Kode Permintaan {{$serah->kode_permintaan}} telah disetujui
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
+                            @if($key == 4)
+                               <?php break;?>
+                            @endif
+                            @endforeach
+                            <li>
+                                <div class="text-center">
+                                    <a href="{{url('Logistik/admin/notif/permintaan_penyerahan')}}">
+                                        <strong>See All Alerts</strong>
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
+                            Order Diterima
+                            @if(count(notif_order_diterima()) != 0)
+                                <span class="badge bg" style="background-color: #1AAD19; ">
+                                    {{count(notif_order_diterima())}}
+                                </span>
+                            @endif
+                            
+                        </a>
+                        <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                            @foreach(notif_order_diterima() as $key=>$order)
+                            <li>
+                                <a href='{{url("Logistik/admin/penerimaan/notif/detail/$order->id")}}'>
+                                    <span>
+                                      <span>{{$order->kode_permintaan}}</span>
+                                      <?php
+                                        $tgl = explode(' ',$order->is_pm_at);
+                                        $tgl[0] = konversi_tanggal($tgl[0]);
+                                      ?>
+                                      <span class="time">{{$tgl[0]}}  {{$tgl[1]}}</span>
+                                        <span class="message">
+                                          Kode Permintaan {{$order->kode_permintaan}} telah diterima dengan Kode Penerimaan {{$order->kode_penerimaan}}
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
+                            @if($key == 4)
+                               <?php break;?>
+                            @endif
+                            @endforeach
+                            <li>
+                                <div class="text-center">
+                                    <a href="{{url('Logistik/admin/notif/order_diterima')}}">
+                                        <strong>See All Alerts</strong>
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
+                            Permintaan Disetujui
+                            @if(count(notif_permintaan_disetujui()) != 0)
+                                <span class="badge bg" style="background-color: #1AAD19; ">
+                                    {{count(notif_permintaan_disetujui())}}
+                                </span>
+                            @endif
+                        </a>
+                        <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                            @foreach(notif_permintaan_disetujui() as $key=>$permintaan)
+                            <li>
+                                <a href='{{url("Logistik/admin/permintaan/notif/detail/$permintaan->id")}}'>
+                                    <span>
+                                      <span>{{$permintaan->kode_permintaan}}</span>
+                                      <?php
+                                        $tgl = explode(' ',$permintaan->is_pm_at);
+                                        $tgl[0] = konversi_tanggal($tgl[0]);
+                                      ?>
+                                      <span class="time">{{$tgl[0]}}  {{$tgl[1]}}</span>
+                                        <span class="message">
+                                          Kode Permintaan {{$permintaan->kode_permintaan}} telah disetujui
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
+                            @if($key == 4)
+                               <?php break;?>
+                            @endif
+                            @endforeach
+                            <li>
+                                <div class="text-center">
+                                    <a href="{{url('Logistik/admin/notif/permintaan_disetujui')}}">
+                                        <strong>See All Alerts</strong>
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                @endif
                 @if(Auth::user()->role_id == 2)
                     <li>
                         <a href="{{url('user/cuti/serah_tugas')}}" class="info-number" style="color: white!important;">

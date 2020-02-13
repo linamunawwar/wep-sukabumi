@@ -245,13 +245,28 @@ class PermintaanController extends Controller
     {
         $notifPermintaan = LogPermintaanMaterial::where(['id' => $id, 'soft_delete' => 0])->first();
 
+        // $toUpdateNotificationPermintaan['updated_at'] = date('Y-m-d');
+        // // $toUpdateNotificationPermintaan['is_notif'] = 0;
+        // $updatedPermintaan = LogPermintaanMaterial::where('id', $notifPermintaan->id)->update($toUpdateNotificationPermintaan);
+
+        // if ($updatedPermintaan) {     
+            $details = LogDetailPermintaanMaterial::where(['permintaan_id' => $notifPermintaan->id, 'soft_delete' => 0])->get();
+        // }
+        
+        return view('logistik.admin.permintaan.detail', ['details' => $details, 'notifPermintaan' => $notifPermintaan]);
+    }
+
+    public function getDetailNotifByPermintaanId($id)
+    {
+        $notifPermintaan = LogPermintaanMaterial::where(['id' => $id, 'soft_delete' => 0])->first();
+
         $toUpdateNotificationPermintaan['updated_at'] = date('Y-m-d');
-        $toUpdateNotificationPermintaan['is_notif'] = 0;
+        $toUpdateNotificationPermintaan['is_notif'] = -1;
         $updatedPermintaan = LogPermintaanMaterial::where('id', $notifPermintaan->id)->update($toUpdateNotificationPermintaan);
 
-        if ($updatedPermintaan) {     
-            $details = LogDetailPermintaanMaterial::where(['permintaan_id' => $notifPermintaan->id, 'soft_delete' => 0])->get();
-        }
+        
+        $details = LogDetailPermintaanMaterial::where(['permintaan_id' => $notifPermintaan->id, 'soft_delete' => 0])->get();
+        
         
         return view('logistik.admin.permintaan.detail', ['details' => $details, 'notifPermintaan' => $notifPermintaan]);
     }
@@ -332,5 +347,60 @@ class PermintaanController extends Controller
             $deleteAllDetailPermintaan = LogDetailPermintaanMaterial::where('permintaan_id', $dataDelete['id_permintaan'])->update(['soft_delete' => 1]);
             return redirect('Logistik/admin/permintaan');
         }
+    }
+
+    public function getAllNotif()
+    {
+        $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->where('is_pm',1)->where('is_notif',1)->get();
+        foreach ($permintaans as $permintaan) {
+            if ($permintaan->is_som != 1) {
+                if ($permintaan->is_som == Null) {
+                    $permintaan->color = "#D63031";
+                    $permintaan->text = "Proses Pengecekan";
+                } elseif ($permintaan->is_som == 0) {
+                    $permintaan->color = "#D63031";
+                    $permintaan->text = "Rejected By SOM";
+                }
+            } elseif ($permintaan->is_slem != 1) {
+                if ($permintaan->is_slem == Null) {
+                    $permintaan->color = "#74B9FF";
+                    $permintaan->text = "Accepted By SOM";
+                } elseif ($permintaan->is_slem == 0) {
+                    $permintaan->color = "#D63031";
+                    $permintaan->text = "Rejected By SPLEM";
+                }
+            } elseif ($permintaan->is_scarm != 1) {
+                if ($permintaan->is_scarm == Null) {
+                    $permintaan->color = "#74B9FF";
+                    $permintaan->text = "Acepted By SPLEM";
+                } elseif ($permintaan->is_scarm == 0) {
+                    $permintaan->color = "#D63031";
+                    $permintaan->text = "Rejected By SCARM";
+                }
+            } elseif ($permintaan->is_pm != 1) {
+                if ($permintaan->is_pm == Null) {
+                    $permintaan->color = "#74B9FF";
+                    $permintaan->text = "Accepted By SPLEM";
+                } elseif ($permintaan->is_pm == 0) {
+                    $permintaan->color = "#D63031";
+                    $permintaan->text = "Rejected By PM";
+                }
+            } elseif ($permintaan->is_pm == 1) {
+                $permintaan->color = "#74B9FF";
+                $permintaan->text = "Accepted By PM";
+            }
+
+            if($permintaan->is_notif == 1) {
+                $permintaan->notifColor = "#FF9800";
+                $permintaan->notifStyle = 'margin-left:-22px; color:#0984E3;';
+                $permintaan->notifIcon = "fa fa-star ";
+            }else {
+                $permintaan->notifColor = "#FF9800";
+                $permintaan->notifStyle = "";
+                $permintaan->notifIcon = "";
+            }
+        }
+
+        return view('logistik.admin.permintaan.notif', ['permintaans' => $permintaans]);
     }
 }

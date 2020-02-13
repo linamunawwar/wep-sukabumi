@@ -16,6 +16,18 @@
 						<div class="count green">{{$materials}}</div>
 					</a>
 				</div>
+				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
+					<a href="{{url('Logistik/admin/permintaan')}}">
+						<span class="count_top"><i class="fa fa-user"></i> Permintaan</span><br/>
+						<div class="count green">{{$permintaan}}</div>
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
+					<a href="{{url('Logistik/admin/permintaan')}}">
+						<span class="count_top"><i class="fa fa-user"></i> Permintaan Disetujui</span><br/>
+						<div class="count green">{{$permintaan_disetujui}}</div>
+					</a>
+				</div>
 			</div>
 
 	    	<br>

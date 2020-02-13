@@ -166,7 +166,7 @@
 							dt +=  "<div class='input-group date' class='datepicker'><span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span><input type='date' id='tanggal_pengajuan"+jumlah_data+"' id_data='"+jumlah_data+"' name='tanggal_pengajuan[]' class='form-control' required='required' placeholder='dd-mm-yyyy' /></div>";
 							dt +=  '</td>';
 							dt +=  "<td>";
-							dt +=  "<input type='text' class='form-control element_activity' id_data='"+jumlah_data+"' name='element_activity[]' value='' id='element_activity_"+jumlah_data+"' required='required'>";
+							dt +=  "<input type='text' class='form-control element_activity' id_data='"+jumlah_data+"' name='element_activity[]' value='' id='element_activity_"+jumlah_data+"'>";
 							dt +=  '</td>';
 	                		dt +=  "<td style='text-align: center; vertical-align: middle;'>"+data[i].material_nama;
 	                		dt +=  "<input type='hidden' name='material[]' value='"+data[i].material_id+"' id='material_"+jumlah_data+"'>";
