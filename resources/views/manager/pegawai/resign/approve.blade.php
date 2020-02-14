@@ -44,8 +44,9 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Surat Pengunduran Diri: </label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="file" name="surat_resign" class="form-control" disabled="disabled">
-									*Sudah di ttd direct manager
+									@if($resign->file_surat)
+										<iframe src ="http://docs.google.com/viewer?url={{url('/')}}/upload/resign/{{$resign->nip}}/{{$resign->file_surat}}&embedded=true" width='724' height='1024'	 allowfullscreen webkitallowfullscreen>
+									@endif
 								</div>
 							</div>
 							
