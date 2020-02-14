@@ -17,7 +17,7 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
+						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST"  enctype="multipart/form-data">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<input type="hidden" name="nip" value="{{\Auth::user()->pegawai_id}}">
 							<div class="form-group">
@@ -44,7 +44,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Surat Pengunduran Diri: </label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type="file" name="surat_resign" class="form-control">
+									<input type="file" name="surat_resign" class="form-control" required="required">
 									*Sudah di ttd direct manager
 								</div>
 							</div>

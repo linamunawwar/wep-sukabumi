@@ -624,7 +624,7 @@ class PegawaiController extends Controller
 
     public function getResign()
     {
-      $resigns = Resign::where('soft_delete',0)->get();
+      $resigns = Resign::where('soft_delete',0)->where('nip',\Auth::user()->pegawai_id)->get();
       
       return view('user.pegawai.resign.index',['resigns'=>$resigns]);
     }
@@ -637,6 +637,17 @@ class PegawaiController extends Controller
     public function postCreateResign()
     {
         $data = \Input::all();
+        if(\Input::hasfile('surat_resign')){
+            $ori_file  = \Request::file('surat_resign');
+           $tujuan = "upload/resign/".\Auth::user()->pegawai_id;
+           // $ekstension = $ori_file->getClientOriginalExtension();
+           $ori_name = $ori_file->getClientOriginalName();//udah plus extension
+            $nama_file = 'resign_'.\Auth::user()->pegawai_id.'_'.$ori_name;
+
+          $ori_file->move($tujuan,$nama_file);
+         }else{
+              $nama_file='';
+         }
 
         $resign = new Resign;
         $resign->nip = $data['nip'];
@@ -644,6 +655,7 @@ class PegawaiController extends Controller
         $terakhir_kerja = explode('-', $data['terakhir_kerja']);
         $data['terakhir_kerja'] = $terakhir_kerja[2].'-'.$terakhir_kerja[1].'-'.$terakhir_kerja[0];
         $resign->terakhir_kerja = $data['terakhir_kerja'];
+        $resign->file_surat = $nama_file;
         $resign->user_id = \Auth::user()->id;
         $resign->role_id = \Auth::user()->role_id;
          $resign->is_verif_mngr = 0;

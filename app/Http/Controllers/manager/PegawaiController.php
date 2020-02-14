@@ -247,6 +247,11 @@ class PegawaiController extends Controller
     {
       if(\Auth::user()->pegawai->kode_bagian == 'SA'){
         $resigns = Resign::get();
+      }if((\Auth::user()->pegawai->kode_bagian == 'QC') || (\Auth::user()->pegawai->kode_bagian == 'HS')){
+          $resigns = Resign::whereHas('pegawai',function ($q){
+                            $q->where('kode_bagian', 'QC')
+                              ->orwhere('kode_bagian','HS');
+                      })->get();
       }else{
         $resigns = Resign::whereHas('pegawai',function ($q){
             $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
