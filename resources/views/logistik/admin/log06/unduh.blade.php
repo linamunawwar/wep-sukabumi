@@ -25,6 +25,21 @@
     <th></th>
     <td style="border: 1px solid #000000;">Edisi : </b></td>
     <td style="border: 1px solid #000000;">Revisi : </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <th></th>
+    <td style="font-style: 14px;">Periode</td>
+    <td>: {{$dt['tanggal_mulai']}} s.d {{$dt['tanggal_selesai']}}</td>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
   <tr>
     <td></td>
     <td></td>
@@ -61,7 +76,7 @@
     <td></td>
     <td></td>
     <td style="border: 1px double #000000; font-weight: bold; font-size: 10;" rowspan="2" align="center">No.</td>
-    <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 13;"" rowspan="2" align="center">Asal Bahan *)</td>
+    <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 13;" rowspan="2" align="center">Asal Bahan *)</td>
     <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 27;" rowspan="2" align="center">JENIS BAHAN</td>
     <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12;" colspan="3" align="center">VOLUME BAHAN</td>
     <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12;" colspan="3" align="center">SISA STOCK (FIFO)</td>
@@ -189,7 +204,7 @@
     <td></td>
     <td></td>
     <td></td>
-    <td align="center">{{$splem->nama}}</td>
+    <td align="center" colspan="2" height="40">{{$splem->nama}}</td>
   </tr>
 </table>
   

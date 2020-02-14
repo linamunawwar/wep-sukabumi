@@ -171,18 +171,28 @@ class HomeController extends Controller
                     ->count();
             $slip_gaji = SLipGaji::where('is_verif_sdm',0)->where('soft_delete',0)->count();
                  
-            $pecat = Pecat::where('is_verif_mngr',0)->where('soft_delete',0)
+            $pecat = Pecat::where('is_verif_mngr',1)
+                    ->where('is_verif_sdm',0)
+                    ->where('soft_delete',0)
+                    ->orwhere('is_verif_mngr',0)
+                    ->where('is_verif_sdm',0)
+                    ->where('soft_delete',0)
                     ->whereHas('pegawai',function ($q){
                         $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
                     })->count();
-            $pecat_sdm = Pecat::where('is_verif_sdm',0)->where('soft_delete',0)->count();
-            $pecat = $pecat + $pecat_sdm;
-            $resign = Resign::where('is_verif_mngr',0)->where('soft_delete',0)
+            // $pecat_sdm = Pecat::where('is_verif_sdm',0)->where('soft_delete',0)->count();
+            // $pecat = $pecat + $pecat_sdm;
+            $resign = Resign::where('is_verif_mngr',1)
+                    ->where('is_verif_sdm',0)
+                    ->where('soft_delete',0)
+                    ->orwhere('is_verif_mngr',0)
+                    ->where('is_verif_sdm',0)
+                    ->where('soft_delete',0)
                     ->whereHas('pegawai',function ($q){
                         $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
                     })->count();
-            $resign_sdm = Resign::where('is_verif_sdm',0)->where('soft_delete',0)->count();
-            $resign = $resign + $resign_sdm;
+            // $resign_sdm = Resign::where('is_verif_sdm',0)->where('soft_delete',0)->count();
+            // $resign = $resign + $resign_sdm;
             $spj = Spj::where('is_verif_sdm','!=',1)->where('soft_delete',0)->count();
             $disposisi = DisposisiTugas::where('status','!=',1)->where('soft_delete',0)
                     ->where('posisi_id',\Auth::user()->pegawai->posisi_id)->count();

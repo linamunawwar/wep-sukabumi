@@ -556,6 +556,12 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/waste/approve/{id}', 'Logistik\Manager\WasteMaterialController@postApprove');
 		Route::get('/waste/unduh/{id}', 'Logistik\Manager\WasteMaterialController@getUnduh');
 
+		//Laporan Evaluasi Pemakaian Material
+		Route::get('/eval_pakai', 'Logistik\Admin\LaporanController@getLog06');
+		Route::post('/eval_pakai', 'Logistik\Admin\LaporanController@postLog06');
+		Route::get('/harian_pakai', 'Logistik\Admin\LaporanController@getLog07');
+		Route::post('/harian_pakai', 'Logistik\Admin\LaporanController@postLog07');
+
 		//LAPORAN KARTU GUDANG
 		Route::get('/kartu_gudang', 'Logistik\Admin\LaporanController@getLog02');
 		Route::post('/kartu_gudang', 'Logistik\Admin\LaporanController@postLog02');
@@ -597,9 +603,15 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/waste/approve/{id}', 'Logistik\PM\WasteMaterialController@postApprove');
 		Route::get('/waste/unduh/{id}', 'Logistik\Manager\WasteMaterialController@getUnduh');
 
+		//Laporan Evaluasi Pemakaian Material
+		Route::get('/eval_pakai', 'Logistik\Admin\LaporanController@getLog06');
+		Route::post('/eval_pakai', 'Logistik\Admin\LaporanController@postLog06');
+		Route::get('/harian_pakai', 'Logistik\Admin\LaporanController@getLog07');
+		Route::post('/harian_pakai', 'Logistik\Admin\LaporanController@postLog07');
+
 		//LAPORAN KARTU GUDANG
 		Route::get('/kartu_gudang', 'Logistik\Admin\LaporanController@getLog02');
-		Route::post('/kartu_gudang', 'Logistik\Admin\LaporanController@postLog02');\
+		Route::post('/kartu_gudang', 'Logistik\Admin\LaporanController@postLog02');
 
 		//LAPORAN HARIAN KARTU GUDANG
 		Route::get('/harian_gudang', 'Logistik\Admin\LaporanController@getLog05');
