@@ -37,13 +37,13 @@
 					</a>
 				</div>
 				<div  class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
-					<a href="{{url('admin/pecat')}}">
+					<a href="{{url('admin/pegawai/pecat')}}">
 						<span class="count_top"><i class="fa fa-sign-out"></i> Pemberhentian Kerja</span>
 						<div class="count green">{{$pecat}}</div>
 					</a>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
-					<a href="{{url('admin/resign')}}">
+					<a href="{{url('admin/pegawi/resign')}}">
 						<span class="count_top"><i class="fa fa-sign-out"></i> Resign</span>
 						<div class="count green">{{$resign}}</div>
 					</a>
