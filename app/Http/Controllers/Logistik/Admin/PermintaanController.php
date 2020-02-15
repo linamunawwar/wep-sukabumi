@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\LogDetailPermintaanMaterial;
 use App\Models\LogMaterial;
 use App\Models\LogPermintaanMaterial;
+use App\Models\LogPenerimaanMaterial;
+use App\Models\LogPengajuanMaterial;
+use App\Models\LogDetailPengajuanMaterial;
 use App\Pegawai;
 use PHPExcel_Worksheet_Drawing;
 use PHPExcel_Worksheet_PageSetup;
@@ -245,15 +248,68 @@ class PermintaanController extends Controller
     {
         $notifPermintaan = LogPermintaanMaterial::where(['id' => $id, 'soft_delete' => 0])->first();
 
-        // $toUpdateNotificationPermintaan['updated_at'] = date('Y-m-d');
-        // // $toUpdateNotificationPermintaan['is_notif'] = 0;
-        // $updatedPermintaan = LogPermintaanMaterial::where('id', $notifPermintaan->id)->update($toUpdateNotificationPermintaan);
+        $toUpdateNotificationPermintaan['updated_at'] = date('Y-m-d');
+        $toUpdateNotificationPermintaan['is_notif'] = 0;
+        $updatedPermintaan = LogPermintaanMaterial::where('id', $notifPermintaan->id)->update($toUpdateNotificationPermintaan);
 
-        // if ($updatedPermintaan) {     
+        if ($updatedPermintaan) {     
             $details = LogDetailPermintaanMaterial::where(['permintaan_id' => $notifPermintaan->id, 'soft_delete' => 0])->get();
-        // }
+        }
         
         return view('logistik.admin.permintaan.detail', ['details' => $details, 'notifPermintaan' => $notifPermintaan]);
+    }
+
+    public function getKonfirmasiByPermintaanId($id)
+    {
+        $konfirmasi = LogPermintaanMaterial::where('soft_delete', 0)
+                            ->where('id', $id)
+                            ->first();
+
+        $details = LogDetailPermintaanMaterial::where(['permintaan_id' => $konfirmasi->id, 'soft_delete' => 0])
+                            ->get();
+
+        
+        $penerimaans = LogPenerimaanMaterial::where('kode_permintaan',$konfirmasi->kode_permintaan)->get();
+        $jumlah = [];
+        foreach ($penerimaans as $penerimaan){
+            $pengajuan = LogPengajuanMaterial::where('kode_penerimaan',$penerimaan->kode_penerimaan)->first();
+            $pengajuan_details = LogDetailPengajuanMaterial::where('pengajuan_id',$pengajuan->id)->get();
+            foreach($pengajuan_details as $pengajuan_detail){
+                if(!isset($jumlah[$pengajuan_detail->material_id])){
+                    $jumlah[$pengajuan_detail->material_id] = $pengajuan_detail->pemyerahan_jumlah;
+                }else{
+                    $jumlah[$pengajuan_detail->material_id] = $jumlah[$pengajuan_detail->material_id] + $pengajuan_detail->pemyerahan_jumlah;
+                }
+            }
+            
+        }
+        //masukkan jumlah penyerahan ke objek details
+        foreach($details as $detail){
+            $detail->penyerahan_jumlah = $jumlah[$detail->material_id];
+        }
+        
+        // dd($details);
+        $catatan = \Input::get('catatan');
+        $sesuai = \Input::get('sesuai');
+        $belumSesuai = \Input::get('belumSesuai');
+                            
+        if (isset($sesuai) || isset($belumSesuai)) {            
+            if (isset($sesuai)) {
+                $is_datang = 1;
+            }elseif (isset($belumSesuai)) {
+                $is_datang = -1;
+            }
+
+            $toUpdatedPenyerahan['catatan_penyerahan'] = $catatan;
+            $toUpdatedPenyerahan['status_penyerahan'] = 1;
+            $toUpdatedPenyerahan['is_datang'] = $is_datang;
+            $toUpdatedPenyerahan['updated_at'] = date('Y-m-d H:i:s');
+            
+            $updatedPenyerahan = LogPermintaanMaterial::where('id', $konfirmasi->id)->update($toUpdatedPenyerahan);
+        }
+
+        
+        return view('logistik.admin.permintaan.konfirmasi', ['details' => $details, 'penyerahan' => $konfirmasi]);
     }
 
     public function getDetailNotifByPermintaanId($id)

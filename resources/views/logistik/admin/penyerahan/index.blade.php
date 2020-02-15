@@ -46,25 +46,28 @@
 									<th scope="col"><b> Tanggal</b> </th>
 									<th scope="col"><b> Jenis Pekerjaan </b></th>
 									<th scope="col"><b> Lokasi Pekerjaan </b></th>
-									<th scope="col"><b> Status </b></th>
+									<th scope="col"><b> Status Penyerahan </b></th>
 									<th scope="col"><b> Action </b></th>
                                 </tr>
 							</thead>
 							<tbody>	
 								<?php $no = 0 ?>
-								@foreach ($pengajuans as $pengajuan)
+								@foreach ($penyerahans as $penyerahan)
 									<?php $no++ ?>
 									<tr >
 										<td>{{ $no }}</td>										
-										<td>{{ $pengajuan->kode_penerimaan }}</td>											
-										<td>{{ date('d F Y', strtotime($pengajuan->tanggal)) }}</td>										
-										<td>{{ $pengajuan->pengajuanJenisPekerjaan->nama }}</td>										
-										<td>{{ $pengajuan->pengajuanLokasiPekerjaan->nama }}</td>										
-										<td style="color:{{ $pengajuan->color }};"> {{ $pengajuan->text }} </td>										
+										<td>{{ $penyerahan->kode_penerimaan }}</td>	
+										<td>{{ date('d F Y', strtotime($penyerahan->tanggal)) }}</td>										
+										<td>{{ $penyerahan->pengajuanJenisPekerjaan->nama }}</td>										
+										<td>{{ $penyerahan->pengajuanLokasiPekerjaan->nama }}</td>
+										@if ($penyerahan->status_penyerahan == 1)
+											<td style="color:#0984E3;"> Diserahkan </td>
+										@else
+											<td style="color:#1AAD19;"> Belum Diserahkan </td>
+										@endif						
 										<td style="text-align:center;">
-											<a class="btn btn-default btn-xs" title="Detail" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/detail/'.$pengajuan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>  </a>
-											<a class="btn btn-default btn-xs" title="Edit" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/edit/'.$pengajuan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
-											<a class="btn btn-default btn-xs" title="Download" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/unduh/'.$pengajuan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>                											
+											<span style="margin-right:10px;"><a href="{{url('Logistik/admin/penyerahan/detail/'.$penyerahan->id.'')}}" class="btn btn-default btn-xs" title="Detail" style="background-color :{{$penyerahan->notifColor}}; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;"><i class="fa fa-th-list" style="font-size:15px;"></i></a> <sup style="{{$penyerahan->notifStyle}}"> <i class="{{$penyerahan->notifIcon}}" style='font-size:12px;'> </i> </sup>   </span>
+											{{--  <a class="btn btn-default btn-xs" title="Detail" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/penyerahan/detail/'.$penyerahan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>  </a>  --}}
 										</td>										
 									</tr>
 								@endforeach						

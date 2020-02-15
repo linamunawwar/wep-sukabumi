@@ -17,7 +17,7 @@ class LogPengajuanMaterial extends Model
 
     public function pengajuanPenerimaanMaterial()
     {
-        return $this->belongsTo('App\Models\LogPermintaanMaterial', 'kode_penerimaan', 'kode_penerimaan');
+        return $this->belongsTo('App\Models\LogPenerimaanMaterial', 'kode_penerimaan', 'kode_penerimaan');
     }
 
     public function pengajuanJenisPekerjaan()
@@ -28,5 +28,10 @@ class LogPengajuanMaterial extends Model
     public function pengajuanLokasiPekerjaan()
     {
         return $this->belongsTo('App\Models\LogLokasi', 'lokasi_kerja_id', 'id');
+    }
+
+    public function pengajuanUser()
+    {
+        return $this->belongsTo('App\Models\User','user_id','id');
     }
 }
