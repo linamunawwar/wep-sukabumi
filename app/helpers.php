@@ -2,14 +2,15 @@
 use App\Pegawai;
 use App\Models\LogPermintaanMaterial;
 use App\Models\LogPenerimaanMaterial;
+use App\Models\LogPengajuanMaterial;
 
 function notif_permintaan_penyerahan()
 {
-    $permintaan_disetujui = LogPermintaanMaterial::where('soft_delete',0)
-            ->where('is_pm',1)
+    $permintaan_diserahkan = LogPengajuanMaterial::where('soft_delete',0)
+            ->where('is_splem',1)
             ->where('is_notif',1)
             ->get();
-    return $permintaan_disetujui;
+    return $permintaan_diserahkan;
 }
 
 function notif_order_diterima()

@@ -414,6 +414,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/permintaan/getSatuan', 'Logistik\Admin\PermintaanController@getSatuanMaterial');
 		Route::post('/permintaan/create', 'Logistik\Admin\PermintaanController@postPermintaan');
 		Route::get('/permintaan/detail/{id}', 'Logistik\Admin\PermintaanController@getDetailByPermintaanId');
+		Route::get('/permintaan/konfirmasi/{id}', 'Logistik\Admin\PermintaanController@getKonfirmasiByPermintaanId');
+		Route::post('/permintaan/konfirmasi/{id}', 'Logistik\Admin\PermintaanController@getKonfirmasiByPermintaanId');
 		Route::get('/permintaan/notif/detail/{id}', 'Logistik\Admin\PermintaanController@getDetailNotifByPermintaanId');
 		Route::get('/permintaan/edit/{id}', 'Logistik\Admin\PermintaanController@getPermintaanById');
 		Route::post('/permintaan/edit/{id}', 'Logistik\Admin\PermintaanController@updatePermintaan');
@@ -444,12 +446,18 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/pengajuan/cekData', 'Logistik\Admin\PengajuanController@cekData');
 		Route::post('/pengajuan/create', 'Logistik\Admin\PengajuanController@postPengajuan');
 		Route::get('/pengajuan/detail/{id}', 'Logistik\Admin\PengajuanController@getDetailByPengajuanId');
+		Route::get('/pengajuan/notif/detail/{id}', 'Logistik\Admin\PengajuanController@getDetailNotifByPengajuanId');
 		Route::get('/pengajuan/edit/{id}', 'Logistik\Admin\PengajuanController@getPengajuanById');
 		Route::post('/pengajuan/edit/{id}', 'Logistik\Admin\PengajuanController@updatePengajuan');
 		Route::get('/pengajuan/approve/{id}', 'Logistik\Admin\PengajuanController@beforeApprovePengajuan');
 		Route::post('/pengajuan/approve/{id}', 'Logistik\Admin\PengajuanController@approvePengajuan');
 		Route::get('/pengajuan/unduh/{id}', 'Logistik\Admin\PengajuanController@getUnduhPengajuan');
 		Route::get('/pengajuan/note/{id}', 'Logistik\Admin\PengajuanController@getNote');
+
+		//PENYERAHAN MATERIAL
+		Route::get('/penyerahan', 'Logistik\Admin\PenyerahanController@index');
+		Route::get('/penyerahan/detail/{id}', 'Logistik\Admin\PenyerahanController@getDetailByPenyerahanId');
+		Route::post('/penyerahan/approve', 'Logistik\Admin\PenyerahanController@postApproveDetailPenyerahan');
 
 		//Waste Material
 		Route::get('/waste', 'Logistik\Admin\WasteMaterialController@index');

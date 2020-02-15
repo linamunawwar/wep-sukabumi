@@ -75,6 +75,7 @@ class PengajuanController extends Controller
     {        
         $kode_penerimaan = \Input::get('kode_penerimaan');
         $penerimaans = LogPenerimaanMaterial::where(['kode_penerimaan' => $kode_penerimaan, 'soft_delete' => 0])->get();
+        
         if ($penerimaans) {
             foreach ($penerimaans as $key => $val) {
                 $datas = LogDetailPenerimaanMaterial::where('penerimaan_id', $val['id'])->where('soft_delete', 0)->get();
@@ -152,6 +153,21 @@ class PengajuanController extends Controller
     {
         $details = LogDetailPengajuanMaterial::where(['pengajuan_id' => $id, 'soft_delete' => 0])->get();
         return view('logistik.admin.pengajuan.detail', ['details' => $details]);
+    }
+
+    public function getDetailNotifByPengajuanId($id)
+    {
+        $notifPengajuan = LogPengajuanMaterial::where(['id' => $id, 'soft_delete' => 0])->first();
+
+        $toUpdateNotificationPengajuan['updated_at'] = date('Y-m-d');
+        $toUpdateNotificationPengajuan['is_notif'] = -1;
+        $updatedPengajuan = LogPengajuanMaterial::where('id', $notifPengajuan->id)->update($toUpdateNotificationPengajuan);
+
+        
+        $details = LogDetailPengajuanMaterial::where(['pengajuan_id' => $notifPengajuan->id, 'soft_delete' => 0])->get();
+        
+        
+        return view('logistik.admin.pengajuan.detail', ['details' => $details, 'notifPengajuan' => $notifPengajuan]);
     }
 
     public function getPengajuanById($id)
