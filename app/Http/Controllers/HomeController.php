@@ -16,6 +16,7 @@ use App\Disposisi;
 use App\DisposisiTugas;
 use App\SlipGaji;
 use App\Models\LogMaterial;
+use App\Models\LogPermintaanMaterial;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -214,7 +215,12 @@ class HomeController extends Controller
 
         if(Auth::user()->role_id == 6){
             $materials = LogMaterial::where('soft_delete',0)->count();
-            return view('logistik.admin.home',['materials'=>$materials]);
+            $permintaan = LogPermintaanMaterial::where('soft_delete',0)->count();
+            $permintaan_disetujui = LogPermintaanMaterial::where('soft_delete',0)
+            ->where('is_pm',1)
+            ->count();
+            
+            return view('logistik.admin.home',['materials'=>$materials,'permintaan'=>$permintaan,'permintaan_disetujui'=>$permintaan_disetujui]);
         }
     }
 }
