@@ -124,6 +124,40 @@
                                 </a>
                             </li>
                         @endif
+                        <!------------------------------------------------------------->
+                        <!------------------ PERMINTAAN PENYERAHAN -------------------->
+                        {{--  @if(Auth::user()->role_id == 2)
+                            <li>
+                                <a href="{{url('Logistik/user/penyerahan')}}">
+                                    <i class="fa fa-list"></i>
+                                    Penyerahan Barang
+                                </a>
+                            </li>
+                        @endif
+                        @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
+                            <li>
+                                <a href="{{url('Logistik/manager/penyerahan')}}">
+                                    <i class="fa fa-list"></i>
+                                    Penyerahan Barang
+                                </a>
+                            </li>
+                        @endif
+                         @if(Auth::user()->role_id == 5)
+                            <li>
+                                <a href="{{url('Logistik/pm/penyerahan')}}">
+                                    <i class="fa fa-list"></i>
+                                    Penyerahan Barang
+                                </a>
+                            </li>
+                        @endif  --}}
+                        @if(Auth::user()->role_id == 6)
+                            <li>
+                                <a href="{{url('Logistik/admin/penyerahan')}}">
+                                    <i class="fa fa-list"></i>
+                                    Penyerahan Barang
+                                </a>
+                            </li>
+                        @endif
                         <!---------------------------------------------------->
                         <!--------------------------WASTE MATERIAL------------>
                         @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))

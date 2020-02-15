@@ -116,16 +116,16 @@
                         <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                             @foreach(notif_permintaan_penyerahan() as $key=>$serah)
                             <li>
-                                <a href='{{url("Logistik/admin/permintaan/notif/detail/$serah->id")}}'>
+                                <a href='{{url("Logistik/admin/penyerahan/detail/$serah->id")}}'>
                                     <span>
-                                      <span>{{$serah->kode_permintaan}}</span>
+                                      <span>{{$serah->kode_penerimaan}}</span>
                                       <?php
-                                        $tgl = explode(' ',$serah->is_pm_at);
+                                        $tgl = explode(' ',$serah->is_splem_at);
                                         $tgl[0] = konversi_tanggal($tgl[0]);
                                       ?>
                                       <span class="time">{{$tgl[0]}}  {{$tgl[1]}}</span>
                                         <span class="message">
-                                          Kode Permintaan {{$serah->kode_permintaan}} telah disetujui
+                                          Kode Permintaan {{$serah->kode_penerimaan}} telah disetujui
                                         </span>
                                     </span>
                                 </a>
@@ -136,7 +136,7 @@
                             @endforeach
                             <li>
                                 <div class="text-center">
-                                    <a href="{{url('Logistik/admin/notif/permintaan_penyerahan')}}">
+                                    <a href="{{url('Logistik/admin/penyerahan/')}}">
                                         <strong>See All Alerts</strong>
                                         <i class="fa fa-angle-right"></i>
                                     </a>
