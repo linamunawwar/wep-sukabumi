@@ -55,10 +55,7 @@
   <tr>
       <td></td>
       <td></td>
-      <td colspan="3">Minggu Ke : </td>
-      <td></td>
-      <td></td>
-      <td colspan="3">Bulan / Tahun : </td>
+      <td colspan="3">Periode : {{$dataInput['tanggal_mulai']}} s.d {{$dataInput['tanggal_selesai']}} </td>
   </tr>
 </table>
 <table class="table table-striped">

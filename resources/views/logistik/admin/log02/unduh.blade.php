@@ -9,7 +9,7 @@
       <td></td>
       <th></th>
       <th colspan="4"><b style="font-weight: 3; font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
-      <td style="border: 1px solid #000000;  " colspan="2" align="center">Formulir Log-06</td>
+      <td style="border: 1px solid #000000;  " colspan="2" align="center">Formulir Log-02</td>
     </tr>
     <tr>
       <td></td>
@@ -53,11 +53,7 @@
         <td></td>
         <td colspan="3">Bulan : {{ $bulan }}</td>
         <td></td>
-        <td colspan="3">Nama Bahan : 
-            @foreach ($material as $val)
-                {{ $val->nama }}
-            @endforeach
-        </td>
+        <td colspan="3">Nama Bahan :{{ $material->nama }}</td>
     </tr>
   </table>
   <table class="table table-striped">

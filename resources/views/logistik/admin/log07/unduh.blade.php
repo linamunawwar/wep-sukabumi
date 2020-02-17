@@ -158,6 +158,7 @@
     ?>
     <td colspan="2">SOM/Superintendent Pekerjaan :</td>
     <td colspan="2">{{$data['som']}}</td>
+    <td></td>
     <td colspan="2">Nomor Pekerjaan :</td>
     <td>{{$data['nomor_pekerjaan']}}</td>
     <td></td>
@@ -171,7 +172,8 @@
     ?>
     <td colspan="2">Periode:</td>
     <td colspan="2">{{konversi_tanggal($data['tanggal_mulai'])}} s.d {{konversi_tanggal($data['tanggal_selesai'])}}</td>
-    <td align="left">No. Buku</td>
+    <td></td>
+    <td colspan="2" align="left">No. Buku</td>
     <td >{{$data['no_buku']}}</td>
     <td></td>
     <td></td>

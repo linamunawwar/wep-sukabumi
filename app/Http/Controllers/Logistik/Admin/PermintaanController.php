@@ -273,6 +273,7 @@ class PermintaanController extends Controller
         $jumlah = [];
         foreach ($penerimaans as $penerimaan){
             $pengajuan = LogPengajuanMaterial::where('kode_penerimaan',$penerimaan->kode_penerimaan)->first();
+
             $pengajuan_details = LogDetailPengajuanMaterial::where('pengajuan_id',$pengajuan->id)->get();
             foreach($pengajuan_details as $pengajuan_detail){
                 if(!isset($jumlah[$pengajuan_detail->material_id])){
