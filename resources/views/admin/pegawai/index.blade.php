@@ -84,6 +84,12 @@
 												<span class="label label-primary">Approved by Admin</span>	
 												<!-- <span class="label label-success">Approved by PM</span> -->
 											@endif
+											<br><br>
+											@if(file_exists(url('upload/pegawai').'/'.$pegawai->nip.'/'.$pegawai->ttd))
+												<img src="{{url('upload/pegawai').'/'.$pegawai->nip.'/'.$pegawai->ttd}}" width="30">
+											@else
+												Belum ada tanda tangan
+											@endif
 										</td>
 										<td style="text-align: center;">
 											<!-- deo minta approval hanya bisa dilakukan sama akun dia -->

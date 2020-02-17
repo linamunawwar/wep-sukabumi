@@ -148,15 +148,15 @@
     <td></td>
     <td></td>
     <td colspan="2" style="height:70; content-align:center;">
-      @if(file_exists("upload/pegawai/$pm->nip/$pm->ttd"))
-          <img src="upload/pegawai/{{$pm->nip}}/{{$pm->ttd}}" width="100" align="center">
+      @if(file_exists(url('upload/pegawai').'/'.$pm->nip.'/'.$pm->ttd))
+          <img src="url('upload/pegawai').'/'.$pm->nip.'/'.$pm->ttd)" width="100" align="center">
       @endif
     </td>
     <td></td>
     <td></td>
     <td colspan="2" style="height:70;"> 
-      @if(file_exists("upload/pegawai/$splem->nip/$splem->ttd"))
-          <img src="upload/pegawai/{{$splem->nip}}/{{$splem->ttd}}" width="100" align="center">
+      @if(file_exists(url('upload/pegawai').'/'.$splem->nip.'/'.$splem->ttd))
+          <img src="url('upload/pegawai').'/'.$splem->nip.'/'.$splem->ttd)" width="100" align="center">
       @endif
     </td>
     <td></td>

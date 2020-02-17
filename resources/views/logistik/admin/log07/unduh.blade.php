@@ -382,8 +382,8 @@
     ?>
     <td></td>
     <td>
-      @if(file_exists("upload/pegawai/$splem->nip/$splem->ttd"))
-        <img src="upload/pegawai/{{$splem->nip}}/{{$splem->ttd}}" width="100" align="center">
+      @if(file_exists(url('upload/pegawai').'/'.$splem->nip.'/'.$splem->ttd))
+          <img src="url('upload/pegawai').'/'.$splem->nip.'/'.$splem->ttd)" width="100" align="center">
       @endif
     </td>
     <td></td>
@@ -395,8 +395,8 @@
             $ttd= \Auth::user()->pegawai->ttd;
             $nama = \Auth::user()->name;
       ?>
-      @if(file_exists("upload/pegawai/$nip/$ttd"))
-        <img src="upload/pegawai/{{$nip}}/{{$ttd}}" width="100" align="center">
+      @if(file_exists(url('upload/pegawai').'/'.$nip.'/'.$ttd))
+          <img src="url('upload/pegawai').'/'.$nip.'/'.$ttd)" width="100" align="center">
       @endif
     </td>
     <td></td>
