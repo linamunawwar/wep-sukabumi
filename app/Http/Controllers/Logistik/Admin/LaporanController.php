@@ -182,7 +182,7 @@ class LaporanController extends Controller
         $jeniss = LogJenis::where('soft_delete',0)->get();
         $lokasis = LogLokasi::where('soft_delete',0)->get();
 
-        return view('logistik.admin.log07.index',['jeniss'=>$jeniss,'lokasis'=>$lokasis]);
+        return view('logistik.admin.log07.index',['jeniss'=>$jeniss,'lokasis'=>$lokasis,'show'=>0]);
     }
 
     public function postLog07()
@@ -261,79 +261,98 @@ class LaporanController extends Controller
 
         $splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
         $admin = Pegawai::where('posisi_id', \Auth::user()->pegawai->posisi_id)->where('soft_delete', 0)->first();
-        $excel = \Excel::create("Form Log-07 Buku Harian Pengeluaran Bahan " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($data,$materials,$splem,$tanggal) {
 
-                $excel->sheet('New sheet', function ($sheet) use ($data,$materials,$splem,$tanggal) {
+        if(!isset($data['proses'])){
+            $data['proses'] = 0;
+        }
+        if(!isset($data['unduh'])){
+            $data['unduh'] = 0;
+        }
 
-                    $sheet->loadView('logistik.admin.log07.unduh', ['data' => $data, 'materials' => $materials,'splem' => $splem,'tanggal'=>$tanggal]);
-                    // $objDrawing = new PHPExcel_Worksheet_Drawing;
-                    // $objDrawing->setPath(public_path('img/Waskita.png'));
-                    // $objDrawing->setCoordinates('C1');
-                    // $objDrawing->setWorksheet($sheet);
-                    // $objDrawing->setResizeProportional(false);
-                    // // set width later
-                    // $objDrawing->setWidth(40);
-                    // $objDrawing->setHeight(35);
-                    // $sheet->getStyle('C1')->getAlignment()->setIndent(1);
+        if($data['proses'] == 1){
+                $jeniss = LogJenis::where('soft_delete',0)->get();
+                $lokasis = LogLokasi::where('soft_delete',0)->get();
 
-                    $sheet->getStyle('A13:N63')->getAlignment()->setWrapText(true);
-                    // $sheet->getStyle('A2:O50')->getFont()->setName('Tahoma');
-                    $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
-                        array('horizontal' => 'center')
-                    );
-                    $sheet->cells('A1:M18', function ($cells) {
+                return view('logistik.admin.log07.index', ['jeniss'=>$jeniss,'lokasis'=>$lokasis,'data' => $data, 'materials' => $materials,'splem' => $splem,'tanggal'=>$tanggal,'show'=>1]);
+
+        }elseif($data['unduh'] == 1){
+            if(count($materials)!= 0){
+
+                $excel = \Excel::create("Form Log-07 Buku Harian Pengeluaran Bahan " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($data,$materials,$splem,$tanggal) {
+
+                        $excel->sheet('New sheet', function ($sheet) use ($data,$materials,$splem,$tanggal) {
+
+                            $sheet->loadView('logistik.admin.log07.unduh', ['data' => $data, 'materials' => $materials,'splem' => $splem,'tanggal'=>$tanggal]);
+                            // $objDrawing = new PHPExcel_Worksheet_Drawing;
+                            // $objDrawing->setPath(public_path('img/Waskita.png'));
+                            // $objDrawing->setCoordinates('C1');
+                            // $objDrawing->setWorksheet($sheet);
+                            // $objDrawing->setResizeProportional(false);
+                            // // set width later
+                            // $objDrawing->setWidth(40);
+                            // $objDrawing->setHeight(35);
+                            // $sheet->getStyle('C1')->getAlignment()->setIndent(1);
+
+                            $sheet->getStyle('A13:N63')->getAlignment()->setWrapText(true);
+                            // $sheet->getStyle('A2:O50')->getFont()->setName('Tahoma');
+                            $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
+                                array('horizontal' => 'center')
+                            );
+                            $sheet->cells('A1:M18', function ($cells) {
+                                $cells->setValignment('center');
+                            });
+
+                            $sheet->cell('D9:E11', function ($cell) {
+                                $cell->setValignment('center');
+                            });
+                            $sheet->cell('D8:E8', function ($cell) {
+                                $cell->setBorder('', '', 'thin', '');
+                            });
+                            $sheet->cell('C15:D15', function ($cell) {
+                                $cell->setBorder('', '', 'double', '');
+                            });
+                            $sheet->cell('C18:D18', function ($cell) {
+                                $cell->setBorder('', 'double', 'double', '');
+                            });
+                            $sheet->cell('C16:C17', function ($cell) {
+                                $cell->setBorder('', '', '', 'double');
+                            });
+                            // $sheet->cell('B14:E14', function($cell){
+                            //     $cell->setBorder('','','','thin');
+                            // });
+                        });
+                    });
+                    // $styleArray = array(
+                    //     'font' => array(
+                    //         'name' => 'Tahoma',
+                    //     ));
+                    $excel->getActiveSheet()->getPageSetup()->setFitToWidth(0);
+                    $excel->getActiveSheet()->getPageSetup()->setFitToHeight(0);
+                    $excel->getActiveSheet()->getRowDimension('5')->setRowHeight(4);
+                    $excel->getActiveSheet()->getRowDimension('7')->setRowHeight(5);
+                    $excel->getActiveSheet()->getRowDimension('9')->setRowHeight(5);
+                    $excel->getActiveSheet()->getRowDimension('15')->setRowHeight(4);
+                    $excel->getActiveSheet()->getRowDimension('53')->setRowHeight(4);
+                    $excel->getActiveSheet()->getRowDimension('54')->setRowHeight(9);
+                    $excel->getActiveSheet()->getRowDimension('18')->setRowHeight(13);
+                    $excel->getActiveSheet()->getRowDimension('51')->setRowHeight(13);
+                    $excel->getActiveSheet()->getRowDimension('52')->setRowHeight(13);
+                    for ($i=19; $i <=50 ; $i++) { 
+                        $excel->getActiveSheet()->getRowDimension($i)->setRowHeight(13);
+                    }
+                    $excel->getActiveSheet()->getPageMargins()->setLeft(0.5);
+                    $excel->getActiveSheet()->getPageMargins()->setRight(0.28);
+                    $excel->getDefaultStyle()->getAlignment()->setWrapText(true);
+                    $excel->getActiveSheet()->getStyle('A1:Z'.$excel->getActiveSheet()->getHighestRow())->getAlignment()->setWrapText(true); 
+                    $excel->getActiveSheet()->cells('A1:Z'.$excel->getActiveSheet()->getHighestRow(),  function ($cells) {
                         $cells->setValignment('center');
                     });
 
-                    $sheet->cell('D9:E11', function ($cell) {
-                        $cell->setValignment('center');
-                    });
-                    $sheet->cell('D8:E8', function ($cell) {
-                        $cell->setBorder('', '', 'thin', '');
-                    });
-                    $sheet->cell('C15:D15', function ($cell) {
-                        $cell->setBorder('', '', 'double', '');
-                    });
-                    $sheet->cell('C18:D18', function ($cell) {
-                        $cell->setBorder('', 'double', 'double', '');
-                    });
-                    $sheet->cell('C16:C17', function ($cell) {
-                        $cell->setBorder('', '', '', 'double');
-                    });
-                    // $sheet->cell('B14:E14', function($cell){
-                    //     $cell->setBorder('','','','thin');
-                    // });
-                });
-            });
-            // $styleArray = array(
-            //     'font' => array(
-            //         'name' => 'Tahoma',
-            //     ));
-            $excel->getActiveSheet()->getPageSetup()->setFitToWidth(0);
-            $excel->getActiveSheet()->getPageSetup()->setFitToHeight(0);
-            $excel->getActiveSheet()->getRowDimension('5')->setRowHeight(4);
-            $excel->getActiveSheet()->getRowDimension('7')->setRowHeight(5);
-            $excel->getActiveSheet()->getRowDimension('9')->setRowHeight(5);
-            $excel->getActiveSheet()->getRowDimension('15')->setRowHeight(4);
-            $excel->getActiveSheet()->getRowDimension('53')->setRowHeight(4);
-            $excel->getActiveSheet()->getRowDimension('54')->setRowHeight(9);
-            $excel->getActiveSheet()->getRowDimension('18')->setRowHeight(13);
-            $excel->getActiveSheet()->getRowDimension('51')->setRowHeight(13);
-            $excel->getActiveSheet()->getRowDimension('52')->setRowHeight(13);
-            for ($i=19; $i <=50 ; $i++) { 
-                $excel->getActiveSheet()->getRowDimension($i)->setRowHeight(13);
+                    // $excel->getDefaultStyle()
+                    //     ->applyFromArray($styleArray);
+                    return $excel->export('xls');
             }
-            $excel->getActiveSheet()->getPageMargins()->setLeft(0.5);
-            $excel->getActiveSheet()->getPageMargins()->setRight(0.28);
-            $excel->getDefaultStyle()->getAlignment()->setWrapText(true);
-            $excel->getActiveSheet()->getStyle('A1:Z'.$excel->getActiveSheet()->getHighestRow())->getAlignment()->setWrapText(true); 
-            $excel->getActiveSheet()->cells('A1:Z'.$excel->getActiveSheet()->getHighestRow(),  function ($cells) {
-                $cells->setValignment('center');
-            });
-
-            // $excel->getDefaultStyle()
-            //     ->applyFromArray($styleArray);
-            return $excel->export('xls');
+        }
     }
 	
 	public function getLog02()
@@ -342,7 +361,7 @@ class LaporanController extends Controller
 		$idBulan = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
 		$getMaterial = LogMaterial::where('soft_delete', 0)->get();
 
-        return view('logistik.admin.log02.index', ['bln' => $namaBulan, 'idBln' => $idBulan, 'materials' => $getMaterial]);
+        return view('logistik.admin.log02.index', ['bln' => $namaBulan, 'idBln' => $idBulan, 'materials' => $getMaterial,'show'=>0]);
 	}
 	
 	public function postLog02()
@@ -359,10 +378,9 @@ class LaporanController extends Controller
 			}
 		}
 
-		$getMaterial = LogMaterial::select('nama')
-									->where('id', $data['material'])
+		$getMaterial = LogMaterial::where('id', $data['material'])
 									->where('soft_delete', 0)
-									->get();
+									->first();
 		$dt = [];
         $trs_keluar = 0;
         $trs_terima = 0;
@@ -419,62 +437,80 @@ class LaporanController extends Controller
 		}	
 
 		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
-    	$excel = \Excel::create("Form Log-02 Laporan Kartu Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($getBulan, $getMaterial, $dt,$splem) {
+        if(!isset($data['proses'])){
+            $data['proses'] = 0;
+        }
+        if(!isset($data['unduh'])){
+            $data['unduh'] = 0;
+        }
 
-                $excel->sheet('New sheet', function ($sheet) use ($getBulan, $getMaterial, $dt,$splem) {
+        if($data['proses'] == 1){
+                $namaBulan = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
+        $idBulan = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
+        $allMaterial = LogMaterial::where('soft_delete', 0)->get();
 
-                    $sheet->loadView('logistik.admin.log02.unduh', ['data' => $dt, 'bulan' => $getBulan, 'material' => $getMaterial, 'splem' => $splem]);
-                    $objDrawing = new PHPExcel_Worksheet_Drawing;
-                    $objDrawing->setPath(public_path('img/Waskita.png'));
-                    $objDrawing->setCoordinates('C1');
-                    $objDrawing->setWorksheet($sheet);
-                    $objDrawing->setResizeProportional(false);
-                    // set width later
-                    $objDrawing->setWidth(40);
-                    $objDrawing->setHeight(35);
-                    $sheet->getStyle('C1')->getAlignment()->setIndent(1);
+                return view('logistik.admin.log02.index', ['bln' => $namaBulan, 'idBln' => $idBulan, 'materials' => $allMaterial,'data' => $dt, 'data2'=>$data, 'bulanIni' => $getBulan, 'material' => $getMaterial, 'splem' => $splem,'show'=>1]);
 
-                    $sheet->getStyle('A13:N63')->getAlignment()->setWrapText(true);
-                    $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
-                    $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
-                        array('horizontal' => 'center')
-                    );
-                    $sheet->cells('A9:M11', function ($cells) {
-                        $cells->setValignment('center');
-                        $cells->setFontFamily('Tahoma');
-                    });
+        }elseif($data['unduh'] == 1){
+            if(count($dt)!= 0){
+            	$excel = \Excel::create("Form Log-02 Laporan Kartu Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($getBulan, $getMaterial, $dt,$splem) {
 
-                    $sheet->cell('D9:E11', function ($cell) {
-                        $cell->setValignment('center');
+                        $excel->sheet('New sheet', function ($sheet) use ($getBulan, $getMaterial, $dt,$splem) {
+
+                            $sheet->loadView('logistik.admin.log02.unduh', ['data' => $dt, 'bulan' => $getBulan, 'material' => $getMaterial, 'splem' => $splem]);
+                            $objDrawing = new PHPExcel_Worksheet_Drawing;
+                            $objDrawing->setPath(public_path('img/Waskita.png'));
+                            $objDrawing->setCoordinates('C1');
+                            $objDrawing->setWorksheet($sheet);
+                            $objDrawing->setResizeProportional(false);
+                            // set width later
+                            $objDrawing->setWidth(40);
+                            $objDrawing->setHeight(35);
+                            $sheet->getStyle('C1')->getAlignment()->setIndent(1);
+
+                            $sheet->getStyle('A13:N63')->getAlignment()->setWrapText(true);
+                            $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
+                            $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
+                                array('horizontal' => 'center')
+                            );
+                            $sheet->cells('A9:M11', function ($cells) {
+                                $cells->setValignment('center');
+                                $cells->setFontFamily('Tahoma');
+                            });
+
+                            $sheet->cell('D9:E11', function ($cell) {
+                                $cell->setValignment('center');
+                            });
+                            $sheet->cell('D8:E8', function ($cell) {
+                                $cell->setBorder('', '', 'thin', '');
+                            });
+                            $sheet->cell('C4', function ($cell) {
+                                $cell->setBorder('thin', 'thin', 'thin', 'thin');
+                            });
+                            $sheet->cell('C6', function ($cell) {
+                                $cell->setalignment('center');
+                                $cell->setValignment('center');
+                                $cell->setBorder('thin', 'thin', 'thin', 'thin');
+                            });
+                            // $sheet->cell('B14:E14', function($cell){
+                            //     $cell->setBorder('','','','thin');
+                            // });
+                        });
                     });
-                    $sheet->cell('D8:E8', function ($cell) {
-                        $cell->setBorder('', '', 'thin', '');
-                    });
-                    $sheet->cell('C4', function ($cell) {
-                        $cell->setBorder('thin', 'thin', 'thin', 'thin');
-                    });
-                    $sheet->cell('C6', function ($cell) {
-                        $cell->setalignment('center');
-                        $cell->setValignment('center');
-                        $cell->setBorder('thin', 'thin', 'thin', 'thin');
-                    });
-                    // $sheet->cell('B14:E14', function($cell){
-                    //     $cell->setBorder('','','','thin');
-                    // });
-                });
-            });
-            $styleArray = array(
-                'font' => array(
-                    'name' => 'Tahoma',
-                ));
-            $excel->getDefaultStyle()
-                ->applyFromArray($styleArray);
-            return $excel->export('xls');
+                    $styleArray = array(
+                        'font' => array(
+                            'name' => 'Tahoma',
+                        ));
+                    $excel->getDefaultStyle()
+                        ->applyFromArray($styleArray);
+                    return $excel->export('xls');
+            }
+        }
 	}
 
 	public function getLog05()
     {
-        return view('logistik.admin.log05.index');
+        return view('logistik.admin.log05.index',['show'=>0]);
 	}
 	
 	public function postLog05()
@@ -529,62 +565,77 @@ class LaporanController extends Controller
         }
 
 		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
-    	$excel = \Excel::create("Form Log-05 Laporan Harian Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($dt, $splem) {
+        if(!isset($data['proses'])){
+            $data['proses'] = 0;
+        }
+        if(!isset($data['unduh'])){
+            $data['unduh'] = 0;
+        }
 
-                $excel->sheet('New sheet', function ($sheet) use ($dt, $splem) {
+        if($data['proses'] == 1){
+                return view('logistik.admin.log05.index', ['data' => $dt,'dataInput'=>$data, 'splem' => $splem,'show'=>1]);
 
-                    $sheet->loadView('logistik.admin.log05.unduh', ['data' => $dt, 'splem' => $splem]);
-                    $objDrawing = new PHPExcel_Worksheet_Drawing;
-                    $objDrawing->setPath(public_path('img/Waskita.png'));
-                    $objDrawing->setCoordinates('C1');
-                    $objDrawing->setWorksheet($sheet);
-                    $objDrawing->setResizeProportional(false);
-                    // set width later
-                    $objDrawing->setWidth(40);
-                    $objDrawing->setHeight(35);
-                    $sheet->getStyle('C1')->getAlignment()->setIndent(1);
+        }elseif($data['unduh'] == 1){
+            if(count($dt)!= 0){
 
-                    $sheet->getStyle('A13:N63')->getAlignment()->setWrapText(true);
-                    $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
-                    $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
-                        array('horizontal' => 'center')
-                    );
-                    $sheet->cells('A9:M11', function ($cells) {
-                        $cells->setValignment('center');
-                        $cells->setFontFamily('Tahoma');
-                    });
+            	$excel = \Excel::create("Form Log-05 Laporan Harian Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($dt, $splem) {
 
-                    $sheet->cell('D9:E11', function ($cell) {
-                        $cell->setValignment('center');
+                        $excel->sheet('New sheet', function ($sheet) use ($dt, $splem) {
+
+                            $sheet->loadView('logistik.admin.log05.unduh', ['data' => $dt, 'splem' => $splem]);
+                            $objDrawing = new PHPExcel_Worksheet_Drawing;
+                            $objDrawing->setPath(public_path('img/Waskita.png'));
+                            $objDrawing->setCoordinates('C1');
+                            $objDrawing->setWorksheet($sheet);
+                            $objDrawing->setResizeProportional(false);
+                            // set width later
+                            $objDrawing->setWidth(40);
+                            $objDrawing->setHeight(35);
+                            $sheet->getStyle('C1')->getAlignment()->setIndent(1);
+
+                            $sheet->getStyle('A13:N63')->getAlignment()->setWrapText(true);
+                            $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
+                            $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
+                                array('horizontal' => 'center')
+                            );
+                            $sheet->cells('A1:K100', function ($cells) {
+                                $cells->setValignment('center');
+                                $cells->setFontFamily('Tahoma');
+                            });
+
+                            $sheet->cell('D9:E11', function ($cell) {
+                                $cell->setValignment('center');
+                            });
+                            $sheet->cell('D8:E8', function ($cell) {
+                                $cell->setBorder('', '', 'thin', '');
+                            });
+                            $sheet->cell('C4', function ($cell) {
+                                $cell->setBorder('thin', 'thin', 'thin', 'thin');
+                            });
+                            $sheet->cell('C6', function ($cell) {
+                                $cell->setalignment('center');
+                                $cell->setValignment('center');
+                                $cell->setBorder('thin', 'thin', 'thin', 'thin');
+                            });
+                            // $sheet->cell('B14:E14', function($cell){
+                            //     $cell->setBorder('','','','thin');
+                            // });
+                        });
                     });
-                    $sheet->cell('D8:E8', function ($cell) {
-                        $cell->setBorder('', '', 'thin', '');
-                    });
-                    $sheet->cell('C4', function ($cell) {
-                        $cell->setBorder('thin', 'thin', 'thin', 'thin');
-                    });
-                    $sheet->cell('C6', function ($cell) {
-                        $cell->setalignment('center');
-                        $cell->setValignment('center');
-                        $cell->setBorder('thin', 'thin', 'thin', 'thin');
-                    });
-                    // $sheet->cell('B14:E14', function($cell){
-                    //     $cell->setBorder('','','','thin');
-                    // });
-                });
-            });
-            $styleArray = array(
-                'font' => array(
-                    'name' => 'Tahoma',
-                ));
-            $excel->getDefaultStyle()
-                ->applyFromArray($styleArray);
-            return $excel->export('xls');
+                    $styleArray = array(
+                        'font' => array(
+                            'name' => 'Tahoma',
+                        ));
+                    $excel->getDefaultStyle()
+                        ->applyFromArray($styleArray);
+                    return $excel->export('xls');
+            }
+        }
 	}
 
 	public function getLog03()
     {
-        return view('logistik.admin.log03.index');
+        return view('logistik.admin.log03.index',['show'=>0]);
 	}
 	
 	public function postLog03()
@@ -652,56 +703,72 @@ class LaporanController extends Controller
 
 		$pm = Pegawai::where('posisi_id', 1)->where('soft_delete', 0)->first();
 		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
-    	$excel = \Excel::create("Form Log-03 Laporan Evaluasi Mingguan Pengadaan Bahan", function ($excel) use ($materials, $pm, $splem) {
 
-                $excel->sheet('New sheet', function ($sheet) use ($materials, $pm, $splem) {
+        if(!isset($data['proses'])){
+            $data['proses'] = 0;
+        }
+        if(!isset($data['unduh'])){
+            $data['unduh'] = 0;
+        }
 
-                    $sheet->loadView('logistik.admin.log03.unduh', ['data' => $materials, 'pm' => $pm, 'splem' => $splem]);
-                    $objDrawing = new PHPExcel_Worksheet_Drawing;
-                    $objDrawing->setPath(public_path('img/Waskita.png'));
-                    $objDrawing->setCoordinates('C1');
-                    $objDrawing->setWorksheet($sheet);
-                    $objDrawing->setResizeProportional(false);
-                    // set width later
-                    $objDrawing->setWidth(40);
-                    $objDrawing->setHeight(35);
-                    $sheet->getStyle('C1')->getAlignment()->setIndent(1);
+        if($data['proses'] == 1){
+                return view('logistik.admin.log03.index', ['dataInput'=>$data,'data' => $materials, 'pm' => $pm, 'splem' => $splem,'show'=>1]);
 
-                    $sheet->getStyle('A13:N63')->getAlignment()->setWrapText(true);
-                    $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
-                    $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
-                        array('horizontal' => 'center')
-                    );
-                    $sheet->cells('A9:M11', function ($cells) {
-                        $cells->setValignment('center');
-                        $cells->setFontFamily('Tahoma');
-                    });
+        }elseif($data['unduh'] == 1){
+            if(count($materials)!= 0){
 
-                    $sheet->cell('D9:E11', function ($cell) {
-                        $cell->setValignment('center');
+            	$excel = \Excel::create("Form Log-03 Laporan Evaluasi Mingguan Pengadaan Bahan", function ($excel) use ($materials, $pm, $splem,$data) {
+
+                        $excel->sheet('New sheet', function ($sheet) use ($materials, $pm, $splem, $data) {
+
+                            $sheet->loadView('logistik.admin.log03.unduh', ['data' => $materials, 'pm' => $pm, 'splem' => $splem,'dataInput'=>$data]);
+                            $objDrawing = new PHPExcel_Worksheet_Drawing;
+                            $objDrawing->setPath(public_path('img/Waskita.png'));
+                            $objDrawing->setCoordinates('C1');
+                            $objDrawing->setWorksheet($sheet);
+                            $objDrawing->setResizeProportional(false);
+                            // set width later
+                            $objDrawing->setWidth(40);
+                            $objDrawing->setHeight(35);
+                            $sheet->getStyle('C1')->getAlignment()->setIndent(1);
+
+                            $sheet->getStyle('A13:N63')->getAlignment()->setWrapText(true);
+                            $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
+                            $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
+                                array('horizontal' => 'center')
+                            );
+                            $sheet->cells('A9:M11', function ($cells) {
+                                $cells->setValignment('center');
+                                $cells->setFontFamily('Tahoma');
+                            });
+
+                            $sheet->cell('D9:E11', function ($cell) {
+                                $cell->setValignment('center');
+                            });
+                            $sheet->cell('D8:E8', function ($cell) {
+                                $cell->setBorder('', '', 'thin', '');
+                            });
+                            $sheet->cell('C4', function ($cell) {
+                                $cell->setBorder('thin', 'thin', 'thin', 'thin');
+                            });
+                            $sheet->cell('C6', function ($cell) {
+                                $cell->setalignment('center');
+                                $cell->setValignment('center');
+                                $cell->setBorder('thin', 'thin', 'thin', 'thin');
+                            });
+                            // $sheet->cell('B14:E14', function($cell){
+                            //     $cell->setBorder('','','','thin');
+                            // });
+                        });
                     });
-                    $sheet->cell('D8:E8', function ($cell) {
-                        $cell->setBorder('', '', 'thin', '');
-                    });
-                    $sheet->cell('C4', function ($cell) {
-                        $cell->setBorder('thin', 'thin', 'thin', 'thin');
-                    });
-                    $sheet->cell('C6', function ($cell) {
-                        $cell->setalignment('center');
-                        $cell->setValignment('center');
-                        $cell->setBorder('thin', 'thin', 'thin', 'thin');
-                    });
-                    // $sheet->cell('B14:E14', function($cell){
-                    //     $cell->setBorder('','','','thin');
-                    // });
-                });
-            });
-            $styleArray = array(
-                'font' => array(
-                    'name' => 'Tahoma',
-                ));
-            $excel->getDefaultStyle()
-                ->applyFromArray($styleArray);
-            return $excel->export('xls');
+                    $styleArray = array(
+                        'font' => array(
+                            'name' => 'Tahoma',
+                        ));
+                    $excel->getDefaultStyle()
+                        ->applyFromArray($styleArray);
+                    return $excel->export('xls');
+            }
+        }
 	}
 }

@@ -64,9 +64,9 @@
 												<button data-toggle="modal"  id_permintaan='{{$permintaan->id}}' data-target="#NoteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-note" onclick='noteData("{{$permintaan->id}}")'>Note</button>
 											@endif
 										</td>
-										@if ($permintaan->status_penyerahan == 1)
+										@if ($permintaan->is_datang == 1)
 											<td style="color:#0984E3;"> Lengkap, Sesuai </td>
-										@elseif($permintaan->status_penyerahan == -1)
+										@elseif($permintaan->is_datang == -1)
 											<td style="color:#1AAD19;"> Diterima Dengan Catatan </td>
 										@else
 											<td style="color:#1AAD19;"> Menunggu Konfirmasi </td>
@@ -81,7 +81,7 @@
 											<a class="btn btn-dark btn-xs" title="Download" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em; opacity: 0.5;"><i class="fa fa-download" style="font-size:15px;opacity: 0.5;"></i>  </a>
 											@endif
 											<br>	
-											@if ($permintaan->status_penyerahan == 0)
+											@if ($permintaan->status_penyerahan == 1)
 											<a class="btn btn-default btn-xs" title="Edit" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/permintaan/konfirmasi/'.$permintaan->id.'')}}">Konfirmasi Penyerahan </a>
 											@endif
 										</td>

@@ -46,7 +46,11 @@
 											<div class="col-md-3 col-sm-3 col-xs-3">
                                                 <div class='input-group date' id='datepicker1' class="datepicker">
                                                     <span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
-                                                    <input type='text' value='' name='tanggal_mulai' class='form-control' required="required" placeholder="dd-mm-yyyy" />
+                                                    @if(isset($dataInput) && $dataInput['tanggal_mulai'])
+                                                    	<input type='text' value="{{$dataInput['tanggal_mulai']}}" name='tanggal_mulai' class='form-control' required="required" placeholder="dd-mm-yyyy" />
+                                                    @else
+                                                    	<input type='text' value='' name='tanggal_mulai' class='form-control' required="required" placeholder="dd-mm-yyyy" />
+                                                    @endif
                                                 </div>                                     
 											</div>
 										</div>
@@ -55,16 +59,157 @@
 											<div class="col-md-3 col-sm-3 col-xs-3">
                                                 <div class='input-group date' id='datepicker2' class="datepicker">
                                                     <span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
-                                                    <input type='text' value='' name='tanggal_selesai' class='form-control' required="required" placeholder="dd-mm-yyyy" />
+                                                    @if(isset($dataInput) && $dataInput['tanggal_selesai'])
+                                                    	<input type='text' value="{{$dataInput['tanggal_selesai']}}" name='tanggal_selesai' class='form-control' required="required" placeholder="dd-mm-yyyy" />
+                                                    @else
+                                                    	<input type='text' value='' name='tanggal_selesai' class='form-control' required="required" placeholder="dd-mm-yyyy" />
+                                                    @endif
                                                 </div>                                      
                                             </div>	
                                             <div class="col-md-1">
-                                                <button class="btn btn-primary pull-right" id="search">Search</button>
+                                                <button class="btn btn-success pull-right" id="search" name="proses" value="1">Proses</button>
                                             </div>
                                         </div>                                        
 									</div>
 								</div>
-							</div>                                
+							</div>
+							<br><br>  
+							<input type="hidden" name="download" value="{{$show}}">
+							@if($show == 1)
+								@if(count($data) == 0)
+									<br>
+									<br>
+									<div class="alert alert-danger">
+									  <div class="isi">Data tidak ditemukan!
+									  </div>
+									</div>
+								@else
+									<button type="submit" name="unduh" value="1" class="btn btn-primary pull-right">Download</button>
+									<div class="Laporan">
+										<table class="table" style="font-size: 12px;">
+										  <tr>
+										    <th><img src="../../public/img/Waskita.png" width="30" height="30"></th>
+										    <th colspan="3"><b style="font-weight: 3; font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
+										    <th></th>
+										    <th></th>
+										    <td style="border: 1px solid #000000;  " colspan="2" align="center">Formulir Log-03</td>
+										  </tr>
+										  <tr>
+										    <th></th>
+										    <th></th>
+										    <th></th>
+										    <th></th>
+										    <th></th>
+										    <th></th>
+										    <td style="border: 1px solid #000000;">Edisi : </b></td>
+										    <td style="border: 1px solid #000000;">Revisi : </td>
+										  
+										  <tr>
+										    <td style="padding-left: 10px;">Business Unit</td>
+										  </tr>
+										  <tr>   
+										    <td>Proyek</td>
+										    <td colspan="2">: </td>
+										    <td></td>
+										    <td colspan="3" style="font-weight: bold;"> No. AB</td>
+										  </tr>
+										  <tr>
+										    <td colspan="8" style="text-align: center;border: 1px solid #000000"><h4><b>LAPORAN EVALUASI MINGGUAN PENGADAAN BAHAN</b></h4></td>
+										  </tr>
+										  <tr></tr>
+										  <tr>
+										      <th colspan="2">Periode : {{$dataInput['tanggal_mulai']}} s.d {{$dataInput['tanggal_selesai']}}</th>
+										  </tr>
+										  <tr class="thead-light" >
+										    <td style="border: 1px double #000000; font-weight: bold;" rowspan="2" align="center" width="3">No</td>
+										    <td style="border: 1px double #000000; font-weight: bold; width: 12;" rowspan="2" align="center"> Jenis Bahan </td>
+										    <td style="border: 1px double #000000; font-weight: bold;  width: 15;" rowspan="2" align="center"> Satuan </td>
+										    <td style="border: 1px double #000000; font-weight: bold; width: 20;" rowspan="2" align="center"> Rencana Pengadaan </td>
+										    <td style="border: 1px double #000000; font-weight: bold; width: 20;" rowspan="2" align="center"> Realiasi Pengadaan </td>
+										    <td style="border: 1px double #000000; font-weight: bold; width: 12;" colspan="2" align="center"> Penyimpangan </td>
+										    <td style="border: 1px double #000000; font-weight: bold; width: 12;" rowspan="2" align="center"> Keterangan </td>
+										  </tr>
+										  <tr class="thead-light" >
+										      <td style="border: 1px double #000000; font-weight: bold;"align="center"> ( + ) </td>
+										      <td style="border: 1px double #000000; font-weight: bold;"align="center"> ( - ) </td>
+										      <td></td>
+										  </tr>
+										  <?php $no = 1;  ?>
+										  @foreach ($data as $key => $val)
+										    <tr class="thead-light" style="text-align: center;">
+										        <td style="border: 1px double #000000;">{{ $no++ }}</td>
+										        <td style="border: 1px double #000000;" align="left">{{ $val['nama'] }}</td>
+										        <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
+										        <td style="border: 1px double #000000;">{{ $val['rencana'] }}</td>
+										        <td style="border: 1px double #000000;">{{ $val['realisasi'] }}</td>
+										        <td style="border: 1px double #000000;">{{ $val['sesuai'] }}</td>
+										        <td style="border: 1px double #000000;">{{ $val['tidakSesuai'] }}</td>
+										        <td style="border: 1px double #000000;"> </td>
+										    </tr>
+										    @endforeach
+										  <tr></tr>
+										  <tr>
+										    <td></td>
+										    <td></td>
+										    <td></td>
+										    <td></td>
+										    <td></td>
+										    <td></td>
+										  </tr>
+										  <tr>
+										    <td></td>
+										    <td></td>
+										    <td></td>
+										    <td></td>
+										    <td></td>
+										    <td colspan="2" style="text-align: center;"> Tanggal </td>
+										    <td></td>
+										</tr>
+										<tr>
+										    <td></td>
+										    <td colspan="2" style="text-align: center;">Disetujui</td>
+										    <td></td>
+										    <td></td>
+										    <td colspan="2" style="text-align: center;"> Dibuat Oleh, </td>
+										    <td></td>
+										</tr>
+										<tr>
+										    <td></td>
+										    <td colspan="2" style="text-align: center;">Project Manager</td>
+										    <td></td>
+										    <td></td>
+										    <td colspan="2" style="text-align: center;"> SPLEM </td>
+										    <td></td>
+										</tr>
+										<tr>
+										    <td></td>
+										    <td colspan="2" style="height:70; content-align:center;">
+										      @if(file_exists("upload/pegawai/$pm->nip/$pm->ttd"))
+										          <img src="upload/pegawai/{{$pm->nip}}/{{$pm->ttd}}" width="100" align="center">
+										      @endif
+										    </td>
+										    <td></td>
+										    <td></td>
+										    <td colspan="2" style="height:70;"> 
+										      @if(file_exists("upload/pegawai/$splem->nip/$splem->ttd"))
+										          <img src="upload/pegawai/{{$splem->nip}}/{{$splem->ttd}}" width="100" align="center">
+										      @endif
+										    </td>
+										    <td></td>
+										</tr>
+										<tr>
+										    <td></td>
+										    <td colspan="2" style="text-align: center;"> {{ $pm->nama }}  </td>
+										    <td></td>
+										    <td></td>
+										    <td colspan="2" style="text-align: center;"> {{ $splem->nama }} </td>
+										    <td></td>
+										</tr>
+										</table>
+   
+									</div>
+								@endif
+							@endif                             
 						</form>
 					</div>
 				</div>

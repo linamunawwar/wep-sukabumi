@@ -46,7 +46,11 @@
 											<div class="col-md-3 col-sm-3 col-xs-3">
                                                 <div class='input-group date' id='datepicker1' class="datepicker">
                                                     <span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
-                                                    <input type='text' value='' name='tanggal_mulai' class='form-control' required="required" placeholder="dd-mm-yyyy" />
+                                                    @if(isset($dataInput) && $dataInput['tanggal_mulai'])
+                                                   		<input type='text' value="{{$dataInput['tanggal_mulai']}}" name='tanggal_mulai' class='form-control' required="required" placeholder="dd-mm-yyyy" />
+                                                   	@else
+                                                   		<input type='text' value='' name='tanggal_mulai' class='form-control' required="required" placeholder="dd-mm-yyyy" />
+                                                   	@endif
                                                 </div>                                     
 											</div>
 										</div>
@@ -55,16 +59,185 @@
 											<div class="col-md-3 col-sm-3 col-xs-3">
                                                 <div class='input-group date' id='datepicker2' class="datepicker">
                                                     <span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span>
-                                                    <input type='text' value='' name='tanggal_selesai' class='form-control' required="required" placeholder="dd-mm-yyyy" />
+                                                    @if(isset($dataInput) && $dataInput['tanggal_selesai'])
+                                                    	<input type='text' value="{{$dataInput['tanggal_selesai']}}" name='tanggal_selesai' class='form-control' required="required" placeholder="dd-mm-yyyy" />
+                                                    @else
+                                                    	<input type='text' value='' name='tanggal_selesai' class='form-control' required="required" placeholder="dd-mm-yyyy" />
+                                                    @endif
                                                 </div>                                      
                                             </div>	
                                             <div class="col-md-1">
-                                                <button class="btn btn-primary pull-right" id="search">Search</button>
+                                                <button class="btn btn-success pull-right" id="search" name="proses" value="1">Proses</button>
                                             </div>
                                         </div>                                        
 									</div>
 								</div>
-							</div>                                
+							</div>   
+							<br><br>
+							<input type="hidden" name="download" value="{{$show}}">
+							@if($show == 1)
+								@if(count($data) == 0)
+									<br>
+									<br>
+									<div class="alert alert-danger">
+									  <div class="isi">Data tidak ditemukan!
+									  </div>
+									</div>
+								@else
+									<button type="submit" name="unduh" value="1" class="btn btn-primary pull-right">Download</button>
+									<div class="Laporan">
+										<table class="table" style="font-size: 12px; text-align: center;">
+										    <tr>
+										      <th><img src="../../public/img/Waskita.png" width="30" height="30"></th>
+										      <th colspan="3"><b style="font-weight: 3; font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
+										      <th></th>
+										      <th></th>
+										      <td style="border: 1px solid #000000;  " colspan="2" align="center">Formulir Log-06</td>
+										    </tr>
+										    <tr>
+										      <th></th>
+										      <th></th>
+										      <th></th>
+										      <th></th>
+										      <th></th>
+										      <th></th>
+										      <td style="border: 1px solid #000000;">Edisi : </b></td>
+										      <td style="border: 1px solid #000000;">Revisi : </td>
+										    
+										    <tr>
+										      <td style="padding-left: 10px;">Business Unit</td>
+										    </tr>
+										    <tr>   
+										      <td>Proyek</td>
+										      <td colspan="2">: </td>
+										      <td></td>
+										      <td colspan="3" style="font-weight: bold;"> No. AB</td>
+										    </tr>
+										    <tr>
+										      <td colspan="8" style="text-align: center;border: 1px solid #000000"><h4><b>BUKU HARIAN GUDANG</b></h4></td>
+										    </tr>
+										    <tr></tr>
+										    <tr>
+										        <td></td>
+										        <td></td>
+										        <td></td>
+										        <td></td>
+										        <td></td>
+										        <td colspan="3">Halaman :
+										        </td>
+										    </tr>
+										    <tr class="thead-light" >
+										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12; height:20;" align="center">No</td>
+										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12; height:20;" align="center"> Tanggal </td>
+										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 15; height:20;" align="center"> Nama Bahan </td>
+										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12;" colspan="2" align="center"> Volume Masuk </td>
+										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12;" colspan="2" align="center"> Volume Keluar </td>
+										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12; height:20;" align="center"> Keterangan </td>
+										    </tr>
+										    @foreach ($data as $key => $value)
+										    <tr class="thead-light" style="text-align: center;">
+										        @foreach ($value['data'] as $key1 => $val)
+										          @if ($val['material'] != '')
+										          	@if($key1 == 0)
+										              <tr>
+										                <td style="border: 1px double #000000;" align="center">{{ $key }}</td>
+										        		<td style="border: 1px double #000000;" align="center">{{ $value	['tanggal'] }}</td>
+										                <td style="border: 1px double #000000;" align="left">{{ $val['material'] }}</td>
+										                <td style="border: 1px double #000000;">{{ $val['jml_terima'] }}</td>
+										                <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
+										                <td style="border: 1px double #000000;">{{ $val['jml_keluar'] }}</td>
+										                <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
+										                <td style="border: 1px double #000000;"> </td>
+										              </tr>
+										            @else
+										              <tr>
+										                <td style="border: 1px double #000000;"></td>
+										                <td style="border: 1px double #000000;"></td>
+										                <td style="border: 1px double #000000;" align="left">{{ $val['material'] }}</td>
+										                <td style="border: 1px double #000000;">{{ $val['jml_terima'] }}</td>
+										                <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
+										                <td style="border: 1px double #000000;">{{ $val['jml_keluar'] }}</td>
+										                <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
+										                <td style="border: 1px double #000000;"> </td>
+										              </tr>    
+										            @endif              
+										          @else
+										          	<td style="border: 1px double #000000;">{{ $key }}</td>
+										        	<td style="border: 1px double #000000;">{{ $value	['tanggal'] }}</td>
+										            <td style="border: 1px double #000000;">{{ $val['material'] }}</td>
+										            <td style="border: 1px double #000000;">{{ $val['jml_terima'] }}</td>
+										            <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
+										            <td style="border: 1px double #000000;">{{ $val['jml_keluar'] }}</td>
+										            <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
+										            <td style="border: 1px double #000000;"> </td>
+										          @endif
+										        @endforeach
+										    </tr>
+										    @endforeach
+										    <tr></tr>
+										    <tr>
+										      <td></td>
+										      <td></td>
+										      <td></td>
+										      <td></td>
+										      <td></td>
+										      <td></td>
+										      <td></td>
+										    </tr>
+										    <tr>
+										        <td></td>
+										        <td></td>
+										        <td></td>
+										        <td></td>
+										        <td></td>
+										        <td colspan="2" style="text-align: center;"> Tanggal </td>
+										        <td></td>
+										    </tr>
+										    <tr>
+										        <td></td>
+										        <td></td>
+										        <td></td>
+										        <td></td>
+										        <td></td>
+										        <td colspan="2" style="text-align: center;"> Diisi Oleh, </td>
+										        <td></td>
+										    </tr>
+										    <tr>
+										        <td></td>
+										        <td></td>
+										        <td></td>
+										        <td></td>
+										        <td></td>
+										        <td colspan="2" style="text-align: center;"> Petugas Gudang </td>
+										        <td></td>
+										    </tr>
+										    <tr>
+										        <td></td>
+										        <td></td>
+										        <td></td>
+										        <td></td>
+										        <td></td>
+										        <td colspan="2" style="height:70;"> 
+										            @if(file_exists("upload/pegawai/$splem->nip/$splem->ttd"))
+										                <img src="upload/pegawai/{{$splem->nip}}/{{$splem->ttd}}" width="100" align="center">
+										            @endif    
+										        </td>
+										        <td></td>
+										    </tr>
+										    <tr>
+										        <td></td>
+										        <td></td>
+										        <td></td>
+										        <td></td>
+										        <td></td>
+										        <td colspan="2" style="text-align: center;"> {{ $splem->nama }} </td>
+										        <td></td>
+										    </tr>
+										  </table>
+    
+									</div>
+								@endif
+							@endif                             
 						</form>
 					</div>
 				</div>

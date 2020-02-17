@@ -69,7 +69,7 @@ class PenyerahanController extends Controller
             // $toUpdatedPenyerahan['cacatan_penyerahan'] = $cacatan;
             $penyarahanPermintaan = $penyerahan->pengajuanPenerimaanMaterial->kode_permintaan;
 
-            $toUpdatedPermmintaan['status_penyerahan'] = 0;
+            $toUpdatedPermmintaan['status_penyerahan'] = 1;
             $permintaan = LogPermintaanMaterial::where('soft_delete', 0)
                                                 ->where('kode_permintaan', $penyarahanPermintaan)
                                                 ->update($toUpdatedPermmintaan);

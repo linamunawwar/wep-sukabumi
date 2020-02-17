@@ -68,50 +68,52 @@
     <tr class="thead-light" >
       <td></td>
       <td></td>
-      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12; height:20;" align="center">No</td>
+      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 7; height:20;" align="center">No</td>
       <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12; height:20;" align="center"> Tanggal </td>
       <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 15; height:20;" align="center"> Nama Bahan </td>
       <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12;" colspan="2" align="center"> Volume Masuk </td>
       <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12;" colspan="2" align="center"> Volume Keluar </td>
       <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12; height:20;" align="center"> Keterangan </td>
     </tr>
-    <tr class="thead-light" >
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td style="width: 7; "></td>
-        <td></td>
-        <td style="width: 7; "></td>
-    </tr>
-    @foreach ($data as $key => $val)
+    @foreach ($data as $key => $value)
     <tr class="thead-light" style="text-align: center;">
-        <td></td>
-        <td></td>
-        <td style="border: 1px double #000000;">{{ $key }}</td>
-        <td style="border: 1px double #000000;">{{ $val['tanggal'] }}</td>
-        @foreach ($val['data'] as $key => $val)
+        @foreach ($value['data'] as $key1 => $val)
           @if ($val['material'] != '')
-              <tr>
+            @if($key1 == 0)
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td style="border: 1px double #000000;">{{ $val['material'] }}</td>
+                <td style="border: 1px double #000000;" align="center">{{ $key }}</td>
+                <td style="border: 1px double #000000;" align="center">{{ $value  ['tanggal'] }}</td>
+                <td style="border: 1px double #000000;" align="left">{{ $val['material'] }}</td>
                 <td style="border: 1px double #000000;">{{ $val['jml_terima'] }}</td>
                 <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
                 <td style="border: 1px double #000000;">{{ $val['jml_keluar'] }}</td>
                 <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
                 <td style="border: 1px double #000000;"> </td>
-              </tr>              
+            @else
+              <tr>
+                <td></td>
+                <td></td>
+                <td style="border: 1px double #000000;"></td>
+                <td style="border: 1px double #000000;"></td>
+                <td style="border: 1px double #000000;" align="left">{{ $val['material'] }}</td>
+                <td style="border: 1px double #000000;" align="center">{{ $val['jml_terima'] }}</td>
+                <td style="border: 1px double #000000;" align="center">{{ $val['satuan'] }}</td>
+                <td style="border: 1px double #000000;" align="center">{{ $val['jml_keluar'] }}</td>
+                <td style="border: 1px double #000000;" align="center">{{ $val['satuan'] }}</td>
+                <td style="border: 1px double #000000;"> </td>
+              </tr>    
+            @endif              
           @else
+            <td></td>
+            <td></td>
+            <td style="border: 1px double #000000;">{{ $key }}</td>
+            <td style="border: 1px double #000000;" align="center">{{ $value ['tanggal'] }}</td>
             <td style="border: 1px double #000000;">{{ $val['material'] }}</td>
-            <td style="border: 1px double #000000;">{{ $val['jml_terima'] }}</td>
-            <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
-            <td style="border: 1px double #000000;">{{ $val['jml_keluar'] }}</td>
-            <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
+            <td style="border: 1px double #000000;" align="center">{{ $val['jml_terima'] }}</td>
+            <td style="border: 1px double #000000;" align="center">{{ $val['satuan'] }}</td>
+            <td style="border: 1px double #000000;" align="center">{{ $val['jml_keluar'] }}</td>
+            <td style="border: 1px double #000000;" align="center">{{ $val['satuan'] }}</td>
             <td style="border: 1px double #000000;"> </td>
           @endif
         @endforeach
