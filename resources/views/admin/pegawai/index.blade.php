@@ -85,8 +85,8 @@
 												<!-- <span class="label label-success">Approved by PM</span> -->
 											@endif
 											<br><br>
-											@if(file_exists('upload/pegawai-/'.$pegawai->nip.'/'.$pegawai->ttd))
-												<img src="{{url('upload/pegawai').'/'.$pegawai->nip.'/'.$pegawai->ttd}}" width="30">
+											@if(file_exists('upload/pegawai/'.$pegawai->nip.'/'.$pegawai->ttd))
+												<img src="{{url('upload/pegawai').'/'.$pegawai->nip.'/'.$pegawai->ttd}}" width="40">
 											@else
 												Belum ada tanda tangan
 											@endif
