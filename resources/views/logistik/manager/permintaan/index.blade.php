@@ -34,8 +34,10 @@
 								<tr>
 									<th scope="col"> No </th>
 									<th scope="col"> Kode Permintaan </th>
+									<th scope="col"> Nama Peminta </th>
 									<th scope="col"> Tanggal </th>
 									<th scope="col"> Status </th>
+									<th scope="col"> Status Penyerahan</th>
 									<th scope="col"> Action </th>
 								</tr>
 							</thead>
@@ -43,26 +45,43 @@
 								<?php $no = 1 ?>
 								@foreach ($permintaans as $permintaan)
 									<tr>
-									<td>{{ $no++ }}</td>
-									<td>{{ $permintaan->kode_permintaan }}</td>
-									<td>{{ date('d F Y', strtotime($permintaan->tanggal)) }}</td>
-									<td style="color:{{ $permintaan->color }};">{{ $permintaan->text }}</td>
-									<td style="text-align:center;">
-										<a class="btn btn-default btn-xs" title="Detail" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/manager/permintaan/detail/'.$permintaan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>  </a>
-										<a class="btn btn-default btn-xs" title="Edit" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/manager/permintaan/edit/'.$permintaan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
-										<button data-toggle="modal" title="Hapus"  id_permintaan='{{$permintaan->id}}' data-target="#DeleteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-delete" onclick='deleteData("{{$permintaan->id}}")'><i class="fa fa-trash" style="font-size:15px;"></i></button>
-										@if ($permintaan->is_pm == 1)
-										<a class="btn btn-default btn-xs" title="Download" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/permintaan/unduh/'.$permintaan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>
+										<td>{{ $no++ }}</td>
+										<td>{{ $permintaan->kode_permintaan }}</td>
+										<td>{{ $permintaan->permintaanUser->name }}</td>
+										<td>{{ date('d F Y', strtotime($permintaan->tanggal)) }}</td>
+										<td style="color:{{ $permintaan->color }};">
+											{{ $permintaan->text }} 
+											@if(($permintaan->is_som == '0') || ($permintaan->is_slem == '0') || ($permintaan->is_scarm == '0') || ($permintaan->is_pm == '0'))
+												<br>
+												<button data-toggle="modal"  id_permintaan='{{$permintaan->id}}' data-target="#NoteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-note" onclick='noteData("{{$permintaan->id}}")'>Note</button>
+											@endif
+										</td>
+										@if ($permintaan->is_datang == 1)
+											<td style="color:#0984E3;"> Lengkap, Sesuai </td>
+										@elseif($permintaan->is_datang == -1)
+											<td style="color:#1AAD19;"> Diterima Dengan Catatan </td>
 										@else
-										<a class="btn btn-dark btn-xs" title="Download" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em; opacity: 0.5;"><i class="fa fa-download" style="font-size:15px;opacity: 0.5;"></i>  </a>
-										@endif
-										@if (((\Auth::user()->pegawai->posisi_id == 8) && ($permintaan->is_som != 1)) || ((\Auth::user()->pegawai->posisi_id == 7) && ($permintaan->is_som == 1) && ($permintaan->is_slem != 1)) || ((\Auth::user()->pegawai->posisi_id == 5) && ($permintaan->is_som == 1) && ($permintaan->is_slem == 1) && ($permintaan->is_scarm != 1)))
-											<br><a class="btn btn-default btn-xs" title="Approve" style="background-color:#049372; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/manager/permintaan/approve/'.$permintaan->id.'')}}"><i class="fa fa-check" title="Approve" style="font-size:15px;"></i> Approve </a>
-										@elseif(((\Auth::user()->pegawai->posisi_id == 8) && ($permintaan->is_som == 1)) || ((\Auth::user()->pegawai->posisi_id == 7) && ($permintaan->is_som == 1) && ($permintaan->is_slem == 1)) || ((\Auth::user()->pegawai->posisi_id == 5) && ($permintaan->is_som == 1) && ($permintaan->is_slem == 1) && ($permintaan->is_scarm == 1)))
-											<br><a class="btn btn-default btn-xs" title="Approve" style="background-color:#607D8B; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;"><i class="fa fa-close" style="font-size:15px;"></i> Approve </a>
-										@endif
-										
-									</td>
+											<td style="color:#1AAD19;"> Menunggu Konfirmasi </td>
+										@endif	
+										<td style="text-align:center;">
+											<span><a href="{{ url('Logistik/manager/permintaan/detail/'.$permintaan->id.'') }}" class="btn btn-default btn-xs" title="Detail" style="background-color :{{$permintaan->notifColor}}; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;"><i class="fa fa-th-list" style="font-size:15px;"></i></a> <sup style="{{$permintaan->notifStyle}}"> <i class="{{$permintaan->notifIcon}}" style='font-size:12px;'> </i> </sup>   </span>
+											<a class="btn btn-default btn-xs" title="Edit" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/manager/permintaan/edit/'.$permintaan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
+											<button data-toggle="modal" title="Hapus"  id_permintaan='{{$permintaan->id}}' data-target="#DeleteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-delete" onclick='deleteData("{{$permintaan->id}}")'><i class="fa fa-trash" style="font-size:15px;"></i></button>
+											@if ($permintaan->is_pm == 1)
+											<a class="btn btn-default btn-xs" title="Download" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/permintaan/unduh/'.$permintaan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>
+											@else
+											<a class="btn btn-dark btn-xs" title="Download" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em; opacity: 0.5;"><i class="fa fa-download" style="font-size:15px;opacity: 0.5;"></i>  </a>
+											@endif
+											@if (((\Auth::user()->pegawai->posisi_id == 8) && ($permintaan->is_som != 1)) || ((\Auth::user()->pegawai->posisi_id == 7) && ($permintaan->is_som == 1) && ($permintaan->is_slem != 1)) || ((\Auth::user()->pegawai->posisi_id == 5) && ($permintaan->is_som == 1) && ($permintaan->is_slem == 1) && ($permintaan->is_scarm != 1)))
+												<br><a class="btn btn-default btn-xs" title="Approve" style="background-color:#049372; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/manager/permintaan/approve/'.$permintaan->id.'')}}"><i class="fa fa-check" title="Approve" style="font-size:15px;"></i> Approve </a>
+											@elseif(((\Auth::user()->pegawai->posisi_id == 8) && ($permintaan->is_som == 1)) || ((\Auth::user()->pegawai->posisi_id == 7) && ($permintaan->is_som == 1) && ($permintaan->is_slem == 1)) || ((\Auth::user()->pegawai->posisi_id == 5) && ($permintaan->is_som == 1) && ($permintaan->is_slem == 1) && ($permintaan->is_scarm == 1)))
+												<br><a class="btn btn-default btn-xs" title="Approve" style="background-color:#607D8B; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;"><i class="fa fa-close" style="font-size:15px;"></i> Approve </a>
+											@endif
+											<br>	
+											@if (($permintaan->status_penyerahan == 1) && (\Auth::user()->id == $permintaan->user_id))
+											<a class="btn btn-default btn-xs" title="Edit" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/permintaan/konfirmasi/'.$permintaan->id.'')}}">Konfirmasi Penyerahan </a>
+											@endif
+										</td>
 									</tr>
 								@endforeach							
 							</tbody>
