@@ -88,7 +88,7 @@
 							<div class="form-group" style="float:right; margin-right:4em;">
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<a class="btn btn-primary" href="{{url('/Logistik/admin/penyerahan')}}">Cancel</a>									
-									@if ($penyerahan->status_penyerahan != 1 && $penyerahan->status_penyerahan != -1 )
+									@if ($penyerahan->status_penyerahan == 1 && $penyerahan->status_penyerahan != -1 )
 										<button type="submit" name="belumSesuai" class="btn" style="background-color:#D63031; color:#FFFFFF;">Terima, Dengan Catatan</button>
 										<button  type="submit" name="sesuai" class="btn btn-success">Lengkap, Sesuai </button>	
 									@else
