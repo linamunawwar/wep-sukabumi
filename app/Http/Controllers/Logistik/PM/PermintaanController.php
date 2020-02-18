@@ -58,7 +58,7 @@ class PermintaanController extends Controller
             } elseif ($permintaan->is_pm != 1) {
                 if ($permintaan->is_pm == Null) {
                     $permintaan->color = "#74B9FF";
-                    $permintaan->text = "Accepted By SPLEM";
+                    $permintaan->text = "Accepted By SCARM";
                 } elseif ($permintaan->is_pm == 0) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Rejected By PM";
@@ -66,6 +66,16 @@ class PermintaanController extends Controller
             } elseif ($permintaan->is_pm == 1) {
                 $permintaan->color = "#74B9FF";
                 $permintaan->text = "Accepted By PM";
+            }
+
+            if($permintaan->is_notif == 1) {
+                $permintaan->notifColor = "#FF9800";
+                $permintaan->notifStyle = 'margin-left:-22px; color:#0984E3;';
+                $permintaan->notifIcon = "fa fa-star ";
+            }else {
+                $permintaan->notifColor = "#FF9800";
+                $permintaan->notifStyle = "";
+                $permintaan->notifIcon = "";
             }
         }
         return view('logistik.pm.permintaan.index', ['permintaans' => $permintaans]);
