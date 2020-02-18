@@ -81,7 +81,7 @@
 											<a class="btn btn-dark btn-xs" title="Download" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em; opacity: 0.5;"><i class="fa fa-download" style="font-size:15px;opacity: 0.5;"></i>  </a>
 											@endif
 											<br>	
-											@if ($permintaan->status_penyerahan == 1)
+											@if (($permintaan->status_penyerahan == 1) && (\Auth::user()->id == $permintaan->user_id))
 											<a class="btn btn-default btn-xs" title="Edit" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/permintaan/konfirmasi/'.$permintaan->id.'')}}">Konfirmasi Penyerahan </a>
 											@endif
 										</td>

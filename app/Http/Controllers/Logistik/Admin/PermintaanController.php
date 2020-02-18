@@ -64,7 +64,7 @@ class PermintaanController extends Controller
             } elseif ($permintaan->is_pm != 1) {
                 if ($permintaan->is_pm == Null) {
                     $permintaan->color = "#74B9FF";
-                    $permintaan->text = "Accepted By SPLEM";
+                    $permintaan->text = "Accepted By SCARM";
                 } elseif ($permintaan->is_pm == 0) {
                     $permintaan->color = "#D63031";
                     $permintaan->text = "Rejected By PM";

@@ -165,19 +165,19 @@
 	                		dt +=  "<td>";
 	                		dt +=  "<input type='text' class='form-control vol_permintaan' id_data='"+jumlah_data+"' name='vol_permintaan[]' value='"+data[i].volume+"' id='vol_permintaan_"+jumlah_data+"'>";
 	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' class='form-control vol_lalu' id_data='"+jumlah_data+"' name='vol_lalu[]' value='"+data[i].jumlah_lalu+"' id='vol_lalu_"+jumlah_data+"'>";
+	                		dt +=  "<td><input type='text' style='width:60px;' class='form-control vol_lalu' id_data='"+jumlah_data+"' name='vol_lalu[]' value='"+data[i].jumlah_lalu+"' id='vol_lalu_"+jumlah_data+"'>";
 	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' class='form-control vol_saat_ini' id_data='"+jumlah_data+"' name='vol_saat_ini[]' id='vol_saat_ini_"+jumlah_data+"'>";
+	                		dt +=  "<td><input type='text' style='width:60px;' class='form-control vol_saat_ini' id_data='"+jumlah_data+"' name='vol_saat_ini[]' id='vol_saat_ini_"+jumlah_data+"'>";
 	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' class='form-control vol_jumlah' id_data='"+jumlah_data+"' name='vol_jumlah[]' value='' id='vol_jumlah_"+jumlah_data+"'>";
+	                		dt +=  "<td><input type='text' style='width:60px;' class='form-control vol_jumlah' id_data='"+jumlah_data+"' name='vol_jumlah[]' value='' id='vol_jumlah_"+jumlah_data+"'>";
 	                		dt +=  '</td>'
-	                		dt +=  "<td><input type='text' class='form-control vol_sisa' id_data='"+jumlah_data+"' name='vol_sisa[]' value='' id='vol_sisa_"+jumlah_data+"'>";
+	                		dt +=  "<td><input type='text' style='width:60px;' class='form-control vol_sisa' id_data='"+jumlah_data+"' name='vol_sisa[]' value='' id='vol_sisa_"+jumlah_data+"'>";
 	                		dt +=  '</td>';;
 	                		dt +=  "<td>"+data[i].satuan;
 	                		dt +=  "<input type='hidden' name='satuan[]' value='"+data[i].satuan+"' id='satuan_"+jumlah_data+"'>";
 	                		dt +=  '</td>';
 	                		dt +=  "<td>";
-	                		dt +=  "<input type='text' name='harga_satuan[]' class='form-control' id='harga_satuan_"+jumlah_data+"'>";
+	                		dt +=  "<input type='text' style='width:90px;'  name='harga_satuan[]' class='form-control' id='harga_satuan_"+jumlah_data+"'>";
 	                		dt +=  '</td>';
 	                		dt +=  "<td>";
 	                		if(data[i].status == 1){
