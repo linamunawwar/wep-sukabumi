@@ -125,7 +125,7 @@
                                       ?>
                                       <span class="time">{{$tgl[0]}}  {{$tgl[1]}}</span>
                                         <span class="message">
-                                          Kode Permintaan {{$serah->kode_penerimaan}} telah disetujui
+                                          Kode Penerimaan {{$serah->kode_penerimaan}} telah disetujui dan diserahkan
                                         </span>
                                     </span>
                                 </a>
