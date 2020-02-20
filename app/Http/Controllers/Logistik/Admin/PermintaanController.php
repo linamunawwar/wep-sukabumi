@@ -273,8 +273,9 @@ class PermintaanController extends Controller
         $jumlah = [];
         foreach ($penerimaans as $penerimaan){
             $pengajuan = LogPengajuanMaterial::where('kode_penerimaan',$penerimaan->kode_penerimaan)->first();
-
-            $pengajuan_details = LogDetailPengajuanMaterial::where('pengajuan_id',$pengajuan->id)->get();
+            
+            $pengajuan_details = LogDetailPengajuanMaterial::where('pengajuan_id',$pengajuan['id'])->get();
+            // dd($pengajuan_details);
             foreach($pengajuan_details as $pengajuan_detail){
                 if(!isset($jumlah[$pengajuan_detail->material_id])){
                     $jumlah[$pengajuan_detail->material_id] = $pengajuan_detail->pemyerahan_jumlah;
@@ -289,7 +290,6 @@ class PermintaanController extends Controller
             $detail->penyerahan_jumlah = $jumlah[$detail->material_id];
         }
         
-        // dd($details);
         $catatan = \Input::get('catatan');
         $sesuai = \Input::get('sesuai');
         $belumSesuai = \Input::get('belumSesuai');
