@@ -54,6 +54,7 @@
         </div>
 
         <!-- jQuery -->
+        <script src="{{ asset("public/js/jquery.js") }}"></script>
         <script src="{{ asset("public/js/jquery.min.js") }}"></script>
         <!-- Bootstrap -->
         <script src="{{ asset("public/js/bootstrap.min.js") }}"></script>

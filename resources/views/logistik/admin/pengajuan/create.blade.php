@@ -138,7 +138,7 @@
 	  var kode_penerimaan = $('#kode_penerimaan').val();
 	  var _token = $('#_token').val();
 	
-	  $.ajax({
+	  	$.ajax({
             type: 'post',
             url : '{{ url('Logistik/admin/pengajuan/cekData') }}',
             data: {
@@ -188,6 +188,32 @@
             }
         });	  
 	});
+
+	/*$(document).ready(function(){
+		var kode_penerimaan = $('#kode_penerimaan').val();
+	  	var _token = $('#_token').val();
+		//var jumlah_data = $('#jumlah_data').val();
+		
+		console.log(data.length);
+		for(var i = 0; i < jumlah_data.length; i++){
+			$('#permintaan_jumlah_'+i).blur(function(){
+				var permintaanJumlah = $(this).val();
+	
+				$.ajax({
+					type	: 'POST',
+					url 	: '{{ url('Logistik/admin/pengajuan/pengajuanValidasi') }}',
+					data: {
+						'permintaan_jumlah' : permintaanJumlah,
+						'kode_penerimaan' : kode_penerimaan,
+						'_token': _token
+					},
+					success	: function(data){
+						$('#pesan').html(data);
+					}
+				})
+			});
+		}
+	});*/
 	
   </script>
 @endpush

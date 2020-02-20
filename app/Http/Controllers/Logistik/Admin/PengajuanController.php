@@ -97,6 +97,14 @@ class PengajuanController extends Controller
         // dd($kode_penerimaan);
         return json_encode($datas);
     }
+    
+    // public function pengajuanValidasi()
+    // {
+    //     $penerimaans = LogPenerimaanMaterial::where(['kode_penerimaan' => $kode_penerimaan, 'soft_delete' => 0])->first();
+    //     $penerimaanDetails = LogDetailPenerimaanMaterial::where('penerimaan_id', $penerimaans->id)->where('soft_delete', 0)->get();
+
+    //     dd($penerimaanDetails);
+    // }
 
     public function postPengajuan()
     {
