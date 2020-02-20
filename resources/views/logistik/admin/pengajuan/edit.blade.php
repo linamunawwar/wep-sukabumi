@@ -122,7 +122,7 @@
                                                 <input type='hidden' size="1" class='form-control elementActivity' id_data="{{$no}}" name='elementActivity[]' value="{{$detail->element_activity}}" id="elementActivity_{{$no}}">
                                             </td>
                                             <td scope="col"> 
-                                                {{ $detail->id }}
+                                                {{ $detail->detailPengajuanMaterial->nama }}
                                                 <input type='hidden' size="1" class='form-control material' id_data="{{$no}}" name='material[]' value="{{ $detail->material_id }}" id="material_{{$no}}">                             
                                             </td>
                                             <td scope="col"> 

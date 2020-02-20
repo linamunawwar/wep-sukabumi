@@ -67,7 +67,7 @@
 										@if ($permintaan->is_datang == 1)
 											<td style="color:#0984E3;"> Lengkap, Sesuai </td>
 										@elseif($permintaan->is_datang == -1)
-											<td style="color:#1AAD19;"> Diterima Dengan Catatan </td>
+											<td style="color:#FF9800;"> Diterima Dengan Catatan </td>
 										@else
 											<td style="color:#1AAD19;"> Menunggu Konfirmasi </td>
 										@endif	

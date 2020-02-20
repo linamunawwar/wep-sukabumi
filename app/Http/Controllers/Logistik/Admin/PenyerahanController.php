@@ -46,10 +46,8 @@ class PenyerahanController extends Controller
         $toUpdateNotificationPenyerahan['is_notif'] = -1;
         $updatedPenyerahan = LogPengajuanMaterial::where('id', $penyerahan->id)->update($toUpdateNotificationPenyerahan);
         
-        if ($updatedPenyerahan) {     
             $details = LogDetailPengajuanMaterial::where(['pengajuan_id' => $penyerahan->id, 'soft_delete' => 0])
                                 ->get();
-        }
 
         return view('logistik.admin.penyerahan.detail', ['details' => $details, 'penyerahan' => $penyerahan]);
     }
