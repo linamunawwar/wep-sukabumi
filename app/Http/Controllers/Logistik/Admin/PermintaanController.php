@@ -302,7 +302,7 @@ class PermintaanController extends Controller
             }
 
             $toUpdatedPenyerahan['catatan_penyerahan'] = $catatan;
-            $toUpdatedPenyerahan['status_penyerahan'] = 1;
+            $toUpdatedPenyerahan['status_penyerahan'] = 0;
             $toUpdatedPenyerahan['is_datang'] = $is_datang;
             $toUpdatedPenyerahan['updated_at'] = date('Y-m-d H:i:s');
             
