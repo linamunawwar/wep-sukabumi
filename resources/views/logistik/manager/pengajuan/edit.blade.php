@@ -101,14 +101,17 @@
                                         <th scope="col" rowspan="2"><b> No</b> </th>
                                         <th scope="col" rowspan="2"><b> Element Activity</b> </th>
                                         <th scope="col" rowspan="2"><b> Material</b> </th>
+                                        <th scope="col" colspan="2"><b> Penerimaan Material</b> </th>
                                         <th scope="col" colspan="2"><b> Permintaan</b> </th>
-                                        <th scope="col" colspan="2"><b> Permintaan</b> </th>
+                                        <!-- <th scope="col" colspan="2"><b> Penyerahan</b> </th> -->
                                     </tr>
                                     <tr>
                                         <th scope="col"><b> Satuan </b></th>
                                         <th scope="col"><b> Jumlah </b></th>
                                         <th scope="col"><b> Satuan </b></th>
                                         <th scope="col"><b> Jumlah </b></th>
+                                        <!-- <th scope="col"><b> Satuan </b></th>
+                                        <th scope="col"><b> Jumlah </b></th> -->
                                     </tr>
                                 </thead>
                                 <tbody>	
@@ -125,20 +128,24 @@
                                                 {{ $detail->detailPengajuanMaterial->nama }}
                                                 <input type='hidden' size="1" class='form-control material' id_data="{{$no}}" name='material[]' value="{{ $detail->material_id }}" id="material_{{$no}}">                             
                                             </td>
-                                            <td scope="col"> 
-                                                {{ $detail->permintaan_satuan }}
-                                                <input type='hidden' size="1" class='form-control permintaanSatuan' id_data="{{$no}}" name='permintaanSatuan[]' value="{{ $detail->permintaan_satuan }}" id="permintaanSatuan_{{$no}}">                                             
+                                             <td scope="col"> 
+                                                {{ $detail->detailPengajuan->pengajuanPenerimaanMaterial->detailPenerimaan[$key]->satuan}}                                             
                                             </td>
                                             <td scope="col"> 
-                                                {{ $detail->permintaan_jumlah }}
-                                                <input type='hidden' size="1" class='form-control permintaan_jumlah' id_data="{{$no}}" name='permintaan_jumlah[]' value="{{ $detail->permintaan_jumlah }}" id="permintaan_jumlah_{{$no}}">                                             
+                                                {{ $detail->detailPengajuan->pengajuanPenerimaanMaterial->detailPenerimaan[$key]->vol_jumlah}}                                             
                                             </td>
                                             <td scope="col"> 
+                                                <input type='text' size="1" class='form-control permintaanSatuan' id_data="{{$no}}" name='permintaanSatuan[]' value="{{ $detail->permintaan_satuan }}" id="permintaanSatuan_{{$no}}">                                             
+                                            </td>
+                                            <td scope="col"> 
+                                                <input type='tetx' size="1" class='form-control permintaan_jumlah' id_data="{{$no}}" name='permintaan_jumlah[]' value="{{ $detail->permintaan_jumlah }}" id="permintaan_jumlah_{{$no}}">                                             
+                                            </td>
+                                            <!-- <td scope="col"> 
                                                 <input type='text' size="1" class='form-control penyerahanSatuan' id_data="{{$no}}" name='penyerahanSatuan[]' value="{{ $detail->penyerahan_satuan }}" id="penyerahanSatuan_{{$no}}">                                             
                                             </td>
                                             <td scope="col"> 
                                                 <input type='text' size="1" class='form-control pemyerahanJumlah' id_data="{{$no}}" name='pemyerahanJumlah[]' value="{{ $detail->pemyerahan_jumlah }}" id="pemyerahanJumlah_{{$no}}">                                             
-                                            </td>
+                                            </td> -->
                                         </tr>
                                     <?php $i++; ?>
                                     @endforeach  					

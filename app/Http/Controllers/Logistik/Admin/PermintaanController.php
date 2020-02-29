@@ -196,13 +196,13 @@ class PermintaanController extends Controller
                             'pm' => $pm]);
                     $objDrawing = new PHPExcel_Worksheet_Drawing;
                     $objDrawing->setPath(public_path('img/Waskita.png'));
-                    $objDrawing->setCoordinates('C1');
+                    $objDrawing->setCoordinates('C2');
                     $objDrawing->setWorksheet($sheet);
                     $objDrawing->setResizeProportional(false);
 
                     // set width later
-                    $objDrawing->setWidth(40);
-                    $objDrawing->setHeight(35);
+                    $objDrawing->setWidth(45);
+                    $objDrawing->setHeight(60);
                     $sheet->getStyle('C1')->getAlignment()->setIndent(1);
                     $sheet->getStyle('A13:H14')->getAlignment()->setWrapText(true);
                     $sheet->getStyle('A2:H36')->getFont()->setName('Tahoma');
@@ -217,23 +217,15 @@ class PermintaanController extends Controller
                     $sheet->cell('D9:E11', function ($cell) {
                         $cell->setValignment('center');
                     });
-                    $sheet->cell('D8:E8', function ($cell) {
-                        $cell->setBorder('', '', 'thin', '');
-                    });
-                    $sheet->cell('K2:K3', function ($cell) {
-                        $cell->setBorder('', '', '', 'thin');
-                    });
-                    $sheet->cell('C4', function ($cell) {
-                        $cell->setBorder('thin', 'thin', 'thin', 'thin');
-                    });
                     $sheet->cell('C6', function ($cell) {
                         $cell->setalignment('center');
                         $cell->setValignment('center');
                         $cell->setBorder('thin', 'thin', 'thin', 'thin');
                     });
+                    
                 });
             });
-            $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+            // $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
             $styleArray = array(
                 'font' => array(
                     'name' => 'Tahoma',
@@ -307,6 +299,8 @@ class PermintaanController extends Controller
             $toUpdatedPenyerahan['updated_at'] = date('Y-m-d H:i:s');
             
             $updatedPenyerahan = LogPermintaanMaterial::where('id', $konfirmasi->id)->update($toUpdatedPenyerahan);
+
+            return redirect('Logistik/admin/notif/order_diterima');
         }
 
         

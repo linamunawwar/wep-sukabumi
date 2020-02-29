@@ -54,27 +54,35 @@
                             <br>
 							<input type="hidden" name="jumlah_data" class="jumlah_data" id="jumlah_data" value="0">
 							<table class="table table-bordered permintaan" id="table_permintaan">
-								<tr>
-									<th>No.</th>
-									<th>Element Activity</th>
-									<th>Nama Material</th>
-									<th>Permintaan Satuan</th>
-                                    <th>Permintaan Jumlah</th>
-                                    <th>Penyerahan Satuan</th>
-									<th>Penyerahan Jumlah</th>
+								<tr >
+									<th rowspan="2">No.</th>
+									<th rowspan="2">Element Activity</th>
+                                    <th rowspan="2" style="text-align: center;">Nama Material</th>
+									<th colspan="2" style="text-align: center;">Penerimaan Material</th>
+									<th colspan="2" style="text-align: center;">Permintaan</th>
+                                    <!-- <th>Penyerahan Satuan</th>
+									<th>Penyerahan Jumlah</th> -->
 								</tr>
+                                <tr>
+                                    <td style="text-align: center;">Satuan</td>
+                                    <td style="text-align: center;">Jumlah</td>
+                                    <td style="text-align: center;">Satuan</td>
+                                    <td style="text-align: center;">Jumlah</td>
+                                </tr>
 								<tbody class="data">
                                     <?php $no = 1; $i = 0;?>
-                                    @foreach ($details as $detail)
+                                    @foreach ($details as $key=>$detail)
                                         <input type="hidden" name="detailId[]" value="{{ $detail->id }}">
 										<tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $detail->element_activity }}</td>
                                             <td>{{ $detail->detailPengajuanMaterial->nama }}</td>
-                                            <td>{{ $detail->permintaan_satuan }}</td>
-                                            <td>{{ $detail->permintaan_jumlah }}</td>
-                                            <td><input type="text" name="penyerahanSatuan[]" class="form-control" placeholder="Penyerahan Satuan" value="{{ $detail->penyerahan_satuan }}" required></td>
-                                            <td><input type="text" name="penyerahanJumlah[]" class="form-control" placeholder="Penyerahan Jumlah" value="{{ $detail->pemyerahan_jumlah }}" required></td>
+                                            <td>{{ $detail->detailPengajuan->pengajuanPenerimaanMaterial->detailPenerimaan[$key]->satuan}}  </td>
+                                            <td>{{ $detail->detailPengajuan->pengajuanPenerimaanMaterial->detailPenerimaan[$key]->vol_jumlah}} </td>
+                                            <td><input type="text" name="permintaanSatuan[]" class="form-control" placeholder="Permintaan Satuan" value="{{ $detail->permintaan_satuan }}" required></td>
+                                            <td><input type="text" name="permintaanJumlah[]" class="form-control" placeholder="Permintaan Jumlah" value="{{ $detail->permintaan_jumlah }}" required></td>
+                                           <!--  <td><input type="text" name="penyerahanSatuan[]" class="form-control" placeholder="Penyerahan Satuan" value="{{ $detail->penyerahan_satuan }}" required></td>
+                                            <td><input type="text" name="penyerahanJumlah[]" class="form-control" placeholder="Penyerahan Jumlah" value="{{ $detail->pemyerahan_jumlah }}" required></td> -->
                                         </tr>
                                     <?php $i++; ?>
                                     @endforeach
