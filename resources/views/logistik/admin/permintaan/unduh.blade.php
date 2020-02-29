@@ -9,13 +9,13 @@
     <td></td>
     <th></th>
     <th colspan="3"><b style="font-weight: 3; font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
-    <td colspan="2" style="border: 1px solid #000000;" align="center">Formulir Log-08</td>
+    <td colspan="2" style="border: 1px solid #000000;" align="center">Formulir Log-04</td>
   </tr>
   <tr>
     <th></th>
     <th></th>
     <th></th>
-    <th>DIVISI III</th>
+    <th>INFRASTRUCTURE 2</th>
     <th></th>
     <th></th>
     <td style="border: 1px solid #000000;">Edisi : </b></td>
@@ -44,9 +44,12 @@
       <td></td>
       <td></td>
       <td></td>        
-      <td colspan="3" style="text-align:center;">Nomer : /BPM/WK/DIII/BK/20 </td>
+      <td colspan="3" style="text-align:center;">Nomer:/BPM/WK/DIII/BK/20 </td>
       <td></td>
-    </tr>
+    </tr>  
+</table>
+
+  <table class="table table-striped">
     <tr>
       <td></td>
       <td></td>
@@ -55,16 +58,13 @@
       <td></td>
       <td></td>
       <td></td>
-      <td>Tanggal : </td>
+      <td>Tanggal : {{ konversi_tanggal($permintaan->tanggal) }} </td>
     </tr>
-</table>
-
-  <table class="table table-striped">
     <tr class="thead-light" >
       <td></td>
       <td></td>
       <td style="border: 1px solid #000000;" rowspan="2" align="center">No.</th>
-      <td style="border: 1px solid #000000; width: 27;" rowspan="2" align="center"> Jenis Material / Bahan </th>
+      <td style="border: 1px solid #000000; width: 40;" rowspan="2" align="center"> Jenis Material/Bahan </th>
       <td style="border: 1px solid #000000; width: 27;" rowspan="2" align="center"> No.Part/Type </th>
       <td style="border: 1px solid #000000; width: 15;" rowspan="2" align="center"> Volume </th>
       <td style="border: 1px solid #000000; width: 14;" rowspan="2" align="center"> Satuan </th>
@@ -109,14 +109,7 @@
     @endif
     <tr></tr>
     <tr></tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
+    <tr></tr>
     <tr>
       <td></td>
       <td></td>
@@ -131,9 +124,9 @@
       <td></td>
       <td></td>
       <td align="center">Project Manager</td>
-      <td align="center">SPLEM</td>
-      <td colspan="2" align="center">SOM</td>
       <td align="center">SCARM</td>
+      <td colspan="2" align="center">SPLEM</td>
+      <td align="center">Superintendent / Manager</td>
     </tr>
     <tr>
       <td></td>
@@ -145,8 +138,8 @@
         @endif
       </td>
       <td align="center" style="height: 50;">
-        @if(file_exists("upload/pegawai/$som->nip/$som->ttd"))
-            <img src="upload/pegawai/{{$som->nip}}/{{$som->ttd}}" width="100" align="center">
+        @if(file_exists("upload/pegawai/$scarm->nip/$scarm->ttd"))
+            <img src="upload/pegawai/{{$scarm->nip}}/{{$scarm->ttd}}" width="100" align="center">
         @endif
       </td>
       <td colspan="2" align="center" style="height: 50;">
@@ -155,9 +148,7 @@
         @endif
       </td>
       <td align="center" style="height: 55;">
-        @if(file_exists("upload/pegawai/$scarm->nip/$scarm->ttd"))
-            <img src="upload/pegawai/{{$scarm->nip}}/{{$scarm->ttd}}" width="100" align="center">
-        @endif
+       
       </td>
     </tr>
     </tr>
@@ -165,9 +156,9 @@
       <td></td>
       <td></td>
       <td></td>
-      <td align="center">{{$pm->nama}}</td>
-      <td align="center">{{$som->nama}}</td>
+      <td align="center" style="width:25;">{{$pm->nama}}</td>
+      <td align="center">{{$scarm->nama}}</td>
       <td colspan="2" align="center">{{$splem->nama}}</td>
-      <td align="center">{{ $scarm->nama }}</td>
+      <td align="center">…............................</td>
     </tr>
   </table>
