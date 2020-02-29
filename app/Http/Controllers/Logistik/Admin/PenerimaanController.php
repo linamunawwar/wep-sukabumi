@@ -410,7 +410,7 @@ class PenerimaanController extends Controller
 
     public function getAllNotif()
     {
-        $penerimaans = LogPenerimaanMaterial::where('soft_delete', 0)->where('is_pm',1)->where('is_notif',1)->get();
+        $penerimaans = LogPermintaanMaterial::where('soft_delete', 0)->where('status_penyerahan',1)->where('user_id',\Auth::user()->id)->get();
         foreach ($penerimaans as $penerimaan) {
             if($penerimaan->is_admin == 1){
                 $penerimaan->color = "#D63031";

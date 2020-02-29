@@ -100,9 +100,12 @@
 									<th rowspan="2" style="width: 200px;">Tanggal Pengajuan</th>
 									<th rowspan="2" style="width: 200px;">Element Activity</th>
 									<th rowspan="2" align="center" style="text-align: center;">Nama Material</th>
+									<th colspan="2" align="center" style="text-align: center;">Penerimaan Material</th>
 									<th colspan="2" align="center" style="text-align: center;">Permintaan</th>
 								</tr>
 								<tr>
+									<th>Satuan</th>
+									<th>Jumlah</th>
 									<th>Satuan</th>
 									<th>Jumlah</th>
 								</tr>
@@ -170,7 +173,11 @@
 							dt +=  '</td>';
 	                		dt +=  "<td style='text-align: center; vertical-align: middle;'>"+data[i].material_nama;
 	                		dt +=  "<input type='hidden' name='material[]' value='"+data[i].material_id+"' id='material_"+jumlah_data+"'>";
-	                		dt +=  '</td>';	                		
+	                		dt +=  '</td>';
+	                		dt +=  "<td style='text-align: center; vertical-align: middle;'>"+data[i].vol_jumlah;
+	                		dt +=  '</td>';	
+	                		dt +=  "<td style='text-align: center; vertical-align: middle;'>"+data[i].satuan;
+	                		dt +=  '</td>';		                		
 	                		dt +=  "<td><input type='text' class='form-control permintaan_satuan' id_data='"+jumlah_data+"' name='permintaan_satuan[]' value='"+data[i].material_satuan+"' id='permintaan_satuan_"+jumlah_data+"' required='required'>";
 	                		dt +=  '</td>';
 	                		dt +=  "<td><input type='text' class='form-control permintaan_jumlah' id_data='"+jumlah_data+"' name='permintaan_jumlah[]' value='' id='permintaan_jumlah_"+jumlah_data+"' required='required'>";

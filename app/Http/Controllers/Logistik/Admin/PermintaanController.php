@@ -307,6 +307,8 @@ class PermintaanController extends Controller
             $toUpdatedPenyerahan['updated_at'] = date('Y-m-d H:i:s');
             
             $updatedPenyerahan = LogPermintaanMaterial::where('id', $konfirmasi->id)->update($toUpdatedPenyerahan);
+
+            return redirect('Logistik/admin/notif/order_diterima');
         }
 
         

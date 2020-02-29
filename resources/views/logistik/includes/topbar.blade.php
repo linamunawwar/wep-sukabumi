@@ -157,7 +157,7 @@
                         <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                             @foreach(notif_order_diterima() as $key=>$order)
                             <li>
-                                <a href='{{url("Logistik/admin/penerimaan/notif/detail/$order->id")}}'>
+                                <a href='{{url("Logistik/admin/permintaan/konfirmasi/$order->id")}}'>
                                     <span>
                                       <span>{{$order->kode_permintaan}}</span>
                                       <?php

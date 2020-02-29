@@ -102,9 +102,12 @@
                                         <th scope="col" rowspan="2"><b> Tanggal Pengajuan</b> </th>
                                         <th scope="col" rowspan="2"><b> Element Activity</b> </th>
                                         <th scope="col" rowspan="2"><b> Material</b> </th>
+                                        <th scope="col" colspan="2"><b> Penerimaan Material</b> </th>
                                         <th scope="col" colspan="2"><b> Permintaan</b> </th>
                                     </tr>
                                     <tr>
+                                        <th scope="col"><b> Satuan </b></th>
+                                        <th scope="col"><b> Jumlah </b></th>
                                         <th scope="col"><b> Satuan </b></th>
                                         <th scope="col"><b> Jumlah </b></th>
                                     </tr>
@@ -127,6 +130,12 @@
                                             <td scope="col"> 
                                                 {{ $detail->detailPengajuanMaterial->nama }}
                                                 <input type='hidden' size="1" class='form-control material' id_data="{{$no}}" name='material[]' required='required' value="{{ $detail->material_id }}" id="material_{{$no}}">                             
+                                            </td>
+                                            <td scope="col"> 
+                                                {{ $detail->detailPengajuan->pengajuanPenerimaanMaterial->detailPenerimaan[$key]->satuan}}                                             
+                                            </td>
+                                            <td scope="col"> 
+                                                {{ $detail->detailPengajuan->pengajuanPenerimaanMaterial->detailPenerimaan[$key]->vol_jumlah}}                                             
                                             </td>
                                             <td scope="col"> 
                                                 <input type='text' size="1" class='form-control permintaanSatuan' id_data="{{$no}}" name='permintaanSatuan[]' required='required' value="{{ $detail->permintaan_satuan }}" id="permintaanSatuan_{{$no}}">                                             
