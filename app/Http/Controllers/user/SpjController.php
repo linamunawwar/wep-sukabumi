@@ -111,7 +111,10 @@ class SpjController extends Controller
         $data_awal = Spj::find($id);
 
         if(\Input::hasfile('lampiran')){
-        unlink("upload/spj/".$data_awal->lampiran);
+          if(file_exists('upload/spj/'.$data_awal->lampiran))
+          {
+            unlink("upload/spj/".$data_awal->lampiran);
+          }
           $ori_file  = \Request::file('lampiran');
          $tujuan = "upload/spj";
          $ekstension = $ori_file->getClientOriginalExtension();
