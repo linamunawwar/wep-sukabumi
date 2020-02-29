@@ -252,9 +252,9 @@ class PermintaanController extends Controller
         $toUpdateNotificationPermintaan['is_notif'] = 0;
         $updatedPermintaan = LogPermintaanMaterial::where('id', $notifPermintaan->id)->update($toUpdateNotificationPermintaan);
 
-        if ($updatedPermintaan) {     
+        // if ($updatedPermintaan) {     
             $details = LogDetailPermintaanMaterial::where(['permintaan_id' => $notifPermintaan->id, 'soft_delete' => 0])->get();
-        }
+        // }
         
         return view('logistik.admin.permintaan.detail', ['details' => $details, 'notifPermintaan' => $notifPermintaan]);
     }
