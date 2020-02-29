@@ -81,12 +81,12 @@
       <td></td>
       <td></td>
       <td style="border: 1px solid #000000;" align="center">{{$i++}}</td>
-      <td style="border: 1px solid #000000;"  align="left" >{{$data->detailPermintaanMaterial->nama}}<br>{{$data->keterangan}}</td>
-      <td style="border: 1px solid #000000;"  align="center">{{$data->penerimaan->permintaan->detailPermintaan[$key]->volume}}</td>
-      <td style="border: 1px solid #000000;"  align="right">{{$data->vol_lalu}}</td>
-      <td style="border: 1px solid #000000;"  align="right">{{$data->vol_saat_ini}}</td>
-      <td style="border: 1px solid #000000;"  align="right">{{$data->vol_jumlah}}</td>
-      <td style="border: 1px solid #000000;"  align="right">{{$data->vol_sisa}}</td>
+      <td style="border: 1px solid #000000;"  align="left" >{{$data->material->nama}}<br>{{$data->keterangan}}</td>
+      <td style="border: 1px solid #000000;"  align="center" width="10">{{$data->penerimaan->permintaan->permintaanDetail[$key]->volume}}</td>
+      <td style="border: 1px solid #000000;"  align="right" width="10">{{$data->vol_lalu}}</td>
+      <td style="border: 1px solid #000000;"  align="right" width="10">{{$data->vol_saat_ini}}</td>
+      <td style="border: 1px solid #000000;"  align="right" width="10">{{$data->vol_jumlah}}</td>
+      <td style="border: 1px solid #000000;"  align="right" width="10">{{$data->vol_sisa}}</td>
       <td style="border: 1px solid #000000;"  align="right">{{$data->harga}}</td>
       <?php $jumlah = (int)$data->vol_jumlah * (int)$data->harga;?>
       <td style="border: 1px solid #000000;"  align="right">{{$jumlah}}</td>
