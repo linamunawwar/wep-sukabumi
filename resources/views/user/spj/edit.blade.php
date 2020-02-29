@@ -46,13 +46,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Pemberi Tugas <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select class="form-control pegawai" name="pemberi_tugas" required="required">
-										<option value="">Pilih Pemberi Tugas</option>
-										@foreach($pegawais as $pegawai)
-											<?php $selected = ($spj->pemberi_tugas == $pegawai->nip)? 'selected': ''; ?>
-											<option value="{{$pegawai->nip}}" {{$selected}}>{{strtoupper($pegawai->nip)}} - {{$pegawai->nama}}</option>
-										@endforeach
-									</select>
+									<input type='text' name='pemberi_tugas' class='form-control' required="required" placeholder="" readonly="readonly" value="{{$spj->pemberi_tugas}} - {{$spj->pegawaiTugas->nama}}" />
 								</div>
 							</div>
 							<div class="form-group">
