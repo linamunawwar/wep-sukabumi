@@ -111,7 +111,6 @@ class SpjController extends Controller
         $data_awal = Spj::find($id);
 
         if(\Input::hasfile('lampiran')){
-            dd('d');
         unlink("upload/spj/".$data_awal->lampiran);
           $ori_file  = \Request::file('lampiran');
          $tujuan = "upload/spj";
