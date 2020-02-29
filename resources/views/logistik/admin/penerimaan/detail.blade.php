@@ -19,6 +19,8 @@
 						</ul><br><br>
 						<p>Kode Permintaan : {{$details[0]->penerimaan->kode_permintaan}}</p>
 						<p>Kode Penerimaan : {{$details[0]->penerimaan->kode_penerimaan}}</p>
+						<p>Nama Supplier : {{$details[0]->penerimaan->supplier}}</p>
+						<p>Nama Penerima : {{$details[0]->penerimaan->penerima}}</p>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
