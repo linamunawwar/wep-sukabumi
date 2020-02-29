@@ -38,6 +38,18 @@
 								<p style="display: inline-block;" id="kode_penerimaan_id">{{$penerimaan->kode_penerimaan}}</p>
 							</div>
 							<div class="form-group">
+								<label class="control-label col-md-2 col-sm-6 col-xs-12" style="text-align: left; padding: 0; width: 11%;" for="nama">Nama Supplier <span class="required">*</span>:</label>
+								<div class="col-md-4 col-sm-4 col-xs-12">
+									<input type="text" id="supplier" name="supplier" class="supplier form-control col-md-7 col-xs-12" value="{{$penerimaan->supplier}}" required="required">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-2 col-sm-6 col-xs-12" style="text-align: left;padding: 0; width: 11%;" for="nama">Nama Penerima <span class="required">*</span>:</label>
+								<div class="col-md-4 col-sm-4 col-xs-12">
+									<input type="text" id="penerima" name="penerima" class="penerima form-control col-md-7 col-xs-12" value="{{$penerimaan->penerima}}" required="required">
+								</div>
+							</div>
+							<div class="form-group">
 								<p style="display: inline-block;">(*) Mohon Dicentang hanya saat <u>semua</u> material sudah diterima</p>
 							</div>
 							<input type="hidden" name="jumlah_data" class="jumlah_data" id="jumlah_data" value="{{count($details)}}">

@@ -83,6 +83,18 @@
 							<div class="form-group">
 								<p style="display: inline-block;">(*) Mohon Dicentang hanya saat <u>semua</u> material sudah diterima</p>
 							</div>
+							<div class="form-group">
+								<label class="control-label col-md-2 col-sm-6 col-xs-12" style="text-align: left" for="nama">Nama Supplier <span class="required">*</span>:</label>
+								<div class="col-md-4 col-sm-4 col-xs-12">
+									<input type="text" id="supplier" name="supplier" class="supplier form-control col-md-7 col-xs-12" required="required">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-2 col-sm-6 col-xs-12" style="text-align: left;" for="nama">Nama Penerima <span class="required">*</span>:</label>
+								<div class="col-md-4 col-sm-4 col-xs-12">
+									<input type="text" id="penerima" name="penerima" class="penerima form-control col-md-7 col-xs-12" required="required">
+								</div>
+							</div>
 							<input type="hidden" name="jumlah_data" class="jumlah_data" id="jumlah_data" value="0">
 							<table class="table table-bordered waste" id="table_waste">
 								<tr>

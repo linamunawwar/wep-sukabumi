@@ -94,6 +94,8 @@ class PenerimaanController extends Controller
         date_default_timezone_set("Asia/Jakarta");
         $materialId = \Input::get('material');
         $tanggal_terima = \Input::get('tanggal_terima');
+        $supplier = \Input::get('supplier');
+        $penerima = \Input::get('penerima');
         $vol_lalu = \Input::get('vol_lalu');
         $vol_saat_ini = \Input::get('vol_saat_ini');
         $vol_jumlah = \Input::get('vol_jumlah');
@@ -123,7 +125,13 @@ class PenerimaanController extends Controller
         $addPenerimaan->kode_permintaan = $kode_permintaan;
         $addPenerimaan->kode_penerimaan = $kode;
         $addPenerimaan->tanggal = date('Y-m-d');
+        $addPenerimaan->supplier = $supplier;
+        $addPenerimaan->penerima = $penerima;
         $addPenerimaan->user_id = \Auth::user()->id;
+        if(\Auth::user()->role_id == 6){
+            $addPenerimaan->is_admin = 1;
+            $addPenerimaan->is_admin_at = date('Y-m-d H:i:s');
+        }
         $addPenerimaan->soft_delete = 0;
         $addPenerimaan->created_at = date('Y-m-d');
 
@@ -237,6 +245,8 @@ class PenerimaanController extends Controller
         $updatedPenerimaan = LogPenerimaanMaterial::where('id', $id)->update($toUpdatePenerimaan);
         $kode_permintaan = \Input::get('kode_permintaan');
         $kode_penerimaan = \Input::get('kode_penerimaan');
+        $supplier = \Input::get('supplier');
+        $penerima = \Input::get('penerima');
         $jmlPermintaan = \Input::get('jumlah_data');
         date_default_timezone_set("Asia/Jakarta");
         $materialId = \Input::get('material');
@@ -313,6 +323,8 @@ class PenerimaanController extends Controller
             		$semua_sesuai = 1;
             	}
             }
+
+            $update_penerimaan = LogPenerimaanMaterial::where('kode_penerimaan',$kode_penerimaan)->where('soft_delete',0)->update(['supplier'=>$supplier,'penerima'=>$penerima]);
 
             if($semua_sesuai == 1){
             	$update_permintaan = LogPermintaanMaterial::where('id',$find_permintaan->id)->where('soft_delete',0)->update(['is_sesuai'=> 1,'is_sesuai_at'=>date('Y-m-d H:i:s')]);
