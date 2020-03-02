@@ -197,7 +197,7 @@
 										    <th style="width: 6;">
 										      <img src="{{url('public/img/Waskita.png')}}" width="35" align="center">
 										    </th>
-										    <th colspan="4"><b style="font-weight: 3; font-size:12px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
+										    <th colspan="6"><b style="font-weight: 3; font-size:12px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
 										    <th></th>
 										    <th></th>
 										    <th></th>
@@ -218,10 +218,10 @@
 										    <th></th>
 										    <th></th>
 										    <th></th>
+										    <th></th>
+										    <th></th>
 										    <td style="border: 1px solid #000000;">Edisi : </b></td>
 										    <td style="border: 1px solid #000000;">Revisi : </td>
-										    <td></td>
-										    <td></td>
 										  <?php
 										      }
 										    ?>
@@ -231,6 +231,11 @@
 										    for($i=0; $i<$loop;$i++){
 										    ?>
 										    <td style="padding-left: 10px;">Business Unit</td>
+										    <td></td>
+										    <td></td>
+										    <td></td>
+										    <td></td>
+										    <td></td>
 										    <td></td>
 										    <td></td>
 										    <td></td>
@@ -248,6 +253,11 @@
 										    <td >Proyek</td>
 										    <td colspan="4">: Proyek Jalan Tol Becakayu Seksi 2A Ujung</td>
 										    <td colspan="2" style="font-weight: bold;"> No. AB</td>
+										    <td></td>
+										    <td></td>
+										    <td></td>
+										    <td></td>
+										    <td></td>
 										    <?php
 										      }
 										    ?>
@@ -259,7 +269,7 @@
 										    <?php
 										    for($i=0; $i<$loop;$i++){
 										    ?>
-										    <td colspan="8" style="text-align: center;border: 1px solid #000000"><b>BUKU HARIAN PENGELUARAN BAHAN</b></td>
+										    <td colspan="7" style="text-align: center;border: 1px solid #000000"><b>BUKU HARIAN PENGELUARAN BAHAN</b></td>
 										    <?php
 										      }
 										    ?>
@@ -280,7 +290,8 @@
 										    for($i=0; $i<$loop;$i++){
 										    ?>
 										    <td>Jenis Pekerjaan </td>
-										    <td>: {{$data['jenis']->nama}}</td>
+										    <td>:{{$data['jenis']->nama}}</td>
+										    <td></td>
 										    <td></td>
 										    <td></td>
 										    <td></td>
@@ -294,7 +305,8 @@
 										    for($i=0; $i<$loop;$i++){
 										    ?>
 										    <td>Volume Pekerjaan </td>
-										    <td>: {{$data['volume']}}</td>
+										    <td>:{{$data['volume']}}</td>
+										    <td></td>
 										    <td></td>
 										    <td></td>
 										    <td></td>
@@ -308,7 +320,8 @@
 										    for($i=0; $i<$loop;$i++){
 										    ?>
 										    <td>Lokasi Pekerjaan</td>
-										    <td>: {{$data['lokasi']->nama}}</td>
+										    <td>:{{$data['lokasi']->nama}}</td>
+										    <td></td>
 										    <td></td>
 										    <td></td>
 										    <td></td>
@@ -322,10 +335,11 @@
 										    for($i=0; $i<$loop;$i++){
 										    ?>
 										    <td>SOM/Superintendent Pekerjaan </td>
-										    <td>: {{$data['som']}}</td>
+										    <td>:{{$data['som']}}</td>
 										    <td></td>
 										    <td>Nomor Pekerjaan </td>
-										    <td>: {{$data['nomor_pekerjaan']}}</td>
+										    <td>:{{$data['nomor_pekerjaan']}}</td>
+										    <td></td>
 										    <td></td>
 										    <?php
 										      }
