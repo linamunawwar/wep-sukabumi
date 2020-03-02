@@ -17,12 +17,23 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form id="demo-form2" data-parsley-validate  method="POST">
+						<form id="demo-form2" data-parsley-validate  method="POST" enctype="multipart/form-data">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							Permintaan Material
 							<span style="float:right;"> Tanggal : {{ date('d F Y') }} </span>
 							<input type="hidden" name="tanggal" value="{{ date('d F Y') }}">
 							<hr>
+							<div class="row"> 
+								<div class="col-md-12">
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Lampiran :</label>
+										<div class="col-md-6 col-sm-6 col-xs-12">
+											<input type="file" name="file" class="form-control col-md-7 col-xs-12">
+										</div>
+									</div>
+								</div>
+							</div>
+							<br>
 							<div class="row"> 
 								<div class="col-md-6">
 									<div class="form-group">
