@@ -17,11 +17,25 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form id="demo-form2" data-parsley-validate  method="POST">
+						<form id="demo-form2" data-parsley-validate  method="POST" enctype="multipart/form-data">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
-							Permintaan Material
-							<span style="float:right;"> Tanggal : {{ date('d F Y') }} </span>
-							<input type="hidden" name="tanggal" value="{{ date('d F Y') }}">
+							<span style="float:right;"> Tanggal : {{ date('d F Y', strtotime($permintaan->tanggal)) }} </span>
+							<input type="hidden" name="tanggal" value="{{ date('d F Y', strtotime($permintaan->tanggal)) }}">
+							<div class="row"> 
+								<div class="col-md-12">
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Lampiran :</label>
+										<div class="col-md-6 col-sm-6 col-xs-12">
+											<input type="file" name="file" class="form-control col-md-7 col-xs-12">
+											@if((file_exists("upload/permintaan/$permintaan->file")) && $permintaan->file)
+												<b><a href='{{url("upload/permintaan/$permintaan->file")}}' class="col-md-7 col-xs-12" target="_blank">
+													<i class="fa fa-search-plus"></i>&nbsp&nbsp&nbspPreview
+												</a></b>
+											@endif
+										</div>
+									</div>
+								</div>
+							</div>
 							<hr>
 							<div class="row"> 
 								<div class="col-md-6">
@@ -108,7 +122,19 @@
 									<th>Action</th>
 								</tr>
 								<tbody class="data">
-									
+									@foreach ($detail as $detail)    
+                                    <tr>                            
+										<td>{{ $detail->detailPermintaanMaterial->nama }} </td>
+										<td>{{ $detail->no_part }} </td>
+										<td>{{ $detail->volume }} </td>
+										<td>{{ $detail->satuan }} </td>
+										<td>{{ $detail->keperluan }} </td>
+										<td>{{ $detail->keterangan }} </td>
+										<td> 
+											<a href="{{url('Logistik/admin/permintaan/deleteDetail/'.$detail->id.'/'.$detail->permintaan_id.'')}}" class="btn btn-sm btn-block btn-danger" style="width:40px;"><span class="fa fa-trash"></span></a> 
+										</td>                                           
+                                    </tr>					
+                                    @endforeach	
 								</tbody>
 							</table>
 							<div class="ln_solid"></div>
