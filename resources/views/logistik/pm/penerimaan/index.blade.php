@@ -42,6 +42,7 @@
 								<tr>
 									<th scope="col"> No </th>
 									<th scope="col"> Kode penerimaan </th>
+									<th scope="col"> Kode permintaan </th>
 									<th scope="col"> Tanggal </th>
 									<th scope="col"> Status </th>
 									<th scope="col"> Action </th>
@@ -54,22 +55,29 @@
 									<tr>
 									<td>{{ $no }}</td>
 									<td>{{ $penerimaan->kode_penerimaan }}</td>
+									<td>{{ $penerimaan->kode_permintaan }}</td>
 									<td>{{ $penerimaan->tanggal }}</td>
 									<td style="color:{{ $penerimaan->color }};">{{ $penerimaan->text }}</td>
 									<td style="text-align:center;">
-										<a class="btn btn-default btn-xs" title="Detail" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/pm/penerimaan/detail/'.$penerimaan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>  </a>
+										<span style="margin-right:10px;">
+											<a class="btn btn-default btn-xs" title="Detail" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/pm/penerimaan/detail/'.$penerimaan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>
+											</a>
+											@if(($penerimaan->is_new == 1) && (\Auth::user()->id == $penerimaan->permintaan->user_id))
+												<sup style="margin-left:-22px; color:#0984E3;"> <i class="fa fa-star" style='font-size:12px;'> </i> </sup> 
+											@endif
+										</span>
 										<!-- <a class="btn btn-default btn-xs" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/penerimaan/edit/'.$penerimaan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
 										<button data-toggle="modal"  id_penerimaan='{{$penerimaan->id}}' data-target="#DeleteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-delete" onclick='deleteData("{{$penerimaan->id}}")'><i class="fa fa-trash" style="font-size:15px;"></i></button> -->
-										@if($penerimaan->is_pm == 1)
+										@if($penerimaan->is_splem == 1)
 											<a class="btn btn-default btn-xs" title="Download" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/penerimaan/unduh/'.$penerimaan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>
 										@else
 											<a class="btn btn-dark btn-xs" title="Download" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em; opacity: 0.5;"><i class="fa fa-download" style="font-size:15px;opacity: 0.5;"></i>  </a>
 										@endif
-										@if(($penerimaan->is_splem == 1) && ($penerimaan->is_pm != 1) && (\Auth::user()->pegawai->posisi_id == 1))
+										<!-- @if(($penerimaan->is_splem == 1) && ($penerimaan->is_pm != 1) && (\Auth::user()->pegawai->posisi_id == 1))
 											<br><a class="btn btn-default btn-xs" title="Approve" style="background-color:#049372; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/pm/penerimaan/approve/'.$penerimaan->id.'')}}"><i class="fa fa-check" title="Approve" style="font-size:15px;"></i> Approve </a>
 										@elseif(\Auth::user()->pegawai->posisi_id == 1)
 											<br><a class="btn btn-default btn-xs" title="Approve" style="background-color:#607D8B; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;"><i class="fa fa-close" style="font-size:15px;"></i> Approve </a>
-										@endif
+										@endif -->
 									</td>
 									</tr>
 								@endforeach							

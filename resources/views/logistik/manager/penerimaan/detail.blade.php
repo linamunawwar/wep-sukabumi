@@ -16,20 +16,24 @@
 						<h2>Penerimaan Material </h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li><a href="{{url('Logistik/manager/penerimaan/')}}"><button class="btn btn-success"> Kembali </button></a></li>
-						</ul>
+						</ul><br><br>
+						<p>Kode Permintaan : {{$details[0]->penerimaan->kode_permintaan}}</p>
+						<p>Kode Penerimaan : {{$details[0]->penerimaan->kode_penerimaan}}</p>
+						<p>Nama Supplier : {{$details[0]->penerimaan->supplier}}</p>
+						<p>Nama Penerima : {{$details[0]->penerimaan->penerima}}</p>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
 						<table class="table table-bordered waste" id="table_waste">
 							<tr>
-								<th rowspan="2">No.</th>
-								<th rowspan="2" style="width: 200px;">Nama Material</th>
-								<th rowspan="2" style="width: 150px;">Tanggal Terima</th>
-								<th colspan="5" align="center" style="text-align: center;">VOLUME</th>
-								<th rowspan="2">Satuan</th>
-								<th rowspan="2" style="width: 120px;">Harga Satuan</th>
-								<th rowspan="2" style="width: 150px;">Keterangan/ Uraian</th>
-							</tr>
+									<th rowspan="2">No.</th>
+									<th rowspan="2" style="width: 180px;">Nama Material</th>
+									<th rowspan="2" style="width: 132px;">Tanggal Terima</th>
+									<th colspan="5" align="center" style="text-align: center;">VOLUME</th>
+									<th rowspan="2">Satuan</th>
+									<th rowspan="2" style="width: 120px;">Harga Satuan</th>
+									<th rowspan="2" style="width: 120px;">Keterangan/ Uraian</th>
+								</tr>
 							<tr>
 								<th>Total Permintaan</th>
 								<th>sd. yang Lalu</th>

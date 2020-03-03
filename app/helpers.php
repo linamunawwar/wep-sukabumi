@@ -9,15 +9,17 @@ function notif_permintaan_penyerahan()
     $permintaan_diserahkan = LogPengajuanMaterial::where('soft_delete',0)
             ->where('is_splem',1)
             ->where('is_notif',1)
+            ->where('soft_delete',0)
             ->get();
     return $permintaan_diserahkan;
 }
 
 function notif_order_diterima()
 {
-    $penerimaan = LogPenerimaanMaterial::where('soft_delete',0)
-            ->where('is_pm',1)
-            ->where('is_notif',1)
+    $penerimaan = LogPermintaanMaterial::where('soft_delete',0)
+            ->where('status_penyerahan',1)
+            ->where('soft_delete',0)
+            ->where('user_id',\Auth::user()->id)
             ->get();
     return $penerimaan;
 }
@@ -27,8 +29,21 @@ function notif_permintaan_disetujui()
     $permintaan_disetujui = LogPermintaanMaterial::where('soft_delete',0)
             ->where('is_pm',1)
             ->where('is_notif',1)
+            ->where('soft_delete',0)
             ->get();
     return $permintaan_disetujui;
+}
+
+function notif_penerimaan_baru()
+{
+    $user_id = \Auth::user()->id;
+    $baru = LogPenerimaanMaterial::where('soft_delete',0)
+            ->where('is_new',1)
+            ->whereHas('permintaan',function ($q) use($user_id){
+              $q->where('user_id', $user_id);
+            })
+            ->get();
+    return $baru;
 }
 
 function formatTanggalPanjang($tanggal) {

@@ -56,6 +56,11 @@
                                 <a href="{{url('Logistik/user/penerimaan')}}">
                                     <i class="fa fa-list"></i>
                                     Penerimaan Barang
+                                    @if(count(notif_penerimaan_baru()) != 0)
+                                        <span class="badge bg" style="background-color: #1AAD19; ">
+                                            {{count(notif_penerimaan_baru())}}
+                                        </span>
+                                    @endif
                                 </a>
                             </li>
                         @endif
@@ -64,6 +69,11 @@
                                 <a href="{{url('Logistik/manager/penerimaan')}}">
                                     <i class="fa fa-list"></i>
                                     Penerimaan Barang
+                                    @if(count(notif_penerimaan_baru()) != 0)
+                                        <span class="badge bg" style="background-color: #1AAD19; ">
+                                            {{count(notif_penerimaan_baru())}}
+                                        </span>
+                                    @endif
                                 </a>
                             </li>
                         @endif
@@ -72,6 +82,11 @@
                                 <a href="{{url('Logistik/pm/penerimaan')}}">
                                     <i class="fa fa-list"></i>
                                     Penerimaan Barang
+                                    @if(count(notif_penerimaan_baru()) != 0)
+                                        <span class="badge bg" style="background-color: #1AAD19; ">
+                                            {{count(notif_penerimaan_baru())}}
+                                        </span>
+                                    @endif
                                 </a>
                             </li>
                         @endif
@@ -80,6 +95,11 @@
                                 <a href="{{url('Logistik/admin/penerimaan')}}">
                                     <i class="fa fa-list"></i>
                                     Penerimaan Barang
+                                    @if(count(notif_penerimaan_baru()) != 0)
+                                        <span class="badge bg" style="background-color: #1AAD19; ">
+                                            {{count(notif_penerimaan_baru())}}
+                                        </span>
+                                    @endif
                                 </a>
                             </li>
                         @endif

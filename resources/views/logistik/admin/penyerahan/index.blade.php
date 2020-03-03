@@ -31,9 +31,8 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Pengajuan Material </h2>
+						<h2>Permintaan Penyerahan </h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('Logistik/admin/pengajuan/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>

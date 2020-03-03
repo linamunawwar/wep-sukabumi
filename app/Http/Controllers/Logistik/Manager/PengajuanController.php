@@ -61,8 +61,8 @@ class PengajuanController extends Controller
             $cekReject = \Input::get('reject');
             $jml = \input::get('jumlahData');
             $detailId = \input::get('detailId');
-            $penyerahanSatuan = \input::get('penyerahanSatuan');
-            $penyerahanJumlah = \input::get('penyerahanJumlah');
+            $permintaanSatuan = \input::get('permintaanSatuan');
+            $permintaanJumlah = \input::get('permintaanJumlah');
             
             if (\Auth::user()->pegawai->posisi_id == 8) { //splem
                 if (isset($cekApprove)) {
@@ -79,8 +79,8 @@ class PengajuanController extends Controller
                 $update = LogPengajuanMaterial::where('id', $id)->update($dt);
                 if ($update) {
                     for ($i=0; $i < $jml; $i++) { 
-                        $dp['penyerahan_satuan'] = $penyerahanSatuan[$i];
-                        $dp['pemyerahan_jumlah'] = $penyerahanJumlah[$i];
+                        $dp['permintaan_satuan'] = $permintaanSatuan[$i];
+                        $dp['permintaan_jumlah'] = $permintaanJumlah[$i];
 
                         $updateDetail = LogDetailPengajuanMaterial::where(['pengajuan_id' => $id, 'id' => $detailId[$i]])->update($dp);
                     }
@@ -98,8 +98,8 @@ class PengajuanController extends Controller
                 $update = LogPengajuanMaterial::where('id', $id)->update($dt);
                 if ($update) {
                     for ($i=0; $i < $jml; $i++) { 
-                        $dp['penyerahan_satuan'] = $penyerahanSatuan[$i];
-                        $dp['pemyerahan_jumlah'] = $penyerahanJumlah[$i];
+                        $dp['permintaan_satuan'] = $permintaanSatuan[$i];
+                        $dp['permintaan_jumlah'] = $permintaanJumlah[$i];
 
                         $updateDetail = LogDetailPengajuanMaterial::where(['pengajuan_id' => $id, 'id' => $detailId[$i]])->update($dp);
                     }
@@ -141,8 +141,8 @@ class PengajuanController extends Controller
         $material = \Input::get('material');
         $permintaan_satuan = \Input::get('permintaanSatuan');
         $permintaan_jumlah = \Input::get('permintaan_jumlah');
-        $penyerahan_satuan = \Input::get('penyerahanSatuan');
-        $penyerahan_jumlah = \Input::get('pemyerahanJumlah');
+        // $penyerahan_satuan = \Input::get('permintaanSatuan');
+        // $penyerahan_jumlah = \Input::get('pemyerahanJumlah');
 
         $toUpdatePengajuanMaterial['jenis_pekerjaan_id'] = $jenis_pekerjaan;
         $toUpdatePengajuanMaterial['lokasi_kerja_id'] = $lokasi_pekerjaan;

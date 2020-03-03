@@ -10,6 +10,7 @@ use App\Models\LogLokasi;
 use App\Models\LogMaterial;
 use App\Models\LogPengajuanMaterial;
 use App\Models\LogPermintaanMaterial;
+use App\Models\LogPenerimaanMaterial;
 
 class PenyerahanController extends Controller
 {
@@ -55,6 +56,8 @@ class PenyerahanController extends Controller
     public function postApproveDetailPenyerahan()
     {
         $idPenyerahan = \Input::All();
+        $penyerahanSatuan = $idPenyerahan['penyerahanSatuan'];
+        $pemyerahanJumlah = $idPenyerahan['pemyerahanJumlah'];
 
         $penyerahan = LogPengajuanMaterial::where('soft_delete', 0)
                             ->where('id', $idPenyerahan['id_penyerahan'])
@@ -65,18 +68,32 @@ class PenyerahanController extends Controller
                                 
         if ($penyerahan) {      
             // $toUpdatedPenyerahan['cacatan_penyerahan'] = $cacatan;
+            $toUpdatedPenerimaan['is_notif'] = 1;
+            $permintaan = LogPenerimaanMaterial::where('soft_delete', 0)
+                                                ->where('kode_penerimaan', $penyerahan->kode_penerimaan)
+                                                ->update($toUpdatedPenerimaan);
+
             $penyarahanPermintaan = $penyerahan->pengajuanPenerimaanMaterial->kode_permintaan;
 
             $toUpdatedPermmintaan['status_penyerahan'] = 1;
-            $toUpdatedPermmintaan['is_datang'] = 0;
+            $toUpdatedPermmintaan['is_datang'] = 0; 
             $permintaan = LogPermintaanMaterial::where('soft_delete', 0)
                                                 ->where('kode_permintaan', $penyarahanPermintaan)
                                                 ->update($toUpdatedPermmintaan);
+            
+            foreach ($details as $key => $detail) {
+                $toUpdatedDetail['penyerahan_satuan'] = $penyerahanSatuan[$detail->material_id];
+                $toUpdatedDetail['pemyerahan_jumlah'] = $pemyerahanJumlah[$detail->material_id];
+
+                $updateDetail = LogDetailPengajuanMaterial::where('id',$detail->id)->update($toUpdatedDetail);
+            }
             
             $toUpdatedPenyerahan['status_penyerahan'] = 1;
             $toUpdatedPenyerahan['updated_at'] = date('Y-m-d H:i:s');
 
             $updatedPenyerahan = LogPengajuanMaterial::where('id', $penyerahan->id)->update($toUpdatedPenyerahan);
+
+            return redirect('Logistik/admin/penyerahan');
         }
 
         return view('logistik.admin.penyerahan.detail', ['details' => $details, 'penyerahan' => $penyerahan]);

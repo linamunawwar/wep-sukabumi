@@ -102,9 +102,12 @@
                                         <th scope="col" rowspan="2"><b> Tanggal Pengajuan</b> </th>
                                         <th scope="col" rowspan="2"><b> Element Activity</b> </th>
                                         <th scope="col" rowspan="2"><b> Material</b> </th>
+                                        <th scope="col" colspan="2"><b> Penerimaan Material</b> </th>
                                         <th scope="col" colspan="2"><b> Permintaan</b> </th>
                                     </tr>
                                     <tr>
+                                        <th scope="col"><b> Satuan </b></th>
+                                        <th scope="col"><b> Jumlah </b></th>
                                         <th scope="col"><b> Satuan </b></th>
                                         <th scope="col"><b> Jumlah </b></th>
                                     </tr>

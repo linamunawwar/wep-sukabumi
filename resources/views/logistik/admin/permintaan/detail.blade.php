@@ -24,7 +24,26 @@
 							</li>
 							<li><a href="{{url('Logistik/admin/permintaan/')}}"><button class="btn btn-success"> Kembali </button></a></li>
 						</ul><br><br>
-						<p>Kode Permintaan : {{$details[0]->detailPermintaan->kode_permintaan}}</p>
+						<p>Kode Permintaan : 
+							@if(array_key_exists(0, $details)){
+								{{$details[0]->detailPermintaan->kode_permintaan}}
+							@endif
+						</p>
+						<div class="form-group">
+							<label class="control-label col-md-1" style="padding: 0;">Lampiran :</label>
+							<?php
+								if(array_key_exists(0, $details)){
+									$file = $details[0]->detailPermintaan->file;
+								}else{
+									$file = '-';
+								}
+							?>
+							@if((file_exists("upload/permintaan/$file")) && $file)
+								<b><a href='{{url("upload/permintaan/$file")}}' class="col-md-7 col-xs-12" target="_blank">
+									<i class="fa fa-search-plus"></i>&nbsp&nbsp&nbspPreview
+								</a></b>
+							@endif
+						</div>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">

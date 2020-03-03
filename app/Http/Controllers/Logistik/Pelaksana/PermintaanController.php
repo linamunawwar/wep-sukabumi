@@ -104,9 +104,20 @@ class PermintaanController extends Controller
             $kodePermintaan = PermintaanController::randomKey();
         }
 
+        if(\Input::hasfile('file')){
+          $ori_file  = \Request::file('file');
+         $tujuan = "upload/permintaan";
+         $nama_file = $ori_file->getClientOriginalName();
+
+        $ori_file->move($tujuan,$nama_file);
+       }else{
+            $nama_file='';
+       }
+
         $addPermintaan = new LogPermintaanMaterial;
         $addPermintaan->kode_permintaan = $kodePermintaan;
         $addPermintaan->tanggal = date('Y-m-d');
+        $addPermintaan->file = $nama_file;
         $addPermintaan->user_id = \Auth::user()->id;
         $addPermintaan->soft_delete = 0;
         $addPermintaan->created_at = date('Y-m-d');
@@ -134,7 +145,7 @@ class PermintaanController extends Controller
                     die();
                 }
             }
-            return redirect('Logistik/pm/permintaan');
+            return redirect('Logistik/user/permintaan');
         }
     }
 
@@ -150,7 +161,7 @@ class PermintaanController extends Controller
         $detailPermintaan = LogDetailPermintaanMaterial::where(['permintaan_id' => $permintaan->id, 'soft_delete' => 0])->get();
         $materials = LogMaterial::where('soft_delete', 0)->get();
 
-        return view('logistik.pm.permintaan.edit', ['permintaan' => $permintaan, 'detail' => $detailPermintaan, 'materials' => $materials]);
+        return view('logistik.user.permintaan.edit', ['permintaan' => $permintaan, 'detail' => $detailPermintaan, 'materials' => $materials]);
     }
 
     public function updatePermintaan($id)
@@ -161,6 +172,20 @@ class PermintaanController extends Controller
         $volume = \Input::get('volume');
         $satuan = \Input::get('satuan');
         $keperluan = \Input::get('keperluan');
+
+        $data_awal = LogPermintaanMaterial::find($id);
+        if(\Input::hasfile('file')){
+          if(file_exists('upload/permintaan/'.$data_awal->file))
+          {
+            unlink("upload/permintaan/".$data_awal->file);
+          }
+          $ori_file  = \Request::file('file');
+         $tujuan = "upload/permintaan";
+         $nama_file = $ori_file->getClientOriginalName();
+
+        $ori_file->move($tujuan,$nama_file);
+         $toUpdatePermintaan['file'] = $nama_file;
+       }
 
         $toUpdatePermintaan['updated_at'] = date('Y-m-d');
         $updatedPermintaan = LogPermintaanMaterial::where('id', $id)->update($toUpdatePermintaan);
