@@ -64,12 +64,14 @@ class PengajuanController extends Controller
     public function cekData()
     {        
         $kode_penerimaan = \Input::get('kode_penerimaan');
+        $penerimaan = LogPenerimaanMaterial::where(['kode_penerimaan' => $kode_penerimaan, 'soft_delete' => 0])->first();
         $penerimaans = LogPenerimaanMaterial::where(['kode_penerimaan' => $kode_penerimaan, 'soft_delete' => 0])->get();
-        if ($penerimaans) {
-            foreach ($penerimaans as $key => $val) {
-                $datas = LogDetailPenerimaanMaterial::where('penerimaan_id', $val['id'])->where('soft_delete', 0)->get();
-            }
-        } else {
+        
+        if ($penerimaan  && $penerimaan->is_splem == 1) {
+                $datas = LogDetailPenerimaanMaterial::where('penerimaan_id', $penerimaan->id)->where('soft_delete', 0)->get();
+        } elseif($penerimaan && $penerimaan->is_splem != 1){
+            $datas = 0;
+        }else{
             $datas = null;
         }
         if ($datas) {
