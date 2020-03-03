@@ -18,92 +18,7 @@
                         <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                     </ul>
                 </li>
-                
-                <li role="presentation" class="dropdown">
-                    @if(Auth::user()->role_id == 1)
-                        <a href="{{url('admin/memo')}}" class="dropdown-toggle info-number" aria-expanded="false" style="color: white!important;">
-                            <i class="fa fa-envelope-o"></i>
-                        </a>
-                    @endif
-                    @if(Auth::user()->role_id == 2)
-                        <a href="{{url('user/memo')}}" class="dropdown-toggle info-number" aria-expanded="false" style="color: white!important;">
-                            <i class="fa fa-envelope-o"></i>
-                        </a>
-                    @endif
-                    @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4))
-                        <a href="{{url('manager/memo')}}" class="dropdown-toggle info-number" aria-expanded="false" style="color: white!important;">
-                            <i class="fa fa-envelope-o"></i>
-                        </a>
-                    @endif
-                    @if(Auth::user()->role_id == 5)
-                       <a href="{{url('pm/memo')}}" class="dropdown-toggle info-number" aria-expanded="false" style="color: white!important;">
-                            <i class="fa fa-envelope-o"></i>
-                        </a>
-                    @endif
 
-                    <!-- <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
-                        <i class="fa fa-envelope-o"></i>
-                    </a> -->
-                    <!-- <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                        <li>
-                            <a>
-                                <span class="image"><img src="{{ Gravatar::src(Auth::user()->email) }}" alt="Profile Image" /></span>
-                                <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                <span class="image"><img src="{{ Gravatar::src(Auth::user()->email) }}" alt="Profile Image" /></span>
-                                <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                <span class="image"><img src="{{ Gravatar::src(Auth::user()->email) }}" alt="Profile Image" /></span>
-                                <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                <span class="image"><img src="{{ Gravatar::src(Auth::user()->email) }}" alt="Profile Image" /></span>
-                                <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                            </a>
-                        </li>
-                        <li>
-                            <div class="text-center">
-                                <a>
-                                    <strong>See All Alerts</strong>
-                                    <i class="fa fa-angle-right"></i>
-                                </a>
-                            </div>
-                        </li>
-                    </ul> -->
-                </li>
-                @if(Auth::user()->role_id == 6)
                     <li>
                         <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
                             Permintaan Penyerahan 
@@ -226,7 +141,7 @@
                         </ul>
                     </li>
                     
-                @endif
+                
                 @if(Auth::user()->role_id == 2)
                     <li>
                         <a href="{{url('user/cuti/serah_tugas')}}" class="info-number" style="color: white!important;">
