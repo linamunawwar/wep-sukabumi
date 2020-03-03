@@ -30,8 +30,20 @@ function notif_permintaan_disetujui()
             ->where('is_pm',1)
             ->where('is_notif',1)
             ->where('soft_delete',0)
+            ->where('user_id',\Auth::user()->id)
             ->get();
     return $permintaan_disetujui;
+}
+
+function notif_permintaan_ditolak()
+{
+    $permintaan_ditolak = LogPermintaanMaterial::where('soft_delete',0)
+            ->where('is_pm',0)
+            ->where('is_notif',1)
+            ->where('soft_delete',0)
+            ->where('user_id',\Auth::user()->id)
+            ->get();
+    return $permintaan_ditolak;
 }
 
 function notif_penerimaan_baru()

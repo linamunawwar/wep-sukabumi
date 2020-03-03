@@ -247,10 +247,12 @@ class PermintaanController extends Controller
                     $dt['is_slem'] = 1;
                     $dt['is_slem_at'] = date('Y-m-d H:i:s');
                     $dt['note_slem'] = \Input::get('note');
+                    $dt['is_notif'] = 1;
                 } elseif (isset($cekReject)) {
                     $dt['is_slem'] = 0;
                     $dt['is_slem_at'] = date('Y-m-d H:i:s');
                     $dt['note_slem'] = \Input::get('note');
+                    $dt['is_notif'] = 1;
                 }
                 $update = LogPermintaanMaterial::where('id', $id)->update($dt);
             } elseif (\Auth::user()->pegawai->posisi_id == 5) { //SCARM
