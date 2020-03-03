@@ -236,10 +236,12 @@ class PermintaanController extends Controller
                     $dt['is_som'] = 1;
                     $dt['is_som_at'] = date('Y-m-d H:i:s');
                     $dt['note_som'] = \Input::get('note');
+                    $dt['is_notif'] = 1;
                 } elseif (isset($cekReject)) {
                     $dt['is_som'] = 0;
                     $dt['is_som_at'] = date('Y-m-d H:i:s');
                     $dt['note_som'] = \Input::get('note');
+                    $dt['is_notif'] = 1;
                 }
                 $update = LogPermintaanMaterial::where('id', $id)->update($dt);
             } elseif (\Auth::user()->pegawai->posisi_id == 7) { //SPLEM, SLEM
@@ -260,10 +262,12 @@ class PermintaanController extends Controller
                     $dt['is_scarm'] = 1;
                     $dt['is_scarm_at'] = date('Y-m-d H:i:s');
                     $dt['note_scarm'] = \Input::get('note');
+                    $dt['is_notif'] = 1;
                 } elseif (isset($cekReject)) {
                     $dt['is_scarm'] = 0;
                     $dt['is_scarm_at'] = date('Y-m-d H:i:s');
                     $dt['note_scarm'] = \Input::get('note');
+                    $dt['is_notif'] = 1;
                 }
                 $update = LogPermintaanMaterial::where('id', $id)->update($dt);
             }
