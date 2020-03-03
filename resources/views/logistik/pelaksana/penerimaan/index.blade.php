@@ -42,6 +42,7 @@
 								<tr>
 									<th scope="col"> No </th>
 									<th scope="col"> Kode penerimaan </th>
+									<th scope="col"> Kode permintaan </th>
 									<th scope="col"> Tanggal </th>
 									<th scope="col"> Status </th>
 									<th scope="col"> Action </th>
@@ -54,10 +55,18 @@
 									<tr>
 									<td>{{ $no }}</td>
 									<td>{{ $penerimaan->kode_penerimaan }}</td>
+									<td>{{ $penerimaan->kode_permintaan }}</td>
 									<td>{{ $penerimaan->tanggal }}</td>
 									<td style="color:{{ $penerimaan->color }};">{{ $penerimaan->text }}</td>
 									<td style="text-align:center;">
-										@if($penerimaan->is_pm == 1)
+										<span style="margin-right:10px;">
+											<a class="btn btn-default btn-xs" title="Detail" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/user/penerimaan/detail/'.$penerimaan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>
+											</a>
+											@if(($penerimaan->is_new == 1) && (\Auth::user()->id == $penerimaan->permintaan->user_id))
+												<sup style="margin-left:-22px; color:#0984E3;"> <i class="fa fa-star" style='font-size:12px;'> </i> </sup> 
+											@endif
+										</span>
+										@if($penerimaan->is_splem == 1)
 											<a class="btn btn-default btn-xs" title="Download" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/penerimaan/unduh/'.$penerimaan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>
 										@else
 											<a class="btn btn-dark btn-xs" title="Download" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em; opacity: 0.5;"><i class="fa fa-download" style="font-size:15px;opacity: 0.5;"></i>  </a>

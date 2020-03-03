@@ -648,6 +648,7 @@ Route::group(['middleware' => 'auth'], function () {
 		//penerimaan MATERIAL
 		Route::get('/penerimaan', 'Logistik\Pelaksana\PenerimaanController@index');
 		Route::get('/penerimaan/unduh/{id}', 'Logistik\Admin\PenerimaanController@getUnduhpenerimaan');
+		Route::get('/penerimaan/detail/{id}', 'Logistik\Pelaksana\PenerimaanController@getDetailByPenerimaanId');
 
 		//PENGAJUAN MATERIAL
 		Route::get('/pengajuan', 'Logistik\Pelaksana\PengajuanController@index');
