@@ -16,7 +16,7 @@
 						<h2>Permintaan Material </h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li>
-								@if ($notifPermintaan->is_pm == 1)
+								@if ($notifPermintaan->is_scarm == 1)
 									<a class="btn btn-default" title="Download" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em; margin-top:0.3em; width:8em;" href="{{url('Logistik/admin/permintaan/unduh/'.$notifPermintaan->id.'')}}"> <b>Download</b> <i class="fa fa-download" style="font-size:15px;"> </i>  </a>
 								@else
 								<div class="btn btn-dark" title="Download" style="color:#FFFFFF;  padding:0.5em 0.7em 0.5em 0.7em; margin-top:0.3em; width:8em; opacity: 0.5;"> <b>Download</b> <i class="fa fa-download" style="font-size:15px;opacity: 0.5;"></i>  </div>

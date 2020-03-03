@@ -430,7 +430,10 @@ class PermintaanController extends Controller
 
     public function getAllNotif()
     {
-        $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->where('is_pm',1)->where('is_notif',1)->get();
+        $permintaans = LogPermintaanMaterial::where('soft_delete', 0)
+                        ->where('is_notif',1)
+                        ->where('user_id',\Auth::user()->id)
+                        ->get();
         foreach ($permintaans as $permintaan) {
             if ($permintaan->is_som != 1) {
                 if ($permintaan->is_som == Null) {
