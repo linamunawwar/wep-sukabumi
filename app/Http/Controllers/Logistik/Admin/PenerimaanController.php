@@ -54,11 +54,14 @@ class PenerimaanController extends Controller
 
     	$permintaan = LogPermintaanMaterial::where('kode_permintaan',$kode_permintaan)->where('soft_delete',0)->first();
 
-    	if($permintaan){
+    	if($permintaan && ($permintaan->is_scarm == 1)){
     		$datas = LogDetailPermintaanMaterial::where('permintaan_id',$permintaan->id)->where('soft_delete',0)->get();
-    	}else{
+    	}elseif($permintaan && $permintaan->is_scarm != 1){
+            $datas = 0;
+        }else{
     		$datas = null;
     	}
+        
     	if($datas){
 	    	foreach ($datas as $key => $data) {
 	    		$data->material_nama = $data->detailPermintaanMaterial->nama;

@@ -66,10 +66,16 @@
 							</div>
 						</div>
 						<br>
-						<div class="alert alert-danger" style="display: none;">
+						<div class="alert alert-danger not-found" style="display: none;">
 						  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
 						  <div class="isi">
 						  	<strong>Perhatian!</strong> Data dengan Kode permintaan tersebut tidak ditemukan!
+						  </div>
+						</div>
+						<div class="alert alert-danger alert-notif" style="display: none;">
+						  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+						  <div class="isi">
+						  	<strong>Perhatian!</strong> Data dengan Kode permintaan tersebut belum disetujui oleh SCARM!
 						  </div>
 						</div>
 
@@ -156,63 +162,70 @@
             	var data = JSON.parse(response);
             	$('.kode_permintaan').val(kode_permintaan);
             	$('#kode_permintaan_id').html(kode_permintaan);
-                if(data != null){
-	                if(data.length != 0){
-	                	$('#form1').hide();
-	                	$('#demo-form2').show();
-	                	var dt;
-	                	var nomor = 1; var checked='';;
-	                	for (var i = 0; i < data.length; i++) {
-	                		var jumlah_data = $('#jumlah_data').val();
-					        	jumlah_data++;
-					        $('#jumlah_data').val(jumlah_data);
-					        dt += "<tr  class='data_"+jumlah_data+"'>";
-	                		dt += "<td>"+nomor+"</td>";
-	                		dt +=  "<td>"+data[i].material_nama;
-	                		dt +=  "<input type='hidden' name='material[]' value='"+data[i].material_id+"' id='material_"+jumlah_data+"'>";
-	                		dt +=  '</td>';
-	                		dt +=  "<td>";
-                            dt += "<input type='date' value='' name='tanggal_terima[]' style='width:140px;' class='form-control datepicker' id='tanggal_terima_"+jumlah_data+"' required='required' placeholder='dd-mm-yyyy' />";
-	                		dt +=  '</td>';
-	                		dt +=  "<td>";
-	                		dt +=  "<input type='text' class='form-control vol_permintaan' id_data='"+jumlah_data+"' name='vol_permintaan[]' value='"+data[i].volume+"' id='vol_permintaan_"+jumlah_data+"'>";
-	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' style='width:60px;' class='form-control vol_lalu' id_data='"+jumlah_data+"' name='vol_lalu[]' value='"+data[i].jumlah_lalu+"' id='vol_lalu_"+jumlah_data+"'>";
-	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' style='width:60px;' class='form-control vol_saat_ini' id_data='"+jumlah_data+"' name='vol_saat_ini[]' id='vol_saat_ini_"+jumlah_data+"'>";
-	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' style='width:60px;' class='form-control vol_jumlah' id_data='"+jumlah_data+"' name='vol_jumlah[]' value='' id='vol_jumlah_"+jumlah_data+"'>";
-	                		dt +=  '</td>'
-	                		dt +=  "<td><input type='text' style='width:60px;' class='form-control vol_sisa' id_data='"+jumlah_data+"' name='vol_sisa[]' value='' id='vol_sisa_"+jumlah_data+"'>";
-	                		dt +=  '</td>';;
-	                		dt +=  "<td>"+data[i].satuan;
-	                		dt +=  "<input type='hidden' name='satuan[]' value='"+data[i].satuan+"' id='satuan_"+jumlah_data+"'>";
-	                		dt +=  '</td>';
-	                		dt +=  "<td>";
-	                		dt +=  "<input type='text' style='width:90px;'  name='harga_satuan[]' class='form-control' id='harga_satuan_"+jumlah_data+"'>";
-	                		dt +=  '</td>';
-	                		dt +=  "<td>";
-	                		if(data[i].status == 1){
-	                			checked = 'checked';
-	                		}else{
-	                			checked='';
-	                		}
-	                		dt +=  "<input type='checkbox' name='status["+i+"]' class='form-control' id='status_"+jumlah_data+"' "+checked+" value='1'> Sesuai";
-	                		dt +=  '</td>';
-	                		dt +=  "<td>";
-	                		dt +=  "<textarea  name='keterangan[]' class='form-control' id='keterangan_"+jumlah_data+"'></textarea>";
-	                		dt +=  '</td>';
-	                		dt += '</tr>';
-	                			nomor++;
-	                	}
-	                	$('#table_waste tbody.data').append(dt);	
-	                	
-	                }else{
-	                	$('.alert-danger').show();
+            	if(data == 0){
+            		$('.alert-notif').show();
+            		$('.not-found').hide();
+            	}else{
+	                if(data != null){
+		                if(data.length != 0){
+		                	$('#form1').hide();
+		                	$('#demo-form2').show();
+		                	var dt;
+		                	var nomor = 1; var checked='';;
+		                	for (var i = 0; i < data.length; i++) {
+		                		var jumlah_data = $('#jumlah_data').val();
+						        	jumlah_data++;
+						        $('#jumlah_data').val(jumlah_data);
+						        dt += "<tr  class='data_"+jumlah_data+"'>";
+		                		dt += "<td>"+nomor+"</td>";
+		                		dt +=  "<td>"+data[i].material_nama;
+		                		dt +=  "<input type='hidden' name='material[]' value='"+data[i].material_id+"' id='material_"+jumlah_data+"'>";
+		                		dt +=  '</td>';
+		                		dt +=  "<td>";
+	                            dt += "<input type='date' value='' name='tanggal_terima[]' style='width:140px;' class='form-control datepicker' id='tanggal_terima_"+jumlah_data+"' required='required' placeholder='dd-mm-yyyy' />";
+		                		dt +=  '</td>';
+		                		dt +=  "<td>";
+		                		dt +=  "<input type='text' class='form-control vol_permintaan' id_data='"+jumlah_data+"' name='vol_permintaan[]' value='"+data[i].volume+"' id='vol_permintaan_"+jumlah_data+"'>";
+		                		dt +=  '</td>';
+		                		dt +=  "<td><input type='text' style='width:60px;' class='form-control vol_lalu' id_data='"+jumlah_data+"' name='vol_lalu[]' value='"+data[i].jumlah_lalu+"' id='vol_lalu_"+jumlah_data+"'>";
+		                		dt +=  '</td>';
+		                		dt +=  "<td><input type='text' style='width:60px;' class='form-control vol_saat_ini' id_data='"+jumlah_data+"' name='vol_saat_ini[]' id='vol_saat_ini_"+jumlah_data+"'>";
+		                		dt +=  '</td>';
+		                		dt +=  "<td><input type='text' style='width:60px;' class='form-control vol_jumlah' id_data='"+jumlah_data+"' name='vol_jumlah[]' value='' id='vol_jumlah_"+jumlah_data+"'>";
+		                		dt +=  '</td>'
+		                		dt +=  "<td><input type='text' style='width:60px;' class='form-control vol_sisa' id_data='"+jumlah_data+"' name='vol_sisa[]' value='' id='vol_sisa_"+jumlah_data+"'>";
+		                		dt +=  '</td>';;
+		                		dt +=  "<td>"+data[i].satuan;
+		                		dt +=  "<input type='hidden' name='satuan[]' value='"+data[i].satuan+"' id='satuan_"+jumlah_data+"'>";
+		                		dt +=  '</td>';
+		                		dt +=  "<td>";
+		                		dt +=  "<input type='text' style='width:90px;'  name='harga_satuan[]' class='form-control' id='harga_satuan_"+jumlah_data+"'>";
+		                		dt +=  '</td>';
+		                		dt +=  "<td>";
+		                		if(data[i].status == 1){
+		                			checked = 'checked';
+		                		}else{
+		                			checked='';
+		                		}
+		                		dt +=  "<input type='checkbox' name='status["+i+"]' class='form-control' id='status_"+jumlah_data+"' "+checked+" value='1'> Sesuai";
+		                		dt +=  '</td>';
+		                		dt +=  "<td>";
+		                		dt +=  "<textarea  name='keterangan[]' class='form-control' id='keterangan_"+jumlah_data+"'></textarea>";
+		                		dt +=  '</td>';
+		                		dt += '</tr>';
+		                			nomor++;
+		                	}
+		                	$('#table_waste tbody.data').append(dt);	
+		                	
+		                }else{
+		                	$('.not-found').show();
+		                	$('.alert-notif').hide();
+		                }
+		            }else{
+	                	$('.not-found').show();
+	                	$('.alert-notif').hide();
 	                }
-	            }else{
-                	$('.alert-danger').show();
-                }
+	            }
             }
         });
 	  
