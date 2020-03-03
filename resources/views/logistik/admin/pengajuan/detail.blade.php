@@ -64,7 +64,7 @@
 										<td scope="col"> {{ $detail->detailPengajuanMaterial->nama }} </td>
 										<td scope="col"> {{ $detail->permintaan_satuan }} </td>
 										<td scope="col"> {{ $detail->permintaan_jumlah }} </td>
-										<td scope="col"> {{ $detail->penyerahan_satuan }} </td>
+										<td scope="col"> {{ $detail->detailPengajuanMaterial->satuan }} </td>
 										<td scope="col"> {{ $detail->pemyerahan_jumlah }} </td>
 									</tr>
 								@endforeach  					

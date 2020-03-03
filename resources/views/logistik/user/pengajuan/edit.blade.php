@@ -132,13 +132,7 @@
                                                 <input type='hidden' size="1" class='form-control material' id_data="{{$no}}" name='material[]' required='required' value="{{ $detail->material_id }}" id="material_{{$no}}">                             
                                             </td>
                                             <td scope="col"> 
-                                                {{ $detail->detailPengajuan->pengajuanPenerimaanMaterial->detailPenerimaan[$key]->satuan}}                                             
-                                            </td>
-                                            <td scope="col"> 
-                                                {{ $detail->detailPengajuan->pengajuanPenerimaanMaterial->detailPenerimaan[$key]->vol_jumlah}}                                             
-                                            </td>
-                                            <td scope="col"> 
-                                                <input type='text' size="1" class='form-control permintaanSatuan' id_data="{{$no}}" name='permintaanSatuan[]' required='required' value="{{ $detail->permintaan_satuan }}" id="permintaanSatuan_{{$no}}">                                             
+                                                <input type='text' size="1" class='form-control permintaanSatuan' id_data="{{$no}}" name='permintaanSatuan[]' required='required' value="{{ $detail->detailPengajuanMaterial->satuan }}" id="permintaanSatuan_{{$no}}">                                             
                                             </td>
                                             <td scope="col"> 
                                                 <input type='text' size="1" class='form-control permintaan_jumlah' id_data="{{$no}}" name='permintaan_jumlah[]' required='required' value="{{ $detail->permintaan_jumlah }}" id="permintaan_jumlah_{{$no}}">                                             

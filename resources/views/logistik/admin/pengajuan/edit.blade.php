@@ -143,7 +143,7 @@
                                                 <input type='hidden' size="1" class='form-control permintaan_jumlah' id_data="{{$no}}" name='permintaan_jumlah[]' value="{{ $detail->permintaan_jumlah }}" id="permintaan_jumlah_{{$no}}">                                             
                                             </td>
                                             <td scope="col"> 
-                                                <input type='text' size="1" class='form-control penyerahanSatuan' id_data="{{$no}}" name='penyerahanSatuan[]' value="{{ $detail->penyerahan_satuan }}" id="penyerahanSatuan_{{$no}}">                                             
+                                                <input type='text' size="1" class='form-control penyerahanSatuan' id_data="{{$no}}" name='penyerahanSatuan[]' value="{{ $detail->detailPengajuanMaterial->satuan }}" id="penyerahanSatuan_{{$no}}">                                             
                                             </td>
                                             <td scope="col"> 
                                                 <input type='text' size="1" class='form-control pemyerahanJumlah' id_data="{{$no}}" name='pemyerahanJumlah[]' value="{{ $detail->pemyerahan_jumlah }}" id="pemyerahanJumlah_{{$no}}">                                             
