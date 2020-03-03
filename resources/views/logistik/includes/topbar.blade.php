@@ -161,7 +161,7 @@
                                     <span>
                                       <span>{{$order->kode_permintaan}}</span>
                                       <?php
-                                        $tgl = explode(' ',$order->is_pm_at);
+                                        $tgl = explode(' ',$order->is_scarm_at);
                                         $tgl[0] = konversi_tanggal($tgl[0]);
                                       ?>
                                       <span class="time">{{$tgl[0]}}  {{$tgl[1]}}</span>
@@ -201,7 +201,7 @@
                                     <span>
                                       <span>{{$permintaan->kode_permintaan}}</span>
                                       <?php
-                                        $tgl = explode(' ',$permintaan->is_pm_at);
+                                        $tgl = explode(' ',$permintaan->is_scarm_at);
                                         $tgl[0] = konversi_tanggal($tgl[0]);
                                       ?>
                                       <span class="time">{{$tgl[0]}}  {{$tgl[1]}}</span>
