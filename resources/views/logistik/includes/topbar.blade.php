@@ -102,42 +102,61 @@
                     </li>
                     <li>
                         <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
-                            Permintaan Disetujui
-                            @if(count(notif_permintaan_disetujui()) != 0)
+                            Permintaan Diproses
+                            @if(count(notif_permintaan_diproses()) != 0)
                                 <span class="badge bg" style="background-color: #1AAD19; ">
-                                    {{count(notif_permintaan_disetujui())}}
+                                    {{count(notif_permintaan_diproses())}}
                                 </span>
                             @endif
                         </a>
                         <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                            @foreach(notif_permintaan_disetujui() as $key=>$permintaan)
-                            <li>
-                                <a href='{{url("Logistik/admin/permintaan/notif/detail/$permintaan->id")}}'>
-                                    <span>
-                                      <span>{{$permintaan->kode_permintaan}}</span>
-                                      <?php
-                                        $tgl = explode(' ',$permintaan->is_scarm_at);
-                                        $tgl[0] = konversi_tanggal($tgl[0]);
-                                      ?>
-                                      <span class="time">{{$tgl[0]}}  {{$tgl[1]}}</span>
-                                        <span class="message">
-                                          Kode Permintaan {{$permintaan->kode_permintaan}} telah disetujui
-                                        </span>
-                                    </span>
-                                </a>
-                            </li>
-                            @if($key == 4)
-                               <?php break;?>
-                            @endif
-                            @endforeach
-                            <li>
-                                <div class="text-center">
-                                    <a href="{{url('Logistik/admin/notif/permintaan_disetujui')}}">
-                                        <strong>See All Alerts</strong>
-                                        <i class="fa fa-angle-right"></i>
-                                    </a>
-                                </div>
-                            </li>
+                            @foreach(notif_permintaan_diproses() as $key=>$permintaan)
+                                @if($permintaan->is_scarm == 1)
+                                    <li>
+                                        <a href='{{url("Logistik/admin/permintaan/notif/detail/$permintaan->id")}}'>
+                                            <span>
+                                              <span>{{$permintaan->kode_permintaan}}</span>
+                                              <?php
+                                                $tgl = explode(' ',$permintaan->is_scarm_at);
+                                                $tgl[0] = konversi_tanggal($tgl[0]);
+                                              ?>
+                                              <span class="time">{{$tgl[0]}}  {{$tgl[1]}}</span>
+                                                <span class="message">
+                                                  Kode Permintaan {{$permintaan->kode_permintaan}} telah disetujui
+                                                </span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                @elseif($permintaan->is_scarm == 0)
+                                    <li style="background-color: hsla(14, 100%, 53%, 0.6); color: white;">
+                                        <a href='{{url("Logistik/admin/permintaan/edit/$permintaan->id")}}'>
+                                            <span>
+                                              <span>{{$permintaan->kode_permintaan}}</span>
+                                              <?php
+                                                $tgl = explode(' ',$permintaan->is_scarm_at);
+                                                $tgl[0] = konversi_tanggal($tgl[0]);
+                                              ?>
+                                              <span class="time">{{$tgl[0]}}  {{$tgl[1]}}</span>
+                                                <span class="message">
+                                                  Kode Permintaan {{$permintaan->kode_permintaan}} telah ditolak
+                                                </span>
+                                            </span>
+                                        </a>
+                                    </li>
+
+                                @endif
+                                @if($key == 4)
+                                   <?php break;?>
+                                @endif
+                                @endforeach
+                                <li>
+                                    <div class="text-center">
+                                        <a href="{{url('Logistik/admin/notif/permintaan_disetujui')}}">
+                                            <strong>See All Alerts</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
                         </ul>
                     </li>
             </ul>

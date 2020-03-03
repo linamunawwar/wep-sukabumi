@@ -24,10 +24,14 @@ function notif_order_diterima()
     return $penerimaan;
 }
 
-function notif_permintaan_disetujui()
+function notif_permintaan_diproses()
 {
     $permintaan_disetujui = LogPermintaanMaterial::where('soft_delete',0)
-            ->where('is_pm',1)
+            ->where('is_scarm',1)
+            ->where('is_notif',1)
+            ->where('soft_delete',0)
+            ->where('user_id',\Auth::user()->id)
+            ->orwhere('is_scarm',0)
             ->where('is_notif',1)
             ->where('soft_delete',0)
             ->where('user_id',\Auth::user()->id)
@@ -38,7 +42,7 @@ function notif_permintaan_disetujui()
 function notif_permintaan_ditolak()
 {
     $permintaan_ditolak = LogPermintaanMaterial::where('soft_delete',0)
-            ->where('is_pm',0)
+            ->where('is_scarm',0)
             ->where('is_notif',1)
             ->where('soft_delete',0)
             ->where('user_id',\Auth::user()->id)
