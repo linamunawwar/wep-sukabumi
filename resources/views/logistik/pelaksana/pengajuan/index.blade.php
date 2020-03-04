@@ -52,7 +52,7 @@
 									<tr>
 									<td>{{ $no }}</td>
 									<td>{{ $pengajuan->kode_penerimaan }}</td>
-									<td>{{ konversi_tanggal($pengajuan->tanggal) }}</td>
+									<td data-sort="{{strtotime($pengajuan->tanggal)}}">{{ konversi_tanggal($pengajuan->tanggal) }}</td>
 									<td style="color:{{ $status['color'] }};">{{ $status['text'] }}</td>
 									<td style="text-align:center;">
 										<a class="btn btn-default btn-xs" title="Detail" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/detail/'.$pengajuan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>  </a>

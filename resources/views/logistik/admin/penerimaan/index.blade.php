@@ -56,7 +56,7 @@
 									<td>{{ $no }}</td>
 									<td>{{ $penerimaan->kode_penerimaan }}</td>
 									<td>{{ $penerimaan->kode_permintaan }}</td>
-									<td>{{ date('d F Y', strtotime($penerimaan->tanggal)) }}</td>
+									<td data-sort="{{strtotime($penerimaan->tanggal)}}">{{ date('d F Y', strtotime($penerimaan->tanggal)) }}</td>
 									<td style="color:{{ $penerimaan->color }};">
 										{{ $penerimaan->text }}
 										@if($penerimaan->is_splem == 0)
@@ -187,7 +187,7 @@
 		
 	// Sort by column 1 and then re-draw
 	table
-	    .order( [ 5, 'desc' ] )
+	    .order( [ 3, 'desc' ] )
 	    .draw();
   </script>
  @endpush

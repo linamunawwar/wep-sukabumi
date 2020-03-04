@@ -56,7 +56,7 @@
 										<td>{{ $no++ }}</td>
 										<td>{{ $permintaan->kode_permintaan }}</td>
 										<td>{{ $permintaan->permintaanUser->name }}</td>
-										<td>{{ date('d F Y', strtotime($permintaan->tanggal)) }}</td>
+										<td data-sort="{{strtotime($permintaan->tanggal)}}">{{ date('d F Y', strtotime($permintaan->tanggal)) }}</td>
 										<td style="color:{{ $permintaan->color }};">
 											{{ $permintaan->text }} 
 											@if(($permintaan->is_som == '0') || ($permintaan->is_slem == '0') || ($permintaan->is_scarm == '0') || ($permintaan->is_pm == '0'))
@@ -187,7 +187,7 @@
 		
 	// Sort by column 1 and then re-draw
 	table
-	    .order( [ 5, 'desc' ] )
+	    .order( [ 3, 'desc' ] )
 	    .draw();
   </script>
  @endpush
