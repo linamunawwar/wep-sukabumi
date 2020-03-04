@@ -56,7 +56,7 @@
 									<td>{{ $no }}</td>
 									<td>{{ $penerimaan->kode_penerimaan }}</td>
 									<td>{{ $penerimaan->kode_permintaan }}</td>
-									<td>{{ $penerimaan->tanggal }}</td>
+									<td data-sort="{{strtotime($penerimaan->tanggal)}}">{{ konversi_tanggal($penerimaan->tanggal) }}</td>
 									<td style="color:{{ $penerimaan->color }};">{{ $penerimaan->text }}</td>
 									<td style="text-align:center;">
 										<span style="margin-right:10px;">
@@ -108,7 +108,7 @@
 		
 	// Sort by column 1 and then re-draw
 	table
-	    .order( [ 5, 'desc' ] )
+	    .order( [ 3, 'desc' ] )
 	    .draw();
   </script>
  @endpush
