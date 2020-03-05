@@ -450,6 +450,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pengajuan/notif/detail/{id}', 'Logistik\Admin\PengajuanController@getDetailNotifByPengajuanId');
 		Route::get('/pengajuan/edit/{id}', 'Logistik\Admin\PengajuanController@getPengajuanById');
 		Route::post('/pengajuan/edit/{id}', 'Logistik\Admin\PengajuanController@updatePengajuan');
+		Route::delete('/pengajuan/delete', 'Logistik\Admin\PengajuanController@deletePengajuan');
 		Route::get('/pengajuan/approve/{id}', 'Logistik\Admin\PengajuanController@beforeApprovePengajuan');
 		Route::post('/pengajuan/approve/{id}', 'Logistik\Admin\PengajuanController@approvePengajuan');
 		Route::get('/pengajuan/unduh/{id}', 'Logistik\Admin\PengajuanController@getUnduhPengajuan');
@@ -554,6 +555,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pengajuan/detail/{id}', 'Logistik\Manager\PengajuanController@getDetailByPengajuanId');
 		Route::get('/pengajuan/edit/{id}', 'Logistik\Manager\PengajuanController@getPengajuanById');
 		Route::post('/pengajuan/edit/{id}', 'Logistik\Manager\PengajuanController@updatePengajuan');
+		Route::delete('/pengajuan/delete', 'Logistik\Manager\PengajuanController@deletePengajuan');
 		Route::get('/pengajuan/approve/{id}', 'Logistik\Manager\PengajuanController@beforeApprovePengajuan');
 		Route::post('/pengajuan/approve/{id}', 'Logistik\Manager\PengajuanController@approvePengajuan');
 		Route::get('/pengajuan/unduh/{id}', 'Logistik\Manager\PengajuanController@getUnduhPengajuan');
