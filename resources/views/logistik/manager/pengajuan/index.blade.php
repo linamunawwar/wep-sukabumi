@@ -54,7 +54,7 @@
 									<tr>
 										<td>{{ $no }}</td>										
 										<td>{{ $pengajuan->kode_penerimaan }}</td>										
-										<td>{{ date('d F Y', strtotime($pengajuan->tanggal)) }}</td>										
+										<td data-sort="{{strtotime($pengajuan->tanggal)}}">{{ date('d F Y', strtotime($pengajuan->tanggal)) }}</td>										
 										<td>{{ $pengajuan->pengajuanJenisPekerjaan->nama }}</td>										
 										<td>{{ $pengajuan->pengajuanLokasiPekerjaan->nama }}</td>										
 										<td style="color:{{ $pengajuan->color }};">{{ $pengajuan->text }}</td>										
@@ -141,7 +141,7 @@
 		
 	// Sort by column 1 and then re-draw
 	table
-	    .order( [ 5, 'desc' ] )
+	    .order( [ 2, 'desc' ] )
 	    .draw();
   </script>
  @endpush

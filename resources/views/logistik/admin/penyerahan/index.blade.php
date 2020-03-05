@@ -56,7 +56,7 @@
 									<tr >
 										<td>{{ $no }}</td>										
 										<td>{{ $penyerahan->kode_penerimaan }}</td>	
-										<td>{{ date('d F Y', strtotime($penyerahan->tanggal)) }}</td>										
+										<td data-sort="{{strtotime($penyerahan->tanggal)}}">{{ date('d F Y', strtotime($penyerahan->tanggal)) }}</td>										
 										<td>{{ $penyerahan->pengajuanJenisPekerjaan->nama }}</td>										
 										<td>{{ $penyerahan->pengajuanLokasiPekerjaan->nama }}</td>
 										@if ($penyerahan->status_penyerahan == 1)
@@ -170,7 +170,7 @@
 		
 	// Sort by column 1 and then re-draw
 	table
-	    .order( [ 5, 'desc' ] )
+	    .order( [ 2, 'desc' ] )
 	    .draw();
   </script>
  @endpush

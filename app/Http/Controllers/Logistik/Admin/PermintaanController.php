@@ -341,6 +341,9 @@ class PermintaanController extends Controller
         $detailPermintaan = LogDetailPermintaanMaterial::where(['permintaan_id' => $permintaan->id, 'soft_delete' => 0])->get();
         $materials = LogMaterial::where('soft_delete', 0)->get();
 
+        $update_notif = LogPermintaanMaterial::where('id',$id)->where('soft_delete',0)->update(['is_notif'=>0]);
+
+
         return view('logistik.admin.permintaan.edit', ['permintaan' => $permintaan, 'detail' => $detailPermintaan, 'materials' => $materials]);
     }
 
@@ -427,7 +430,10 @@ class PermintaanController extends Controller
 
     public function getAllNotif()
     {
-        $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->where('is_pm',1)->where('is_notif',1)->get();
+        $permintaans = LogPermintaanMaterial::where('soft_delete', 0)
+                        ->where('is_notif',1)
+                        ->where('user_id',\Auth::user()->id)
+                        ->get();
         foreach ($permintaans as $permintaan) {
             if ($permintaan->is_som != 1) {
                 if ($permintaan->is_som == Null) {
