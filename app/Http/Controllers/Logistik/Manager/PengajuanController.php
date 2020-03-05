@@ -164,4 +164,15 @@ class PengajuanController extends Controller
 
         return redirect('Logistik/manager/pengajuan');
     }
+
+    public function deletePengajuan()
+    {
+        $dataDelete = \Input::all();
+        $deletePengajuan = LogPengajuanMaterial::where('id', $dataDelete['id_pengajuan'])->update(['soft_delete' => 1]);
+
+        if ($deletePengajuan) {
+            $deleteAllDetailPengajuan = LogDetailPengajuanMaterial::where('pengajuan_id', $dataDelete['id_pengajuan'])->update(['soft_delete' => 1]);
+            return redirect('Logistik/admin/pengajuan');
+        }
+    }
 }
