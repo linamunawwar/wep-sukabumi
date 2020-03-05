@@ -909,7 +909,7 @@ $kode = KodeBagian::all();
 														@endif
 												</tbody>
 											</table>
-											<p>** : - Untuk Kepala Proyek (Ex Kapro) diisi BK/PU</p>
+											<p>** : - Untuk Project Manager (Ex PM) diisi BK/PU</p>
 											<p> &nbsp&nbsp&nbsp&nbsp&nbsp   - Untuk Kepala Cabang (Ex Kacab) diisi NKB</p>
 										</div>
 									</div>
@@ -1546,7 +1546,7 @@ $kode = KodeBagian::all();
 			                      </div>
 			                      <div id="step-3">
 			                        <h2 class="StepTitle" style="text-align: center;">PERJANJIAN KERJA WAKTU TERTENTU (PKWT)</h2>
-			                        <h4 style="text-align: center;">NOMOR : {{$pegawai->no_pkwt}}</h4><br>
+			                        <h4 style="text-align: center;">NOMOR : <input type="text" name="no_pkwt" required="required" placeholder="Nomor">{{$pegawai->no_pkwt}}</h4><br>
 			                        <?php
 
 			                        	if($pegawai->created_at){
@@ -1568,7 +1568,7 @@ $kode = KodeBagian::all();
 												Dalam hal ini diwakili oleh
 												<ul style="list-style-type:none;">
 													<li>Nama	:	Mochamad Waskito Adi, ST</li>
-													<li>Jabatan	:	Kepala Proyek<br><br></li>
+													<li>Jabatan	:	Project Manager<br><br></li>
 												</ul>
 												<br>Dalam hal ini bertindak untuk dan atas nama PT. Waskita Karya (Persero) Tbk Proyek Pembangunan Jalan Tol Becakayu 2A Ujung, selanjutnya dalam Perjanjian Kerja Waktu Tertentu ini disebut sebagai PIHAK PERTAMA.
 											</li>
@@ -1613,13 +1613,13 @@ $kode = KodeBagian::all();
 										</div>
 										<ol type="1">
 											<li>
-												PIHAK PERTAMA akan mempekerjakan PIHAK KEDUA sebagai pekerja PT. WaskitaKarya (Persero) Tbk Proyek Jalan Tol Becakayu 2A Ujung, dengan status / kedudukan sebagai pekerja waktu tertentu (tidak tetap) dan ditempatkan sebagai ………………………..
+												PIHAK PERTAMA akan mempekerjakan PIHAK KEDUA sebagai pekerja PT. WaskitaKarya (Persero) Tbk Proyek Jalan Tol Becakayu 2A Ujung, dengan status / kedudukan sebagai pekerja waktu tertentu (tidak tetap) dan ditempatkan sebagai <input type="text" name="posisi" required="required">
 											</li>
 											<li>
 												PIHAK KEDUA bersedia menerima dan melaksankan tugas pekerjaannya dengan sebaik-baiknya dan penuh rasa tanggungjawab.
 											</li>
 											<li>
-												Penempatan, penugasan, dan ruang lingkup tugas / pekerjaan PIHAK KEDUA oleh PIHAK PERTAMA ditetapkan melalui ketetapan Kepala Proyek, ditentukan dan dilaksanakan sesuai dengan ketetapan Proyek.
+												Penempatan, penugasan, dan ruang lingkup tugas / pekerjaan PIHAK KEDUA oleh PIHAK PERTAMA ditetapkan melalui ketetapan Project Manager , ditentukan dan dilaksanakan sesuai dengan ketetapan Proyek.
 											</li>
 										</ol>
 										<div style="text-align: center;">
@@ -1631,7 +1631,7 @@ $kode = KodeBagian::all();
 												PIHAK KEDUA diterima bekerja sebagai pekerja Kontrak / Waktu Tertentu.
 											</li>
 											<li>
-												PIHAK PERTAMA menerima PIHAK KEDUA sebagai Pegawai Honorer Proyek dan menandatangani PKWT dalam jangka waktu sampai dengan 31 Januari 2019, terhitung sejak ditandatangani yaitu tanggal ............. sampai dengan tanggal .............. Dengan catatan jika proyek ini sudah selesai sebelum tanggal tersebut pihak kedua tidak bisa menuntut pihak pertama.
+												PIHAK PERTAMA menerima PIHAK KEDUA sebagai Pegawai Honorer Proyek dan menandatangani PKWT dalam jangka waktu sampai dengan <input type="text" name="jangka_waktu" required="required" placeholder="Jangka Waktu">, terhitung sejak ditandatangani yaitu tanggal <input type="date" name="tanggal_mulai" required="required" placeholder="Tanggal Mulai"> sampai dengan tanggal <input type="date" name="tanggal_selesai" required="required" placeholder="Tanggal Selesai"> Dengan catatan jika proyek ini sudah selesai sebelum tanggal tersebut pihak kedua tidak bisa menuntut pihak pertama.
 											</li>
 										</ol>
 										<div style="text-align: center;">

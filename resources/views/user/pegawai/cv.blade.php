@@ -1541,7 +1541,7 @@ $kode = KodeBagian::all();
 												<li>
 													<div>
 														<div style="display: inline-block;">No. KTP	:	</div>
-														<input type="text" class="form-control" name="no_ktp" style="display: inline-block; width: 200px;" required="required">
+														<input type="text" class="form-control" name="no_ktp" style="display: inline-block; width: 200px;" required="required" value="{{$pegawai->no_ktp}}">
 													</div>
 												</li><br><br>
 											</ul>
@@ -1595,7 +1595,7 @@ $kode = KodeBagian::all();
 											PIHAK KEDUA diterima bekerja sebagai pekerja Kontrak / Waktu Tertentu.
 										</li>
 										<li>
-											PIHAK PERTAMA menerima PIHAK KEDUA sebagai Pegawai Honorer Proyek dan menandatangani PKWT dalam jangka waktu sampai dengan 31 Januari 2019, terhitung sejak ditandatangani yaitu tanggal ............. sampai dengan tanggal .............. Dengan catatan jika proyek ini sudah selesai sebelum tanggal tersebut pihak kedua tidak bisa menuntut pihak pertama.
+											PIHAK PERTAMA menerima PIHAK KEDUA sebagai Pegawai Honorer Proyek dan menandatangani PKWT dalam jangka waktu sampai dengan  ............., terhitung sejak ditandatangani yaitu tanggal ............. sampai dengan tanggal .............. Dengan catatan jika proyek ini sudah selesai sebelum tanggal tersebut pihak kedua tidak bisa menuntut pihak pertama.
 										</li>
 									</ol>
 									<div style="text-align: center;">

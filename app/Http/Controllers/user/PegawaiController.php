@@ -128,7 +128,7 @@ class PegawaiController extends Controller
 
        $pegawai['nama'] = $data['nama'];
        $pegawai['no_ktp'] = $data['no_ktp'];
-       $pegawai['no_pkwt'] = tigadigit($db->id).'/PKWT/WK/INF2/BSTR-3/'.date('Y');
+       $pegawai['no_pkwt'] = '';
        if(array_key_exists('gender', $data)){
             $pegawai['gender'] = $data['gender'];
        }

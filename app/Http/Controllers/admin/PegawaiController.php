@@ -711,6 +711,16 @@ class PegawaiController extends Controller
           }
         }
 
+        //---------------PKWT-------------------
+        $pkwt['no_pkwt'] = \Input::get('no_pkwt');
+        $pkwt['posisi'] = \Input::get('posisi');
+        $pkwt['jangka_waktu'] = \Input::get('jangka_waktu');
+        $pkwt['tanggal_mulai'] = \Input::get('jangka_waktu');
+        $pkwt['tanggal_selesai'] = \Input::get('jangka_waktu');
+        $pkwt['created_at'] = date('Y-m-d H:i:s');
+
+        dd($pkwt);
+
         return redirect('/admin/pegawai');
     }
 
@@ -901,6 +911,15 @@ class PegawaiController extends Controller
             $gaji->save();
         }
 
+        //---------------PKWT-------------------
+        $pkwt['no_pkwt'] = \Input::get('no_pkwt');
+        $pkwt['posisi'] = \Input::get('posisi');
+        $pkwt['jangka_waktu'] = \Input::get('jangka_waktu');
+        $pkwt['tanggal_mulai'] = \Input::get('tanggal_mulai');
+        $pkwt['tanggal_selesai'] = \Input::get('tanggal_selesai');
+        $pkwt['created_at'] = date('Y-m-d H:i:s');
+
+        dd($pkwt);
 
         return redirect('/admin/pegawai');
     }
