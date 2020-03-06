@@ -105,7 +105,7 @@
                         @endif
                         <!--------------------------------------------------->
                         <!--------------Pengajuan Pemakaian------------------>
-                        @if((Auth::user()->role_id == 2) && (Auth::user()->pegawai->posisi_id == 46))
+                        @if((Auth::user()->role_id == 2) && ((Auth::user()->pegawai->posisi_id == 46) || (Auth::user()->pegawai->posisi_id == 45)))
                             <li>
                                 <a href="{{url('Logistik/user/pengajuan')}}">
                                     <i class="fa fa-list"></i>
