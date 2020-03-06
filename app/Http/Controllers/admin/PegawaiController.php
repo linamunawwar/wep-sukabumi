@@ -27,6 +27,7 @@ use App\Organisasi;
 use App\Publikasi;
 use App\TenagaPengajar;
 use App\Penghargaan;
+use App\Pkwt;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -41,6 +42,11 @@ class PegawaiController extends Controller
                             ->orwhere('is_active','')
                             ->where('soft_delete',0)
                             ->get();
+        foreach ($pegawais as $key => $value) {
+          $pkwt = Pkwt::where('nip',$value->nip)->latest()->first();
+          $value->data_pkwt = $pkwt;
+        }
+        
         return view('admin.pegawai.index',['pegawais'=>$pegawais]);
     }
 
@@ -238,6 +244,7 @@ class PegawaiController extends Controller
         $bank= BankAsuransi::where('nip',$pegawai->nip)->first();
         $kode = KodeBagian::all();
         $mcus = MCU::where('soft_delete','0')->get();
+        $pkwt = Pkwt::where('nip',$pegawai->nip)->where('soft_delete',0)->latest()->first();
 
         $pendidikan = Pendidikan::where('nip',$pegawai->nip)->get();
         $pendidikans = json_decode(json_encode($pendidikan), true);
@@ -278,7 +285,7 @@ class PegawaiController extends Controller
         $penghargaan = Penghargaan::where('nip',$pegawai->nip)->get();
         $penghargaans = json_decode(json_encode($penghargaan), true);
 
-        return view('admin.pegawai.edit_cv',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'mcus'=>$mcus,'pendidikans'=>$pendidikans,'sertifikats'=>$sertifikats,'pelatihans'=>$pelatihans,'pengalamans'=>$pengalamans,'penugasans'=>$penugasans,'presentasis'=>$presentasis, 'nopresentasis'=>$nopresentasis,'nopublikasis'=>$nopublikasis,'pertemuans'=>$pertemuans,'organisasis'=>$organisasis,'publikasis'=>$publikasis,'pengajars'=>$pengajars,'penghargaans'=>$penghargaans]);
+        return view('admin.pegawai.edit_cv',['pegawai'=>$pegawai,'pkwt'=>$pkwt,'bank'=>$bank,'kode'=>$kode,'mcus'=>$mcus,'pendidikans'=>$pendidikans,'sertifikats'=>$sertifikats,'pelatihans'=>$pelatihans,'pengalamans'=>$pengalamans,'penugasans'=>$penugasans,'presentasis'=>$presentasis, 'nopresentasis'=>$nopresentasis,'nopublikasis'=>$nopublikasis,'pertemuans'=>$pertemuans,'organisasis'=>$organisasis,'publikasis'=>$publikasis,'pengajars'=>$pengajars,'penghargaans'=>$penghargaans]);
     }
 
     public function postEditCV($id)
@@ -711,15 +718,6 @@ class PegawaiController extends Controller
           }
         }
 
-        //---------------PKWT-------------------
-        $pkwt['no_pkwt'] = \Input::get('no_pkwt');
-        $pkwt['posisi'] = \Input::get('posisi');
-        $pkwt['jangka_waktu'] = \Input::get('jangka_waktu');
-        $pkwt['tanggal_mulai'] = \Input::get('jangka_waktu');
-        $pkwt['tanggal_selesai'] = \Input::get('jangka_waktu');
-        $pkwt['created_at'] = date('Y-m-d H:i:s');
-
-        dd($pkwt);
 
         return redirect('/admin/pegawai');
     }
@@ -759,6 +757,8 @@ class PegawaiController extends Controller
     public function getUnduhPKWT($id)
     {
       $pegawai = Pegawai::find($id);
+      $pkwt = Pkwt::where('nip',$pegawai->nip)->latest()->first();
+      $pegawai->data_pkwt = $pkwt;
       $pdf = PDF::loadView('admin.pegawai.unduh_pkwt',['pegawai' => $pegawai]);
       $pdf->setPaper('A4');
       return $pdf->download('PKWT_'.$pegawai->nip.'.pdf');
@@ -823,6 +823,7 @@ class PegawaiController extends Controller
        $pegawai['gelar_depan'] = $data['gelar_depan'];
        $pegawai['gelar_belakang'] = $data['gelar_belakang'];
        $pegawai['agama'] = $data['agama'];
+       $pegawai['no_pkwt'] = $data['no_pkwt'];
        $pegawai['tempat_lahir'] = $data['tempat_lahir'];
        $pegawai['status_kawin'] = $data['status_kawin'];
        $pegawai['suami_istri'] = $data['suami_istri'];
@@ -912,14 +913,24 @@ class PegawaiController extends Controller
         }
 
         //---------------PKWT-------------------
-        $pkwt['no_pkwt'] = \Input::get('no_pkwt');
-        $pkwt['posisi'] = \Input::get('posisi');
-        $pkwt['jangka_waktu'] = \Input::get('jangka_waktu');
-        $pkwt['tanggal_mulai'] = \Input::get('tanggal_mulai');
-        $pkwt['tanggal_selesai'] = \Input::get('tanggal_selesai');
-        $pkwt['created_at'] = date('Y-m-d H:i:s');
+        $no_pkwt = \Input::get('no_pkwt');
+        $find_pkwt = Pkwt::where('no_pkwt',$no_pkwt)->where('soft_delete',0)->first();
+        if((count($find_pkwt) == 0) || ($find_pkwt->no_pkwt != $no_pkwt)){
+          $pkwt = new Pkwt;
+          $pkwt->no_pkwt = $no_pkwt;
+          $pkwt->nip = $data['nip'];
+          $pkwt->posisi = \Input::get('posisi');
+          $pkwt->jangka_waktu = \Input::get('jangka_waktu');
+          $pkwt->tanggal_mulai = \Input::get('tanggal_mulai');
+          $pkwt->tanggal_selesai = \Input::get('tanggal_selesai');
+          $pkwt->created_at = date('Y-m-d H:i:s');
+          $pkwt->user_id = \Auth::user()->id;
+          $pkwt->role_id = \Auth::user()->role_id;
 
-        dd($pkwt);
+
+          $pkwt->save();
+        }
+
 
         return redirect('/admin/pegawai');
     }
@@ -986,6 +997,41 @@ class PegawaiController extends Controller
             }
           
         }
+    }
+
+    public function getUpdatePkwt($id)
+    {
+      $pegawai = Pegawai::find($id);
+
+        $find_pkwt = Pkwt::where('nip',$pegawai->nip)->where('soft_delete',0)->latest()->first();
+        return view('admin.pegawai.update_pkwt',['pkwt'=>$find_pkwt,'pegawai'=>$pegawai]);
+    }
+
+    public function postUpdatePkwt($id)
+    {
+      $pegawai = Pegawai::find($id);
+
+        $no_pkwt = \Input::get('no_pkwt');
+        $find_pkwt = Pkwt::where('no_pkwt',$no_pkwt)->where('soft_delete',0)->first();
+        if((count($find_pkwt) == 0) || ($find_pkwt->no_pkwt != $no_pkwt)){
+          $pkwt = new Pkwt;
+          $pkwt->no_pkwt = $no_pkwt;
+          $pkwt->nip = $pegawai->nip;
+          $pkwt->posisi = \Input::get('posisi');
+          $pkwt->jangka_waktu = \Input::get('jangka_waktu');
+          $pkwt->tanggal_mulai = \Input::get('tanggal_mulai');
+          $pkwt->tanggal_selesai = \Input::get('tanggal_selesai');
+          $pkwt->created_at = date('Y-m-d H:i:s');
+          $pkwt->user_id = \Auth::user()->id;
+          $pkwt->role_id = \Auth::user()->role_id;
+
+
+          $pkwt->save();
+        }
+
+        $update_pegawai = Pegawai::where('id',$id)->update(['no_pkwt'=>$no_pkwt]);
+
+        return redirect('admin/pegawai');
     }
 
     public function getStruktur()

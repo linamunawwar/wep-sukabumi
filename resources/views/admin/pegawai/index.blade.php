@@ -100,6 +100,11 @@
 													<a class="btn btn-success btn-xs" href="{{url('admin/pegawai/approve/'.$pegawai->id.'')}}"><i class="fa fa-check" ></i>  Pending Approval</a>
 													<a class="btn btn-danger btn-xs" href="{{url('admin/pegawai/reject/'.$pegawai->id.'')}}"><i class="fa fa-check" ></i>  Reject</a>
 												@endif
+
+												@if(($pegawai->data_pkwt) && ($pegawai->data_pkwt->tanggal_selesai <= date('Y-m-d')))
+													<a class="btn btn-success btn-xs" href="{{url('admin/pegawai/update_pkwt/'.$pegawai->id.'')}}"><i class="fa fa-check" ></i>  Update PKWT</a>
+												@endif
+
 											@endif
 											<a class="btn btn-default btn-xs" href="{{url('admin/pegawai/editrole/'.$pegawai->id.'')}}"><i class="fa fa-edit" ></i>  Edit Role</a>
 										</td>
