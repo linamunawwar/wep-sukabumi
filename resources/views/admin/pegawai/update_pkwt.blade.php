@@ -63,7 +63,12 @@
               <img src="{{ asset("public/img/kop.png") }}" style="width: 100%; height: 130px;"/>
               <div style="text-align: center;">
                 <h4 style="font-family: "Times New Roman";">PERJANJIAN KERJA WAKTU TERTENTU (PKWT)</h4>
-                <p style="text-align: center;font-family: "Times New Roman";font-size: 13px;">NOMOR : <input type="text" name="no_pkwt" value="{{$pkwt->no_pkwt}}" required="required">
+                <p style="text-align: center;font-family: "Times New Roman";font-size: 13px;">NOMOR : 
+                @if($pkwt)
+                  <input type="text" name="no_pkwt" value="{{$pkwt->no_pkwt}}" required="required">
+                @else
+                  <input type="text" name="no_pkwt" value="" required="required">
+                @endif
               </div>
               <?php
                 $pm = getPM();
@@ -127,7 +132,12 @@
                 </div>
                 <ol type="1">
                   <li>
-                    PIHAK PERTAMA akan mempekerjakan PIHAK KEDUA sebagai pekerja PT. Waskita Karya (Persero) Tbk Proyek Jalan Tol Becakayu 2A Ujung, dengan status / kedudukan sebagai pekerja waktu tertentu (tidak tetap) dan ditempatkan sebagai <input type="text" name="posisi" required="required" value="{{$pkwt->posisi}}">
+                    PIHAK PERTAMA akan mempekerjakan PIHAK KEDUA sebagai pekerja PT. Waskita Karya (Persero) Tbk Proyek Jalan Tol Becakayu 2A Ujung, dengan status / kedudukan sebagai pekerja waktu tertentu (tidak tetap) dan ditempatkan sebagai 
+                    @if($pkwt)
+                      <input type="text" name="posisi" required="required" value="{{$pkwt->posisi}}">
+                    @else
+                      <input type="text" name="posisi" required="required" value="">
+                    @endif
                   </li>
                   <li>
                     PIHAK KEDUA bersedia menerima dan melaksankan tugas pekerjaannya dengan sebaik-baiknya dan penuh rasa tanggungjawab.
@@ -145,7 +155,11 @@
                     PIHAK KEDUA diterima bekerja sebagai pekerja Kontrak / Waktu Tertentu.
                   </li>
                   <li>
-                    PIHAK PERTAMA menerima PIHAK KEDUA sebagai Pegawai Honorer Proyek dan menandatangani PKWT dalam jangka waktu sampai dengan <input type="text" name="jangka_waktu" required="required" value="{{$pkwt->jangka_waktu}}" placeholder="Jangka Waktu"> , terhitung sejak ditandatangani yaitu tanggal <input type="date" name="tanggal_mulai" required="required" value="{{$pkwt->tanggal_mulai}}"> sampai dengan tanggal <input type="date" name="tanggal_selesai" required="required" value="{{$pkwt->tanggal_selesai}}"> Dengan catatan jika proyek ini sudah selesai sebelum tanggal tersebut pihak kedua tidak bisa menuntut pihak pertama.
+                    @if($pkwt)
+                      PIHAK PERTAMA menerima PIHAK KEDUA sebagai Pegawai Honorer Proyek dan menandatangani PKWT dalam jangka waktu sampai dengan <input type="text" name="jangka_waktu" required="required" value="{{$pkwt->jangka_waktu}}" placeholder="Jangka Waktu"> , terhitung sejak ditandatangani yaitu tanggal <input type="date" name="tanggal_mulai" required="required" value="{{$pkwt->tanggal_mulai}}"> sampai dengan tanggal <input type="date" name="tanggal_selesai" required="required" value="{{$pkwt->tanggal_selesai}}"> Dengan catatan jika proyek ini sudah selesai sebelum tanggal tersebut pihak kedua tidak bisa menuntut pihak pertama.
+                    @else
+                      PIHAK PERTAMA menerima PIHAK KEDUA sebagai Pegawai Honorer Proyek dan menandatangani PKWT dalam jangka waktu sampai dengan <input type="text" name="jangka_waktu" required="required" value="}" placeholder="Jangka Waktu"> , terhitung sejak ditandatangani yaitu tanggal <input type="date" name="tanggal_mulai" required="required" value=""> sampai dengan tanggal <input type="date" name="tanggal_selesai" required="required" value=""> Dengan catatan jika proyek ini sudah selesai sebelum tanggal tersebut pihak kedua tidak bisa menuntut pihak pertama.
+                    @endif
                   </li>
                 </ol>
                 <div style="text-align: center;">
