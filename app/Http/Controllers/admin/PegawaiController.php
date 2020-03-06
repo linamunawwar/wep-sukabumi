@@ -915,22 +915,8 @@ class PegawaiController extends Controller
         //---------------PKWT-------------------
         $no_pkwt = \Input::get('no_pkwt');
         $find_pkwt = Pkwt::where('no_pkwt',$no_pkwt)->where('soft_delete',0)->first();
-        if((count($find_pkwt) == 0) || ($find_pkwt->no_pkwt != $no_pkwt)){
-          $pkwt = new Pkwt;
-          $pkwt->no_pkwt = $no_pkwt;
-          $pkwt->nip = $data['nip'];
-          $pkwt->posisi = \Input::get('posisi');
-          $pkwt->jangka_waktu = \Input::get('jangka_waktu');
-          $pkwt->tanggal_mulai = \Input::get('tanggal_mulai');
-          $pkwt->tanggal_selesai = \Input::get('tanggal_selesai');
-          $pkwt->created_at = date('Y-m-d H:i:s');
-          $pkwt->user_id = \Auth::user()->id;
-          $pkwt->role_id = \Auth::user()->role_id;
-
-
-          $pkwt->save();
-        }elseif((count($find_pkwt) != 0) || ($find_pkwt->no_pkwt == $no_pkwt)){
-          $pkwt['nip'] = $data['nip'];
+        if($find_pkwt && ($find_pkwt->no_pkwt == $no_pkwt)){
+          $pkwt['nip'] = $pegawai->nip;
           $pkwt['posisi'] = \Input::get('posisi');
           $pkwt['jangka_waktu'] = \Input::get('jangka_waktu');
           $pkwt['tanggal_mulai'] = \Input::get('tanggal_mulai');
@@ -941,6 +927,20 @@ class PegawaiController extends Controller
 
 
           $update_pkwt = Pkwt::where('no_pkwt',$no_pkwt)->update($pkwt);
+        }else{
+          $pkwt = new Pkwt;
+          $pkwt->no_pkwt = $no_pkwt;
+          $pkwt->nip = $pegawai->nip;
+          $pkwt->posisi = \Input::get('posisi');
+          $pkwt->jangka_waktu = \Input::get('jangka_waktu');
+          $pkwt->tanggal_mulai = \Input::get('tanggal_mulai');
+          $pkwt->tanggal_selesai = \Input::get('tanggal_selesai');
+          $pkwt->created_at = date('Y-m-d H:i:s');
+          $pkwt->user_id = \Auth::user()->id;
+          $pkwt->role_id = \Auth::user()->role_id;
+
+
+          $pkwt->save();
         }
 
 
@@ -1025,7 +1025,19 @@ class PegawaiController extends Controller
 
         $no_pkwt = \Input::get('no_pkwt');
         $find_pkwt = Pkwt::where('no_pkwt',$no_pkwt)->where('soft_delete',0)->first();
-        if((count($find_pkwt) == 0) || ($find_pkwt->no_pkwt != $no_pkwt)){
+        if($find_pkwt && ($find_pkwt->no_pkwt == $no_pkwt)){
+          $pkwt['nip'] = $pegawai->nip;
+          $pkwt['posisi'] = \Input::get('posisi');
+          $pkwt['jangka_waktu'] = \Input::get('jangka_waktu');
+          $pkwt['tanggal_mulai'] = \Input::get('tanggal_mulai');
+          $pkwt['tanggal_selesai'] = \Input::get('tanggal_selesai');
+          $pkwt['created_at'] = date('Y-m-d H:i:s');
+          $pkwt['user_id'] = \Auth::user()->id;
+          $pkwt['role_id'] = \Auth::user()->role_id;
+
+
+          $update_pkwt = Pkwt::where('no_pkwt',$no_pkwt)->update($pkwt);
+        }else{
           $pkwt = new Pkwt;
           $pkwt->no_pkwt = $no_pkwt;
           $pkwt->nip = $pegawai->nip;
@@ -1039,18 +1051,6 @@ class PegawaiController extends Controller
 
 
           $pkwt->save();
-        }elseif((count($find_pkwt) != 0) || ($find_pkwt->no_pkwt == $no_pkwt)){
-          $pkwt['nip'] = $pegawai->nip;
-          $pkwt['posisi'] = \Input::get('posisi');
-          $pkwt['jangka_waktu'] = \Input::get('jangka_waktu');
-          $pkwt['tanggal_mulai'] = \Input::get('tanggal_mulai');
-          $pkwt['tanggal_selesai'] = \Input::get('tanggal_selesai');
-          $pkwt['created_at'] = date('Y-m-d H:i:s');
-          $pkwt['user_id'] = \Auth::user()->id;
-          $pkwt['role_id'] = \Auth::user()->role_id;
-
-
-          $update_pkwt = Pkwt::where('no_pkwt',$no_pkwt)->update($pkwt);
         }
 
         $update_pegawai = Pegawai::where('id',$id)->update(['no_pkwt'=>$no_pkwt]);
