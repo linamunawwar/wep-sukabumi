@@ -43,11 +43,22 @@
 <img src="{{ asset("public/img/kop.png") }}" style="width: 100%; height: 100px;"/>
 <div style="text-align: center;">
   <h4 style="font-family: "Times New Roman";">PERJANJIAN KERJA WAKTU TERTENTU (PKWT)</h4>
-  <p style="text-align: center;font-family: "Times New Roman";font-size: 13px;">NOMOR :  {{$pegawai->data_pkwt->no_pkwt}}</p>
+  <p style="text-align: center;font-family: "Times New Roman";font-size: 13px;">NOMOR :  
+    @if($pegawai->data_pkwt)
+      {{$pegawai->data_pkwt->no_pkwt}}
+    @else
+      {{$pegawai->no_pkwt}}
+    @endif
+  </p>
 </div>
 <?php
   $pm = getPM();
-  $tanggal = explode(' ', $pegawai->data_pkwt->created_at);
+  if($pegawai->data_pkwt){
+    $tanggal = explode(' ', $pegawai->data_pkwt->created_at);
+  }else{
+    $tanggal = explode(' ', $pegawai->created_at);
+  }
+  
 ?>
 
 <div style='font-family: "Times New Roman", Times, serif;font-size: 13px;line-height: 1.6;'>
@@ -107,7 +118,12 @@
   </div>
   <ol type="1">
     <li>
-      PIHAK PERTAMA akan mempekerjakan PIHAK KEDUA sebagai pekerja PT. Waskita Karya (Persero) Tbk Proyek Jalan Tol Becakayu 2A Ujung, dengan status / kedudukan sebagai pekerja waktu tertentu (tidak tetap) dan ditempatkan sebagai ……………………………………………
+      PIHAK PERTAMA akan mempekerjakan PIHAK KEDUA sebagai pekerja PT. Waskita Karya (Persero) Tbk Proyek Jalan Tol Becakayu 2A Ujung, dengan status / kedudukan sebagai pekerja waktu tertentu (tidak tetap) dan ditempatkan sebagai 
+      @if($pegawai->data_pkwt)
+        {{$pegawai->data_pkwt->posisi}}
+      @else
+        ................
+      @endif
     </li>
     <li>
       PIHAK KEDUA bersedia menerima dan melaksankan tugas pekerjaannya dengan sebaik-baiknya dan penuh rasa tanggungjawab.
@@ -125,7 +141,11 @@
       PIHAK KEDUA diterima bekerja sebagai pekerja Kontrak / Waktu Tertentu.
     </li>
     <li>
-      PIHAK PERTAMA menerima PIHAK KEDUA sebagai Pegawai Honorer Proyek dan menandatangani PKWT dalam jangka waktu sampai dengan .................. , terhitung sejak ditandatangani yaitu tanggal ..................... sampai dengan tanggal ...................... Dengan catatan jika proyek ini sudah selesai sebelum tanggal tersebut pihak kedua tidak bisa menuntut pihak pertama.
+      @if($pegawai->data_pkwt)
+        PIHAK PERTAMA menerima PIHAK KEDUA sebagai Pegawai Honorer Proyek dan menandatangani PKWT dalam jangka waktu sampai dengan {{$pegawai->data_pkwt->jangka_waktu}} , terhitung sejak ditandatangani yaitu tanggal {{konversi_tanggal($pegawai->data_pkwt->tanggal_mulai)}} sampai dengan tanggal {{konversi_tanggal($pegawai->data_pkwt->tanggal_selesai)}} Dengan catatan jika proyek ini sudah selesai sebelum tanggal tersebut pihak kedua tidak bisa menuntut pihak pertama.
+      @else
+        PIHAK PERTAMA menerima PIHAK KEDUA sebagai Pegawai Honorer Proyek dan menandatangani PKWT dalam jangka waktu sampai dengan .................. , terhitung sejak ditandatangani yaitu tanggal ..................... sampai dengan tanggal ...................... Dengan catatan jika proyek ini sudah selesai sebelum tanggal tersebut pihak kedua tidak bisa menuntut pihak pertama.
+      @endif
     </li>
   </ol>
   <div style="text-align: center;">
