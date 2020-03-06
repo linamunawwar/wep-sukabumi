@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pegawai/reject/{id}', 'admin\PegawaiController@getReject');
 		Route::get('/pegawai/editrole/{id}', 'admin\PegawaiController@getEditRole');
 		Route::post('/pegawai/editrole/{id}', 'admin\PegawaiController@postEditRole');
+		Route::get('/pegawai/update_pkwt/{id}', 'admin\PegawaiController@getUpdatePkwt');
+		Route::post('/pegawai/update_pkwt/{id}', 'admin\PegawaiController@postUpdatePkwt');
 		Route::get('/pegawai/struktur', 'admin\PegawaiController@getStruktur');
 		Route::get('/pegawai/prod05', 'admin\PegawaiController@getProd05');
 		Route::get('/pegawai/prod05/unduh', 'admin\PegawaiController@getProd05Unduh');

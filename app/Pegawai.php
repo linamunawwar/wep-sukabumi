@@ -12,6 +12,11 @@ class Pegawai extends Model
     
     protected $fillable = ['nama','email','role_id'];
 
+    public function pkwt()
+    {
+        return $this->hasMany('App\Pkwt','nip','nip');
+    }
+
     public function user()
     {
         return $this->hasOne('App\Models\User','pegawai_id','nip');

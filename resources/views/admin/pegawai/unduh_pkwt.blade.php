@@ -43,11 +43,11 @@
 <img src="{{ asset("public/img/kop.png") }}" style="width: 100%; height: 100px;"/>
 <div style="text-align: center;">
   <h4 style="font-family: "Times New Roman";">PERJANJIAN KERJA WAKTU TERTENTU (PKWT)</h4>
-  <p style="text-align: center;font-family: "Times New Roman";font-size: 13px;">NOMOR :  {{$pegawai->no_pkwt}}</p>
+  <p style="text-align: center;font-family: "Times New Roman";font-size: 13px;">NOMOR :  {{$pegawai->data_pkwt->no_pkwt}}</p>
 </div>
 <?php
   $pm = getPM();
-  $tanggal = explode(' ', $pegawai->created_at);
+  $tanggal = explode(' ', $pegawai->data_pkwt->created_at);
 ?>
 
 <div style='font-family: "Times New Roman", Times, serif;font-size: 13px;line-height: 1.6;'>
