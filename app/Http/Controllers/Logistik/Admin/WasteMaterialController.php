@@ -25,7 +25,13 @@ class WasteMaterialController extends Controller
     	$materials = LogMaterial::where('soft_delete',0)->get();
     	$jenis_kerjas = Logjenis::where('soft_delete',0)->get();
     	$lokasis = LogLokasi::where('soft_delete',0)->get();
-    	$pelaksanas = Pegawai::where('soft_delete',0)->where('is_active',1)->where('posisi_id',46)->get();
+    	$pelaksanas = Pegawai::where('soft_delete',0)
+                                ->where('is_active',1)
+                                ->where('posisi_id',46)
+                                ->orwhere('posisi_id',45)
+                                ->where('soft_delete',0)
+                                ->where('is_active',1)
+                                ->get();
         return view('logistik.admin.waste.create',['materials'=>$materials,'jenis_kerjas'=>$jenis_kerjas,'lokasis'=>$lokasis,'pelaksanas'=>$pelaksanas]);
     }
 
