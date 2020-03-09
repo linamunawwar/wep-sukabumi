@@ -121,11 +121,11 @@ class PegawaiController extends Controller
         return view('user.pegawai.cv',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'mcus'=>$mcus,'data_mcus'=>$data_mcus,'pendidikans'=>$pendidikans,'sertifikats'=>$sertifikats,'pelatihans'=>$pelatihans,'pengalamans'=>$pengalamans,'penugasans'=>$penugasans,'presentasis'=>$presentasis, 'nopresentasis'=>$nopresentasis,'nopublikasis'=>$nopublikasis,'pertemuans'=>$pertemuans,'organisasis'=>$organisasis,'publikasis'=>$publikasis,'pengajars'=>$pengajars,'penghargaans'=>$penghargaans]);
     }
 
-     public function postEditCV($nip)
+     public function postEditCV($nip, Request $request)
     {
        $data = \Input::all();
        $db = Pegawai::where('nip',$nip)->first();
-
+       
        $pegawai['nama'] = $data['nama'];
        $pegawai['no_ktp'] = $data['no_ktp'];
        $pegawai['no_pkwt'] = '';
@@ -151,25 +151,41 @@ class PegawaiController extends Controller
        $pegawai['hub_keluarga'] = $data['hub_keluarga'];
        $pegawai['alamat_keluarga'] = $data['alamat_keluarga'];
        $pegawai['telp_keluarga'] = $data['telp_keluarga'];
+
+       $this->validate($request, [
+            'ttd' => 'max:1024',
+            'paraf' => 'max:1024',
+            'foto' => 'max:1024',
+        ]);
+       
        if(\Input::hasfile('paraf')){
-          $ori_file  = \Request::file('paraf');
-         $tujuan = "upload/pegawai/".$nip;
-         $ekstension = $ori_file->getClientOriginalExtension();
-
-          $nama_file = 'paraf.png';
-
-        $ori_file->move($tujuan,$nama_file);
-       }
-       if(\Input::hasfile('ttd')){
-         $ori_file  = \Request::file('ttd');
-         $tujuan = "upload/pegawai/".$nip;
-         $ekstension = $ori_file->getClientOriginalExtension();
-
-          $nama_file = 'ttd.'.$ekstension;
-
-        if($ori_file->move($tujuan,$nama_file)){
-          $pegawai['ttd'] = $nama_file;
+        if(file_exists("upload/pegawai/".$nip."/paraf.png")){
+          unlink("upload/pegawai/".$nip."/paraf.png");
         }
+          $ori_file  = \Request::file('paraf');
+           $tujuan = "upload/pegawai/".$nip;
+           $ekstension = $ori_file->getClientOriginalExtension();
+
+            $nama_file = 'paraf.png';
+
+          $ori_file->move($tujuan,$nama_file);
+        
+       }
+       
+       if(\Input::hasfile('ttd')){
+          if(($db->ttd) && (file_exists("upload/pegawai/".$nip."/".$db->ttd))){
+            unlink("upload/pegawai/".$nip."/".$db->ttd);
+          }
+             $ori_file  = \Request::file('ttd');
+             $tujuan = "upload/pegawai/".$nip;
+             $ekstension = $ori_file->getClientOriginalExtension();
+
+              $nama_file = 'ttd.'.$ekstension;
+
+            if($ori_file->move($tujuan,$nama_file)){
+              $pegawai['ttd'] = $nama_file;
+            }
+          
       }
       if(\Input::hasfile('foto')){
          $ori_file  = \Request::file('foto');
