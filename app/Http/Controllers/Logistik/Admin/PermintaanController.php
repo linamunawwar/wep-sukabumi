@@ -229,7 +229,7 @@ class PermintaanController extends Controller
                         $cells->setFontFamily('Tahoma');
                     });
 
-                    $sheet->cell('D9:E11', function ($cell) {
+                    $sheet->cell('C9:H40', function ($cell) {
                         $cell->setValignment('center');
                     });
                     $sheet->cell('C6', function ($cell) {
