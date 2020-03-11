@@ -221,7 +221,7 @@ class PermintaanController extends Controller
                     $sheet->getStyle('C1')->getAlignment()->setIndent(1);
                     $sheet->getStyle('A13:H14')->getAlignment()->setWrapText(true);
                     $sheet->getStyle('A2:H36')->getFont()->setName('Tahoma');
-                    $sheet->getStyle('A13:H15')->getAlignment()->applyFromArray(
+                    $sheet->getStyle('A12:H40')->getAlignment()->applyFromArray(
                         array('horizontal' => 'center')
                     );
                     $sheet->cells('A9:H11', function ($cells) {
