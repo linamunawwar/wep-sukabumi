@@ -126,7 +126,7 @@
       <td align="center">Project Manager</td>
       <td align="center">SCARM</td>
       <td colspan="2" align="center">SPLEM</td>
-      <td align="center">Superintendent / Manager</td>
+      <td align="center"></td>
     </tr>
     <tr>
       <td></td>
@@ -148,7 +148,9 @@
         @endif
       </td>
       <td align="center" style="height: 55;">
-       
+       @if(file_exists("upload/pegawai/$peminta->nip/$peminta->ttd"))
+            <img src="upload/pegawai/{{$peminta->nip}}/{{$peminta->ttd}}" width="100" align="center">
+        @endif
       </td>
     </tr>
     </tr>
@@ -159,6 +161,6 @@
       <td align="center" style="width:25;">{{$pm->nama}}</td>
       <td align="center">{{$scarm->nama}}</td>
       <td colspan="2" align="center">{{$splem->nama}}</td>
-      <td align="center">…............................</td>
+      <td align="center">{{$peminta->nama}}</td>
     </tr>
   </table>
