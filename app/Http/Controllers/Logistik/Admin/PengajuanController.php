@@ -125,6 +125,8 @@ class PengajuanController extends Controller
         $permintaan_satuan = \Input::get('permintaan_satuan');
         $permintaan_jumlah = \Input::get('permintaan_jumlah');
 
+        $get_penerimaan = LogPenerimaanMaterial::where('kode_penerimaan',$kode_penerimaan)->where('soft_delete',0)->first();
+
         $addPengajuan = new LogPengajuanMaterial;
         $addPengajuan->kode_penerimaan = $kode_penerimaan;
         $addPengajuan->tanggal = date('Y-m-d');
@@ -154,6 +156,13 @@ class PengajuanController extends Controller
                 $addDetailPengajuanMaterial->created_at = date('Y-m-d');
 
                 $addDetailPengajuanMaterial->save();
+
+                $data_penerimaan = LogDetailPenerimaanMaterial::where('penerimaan_id',$get_penerimaan->id)->where('material_id',$material[$i])->first();
+                if($data_penerimaan){
+                    $sisa =  (int)$data_penerimaan->sisa_stok - (int)$permintaan_jumlah[$i];
+                    $update_sisa = LogDetailPenerimaanMaterial::where('penerimaan_id',$get_penerimaan->id)->where('material_id',$material[$i])->update(['sisa_stok'=>$sisa]);
+                }
+
             }
         }
         return redirect('Logistik/admin/pengajuan');
@@ -209,6 +218,8 @@ class PengajuanController extends Controller
         $penyerahan_satuan = \Input::get('penyerahanSatuan');
         $penyerahan_jumlah = \Input::get('pemyerahanJumlah');
 
+        $get_penerimaan = LogPenerimaanMaterial::where('kode_penerimaan',$kode_penerimaan)->where('soft_delete',0)->first();
+
         $toUpdatePengajuanMaterial['jenis_pekerjaan_id'] = $jenis_pekerjaan;
         $toUpdatePengajuanMaterial['lokasi_kerja_id'] = $lokasi_pekerjaan;
         $toUpdatePengajuanMaterial['volume'] = $volume;
@@ -225,6 +236,12 @@ class PengajuanController extends Controller
             $toUpdateDetailPengajuanMaterial['pemyerahan_jumlah'] = $penyerahan_jumlah[$i];
 
             $updatedDetailPengajuanMaterial = LogDetailPengajuanMaterial::where(['id' => $detailPengajuanId[$i], 'pengajuan_id' => $id])->update($toUpdateDetailPengajuanMaterial);
+
+            $data_penerimaan = LogDetailPenerimaanMaterial::where('penerimaan_id',$get_penerimaan->id)->where('material_id',$material[$i])->first();
+                if($data_penerimaan){
+                    $sisa =  (int)$data_penerimaan->sisa_stok - (int)$permintaan_jumlah[$i];
+                    $update_sisa = LogDetailPenerimaanMaterial::where('penerimaan_id',$get_penerimaan->id)->where('material_id',$material[$i])->update(['sisa_stok'=>$sisa]);
+                }
         }
 
         return redirect('Logistik/admin/pengajuan');

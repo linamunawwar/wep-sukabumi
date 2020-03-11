@@ -122,7 +122,7 @@
 		
 	// Sort by column 1 and then re-draw
 	table
-	    .order( [ 2, 'desc' ] )
+	    .order( [ 0, 'desc' ] )
 	    .draw();
   </script>
  @endpush
