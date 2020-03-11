@@ -184,7 +184,7 @@
 		                		dt +=  "<td style='text-align: center; vertical-align: middle;'>"+data[i].material_nama;
 		                		dt +=  "<input type='hidden' name='material[]' value='"+data[i].material_id+"' id='material_"+jumlah_data+"'>";
 		                		dt +=  '</td>';
-		                		dt +=  "<td style='text-align: center; vertical-align: middle;'>"+data[i].vol_jumlah;
+		                		dt +=  "<td style='text-align: center; vertical-align: middle;'>"+data[i].sisa_stok;
 		                		dt +=  '</td>';	
 		                		dt +=  "<td style='text-align: center; vertical-align: middle;'>"+data[i].satuan;
 		                		dt +=  '</td>';		                		
