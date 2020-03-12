@@ -134,7 +134,8 @@ class PengajuanController extends Controller
                 $addDetailPengajuanMaterial->created_at = date('Y-m-d');
 
                 $addDetailPengajuanMaterial->save();
-
+                
+                $data_penerimaan = LogDetailPenerimaanMaterial::where('penerimaan_id',$get_penerimaan->id)->where('material_id',$material[$i])->first();
                 if($data_penerimaan){
                     $sisa =  (int)$data_penerimaan->sisa_stok - (int)$permintaan_jumlah[$i];
                     $update_sisa = LogDetailPenerimaanMaterial::where('penerimaan_id',$get_penerimaan->id)->where('material_id',$material[$i])->update(['sisa_stok'=>$sisa]);
