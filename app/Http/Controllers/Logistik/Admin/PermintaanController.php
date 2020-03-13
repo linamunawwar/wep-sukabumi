@@ -10,6 +10,7 @@ use App\Models\LogPenerimaanMaterial;
 use App\Models\LogPengajuanMaterial;
 use App\Models\LogDetailPengajuanMaterial;
 use App\Pegawai;
+use App\Models\User;
 use PHPExcel_Worksheet_Drawing;
 use PHPExcel_Worksheet_PageSetup;
 
@@ -190,20 +191,23 @@ class PermintaanController extends Controller
     {
         $findPermintaan = LogPermintaanMaterial::find($id);
         $getDetailPermintaan = LogDetailPermintaanMaterial::where('permintaan_id', $findPermintaan->id)->where('soft_delete', 0)->get();
+        $user = User::find($findPermintaan->user_id);
+        $peminta = Pegawai::where('nip',$user->pegawai_id)->first();
         if ($findPermintaan) {
             $som = Pegawai::where('posisi_id', 8)->where('soft_delete', 0)->first();
             $splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
             $scarm = Pegawai::where('posisi_id', 5)->where('soft_delete', 0)->first();
             $pm = Pegawai::where('posisi_id', 1)->where('soft_delete', 0)->first();
 
-            $excel = \Excel::create('Formulir_Permintaan_Material', function ($excel) use ($findPermintaan, $getDetailPermintaan, $som, $splem, $scarm, $pm) {
-                $excel->sheet('New Sheet', function ($sheet) use ($findPermintaan, $getDetailPermintaan, $som, $splem, $scarm, $pm) {
+            $excel = \Excel::create('Formulir_Permintaan_Material', function ($excel) use ($findPermintaan, $getDetailPermintaan, $som, $splem, $scarm, $pm,$peminta) {
+                $excel->sheet('New Sheet', function ($sheet) use ($findPermintaan, $getDetailPermintaan, $som, $splem, $scarm, $pm,$peminta) {
                     $sheet->loadview('logistik.admin.permintaan.unduh',
                         ['permintaan' => $findPermintaan,
                             'detailPermintaan' => $getDetailPermintaan,
                             'som' => $som,
                             'splem' => $splem,
                             'scarm' => $scarm,
+                            'peminta' => $peminta,
                             'pm' => $pm]);
                     $objDrawing = new PHPExcel_Worksheet_Drawing;
                     $objDrawing->setPath(public_path('img/Waskita.png'));
@@ -215,7 +219,7 @@ class PermintaanController extends Controller
                     $objDrawing->setWidth(45);
                     $objDrawing->setHeight(60);
                     $sheet->getStyle('C1')->getAlignment()->setIndent(1);
-                    $sheet->getStyle('A13:H14')->getAlignment()->setWrapText(true);
+                    $sheet->getStyle('A12:H40')->getAlignment()->setWrapText(true);
                     $sheet->getStyle('A2:H36')->getFont()->setName('Tahoma');
                     $sheet->getStyle('A13:H15')->getAlignment()->applyFromArray(
                         array('horizontal' => 'center')
@@ -225,7 +229,7 @@ class PermintaanController extends Controller
                         $cells->setFontFamily('Tahoma');
                     });
 
-                    $sheet->cell('D9:E11', function ($cell) {
+                    $sheet->cell('C9:H40', function ($cell) {
                         $cell->setValignment('center');
                     });
                     $sheet->cell('C6', function ($cell) {

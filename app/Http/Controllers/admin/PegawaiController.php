@@ -916,7 +916,7 @@ class PegawaiController extends Controller
         $no_pkwt = \Input::get('no_pkwt');
         $find_pkwt = Pkwt::where('no_pkwt',$no_pkwt)->where('soft_delete',0)->first();
         if($find_pkwt && ($find_pkwt->no_pkwt == $no_pkwt)){
-          $pkwt['nip'] = $pegawai->nip;
+          $pkwt['nip'] = $data['nip'];
           $pkwt['posisi'] = \Input::get('posisi');
           $pkwt['jangka_waktu'] = \Input::get('jangka_waktu');
           $pkwt['tanggal_mulai'] = \Input::get('tanggal_mulai');
@@ -930,7 +930,7 @@ class PegawaiController extends Controller
         }else{
           $pkwt = new Pkwt;
           $pkwt->no_pkwt = $no_pkwt;
-          $pkwt->nip = $pegawai->nip;
+          $pkwt->nip = $data['nip'];
           $pkwt->posisi = \Input::get('posisi');
           $pkwt->jangka_waktu = \Input::get('jangka_waktu');
           $pkwt->tanggal_mulai = \Input::get('tanggal_mulai');

@@ -23,6 +23,15 @@ $kode = KodeBagian::all();
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
+						@if (count($errors) > 0)
+						    <div class="alert alert-danger">
+						        <ul>
+						            @foreach ($errors->all() as $error)
+						                <li>{{ $error }}</li>
+						            @endforeach
+						        </ul>
+						    </div>
+						@endif
 						<!-- Smart Wizard -->
 						<div class="alert alert-success">
 							Dimohon untuk tidak me-refresh atau memuat ulang halaman ini selama pengisian data, dikarenakan data yang sudah ditulis akan hilang.
@@ -1758,6 +1767,7 @@ $kode = KodeBagian::all();
 									<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">Tanda Tangan <span class="required">*</span>:</label>
 									@if($pegawai->ttd)
 											<img src='{{asset("upload/pegawai/$pegawai->nip/$pegawai->ttd")}}' style="max-width: 100px; max-height: 100px;">
+											<br>		
 											<br>		
 											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="no_rek">*Upload ulang Tanda Tangan
 											</label>

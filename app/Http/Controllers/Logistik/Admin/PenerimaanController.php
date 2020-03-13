@@ -147,7 +147,8 @@ class PenerimaanController extends Controller
 	                }
 	                $addDetail->vol_saat_ini = $vol_saat_ini[$i];
 	                $addDetail->vol_jumlah = $vol_jumlah[$i];
-	                $addDetail->vol_sisa = $vol_sisa[$i];
+                    $addDetail->vol_sisa = $vol_sisa[$i];
+	                $addDetail->sisa_stok = $vol_jumlah[$i];
 	                $addDetail->harga = $harga_satuan[$i];
 	                $addDetail->satuan = $satuan[$i];
 	                $addDetail->user_id = \Auth::user()->id;
@@ -278,7 +279,8 @@ class PenerimaanController extends Controller
 	                }
 	                $addDetail->vol_saat_ini = $vol_saat_ini[$i];
 	                $addDetail->vol_jumlah = $vol_jumlah[$i];
-	                $addDetail->vol_sisa = $vol_sisa[$i];
+                    $addDetail->vol_sisa = $vol_sisa[$i];
+	                $addDetail->sisa_stok = $vol_jumlah[$i];
 	                $addDetail->harga = $harga_satuan[$i];
 	                $addDetail->satuan = $satuan[$i];
 	                $addDetail->user_id = \Auth::user()->id;
