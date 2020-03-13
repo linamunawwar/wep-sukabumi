@@ -57,13 +57,69 @@ function notif_penerimaan_baru()
     return $baru;
 }
 
+function notifApprovePermintaanManager()
+{
+    $user = \Auth::user()->pegawai->posisi_id;
+    if ($user == 7) {
+        $approveNotif = LogPermintaanMaterial::where('soft_delete', 0)
+                    ->where('is_som', 1)
+                    ->where('is_slem', NULL)
+                    ->get();
+    }elseif ($user == 8) {
+        $approveNotif = LogPermintaanMaterial::where('soft_delete', 0)
+                    ->where('is_som', NULL)
+                    ->get();
+    }elseif($user == 19) {
+        $approveNotif = LogPermintaanMaterial::where('soft_delete', 0)
+                    ->where('is_som', 1)
+                    ->where('is_slem', 1)
+                    ->where('is_scarm', NULL)
+                    ->get();
+    }elseif($user == 1){
+        $approveNotif = LogPermintaanMaterial::where('soft_delete', 0)
+                    ->where('is_som', 1)
+                    ->where('is_slem', 1)
+                    ->where('is_scarm', 1)
+                    ->where('is_pm', NULL)
+                    ->get();
+    }    
+
+    return $approveNotif;
+}
+
+function notifApprovePenerimaanManager()
+{
+    $user = \Auth::user()->pegawai->posisi_id;
+        $approveNotif = LogPenerimaanMaterial::where('soft_delete', 0)
+                    ->where('is_splem', 0)
+                    ->get();
+
+    return $approveNotif;
+}
+
+function notifApprovePengajuanManager()
+{
+    $user = \Auth::user()->pegawai->posisi_id;
+    if ($user == 7) {
+        $approveNotif = LogPengajuanMaterial::where('soft_delete', 0)
+                    ->where('is_som', 1)
+                    ->where('is_splem', 0)
+                    ->get();
+    }elseif ($user == 8) {
+        $approveNotif = LogPengajuanMaterial::where('soft_delete', 0)
+                    ->where('is_som', 0)
+                    ->get();
+    }
+
+    return $approveNotif;
+}
+
 function formatTanggalPanjang($tanggal) {
     $aBulan = array(1=> "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
     list($thn,$bln,$tgl)=explode("-",$tanggal);
     $bln = (($bln >0 ) && ($bln < 10))? substr($bln,1,1): $bln ;
     return $tgl." ".$aBulan[$bln]." ".$thn;
 }
-
 function konversi_tanggal($date){
     if(($date != '') && ($date != null)){
         list($y, $m, $d) = explode('-', $date);
