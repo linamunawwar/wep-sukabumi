@@ -62,6 +62,15 @@
 								</div>
 							</div>
 							<div class="ln_solid"></div>
+								<div class="form-group">
+								<label class="control-label col-md-2 col-sm-2 col-xs-6">Attachment :</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									@if(file_exists('upload/permintaan/'.$permintaans->file))
+							          <img src="{{url('upload/permintaan').'/'.$permintaans->file}}" width="100" align="center">
+							      @endif
+								</div>
+							</div>
+							<div class="ln_solid"></div>
 							<div class="form-group" style="float:right; margin-right:4em;">
 								<div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-3">
 									<a class="btn btn-primary" href="{{url('/Logistik/pm/permintaan')}}">Cancel</a>
