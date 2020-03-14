@@ -30,6 +30,11 @@
                                 <a href="{{url('Logistik/manager/permintaan')}}">
                                     <i class="fa fa-list"></i>
                                     Permintaan Barang
+                                    @if(count(notifApprovePermintaanManager()) != 0)
+                                        <span class="badge bg" style="background-color: #1AAD19; ">
+                                            {{count(notifApprovePermintaanManager())}}
+                                        </span>
+                                    @endif
                                 </a>
                             </li>
                         @endif
@@ -69,6 +74,11 @@
                                 <a href="{{url('Logistik/manager/penerimaan')}}">
                                     <i class="fa fa-list"></i>
                                     Penerimaan Barang
+                                    @if(count(notifApprovePenerimaanManager()) != 0)
+                                        <span class="badge bg" style="background-color: #1AAD19; ">
+                                            {{count(notifApprovePenerimaanManager())}}
+                                        </span>
+                                    @endif
                                     @if(count(notif_penerimaan_baru()) != 0)
                                         <span class="badge bg" style="background-color: #1AAD19; ">
                                             {{count(notif_penerimaan_baru())}}
@@ -125,6 +135,11 @@
                                 <a href="{{url('Logistik/manager/pengajuan')}}">
                                     <i class="fa fa-list"></i>
                                     Pengajuan Pemakaian
+                                    @if(count(notifApprovePengajuanManager()) != 0)
+                                        <span class="badge bg" style="background-color: #1AAD19; ">
+                                            {{count(notifApprovePengajuanManager())}}
+                                        </span>
+                                    @endif
                                 </a>
                             </li>
                         @endif
