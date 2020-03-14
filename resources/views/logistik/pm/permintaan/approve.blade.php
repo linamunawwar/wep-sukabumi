@@ -66,7 +66,7 @@
 								<label class="control-label col-md-2 col-sm-2 col-xs-6">Attachment :</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									@if(file_exists('upload/permintaan/'.$permintaans->file))
-							          <img src="{{url('upload/permintaan').'/'.$permintaans->file}}" width="100" align="center">
+							          <img src="{{url('upload/permintaan').'/'.$permintaans->file}}" width="400" align="center">
 							      @endif
 								</div>
 							</div>
