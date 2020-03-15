@@ -25,14 +25,14 @@
 							<li><a href="{{url('Logistik/admin/permintaan/')}}"><button class="btn btn-success"> Kembali </button></a></li>
 						</ul><br><br>
 						<p>Kode Permintaan : 
-							@if(array_key_exists(0, $details)){
-								{{$details[0]->detailPermintaan->kode_permintaan}}
+							@if($details[0]->detailPermintaan->kode_permintaan)
+								{{  $details[0]->detailPermintaan->kode_permintaan}}
 							@endif
 						</p>
 						<div class="form-group">
 							<label class="control-label col-md-1" style="padding: 0;">Lampiran :</label>
 							<?php
-								if(array_key_exists(0, $details)){
+								if($details[0]->detailPermintaan->file){
 									$file = $details[0]->detailPermintaan->file;
 								}else{
 									$file = '-';
