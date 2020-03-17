@@ -111,7 +111,7 @@ function notifApprovePengajuanManager()
                     ->where('is_som', 0)
                     ->get();
     }
-dd(count($approveNotif));
+
     return $approveNotif;
 }
 
