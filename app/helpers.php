@@ -60,22 +60,22 @@ function notif_penerimaan_baru()
 function notifApprovePermintaanManager()
 {
     $user = \Auth::user()->pegawai->posisi_id;
-    if ($user == 7) {
+    if ($user == 7) {//splem
         $approveNotif = LogPermintaanMaterial::where('soft_delete', 0)
                     ->where('is_som', 1)
                     ->where('is_slem', NULL)
                     ->get();
-    }elseif ($user == 8) {
+    }elseif ($user == 8) {//som
         $approveNotif = LogPermintaanMaterial::where('soft_delete', 0)
                     ->where('is_som', NULL)
                     ->get();
-    }elseif($user == 19) {
+    }elseif($user == 5) {//scarm
         $approveNotif = LogPermintaanMaterial::where('soft_delete', 0)
                     ->where('is_som', 1)
                     ->where('is_slem', 1)
                     ->where('is_scarm', NULL)
                     ->get();
-    }elseif($user == 1){
+    }elseif($user == 1){//pM
         $approveNotif = LogPermintaanMaterial::where('soft_delete', 0)
                     ->where('is_som', 1)
                     ->where('is_slem', 1)

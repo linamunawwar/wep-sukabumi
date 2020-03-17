@@ -29,7 +29,7 @@ class PermintaanController extends Controller
 
     public function index()
     {
-        $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->get();
+        $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->where('user_id',\Auth::user()->id)->get();
         foreach ($permintaans as $permintaan) {
             if ($permintaan->is_som != 1) {
                 if ($permintaan->is_som == Null) {

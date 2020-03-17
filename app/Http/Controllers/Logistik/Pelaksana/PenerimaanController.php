@@ -18,7 +18,11 @@ class PenerimaanController extends Controller
 {
     public function index()
     {
-        $penerimaans = LogPenerimaanMaterial::where('soft_delete', 0)->get();
+        $penerimaans = LogPenerimaanMaterial::where('soft_delete', 0)
+                                            ->whereHas('permintaan', function ($q) {
+                                                $q->where('user_id', \Auth::user()->id);
+                                            })
+                                            ->get();
         foreach ($penerimaans as $penerimaan) {
             if ($penerimaan->is_splem != 1) {
                 if ($penerimaan->is_splem == null) {
