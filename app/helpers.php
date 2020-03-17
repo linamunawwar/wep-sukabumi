@@ -100,7 +100,7 @@ function notifApprovePenerimaanManager()
 function notifApprovePengajuanManager()
 {
     $user = \Auth::user()->pegawai->posisi_id;
-    $approveNotif = [];
+    $approveNotif = array();
     if ($user == 7) {
         $approveNotif = LogPengajuanMaterial::where('soft_delete', 0)
                     ->where('is_som', 1)
@@ -111,7 +111,7 @@ function notifApprovePengajuanManager()
                     ->where('is_som', 0)
                     ->get();
     }
-
+dd(count($approveNotif));
     return $approveNotif;
 }
 
