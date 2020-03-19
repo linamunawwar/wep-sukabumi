@@ -60,6 +60,7 @@ function notif_penerimaan_baru()
 function notifApprovePermintaanManager()
 {
     $user = \Auth::user()->pegawai->posisi_id;
+    $approveNotif = array();
     if ($user == 7) {//splem
         $approveNotif = LogPermintaanMaterial::where('soft_delete', 0)
                     ->where('is_som', 1)
@@ -90,6 +91,7 @@ function notifApprovePermintaanManager()
 function notifApprovePenerimaanManager()
 {
     $user = \Auth::user()->pegawai->posisi_id;
+    $approveNotif = array();
         $approveNotif = LogPenerimaanMaterial::where('soft_delete', 0)
                     ->where('is_splem', 0)
                     ->get();
