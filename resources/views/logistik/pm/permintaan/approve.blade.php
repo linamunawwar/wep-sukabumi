@@ -13,7 +13,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>permintaan Material </h2>
+						<h2>Permintaan Material </h2>
 						<span style="float:right; color:#73879C;"> Tanggal Permintaan : {{ $permintaans->tanggal }} </span>
 						<div class="clearfix"></div>
 					</div>
@@ -65,7 +65,7 @@
 								<div class="form-group">
 								<label class="control-label col-md-2 col-sm-2 col-xs-6">Attachment :</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									@if(file_exists('upload/permintaan/'.$permintaans->file))
+									@if(file_exists('upload/permintaan/'.$permintaans->file) && $permintaans->file)
 							          <img src="{{url('upload/permintaan').'/'.$permintaans->file}}" width="400" align="center">
 							      @endif
 								</div>

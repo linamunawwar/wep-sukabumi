@@ -15,7 +15,7 @@ class PengajuanPemakaianController extends Controller
 {
     public function index()
     {
-        $pengajuans = LogPengajuanPakai::where('soft_delete', 0)->get();
+        $pengajuans = LogPengajuanPakai::where('soft_delete', 0)->where('user_id',\Auth::user()->id)->get();
         foreach ($pengajuans as $pengajuan) {
             if ($pengajuan->is_som != 1) {
                 if ($pengajuan->is_som == null) {
