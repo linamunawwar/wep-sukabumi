@@ -59,8 +59,14 @@
 										<td data-sort="{{strtotime($penyerahan->tanggal)}}">{{ date('d F Y', strtotime($penyerahan->tanggal)) }}</td>										
 										<td>{{ $penyerahan->pengajuanJenisPekerjaan->nama }}</td>										
 										<td>{{ $penyerahan->pengajuanLokasiPekerjaan->nama }}</td>
-										@if ($penyerahan->status_penyerahan == 1)
-											<td style="color:#0984E3;"> Diserahkan </td>
+										@if ($penyerahan->status_penyerahan == 1 && $permintaan->status_penyerahan != 0)
+											<td style="color:#0984E3;"> Diserahkan  </td>
+										@elseif($penyerahan->status_penyerahan == 1 && $permintaan->status_penyerahan == 0)
+											@if ($permintaan->is_datang == 1)
+												<td style="color:#0984E3;"> Lengkap, Sesuai </td>
+											@elseif($permintaan->is_datang == -1)
+												<td style="color:#FF9800;"> Diterima Dengan Catatan </td>
+											@endif										
 										@else
 											<td style="color:#1AAD19;"> Belum Diserahkan </td>
 										@endif						

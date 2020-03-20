@@ -68,9 +68,12 @@
 											<td style="color:#0984E3;"> Lengkap, Sesuai </td>
 										@elseif($permintaan->is_datang == -1)
 											<td style="color:#FF9800;"> Diterima Dengan Catatan </td>
-										@else
+										@elseif($permintaan->status_penyerahan == 1)
 											<td style="color:#1AAD19;"> Menunggu Konfirmasi </td>
-										@endif	
+										@else
+											<td style="color:#FF9800;"> Proses Belum Selesai </td>
+										@endif
+											
 										<td style="text-align:center;">
 											<span style="margin-right:10px;"><a href="{{ url('Logistik/admin/permintaan/detail/'.$permintaan->id.'') }}" class="btn btn-default btn-xs" title="Detail" style="background-color :{{$permintaan->notifColor}}; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;"><i class="fa fa-th-list" style="font-size:15px;"></i></a> <sup style="{{$permintaan->notifStyle}}"> <i class="{{$permintaan->notifIcon}}" style='font-size:12px;'> </i> </sup>   </span>
 											@if($permintaan->is_som === null)
