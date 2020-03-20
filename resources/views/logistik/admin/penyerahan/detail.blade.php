@@ -77,6 +77,21 @@
 									@endforeach  					
 								</tbody>
 							</table>
+
+							<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"method="POST">
+								<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
+								<div class="ln_solid"></div>
+								<div class="form-group">
+									<label class="control-label col-md-2 col-sm-2 col-xs-6">Catatan Penerimaan :</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										@if ($permintaan->catatan_penyerahan != Null)
+											<textarea name="catatan" class="form-control col-md-6 col-xs-6" cols="15" rows="8" placeholder="Tinggalkan Catatan"> {{ $permintaan->catatan_penyerahan }} </textarea>
+										@else
+											<textarea name="catatan" class="form-control col-md-6 col-xs-6" cols="15" rows="8" placeholder="Tinggalkan Catatan"> Tidak Ada Catatan </textarea>
+										@endif
+									</div>
+								</div>
+							</form>
 							
 							<div class="ln_solid"></div>
 							<div class="form-group" style="float:right; margin-right:4em;">

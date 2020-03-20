@@ -22,6 +22,10 @@ class PenyerahanController extends Controller
                             ->get();
 
         foreach ($penyerahans as $penyerahan) {
+            $permintaan = LogPermintaanMaterial::where('soft_delete', 0)
+                            ->where('kode_penyerahan', $penyerahan->kode_penerimaan)
+                            ->first();
+
             if($penyerahan->is_notif == 1) {
                 $penyerahan->notifColor = "#FF9800";
                 $penyerahan->notifStyle = 'margin-left:-22px; color:#0984E3;';
@@ -33,15 +37,18 @@ class PenyerahanController extends Controller
             }
         }
         
-        return view('logistik.admin.penyerahan.index', ['penyerahans' => $penyerahans]);
+        return view('logistik.admin.penyerahan.index', ['penyerahans' => $penyerahans, 'permintaan' => $permintaan]);
     }
 
     public function getDetailByPenyerahanId($id)
     {
         $penyerahan = LogPengajuanMaterial::where('soft_delete', 0)
-                            ->where('id', $id)
-                            ->first();
+                    ->where('id', $id)
+                    ->first();
 
+        $permintaan = LogPermintaanMaterial::where('soft_delete', 0)
+                    ->where('kode_penyerahan', $penyerahan->kode_penerimaan)
+                    ->first();
                             
         $toUpdateNotificationPenyerahan['updated_at'] = date('Y-m-d');
         $toUpdateNotificationPenyerahan['is_notif'] = -1;
@@ -50,7 +57,7 @@ class PenyerahanController extends Controller
             $details = LogDetailPengajuanMaterial::where(['pengajuan_id' => $penyerahan->id, 'soft_delete' => 0])
                                 ->get();
 
-        return view('logistik.admin.penyerahan.detail', ['details' => $details, 'penyerahan' => $penyerahan]);
+        return view('logistik.admin.penyerahan.detail', ['details' => $details, 'penyerahan' => $penyerahan, 'permintaan' => $permintaan]);
     }
 
     public function postApproveDetailPenyerahan()
@@ -76,6 +83,7 @@ class PenyerahanController extends Controller
             $penyarahanPermintaan = $penyerahan->pengajuanPenerimaanMaterial->kode_permintaan;
 
             $toUpdatedPermmintaan['status_penyerahan'] = 1;
+            $toUpdatedPermmintaan['kode_penyerahan'] = $penyerahan->kode_penerimaan;
             $toUpdatedPermmintaan['is_datang'] = 0; 
             $permintaan = LogPermintaanMaterial::where('soft_delete', 0)
                                                 ->where('kode_permintaan', $penyarahanPermintaan)
