@@ -19,7 +19,49 @@
                     </ul>
                 </li>
 
-                    <li>
+                    @if(Auth::user()->role_id == 2) 
+                    <li>                      
+                        <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
+                            <i class="fa fa-bell-o"></i> 
+                            @if(count(notif_penerimaan_order_diterima()) != 0)
+                                <span class="badge bg" style="background-color: #1AAD19; ">
+                                    {{count(notif_penerimaan_order_diterima())}}
+                                </span>
+                            @endif
+                        </a>
+                        <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                            @foreach(notif_penerimaan_order_diterima() as $key=>$serah)
+                            <li>
+                                <a href='{{url("Logistik/admin/penerimaan/detail/$serah->id")}}'>
+                                    <span>
+                                      <span>{{$serah->kode_penerimaan}}</span>
+                                      <?php
+                                        $tgl = explode(' ',$serah->is_admin_at);
+                                        $tgl[0] = konversi_tanggal($tgl[0]);
+                                      ?>
+                                      <span class="time">{{$tgl[0]}}  {{$tgl[1]}}</span>
+                                        <span class="message">
+                                          Kode Penerimaan {{$serah->kode_penerimaan}} telah disetujui dan diserahkan
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
+                            @if($key == 4)
+                               <?php break;?>
+                            @endif
+                            @endforeach
+                            <li>
+                                <div class="text-center">
+                                    <a href="{{url('Logistik/admin/penerimaan/')}}">
+                                        <strong>See All Alerts</strong>
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    @endif
+                    <li>                      
                         <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
                             Permintaan Penyerahan 
                             @if(count(notif_permintaan_penyerahan()) != 0)
@@ -142,7 +184,7 @@
                                                 </span>
                                             </span>
                                         </a>
-                                    </li>
+                                    </li>                                  
 
                                 @endif
                                 @if($key == 4)

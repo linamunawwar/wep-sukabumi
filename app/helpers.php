@@ -24,6 +24,15 @@ function notif_order_diterima()
     return $penerimaan;
 }
 
+function notif_penerimaan_order_diterima()
+{
+    $penerimaan = LogPenerimaanMaterial::where('soft_delete',0)
+            ->where('is_new', 1)
+            ->where('user_id',\Auth::user()->id)
+            ->get();
+    return $penerimaan;
+}
+
 function notif_permintaan_diproses()
 {
     $permintaan_disetujui = LogPermintaanMaterial::where('soft_delete',0)
