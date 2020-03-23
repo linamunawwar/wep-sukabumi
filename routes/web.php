@@ -416,8 +416,6 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/permintaan/getSatuan', 'Logistik\Admin\PermintaanController@getSatuanMaterial');
 		Route::post('/permintaan/create', 'Logistik\Admin\PermintaanController@postPermintaan');
 		Route::get('/permintaan/detail/{id}', 'Logistik\Admin\PermintaanController@getDetailByPermintaanId');
-		Route::get('/permintaan/konfirmasi/{id}', 'Logistik\Admin\PermintaanController@getKonfirmasiByPermintaanId');
-		Route::post('/permintaan/konfirmasi/{id}', 'Logistik\Admin\PermintaanController@getKonfirmasiByPermintaanId');
 		Route::get('/permintaan/notif/detail/{id}', 'Logistik\Admin\PermintaanController@getDetailNotifByPermintaanId');
 		Route::get('/permintaan/edit/{id}', 'Logistik\Admin\PermintaanController@getPermintaanById');
 		Route::post('/permintaan/edit/{id}', 'Logistik\Admin\PermintaanController@updatePermintaan');
@@ -457,6 +455,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/pengajuan/approve/{id}', 'Logistik\Admin\PengajuanController@approvePengajuan');
 		Route::get('/pengajuan/unduh/{id}', 'Logistik\Admin\PengajuanController@getUnduhPengajuan');
 		Route::get('/pengajuan/note/{id}', 'Logistik\Admin\PengajuanController@getNote');
+		Route::get('/pengajuan/konfirmasi/{id}', 'Logistik\Admin\PengajuanController@getKonfirmasiByPengajuanId');
+		Route::post('/pengajuan/konfirmasi/{id}', 'Logistik\Admin\PengajuanController@getKonfirmasiByPengajuanId');
 
 		//PENYERAHAN MATERIAL
 		Route::get('/penyerahan', 'Logistik\Admin\PenyerahanController@index');
@@ -664,6 +664,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/pengajuan/edit/{id}', 'Logistik\Pelaksana\PengajuanController@updatePengajuan');
 		Route::delete('/pengajuan/delete', 'Logistik\Pelaksana\PengajuanController@deletePengajuan');
 		Route::get('/pengajuan/unduh/{id}', 'Logistik\Admin\PengajuanController@getUnduhPengajuan');
+		Route::get('/pengajuan/konfirmasi/{id}', 'Logistik\Pelaksana\PengajuanController@getKonfirmasiByPengajuanId');
+		Route::post('/pengajuan/konfirmasi/{id}', 'Logistik\Pelaksana\PengajuanController@getKonfirmasiByPengajuanId');
 
 		//LAPORAN KARTU GUDANG
 		Route::get('/kartu_gudang', 'Logistik\Admin\LaporanController@getLog02');

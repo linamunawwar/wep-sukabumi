@@ -99,18 +99,19 @@
                             </li>
                         </ul>
                     </li>
+                    @endif
                     <li>
                         <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
                             Order Diterima
-                            @if(count(notif_order_diterima()) != 0)
+                            @if(count(notif_permintaan_penyerahan()) != 0)
                                 <span class="badge bg" style="background-color: #1AAD19; ">
-                                    {{count(notif_order_diterima())}}
+                                    {{count(notif_permintaan_penyerahan())}}
                                 </span>
                             @endif
                             
                         </a>
                         <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                            @foreach(notif_order_diterima() as $key=>$order)
+                            @foreach(notif_permintaan_penyerahan() as $key=>$order)
                             <li>
                                 <a href='{{url("Logistik/admin/permintaan/konfirmasi/$order->id")}}'>
                                     <span>

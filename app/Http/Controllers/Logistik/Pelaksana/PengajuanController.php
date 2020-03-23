@@ -225,4 +225,60 @@ class PengajuanController extends Controller
             return redirect('Logistik/user/pengajuan');
         }
     }
+
+    public function getKonfirmasiByPengajuanId($id)
+    {
+        $konfirmasi = LogPengajuanMaterial::where('soft_delete', 0)
+                            ->where('id', $id)
+                            ->first();
+
+        $details = LogDetailPengajuanMaterial::where(['pengajuan_id' => $konfirmasi->id, 'soft_delete' => 0])
+                            ->get();
+
+        
+        $penerimaans = LogPenerimaanMaterial::where('kode_permintaan',$konfirmasi->pengajuanPenerimaanMaterial->kode_permintaan)->get();
+        $jumlah = [];
+        // foreach ($penerimaans as $penerimaan){
+        //     $pengajuan = LogPengajuanMaterial::where('kode_penerimaan',$penerimaan->kode_penerimaan)->first();
+            
+        //     $pengajuan_details = LogDetailPengajuanMaterial::where('pengajuan_id',$pengajuan['id'])->get();
+        //     // dd($pengajuan_details);
+        //     foreach($pengajuan_details as $pengajuan_detail){
+        //         if(!isset($jumlah[$pengajuan_detail->material_id])){
+        //             $jumlah[$pengajuan_detail->material_id] = $pengajuan_detail->pemyerahan_jumlah;
+        //         }else{
+        //             $jumlah[$pengajuan_detail->material_id] = $jumlah[$pengajuan_detail->material_id] + $pengajuan_detail->pemyerahan_jumlah;
+        //         }
+        //     }
+            
+        // }
+        // //masukkan jumlah penyerahan ke objek details
+        // foreach($details as $detail){
+        //     $detail->penyerahan_jumlah = $jumlah[$detail->material_id];
+        // }
+        
+        $catatan = \Input::get('catatan');
+        $sesuai = \Input::get('sesuai');
+        $belumSesuai = \Input::get('belumSesuai');
+                            
+        if (isset($sesuai) || isset($belumSesuai)) {            
+            if (isset($sesuai)) {
+                $konfirm = 1;
+            }elseif (isset($belumSesuai)) {
+                $konfirm = -1;
+            }
+
+            $toUpdatedPenyerahan['catatan_penyerahan'] = $catatan;
+            $toUpdatedPenyerahan['status_penyerahan'] = 0;
+            $toUpdatedPenyerahan['status_konfirmasi'] = $konfirm;
+            $toUpdatedPenyerahan['updated_at'] = date('Y-m-d H:i:s');
+            
+            $updatedPenyerahan = LogPengajuanMaterial::where('id', $konfirmasi->id)->update($toUpdatedPenyerahan);
+
+            return redirect('Logistik/user/pengajuan');
+        }
+
+        
+        return view('logistik.user.pengajuan.konfirmasi', ['details' => $details, 'penyerahan' => $konfirmasi]);
+    }
 }
