@@ -46,7 +46,8 @@
 									<th scope="col"><b> Tanggal</b> </th>
 									<th scope="col"><b> Jenis Pekerjaan </b></th>
 									<th scope="col"><b> Lokasi Pekerjaan </b></th>
-									<th scope="col"><b> Status </b></th>
+									<th scope="col"><b> Status Approval </b></th>
+									<th scope="col"><b> Status Penyerahan</b></th>
 									<th scope="col"><b> Action </b></th>
                                 </tr>
 							</thead>
@@ -60,14 +61,27 @@
 										<td data-sort="{{strtotime($pengajuan->tanggal)}}">{{ date('d F Y', strtotime($pengajuan->tanggal)) }}</td>										
 										<td>{{ $pengajuan->pengajuanJenisPekerjaan->nama }}</td>										
 										<td>{{ $pengajuan->pengajuanLokasiPekerjaan->nama }}</td>										
-										<td style="color:{{ $pengajuan->color }};">{{ $pengajuan->text }}</td>										
+										<td style="color:{{ $pengajuan->color }};">{{ $pengajuan->text }}</td>								
+										@if ($pengajuan->status_konfirmasi == 1)
+											<td style="color:#0984E3;"> Lengkap, Sesuai </td>
+										@elseif($pengajuan->status_konfirmasi == -1)
+											<td style="color:#FF9800;"> Diterima Dengan Catatan </td>
+										@elseif($pengajuan->status_penyerahan == 1)
+											<td style="color:#1AAD19;"> Menunggu Konfirmasi </td>
+										@else
+											<td style="color:#FF9800;"> Proses Belum Selesai </td>
+										@endif
 										<td style="text-align:center;">
 												<a class="btn btn-default btn-xs" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/user/pengajuan/detail/'.$pengajuan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>  </a>
 												@if($pengajuan->is_som === null)
 													<a class="btn btn-default btn-xs" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/user/pengajuan/edit/'.$pengajuan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
 													<button data-toggle="modal"  id_pengajuan='{{$pengajuan->id}}' data-target="#DeleteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-delete" onclick='deleteData("{{$pengajuan->id}}")'><i class="fa fa-trash" style="font-size:15px;"></i></button>
 												@endif
-												<a class="btn btn-default btn-xs" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/user/pengajuan/unduh/'.$pengajuan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>												
+												<a class="btn btn-default btn-xs" style="background-color:#0984E3; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/user/pengajuan/unduh/'.$pengajuan->id.'')}}"><i class="fa fa-download" style="font-size:15px;"></i>  </a>	
+												@if (($pengajuan->status_penyerahan == 1) && (\Auth::user()->id == $pengajuan->user_id))
+											<br>
+											<a class="btn btn-default btn-xs" title="Edit" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/user/pengajuan/konfirmasi/'.$pengajuan->id.'')}}">Konfirmasi Penyerahan </a>
+											@endif											
 											</td>										
 									</tr>
 								@endforeach						

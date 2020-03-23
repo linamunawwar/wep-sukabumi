@@ -32,7 +32,7 @@
 					<div class="x_title">
 						<h2>Konfirmasi Penyerahan </h2>
 						<ul class="nav navbar-right panel_toolbox">
-							<li><a href="{{url('Logistik/admin/penyerahan/')}}"><button class="btn btn-success"> Kembali </button></a></li>
+							<li><a href="{{url('Logistik/admin/pengajuan/')}}"><button class="btn btn-success"> Kembali </button></a></li>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
@@ -43,7 +43,7 @@
 									<th scope="col" rowspan="2"><b> No</b> </th>
 									<th scope="col" rowspan="2"><b> Tanggal Permintaan</b> </th>
 									<th scope="col" rowspan="2"><b> Material</b> </th>
-									<th scope="col" colspan="2"><b> Permintaan</b> </th>
+									<th scope="col" colspan="2"><b> Pengajuan</b> </th>
 									<th scope="col" colspan="2"><b> Penyerahan</b> </th>
 								</tr>
 								<tr>
@@ -62,11 +62,11 @@
 											$tgl = explode(' ',$detail->created_at);
 										?>
 										<td scope="col"> {{ konversi_tanggal($tgl[0]) }} </td>
-										<td scope="col"> {{ $detail->detailPermintaanMaterial->nama }} </td>
-										<td scope="col"> {{ $detail->satuan }} </td>
-										<td scope="col"> {{ $detail->volume }} </td>
-										<td scope="col"> {{ $detail->satuan }} </td>
-										<td scope="col"> {{ $detail->penyerahan_jumlah }} </td>
+										<td scope="col"> {{ $detail->detailPengajuanMaterial->nama }} </td>
+										<td scope="col"> {{ $detail->permintaan_satuan }} </td>
+										<td scope="col"> {{ $detail->permintaan_jumlah }} </td>
+										<td scope="col"> {{ $detail->penyerahan_satuan }} </td>
+										<td scope="col"> {{ $detail->pemyerahan_jumlah }} </td>
 									</tr>
 								@endforeach  					
 							</tbody>
@@ -87,7 +87,7 @@
 							<div class="ln_solid"></div>
 							<div class="form-group" style="float:right; margin-right:4em;">
 								<div class="col-md-12 col-sm-12 col-xs-12">
-									<a class="btn btn-primary" href="{{url('/Logistik/admin/penyerahan')}}">Cancel</a>									
+									<a class="btn btn-primary" href="{{url('/Logistik/admin/pengajuan')}}">Cancel</a>									
 									@if ($penyerahan->is_datang == 0)
 										<button type="submit" name="belumSesuai" class="btn" style="background-color:#D63031; color:#FFFFFF;">Terima, Dengan Catatan</button>
 										<button  type="submit" name="sesuai" class="btn btn-success">Lengkap, Sesuai </button>	
@@ -95,7 +95,7 @@
 										<div class="btn" style="background-color:#D63031; color:#FFFFFF;" disabled="disabled">Terima, Dengan Catatan</div>
 										<div  class="btn btn-success" disabled="disabled">Lengkap, Sesuai</div>
 									@endif
-									{{--  //<button  type="submit" name="sesuai" data-toggle="modal" id_penyerahan='{{$penyerahan->id}}' data-target="#ApproveModal" id="modal-approve" onclick='ApproveData("{{$penyerahan->id}}")' class="btn btn-success">Lengkap, Sesuai</button>  --}}
+									
 								</div>
 							</div>
 						</form>
@@ -105,41 +105,4 @@
 		</div>
     </div>
 	<!-- /page content -->
-	<div id="ApproveModal" class="modal fade text-danger" role="dialog">
-		<div class="modal-dialog ">
-			<!-- Modal content-->
-			<form action="{{ url("Logistik/admin/penyerahan/Approve") }}" id="ApproveForm" method="post" >
-				<div class="modal-content">
-					<div class="modal-header bg-danger">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title text-center">APPROVE CONFIRMATION</h4>
-					</div>
-					<div class="modal-body">
-						{{ csrf_field() }}
-						{{ method_field('Approve') }}
-						<p class="text-center">Anda yakin ingin menghapus data ini ?</p>
-						<input type="hidden" name="id_penyerahan" id="id_penyerahan">
-					</div>
-					<div class="modal-footer">
-						<center>
-							<button type="button" class="btn btn-success" data-dismiss="modal">Batal</button>
-							<button type="submit" name="" class="btn btn-danger" data-dismiss="modal" onclick="formSubmit()">Ya, Hapus</button>
-						</center>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
 @endsection
-
-@push('script')
-	function ApproveData(id)
-	{
-		var id = id;
-		var url = '{{ url("Logistik/admin/penyerahan/delete") }}';
-		// url = url.replace(':id', id);
-		console.log(id);
-		$('#id_penyerahan').val(id);
-		$("#deleteForm").attr('action', url);
-	}
-@endpush

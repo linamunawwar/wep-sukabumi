@@ -44,8 +44,8 @@
 								<thead>
 									<tr>
 										<th scope="col" rowspan="2"><b> No</b> </th>
-										<th scope="col" rowspan="2"><b> Tanggal Pengajuan</b> </th>
-										<th scope="col" rowspan="2"><b> Element Activity</b> </th>
+										<th scope="col" rowspan="2" width="10"><b> Tanggal Pengajuan</b> </th>
+										<th scope="col" rowspan="2" rowspan="13"><b> Element Activity</b> </th>
 										<th scope="col" rowspan="2"><b> Material</b> </th>
 										<th scope="col" colspan="2"><b> Permintaan</b> </th>
 										<th scope="col" colspan="2"><b> Penyerahan</b> </th>
@@ -84,8 +84,8 @@
 								<div class="form-group">
 									<label class="control-label col-md-2 col-sm-2 col-xs-6">Catatan Penerimaan :</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										@if ($permintaan->catatan_penyerahan != Null)
-											<textarea name="catatan" class="form-control col-md-6 col-xs-6" cols="15" rows="8" placeholder="Tinggalkan Catatan"> {{ $permintaan->catatan_penyerahan }} </textarea>
+										@if ($penyerahan->catatan_penyerahan != Null)
+											<textarea name="catatan" class="form-control col-md-6 col-xs-6" cols="15" rows="8" placeholder="Tinggalkan Catatan"> {{ $penyerahan->catatan_penyerahan }} </textarea>
 										@else
 											<textarea name="catatan" class="form-control col-md-6 col-xs-6" cols="15" rows="8" placeholder="Tinggalkan Catatan"> Tidak Ada Catatan </textarea>
 										@endif

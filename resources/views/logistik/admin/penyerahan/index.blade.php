@@ -59,20 +59,19 @@
 										<td data-sort="{{strtotime($penyerahan->tanggal)}}">{{ date('d F Y', strtotime($penyerahan->tanggal)) }}</td>										
 										<td>{{ $penyerahan->pengajuanJenisPekerjaan->nama }}</td>										
 										<td>{{ $penyerahan->pengajuanLokasiPekerjaan->nama }}</td>
-										@if ($penyerahan->status_penyerahan == 1 && $permintaan->status_penyerahan != 0)
+										@if ($penyerahan->status_penyerahan == 1)
 											<td style="color:#0984E3;"> Diserahkan  </td>
-										@elseif($penyerahan->status_penyerahan == 1 && $permintaan->status_penyerahan == 0)
-											@if ($permintaan->is_datang == 1)
+										@elseif($penyerahan->status_penyerahan == 0)
+											@if ($penyerahan->status_konfirmasi == 1)
 												<td style="color:#0984E3;"> Lengkap, Sesuai </td>
-											@elseif($permintaan->is_datang == -1)
+											@elseif($penyerahan->status_konfirmasi == -1)
 												<td style="color:#FF9800;"> Diterima Dengan Catatan </td>
 											@endif										
 										@else
 											<td style="color:#1AAD19;"> Belum Diserahkan </td>
 										@endif						
 										<td style="text-align:center;">
-											<span style="margin-right:10px;"><a href="{{url('Logistik/admin/penyerahan/detail/'.$penyerahan->id.'')}}" class="btn btn-default btn-xs" title="Detail" style="background-color :{{$penyerahan->notifColor}}; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;"><i class="fa fa-th-list" style="font-size:15px;"></i></a> <sup style="{{$penyerahan->notifStyle}}"> <i class="{{$penyerahan->notifIcon}}" style='font-size:12px;'> </i> </sup>   </span>
-											{{--  <a class="btn btn-default btn-xs" title="Detail" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/penyerahan/detail/'.$penyerahan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>  </a>  --}}
+											<span style="margin-right:10px;"><a href="{{url('Logistik/admin/penyerahan/detail/'.$penyerahan->id.'')}}" class="btn btn-default btn-xs" title="Penyerahan" style="background-color :{{$penyerahan->notifColor}}; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;"><i class="fa fa-th-list" style="font-size:15px;"></i></a> <sup style="{{$penyerahan->notifStyle}}"> <i class="{{$penyerahan->notifIcon}}" style='font-size:12px;'> </i> </sup>   </span>
 										</td>										
 									</tr>
 								@endforeach						
