@@ -1,4 +1,4 @@
-<!-- top navigation -->
+top navigation -->
 <div class="top_nav">
     <div class="nav_menu" style="margin-left: 0px; margin-bottom: 0px; background: #8C001B; color: white!important;">
         <nav>
@@ -144,6 +144,7 @@
                             </li>
                         </ul>
                     </li>
+                    <!-- notifikasi permintaan diproses = notifikasi jika ada permintaan yg disetujui/ direject -->
                     <li>
                         <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
                             Permintaan Diproses
@@ -207,4 +208,4 @@
         </nav>
     </div>
 </div>
-<!-- /top navigation -->
+<!-- /top navigation
