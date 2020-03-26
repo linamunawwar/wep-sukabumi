@@ -19,7 +19,6 @@ top navigation -->
                     </ul>
                 </li>
 
-                    @if(Auth::user()->role_id == 2) 
                     <li>                      
                         <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
                             <i class="fa fa-bell-o"></i> 
@@ -60,8 +59,6 @@ top navigation -->
                             </li>
                         </ul>
                     </li>
-                    @endif
-                    @if(Auth::user()->role_id == 6) 
                     <li>                      
                         <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
                             Permintaan Penyerahan 
