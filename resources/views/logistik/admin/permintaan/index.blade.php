@@ -45,7 +45,6 @@
 									<th scope="col"> Nama Peminta </th>
 									<th scope="col"> Tanggal </th>
 									<th scope="col"> Status </th>
-									<th scope="col"> Status Penyerahan</th>
 									<th scope="col"> Action </th>
 								</tr>
 							</thead>

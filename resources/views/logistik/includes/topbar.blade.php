@@ -99,7 +99,6 @@
                             </li>
                         </ul>
                     </li>
-                    @endif
                     <li>
                         <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
                             Order Diterima
@@ -107,8 +106,7 @@
                                 <span class="badge bg" style="background-color: #1AAD19; ">
                                     {{count(notif_permintaan_penyerahan())}}
                                 </span>
-                            @endif
-                            
+                            @endif                            
                         </a>
                         <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                             @foreach(notif_permintaan_penyerahan() as $key=>$order)
