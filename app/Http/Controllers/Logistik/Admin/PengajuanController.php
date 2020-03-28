@@ -74,8 +74,8 @@ class PengajuanController extends Controller
     public function cekData()
     {        
         $kode_penerimaan = \Input::get('kode_penerimaan');
-        $penerimaan = LogPenerimaanMaterial::where(['kode_penerimaan' => $kode_penerimaan, 'soft_delete' => 0])->first();
-        $penerimaans = LogPenerimaanMaterial::where(['kode_penerimaan' => $kode_penerimaan, 'soft_delete' => 0])->get();
+        $penerimaan = LogPenerimaanMaterial::where(['kode_penerimaan' => $kode_penerimaan, 'soft_delete' => 0,'is_splem'=>1])->first();
+        $penerimaans = LogPenerimaanMaterial::where(['kode_penerimaan' => $kode_penerimaan, 'soft_delete' => 0,'is_splem'=>1])->get();
         
         if ($penerimaan  && $penerimaan->is_splem == 1) {
                 $datas = LogDetailPenerimaanMaterial::where('penerimaan_id', $penerimaan->id)->where('soft_delete', 0)->get();
@@ -87,8 +87,19 @@ class PengajuanController extends Controller
 
         if ($datas) {
             foreach ($datas as $key => $data) {
+                $stocks = LogDetailPenerimaanMaterial::where('material_id', $data->material_id)
+                                            ->whereHas('penerimaan',function ($q) use($penerimaan){
+                                              $q->where('kode_permintaan', $penerimaan->kode_permintaan);
+                                            })
+                                            ->where('soft_delete',0)
+                                            ->get();
+                $sisa_stok = 0;
+                foreach ($stocks as $key => $stock) {
+                    $sisa_stok = $sisa_stok + $stock->sisa_stok;
+                }
                 $data->material_nama = $data->material->nama;
                 $data->material_satuan = $data->material->satuan;
+                $data->sisa_stok = $sisa_stok;
                 if ($penerimaans) {
                     foreach ($penerimaans as $key => $penerimaan) {
                         $material = LogDetailPenerimaanMaterial::where('penerimaan_id', $penerimaan->id)->where('material_id', $data->material_id)->where('soft_delete', 0)->first();

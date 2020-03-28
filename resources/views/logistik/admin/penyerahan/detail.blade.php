@@ -37,7 +37,7 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<form action="{{ url("Logistik/admin/penyerahan/approve") }}" id="ApproveForm" method="post" >
+						<form action="{{ url('Logistik/admin/penyerahan/approve') }}" id="ApproveForm" method="post" >
 							{{ csrf_field() }}
 							<input type="hidden" name="id_penyerahan" id="id_penyerahan" value="{{$penyerahan->id}}">
 							<table id="datatable" class="table table-striped table-bordered">
@@ -68,7 +68,7 @@
 											<td scope="col"> {{ $detail->permintaan_satuan }} </td>
 											<td scope="col"> {{ $detail->permintaan_jumlah }} </td>
 											<td scope="col"> 
-	                                                <input type='text' size="1" class='form-control penyerahanSatuan' id_data="{{$no}}" name="penyerahanSatuan[{{$detail->material_id}}]" value="{{ $detail->penyerahan_satuan }}" id="penyerahanSatuan_{{$no}}">                                             
+	                                                <input type='text' size="1" class='form-control penyerahanSatuan' id_data="{{$no}}" name="penyerahanSatuan[{{$detail->material_id}}]" value="{{ $detail->permintaan_satuan }}" id="penyerahanSatuan_{{$no}}">                                             
 	                                            </td>
 	                                            <td scope="col"> 
 	                                                <input type='text' size="1" class='form-control pemyerahanJumlah' id_data="{{$no}}" name="pemyerahanJumlah[{{$detail->material_id}}]" value="{{ $detail->pemyerahan_jumlah }}" id="pemyerahanJumlah_{{$no}}">                                             
@@ -78,26 +78,19 @@
 								</tbody>
 							</table>
 
-							<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"method="POST">
-								<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
-								<div class="ln_solid"></div>
-								<div class="form-group">
-									<label class="control-label col-md-2 col-sm-2 col-xs-6">Catatan Penerimaan :</label>
-									<div class="col-md-6 col-sm-6 col-xs-12">
-										@if ($penyerahan->catatan_penyerahan != Null)
-											<textarea name="catatan" class="form-control col-md-6 col-xs-6" cols="15" rows="8" placeholder="Tinggalkan Catatan"> {{ $penyerahan->catatan_penyerahan }} </textarea>
-										@else
-											<textarea name="catatan" class="form-control col-md-6 col-xs-6" cols="15" rows="8" placeholder="Tinggalkan Catatan"> Tidak Ada Catatan </textarea>
-										@endif
-									</div>
+							<div class="form-group">
+								<label class="control-label col-md-2 col-sm-2 col-xs-6">Catatan :</label>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									@if ($penyerahan->catatan_penyerahan != Null)
+										<textarea name="catatan" class="form-control col-md-6 col-xs-6" cols="15" rows="8" placeholder="Tinggalkan Catatan"> {{ $penyerahan->catatan_penyerahan }} </textarea>
+									@else
+										<textarea name="catatan" class="form-control col-md-6 col-xs-6" cols="15" rows="8" placeholder="Tinggalkan Catatan"> Tidak Ada Catatan </textarea>
+									@endif
 								</div>
-							</form>
-							
-							<div class="ln_solid"></div>
-							<div class="form-group" style="float:right; margin-right:4em;">
-								<div class="col-md-12 col-sm-12 col-xs-12">
+
+								<div class="col-md-6 col-sm-6 col-xs-12" style="float: right; margin: 20px;">
 									@if ($penyerahan->status_penyerahan != 1)
-										<button type="submit" title="Serahkan" id_penyerahan='{{$penyerahan->id}}'  class="btn btn-success" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-approve">Serahkan</button>
+										<button type="submit" title="Serahkan" id_penyerahan='{{$penyerahan->id}}'  class="btn btn-success" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em; float: right;">Serahkan</button>
 										<!-- <button data-toggle="modal" title="Serahkan" id_penyerahan='{{$penyerahan->id}}' data-target="#ApproveModal" class="btn btn-success" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-approve">Serahkan</button> -->
 									@else
 										<button type="submit" class="btn btn-success" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" disabled="disabled">Serahkan</button>

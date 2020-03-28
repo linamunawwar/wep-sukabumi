@@ -23,7 +23,12 @@ class PenerimaanController extends Controller
             if($penerimaan->is_admin == 1){
                 $penerimaan->color = "#D63031";
                 $penerimaan->text = "Edited By Admin";
-            }elseif ($penerimaan->is_splem != 1) {
+            }
+            if ($penerimaan->is_splem == 1) {
+                $penerimaan->color = "#74B9FF";
+                $penerimaan->text = "Accepted By SPLEM";
+            }
+            elseif (($penerimaan->is_splem != 1) && ($penerimaan->is_admin != 1)) {
                 if ($penerimaan->is_splem == null) {
                     $penerimaan->color = "#D63031";
                     $penerimaan->text = "Proses Pengecekan";
@@ -31,9 +36,6 @@ class PenerimaanController extends Controller
                     $penerimaan->color = "#D63031";
                     $penerimaan->text = "Rejected By SPLEM";
                 }
-            } elseif ($penerimaan->is_splem == 1) {
-                $penerimaan->color = "#74B9FF";
-                $penerimaan->text = "Accepted By SPLEM";
             }
         }
 

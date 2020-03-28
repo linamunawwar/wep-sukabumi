@@ -109,11 +109,12 @@
 							<input type="hidden" name="jumlah_data" class="jumlah_data" id="jumlah_data" value="0">
 							<table class="table table-bordered permintaan" id="table_permintaan">
 								<tr>
+									<th>No.</th>
 									<th>Nama Material</th>
-									<th>Uraian Tugas Pokok</th>
-									<th>Persyaratan Jabatan</th>
-									<th>Jumlah Yang Dibutuhkan</th>
-									<th>Waktu Penempatan</th>
+									<th>No.Partype</th>
+									<th>Volume</th>
+									<th>Satuan</th>
+									<th>Untuk Keperluan</th>
 									<th>Keterangan</th>
 									<th>Action</th>
 								</tr>
