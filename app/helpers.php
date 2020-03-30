@@ -4,7 +4,7 @@ use App\Models\LogPermintaanMaterial;
 use App\Models\LogPenerimaanMaterial;
 use App\Models\LogPengajuanMaterial;
 
-function notif_permintaan_penyerahan()
+function notif_permintaan_penyerahan()//notifikasi admin untuk menyerahkan barang
 {
     $permintaan_diserahkan = LogPengajuanMaterial::where('soft_delete',0)
             ->where('is_splem',1)
@@ -14,16 +14,17 @@ function notif_permintaan_penyerahan()
     return $permintaan_diserahkan;
 }
 
-function notif_order_diterima()
+//notif untuk yg mengajukan pemakaian untuk melakukan konfirmasi barang yg diserahkan sudah lengkap/belum
+function notif_konfirmasi_penerimaan()
 {
-    $penerimaan = LogPermintaanMaterial::where('soft_delete',0)
-            ->where('status_penyerahan',1)
-            ->where('soft_delete',0)
+    $penerimaan = LogPengajuanMaterial::where('soft_delete',0)
+            ->where('status_penyerahan', 1)
             ->where('user_id',\Auth::user()->id)
             ->get();
     return $penerimaan;
 }
 
+//notifikasi permintaan diproses = notifikasi jika ada permintaan yg disetujui/ direject 
 function notif_permintaan_diproses()
 {
     $permintaan_disetujui = LogPermintaanMaterial::where('soft_delete',0)
@@ -34,17 +35,7 @@ function notif_permintaan_diproses()
     return $permintaan_disetujui;
 }
 
-function notif_permintaan_ditolak()
-{
-    $permintaan_ditolak = LogPermintaanMaterial::where('soft_delete',0)
-            ->where('is_scarm',0)
-            ->where('is_notif',1)
-            ->where('soft_delete',0)
-            ->where('user_id',\Auth::user()->id)
-            ->get();
-    return $permintaan_ditolak;
-}
-
+//notifkasi kalau dari permintaan yg disubmit, ada penerimaan baru 
 function notif_penerimaan_baru()
 {
     $user_id = \Auth::user()->id;
@@ -92,9 +83,11 @@ function notifApprovePenerimaanManager()
 {
     $user = \Auth::user()->pegawai->posisi_id;
     $approveNotif = array();
+    if ($user == 7) {//splem
         $approveNotif = LogPenerimaanMaterial::where('soft_delete', 0)
-                    ->where('is_splem', 0)
-                    ->get();
+                        ->where('is_splem', null)
+                        ->get();
+    }
 
     return $approveNotif;
 }
@@ -106,11 +99,11 @@ function notifApprovePengajuanManager()
     if ($user == 7) {
         $approveNotif = LogPengajuanMaterial::where('soft_delete', 0)
                     ->where('is_som', 1)
-                    ->where('is_splem', 0)
+                    ->where('is_splem', null)
                     ->get();
     }elseif ($user == 8) {
         $approveNotif = LogPengajuanMaterial::where('soft_delete', 0)
-                    ->where('is_som', 0)
+                    ->where('is_som', null)
                     ->get();
     }
 

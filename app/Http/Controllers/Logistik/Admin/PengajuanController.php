@@ -74,8 +74,8 @@ class PengajuanController extends Controller
     public function cekData()
     {        
         $kode_penerimaan = \Input::get('kode_penerimaan');
-        $penerimaan = LogPenerimaanMaterial::where(['kode_penerimaan' => $kode_penerimaan, 'soft_delete' => 0])->first();
-        $penerimaans = LogPenerimaanMaterial::where(['kode_penerimaan' => $kode_penerimaan, 'soft_delete' => 0])->get();
+        $penerimaan = LogPenerimaanMaterial::where(['kode_penerimaan' => $kode_penerimaan, 'soft_delete' => 0,'is_splem'=>1])->first();
+        $penerimaans = LogPenerimaanMaterial::where(['kode_penerimaan' => $kode_penerimaan, 'soft_delete' => 0,'is_splem'=>1])->get();
         
         if ($penerimaan  && $penerimaan->is_splem == 1) {
                 $datas = LogDetailPenerimaanMaterial::where('penerimaan_id', $penerimaan->id)->where('soft_delete', 0)->get();
@@ -87,8 +87,19 @@ class PengajuanController extends Controller
 
         if ($datas) {
             foreach ($datas as $key => $data) {
+                $stocks = LogDetailPenerimaanMaterial::where('material_id', $data->material_id)
+                                            ->whereHas('penerimaan',function ($q) use($penerimaan){
+                                              $q->where('kode_permintaan', $penerimaan->kode_permintaan);
+                                            })
+                                            ->where('soft_delete',0)
+                                            ->get();
+                $sisa_stok = 0;
+                foreach ($stocks as $key => $stock) {
+                    $sisa_stok = $sisa_stok + $stock->sisa_stok;
+                }
                 $data->material_nama = $data->material->nama;
                 $data->material_satuan = $data->material->satuan;
+                $data->sisa_stok = $sisa_stok;
                 if ($penerimaans) {
                     foreach ($penerimaans as $key => $penerimaan) {
                         $material = LogDetailPenerimaanMaterial::where('penerimaan_id', $penerimaan->id)->where('material_id', $data->material_id)->where('soft_delete', 0)->first();
@@ -321,5 +332,61 @@ class PengajuanController extends Controller
             $deleteAllDetailPengajuan = LogDetailPengajuanMaterial::where('pengajuan_id', $dataDelete['id_pengajuan'])->update(['soft_delete' => 1]);
             return redirect('Logistik/admin/pengajuan');
         }
+    }
+
+    public function getKonfirmasiByPengajuanId($id)
+    {
+        $konfirmasi = LogPengajuanMaterial::where('soft_delete', 0)
+                            ->where('id', $id)
+                            ->first();
+
+        $details = LogDetailPengajuanMaterial::where(['pengajuan_id' => $konfirmasi->id, 'soft_delete' => 0])
+                            ->get();
+
+        
+        $penerimaans = LogPenerimaanMaterial::where('kode_permintaan',$konfirmasi->pengajuanPenerimaanMaterial->kode_permintaan)->get();
+        $jumlah = [];
+        // foreach ($penerimaans as $penerimaan){
+        //     $pengajuan = LogPengajuanMaterial::where('kode_penerimaan',$penerimaan->kode_penerimaan)->first();
+            
+        //     $pengajuan_details = LogDetailPengajuanMaterial::where('pengajuan_id',$pengajuan['id'])->get();
+        //     // dd($pengajuan_details);
+        //     foreach($pengajuan_details as $pengajuan_detail){
+        //         if(!isset($jumlah[$pengajuan_detail->material_id])){
+        //             $jumlah[$pengajuan_detail->material_id] = $pengajuan_detail->pemyerahan_jumlah;
+        //         }else{
+        //             $jumlah[$pengajuan_detail->material_id] = $jumlah[$pengajuan_detail->material_id] + $pengajuan_detail->pemyerahan_jumlah;
+        //         }
+        //     }
+            
+        // }
+        // //masukkan jumlah penyerahan ke objek details
+        // foreach($details as $detail){
+        //     $detail->penyerahan_jumlah = $jumlah[$detail->material_id];
+        // }
+        
+        $catatan = \Input::get('catatan');
+        $sesuai = \Input::get('sesuai');
+        $belumSesuai = \Input::get('belumSesuai');
+                            
+        if (isset($sesuai) || isset($belumSesuai)) {            
+            if (isset($sesuai)) {
+                $konfirm = 1;
+            }elseif (isset($belumSesuai)) {
+                $konfirm = -1;
+            }
+
+            $toUpdatedPenyerahan['catatan_penyerahan'] = $catatan;
+            $toUpdatedPenyerahan['status_penyerahan'] = 0;
+            $toUpdatedPenyerahan['status_konfirmasi'] = $konfirm;
+            $toUpdatedPenyerahan['updated_at'] = date('Y-m-d H:i:s');
+            
+            $updatedPenyerahan = LogPengajuanMaterial::where('id', $konfirmasi->id)->update($toUpdatedPenyerahan);
+
+            return redirect('Logistik/admin/pengajuan');
+        }
+
+        
+        return view('logistik.admin.pengajuan.konfirmasi', ['details' => $details, 'penyerahan' => $konfirmasi]);
     }
 }

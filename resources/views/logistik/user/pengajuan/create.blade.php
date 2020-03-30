@@ -184,10 +184,10 @@
 		                		dt +=  "<td style='text-align: center; vertical-align: middle;'>"+data[i].material_nama;
 		                		dt +=  "<input type='hidden' name='material[]' value='"+data[i].material_id+"' id='material_"+jumlah_data+"'>";
 		                		dt +=  '</td>';
-		                		dt +=  "<td style='text-align: center; vertical-align: middle;'>"+data[i].sisa_stok;
-		                		dt +=  '</td>';	
 		                		dt +=  "<td style='text-align: center; vertical-align: middle;'>"+data[i].satuan;
-		                		dt +=  '</td>';		                		
+		                		dt +=  '</td>';	
+		                		dt +=  "<td style='text-align: center; vertical-align: middle;'>"+data[i].sisa_stok;
+		                		dt +=  '</td>';	   		
 		                		dt +=  "<td><input type='text' class='form-control permintaan_satuan' id_data='"+jumlah_data+"' name='permintaan_satuan[]' value='"+data[i].material_satuan+"' id='permintaan_satuan_"+jumlah_data+"' required='required'>";
 		                		dt +=  '</td>';
 		                		dt +=  "<td><input type='text' class='form-control permintaan_jumlah' id_data='"+jumlah_data+"' name='permintaan_jumlah[]' value='' id='permintaan_jumlah_"+jumlah_data+"' required='required'>";

@@ -18,7 +18,7 @@
 					</div>
 					<div class="x_content">
 						<form id="demo-form2" data-parsley-validate  method="POST" enctype="multipart/form-data">
-							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 							Permintaan Material
 							<span style="float:right;"> Tanggal Permintaan : {{ date('d F Y', strtotime($permintaan->tanggal)) }} </span>
 							<input type="hidden" name="tanggal" value="{{ date('d F Y', strtotime($permintaan->tanggal)) }}">
@@ -164,6 +164,26 @@
 @endsection
 @push('scripts')
 <script type="text/javascript">
+
+	$(document).on("change", ".material", function(){
+		var material_id = $('#material').val();
+		var _token = $('#_token').val();
+		
+		$.ajax({
+			type: "post",
+			url: '{{ url('Logistik/admin/permintaan/getSatuan') }}',
+			data: {
+				'material_id' : material_id,
+                '_token': _token
+			},
+			success: function(response){
+				var data = JSON.parse(response)
+				$('.satuan').val(data.satuan);
+				console.log(data.satuan);
+			}
+		})
+	});
+
 	$(document).ready(function(){
 		$('.material').select2();
 		$(document).on("click", "button.tambah", function(e){

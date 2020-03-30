@@ -22,6 +22,7 @@ class PenyerahanController extends Controller
                             ->get();
 
         foreach ($penyerahans as $penyerahan) {
+
             if($penyerahan->is_notif == 1) {
                 $penyerahan->notifColor = "#FF9800";
                 $penyerahan->notifStyle = 'margin-left:-22px; color:#0984E3;';
@@ -39,9 +40,8 @@ class PenyerahanController extends Controller
     public function getDetailByPenyerahanId($id)
     {
         $penyerahan = LogPengajuanMaterial::where('soft_delete', 0)
-                            ->where('id', $id)
-                            ->first();
-
+                    ->where('id', $id)
+                    ->first();
                             
         $toUpdateNotificationPenyerahan['updated_at'] = date('Y-m-d');
         $toUpdateNotificationPenyerahan['is_notif'] = -1;
@@ -68,18 +68,19 @@ class PenyerahanController extends Controller
                                 
         if ($penyerahan) {      
             // $toUpdatedPenyerahan['cacatan_penyerahan'] = $cacatan;
-            $toUpdatedPenerimaan['is_notif'] = 1;
-            $permintaan = LogPenerimaanMaterial::where('soft_delete', 0)
-                                                ->where('kode_penerimaan', $penyerahan->kode_penerimaan)
-                                                ->update($toUpdatedPenerimaan);
+            // $toUpdatedPenerimaan['is_notif'] = 1;
+            // $permintaan = LogPenerimaanMaterial::where('soft_delete', 0)
+            //                                     ->where('kode_penerimaan', $penyerahan->kode_penerimaan)
+            //                                     ->update($toUpdatedPenerimaan);
 
-            $penyarahanPermintaan = $penyerahan->pengajuanPenerimaanMaterial->kode_permintaan;
+            // $penyarahanPermintaan = $penyerahan->pengajuanPenerimaanMaterial->kode_permintaan;
 
-            $toUpdatedPermmintaan['status_penyerahan'] = 1;
-            $toUpdatedPermmintaan['is_datang'] = 0; 
-            $permintaan = LogPermintaanMaterial::where('soft_delete', 0)
-                                                ->where('kode_permintaan', $penyarahanPermintaan)
-                                                ->update($toUpdatedPermmintaan);
+            // $toUpdatedPermmintaan['status_penyerahan'] = 1;
+            // $toUpdatedPermmintaan['kode_penyerahan'] = $penyerahan->kode_penerimaan;
+            // $toUpdatedPermmintaan['is_datang'] = 0; 
+            // $permintaan = LogPermintaanMaterial::where('soft_delete', 0)
+            //                                     ->where('kode_permintaan', $penyarahanPermintaan)
+            //                                     ->update($toUpdatedPermmintaan);
             
             foreach ($details as $key => $detail) {
                 $toUpdatedDetail['penyerahan_satuan'] = $penyerahanSatuan[$detail->material_id];

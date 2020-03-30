@@ -76,8 +76,19 @@ class PengajuanController extends Controller
         }
         if ($datas) {
             foreach ($datas as $key => $data) {
+                $stocks = LogDetailPenerimaanMaterial::where('material_id', $data->material_id)
+                                            ->whereHas('penerimaan',function ($q) use($penerimaan){
+                                              $q->where('kode_permintaan', $penerimaan->kode_permintaan);
+                                            })
+                                            ->where('soft_delete',0)
+                                            ->get();
+                $sisa_stok = 0;
+                foreach ($stocks as $key => $stock) {
+                    $sisa_stok = $sisa_stok + $stock->sisa_stok;
+                }
                 $data->material_nama = $data->material->nama;
                 $data->material_satuan = $data->material->satuan;
+                $data->sisa_stok = $sisa_stok;
                 if ($penerimaans) {
                     foreach ($penerimaans as $key => $penerimaan) {
                         $material = LogDetailPenerimaanMaterial::where('penerimaan_id', $penerimaan->id)->where('material_id', $data->material_id)->where('soft_delete', 0)->first();
@@ -135,10 +146,23 @@ class PengajuanController extends Controller
 
                 $addDetailPengajuanMaterial->save();
                 
-                $data_penerimaan = LogDetailPenerimaanMaterial::where('penerimaan_id',$get_penerimaan->id)->where('material_id',$material[$i])->first();
+                $data_penerimaan = LogDetailPenerimaanMaterial::where('material_id',$material[$i])
+                                                                ->whereHas('penerimaan',function ($q) use ($get_penerimaan){
+                                                                  $q->where('kode_permintaan', $get_penerimaan->kode_permintaan);
+                                                                })
+                                                                ->get();
+                                                                
                 if($data_penerimaan){
-                    $sisa =  (int)$data_penerimaan->sisa_stok - (int)$permintaan_jumlah[$i];
-                    $update_sisa = LogDetailPenerimaanMaterial::where('penerimaan_id',$get_penerimaan->id)->where('material_id',$material[$i])->update(['sisa_stok'=>$sisa]);
+                    foreach ($data_penerimaan as $key => $value) {
+                        if($value->sisa_stok != 0){
+                            $sisa_stok = (int)$value->sisa_stok - (int)$permintaan_jumlah[$i];
+                            if($sisa_stok < 0){
+                                $permintaan_jumlah[$i] = (int)$permintaan_jumlah[$i] - $value->sisa_stok;
+                                $sisa_stok = 0;
+                            }
+                            LogDetailPenerimaanMaterial::where('id',$value->id)->update(['sisa_stok'=>$sisa_stok]);
+                        }
+                    }
                 }
             }
         }
@@ -224,5 +248,61 @@ class PengajuanController extends Controller
             $deleteAllDetailPermintaan = LogDetailPengajuanMaterial::where('pengajuan_id', $dataDelete['id_pengajuan'])->update(['soft_delete' => 1]);
             return redirect('Logistik/user/pengajuan');
         }
+    }
+
+    public function getKonfirmasiByPengajuanId($id)
+    {
+        $konfirmasi = LogPengajuanMaterial::where('soft_delete', 0)
+                            ->where('id', $id)
+                            ->first();
+
+        $details = LogDetailPengajuanMaterial::where(['pengajuan_id' => $konfirmasi->id, 'soft_delete' => 0])
+                            ->get();
+
+        
+        $penerimaans = LogPenerimaanMaterial::where('kode_permintaan',$konfirmasi->pengajuanPenerimaanMaterial->kode_permintaan)->get();
+        $jumlah = [];
+        // foreach ($penerimaans as $penerimaan){
+        //     $pengajuan = LogPengajuanMaterial::where('kode_penerimaan',$penerimaan->kode_penerimaan)->first();
+            
+        //     $pengajuan_details = LogDetailPengajuanMaterial::where('pengajuan_id',$pengajuan['id'])->get();
+        //     // dd($pengajuan_details);
+        //     foreach($pengajuan_details as $pengajuan_detail){
+        //         if(!isset($jumlah[$pengajuan_detail->material_id])){
+        //             $jumlah[$pengajuan_detail->material_id] = $pengajuan_detail->pemyerahan_jumlah;
+        //         }else{
+        //             $jumlah[$pengajuan_detail->material_id] = $jumlah[$pengajuan_detail->material_id] + $pengajuan_detail->pemyerahan_jumlah;
+        //         }
+        //     }
+            
+        // }
+        // //masukkan jumlah penyerahan ke objek details
+        // foreach($details as $detail){
+        //     $detail->penyerahan_jumlah = $jumlah[$detail->material_id];
+        // }
+        
+        $catatan = \Input::get('catatan');
+        $sesuai = \Input::get('sesuai');
+        $belumSesuai = \Input::get('belumSesuai');
+                            
+        if (isset($sesuai) || isset($belumSesuai)) {            
+            if (isset($sesuai)) {
+                $konfirm = 1;
+            }elseif (isset($belumSesuai)) {
+                $konfirm = -1;
+            }
+
+            $toUpdatedPenyerahan['catatan_penyerahan'] = $catatan;
+            $toUpdatedPenyerahan['status_penyerahan'] = 0;
+            $toUpdatedPenyerahan['status_konfirmasi'] = $konfirm;
+            $toUpdatedPenyerahan['updated_at'] = date('Y-m-d H:i:s');
+            
+            $updatedPenyerahan = LogPengajuanMaterial::where('id', $konfirmasi->id)->update($toUpdatedPenyerahan);
+
+            return redirect('Logistik/user/pengajuan');
+        }
+
+        
+        return view('logistik.user.pengajuan.konfirmasi', ['details' => $details, 'penyerahan' => $konfirmasi]);
     }
 }

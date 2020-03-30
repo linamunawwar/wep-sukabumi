@@ -45,7 +45,6 @@
 									<th scope="col"> Nama Peminta </th>
 									<th scope="col"> Tanggal </th>
 									<th scope="col"> Status </th>
-									<th scope="col"> Status Penyerahan</th>
 									<th scope="col"> Action </th>
 								</tr>
 							</thead>
@@ -64,13 +63,7 @@
 												<button data-toggle="modal"  id_permintaan='{{$permintaan->id}}' data-target="#NoteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-note" onclick='noteData("{{$permintaan->id}}")'>Note</button>
 											@endif
 										</td>
-										@if ($permintaan->is_datang == 1)
-											<td style="color:#0984E3;"> Lengkap, Sesuai </td>
-										@elseif($permintaan->is_datang == -1)
-											<td style="color:#FF9800;"> Diterima Dengan Catatan </td>
-										@else
-											<td style="color:#1AAD19;"> Menunggu Konfirmasi </td>
-										@endif	
+											
 										<td style="text-align:center;">
 											<span style="margin-right:10px;"><a href="{{ url('Logistik/admin/permintaan/detail/'.$permintaan->id.'') }}" class="btn btn-default btn-xs" title="Detail" style="background-color :{{$permintaan->notifColor}}; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;"><i class="fa fa-th-list" style="font-size:15px;"></i></a> <sup style="{{$permintaan->notifStyle}}"> <i class="{{$permintaan->notifIcon}}" style='font-size:12px;'> </i> </sup>   </span>
 											@if($permintaan->is_som === null)
@@ -83,9 +76,6 @@
 											<a class="btn btn-dark btn-xs" title="Download" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em; opacity: 0.5;"><i class="fa fa-download" style="font-size:15px;opacity: 0.5;"></i>  </a>
 											@endif
 											<br>	
-											@if (($permintaan->status_penyerahan == 1) && (\Auth::user()->id == $permintaan->user_id))
-											<a class="btn btn-default btn-xs" title="Edit" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/permintaan/konfirmasi/'.$permintaan->id.'')}}">Konfirmasi Penyerahan </a>
-											@endif
 										</td>
 									</tr>
 								@endforeach							

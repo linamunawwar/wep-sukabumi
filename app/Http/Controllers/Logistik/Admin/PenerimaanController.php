@@ -23,7 +23,12 @@ class PenerimaanController extends Controller
             if($penerimaan->is_admin == 1){
                 $penerimaan->color = "#D63031";
                 $penerimaan->text = "Edited By Admin";
-            }elseif ($penerimaan->is_splem != 1) {
+            }
+            if ($penerimaan->is_splem == 1) {
+                $penerimaan->color = "#74B9FF";
+                $penerimaan->text = "Accepted By SPLEM";
+            }
+            elseif (($penerimaan->is_splem != 1) && ($penerimaan->is_admin != 1)) {
                 if ($penerimaan->is_splem == null) {
                     $penerimaan->color = "#D63031";
                     $penerimaan->text = "Proses Pengecekan";
@@ -31,9 +36,6 @@ class PenerimaanController extends Controller
                     $penerimaan->color = "#D63031";
                     $penerimaan->text = "Rejected By SPLEM";
                 }
-            } elseif ($penerimaan->is_splem == 1) {
-                $penerimaan->color = "#74B9FF";
-                $penerimaan->text = "Accepted By SPLEM";
             }
         }
 
@@ -117,6 +119,7 @@ class PenerimaanController extends Controller
         }else{
         	$kode = $kode_permintaan.'-01';
         }
+
         $addPenerimaan = new LogPenerimaanMaterial;
         $addPenerimaan->kode_permintaan = $kode_permintaan;
         $addPenerimaan->kode_penerimaan = $kode;
@@ -124,7 +127,7 @@ class PenerimaanController extends Controller
         $addPenerimaan->supplier = $supplier;
         $addPenerimaan->penerima = $penerima;
         $addPenerimaan->is_new = 1;
-        $addPenerimaan->user_id = \Auth::user()->id;
+        $addPenerimaan->user_id = $find_permintaan->user_id;
         if(\Auth::user()->role_id == 6){
             $addPenerimaan->is_admin = 1;
             $addPenerimaan->is_admin_at = date('Y-m-d H:i:s');
