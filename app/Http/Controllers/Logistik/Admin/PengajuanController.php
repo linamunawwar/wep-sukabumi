@@ -11,6 +11,7 @@ use App\Models\LogMaterial;
 use App\Models\LogPenerimaanMaterial;
 use App\Models\LogPengajuanMaterial;
 use App\Pegawai;
+use App\Models\User;
 use PHPExcel_Worksheet_Drawing;
 use PHPExcel_Worksheet_PageSetup;
 
@@ -265,14 +266,23 @@ class PengajuanController extends Controller
         if ($findPengajuan) {
             $som = Pegawai::where('posisi_id', 8)->where('soft_delete', 0)->first();
             $splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
-
-            $excel = \Excel::create('Formulir_Pengajuan_Material', function ($excel) use ($findPengajuan, $getDetailPengajuan, $som, $splem) {
-                $excel->sheet('New Sheet', function ($sheet) use ($findPengajuan, $getDetailPengajuan, $som, $splem) {
+            $user = User::where('id',$findPengajuan->user_id)->first();
+            if(($user->role_id == 6) && ($user->pegawai_id == 'SL10001')){
+                $superintendent = Pegawai::where('nip','SL311297')->first();
+            }elseif(($user->role_id == 6) && ($user->pegawai_id == 'SL10002')){
+                $superintendent = Pegawai::where('nip','SL240587')->first();
+            }else{
+                $superintendent = Pegawai::where('nip',$user->pegawai_id)->first();
+            }
+            $excel = \Excel::create('Formulir_Pengajuan_Material', function ($excel) use ($findPengajuan, $getDetailPengajuan, $som, $splem, $superintendent,$user) {
+                $excel->sheet('New Sheet', function ($sheet) use ($findPengajuan, $getDetailPengajuan, $som, $splem, $superintendent,$user) {
                     $sheet->loadview('logistik.admin.pengajuan.unduh',
                         ['pengajuan' => $findPengajuan,
                             'detailPengajuan' => $getDetailPengajuan,
                             'som' => $som,
-                            'splem' => $splem]);
+                            'splem' => $splem,
+                            'user' => $user,
+                            'superintendent' => $superintendent]);
                     $objDrawing = new PHPExcel_Worksheet_Drawing;
                     $objDrawing->setPath(public_path('img/Waskita.png'));
                     $objDrawing->setCoordinates('C1');
@@ -283,7 +293,7 @@ class PengajuanController extends Controller
                     $objDrawing->setWidth(40);
                     $objDrawing->setHeight(35);
                     $sheet->getStyle('C1')->getAlignment()->setIndent(1);
-                    $sheet->getStyle('A13:H14')->getAlignment()->setWrapText(true);
+                    $sheet->getStyle('A13:I30')->getAlignment()->setWrapText(true);
                     $sheet->getStyle('A2:H36')->getFont()->setName('Tahoma');
                     $sheet->getStyle('A13:H15')->getAlignment()->applyFromArray(
                         array('horizontal' => 'center')
