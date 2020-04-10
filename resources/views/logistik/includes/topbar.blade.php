@@ -9,7 +9,7 @@
             <ul class="nav navbar-nav navbar-right" style="color: white!important;">
                 <li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
-                        <img src="{{ Gravatar::src(Auth::user()->email) }}" alt="Avatar of {{ Auth::user()->name }}">
+                        <img src="{{ Gravatar::src(Auth::user()->email) }}">
                         {{ Auth::user()->name }}
                         <span class=" fa fa-angle-down"></span>
                     </a>

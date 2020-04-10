@@ -109,6 +109,59 @@ class PermintaanController extends Controller
       
     }
 
+    // public function getstatusApprove($id)
+    // {
+    //     $permintaan = LogPermintaanMaterial::where('id', $id)->where('soft_delete',0)->first();
+    //     if($permintaan){
+    //         if($permintaan->is_pm == 1) {
+    //             $statusApprove['titleNamePm']  = 'PM';
+    //             $statusApprove['dateTime'] = (explode(" ", date('d F Y', strtotime($permintaan->is_pm_at))));
+    //             $statusApprove['bodyDatePM']   = $dateTime[0];
+    //             $statusApprove['bodyTimePM']   = $dateTime[1];
+    //         }else{
+    //             $statusApprove['titleNamePm']  = '-';
+    //             $statusApprove['bodyDatePM']   = '-';
+    //             $statusApprove['bodyTimePM']   = '-';
+    //         }
+
+    //         if($permintaan->is_scarm == 1){
+    //             $statusApprove['titleNameScarm']  = 'SCARM';
+    //             $statusApprove['dateTime'] = (explode(" ", date('d F Y', strtotime($permintaan->is_scarm_at))));
+    //             $statusApprove['bodyDateScarm']   = $dateTime[0];
+    //             $statusApprove['bodyTimeScarm']   = $dateTime[1];
+    //         }else{
+    //             $statusApprove['titleNameScarm']  = '-';
+    //             $statusApprove['bodyDateScarm']   = '-';
+    //             $statusApprove['bodyTimeScarm']   = '-';
+    //         }
+
+    //         if($permintaan->is_slem == 1){
+    //             $statusApprove['titleNameSlem']  = 'SLEM';
+    //             $statusApprove['dateTime'] = (explode(" ", date('d F Y', strtotime($permintaan->is_slem_at))));
+    //             $statusApprove['bodyDateSlem']   = $dateTime[0];
+    //             $statusApprove['bodyTimeSlem']   = $dateTime[1];
+    //         }else{
+    //             $statusApprove['titleNameSlem']  = '-';
+    //             $statusApprove['bodyDateSlem']   = '-';
+    //             $statusApprove['bodyTimeSlem']   = '-';
+    //         }
+            
+    //         if($permintaan->is_som == 1){
+    //             $statusApprove['titleNameSom']  = 'SOM';
+    //             $statusApprove['dateTime'] = (explode(" ", date('d F Y', strtotime($permintaan->is_som_at))));
+    //             $statusApprove['bodyDateSom']   = $dateTime[0];
+    //             $statusApprove['bodyTimeSom']   = $dateTime[1];
+    //         }else{
+    //             $statusApprove['titleNameSom']  = '-';
+    //             $statusApprove['bodyDateSom']   = '-';
+    //             $statusApprove['bodyTimeSom']   = '-';
+    //         }
+    //     }
+        
+    //     dd($statusApprove);
+      
+    // }
+
     public function beforePostPermintaan()
     {
 
@@ -188,10 +241,14 @@ class PermintaanController extends Controller
     }
 
     public function getUnduhPermintaan($id)
-    {
+    {   
+        $permintaans = LogPermintaanMaterial::where('soft_delete', 0)->get();
         $findPermintaan = LogPermintaanMaterial::find($id);
-        $nomor = explode("0",$findPermintaan->kode_permintaan);
-        $findPermintaan['nomor'] = $nomor[1];
+        foreach ($permintaans as $key => $permintaan) {
+           if ($permintaan->id == $id) {
+               $findPermintaan['nomor'] = $key+1;
+           }
+        }
 
         $getDetailPermintaan = LogDetailPermintaanMaterial::where('permintaan_id', $findPermintaan->id)->where('soft_delete', 0)->get();
         $user = User::find($findPermintaan->user_id);
