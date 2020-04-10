@@ -10,7 +10,7 @@
       <th></th>
       <th colspan="3"><b style="font-weight: 3; font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
       <th></th>
-      <td colspan="2" style="border: 1px solid #000000;" align="center">Formulir Log-08</td>
+      <td colspan="2" style="border: 1px solid #000000;" align="center">Formulir Log-04</td>
     </tr>
     <tr>
       <th></th>
@@ -182,19 +182,56 @@
         <td></td>
         <td></td>
         <td></td>
-        <td style="height:70;" align="center"></td>
-        <td style="height:70;" align="center"></td>
-        <td colspan="2" style="height:70;" align="center"></td>
-        <td colspan="2" style="height:70;" align="center"></td>
+        <td style="height:70;" align="center">
+          @if(file_exists("upload/pegawai/$superintendent->nip/$superintendent->ttd"))
+            <img src="upload/pegawai/{{$superintendent->nip}}/{{$superintendent->ttd}}" width="100" align="center">
+          @endif
+        </td>
+        <td style="height:70;" align="center">
+          @if(file_exists("upload/pegawai/$som->nip/$som->ttd"))
+            <img src="upload/pegawai/{{$som->nip}}/{{$som->ttd}}" width="100" align="center">
+          @endif
+        </td>
+        <td colspan="2" style="height:70;" align="center">
+          @if(file_exists("upload/pegawai/$splem->nip/$splem->ttd"))
+            <img src="upload/pegawai/{{$splem->nip}}/{{$splem->ttd}}" width="100" align="center">
+          @endif
+        </td>
+        <td colspan="2" style="height:70;" align="center">
+          @if(file_exists("upload/pegawai/$superintendent->nip/$superintendent->ttd"))
+            <img src="upload/pegawai/{{$superintendent->nip}}/{{$superintendent->ttd}}" width="100" align="center">
+          @endif
+        </td>
     </tr>
     <tr>
         <td></td>
         <td></td>
         <td></td>
-        <td align="center"> Superintenden </td>
-        <td align="center">  </td>
-        <td colspan="2" align="center">  </td>
-        <td colspan="2" align="center"> Superintenden </td>
+        <td align="center"><b>( {{$superintendent->nama}} )</b></td>
+        <td align="center"><b>( {{$som->nama}} )</b></td>
+        <td colspan="2" align="center"><b> ( {{$splem->nama}} )</b> </td>
+        <td colspan="2" align="center"><b> ( {{$superintendent->nama}} )</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td align="center">
+          @if($user->role_id != 2)
+            Logistik
+          @else
+            Superintendent
+          @endif
+        </td>
+        <td align="center">SOM</td>
+        <td colspan="2" align="center"> SPLEM </td>
+        <td colspan="2" align="center">
+          @if($user->role_id != 2)
+            Logistik
+          @else
+            Superintendent
+          @endif
+        </td>
     </tr>
     <tr></tr>
     <tr>

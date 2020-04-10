@@ -229,5 +229,14 @@
         format: 'dd-mm-yyyy',
         autoclose: true
 	});
+
+	$('#datepicker1').on('change',function () {
+		var newDate = $("#datepicker1").datepicker('getDate');
+		if (newDate) { // Not null
+               newDate.setDate(newDate.getDate() + 6);
+       }
+       $('#datepicker2').datepicker('setDate', newDate).datepicker('option', 'minDate', newDate); 
+         
+	});
   </script>
  @endpush
