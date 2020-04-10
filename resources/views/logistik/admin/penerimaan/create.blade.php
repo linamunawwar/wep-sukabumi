@@ -168,6 +168,7 @@
             	}else{
 	                if(data != null){
 		                if(data.length != 0){
+		                	$('.alert').hide();
 		                	$('#form1').hide();
 		                	$('#demo-form2').show();
 		                	var dt;

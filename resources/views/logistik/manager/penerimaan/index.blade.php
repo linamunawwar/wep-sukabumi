@@ -73,7 +73,7 @@
 										@else
 											<a class="btn btn-dark btn-xs" title="Download" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em; opacity: 0.5;"><i class="fa fa-download" style="font-size:15px;opacity: 0.5;"></i>  </a>
 										@endif
-										@if(($penerimaan->is_splem != 1) && (\Auth::user()->pegawai->posisi_id == 7))
+										@if(($penerimaan->is_splem === null ) && (\Auth::user()->pegawai->posisi_id == 7))
 											<br><a class="btn btn-default btn-xs" title="Approve" style="background-color:#049372; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/manager/penerimaan/approve/'.$penerimaan->id.'')}}"><i class="fa fa-check" title="Approve" style="font-size:15px;"></i> Approve </a>
 										@elseif(\Auth::user()->pegawai->posisi_id == 7)
 											<br><a class="btn btn-default btn-xs" title="Approve" style="background-color:#607D8B; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;"><i class="fa fa-close" style="font-size:15px;"></i> Approve </a>

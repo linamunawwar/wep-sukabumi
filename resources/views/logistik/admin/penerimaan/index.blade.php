@@ -59,7 +59,7 @@
 									<td data-sort="{{strtotime($penerimaan->tanggal)}}">{{ date('d F Y', strtotime($penerimaan->tanggal)) }}</td>
 									<td style="color:{{ $penerimaan->color }};">
 										{{ $penerimaan->text }}
-										@if($penerimaan->is_splem == 0)
+										@if($penerimaan->is_splem === '0')
 											<br>
 											<button data-toggle="modal"  id_penerimaan='{{$penerimaan->id}}' data-target="#NoteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-note" onclick='noteData("{{$penerimaan->id}}")'>Note</button>
 										@endif
@@ -73,7 +73,7 @@
 												<sup style="margin-left:-22px; color:#0984E3;"> <i class="fa fa-star" style='font-size:12px;'> </i> </sup> 
 											@endif
 										</span>
-										@if($penerimaan->is_splem === null)
+										@if($penerimaan->is_splem == 0)
 											<a class="btn btn-default btn-xs" title="Edit" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/penerimaan/edit/'.$penerimaan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
 											<button data-toggle="modal" title="Hapus"  id_penerimaan='{{$penerimaan->id}}' data-target="#DeleteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-delete" onclick='deleteData("{{$penerimaan->id}}")'><i class="fa fa-trash" style="font-size:15px;"></i></button>
 										@endif

@@ -35,9 +35,10 @@ class LaporanController extends Controller
     	while($tgl_mulai <= $tgl_selesai){  
 
             $i++;
-            $tgl_mulai = date('Y-m-d',strtotime('+1 days',strtotime($tgl_mulai)));
+            
             $permintaans = LogPermintaanMaterial::where('tanggal','=',$tgl_mulai)
                                             ->where('soft_delete',0)
+                                            ->where('is_scarm',1)
                                             ->get();
             foreach ($permintaans as $key => $permintaan) {
                 foreach ($permintaan->permintaanDetail as $key1 => $detail) {
@@ -59,6 +60,9 @@ class LaporanController extends Controller
 
             $penerimaans = LogDetailPenerimaanMaterial::where('tanggal_terima','=',$tgl_mulai)
                                             ->where('soft_delete',0)
+                                            ->whereHas('penerimaan',function ($q){
+                                              $q->where('is_splem', 1);
+                                            })
                                             ->get();
             $count = count($materials);
             foreach ($penerimaans as $key => $detail) {
@@ -79,12 +83,16 @@ class LaporanController extends Controller
 
             $pengajuans = LogDetailPengajuanPakai::where('tanggal_pengajuan','=',$tgl_mulai)
                                             ->where('soft_delete',0)
+                                            ->whereHas('pengajuan',function ($q){
+                                              $q->where('is_splem', 1);
+                                            })
                                             ->get();
             $count = count($materials);
+
             foreach ($pengajuans as $key => $detail) {
                 if(array_search($detail->material_id,array_column($materials,'material_id')) !== false){
                     $index = array_search($detail->material_id,array_column($materials,'material_id'));
-                    $materials[$index]['terpakai'] = (int)$materials[$index]['terpakai'] + (int)$detail->pemerahan_jumlah;
+                    $materials[$index]['terpakai'] = (int)$materials[$index]['terpakai'] + (int)$detail->pemyerahan_jumlah;
                 }else{
                     $materials[$count]['material_id'] = (int)$detail->material_id;
                     $materials[$count]['nama'] = $detail->material->nama;
@@ -95,8 +103,10 @@ class LaporanController extends Controller
                     $count++;
                 }
             }
+            
+            $tgl_mulai = date('Y-m-d',strtotime('+1 days',strtotime($tgl_mulai)));
         }
-        // dd($data);
+        
     	$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
         if(!isset($data['proses'])){
             $data['proses'] = 0;
@@ -200,6 +210,7 @@ class LaporanController extends Controller
                                             ->where('jenis_pekerjaan_id',$data['jenis']->id)
                                             ->where('lokasi_kerja_id',$data['lokasi']->id)
                                             ->where('soft_delete',0)
+                                            ->where('is_splem',1)
                                             ->get();
                                             
         $selisih = date_diff(date_create($data['tanggal_mulai']),date_create($data['tanggal_selesai']));
@@ -229,15 +240,27 @@ class LaporanController extends Controller
                                                     })->where('soft_delete',0)
                                                     ->where('jenis_pekerjaan_id',$data['jenis']->id)
                                                     ->where('lokasi_kerja_id',$data['lokasi']->id)
+                                                    ->where('is_splem',1)
                                                     ->get();
                         
                         foreach ($dt as $key => $value) {
                             $jumlah = 0;
-                           $dt_detail  = LogDetailPengajuanMaterial::where('tanggal_pengajuan', $tanggal_mulai)->where('material_id',$detail->material_id)->where('soft_delete',0)->get();
+                           $dt_detail  = LogDetailPengajuanMaterial::where('tanggal_pengajuan', $tanggal_mulai)
+                                                                    ->where('material_id',$detail->material_id)
+                                                                    ->where('soft_delete',0)
+                                                                    ->whereHas('detailPengajuan',function ($q){
+                                                                      $q->where('is_splem', 1);
+                                                                    })
+                                                                    ->get();
                            
                            $dt_detail_lalu  = LogDetailPengajuanMaterial::whereMonth('tanggal_pengajuan', $bulan_lalu)
                                                                         ->whereYear('tanggal_pengajuan',$tahun)
-                                                                        ->where('material_id',$detail->material_id)->where('soft_delete',0)->get();
+                                                                        ->where('material_id',$detail->material_id)
+                                                                        ->where('soft_delete',0)
+                                                                        ->whereHas('detailPengajuan',function ($q){
+                                                                          $q->where('is_splem', 1);
+                                                                        })
+                                                                        ->get();
 
                            foreach ($dt_detail as $key => $dtl) {
                                $jumlah = $jumlah +(int)$dtl->pemyerahan_jumlah;
@@ -408,6 +431,9 @@ class LaporanController extends Controller
 				$penerimaanDetails = LogDetailPenerimaanMaterial::where('material_id',$data['material'])
 																->where('soft_delete',0)
                                                                 ->where('tanggal_terima', '=', $data['tahun'].'-'.$data['bulan'].'-'.$tgl)
+                                                                ->whereHas('penerimaan',function ($q){
+                                                                  $q->where('is_splem', 1);
+                                                                })
                                                                 ->get();
 				if(count($penerimaanDetails) != 0){
     				foreach ($penerimaanDetails as $key => $value) {				
@@ -422,6 +448,9 @@ class LaporanController extends Controller
 				$pengajuanDetails = LogDetailPengajuanPakai::where('material_id',$data['material'])
 																->where('soft_delete',0)
 																->where('tanggal_pengajuan', '=', $data['tahun'].'-'.$data['bulan'].'-'.$tgl)
+                                                                ->whereHas('pengajuan',function ($q){
+                                                                  $q->where('is_splem', 1);
+                                                                })
                                                                 ->get();
 				if (count($pengajuanDetails) != 0) {					
 					foreach ($pengajuanDetails as $key => $value) {
@@ -533,10 +562,16 @@ class LaporanController extends Controller
 			$dt[$i]['tanggal'] = $tgl_mulai;			
             $penerimaanDetails = LogDetailPenerimaanMaterial::where('tanggal_terima','=',$tgl_mulai)
                                                             ->where('soft_delete',0)
+                                                            ->whereHas('penerimaan',function ($q){
+                                                              $q->where('is_splem', 1);
+                                                            })
                                                             ->get();
 
             $pengajuanDetails = LogDetailPengajuanPakai::where('tanggal_pengajuan','=',$tgl_mulai)
                                                         ->where('soft_delete',0)
+                                                        ->whereHas('pengajuan',function ($q){
+                                                          $q->where('is_splem', 1);
+                                                        })
                                                         ->get();
                                   				
             foreach ($penerimaanDetails as $key => $penerimaan) {               
@@ -553,13 +588,13 @@ class LaporanController extends Controller
             $j++;                
             }
 
-            foreach ($pengajuanDetails as $key => $pengajuan) {                
-                $dt[$i]['data'][$j]['material'] = $pengajuan->material->nama;
-                $dt[$i]['data'][$j]['satuan'] = $pengajuan->material->satuan;
-                $dt[$i]['data'][$j]['jml_terima'] = 0;
-                $dt[$i]['data'][$j]['jml_keluar'] = $pengajuan->pemyerahan_jumlah;
-                $j++;
-            }       
+            // foreach ($pengajuanDetails as $key => $pengajuan) {                
+            //     $dt[$i]['data'][$j]['material'] = $pengajuan->material->nama;
+            //     $dt[$i]['data'][$j]['satuan'] = $pengajuan->material->satuan;
+            //     $dt[$i]['data'][$j]['jml_terima'] = 0;
+            //     $dt[$i]['data'][$j]['jml_keluar'] = $pengajuan->pemyerahan_jumlah;
+            //     $j++;
+            // }       
 			$i++;
 			$tgl_mulai = date('Y-m-d',strtotime('+1 days',strtotime($tgl_mulai)));
         }
@@ -649,6 +684,7 @@ class LaporanController extends Controller
         while ($tgl_mulai <= $tgl_selesai) {
             $permintaans = LogPermintaanMaterial::where('tanggal', '=', $tgl_mulai)
                                                 ->where('soft_delete', 0)
+                                                ->where('is_scarm',1)
                                                 ->get();
                                             
             foreach ($permintaans as $key => $permintaan) {
@@ -671,6 +707,9 @@ class LaporanController extends Controller
                     
                     $penerimaans = LogDetailPenerimaanMaterial::where('soft_delete',0)
                                                             ->where('tanggal_terima', '=', $tgl_mulai)
+                                                            ->whereHas('penerimaan',function ($q){
+                                                              $q->where('is_splem', 1);
+                                                            })
                                                             ->get();
                     // var_dump(count($penerimaans).'tgl'.$tgl_mulai);
 

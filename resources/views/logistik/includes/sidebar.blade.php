@@ -62,7 +62,7 @@
                                     <i class="fa fa-list"></i>
                                     Penerimaan Barang
                                     @if(count(notif_penerimaan_baru()) != 0)
-                                        <span class="badge bg" style="background-color: #1AAD19; ">
+                                        <span class="badge bg" style="background-color: #1AAD19; " title="Barang yang diminta datang">
                                             {{count(notif_penerimaan_baru())}}
                                         </span>
                                     @endif
@@ -75,12 +75,12 @@
                                     <i class="fa fa-list"></i>
                                     Penerimaan Barang
                                     @if(count(notifApprovePenerimaanManager()) != 0)
-                                        <span class="badge bg" style="background-color: #1AAD19; ">
+                                        <span class="badge bg" style="background-color: #1AAD19; " title="Harus Diapprove">
                                             {{count(notifApprovePenerimaanManager())}}
                                         </span>
                                     @endif
                                     @if(count(notif_penerimaan_baru()) != 0)
-                                        <span class="badge bg" style="background-color: #1AAD19; ">
+                                        <span class="badge bg" style="background-color: #1AAD19; " title="Barang yang diminta datang">
                                             {{count(notif_penerimaan_baru())}}
                                         </span>
                                     @endif
@@ -93,7 +93,7 @@
                                     <i class="fa fa-list"></i>
                                     Penerimaan Barang
                                     @if(count(notif_penerimaan_baru()) != 0)
-                                        <span class="badge bg" style="background-color: #1AAD19; ">
+                                        <span class="badge bg" style="background-color: #1AAD19; " title="Barang yang diminta datang" >
                                             {{count(notif_penerimaan_baru())}}
                                         </span>
                                     @endif
@@ -106,7 +106,7 @@
                                     <i class="fa fa-list"></i>
                                     Penerimaan Barang
                                     @if(count(notif_penerimaan_baru()) != 0)
-                                        <span class="badge bg" style="background-color: #1AAD19; ">
+                                        <span class="badge bg" style="background-color: #1AAD19; " title="Barang yang diminta datang">
                                             {{count(notif_penerimaan_baru())}}
                                         </span>
                                     @endif
@@ -120,6 +120,11 @@
                                 <a href="{{url('Logistik/user/pengajuan')}}">
                                     <i class="fa fa-list"></i>
                                     Pengajuan Pemakaian
+                                    @if(count(notif_konfirmasi_penerimaan()) != 0)
+                                        <span class="badge bg" style="background-color: #1AAD19; " title="konfirmasi penerimaan">
+                                            {{count(notif_konfirmasi_penerimaan())}}
+                                        </span>
+                                    @endif
                                 </a>
                             </li>
                         @elseif(Auth::user()->role_id == 2)
@@ -127,6 +132,11 @@
                                 <a href="{{url('Logistik/user/pengajuan')}}">
                                     <i class="fa fa-list"></i>
                                     Pengajuan Pemakaian
+                                    @if(count(notif_konfirmasi_penerimaan()) != 0)
+                                        <span class="badge bg" style="background-color: #1AAD19; " title="konfirmasi penerimaan">
+                                            {{count(notif_konfirmasi_penerimaan())}}
+                                        </span>
+                                    @endif
                                 </a>
                             </li>
                         @endif
@@ -136,8 +146,13 @@
                                     <i class="fa fa-list"></i>
                                     Pengajuan Pemakaian
                                     @if(count(notifApprovePengajuanManager()) != 0)
-                                        <span class="badge bg" style="background-color: #1AAD19; ">
+                                        <span class="badge bg" style="background-color: #1AAD19; " title="Harus Diapprove">
                                             {{count(notifApprovePengajuanManager())}}
+                                        </span>
+                                    @endif
+                                    @if(count(notif_konfirmasi_penerimaan()) != 0)
+                                        <span class="badge bg" style="background-color: #1AAD19; " title="konfirmasi penerimaan">
+                                            {{count(notif_konfirmasi_penerimaan())}}
                                         </span>
                                     @endif
                                 </a>
@@ -148,6 +163,11 @@
                                 <a href="{{url('Logistik/pm/pengajuan')}}">
                                     <i class="fa fa-list"></i>
                                     Pengajuan Pemakaian
+                                    @if(count(notif_konfirmasi_penerimaan()) != 0)
+                                        <span class="badge bg" style="background-color: #1AAD19; " title="konfirmasi penerimaan">
+                                            {{count(notif_konfirmasi_penerimaan())}}
+                                        </span>
+                                    @endif
                                 </a>
                             </li>
                         @endif
@@ -156,6 +176,11 @@
                                 <a href="{{url('Logistik/admin/pengajuan')}}">
                                     <i class="fa fa-list"></i>
                                     Pengajuan Pemakaian
+                                    @if(count(notif_konfirmasi_penerimaan()) != 0)
+                                        <span class="badge bg" style="background-color: #1AAD19; " title="konfirmasi penerimaan">
+                                            {{count(notif_konfirmasi_penerimaan())}}
+                                        </span>
+                                    @endif
                                 </a>
                             </li>
                         @endif
