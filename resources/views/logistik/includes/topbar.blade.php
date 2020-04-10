@@ -109,13 +109,13 @@
                             @endif                            
                         </a>
                         <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                            @foreach(notif_permintaan_penyerahan() as $key=>$order)
+                            @foreach(notif_permintaan_penyerahan() as $key => $order)
                             <li>
                                 <a href='{{url("Logistik/admin/permintaan/konfirmasi/$order->id")}}'>
                                     <span>
                                       <span>{{$order->kode_permintaan}}</span>
                                       <?php
-                                        $tgl = explode(' ',$order->is_scarm_at);
+                                        $tgl = explode(' ',$order->is_splem_at);
                                         $tgl[0] = konversi_tanggal($tgl[0]);
                                       ?>
                                       <span class="time">{{$tgl[0]}}  {{$tgl[1]}}</span>
