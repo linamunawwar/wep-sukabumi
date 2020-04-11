@@ -23,8 +23,8 @@
 								@endif
 							</li>
 							<li><a href="{{url('Logistik/admin/permintaan/')}}"><button class="btn btn-success"> Kembali </button></a></li><br>
-							{{-- <li><button data-toggle="modal" title="Status Approval" data-target="#StatusApproval" id="status-approval" onclick='ApproveStatus("{{$details[0]->permintaan_id}}"' class="btn btn-default" style="margin-left:-0.3em; width:14.3em; background-color:#FF9800; color:#FFF;"> Status Approval </button></li> --}}
-
+							<li><button data-toggle="modal" title="Status Approval" data-target="#StatusApproval" id="status-approval" onclick='ApproveStatus("{{$details[0]->permintaan_id}}"' class="btn btn-default" style="margin-left:0em; width:14.3em; background-color:#FF9800; color:#FFF;"> Status Approval </button></li>
+							
 						</ul><br><br>
 						<p>Kode Permintaan : 
 							@if($details[0]->detailPermintaan->kode_permintaan)
@@ -80,7 +80,7 @@
 		</div>
     </div>
 	<!-- /page content -->
-	{{-- <div id="StatusApproval" class="modal fade" style="color:#FFF;" role="dialog">
+	<div id="StatusApproval" class="modal fade" style="color:#FFF;" role="dialog">
 		<div class="modal-dialog ">
 			<!-- Modal content-->
 			<div class="modal-content">
@@ -90,32 +90,67 @@
 				</div>
 				<div class="modal-body" style="color:#353b48;">
 					<span>
-						<h4>SOM</h4>
+						<h4> {{ $notifPermintaan->titleNameSom }} </h4>
 						<p style="color:#576574;">
 							<table>
 								<tr>
 									<td width="70px">Tanggal </td>
-									<td> :</td>
+									<td> : {{ $notifPermintaan->bodyDateSom }}</td>
 								</tr>
 								<tr>
 									<td>Waktu </td>
-									<td>:</td>
+									<td> : {{ $notifPermintaan->bodyTimeSom }}</td>
 								</tr>
 							</table>   
 						</p>
 					</span>
+					<hr>
 					<p></p>
 					<span>
-						<h4>SOM</h4>
+						<h4> {{ $notifPermintaan->titleNameSlem }} </h4>
 						<p style="color:#576574;">
 							<table>
 								<tr>
 									<td width="70px">Tanggal </td>
-									<td> :</td>
+									<td> : {{ $notifPermintaan->bodyDateSlem }}</td>
 								</tr>
 								<tr>
 									<td>Waktu </td>
-									<td>:</td>
+									<td> : {{ $notifPermintaan->bodyTimeSlem }}</td>
+								</tr>
+							</table>   
+						</p>
+					</span>
+					<hr>
+					<p></p>
+					<span>
+						<h4> {{ $notifPermintaan->titleNameScarm }} </h4>
+						<p style="color:#576574;">
+							<table>
+								<tr>
+									<td width="70px">Tanggal </td>
+									<td> : {{ $notifPermintaan->bodyDateScarm }}</td>
+								</tr>
+								<tr>
+									<td>Waktu </td>
+									<td> : {{ $notifPermintaan->bodyTimeScarm }}</td>
+								</tr>
+							</table>   
+						</p>
+					</span>
+					<hr>
+					<p></p>
+					<span>
+						<h4> {{ $notifPermintaan->titleNamePm }} </h4>
+						<p style="color:#576574;">
+							<table>
+								<tr>
+									<td width="70px">Tanggal </td>
+									<td> : {{ $notifPermintaan->bodyDatePm }}</td>
+								</tr>
+								<tr>
+									<td>Waktu </td>
+									<td> : {{ $notifPermintaan->bodyTimePm }}</td>
 								</tr>
 							</table>   
 						</p>
@@ -123,7 +158,7 @@
 				</div>
 			</div>
 		</div>
-	</div> --}}
+	</div>
 @endsection
 
 @push('scripts')
@@ -144,7 +179,7 @@
 			type : 'get',
 			success:function(response){
 				console.log(response)
-				$('#note').html(response);
+				$('#title').html(response);
 			}
 		});
 	}
