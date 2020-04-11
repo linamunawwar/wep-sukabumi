@@ -22,7 +22,9 @@
 								<div class="btn btn-dark" title="Download" style="color:#FFFFFF;  padding:0.5em 0.7em 0.5em 0.7em; margin-top:0.3em; width:8em; opacity: 0.5;"> <b>Download</b> <i class="fa fa-download" style="font-size:15px;opacity: 0.5;"></i>  </div>
 								@endif
 							</li>
-							<li><a href="{{url('Logistik/admin/permintaan/')}}"><button class="btn btn-success"> Kembali </button></a></li>
+							<li><a href="{{url('Logistik/admin/permintaan/')}}"><button class="btn btn-success"> Kembali </button></a></li><br>
+							<li><button data-toggle="modal" title="Status Approval" data-target="#StatusApproval" id="status-approval" onclick='ApproveStatus("{{$details[0]->permintaan_id}}"' class="btn btn-default" style="margin-left:0em; width:14.3em; background-color:#FF9800; color:#FFF;"> Status Approval </button></li>
+							
 						</ul><br><br>
 						<p>Kode Permintaan : 
 							@if($details[0]->detailPermintaan->kode_permintaan)
@@ -71,11 +73,114 @@
 									</tr>
 								@endforeach							
 							</tbody>
-						</table>
+						</table>						
 					</div>
 				</div>
 			</div>
 		</div>
     </div>
-    <!-- /page content -->
+	<!-- /page content -->
+	<div id="StatusApproval" class="modal fade" style="color:#FFF;" role="dialog">
+		<div class="modal-dialog ">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header" style="background-color:#FF9800;">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title text-center">Status Approval</h4>
+				</div>
+				<div class="modal-body" style="color:#353b48;">
+					<span>
+						<h4> {{ $notifPermintaan->titleNameSom }} </h4>
+						<p style="color:#576574;">
+							<table>
+								<tr>
+									<td width="70px">Tanggal </td>
+									<td> : {{ $notifPermintaan->bodyDateSom }}</td>
+								</tr>
+								<tr>
+									<td>Waktu </td>
+									<td> : {{ $notifPermintaan->bodyTimeSom }}</td>
+								</tr>
+							</table>   
+						</p>
+					</span>
+					<hr>
+					<p></p>
+					<span>
+						<h4> {{ $notifPermintaan->titleNameSlem }} </h4>
+						<p style="color:#576574;">
+							<table>
+								<tr>
+									<td width="70px">Tanggal </td>
+									<td> : {{ $notifPermintaan->bodyDateSlem }}</td>
+								</tr>
+								<tr>
+									<td>Waktu </td>
+									<td> : {{ $notifPermintaan->bodyTimeSlem }}</td>
+								</tr>
+							</table>   
+						</p>
+					</span>
+					<hr>
+					<p></p>
+					<span>
+						<h4> {{ $notifPermintaan->titleNameScarm }} </h4>
+						<p style="color:#576574;">
+							<table>
+								<tr>
+									<td width="70px">Tanggal </td>
+									<td> : {{ $notifPermintaan->bodyDateScarm }}</td>
+								</tr>
+								<tr>
+									<td>Waktu </td>
+									<td> : {{ $notifPermintaan->bodyTimeScarm }}</td>
+								</tr>
+							</table>   
+						</p>
+					</span>
+					<hr>
+					<p></p>
+					<span>
+						<h4> {{ $notifPermintaan->titleNamePm }} </h4>
+						<p style="color:#576574;">
+							<table>
+								<tr>
+									<td width="70px">Tanggal </td>
+									<td> : {{ $notifPermintaan->bodyDatePm }}</td>
+								</tr>
+								<tr>
+									<td>Waktu </td>
+									<td> : {{ $notifPermintaan->bodyTimePm }}</td>
+								</tr>
+							</table>   
+						</p>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
 @endsection
+
+@push('scripts')
+  <script type="text/javascript">
+	$('#modal-note').on("click",function(){
+		var id_penerimaan = $(this).attr('id_penerimaan');
+	   $('#id_penerimaan').val(id_penerimaan);
+	});
+
+	function ApproveStatus(id)
+	{
+		var id = id;
+		var url = '{{ url("Logistik/admin/permintaan/statusApprove") }}';
+		console.log(id);
+		$('#id_penerimaan').val(id);
+		$.ajax({
+			url  : '{{ url("Logistik/admin/permintaan/statusApprove") }}/'+id,
+			type : 'get',
+			success:function(response){
+				console.log(response)
+				$('#title').html(response);
+			}
+		});
+	}
+ @endpush

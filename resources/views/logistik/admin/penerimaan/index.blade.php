@@ -146,7 +146,6 @@
   	$('#modal-note').on("click",function(){
   		var id_penerimaan = $(this).attr('id_penerimaan');
          $('#id_penerimaan').val(id_penerimaan);
-     
   	});
      function noteData(id)
      {
