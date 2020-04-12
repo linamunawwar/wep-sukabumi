@@ -15,7 +15,7 @@ class PengajuanController extends Controller
 {
     public function index()
     {
-        $pengajuans = LogPengajuanMaterial::where('soft_delete', 0)->where('user_id',\Auth::user()->id)->get();
+        $pengajuans = LogPengajuanMaterial::where('soft_delete', 0)->where('user_id',\Auth::user()->id)->orderBy('id')->get();
         foreach ($pengajuans as $pengajuan) {
             if($pengajuan->is_pelaksana == 1){
                 $pengajuan->color = "#D63031";

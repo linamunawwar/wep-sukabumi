@@ -423,6 +423,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::delete('/permintaan/delete', 'Logistik\Admin\PermintaanController@deletePermintaan');
 		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
 		Route::get('/permintaan/note/{id}', 'Logistik\Admin\PermintaanController@getNote');
+		Route::get('/permintaan/statusApprove/{id}', 'Logistik\Admin\PermintaanController@getstatusApprove');
 		Route::get('notif/permintaan_disetujui', 'Logistik\Admin\PermintaanController@getAllNotif');
 
 		//penerimaan MATERIAL
@@ -443,9 +444,11 @@ Route::group(['middleware' => 'auth'], function () {
 		//PENGAJUAN MATERIAL
 		Route::get('/pengajuan', 'Logistik\Admin\PengajuanController@index');
 		Route::get('/pengajuan/create', 'Logistik\Admin\PengajuanController@beforePostPengajuan');
+		Route::get('/pengajuan/create/{kode}', 'Logistik\Admin\PengajuanController@beforePostPengajuanByCode');
 		Route::post('/pengajuan/cekData', 'Logistik\Admin\PengajuanController@cekData');
 		// Route::post('/pengajuan/pengajuanValidasi', 'Logistik\Admin\PengajuanController@pengajuanValidasi');
 		Route::post('/pengajuan/create', 'Logistik\Admin\PengajuanController@postPengajuan');
+		Route::post('/pengajuan/create/{kode}', 'Logistik\Admin\PengajuanController@postPengajuan');
 		Route::get('/pengajuan/detail/{id}', 'Logistik\Admin\PengajuanController@getDetailByPengajuanId');
 		Route::get('/pengajuan/notif/detail/{id}', 'Logistik\Admin\PengajuanController@getDetailNotifByPengajuanId');
 		Route::get('/pengajuan/edit/{id}', 'Logistik\Admin\PengajuanController@getPengajuanById');

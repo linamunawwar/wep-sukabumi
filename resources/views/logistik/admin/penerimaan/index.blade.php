@@ -54,7 +54,7 @@
                                     <?php $no++; ?>
 									<tr>
 									<td>{{ $no }}</td>
-									<td>{{ $penerimaan->kode_penerimaan }}</td>
+									<td><u><a href="{{url('Logistik/admin/pengajuan/create/'.$penerimaan->kode_penerimaan.'')}}">{{ $penerimaan->kode_penerimaan }}</a></u></td>
 									<td>{{ $penerimaan->kode_permintaan }}</td>
 									<td data-sort="{{strtotime($penerimaan->tanggal)}}">{{ date('d F Y', strtotime($penerimaan->tanggal)) }}</td>
 									<td style="color:{{ $penerimaan->color }};">
@@ -146,7 +146,6 @@
   	$('#modal-note').on("click",function(){
   		var id_penerimaan = $(this).attr('id_penerimaan');
          $('#id_penerimaan').val(id_penerimaan);
-     
   	});
      function noteData(id)
      {

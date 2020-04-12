@@ -39,7 +39,7 @@
 									<div class="form-group">
 										<label class="control-label col-md-6 col-sm-6 col-xs-12" for="nama">Material <span class="required">*</span>:</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-											<select class="form-control col-md-7 col-xs-12 material" id="material" name="material">
+											<select class="form-control col-md-7 col-xs-12 material" id="material" name="material" required="required" >
 												<option value="">Pilih Material / Bahan</option>
 												@foreach($materials as $material)
 													<option value="{{$material->id}}">{{$material->nama}}</option>
@@ -174,18 +174,22 @@
 	        	jumlah_data++;
 	        $('#jumlah_data').val(jumlah_data);
 	        
-			var table = "<tr  class='data_"+jumlah_data+"'>";
-				table += "<td>"+jumlah_data+"</td>";
-				table += "<td>"+nama_material+"<input type='hidden' name='material[]' value='"+material+"' id='material_"+jumlah_data+"'></td>";
-				table += "<td>"+no_part+"<input type='hidden' name='no_part[]' value='"+no_part+"' id='no_part_"+jumlah_data+"'></td>";
-				table += "<td>"+volume+"<input type='hidden' name='volume[]' value='"+volume+"' id='volume_"+jumlah_data+"'></td>";
-				table += "<td>"+satuan+"<input type='hidden' name='satuan[]' value='"+satuan+"' id='satuan_"+jumlah_data+"'></td>";
-				table += "<td>"+keperluan+"<input type='hidden' name='keperluan[]' value='"+keperluan+"' id='keperluan_"+jumlah_data+"'></td>";
-				table += "<td>"+keterangan+"<input type='hidden' name='keterangan[]' value='"+keterangan+"' id='keterangan_"+jumlah_data+"'></td>";
-				table+="<td>";
-				table+="<a class='btn btn-sm btn-block btn-danger del' idsub='"+jumlah_data+"' style='width:40px;'><span class='fa fa-trash'></span></a>";
-				table+="</td>";
-				table += "</tr>";
+			if((material != "Pilih Material / Bahan" || material != "") && satuan != ""){
+				var table = "<tr  class='data_"+jumlah_data+"'>";
+					table += "<td>"+jumlah_data+"</td>";
+					table += "<td>"+nama_material+"<input type='hidden' name='material[]' value='"+material+"' id='material_"+jumlah_data+"'></td>";
+					table += "<td>"+no_part+"<input type='hidden' name='no_part[]' value='"+no_part+"' id='no_part_"+jumlah_data+"'></td>";
+					table += "<td>"+volume+"<input type='hidden' name='volume[]' value='"+volume+"' id='volume_"+jumlah_data+"'></td>";
+					table += "<td>"+satuan+"<input type='hidden' name='satuan[]' value='"+satuan+"' id='satuan_"+jumlah_data+"'></td>";
+					table += "<td>"+keperluan+"<input type='hidden' name='keperluan[]' value='"+keperluan+"' id='keperluan_"+jumlah_data+"'></td>";
+					table += "<td>"+keterangan+"<input type='hidden' name='keterangan[]' value='"+keterangan+"' id='keterangan_"+jumlah_data+"'></td>";
+					table+="<td>";
+					table+="<a class='btn btn-sm btn-block btn-danger del' idsub='"+jumlah_data+"' style='width:40px;'><span class='fa fa-trash'></span></a>";
+					table+="</td>";
+					table += "</tr>";
+			}else{
+				alert("Material Tidak Boleh Kosong");
+			}
 				
 			$('#table_permintaan tbody.data').append(table);
 			

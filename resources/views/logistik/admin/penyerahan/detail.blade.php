@@ -87,14 +87,14 @@
 										<textarea name="catatan" class="form-control col-md-6 col-xs-6" cols="15" rows="8" placeholder="Tinggalkan Catatan"> Tidak Ada Catatan </textarea>
 									@endif
 								</div>
-
-								<div class="col-md-6 col-sm-6 col-xs-12" style="float: right; margin: 20px;">
+							
+							<div class="ln_solid"></div>
+							<div class="form-group" style="float:right; margin-right:4em;">
+								<div class="col-md-12 col-sm-12 col-xs-12">
 									@if ($penyerahan->status_penyerahan != 1)
-										<button type="submit" title="Serahkan" id_penyerahan='{{$penyerahan->id}}'  class="btn btn-success" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em; float: right;">Serahkan</button>
-										<!-- <button data-toggle="modal" title="Serahkan" id_penyerahan='{{$penyerahan->id}}' data-target="#ApproveModal" class="btn btn-success" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-approve">Serahkan</button> -->
+										<button type="submit" title="Serahkan" id_penyerahan='{{$penyerahan->id}}'  class="btn btn-success" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-approve">Serahkan</button>
 									@else
 										<button type="submit" class="btn btn-success" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" disabled="disabled">Serahkan</button>
-										<!-- <button data-toggle="modal" class="btn btn-success" style="color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" disabled="disabled">Serahkan</button> -->
 									@endif	
 								</div>
 							</div>
