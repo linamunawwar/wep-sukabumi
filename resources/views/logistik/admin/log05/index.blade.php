@@ -92,7 +92,7 @@
 										      <th colspan="3"><b style="font-weight: 3; font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
 										      <th></th>
 										      <th></th>
-										      <td style="border: 1px solid #000000;  " colspan="2" align="center">Formulir Log-06</td>
+										      <td style="border: 1px solid #000000;  " colspan="2" align="center">Formulir Log-05</td>
 										    </tr>
 										    <tr>
 										      <th></th>

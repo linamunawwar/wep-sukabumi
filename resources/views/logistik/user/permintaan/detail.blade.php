@@ -22,6 +22,9 @@
 								{{  $details[0]->detailPermintaan->kode_permintaan}}
 							@endif
 						</p>
+						<p>
+							Nomor : {{$findPermintaan['nomor']}}/BPM/WK/DIII/BK/20
+						</p>
 						<div class="form-group">
 							<label class="control-label col-md-1" style="padding: 0;">Lampiran :</label>
 							<?php

@@ -16,7 +16,7 @@ class PengajuanController extends Controller
 {
     public function index()
     {
-        $pengajuans = LogPengajuanMaterial::where('soft_delete', 0)->get();
+        $pengajuans = LogPengajuanMaterial::where('soft_delete', 0)->orderBy('id')->get();
         foreach ($pengajuans as $pengajuan) {
             if ($pengajuan->is_som != 1) {
                 if ($pengajuan->is_som == null) {
