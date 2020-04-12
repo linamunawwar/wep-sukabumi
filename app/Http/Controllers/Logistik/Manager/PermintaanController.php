@@ -197,7 +197,13 @@ class PermintaanController extends Controller
         }
 
         $details = LogDetailPermintaanMaterial::where(['permintaan_id' => $id, 'soft_delete' => 0])->get();
-        return view('logistik.manager.permintaan.detail', ['details' => $details, 'notifPermintaan' => $notifPermintaan]);
+        $permintaans = LogPermintaanMaterial::where('soft_delete',0)->get();
+        foreach ($permintaans as $key => $permintaan) {
+           if ($permintaan->id == $id) {
+               $findPermintaan['nomor'] = $key+1;
+           }
+        }
+        return view('logistik.manager.permintaan.detail', ['details' => $details,'findPermintaan'=>$findPermintaan, 'notifPermintaan' => $notifPermintaan]);
     }
 
     public function getPermintaanById($id)

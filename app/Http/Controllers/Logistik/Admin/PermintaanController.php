@@ -318,6 +318,13 @@ class PermintaanController extends Controller
             $notifPermintaan['bodyTimeSom']   = '-';
         }
 
+        $permintaans = LogPermintaanMaterial::where('soft_delete',0)->get();
+        foreach ($permintaans as $key => $permintaan) {
+           if ($permintaan->id == $id) {
+               $findPermintaan['nomor'] = $key+1;
+           }
+        }
+
         $toUpdateNotificationPermintaan['updated_at'] = date('Y-m-d');
         $toUpdateNotificationPermintaan['is_notif'] = 0;
         $updatedPermintaan = LogPermintaanMaterial::where('id', $notifPermintaan->id)->update($toUpdateNotificationPermintaan);
@@ -326,7 +333,7 @@ class PermintaanController extends Controller
             $details = LogDetailPermintaanMaterial::where(['permintaan_id' => $notifPermintaan->id, 'soft_delete' => 0])->get();
         // }
         // dd($notifPermintaan);
-        return view('logistik.admin.permintaan.detail', ['details' => $details, 'notifPermintaan' => $notifPermintaan]);
+        return view('logistik.admin.permintaan.detail', ['details' => $details, 'notifPermintaan' => $notifPermintaan,'findPermintaan'=>$findPermintaan]);
     }
 
 

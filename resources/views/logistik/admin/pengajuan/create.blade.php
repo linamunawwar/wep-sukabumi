@@ -24,7 +24,11 @@
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Kode Penerimaan <span class="required">*</span>:</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-		                                    <input type="text" name="kode_penerimaan" id="kode_penerimaan" class="form-control col-md-7 col-xs-12 kode_penerimaan" placeholder="Kode Penerimaan">
+											@if($kode_penerimaan)
+		                                    <input type="text" name="kode_penerimaan" id="kode_penerimaan" class="form-control col-md-7 col-xs-12 kode_penerimaan" placeholder="Kode Penerimaan" value="{{$kode_penerimaan}}">
+		                                    @else
+		                                    	<input type="text" name="kode_penerimaan" id="kode_penerimaan" class="form-control col-md-7 col-xs-12 kode_penerimaan" placeholder="Kode Penerimaan">
+		                                    @endif
 										</div>
 										<div class="col-md-2">
 											<button class="btn btn-primary pull-right" id="search">Search</button>
