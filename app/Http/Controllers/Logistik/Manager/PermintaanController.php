@@ -150,8 +150,54 @@ class PermintaanController extends Controller
 
     public function getDetailByPermintaanId($id)
     {
+        $notifPermintaan = LogPermintaanMaterial::where(['id' => $id, 'soft_delete' => 0])->first();
+        
+        if($notifPermintaan->is_pm == 1) {
+            $notifPermintaan['titleNamePm']  = 'PM';
+            $dateTime = (explode(" ", $notifPermintaan->is_pm_at));
+            $notifPermintaan['bodyDatePm']   = date('d F Y', strtotime($dateTime[0]));
+            $notifPermintaan['bodyTimePm']   = $dateTime[1];
+        }else{
+            $notifPermintaan['titleNamePm']  = '-';
+            $notifPermintaan['bodyDatePM']   = '-';
+            $notifPermintaan['bodyTimePM']   = '-';
+        }
+
+        if($notifPermintaan->is_scarm == 1){
+            $notifPermintaan['titleNameScarm']  = 'SCARM';
+            $dateTime = (explode(" ", $notifPermintaan->is_scarm_at));
+            $notifPermintaan['bodyDateScarm']   = date('d F Y', strtotime($dateTime[0]));
+            $notifPermintaan['bodyTimeScarm']   = $dateTime[1];
+        }else{
+            $notifPermintaan['titleNameScarm']  = '-';
+            $notifPermintaan['bodyDateScarm']   = '-';
+            $notifPermintaan['bodyTimeScarm']   = '-';
+        }
+
+        if($notifPermintaan->is_slem == 1){
+            $notifPermintaan['titleNameSlem']  = 'SLEM';
+            $dateTime = (explode(" ", $notifPermintaan->is_slem_at));
+            $notifPermintaan['bodyDateSlem']   = date('d F Y', strtotime($dateTime[0]));
+            $notifPermintaan['bodyTimeSlem']   = $dateTime[1];
+        }else{
+            $notifPermintaan['titleNameSlem']  = '-';
+            $notifPermintaan['bodyDateSlem']   = '-';
+            $notifPermintaan['bodyTimeSlem']   = '-';
+        }
+        
+        if($notifPermintaan->is_som == 1){
+            $notifPermintaan['titleNameSom']  = 'SOM';
+            $dateTime = (explode(" ", $notifPermintaan->is_som_at));
+            $notifPermintaan['bodyDateSom']   = date('d F Y', strtotime($dateTime[0]));
+            $notifPermintaan['bodyTimeSom']   = $dateTime[1];
+        }else{
+            $notifPermintaan['titleNameSom']  = '-';
+            $notifPermintaan['bodyDateSom']   = '-';
+            $notifPermintaan['bodyTimeSom']   = '-';
+        }
+
         $details = LogDetailPermintaanMaterial::where(['permintaan_id' => $id, 'soft_delete' => 0])->get();
-        return view('logistik.manager.permintaan.detail', ['details' => $details]);
+        return view('logistik.manager.permintaan.detail', ['details' => $details, 'notifPermintaan' => $notifPermintaan]);
     }
 
     public function getPermintaanById($id)
