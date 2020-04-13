@@ -423,7 +423,6 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::delete('/permintaan/delete', 'Logistik\Admin\PermintaanController@deletePermintaan');
 		Route::get('/permintaan/unduh/{id}', 'Logistik\Admin\PermintaanController@getUnduhPermintaan');
 		Route::get('/permintaan/note/{id}', 'Logistik\Admin\PermintaanController@getNote');
-		Route::get('/permintaan/statusApprove/{id}', 'Logistik\Admin\PermintaanController@getstatusApprove');
 		Route::get('notif/permintaan_disetujui', 'Logistik\Admin\PermintaanController@getAllNotif');
 
 		//penerimaan MATERIAL
