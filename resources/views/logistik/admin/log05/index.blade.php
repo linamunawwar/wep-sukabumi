@@ -101,8 +101,8 @@
 										      <th></th>
 										      <th></th>
 										      <th></th>
-										      <td style="border: 1px solid #000000;">Edisi : </b></td>
-										      <td style="border: 1px solid #000000;">Revisi : </td>
+										      <td style="border: 1px solid #000000;">Edisi : Mei 2019 </b></td>
+											<td style="border: 1px solid #000000;">Revisi : 0 </td>
 										    
 										    <tr>
 										      <td style="padding-left: 10px;">Business Unit</td>

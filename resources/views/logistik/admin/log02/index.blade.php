@@ -126,8 +126,8 @@
 										      <th></th>
 										      <th></th>
 										      <th></th>
-										      <td style="border: 1px solid #000000;">Edisi : </b></td>
-										      <td style="border: 1px solid #000000;">Revisi : </td>
+										      <td style="border: 1px solid #000000;">Edisi : Mei 2019 </b></td>
+										      <td style="border: 1px solid #000000;">Revisi : 0 </td>
 										    
 										    <tr>
 										      <td style="padding-left: 10px;">Business Unit</td>
@@ -144,7 +144,7 @@
 										    </tr>
 										    <tr></tr>
 										    <tr>
-										        <th colspan="3">Bulan : {{ $bulanIni }}</th>
+										        <th colspan="3">Periode Minggu Ke : {{ $bulanIni }}</th>
 										        <td></td>
 										        <th colspan="3">Nama Bahan :  {{ $material->nama }}
 										        </th>
@@ -207,9 +207,9 @@
 										    </tr>
 										    <tr>
 										        <td></td>
-										        <td colspan="2" style="height:70;">
+										        <td colspan="2" align="center" style="height:40;">
 										            @if(file_exists('upload/pegawai/'.$splem->nip.'/'.$splem->ttd))
-												        <img src="{{url('upload/pegawai').'/'.$splem->nip.'/'.$splem->ttd}}" width="100" align="center">
+												        <img src="{{url('upload/pegawai').'/'.$splem->nip.'/'.$splem->ttd}}" style="width:50px; height:50px;">
 												      @endif
 										        </td>
 										        <td></td>

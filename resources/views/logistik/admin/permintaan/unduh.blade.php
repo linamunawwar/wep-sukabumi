@@ -44,7 +44,7 @@
       <td></td>
       <td></td>
       <td></td>        
-      <td colspan="3" style="text-align:center;">Nomer: {{ $permintaan->nomor }}/BPM/WK/DIII/BK/20 </td>
+      <td colspan="3" style="text-align:center;">Nomer: {{ $permintaan->nomor }}/BPM/WK/INF2/BCKY-2AU/20 </td>
       <td></td>
     </tr>  
 </table>
