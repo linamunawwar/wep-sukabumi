@@ -476,13 +476,14 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::delete('/waste/pengajuan/delete', 'Logistik\Admin\WasteMaterialController@deleteWastePengajuan');
 		Route::get('/waste/unduh/{id}', 'Logistik\Manager\WasteMaterialController@getUnduh');
 
-		//Laporan Evaluasi Pemakaian Material
+		//Laporan Evaluasi Pemakaian Material		
 		Route::get('/eval_pakai', 'Logistik\Admin\LaporanController@getLog06');
 		Route::post('/eval_pakai', 'Logistik\Admin\LaporanController@postLog06');
 		Route::get('/harian_pakai', 'Logistik\Admin\LaporanController@getLog07');
 		Route::post('/harian_pakai', 'Logistik\Admin\LaporanController@postLog07');
 
 		//LAPORAN KARTU GUDANG
+		Route::get('/bulan/{date}', 'Logistik\Admin\LaporanController@getWeek');
 		Route::get('/kartu_gudang', 'Logistik\Admin\LaporanController@getLog02');
 		Route::post('/kartu_gudang', 'Logistik\Admin\LaporanController@postLog02');
 

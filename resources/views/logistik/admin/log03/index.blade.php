@@ -101,8 +101,8 @@
 										    <th></th>
 										    <th></th>
 										    <th></th>
-										    <td style="border: 1px solid #000000;">Edisi : </b></td>
-										    <td style="border: 1px solid #000000;">Revisi : </td>
+										    <td style="border: 1px solid #000000;">Edisi : Mei 2019 </b></td>
+											<td style="border: 1px solid #000000;">Revisi : 0 </td>
 										  
 										  <tr>
 										    <td style="padding-left: 10px;">Business Unit</td>
@@ -118,7 +118,7 @@
 										  </tr>
 										  <tr></tr>
 										  <tr>
-										      <th colspan="2">Periode : {{$dataInput['tanggal_mulai']}} s.d {{$dataInput['tanggal_selesai']}}</th>
+										      <th colspan="2">Periode Minggu Ke : {{ $dataInput }}</th>
 										  </tr>
 										  <tr class="thead-light" >
 										    <td style="border: 1px double #000000; font-weight: bold;" rowspan="2" align="center" width="3">No</td>

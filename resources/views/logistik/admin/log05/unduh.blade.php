@@ -22,8 +22,8 @@
       <th></th>
       <th></th>
       <th></th>
-      <td style="border: 1px solid #000000;">Edisi : </b></td>
-      <td style="border: 1px solid #000000;">Revisi : </td>
+      <td style="border: 1px solid #000000;">Edisi : Mei 2019 </b></td>
+      <td style="border: 1px solid #000000;">Revisi : 0 </td>
     
     <tr>
       <td></td>
@@ -41,7 +41,8 @@
       <td>Proyek</td>
       <td colspan="2">: </td>
       <td></td>
-      <td colspan="3" style="font-weight: bold;"> No. AB</td>
+      <td></td>
+      <td colspan="2" style="font-weight: bold;"> No. AB</td>
     </tr>
   </table>
   
