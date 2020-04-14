@@ -32,7 +32,7 @@
 							@endif
 						</p>
 						<p>
-							Nomor : {{$findPermintaan['nomor']}}/BPM/WK/DIII/BK/20
+							Nomor : {{$findPermintaan['nomor']}}/BPM/WK/INF2/BCKY-2AU/20
 						</p>
 						<div class="form-group">
 							<label class="control-label col-md-1" style="padding: 0;">Lampiran :</label>

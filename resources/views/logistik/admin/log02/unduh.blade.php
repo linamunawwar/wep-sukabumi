@@ -19,8 +19,8 @@
       <th></th>
       <th></th>
       <th></th>
-      <td style="border: 1px solid #000000;">Edisi : </b></td>
-      <td style="border: 1px solid #000000;">Revisi : </td>
+      <td style="border: 1px solid #000000;">Edisi : Mei 2019 </b></td>
+      <td style="border: 1px solid #000000;">Revisi : 0 </td>
     
     <tr>
       <td></td>
@@ -51,7 +51,7 @@
     <tr>
         <td></td>
         <td></td>
-        <td colspan="3">Bulan : {{ $bulan }}</td>
+        <td colspan="3">Periode Minggu Ke : {{ $bulan }}</td>
         <td></td>
         <td colspan="3">Nama Bahan :{{ $material->nama }}</td>
     </tr>
@@ -62,7 +62,7 @@
       <td></td>
       <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 13;" colspan="3" align="center">PENERIMAAN</td>
       <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 13;" colspan="2" align="center"> PENGELUARAN </td>
-      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12;" rowspan="2" align="center"> Sisa </td>
+      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 15;" rowspan="2" align="center"> Sisa </td>
       <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12;" rowspan="2" align="center"> Keterangan </td>
     </tr>
     <tr class="thead-light" style="text-align: center;">
@@ -135,12 +135,13 @@
         <td></td>
         <td></td>
         <td colspan="2" style="height:70;">
-            @if(file_exists('upload/pegawai/'.$splem->nip.'/'.$splem->ttd))
-              <img src="{{'upload/pegawai/'.$splem->nip.'/'.$splem->ttd}}" width="100" align="center">
-            @endif
+          @if(file_exists('upload/pegawai/'.$splem->nip.'/'.$splem->ttd))
+            <img src="{{'upload/pegawai'.'/'.$splem->nip.'/'.$splem->ttd}}" style="width:50px; height:50px;">
+          @endif
         </td>
         <td></td>
-        <td colspan="2" style="height:70;">  </td>
+        <td colspan="2" align="center" style="height:70;">          
+        </td>
         <td></td>
         <td></td>
     </tr>

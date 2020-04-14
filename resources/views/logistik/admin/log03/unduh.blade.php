@@ -22,8 +22,8 @@
     <th></th>
     <th></th>
     <th></th>
-    <td style="border: 1px solid #000000;">Edisi : </b></td>
-    <td style="border: 1px solid #000000;">Revisi : </td>
+    <td style="border: 1px solid #000000;">Edisi : Mei 2019 </b></td>
+    <td style="border: 1px solid #000000;">Revisi : 0 </td>
   
   <tr>
     <td></td>
@@ -55,7 +55,7 @@
   <tr>
       <td></td>
       <td></td>
-      <td colspan="3">Periode : {{$dataInput['tanggal_mulai']}} s.d {{$dataInput['tanggal_selesai']}} </td>
+      <td colspan="3">Periode Minggu Ke : {{ $dataInput }} </td>
   </tr>
 </table>
 <table class="table table-striped">

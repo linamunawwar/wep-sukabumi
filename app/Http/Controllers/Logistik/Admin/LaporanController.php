@@ -19,6 +19,30 @@ use PHPExcel_Worksheet_PageSetup;
 
 class LaporanController extends Controller
 {
+    function getWeek($Date){
+        $dt = strtotime($Date);
+        $day  = date('j',$dt);
+        $month = date('m',$dt);
+        $year = date('Y',$dt);
+        $totalDays = date('t',$dt);
+        $weekCnt = 1;
+        $retWeek = 0;
+        for($i=1;$i<=$totalDays;$i++) {
+            $curDay = date("N", mktime(0,0,0,$month,$i,$year));
+            if($curDay==7) {
+                if($i==$day) {
+                    $retWeek = $weekCnt+1;
+                }
+                $weekCnt++;
+            } else {
+                if($i==$day) {
+                    $retWeek = $weekCnt;
+                }
+            }
+        }
+        return $retWeek;
+    }
+
     public function getLog06()
     {
     	return view('logistik.admin.log06.index',['show'=>0]);
@@ -382,8 +406,8 @@ class LaporanController extends Controller
     {
         $namaBulan = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
 		$idBulan = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
-		$getMaterial = LogMaterial::where('soft_delete', 0)->get();
-
+        $getMaterial = LogMaterial::where('soft_delete', 0)->get();
+        
         return view('logistik.admin.log02.index', ['bln' => $namaBulan, 'idBln' => $idBulan, 'materials' => $getMaterial,'show'=>0]);
 	}
 	
@@ -392,18 +416,20 @@ class LaporanController extends Controller
 		$data = \Input::all();
     	$data['tanggal_mulai'] = $data['tahun'].'-'.$data['bulan'].'-01';
 		$data['tanggal_selesai'] = $data['tahun'].'-'.$data['bulan'].'-31';
-		$bulan = array(1 => "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
+		// $bulan = array(1 => "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
 
-		for ($i=01; $i <= 12; $i++) { 
-			if ($i == $data['bulan']) {
-				$getBulan = $bulan[$i];
-			break;
-			}
-		}
+		// for ($i=01; $i <= 12; $i++) { 
+		// 	if ($i == $data['bulan']) {
+		// 		$getBulan = $bulan[$i];
+		// 	break;
+		// 	}
+		// }
 
 		$getMaterial = LogMaterial::where('id', $data['material'])
 									->where('soft_delete', 0)
-									->first();
+                                    ->first();
+
+        $getBulan = LaporanController::getWeek($getMaterial->tanggal);
 		$dt = [];
         $trs_keluar = 0;
         $trs_terima = 0;
@@ -472,13 +498,13 @@ class LaporanController extends Controller
         if(!isset($data['unduh'])){
             $data['unduh'] = 0;
         }
-
+        
         if($data['proses'] == 1){
-                $namaBulan = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
-        $idBulan = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
-        $allMaterial = LogMaterial::where('soft_delete', 0)->get();
+            $namaBulan = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
+            $idBulan = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
+            $allMaterial = LogMaterial::where('soft_delete', 0)->get();
 
-                return view('logistik.admin.log02.index', ['bln' => $namaBulan, 'idBln' => $idBulan, 'materials' => $allMaterial,'data' => $dt, 'data2'=>$data, 'bulanIni' => $getBulan, 'material' => $getMaterial, 'splem' => $splem,'show'=>1]);
+            return view('logistik.admin.log02.index', ['bln' => $namaBulan, 'idBln' => $idBulan, 'materials' => $allMaterial,'data' => $dt, 'data2'=>$data, 'bulanIni' => $getBulan, 'material' => $getMaterial, 'splem' => $splem,'show'=>1]);
 
         }elseif($data['unduh'] == 1){
             if(count($dt)!= 0){
@@ -497,12 +523,26 @@ class LaporanController extends Controller
                             $objDrawing->setHeight(35);
                             $sheet->getStyle('C1')->getAlignment()->setIndent(1);
 
-                            $sheet->getStyle('A13:N63')->getAlignment()->setWrapText(true);
-                            $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
-                            $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
+                            // //Set Ttd Image
+                            // $ttdImage = new PHPExcel_Worksheet_Drawing;
+                            // $ttdImage->setPath(public_path("../upload/pegawai/$splem->nip/$splem->ttd"));
+                            // $ttdImage->setCoordinates('D50');
+                            // $ttdImage->setWorksheet($sheet);
+                            // $ttdImage->setResizeProportional(false);
+                            // // set width later
+                            // $ttdImage->setWidth(20);
+                            // $ttdImage->setHeight(35);
+
+                            $sheet->getStyle('D50')->getAlignment()->applyFromArray(
                                 array('horizontal' => 'center')
                             );
-                            $sheet->cells('A9:M11', function ($cells) {
+                            
+                            $sheet->getStyle('A13:I33')->getAlignment()->setWrapText(true);
+                            $sheet->getStyle('A2:I2')->getFont()->setName('Tahoma');
+                            $sheet->getStyle('A13:I13')->getAlignment()->applyFromArray(
+                                array('horizontal' => 'center')
+                            );
+                            $sheet->cells('A9:I9', function ($cells) {
                                 $cells->setValignment('center');
                                 $cells->setFontFamily('Tahoma');
                             });
@@ -626,14 +666,15 @@ class LaporanController extends Controller
                             // set width later
                             $objDrawing->setWidth(40);
                             $objDrawing->setHeight(35);
+
                             $sheet->getStyle('C1')->getAlignment()->setIndent(1);
 
-                            $sheet->getStyle('A13:N63')->getAlignment()->setWrapText(true);
-                            $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
-                            $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
+                            $sheet->getStyle('A13:J63')->getAlignment()->setWrapText(true);
+                            $sheet->getStyle('A2:J36')->getFont()->setName('Tahoma');
+                            $sheet->getStyle('A13:J15')->getAlignment()->applyFromArray(
                                 array('horizontal' => 'center')
                             );
-                            $sheet->cells('A1:K100', function ($cells) {
+                            $sheet->cells('A1:J100', function ($cells) {
                                 $cells->setValignment('center');
                                 $cells->setFontFamily('Tahoma');
                             });
@@ -688,6 +729,7 @@ class LaporanController extends Controller
                                                 ->get();
                                             
             foreach ($permintaans as $key => $permintaan) {
+                $getBulan = LaporanController::getWeek($permintaan->tanggal);
                 foreach ($permintaan->permintaanDetail as $key => $detail) {
                     if (array_search($detail->material_id, array_column($materials,'material_id')) === false) {
                         $materials[$count]['material_id'] = (int)$detail->material_id;
@@ -751,16 +793,16 @@ class LaporanController extends Controller
         }
 
         if($data['proses'] == 1){
-                return view('logistik.admin.log03.index', ['dataInput'=>$data,'data' => $materials, 'pm' => $pm, 'splem' => $splem,'show'=>1]);
+                return view('logistik.admin.log03.index', ['dataInput'=>$getBulan, 'data' => $materials, 'pm' => $pm, 'splem' => $splem, 'show'=>1]);
 
         }elseif($data['unduh'] == 1){
             if(count($materials)!= 0){
 
-            	$excel = \Excel::create("Form Log-03 Laporan Evaluasi Mingguan Pengadaan Bahan", function ($excel) use ($materials, $pm, $splem,$data) {
+            	$excel = \Excel::create("Form Log-03 Laporan Evaluasi Mingguan Pengadaan Bahan", function ($excel) use ($materials, $pm, $splem, $data, $getBulan) {
 
-                        $excel->sheet('New sheet', function ($sheet) use ($materials, $pm, $splem, $data) {
+                        $excel->sheet('New sheet', function ($sheet) use ($materials, $pm, $splem, $data, $getBulan) {
 
-                            $sheet->loadView('logistik.admin.log03.unduh', ['data' => $materials, 'pm' => $pm, 'splem' => $splem,'dataInput'=>$data]);
+                            $sheet->loadView('logistik.admin.log03.unduh', ['data' => $materials, 'pm' => $pm, 'splem' => $splem, 'dataInput' => $getBulan]);
                             $objDrawing = new PHPExcel_Worksheet_Drawing;
                             $objDrawing->setPath(public_path('img/Waskita.png'));
                             $objDrawing->setCoordinates('C1');
@@ -771,12 +813,12 @@ class LaporanController extends Controller
                             $objDrawing->setHeight(35);
                             $sheet->getStyle('C1')->getAlignment()->setIndent(1);
 
-                            $sheet->getStyle('A13:N63')->getAlignment()->setWrapText(true);
-                            $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
-                            $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
+                            $sheet->getStyle('A13:J63')->getAlignment()->setWrapText(true);
+                            $sheet->getStyle('A2:J36')->getFont()->setName('Tahoma');
+                            $sheet->getStyle('A13:J15')->getAlignment()->applyFromArray(
                                 array('horizontal' => 'center')
                             );
-                            $sheet->cells('A9:M11', function ($cells) {
+                            $sheet->cells('A9:J11', function ($cells) {
                                 $cells->setValignment('center');
                                 $cells->setFontFamily('Tahoma');
                             });
