@@ -176,7 +176,7 @@ class PermintaanController extends Controller
         }
 
         if($notifPermintaan->is_slem == 1){
-            $notifPermintaan['titleNameSlem']  = 'SLEM';
+            $notifPermintaan['titleNameSlem']  = 'SPLEM';
             $dateTime = (explode(" ", $notifPermintaan->is_slem_at));
             $notifPermintaan['bodyDateSlem']   = date('d F Y', strtotime($dateTime[0]));
             $notifPermintaan['bodyTimeSlem']   = $dateTime[1];

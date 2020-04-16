@@ -154,9 +154,61 @@ function bulan($month){
     return $tanggal;   
 }
 
+function periodeTanggal($tanggal)
+{
+    $tgl = explode('-', $tanggal);
+    $bulan = $tgl[1];
+    $tahun = $tgl[0];
+    switch ($bulan) {
+        case '01':
+            $periode = 'Januari '.$tahun;
+            break;
+        case '02':
+            $periode = 'Februari '.$tahun;
+            break;
+        case '03':
+            $periode = 'Maret '.$tahun;
+            break;
+        case '04':
+            $periode = 'April '.$tahun;
+            break;
+        case '05':
+            $periode = 'Mei '.$tahun;
+            break;
+        case '06':
+            $periode = 'Juni '.$tahun;
+            break;
+        case '07':
+            $periode = 'Juli '.$tahun;
+            break;
+        case '08':
+            $periode = 'Agustus '.$tahun;
+            break;
+        case '09':
+            $periode = 'September '.$tahun;
+            break;
+        case '10':
+            $periode = 'Oktober '.$tahun;
+            break;
+        case '11':
+            $periode = 'November '.$tahun;
+            break;
+        case '12':
+            $periode = 'Desember '.$tahun;
+            break;
+        
+        default:
+            # code...
+            break;
+    }
+
+    return $periode;
+}
+
 function periode($periode)
 {
     $bulan = substr($periode, 4,6);
+    dd($bulan);
     $tahun = substr($periode, 0,4);
     switch ($bulan) {
         case '01':
