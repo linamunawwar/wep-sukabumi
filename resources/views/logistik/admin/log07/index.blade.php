@@ -220,8 +220,8 @@
 										    <th></th>
 										    <th></th>
 										    <th></th>
-										    <td style="border: 1px solid #000000;">Edisi : </b></td>
-										    <td style="border: 1px solid #000000;">Revisi : </td>
+										    <td style="border: 1px solid #000000;">Edisi : Mei 2019</b></td>
+										    <td style="border: 1px solid #000000;">Revisi : 0</td>
 										  <?php
 										      }
 										    ?>
@@ -252,8 +252,7 @@
 										    ?>   
 										    <td >Proyek</td>
 										    <td colspan="4">: Proyek Jalan Tol Becakayu Seksi 2A Ujung</td>
-										    <td colspan="2" style="font-weight: bold;"> No. AB</td>
-										    <td></td>
+										    <td colspan="3" style="font-weight: bold;"> No. AB</td>
 										    <td></td>
 										    <td></td>
 										    <td></td>
@@ -349,8 +348,8 @@
 										    <?php
 										    for($i=0; $i<$loop;$i++){
 										    ?>
-										    <td>Periode</td>
-										    <td>: {{konversi_tanggal($data['tanggal_mulai'])}} s.d {{konversi_tanggal($data['tanggal_selesai'])}}</td>
+										    <td>Bulan</td>
+										    <td>: {{periodeTanggal($data['tanggal_mulai'])}}</td>
 										    <td></td>
 										    <td align="left">No. Buku</td>
 										    <td >: {{$data['no_buku']}}</td>
@@ -365,7 +364,7 @@
 										  <tr class="thead-light" >
 										    @foreach($materials as $key=>$material)
 										      @if($key % 3 == 0)
-										          <td style="border: 1px double #000000; font-weight: bold; " colspan="2" rowspan="2"  align="center" width="10">Tanggal</td>
+										          <td style="border: 1px double #000000; font-weight: bold; " rowspan="2"  align="center" width="5">Tgl</td>
 										        @endif
 										      <td style="border: 1px double #000000; font-weight: bold;" align="center" colspan="2">Bahan: {{$material['nama']}}</td>
 										    @endforeach
@@ -383,15 +382,15 @@
 										      <?php $jumlah[$material['material_id']] = 0; ?>
 										      @if($key % 3 == 0)
 										        @endif
-										        <td style="border: 1px double #000000; font-weight: bold;" align="center">Jumlah</td>
-										        <td style="border: 1px double #000000; font-weight: bold;" align="center">Jumlah Terusan</td>
+										        <td style="border: 1px double #000000; font-weight: bold; width: 30px;" align="center">Jumlah</td>
+										        <td style="border: 1px double #000000; font-weight: bold;" align="center" width="15">Jumlah Terusan</td>
 										    
 										    @endforeach
 										    @if((count($materials)%3) !== 0)
 										        <?php
 										          for ($z=1; $z < (count($materials)%3) ; $z++) { 
-										            echo '<td style="border: 1px double #000000; font-weight: bold;" align="center">Jumlah</td>
-										        <td style="border: 1px double #000000; font-weight: bold;" align="center">Jumlah Terusan</td>';
+										            echo '<td style="border: 1px double #000000; font-weight: bold; width:30px;" align="center">Jumlah</td>
+										        <td style="border: 1px double #000000;width:30px; font-weight: bold;" align="center">Jumlah Terusan</td>';
 										          }
 
 										        ?>
@@ -400,9 +399,10 @@
 										  <tr>
 										    @foreach($materials as $key=>$material)
 										      @if($key % 3 == 0)
-										        <td style="border: 1px double #000000;" colspan="2">Jumlah s.d Bulan Lalu</td>
+										        <td style="border: 1px double #000000; font-size: 11;" colspan="2">Jumlah s.d Bulan Lalu</td>
+										      @else
+										      	<td style="border: 1px double #000000;"></td>
 										      @endif
-										      <td style="border: 1px double #000000;"></td>
 										      <td style="border: 1px double #000000;">{{$material['jumlah_lalu']}}</td>
 										    @endforeach
 										    @if((count($materials)%3) !== 0)
@@ -422,7 +422,14 @@
 										    <tr>
 										      @foreach($materials as $key=> $material)
 										        @if($key % 3 == 0)
-										          <td style="border: 1px solid #000000; " colspan="2">{{konversi_tanggal($tanggal[$j])}}</td>
+										          <td style="border: 1px solid #000000; ">
+										          	@php
+										          		$tgl = explode('-',$tanggal[$j]);
+										          		if(substr($tgl[2],0,1) == '0'){
+										          		$tgl[2]=substr($tgl[2],1,2);
+										          	}
+										          	@endphp
+										          {{$tgl[2]}}</td>
 										        @endif
 										        <td style="border: 1px solid #000000;">{{$material['jumlah'][$tanggal[$j]]}}</td>
 										        <td style="border: 1px solid #000000;">{{$jumlah[$material['material_id']] = $jumlah[$material['material_id']] + $material['jumlah'][$tanggal[$j]]}}</td>
@@ -449,7 +456,7 @@
 										        <tr>
 										        @foreach($materials as $key=> $material)
 										          @if($key % 3 == 0)
-										            <td style="border: 1px solid #000000;" colspan="2"></td>
+										            <td style="border: 1px solid #000000;" ></td>
 										          @endif
 										          <td style="border: 1px solid #000000;"  align="center"></td>
 										          <td style="border: 1px solid #000000;"  align="center"></td>
@@ -470,9 +477,10 @@
 										  <tr>
 										    @foreach($materials as $key=>$material)
 										      @if($key % 3 == 0)
-										        <td style="border: 1px double #000000; font-size: 10;" colspan="2">Jumlah Bulan Ini</td>
+										        <td style="border: 1px double #000000; font-size: 11;" colspan="2">Jumlah Bulan Ini</td>
+										      @else
+										      	<td style="border: 1px double #000000;"></td>
 										      @endif
-										      <td style="border: 1px double #000000;"></td>
 										      <td style="border: 1px double #000000;">{{$jumlah[$material['material_id']]}}</td>
 										    @endforeach
 										    @if((count($materials)%3) !== 0)
@@ -488,9 +496,10 @@
 										  <tr>
 										    @foreach($materials as $key=>$material)
 										      @if($key % 3 == 0)
-										        <td style="border: 1px double #000000; font-size: 10;" colspan="2">Jumlah s.d Bulan Ini</td>
+										        <td style="border: 1px double #000000; font-size: 11;" colspan="2">Jumlah s.d Bulan Ini</td>
+										      @else
+										      	<td style="border: 1px double #000000;"></td>
 										      @endif
-										      <td style="border: 1px double #000000;"></td>
 										      <td style="border: 1px double #000000;">{{$jumlah[$material['material_id']] + $material['jumlah_lalu']}}</td>
 										    @endforeach
 										    @if((count($materials)%3) !== 0)
@@ -515,9 +524,7 @@
 										    <td></td>
 										    <td></td>
 										    <td></td>
-										    <td></td>
-										    <td>Bekasi,</td>
-										    <td>{{date('d-m-Y')}}</td>
+										    <td colspan="2" style="text-align: center;">Bekasi, {{date('d-m-Y')}}</td>
 										    <?php
 										      }
 										    ?>
@@ -527,13 +534,10 @@
 										    for($i=0; $i<$loop;$i++){
 										    ?>
 										    <td></td>
-										    <td>Mengetahui</td>
+										    <td colspan="2" style="text-align: center;">Mengetahui</td>
 										    <td></td>
 										    <td></td>
-										    <td></td>
-										    <td></td>
-										    <td>Diisi oleh,</td>
-										    <td></td>
+										    <td colspan="2" style="text-align: center;">Diisi oleh,</td>
 										    <?php
 										      }
 										    ?>
@@ -543,12 +547,10 @@
 										    for($i=0; $i<$loop;$i++){
 										    ?>
 										    <td></td>
-										    <td align="center">SPLEM</td>
+										    <td align="center" colspan="2" style="text-align: center;">SPLEM</td>
 										    <td></td>
 										    <td></td>
-										    <td></td>
-										    <td></td>
-										    <td colspan="2" >Petugas Gudang</td>
+										    <td colspan="2" style="text-align: center;" >Petugas Gudang</td>
 										    <?php
 										      }
 										    ?>
@@ -566,8 +568,7 @@
 										    <td></td>
 										    <td></td>
 										    <td></td>
-										    <td></td>
-										    <td>
+										    <td colspan="2">
 										      <?php $nip = \Auth::user()->pegawai_id;
 										            $ttd= \Auth::user()->pegawai->ttd;
 										            $nama = \Auth::user()->name;
@@ -576,7 +577,6 @@
 										        <img src="{{url('upload/pegawai').'/'.$nip.'/'.$ttd}}" width="100" align="center">
 										      @endif
 										    </td>
-										    <td></td>
 										    <?php
 										      }
 										    ?>
@@ -586,11 +586,10 @@
 										    for($i=0; $i<$loop;$i++){
 										    ?>
 										    <td></td>
-										    <td colspan="2" >{{$splem->nama}}</td>
+										    <td colspan="2" style="text-align: center;" >{{$splem->nama}}</td>
 										    <td></td>
 										    <td></td>
-										    <td></td>
-										    <td colspan="2">{{$nama}}</td>
+										    <td colspan="2" style="text-align: center;">{{$nama}}</td>
 										    <?php
 										      }
 										    ?>
