@@ -168,7 +168,7 @@
                          <li><a href="{{url('/pm/spj')}}"><i class="fa fa-exchange"></i>SPJ</a></li>
                     @endif
 
-                    @if(Auth::user()->role_id == 1)
+                    @if((Auth::user()->role_id == 1) || (Auth::user()->pegawai_id == 'SE150795'))
                         <li><a><i class="fa fa-envelope"></i>Disposisi Surat Masuk<span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                 <!-- <li><a href="{{url('admin/surat_masuk')}}">List Surat Masuk</a></li> -->
@@ -187,7 +187,7 @@
                             </ul>
                         </li>
                     @endif
-                    @if(Auth::user()->role_id == 1)
+                    @if((Auth::user()->role_id == 1) || (Auth::user()->pegawai_id == 'SE150795'))
                      <li>
                         <a href="{{url('admin/surat_keluar')}}">
                             <i class="fa fa-envelope-o"></i>
