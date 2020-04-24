@@ -180,8 +180,6 @@
 									    ?>
 									  @endif
 									  <tr>
-									    <td></td>
-									    <td></td>
 									    <td colspan="2" style="border: 1px solid #000000;"></td>
 									    <td style="border: 1px solid #000000;"></td>
 									    <td style="border: 1px solid #000000;"></td>
