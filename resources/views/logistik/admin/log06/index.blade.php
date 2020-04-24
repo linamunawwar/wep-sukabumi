@@ -163,7 +163,7 @@
 									    </tr>
 									    <?php $i++; ?>
 									  @endforeach
-									  @if(count($materials) < 14)
+									  @if(count($materials) < 33)
 									    <?php
 									      for($i=count($materials);$i<=40;$i++){
 									        echo '<tr style="height:25;">
