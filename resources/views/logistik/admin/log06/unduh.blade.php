@@ -120,7 +120,7 @@
     </tr>
     <?php $i++; ?>
   @endforeach
-  @if(count($materials) < 14)
+  @if(count($materials) < 33)
     <?php
       for($i=count($materials);$i<=33;$i++){
         echo '<tr>
