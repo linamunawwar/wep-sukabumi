@@ -16,6 +16,7 @@ use App\Models\LogLokasi;
 use App\Pegawai;
 use PHPExcel_Worksheet_Drawing;
 use PHPExcel_Worksheet_PageSetup;
+use PHPExcel_Style_Border;
 
 class LaporanController extends Controller
 {
@@ -151,31 +152,102 @@ class LaporanController extends Controller
                             $sheet->loadView('logistik.admin.log06.unduh', ['dt' => $data, 'materials' => $materials,'splem' => $splem]);
                             $objDrawing = new PHPExcel_Worksheet_Drawing;
                             $objDrawing->setPath(public_path('img/Waskita.png'));
-                            $objDrawing->setCoordinates('C1');
+                            $objDrawing->setCoordinates('C4');
                             $objDrawing->setWorksheet($sheet);
                             $objDrawing->setResizeProportional(false);
                             // set width later
                             $objDrawing->setWidth(40);
                             $objDrawing->setHeight(35);
-                            $sheet->getStyle('C1')->getAlignment()->setIndent(1);
+                            $sheet->getStyle('C4')->getAlignment()->setIndent(1);
 
-                            $sheet->getStyle('A13:N63')->getAlignment()->setWrapText(true);
+                            $sheet->getStyle('C13:J13')->applyFromArray(array(
+                                                            'borders' => array(
+                                                                'allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                                                            )
+                                                        ));
+
+                            $sheet->getStyle('C13:J13')->applyFromArray(array(
+                                                            'borders' => array(
+                                                                'top' => array('style' => PHPExcel_Style_Border::BORDER_DOUBLE)
+                                                            )
+                                                        ));
+                            $sheet->getStyle('C14:J14')->applyFromArray(array(
+                                                            'borders' => array(
+                                                                'allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                                                            )
+                                                        ));
+                            $sheet->getStyle('C15:J15')->applyFromArray(array(
+                                                            'borders' => array(
+                                                                'allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                                                            )
+                                                        ));
+                            $sheet->getStyle('C15:J15')->applyFromArray(array(
+                                                            'borders' => array(
+                                                                'bottom' => array('style' => PHPExcel_Style_Border::BORDER_DOUBLE)
+                                                            )
+                                                        ));
+                            $sheet->getStyle('C16:C50')->applyFromArray(array(
+                                                            'borders' => array(
+                                                                'right' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                                                                'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                                                            )
+                                                        ));
+                            $sheet->getStyle('D16:D50')->applyFromArray(array(
+                                                            'borders' => array(
+                                                                'right' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                                                                'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                                                            )
+                                                        ));
+                            $sheet->getStyle('E16:E50')->applyFromArray(array(
+                                                            'borders' => array(
+                                                                'right' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                                                                'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                                                            )
+                                                        ));
+                            $sheet->getStyle('F16:F50')->applyFromArray(array(
+                                                            'borders' => array(
+                                                                'right' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                                                                'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                                                            )
+                                                        ));
+                            $sheet->getStyle('G16:G50')->applyFromArray(array(
+                                                            'borders' => array(
+                                                                'right' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                                                                'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                                                            )
+                                                        ));
+                            $sheet->getStyle('H16:H50')->applyFromArray(array(
+                                                            'borders' => array(
+                                                                'right' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                                                                'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                                                            )
+                                                        ));
+                            $sheet->getStyle('I16:I50')->applyFromArray(array(
+                                                            'borders' => array(
+                                                                'right' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                                                                'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                                                            )
+                                                        ));
+                            $sheet->getStyle('J16:J50')->applyFromArray(array(
+                                                            'borders' => array(
+                                                                'right' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                                                                'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                                                            )
+                                                        ));
+                            $sheet->getStyle('A10:N70')->getAlignment()->setWrapText(true);
                             $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
                             $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
                                 array('horizontal' => 'center')
                             );
-                            $sheet->cells('A9:M11', function ($cells) {
+                            $sheet->cells('A9:M60', function ($cells) {
                                 $cells->setValignment('center');
                                 $cells->setFontFamily('Tahoma');
                             });
 
-                            $sheet->cell('D9:E11', function ($cell) {
+                            $sheet->cell('C9:J15', function ($cell) {
                                 $cell->setValignment('center');
                             });
                             
-                            $sheet->cell('C4', function ($cell) {
-                                $cell->setBorder('thin', 'thin', 'thin', 'thin');
-                            });
 
                             $sheet->cell('C6', function ($cell) {
                                 $cell->setBorder('thin', 'thin', 'thin', 'thin');
@@ -339,6 +411,10 @@ class LaporanController extends Controller
                             // $objDrawing->setWidth(40);
                             // $objDrawing->setHeight(35);
                             // $sheet->getStyle('C1')->getAlignment()->setIndent(1);
+                            $sheet->cells('A1:M60', function ($cells) {
+                                $cells->setValignment('center');
+                                $cells->setFontFamily('Tahoma');
+                            });
 
                             $sheet->getStyle('A13:N63')->getAlignment()->setWrapText(true);
                             // $sheet->getStyle('A2:O50')->getFont()->setName('Tahoma');
@@ -380,7 +456,6 @@ class LaporanController extends Controller
                     $excel->getActiveSheet()->getRowDimension('9')->setRowHeight(5);
                     $excel->getActiveSheet()->getRowDimension('15')->setRowHeight(4);
                     $excel->getActiveSheet()->getRowDimension('53')->setRowHeight(4);
-                    $excel->getActiveSheet()->getRowDimension('54')->setRowHeight(9);
                     $excel->getActiveSheet()->getRowDimension('18')->setRowHeight(13);
                     $excel->getActiveSheet()->getRowDimension('51')->setRowHeight(13);
                     $excel->getActiveSheet()->getRowDimension('52')->setRowHeight(13);

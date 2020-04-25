@@ -91,18 +91,20 @@
 									    <th colspan="4"><b style="font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
 									    <td></td>
 									    <td></td>
-									    <td style="border: 1px solid #000000;  " colspan="2" align="center">Formulir Log-06</td>
+									    <td style="border: 1px solid #000000;  " colspan="2" align="center"><b>Formulir Log-06</b></td>
 									  </tr>
 									  <tr>
-									    <td style="font-size: 14px;">Periode</td>
-									  	<td style="font-size: 14px;">: {{$data['tanggal_mulai']}} s.d {{$data['tanggal_selesai']}}</td>
+									    <!-- <td style="font-size: 14px;">Periode</td>
+									  	<td style="font-size: 14px;">: {{$data['tanggal_mulai']}} s.d {{$data['tanggal_selesai']}}</td> -->
 									    <th></th>
 									    <th></th>
 									    <th></th>
 									    <th></th>
 									    <th></th>
-									    <td style="border: 1px solid #000000;">Edisi : </b></td>
-									    <td style="border: 1px solid #000000;">Revisi : </td>
+									    <th></th>
+									    <th></th>
+									    <td style="border: 1px solid #000000;">Edisi : Mei 2019</b></td>
+									    <td style="border: 1px solid #000000;">Revisi : 0 </td>
 									  <tr>
 									    <td style="padding-left: 10px; font-size: 14px;">Business Unit</td>
 									  </tr>
@@ -110,14 +112,12 @@
 									    <td style="font-size: 14px;">Proyek</td>
 									    <td colspan="3" style="font-size: 14px;">: Proyek Jalan Tol Becakayu Seksi 2A Ujung</td>
 									    <td></td>
-									    <td></td>
 									    <td colspan="3" style="font-weight: bold;"> No. AB</td>
 									  </tr>
 									</table>
 
 									<table class="table table-striped" style="text-align: center;">
 									  <tr>
-									  	<td></td>
 									    <td colspan="9" style="text-align: center;border: 1px solid #000000"><h4><b>LAPORAN EVALUASI PEMAKAIAN BAHAN</b></h4></td>
 									  </tr>
 									  <tr>
@@ -126,7 +126,6 @@
 									</table>
 									<table class="table table-striped" style="table-layout:fixed;">
 									  <tr class="thead-light" >
-									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11;" rowspan="2" align="center" width="35">No.</td>
 									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11; width: 100px;" rowspan="2" align="center">Asal Bahan *)</td>
 									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11; width: 300px;" width="27" rowspan="2" align="center">JENIS BAHAN</td>
 									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11; width: 300px;" colspan="3" align="center">VOLUME BAHAN</td>
@@ -141,7 +140,6 @@
 									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11;" >JML_HRG</td>
 									  </tr>
 									  <tr class="thead-light" style="text-align: center;">
-									    <td style="border: 1px double #000000;font-weight: bold; font-size: 11;"></td>
 									    <td style="border: 1px double #000000;font-weight: bold; font-size: 11;">1</td>
 									    <td style="border: 1px double #000000;font-weight: bold; font-size: 11;">2</td>
 									    <td style="border: 1px double #000000;font-weight: bold; font-size: 11;">3</td>
@@ -154,7 +152,6 @@
 									  <?php $i =1; ?>
 									  @foreach($materials as $key=> $data)
 									    <tr>
-									      <td style="border: 1px solid #000000;font-size: 11"  align="center">{{$i}}</td>
 									      <td style="border: 1px solid #000000;font-size: 12"  align="left" ></td>
 									      <td style="border: 1px solid #000000;font-size: 12"  align="left" >{{$data['nama']}}</td>
 									      <td style="border: 1px solid #000000;font-size: 12"  align="left">{{$data['kebutuhan']}}</td>
@@ -166,11 +163,10 @@
 									    </tr>
 									    <?php $i++; ?>
 									  @endforeach
-									  @if(count($materials) < 14)
+									  @if(count($materials) < 33)
 									    <?php
 									      for($i=count($materials);$i<=40;$i++){
-									        echo '<tr>
-									              <td style="border: 1px solid #000000; height: 25px;" align="center">  </td>
+									        echo '<tr style="height:25;">
 									              <td style="border: 1px solid #000000;"  align="center"></td>
 									              <td style="border: 1px solid #000000;"  align="center"></td>
 									              <td style="border: 1px solid #000000;"  align="center"></td>
@@ -183,8 +179,26 @@
 									      }
 									    ?>
 									  @endif
-									  <tr></tr>
-									  <tr></tr>
+									  <tr>
+									    <td colspan="2" style="border: 1px solid #000000;"></td>
+									    <td style="border: 1px solid #000000;"></td>
+									    <td style="border: 1px solid #000000;"></td>
+									    <td style="border: 1px solid #000000;"></td>
+									    <td style="border: 1px solid #000000;"></td>
+									    <td style="border: 1px solid #000000;"></td>
+									    <td style="border: 1px solid #000000;"></td>
+									  </tr>
+									  <tr>
+									    <td></td>
+									    <td></td>
+									    <td colspan="2" style="border: 1px solid #000000;"></td>
+									    <td style="border: 1px solid #000000;"></td>
+									    <td style="border: 1px solid #000000;"></td>
+									    <td style="border: 1px solid #000000;"></td>
+									    <td style="border: 1px solid #000000;"></td>
+									    <td style="border: 1px solid #000000;"></td>
+									    <td style="border: 1px solid #000000;"></td>
+									  </tr>
 									  <tr>
 									    <td></td>
 									    <td></td>
@@ -197,26 +211,24 @@
 									    <td></td>
 									  </tr>
 									  <tr>
-									    <td></td>
 									    <td style="font-size: 12;">*) Diisi :</td>
 									    <td colspan="2" style="font-size: 12;" >1 - Dikerjakan Sendiri</td>
 									    <td></td>
 									    <td></td>
 									    <td></td>
 									    <td></td>
-									    <td></td>
+									    <td style="font-size: 12;" colspan="2">Bekasi, {{date('d-m-Y')}}</td>
 									  </tr>
 									  <tr>
 									    <td></td>
-									    <td></td>
 									    <td colspan="2" style="font-size: 12;">2 - Disub-kontraktorkan</td>
+									    <td></td>
 									    <td></td>
 									    <td></td>
 									    <td></td>
 									    <td align="center" style="font-size: 12;" >SPLEM</td>
 									  </tr>
 									  <tr>
-									    <td></td>
 									    <td></td>
 									    <td colspan="2" style="font-size: 12;">3 - Diadakan oleh Pemberi Tugas<br> 4 - Material Impor<br>5 - Material Pendukung</td>
 									    <td></td>
