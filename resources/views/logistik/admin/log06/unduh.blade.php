@@ -41,9 +41,6 @@
     <td style="font-weight: bold;">:</td>
   </tr>
   <tr>
-    <td style="height: 5;"></td>
-  </tr>
-  <tr>
     <td></td>
     <td></td>
     <td></td>    
@@ -190,23 +187,11 @@
     <td></td>
     <td></td>
     <td></td>
-    <td rowspan="3" colspan="2">
+    <td colspan="2">
       @if(file_exists('upload/pegawai/'.$splem->nip.'/'.$splem->ttd))
         <img src="{{'upload/pegawai/'.$splem->nip.'/'.$splem->ttd}}" width="100" align="center">
       @endif
     </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td colspan="2">4 - Material Impor</td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td colspan="2">5 - Material Pendukung</td>
   </tr>
   <tr>
     <td></td>

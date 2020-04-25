@@ -26,7 +26,7 @@ class LaporanController extends Controller
         $month = date('m',$dt);
         $year = date('Y',$dt);
         $totalDays = date('t',$dt);
-        $weekCnt = 1;
+        $weekCnt = 0;
         $retWeek = 0;
         for($i=1;$i<=$totalDays;$i++) {
             $curDay = date("N", mktime(0,0,0,$month,$i,$year));
@@ -234,12 +234,12 @@ class LaporanController extends Controller
                                                                 'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
                                                             )
                                                         ));
-                            $sheet->getStyle('A10:N70')->getAlignment()->setWrapText(true);
-                            $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
-                            $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
+                            $sheet->getStyle('A10:J70')->getAlignment()->setWrapText(true);
+                            $sheet->getStyle('A2:J36')->getFont()->setName('Tahoma');
+                            $sheet->getStyle('A13:J15')->getAlignment()->applyFromArray(
                                 array('horizontal' => 'center')
                             );
-                            $sheet->cells('A9:M60', function ($cells) {
+                            $sheet->cells('A9:J60', function ($cells) {
                                 $cells->setValignment('center');
                                 $cells->setFontFamily('Tahoma');
                             });
@@ -259,12 +259,12 @@ class LaporanController extends Controller
                             });
                             // $sheet->cell('B14:E14', function($cell){
                             //     $cell->setBorder('','','','thin');
+                            // // });
+                            // $sheet->getStyle('J61:K64')->getAlignment()->setWrapText(true);
+                            // $sheet->cell('J61:K64', function ($cell) {
+                            //     $cell->setalignment('center');
+                            //     $cell->setValignment('center');
                             // });
-                            $sheet->getStyle('J61:K64')->getAlignment()->setWrapText(true);
-                            $sheet->cell('J61:K64', function ($cell) {
-                                $cell->setalignment('center');
-                                $cell->setValignment('center');
-                            });
                         });
                     });
                     $styleArray = array(
@@ -796,6 +796,7 @@ class LaporanController extends Controller
 		$tgl_selesai=konversi_tanggal($data['tanggal_selesai']);
         $materials = [];
         $count = count($materials);
+        $getBulan = 0;
 
         while ($tgl_mulai <= $tgl_selesai) {
             $permintaans = LogPermintaanMaterial::where('tanggal', '=', $tgl_mulai)
