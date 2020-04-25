@@ -416,20 +416,20 @@ class LaporanController extends Controller
 		$data = \Input::all();
     	$data['tanggal_mulai'] = $data['tahun'].'-'.$data['bulan'].'-01';
 		$data['tanggal_selesai'] = $data['tahun'].'-'.$data['bulan'].'-31';
-		// $bulan = array(1 => "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
+		$bulan = array(1 => "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
 
-		// for ($i=01; $i <= 12; $i++) { 
-		// 	if ($i == $data['bulan']) {
-		// 		$getBulan = $bulan[$i];
-		// 	break;
-		// 	}
-		// }
+		for ($i=01; $i <= 12; $i++) { 
+			if ($i == $data['bulan']) {
+				$getBulan = $bulan[$i];
+			break;
+			}
+		}
 
 		$getMaterial = LogMaterial::where('id', $data['material'])
 									->where('soft_delete', 0)
                                     ->first();
 
-        $getBulan = LaporanController::getWeek($getMaterial->tanggal);
+        // $getBulan = LaporanController::getWeek($getMaterial->tanggal);
 		$dt = [];
         $trs_keluar = 0;
         $trs_terima = 0;
