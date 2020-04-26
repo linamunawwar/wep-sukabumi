@@ -164,7 +164,11 @@ class LaporanController extends Controller
                           
                             $sheet->loadView('logistik.admin.log06.unduh', ['dt' => $data, 'materials' => $materials,'splem' => $splem]);
                             $objDrawing = new PHPExcel_Worksheet_Drawing;
-                            $objDrawing->setPath($path."\upload\pegawai\\".$splem->nip."\\".$splem->ttd);
+                            // $objDrawing->setPath($path."\upload\pegawai\\".$splem->nip."\\".$splem->ttd);
+                            $path = public_path();
+                            $path2 = str_replace('public','upload',$path);
+                            $path3 = str_replace('laravel','public_html',$path2);
+                            $objDrawing->setPath($path3.'/pegawai/'.$splem->nip."/".$splem->ttd);
                             $objDrawing->setCoordinates('I55');
                             $objDrawing->setWorksheet($sheet);
                             $objDrawing->setResizeProportional(false);
