@@ -186,7 +186,7 @@
     <td></td>
     <td></td>
     <td></td>
-    <td colspan="2">3 - Diadakan oleh Pemberi Tugas<br> 4 - Material Impor<br>5 - Material Pendukung</td>
+    <td colspan="2">3 - Diadakan oleh Pemberi Tugas</td>
     <td></td>
     <td></td>
     <td></td>

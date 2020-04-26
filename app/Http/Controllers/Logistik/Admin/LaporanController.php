@@ -145,14 +145,27 @@ class LaporanController extends Controller
 
         }elseif($data['unduh'] == 1){
             if(count($materials)!= 0){
-            	$excel = \Excel::create("Form Log-06 Laporan Evaluasi Pemakaian Bahan " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($data,$materials,$splem) {
+                $url = url('');
+            	$excel = \Excel::create("Form Log-06 Laporan Evaluasi Pemakaian Bahan " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($data,$materials,$splem,$url) {
 
-                        $excel->sheet('New sheet', function ($sheet) use ($data,$materials,$splem) {
+                        $excel->sheet('New sheet', function ($sheet) use ($data,$materials,$splem,$url) {
 
                             $sheet->loadView('logistik.admin.log06.unduh', ['dt' => $data, 'materials' => $materials,'splem' => $splem]);
                             $objDrawing = new PHPExcel_Worksheet_Drawing;
                             $objDrawing->setPath(public_path('img/Waskita.png'));
                             $objDrawing->setCoordinates('C4');
+                            $objDrawing->setWorksheet($sheet);
+                            $objDrawing->setResizeProportional(false);
+                            // set width later
+                            $objDrawing->setWidth(40);
+                            $objDrawing->setHeight(35);
+                            $sheet->getStyle('C4')->getAlignment()->setIndent(1);
+
+                          
+                            $sheet->loadView('logistik.admin.log06.unduh', ['dt' => $data, 'materials' => $materials,'splem' => $splem]);
+                            $objDrawing = new PHPExcel_Worksheet_Drawing;
+                            $objDrawing->setPath($url.'/upload/pegawai/'.$splem->nip.'/'.$splem->ttd);
+                            $objDrawing->setCoordinates('I55');
                             $objDrawing->setWorksheet($sheet);
                             $objDrawing->setResizeProportional(false);
                             // set width later
