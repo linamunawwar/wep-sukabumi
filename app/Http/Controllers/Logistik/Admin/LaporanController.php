@@ -26,7 +26,7 @@ class LaporanController extends Controller
         $month = date('m',$dt);
         $year = date('Y',$dt);
         $totalDays = date('t',$dt);
-        $weekCnt = 1;
+        $weekCnt = 0;
         $retWeek = 0;
         for($i=1;$i<=$totalDays;$i++) {
             $curDay = date("N", mktime(0,0,0,$month,$i,$year));
@@ -145,9 +145,10 @@ class LaporanController extends Controller
 
         }elseif($data['unduh'] == 1){
             if(count($materials)!= 0){
-            	$excel = \Excel::create("Form Log-06 Laporan Evaluasi Pemakaian Bahan " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($data,$materials,$splem) {
+                $path = base_path();
+            	$excel = \Excel::create("Form Log-06 Laporan Evaluasi Pemakaian Bahan " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($data,$materials,$splem,$path) {
 
-                        $excel->sheet('New sheet', function ($sheet) use ($data,$materials,$splem) {
+                        $excel->sheet('New sheet', function ($sheet) use ($data,$materials,$splem,$path) {
 
                             $sheet->loadView('logistik.admin.log06.unduh', ['dt' => $data, 'materials' => $materials,'splem' => $splem]);
                             $objDrawing = new PHPExcel_Worksheet_Drawing;
@@ -159,6 +160,18 @@ class LaporanController extends Controller
                             $objDrawing->setWidth(40);
                             $objDrawing->setHeight(35);
                             $sheet->getStyle('C4')->getAlignment()->setIndent(1);
+
+                          
+                            $sheet->loadView('logistik.admin.log06.unduh', ['dt' => $data, 'materials' => $materials,'splem' => $splem]);
+                            $objDrawing = new PHPExcel_Worksheet_Drawing;
+                            $objDrawing->setPath($path."\upload\pegawai\\".$splem->nip."\\".$splem->ttd);
+                            $objDrawing->setCoordinates('I55');
+                            $objDrawing->setWorksheet($sheet);
+                            $objDrawing->setResizeProportional(false);
+                            // set width later
+                            $objDrawing->setWidth(100);
+                            $objDrawing->setHeight(75);
+                            $sheet->getStyle('I55')->getAlignment()->setIndent(5);
 
                             $sheet->getStyle('C13:J13')->applyFromArray(array(
                                                             'borders' => array(
@@ -234,12 +247,12 @@ class LaporanController extends Controller
                                                                 'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
                                                             )
                                                         ));
-                            $sheet->getStyle('A10:N70')->getAlignment()->setWrapText(true);
-                            $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
-                            $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
+                            $sheet->getStyle('A10:J70')->getAlignment()->setWrapText(true);
+                            $sheet->getStyle('A2:J36')->getFont()->setName('Tahoma');
+                            $sheet->getStyle('A13:J15')->getAlignment()->applyFromArray(
                                 array('horizontal' => 'center')
                             );
-                            $sheet->cells('A9:M60', function ($cells) {
+                            $sheet->cells('A9:J60', function ($cells) {
                                 $cells->setValignment('center');
                                 $cells->setFontFamily('Tahoma');
                             });
@@ -259,12 +272,12 @@ class LaporanController extends Controller
                             });
                             // $sheet->cell('B14:E14', function($cell){
                             //     $cell->setBorder('','','','thin');
+                            // // });
+                            // $sheet->getStyle('J61:K64')->getAlignment()->setWrapText(true);
+                            // $sheet->cell('J61:K64', function ($cell) {
+                            //     $cell->setalignment('center');
+                            //     $cell->setValignment('center');
                             // });
-                            $sheet->getStyle('J61:K64')->getAlignment()->setWrapText(true);
-                            $sheet->cell('J61:K64', function ($cell) {
-                                $cell->setalignment('center');
-                                $cell->setValignment('center');
-                            });
                         });
                     });
                     $styleArray = array(
@@ -491,20 +504,20 @@ class LaporanController extends Controller
 		$data = \Input::all();
     	$data['tanggal_mulai'] = $data['tahun'].'-'.$data['bulan'].'-01';
 		$data['tanggal_selesai'] = $data['tahun'].'-'.$data['bulan'].'-31';
-		// $bulan = array(1 => "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
+		$bulan = array(1 => "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
 
-		// for ($i=01; $i <= 12; $i++) { 
-		// 	if ($i == $data['bulan']) {
-		// 		$getBulan = $bulan[$i];
-		// 	break;
-		// 	}
-		// }
+		for ($i=01; $i <= 12; $i++) { 
+			if ($i == $data['bulan']) {
+				$getBulan = $bulan[$i];
+			break;
+			}
+		}
 
 		$getMaterial = LogMaterial::where('id', $data['material'])
 									->where('soft_delete', 0)
                                     ->first();
 
-        $getBulan = LaporanController::getWeek($getMaterial->tanggal);
+        // $getBulan = LaporanController::getWeek($getMaterial->tanggal);
 		$dt = [];
         $trs_keluar = 0;
         $trs_terima = 0;
@@ -796,6 +809,7 @@ class LaporanController extends Controller
 		$tgl_selesai=konversi_tanggal($data['tanggal_selesai']);
         $materials = [];
         $count = count($materials);
+        $getBulan = 0;
 
         while ($tgl_mulai <= $tgl_selesai) {
             $permintaans = LogPermintaanMaterial::where('tanggal', '=', $tgl_mulai)

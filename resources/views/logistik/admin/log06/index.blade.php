@@ -180,7 +180,7 @@
 									    ?>
 									  @endif
 									  <tr>
-									    <td colspan="2" style="border: 1px solid #000000;"></td>
+									    <td colspan="2" style="border: 1px solid #000000; height: 24px;"></td>
 									    <td style="border: 1px solid #000000;"></td>
 									    <td style="border: 1px solid #000000;"></td>
 									    <td style="border: 1px solid #000000;"></td>
@@ -189,9 +189,7 @@
 									    <td style="border: 1px solid #000000;"></td>
 									  </tr>
 									  <tr>
-									    <td></td>
-									    <td></td>
-									    <td colspan="2" style="border: 1px solid #000000;"></td>
+									    <td colspan="2" style="border: 1px solid #000000; height: 24px;"></td>
 									    <td style="border: 1px solid #000000;"></td>
 									    <td style="border: 1px solid #000000;"></td>
 									    <td style="border: 1px solid #000000;"></td>
@@ -234,7 +232,8 @@
 									    <td></td>
 									    <td></td>
 									    <td></td>
-									    <td>
+									    <td></td>
+									    <td style="text-align: center;">
 									      @if(file_exists('upload/pegawai/'.$splem->nip.'/'.$splem->ttd))
 									        <img src="{{url('upload/pegawai').'/'.$splem->nip.'/'.$splem->ttd}}" width="100" align="center">
 									      @endif
