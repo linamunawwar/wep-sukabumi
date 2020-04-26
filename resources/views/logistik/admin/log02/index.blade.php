@@ -144,7 +144,7 @@
 										    </tr>
 										    <tr></tr>
 										    <tr>
-										        <th colspan="3">Periode Minggu Ke : {{ $bulanIni }}</th>
+										        <th colspan="3">Bulan : {{ $bulanIni }}</th>
 										        <td></td>
 										        <th colspan="3">Nama Bahan :  {{ $material->nama }}
 										        </th>

@@ -51,7 +51,7 @@
     <tr>
         <td></td>
         <td></td>
-        <td colspan="3">Periode Minggu Ke : {{ $bulan }}</td>
+        <td colspan="3">Bulan : {{ $bulan }}</td>
         <td></td>
         <td colspan="3">Nama Bahan :{{ $material->nama }}</td>
     </tr>

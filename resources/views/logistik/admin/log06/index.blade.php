@@ -180,7 +180,7 @@
 									    ?>
 									  @endif
 									  <tr>
-									    <td colspan="2" style="border: 1px solid #000000;"></td>
+									    <td colspan="2" style="border: 1px solid #000000; height: 24px;"></td>
 									    <td style="border: 1px solid #000000;"></td>
 									    <td style="border: 1px solid #000000;"></td>
 									    <td style="border: 1px solid #000000;"></td>
@@ -189,7 +189,7 @@
 									    <td style="border: 1px solid #000000;"></td>
 									  </tr>
 									  <tr>
-									    <td colspan="2" style="border: 1px solid #000000;"></td>
+									    <td colspan="2" style="border: 1px solid #000000; height: 24px;"></td>
 									    <td style="border: 1px solid #000000;"></td>
 									    <td style="border: 1px solid #000000;"></td>
 									    <td style="border: 1px solid #000000;"></td>
