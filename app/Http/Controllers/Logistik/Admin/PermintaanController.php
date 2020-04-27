@@ -279,6 +279,13 @@ class PermintaanController extends Controller
             $dateTime = (explode(" ", $notifPermintaan->is_pm_at));
             $notifPermintaan['bodyDatePm']   = date('d F Y', strtotime($dateTime[0]));
             $notifPermintaan['bodyTimePm']   = $dateTime[1];
+            $notifPermintaan['colorPm'] = '#000000';
+        }elseif($notifPermintaan->is_pm == 0 && $notifPermintaan->is_pm != NULL){
+            $notifPermintaan['titleNamePm']  = 'PM Reject';
+            $dateTime = (explode(" ", $notifPermintaan->is_pm_at));
+            $notifPermintaan['bodyDatePm']   = date('d F Y', strtotime($dateTime[0]));
+            $notifPermintaan['bodyTimePm']   = $dateTime[1];
+            $notifPermintaan['colorPm'] = '#e84118';
         }else{
             $notifPermintaan['titleNamePm']  = '-';
             $notifPermintaan['bodyDatePM']   = '-';
@@ -290,6 +297,13 @@ class PermintaanController extends Controller
             $dateTime = (explode(" ", $notifPermintaan->is_scarm_at));
             $notifPermintaan['bodyDateScarm']   = date('d F Y', strtotime($dateTime[0]));
             $notifPermintaan['bodyTimeScarm']   = $dateTime[1];
+            $notifPermintaan['colorScarm'] = '#000000';
+        }elseif($notifPermintaan->is_scarm == 0 && $notifPermintaan->is_scarm != NULL){
+            $notifPermintaan['titleNameScarm']  = 'SCARM';
+            $dateTime = (explode(" ", $notifPermintaan->is_scarm_at));
+            $notifPermintaan['bodyDateScarm']   = date('d F Y', strtotime($dateTime[0]));
+            $notifPermintaan['bodyTimeScarm']   = $dateTime[1];
+            $notifPermintaan['colorScarm'] = '#e84118';
         }else{
             $notifPermintaan['titleNameScarm']  = '-';
             $notifPermintaan['bodyDateScarm']   = '-';
@@ -301,6 +315,13 @@ class PermintaanController extends Controller
             $dateTime = (explode(" ", $notifPermintaan->is_slem_at));
             $notifPermintaan['bodyDateSlem']   = date('d F Y', strtotime($dateTime[0]));
             $notifPermintaan['bodyTimeSlem']   = $dateTime[1];
+            $notifPermintaan['colorSlem'] = '#000000';
+        }elseif ($notifPermintaan->is_slem == 0 && $notifPermintaan->is_slem != NULL) {
+            $notifPermintaan['titleNameSlem']  = 'SPLEM';
+            $dateTime = (explode(" ", $notifPermintaan->is_slem_at));
+            $notifPermintaan['bodyDateSlem']   = date('d F Y', strtotime($dateTime[0]));
+            $notifPermintaan['bodyTimeSlem']   = $dateTime[1];
+            $notifPermintaan['colorSlem'] = '#e84118';
         }else{
             $notifPermintaan['titleNameSlem']  = '-';
             $notifPermintaan['bodyDateSlem']   = '-';
@@ -312,6 +333,13 @@ class PermintaanController extends Controller
             $dateTime = (explode(" ", $notifPermintaan->is_som_at));
             $notifPermintaan['bodyDateSom']   = date('d F Y', strtotime($dateTime[0]));
             $notifPermintaan['bodyTimeSom']   = $dateTime[1];
+            $notifPermintaan['colorSom'] = '#000000';
+        }elseif ($notifPermintaan->is_som == 0 && $notifPermintaan->is_som != NULL) {
+            $notifPermintaan['titleNameSom']  = 'SOM';
+            $dateTime = (explode(" ", $notifPermintaan->is_som_at));
+            $notifPermintaan['bodyDateSom']   = date('d F Y', strtotime($dateTime[0]));
+            $notifPermintaan['bodyTimeSom']   = $dateTime[1];
+            $notifPermintaan['colorSom'] = '#e84118';
         }else{
             $notifPermintaan['titleNameSom']  = '-';
             $notifPermintaan['bodyDateSom']   = '-';

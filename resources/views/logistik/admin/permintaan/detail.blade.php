@@ -93,16 +93,16 @@
 				</div>
 				<div class="modal-body" style="color:#353b48;">
 					<span>
-						<h4> {{ $notifPermintaan->titleNameSom }} </h4>
+						<h4> <span style="color:{{ $notifPermintaan->colorSom }};" > {{ $notifPermintaan->titleNameSom }} </span> </h4>
 						<p style="color:#576574;">
 							<table>
 								<tr>
-									<td width="70px">Tanggal </td>
-									<td> : {{ $notifPermintaan->bodyDateSom }}</td>
+									<td style="color:{{ $notifPermintaan->colorSom }};"  width="70px">Tanggal </td>
+									<td style="color:{{ $notifPermintaan->colorSom }};" > : {{ $notifPermintaan->bodyDateSom }}</td>
 								</tr>
 								<tr>
-									<td>Waktu </td>
-									<td> : {{ $notifPermintaan->bodyTimeSom }}</td>
+									<td style="color:{{ $notifPermintaan->colorSom }};" >Waktu </td>
+									<td style="color:{{ $notifPermintaan->colorSom }};" > : {{ $notifPermintaan->bodyTimeSom }}</td>
 								</tr>
 							</table>   
 						</p>
@@ -110,16 +110,16 @@
 					<hr>
 					<p></p>
 					<span>
-						<h4> {{ $notifPermintaan->titleNameSlem }} </h4>
+						<h4> <span style="color:{{ $notifPermintaan->colorSlem }};" > {{ $notifPermintaan->titleNameSlem }} </span> </h4>
 						<p style="color:#576574;">
 							<table>
 								<tr>
-									<td width="70px">Tanggal </td>
-									<td> : {{ $notifPermintaan->bodyDateSlem }}</td>
+									<td style="color:{{ $notifPermintaan->colorSlem }};"  width="70px">Tanggal </td>
+									<td style="color:{{ $notifPermintaan->colorSlem }};" > : {{ $notifPermintaan->bodyDateSlem }}</td>
 								</tr>
 								<tr>
-									<td>Waktu </td>
-									<td> : {{ $notifPermintaan->bodyTimeSlem }}</td>
+									<td style="color:{{ $notifPermintaan->colorSlem }};" >Waktu </td>
+									<td style="color:{{ $notifPermintaan->colorSlem }};" > : {{ $notifPermintaan->bodyTimeSlem }}</td>
 								</tr>
 							</table>   
 						</p>
@@ -127,16 +127,16 @@
 					<hr>
 					<p></p>
 					<span>
-						<h4> {{ $notifPermintaan->titleNameScarm }} </h4>
+						<h4> <span style="color:{{ $notifPermintaan->colorScarm }};" > {{ $notifPermintaan->titleNameScarm }} </span> </h4>
 						<p style="color:#576574;">
 							<table>
 								<tr>
-									<td width="70px">Tanggal </td>
-									<td> : {{ $notifPermintaan->bodyDateScarm }}</td>
+									<td style="color:{{ $notifPermintaan->colorScarm }};"  width="70px">Tanggal </td>
+									<td style="color:{{ $notifPermintaan->colorScarm }};" > : {{ $notifPermintaan->bodyDateScarm }}</td>
 								</tr>
 								<tr>
-									<td>Waktu </td>
-									<td> : {{ $notifPermintaan->bodyTimeScarm }}</td>
+									<td style="color:{{ $notifPermintaan->colorScarm }};" >Waktu </td>
+									<td style="color:{{ $notifPermintaan->colorScarm }};" > : {{ $notifPermintaan->bodyTimeScarm }}</td>
 								</tr>
 							</table>   
 						</p>
@@ -144,16 +144,16 @@
 					<hr>
 					<p></p>
 					<span>
-						<h4> {{ $notifPermintaan->titleNamePm }} </h4>
+						<h4> <span style="color:{{ $notifPermintaan->colorPm }};" > {{ $notifPermintaan->titleNamePm }} </span> </h4>
 						<p style="color:#576574;">
 							<table>
 								<tr>
-									<td width="70px">Tanggal </td>
-									<td> : {{ $notifPermintaan->bodyDatePm }}</td>
+									<td style="color:{{ $notifPermintaan->colorPm }};"  width="70px">Tanggal </td>
+									<td style="color:{{ $notifPermintaan->colorPm }};" > : {{ $notifPermintaan->bodyDatePm }}</td>
 								</tr>
 								<tr>
-									<td>Waktu </td>
-									<td> : {{ $notifPermintaan->bodyTimePm }}</td>
+									<td style="color:{{ $notifPermintaan->colorPm }};" >Waktu </td>
+									<td style="color:{{ $notifPermintaan->colorPm }};" > : {{ $notifPermintaan->bodyTimePm }}</td>
 								</tr>
 							</table>   
 						</p>
