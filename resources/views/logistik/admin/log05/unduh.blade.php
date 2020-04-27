@@ -164,7 +164,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td colspan="2" style="text-align: center;"> Petugas Gudang </td>
+        <td colspan="2" style="text-align: center;"> SPLEM </td>
         <td></td>
         <td></td>
     </tr>
