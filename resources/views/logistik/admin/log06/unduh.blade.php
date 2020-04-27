@@ -41,6 +41,9 @@
     <td style="font-weight: bold;">:</td>
   </tr>
   <tr>
+    <td style="height: 5;"></td>
+  </tr>
+  <tr>
     <td></td>
     <td></td>
     <td></td>    
@@ -67,7 +70,7 @@
     <td></td>
     <td></td>
     <td></td>
-    <td colspan="2">Halaman : ...dari...</td>
+    <td colspan="2" style="font-size: 10;">Halaman : ...dari...</td>
   </tr>
   <tr class="thead-light" >
     <td></td>
@@ -183,15 +186,31 @@
     <td></td>
     <td></td>
     <td></td>
-    <td colspan="2">3 - Diadakan oleh Pemberi Tugas<br> 4 - Material Impor<br>5 - Material Pendukung</td>
+    <td colspan="2">3 - Diadakan oleh Pemberi Tugas<br></td>
     <td></td>
     <td></td>
     <td></td>
-    <td colspan="2">
-      @if(file_exists('upload/pegawai/'.$splem->nip.'/'.$splem->ttd))
-        <img src="{{'upload/pegawai/'.$splem->nip.'/'.$splem->ttd}}" width="100" align="center">
-      @endif
-    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td colspan="2">4 - Material Impor<br></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td colspan="2">5 - Material Pendukung<br></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
   </tr>
   <tr>
     <td></td>

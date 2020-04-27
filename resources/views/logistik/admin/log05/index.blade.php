@@ -91,8 +91,7 @@
 										      <th><img src="../../public/img/Waskita.png" width="30" height="30"></th>
 										      <th colspan="3"><b style="font-weight: 3; font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
 										      <th></th>
-										      <th></th>
-										      <td style="border: 1px solid #000000;  " colspan="2" align="center">Formulir Log-05</td>
+										      <td style="border: 1px solid #000000;  " colspan="3" align="center">Formulir Log-05</td>
 										    </tr>
 										    <tr>
 										      <th></th>
@@ -100,8 +99,7 @@
 										      <th></th>
 										      <th></th>
 										      <th></th>
-										      <th></th>
-										      <td style="border: 1px solid #000000;">Edisi : Mei 2019 </b></td>
+										      <td colspan="2" style="border: 1px solid #000000;">Edisi : Mei 2019 </b></td>
 											<td style="border: 1px solid #000000;">Revisi : 0 </td>
 										    
 										    <tr>
@@ -127,12 +125,12 @@
 										        </td>
 										    </tr>
 										    <tr class="thead-light" >
-										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12; height:20;" align="center">No</td>
-										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12; height:20;" align="center"> Tanggal </td>
-										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 15; height:20;" align="center"> Nama Bahan </td>
-										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12;" colspan="2" align="center"> Volume Masuk </td>
-										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12;" colspan="2" align="center"> Volume Keluar </td>
-										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12; height:20;" align="center"> Keterangan </td>
+										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 2%; height:20;" align="center">No</td>
+										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 10%; height:20;" align="center"> Tanggal </td>
+										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 15px; height:20;" align="center"> Nama Bahan </td>
+										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12%;" colspan="2" align="center"> Volume Masuk </td>
+										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12%;" colspan="2" align="center"> Volume Keluar </td>
+										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 20%; height:20;" align="center"> Keterangan </td>
 										    </tr>
 										    @foreach ($data as $key => $value)
 										    <tr class="thead-light" style="text-align: center;">
@@ -141,12 +139,12 @@
 										          	@if($key1 == 0)
 										              <tr>
 										                <td style="border: 1px double #000000;" align="center">{{ $key }}</td>
-										        		<td style="border: 1px double #000000;" align="center">{{ $value	['tanggal'] }}</td>
+										        		<td style="border: 1px double #000000;" align="center">{{ konversi_tanggal($value['tanggal']) }}</td>
 										                <td style="border: 1px double #000000;" align="left">{{ $val['material'] }}</td>
 										                <td style="border: 1px double #000000;">{{ $val['jml_terima'] }}</td>
-										                <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
+										                <td style="border: 1px double #000000; width: 3%;">{{ $val['satuan'] }}</td>
 										                <td style="border: 1px double #000000;">{{ $val['jml_keluar'] }}</td>
-										                <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
+										                <td style="border: 1px double #000000; width: 3%;">{{ $val['satuan'] }}</td>
 										                <td style="border: 1px double #000000;"> </td>
 										              </tr>
 										            @else
@@ -155,15 +153,15 @@
 										                <td style="border: 1px double #000000;"></td>
 										                <td style="border: 1px double #000000;" align="left">{{ $val['material'] }}</td>
 										                <td style="border: 1px double #000000;">{{ $val['jml_terima'] }}</td>
-										                <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
+										                <td style="border: 1px double #000000; width: 3%;">{{ $val['satuan'] }}</td>
 										                <td style="border: 1px double #000000;">{{ $val['jml_keluar'] }}</td>
-										                <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>
+										                <td style="border: 1px double #000000; width: 3%;">{{ $val['satuan'] }}</td>
 										                <td style="border: 1px double #000000;"> </td>
 										              </tr>    
 										            @endif              
 										          @else
 										          	<td style="border: 1px double #000000;">{{ $key }}</td>
-										        	<td style="border: 1px double #000000;">{{ $value	['tanggal'] }}</td>
+										        	<td style="border: 1px double #000000;">{{ konversi_tanggal($value['tanggal']) }}</td>
 										            <td style="border: 1px double #000000;">{{ $val['material'] }}</td>
 										            <td style="border: 1px double #000000;">{{ $val['jml_terima'] }}</td>
 										            <td style="border: 1px double #000000;">{{ $val['satuan'] }}</td>

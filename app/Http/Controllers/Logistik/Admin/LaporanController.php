@@ -145,9 +145,10 @@ class LaporanController extends Controller
 
         }elseif($data['unduh'] == 1){
             if(count($materials)!= 0){
-            	$excel = \Excel::create("Form Log-06 Laporan Evaluasi Pemakaian Bahan " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($data,$materials,$splem) {
+                $path = base_path();
+            	$excel = \Excel::create("Form Log-06 Laporan Evaluasi Pemakaian Bahan " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($data,$materials,$splem,$path) {
 
-                        $excel->sheet('New sheet', function ($sheet) use ($data,$materials,$splem) {
+                        $excel->sheet('New sheet', function ($sheet) use ($data,$materials,$splem,$path) {
 
                             $sheet->loadView('logistik.admin.log06.unduh', ['dt' => $data, 'materials' => $materials,'splem' => $splem]);
                             $objDrawing = new PHPExcel_Worksheet_Drawing;
@@ -159,6 +160,22 @@ class LaporanController extends Controller
                             $objDrawing->setWidth(40);
                             $objDrawing->setHeight(35);
                             $sheet->getStyle('C4')->getAlignment()->setIndent(1);
+
+                          
+                            $sheet->loadView('logistik.admin.log06.unduh', ['dt' => $data, 'materials' => $materials,'splem' => $splem]);
+                            $objDrawing = new PHPExcel_Worksheet_Drawing;
+                            // $objDrawing->setPath($path."\upload\pegawai\\".$splem->nip."\\".$splem->ttd);
+                            $path = public_path();
+                            $path2 = str_replace('public','upload',$path);
+                            $path3 = str_replace('laravel','public_html',$path2);
+                            $objDrawing->setPath($path3.'/pegawai/'.$splem->nip."/".$splem->ttd);
+                            $objDrawing->setCoordinates('I55');
+                            $objDrawing->setWorksheet($sheet);
+                            $objDrawing->setResizeProportional(false);
+                            // set width later
+                            $objDrawing->setWidth(100);
+                            $objDrawing->setHeight(75);
+                            $sheet->getStyle('I55')->getAlignment()->setIndent(5);
 
                             $sheet->getStyle('C13:J13')->applyFromArray(array(
                                                             'borders' => array(
