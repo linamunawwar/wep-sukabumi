@@ -51,7 +51,7 @@
 										<td data-sort="{{strtotime($permintaan->tanggal)}}">{{ date('d F Y', strtotime($permintaan->tanggal)) }}</td>
 										<td style="color:{{ $permintaan->color }};">
 											{{ $permintaan->text }} 
-											@if(($permintaan->is_som == '0') || ($permintaan->is_slem == '0') || ($permintaan->is_scarm == '0') || ($permintaan->is_pm == '0'))
+											@if((($permintaan->is_som == '0') || ($permintaan->is_slem == '0') || ($permintaan->is_scarm == '0') || ($permintaan->is_pm == '0')) && ($permintaan->note != null))
 												<br>
 												<button data-toggle="modal"  id_permintaan='{{$permintaan->id}}' data-target="#NoteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-note" onclick='noteData("{{$permintaan->id}}")'>Note</button>
 											@endif
