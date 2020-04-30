@@ -1024,6 +1024,7 @@ class PegawaiController extends Controller
               $dt_new->kode_bagian = $data['kode_bagian'];
               $dt_new->posisi_id = $data['posisi_id'];  
               $dt_new->user_id = $user->id;
+              $dt_new->role_id = $data['role'];
               $dt_new->save();
 
               $dt_pegawai_update['is_new'] = 0;
@@ -1043,6 +1044,7 @@ class PegawaiController extends Controller
               $dt_new->kode_bagian = $data['kode_bagian'];
               $dt_new->posisi_id = $data['posisi_id'];  
               $dt_new->user_id = $user->id;
+              $dt_new->role_id = $data['role'];
               $dt_new->save();
 
           }
