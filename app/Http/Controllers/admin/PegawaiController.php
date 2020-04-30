@@ -978,33 +978,82 @@ class PegawaiController extends Controller
     public function postEditRole($id)
     {
         $pegawai = Pegawai::find($id);
-        $user = User::where('pegawai_id',$pegawai->nip);
+        $user = User::where('pegawai_id',$pegawai->nip)->first();
         if($pegawai && $user){
           $data= \Input::all();
 
           $dates = explode('-', $pegawai->tanggal_lahir);
 
-          $kode_bagian = $pegawai->kode_bagian;
+          $kode_bagian = $data['kode_bagian'];
           $role = \Input::get('role');
           
           $tahun = str_split($dates[0],2);
+          //kalau role ganti jadi manager
           if($kode_bagian != 'PM'){
             if(($data['role'] == 3) || ($data['role'] == 4)){
               $nip = $kode_bagian.'M'.$dates[2].$dates[1].$tahun[1];
               $dt_user['pegawai_id'] = $nip;
               $dt_pegawai['nip'] = $nip;
-               $query_pegawai = Pegawai::where('nip',$pegawai->nip)->update($dt_pegawai);
+
+              //duplicate data yg lama dengan nip yg baru
+              $dt_new = $pegawai->replicate();
+              $dt_new->nip = $dt_pegawai['nip'];
+              $dt_new->kode_bagian = $data['kode_bagian'];
+              $dt_new->posisi_id = $data['posisi_id'];
+              $dt_new->user_id = $user->id;
+              $dt_new->save();
+
+              $dt_pegawai_update['is_new'] = 0;
+              $dt_pegawai_update['is_active'] = null;
+              $dt_pegawai_update['soft_delete'] = 1;
+              $dt_pegawai_update['tanggal_keluar'] = date('Y-m-d H:i:s');
+               // $query_pegawai = Pegawai::where('nip',$pegawai->nip)->update($dt_pegawai);
+              \File::copyDirectory('upload/pegawai/'.$pegawai->nip, 'upload/pegawai/'.$dt_pegawai['nip']);
 
             }
           }
-          $dt_pegawai['kode_bagian'] = $data['kode_bagian'];
-          $dt_pegawai['posisi_id'] = $data['posisi_id'];
-          $query_pegawai2 = Pegawai::where('nip',$pegawai->nip)->update($dt_pegawai);
+          //kalau role ganti jadi PM
+          elseif ($kode_bagian == 'PM') {
+             $nip = 'PM'.$dates[2].$dates[1].$tahun[1];
+              $dt_user['pegawai_id'] = $nip;
+              $dt_pegawai['nip'] = $nip;
+
+              //duplicate data yg lama dengan nip yg baru
+              $dt_new = $pegawai->replicate();
+              $dt_new->nip = $dt_pegawai['nip'];
+              $dt_new->kode_bagian = $data['kode_bagian'];
+              $dt_new->posisi_id = $data['posisi_id'];  
+              $dt_new->user_id = $user->id;
+              $dt_new->save();
+
+              $dt_pegawai_update['is_new'] = 0;
+              $dt_pegawai_update['is_active'] = null;
+              $dt_pegawai_update['soft_delete'] = 1;
+              $dt_pegawai_update['tanggal_keluar'] = date('Y-m-d H:i:s');
+
+            \File::copyDirectory('upload/pegawai/'.$pegawai->nip, 'upload/pegawai/'.$dt_pegawai['nip']);
+          }else{
+            //kalau role staff biasa
+              $nip = $kode_bagian.$dates[2].$dates[1].$tahun[1];
+              $dt_user['pegawai_id'] = $nip;
+              $dt_pegawai['nip'] = $nip;
+
+              $dt_new = $pegawai->replicate();
+              $dt_new->nip = $dt_pegawai['nip'];
+              $dt_new->kode_bagian = $data['kode_bagian'];
+              $dt_new->posisi_id = $data['posisi_id'];  
+              $dt_new->user_id = $user->id;
+              $dt_new->save();
+
+          }
+          
+          //update data yg lama
+           $query_pegawai = Pegawai::where('nip',$pegawai->nip)->update($dt_pegawai_update);
 
             $dt_user['role_id'] = $data['role'];
             $query_user = User::where('pegawai_id',$pegawai->nip)->update($dt_user);
            
-            if($query_pegawai2 && $query_user){
+            if($query_pegawai && $query_user){
               return redirect('admin/pegawai');
             }
           
