@@ -52,7 +52,7 @@
   </p>
 </div>
 <?php
-  $pm = getPM();
+  $pm = getPM('Pkwt',$pegawai->data_pkwt->id);
   if($pegawai->data_pkwt){
     $tanggal = explode(' ', $pegawai->data_pkwt->created_at);
   }else{
@@ -71,7 +71,7 @@
       </ul>
       Dalam hal ini diwakili oleh
       <ul style="list-style-type:none;">
-        <li>Nama  : Mochamad Waskito Adi, ST</li>
+        <li>Nama  : {{$pm->nama}}</li>
         <li>Jabatan : Kepala Proyek</li>
       </ul>
       Dalam hal ini bertindak untuk dan atas nama PT. Waskita Karya (Persero) Tbk Proyek Pembangunan Jalan Tol Becakayu 2A Ujung, selanjutnya dalam Perjanjian Kerja Waktu Tertentu ini disebut sebagai PIHAK PERTAMA.

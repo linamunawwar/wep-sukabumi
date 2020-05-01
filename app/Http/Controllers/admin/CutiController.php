@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use PDF;
 use App\Cuti;
 use App\Pegawai;
+use App\Models\User;
 
 class CutiController extends Controller
 {
@@ -69,9 +70,16 @@ class CutiController extends Controller
     {
       $cuti = Cuti::find($id);
       $user = Pegawai::where('nip',$cuti->nip)->first();
-      $sdm = Pegawai::where('posisi_id',6)->first();
-      $pm = Pegawai::where('posisi_id',1)->first();
-      $manager = Pegawai::where('posisi_id',$user->posisi->manager)->first();
+
+      $user_sdm = User::where('id',$cuti->verif_sdm_by)->first();
+      $sdm = Pegawai::where('nip',$user_sdm->pegawai_id)->first();
+
+      $user_pm = User::where('id',$cuti->verif_pm_by)->first();
+      $pm = Pegawai::where('nip',$user_pm->pegawai_id)->first();
+
+      $user_manager = User::where('id',$cuti->verif_mngr_by)->first();
+      $manager = Pegawai::where('nip',$user_manager->pegawai_id)->first();
+
       $pdf = PDF::loadView('admin.cuti_izin.cuti.surat_cuti',['cuti' => $cuti,'sdm'=>$sdm,'pm'=>$pm,'manager'=>$manager]);
       $pdf->setPaper('A4');
       return $pdf->download('Surat Cuti_'.$cuti->nip.'.pdf');

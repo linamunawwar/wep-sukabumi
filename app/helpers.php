@@ -311,23 +311,94 @@ function trim_text($input, $length, $ellipses = true, $strip_html = true) {
     return $trimmed_text;
 }
 
-function getPM()
+function getPM($model,$data_id)
 {
-    $pm = Pegawai::where('posisi_id',1)->first();
+    $model = 'App\\'.$model;
+    $data = $model::where('id',$data_id)->first();
+    $created_at = explode(' ', $data->created_at);
 
+    $pms = Pegawai::where('posisi_id',1)
+                    ->get();
+
+        //cek apakah data dibuat ketika manager bukan yg sekarang
+        foreach ($pms as $key => $value) {
+            if($value->tanggal_keluar > $created_at[0]){
+                $nip_pm = $value->nip;
+                break;
+            }else{
+                $nip_pm = $value->nip;
+            }
+        }
+       
+        //iya, manager yg approve bukan manager yg skrg
+        if(isset($nip_pm)){
+            $pm = Pegawai::where('nip',$nip_pm)->first();
+        }else{
+            //tidak, manager yg approve adalah manager yg skrg
+            $pm = Pegawai::where('posisi_id',1)
+                            ->where('tanggal_keluar',null)
+                            ->first();
+        }
     return $pm;
 }
 
-function getManager($kode)
+function getManager($kode,$model,$data_id)
 {
+    $model = 'App\\'.$model;
+    $data = $model::where('id',$data_id)->first();
+    $created_at = explode(' ', $data->created_at);
+
     if($kode == 'SA'){
-        $manager = Pegawai::where('kode_bagian',$kode)->whereHas('user',function ($q){
-                $q->where('role_id', 4);
-            })->first();
+        $managers = Pegawai::where('kode_bagian',$kode)
+                            ->where('posisi_id',6)
+                            ->get();
+
+        //cek apakah data dibuat ketika manager bukan yg sekarang
+        foreach ($managers as $key => $value) {
+            if($value->tanggal_keluar > $created_at[0]){
+                $nip_manager = $value->nip;
+                break;
+            }else{
+                $nip_manager = $value->nip;
+            }
+        }
+        //iya, manager yg approve bukan manager yg skrg
+        if(isset($nip_manager)){
+            $manager = Pegawai::where('nip',$nip_manager)->first();
+        }else{
+            //tidak, manager yg approve adalah manager yg skrg
+            $manager = Pegawai::where('kode_bagian',$kode)
+                            ->where('posisi_id',6)
+                            ->where('tanggal_keluar',null)
+                            ->first();
+        }
     }else{
-        $manager = Pegawai::where('kode_bagian',$kode)->whereHas('user',function ($q){
-                    $q->where('role_id', 3);
-                })->first();
+
+        $managers = Pegawai::where('kode_bagian',$kode)
+                            ->where('role_id', 3)
+                            ->get();
+
+        //cek apakah data dibuat ketika manager bukan yg sekarang
+        foreach ($managers as $key => $value) {
+            if($value->tanggal_keluar > $created_at[0]){
+                $nip_manager = $value->nip;
+                break;
+            }else{
+                $nip_manager = $value->nip;
+            }
+        }
+        
+        
+        //iya, manager yg approve bukan manager yg skrg
+        if(isset($nip_manager)){
+            $manager = Pegawai::where('nip',$nip_manager)->first();
+        }else{
+            //tidak, manager yg approve adalah manager yg skrg
+            $manager = Pegawai::where('kode_bagian',$kode)
+                            ->where('posisi_id',3)
+                            ->where('tanggal_keluar',null)
+                            ->first();
+        }
     }
 
     return $manager;
@@ -342,9 +413,33 @@ function getManagerSDM($kode)
     return $manager;
 }
 
-function getPublicRelation()
+function getPublicRelation($model,$data_id)
 {
-    $hr = \Pegawai::where('posisi_id',24)->first();
+    $model = 'App\\'.$model;
+    $data = $model::where('id',$data_id)->first();
+    $created_at = explode(' ', $data->created_at);
+
+    $hrs = Pegawai::where('posisi_id',24)
+                    ->get();
+
+        //cek apakah data dibuat ketika manager bukan yg sekarang
+        foreach ($hrs as $key => $value) {
+            if($value->tanggal_keluar > $created_at[0]){
+                $nip_hr = $value->nip;
+                break;
+            }else{
+                $nip_hr = $value->nip;
+            }
+        }
+        //iya, manager yg approve bukan manager yg skrg
+        if(isset($nip_hr)){
+            $hr = Pegawai::where('nip',$nip_hr)->first();
+        }else{
+            //tidak, manager yg approve adalah manager yg skrg
+            $hr = Pegawai::where('posisi_id',24)
+                            ->where('tanggal_keluar',null)
+                            ->first();
+        }
 
     return $hr;
 }

@@ -71,7 +71,7 @@
                 @endif
               </div>
               <?php
-                $pm = getPM();
+                $pm = getPM('Pkwt',$pkwt->id);
                 $tanggal = explode(' ', $pegawai->created_at);
               ?>
 

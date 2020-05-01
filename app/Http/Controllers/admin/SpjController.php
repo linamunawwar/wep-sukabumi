@@ -104,8 +104,8 @@ class SpjController extends Controller
     public function getUnduh($id)
     {
       $spj = Spj::find($id);
-      $pm = Pegawai::where('posisi_id',1)->first();
-      $sdm = Pegawai::where('posisi_id',6)->first();
+      $sdm = getManager('SA','Spj',$spj->id);
+      $pm = getPM('Spj',$spj->id);
       $pdf = PDF::loadView('admin.spj.unduh',['spj' => $spj,'pm'=>$pm,'sdm'=>$sdm]);
       $pdf->setPaper('A4');
       return $pdf->download('SPJ_'.$spj->no_sppd.'.pdf');

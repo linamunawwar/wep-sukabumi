@@ -11,6 +11,7 @@ use App\BankAsuransi;
 use App\Gaji;
 use App\Pecat;
 use App\Resign;
+use App\Posisi;
 use App\MCU;
 use App\MCUPegawai;
 

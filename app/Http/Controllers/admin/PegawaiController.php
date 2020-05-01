@@ -130,7 +130,7 @@ class PegawaiController extends Controller
         $user['role_id'] = $role;
         $user['created_at'] = date('Y-m-d H:i:s');
 
-        $query_user = \DB::table('users')->insert($user);
+        $query_user = \DB::table('users')->insertGetId($user);
 
         unset($user['pass_asli']);
         unset($user['password']);
@@ -150,6 +150,7 @@ class PegawaiController extends Controller
         $data['is_verif_admin'] = 0;
         $data['is_verif_mngr'] = 0;
         $data['is_verif_pm'] = 0;
+        $data['user_id'] = $query_user;
         $query_pegawai = \DB::table('mst_pegawai')->insert($data);
 
 

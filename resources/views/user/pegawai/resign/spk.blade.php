@@ -45,7 +45,7 @@
   <h3 style="font-family: "Times New Roman";">Surat Pengalaman Kerja</h3>
 </div>
 <?php
-  $pm = getPM();
+  $pm = getPM('Resign',$resign->id);
 ?>
 <div style="text-align: left;">
   <table>

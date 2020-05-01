@@ -8,6 +8,7 @@
 		<img src="{{asset('public/img/kop.png')}}" style="width: 400px; margin: 10	px; ">
 	</div>
 	<h4 align="center" style="margin-top: 5px; padding-top: 5px;">PROYEK JALAN TOL BECAKAYU SEKSI 2A UJUNG</h4>
+
 	<table cellspacing="2" style="font-size: 11px;">
 		<tr>
 			<td>Nomor Agenda</td>
@@ -115,7 +116,7 @@
 				<td>
 					<div style="border: 2px solid black; width: 50px; height: 30px;">
 						@if($pm['status'] == 1)
-							<?php $dt_pm = getPM(); ?>
+							<?php $dt_pm = getPM('Cuti',$disposisi->id); ?>
 							<img src="{{ asset('upload/pegawai/'.$dt_pm->nip.'/paraf.png')}}" style=" height: 27px; width: 47px; margin-bottom: 0; padding: 0;">
 						@endif
 					</div>
@@ -162,7 +163,7 @@
 				<td>
 					<div style="border: 2px solid black; width: 50px; height: 30px;">
 						@if($som['status'] == 1)
-							<?php $dt_som = getManager('SO'); ?>
+							<?php $dt_som = getManager('SO','Disposisi',$disposisi->id); ?>
 							<img src="{{ asset('upload/pegawai/'.$dt_som->nip.'/paraf.png')}}" style="height: 27px; width: 47px; margin-bottom: 0; padding: 0;">
 						@endif
 					</div>
@@ -209,7 +210,7 @@
 				<td>
 					<div style="border: 2px solid black; width: 50px; height: 30px;">
 						@if($splem['status'] == 1)
-							<?php $dt_splem = getManager('SL'); ?>
+							<?php $dt_splem = getManager('SL','Disposisi',$disposisi->id); ?>
 							<img src="{{ asset('upload/pegawai/'.$dt_splem->nip.'/paraf.png')}}" style="height: 27px; width: 47px; margin-bottom: 0; padding: 0;">
 						@endif
 					</div>
@@ -256,7 +257,7 @@
 				<td>
 					<div style="border: 2px solid black; width: 50px; height: 30px;">
 						@if($qc['status'] == 1)
-							<?php $dt_qc = getManager('QHSE'); ?>
+							<?php $dt_qc = getManager('QHSE','Disposisi',$disposisi->id); ?>
 							<img src="{{ asset('upload/pegawai/'.$dt_qc->nip.'/paraf.png')}}" style="height: 27px; width: 47px; margin-bottom: 0; padding: 0;">
 						@endif
 					</div>
@@ -303,7 +304,7 @@
 				<td>
 					<div style="border: 2px solid black; width: 50px; height: 30px;">
 						@if($sem['status'] == 1)
-							<?php $dt_sem = getManager('SE'); ?>
+							<?php $dt_sem = getManager('SE','Disposisi',$disposisi->id); ?>
 							<img src="{{ asset('upload/pegawai/'.$dt_sem->nip.'/paraf.png')}}" style="height: 27px; width: 47px; margin-bottom: 0; padding: 0;">
 						@endif
 					</div>
@@ -350,7 +351,7 @@
 				<td>
 					<div style="border: 2px solid black; width: 50px; height: 30px;">
 						@if($scarm['status'] == 1)
-							<?php $dt_scarm = getManager('SC'); ?>
+							<?php $dt_scarm = getManager('SC','Disposisi',$disposisi->id); ?>
 							<img src="{{ asset('upload/pegawai/'.$dt_scarm->nip.'/paraf.png')}}" style="height: 27px; width: 47px; margin-bottom: 0; padding: 0;">
 						@endif
 					</div>
@@ -397,7 +398,7 @@
 				<td>
 					<div style="border: 2px solid black; width: 50px; height: 30px;">
 						@if($sam['status'] == 1)
-							<?php $dt_sam = getManager('SA'); ?>
+							<?php $dt_sam = getManager('SA','Disposisi',$disposisi->id); ?>
 							<img src="{{ asset('upload/pegawai/'.$dt_sam->nip.'/paraf.png')}}" style="height: 27px; width: 47px; margin-bottom: 0; padding: 0;">
 						@endif
 					</div>
@@ -485,7 +486,7 @@
 				<td>
 					<div style="border: 2px solid black; width: 50px; height: 30px;">
 						@if($hm['status'] == 1)
-							<?php $dt_hm = getPublicRelation(); ?>
+							<?php $dt_hm = getPublicRelation('Disposisi',$disposisi->id); ?>
 							<img src="{{ asset('upload/pegawai/'.$dt_hm->nip.'/paraf.png')}}" style="height: 27px; width: 47px; margin-bottom: 0; padding: 0;">
 						@endif
 					</div>

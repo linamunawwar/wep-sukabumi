@@ -213,10 +213,10 @@ class PermintaanController extends Controller
         $user = User::find($findPermintaan->user_id);
         $peminta = Pegawai::where('nip',$user->pegawai_id)->first();
         if ($findPermintaan) {
-            $som = Pegawai::where('posisi_id', 8)->where('soft_delete', 0)->first();
-            $splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
-            $scarm = Pegawai::where('posisi_id', 5)->where('soft_delete', 0)->first();
-            $pm = Pegawai::where('posisi_id', 1)->where('soft_delete', 0)->first();
+            $som = getManager('SO','Models\\LogPermintaanMaterial',$findPermintaan->id);
+            $splem = getManager('SL','Models\\LogPermintaanMaterial',$findPermintaan->id);
+            $scarm = getManager('SC','Models\\LogPermintaanMaterial',$findPermintaan->id);
+            $pm = getPM('Models\\LogPermintaanMaterial',$findPermintaan->id);
 
             $excel = \Excel::create('Formulir_Permintaan_Material', function ($excel) use ($findPermintaan, $getDetailPermintaan, $som, $splem, $scarm, $pm,$peminta) {
                 $excel->sheet('New Sheet', function ($sheet) use ($findPermintaan, $getDetailPermintaan, $som, $splem, $scarm, $pm,$peminta) {
