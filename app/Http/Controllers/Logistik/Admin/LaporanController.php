@@ -869,7 +869,7 @@ class LaporanController extends Controller
         }
         foreach ($materials as $key => $material) {
             if ($material['rencana'] <= $material['realisasi']) {
-                $material[$key]['sesuai'] = $material['realisasi'] - $material['rencana'];
+                $materials[$key]['sesuai'] = $material['realisasi'] - $material['rencana'];
             }elseif ($material['rencana'] >= $material['realisasi']) {
                 $materials[$key]['tidakSesuai'] = $material['rencana'] - $material['realisasi'];
             }
