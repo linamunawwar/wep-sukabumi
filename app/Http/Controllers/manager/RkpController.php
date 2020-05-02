@@ -112,7 +112,7 @@ class RkpController extends Controller
         }
         //----------------------
         $dt_rkp = DetailRkp::where('id_rkp',$id)->where('soft_delete',0)->get();
-        $pm = Pegawai::where('posisi_id',1)->where('soft_delete',0)->first();
+        $pm = getPM('Rkp',$rkp->id);
         switch ($rkp->kode_bagian) {
             case 'SE':
                 $kode = 4;
@@ -136,8 +136,8 @@ class RkpController extends Controller
                 # code...
                 break;
         }
-        $manager = Pegawai::where('posisi_id',$kode)->where('soft_delete',0)->first();
-        
+        $manager = getManager($rkp->kode_bagian,'Rkp',$rkp->id);
+
         $excel = \Excel::create('Form01_Rencana_Kebutuhan_Pegawai', function($excel) use ($rkp,$dt_rkp,$pm,$manager) {
 
                     $excel->sheet('New sheet', function($sheet) use ($rkp,$dt_rkp,$pm,$manager) {
@@ -204,7 +204,7 @@ class RkpController extends Controller
         }
         //----------------------
         $dt_rkp = DetailRkp::where('id_rkp',$id)->where('soft_delete',0)->get();
-        $pm = Pegawai::where('posisi_id',1)->where('soft_delete',0)->first();
+        $pm = getPM('Rkp',$rkp->id);
         switch ($rkp->kode_bagian) {
             case 'SE':
                 $kode = 4;
@@ -228,8 +228,7 @@ class RkpController extends Controller
                 # code...
                 break;
         }
-        $manager = Pegawai::where('posisi_id',$kode)->where('soft_delete',0)->first();
-        
+        $manager = getManager($rkp->kode_bagian,'Rkp',$rkp->id);
 
         $excel = \Excel::create('Form02_Rencana_Kebutuhan_Pegawai', function($excel) use ($rkp,$dt_rkp,$pm,$manager) {
 

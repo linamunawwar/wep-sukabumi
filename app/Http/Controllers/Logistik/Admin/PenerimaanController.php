@@ -356,8 +356,8 @@ class PenerimaanController extends Controller
         $find = LogPenerimaanMaterial::find($id);
         $dt_penerimaan = LogDetailPenerimaanMaterial::where('penerimaan_id',$id)->where('soft_delete',0)->get();
         if($find && $dt_penerimaan){
-        	$splem = Pegawai::where('posisi_id',7)->where('soft_delete',0)->first();
-        	$pm = Pegawai::where('posisi_id',1)->where('soft_delete',0)->first();
+            $splem = getManager('SL','Models\\LogPenerimaanMaterial',$find->id);
+            $pm = getPM('Models\\LogPenerimaanMaterial',$find->id);
 	        
 	        $excel = \Excel::create("Form Log-01 Penerimaan Bahan ".$find->kode_penerimaan, function($excel) use ($find,$dt_penerimaan,$splem,$pm) {
 
@@ -374,12 +374,12 @@ class PenerimaanController extends Controller
 	                        $objDrawing->setHeight(35);
 	                        $sheet->getStyle('C1')->getAlignment()->setIndent(1);
 
-	                        $sheet->getStyle('A11:N27')->getAlignment()->setWrapText(true);
-	                        $sheet->getStyle('A2:O36')->getFont()->setName('Tahoma');
-	                        $sheet->getStyle('A13:N15')->getAlignment()->applyFromArray(
+	                        $sheet->getStyle('A11:K27')->getAlignment()->setWrapText(true);
+	                        $sheet->getStyle('A2:K36')->getFont()->setName('Tahoma');
+	                        $sheet->getStyle('A13:K15')->getAlignment()->applyFromArray(
 	                            array('horizontal' => 'center')
 	                        );
-	                        $sheet->cells('A9:M11', function ($cells) {
+	                        $sheet->cells('A9:K11', function ($cells) {
 	                            $cells->setValignment('center');
 	                            $cells->setFontFamily('Tahoma');
 	                        });

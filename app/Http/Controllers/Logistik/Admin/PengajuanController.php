@@ -273,9 +273,11 @@ class PengajuanController extends Controller
         $findPengajuan = LogPengajuanMaterial::where('id', $id)->where('soft_delete', 0)->first();
         $getDetailPengajuan = LogDetailPengajuanMaterial::where('pengajuan_id', $findPengajuan->id)->where('soft_delete', 0)->get();
         if ($findPengajuan) {
-            $som = Pegawai::where('posisi_id', 8)->where('soft_delete', 0)->first();
-            $splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
             $user = User::where('id',$findPengajuan->user_id)->first();
+            $som = getManager('SO','Models\\LogPengajuanMaterial',$findPengajuan->id);
+            $splem = getManager('SL','Models\\LogPengajuanMaterial',$findPengajuan->id);
+
+
             if(($user->role_id == 6) && ($user->pegawai_id == 'SL10001')){
                 $superintendent = Pegawai::where('nip','SL311297')->first();
             }elseif(($user->role_id == 6) && ($user->pegawai_id == 'SL10002')){
