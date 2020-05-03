@@ -46,13 +46,14 @@
   <p style="text-align: center;font-family: "Times New Roman";font-size: 13px;">NOMOR :  
     @if($pegawai->data_pkwt)
       {{$pegawai->data_pkwt->no_pkwt}}
+      <?php $pm = getPM('Pkwt',$pegawai->data_pkwt->id); ?>
     @else
       {{$pegawai->no_pkwt}}
+      <?php $pm = getPM('Pegawai',$pegawai->id); ?>
     @endif
   </p>
 </div>
 <?php
-  $pm = getPM('Pkwt',$pegawai->data_pkwt->id);
   if($pegawai->data_pkwt){
     $tanggal = explode(' ', $pegawai->data_pkwt->created_at);
   }else{
