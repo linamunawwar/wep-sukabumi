@@ -29,6 +29,8 @@ class CutiController extends Controller
     public function postCreate(){
       $data = \Input::all();
       
+      $user = User::where('pegawai_id',$data['nip'])->first();
+
       $pecat = new Cuti;
       $pecat->nip = $data['nip'];
       $pecat->alasan = $data['alasan'];
@@ -57,7 +59,7 @@ class CutiController extends Controller
       $pecat->is_verif_pm = 0;
       $pecat->verif_pm_by = 0;
       $pecat->verify_pm_time = 0;
-      $pecat->user_id = \Auth::user()->id;
+      $pecat->user_id = $user->id;
       $pecat->role_id = \Auth::user()->role_id;
 
       $pecat->save();
@@ -89,7 +91,7 @@ class CutiController extends Controller
     public function getPengajuanCuti()
     {
       //list cuti dari user yg login
-      $cutis = Cuti::where('nip',\Auth::user()->pegawai_id)->where('soft_delete',0)->get();
+      $cutis = Cuti::where('user_id',\Auth::user()->id)->where('soft_delete',0)->get();
 
         return view('admin.cuti_izin.cuti.user.index',['cutis'=>$cutis]);
     }
@@ -104,6 +106,7 @@ class CutiController extends Controller
     public function postPengajuanCutiCreate(){
       $data = \Input::all();
       
+      $user = User::where('pegawai_id',$data['nip'])->first();
       $pecat = new Cuti;
       $pecat->nip = $data['nip'];
       $pecat->alasan = $data['alasan'];
@@ -129,7 +132,7 @@ class CutiController extends Controller
       $pecat->is_verif_pm = 0;
       $pecat->verif_pm_by = 0;
       $pecat->verify_pm_time = 0;
-      $pecat->user_id = \Auth::user()->id;
+      $pecat->user_id = $user->id;
       $pecat->role_id = \Auth::user()->role_id;
 
       $pecat->save();

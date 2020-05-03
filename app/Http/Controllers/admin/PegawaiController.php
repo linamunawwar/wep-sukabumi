@@ -293,6 +293,8 @@ class PegawaiController extends Controller
     {
       $data = \Input::all();
 
+      $user = User::where('pegawai_id',$data['nip'])->first();
+
        $pegawai['nama'] = $data['nama'];
        $pegawai['gelar_depan'] = $data['gelar_depan'];
        $pegawai['gelar_belakang'] = $data['gelar_belakang'];
@@ -326,7 +328,7 @@ class PegawaiController extends Controller
        $pegawai['is_verif_pm'] = 0;
        $pegawai['verif_pm_by'] = '';
        $pegawai['verify_pm_time'] = '';
-
+       $pegawai['user_id'] = $user->id;
        $update = Pegawai::where('nip',$data['nip'])->update($pegawai);
 
        $bank['nip'] = $data['nip'];
@@ -338,6 +340,7 @@ class PegawaiController extends Controller
        $bank['jiwasraya'] = $data['jiwasraya'];
        $bank['asuransi_lain'] = $data['nama_asuransi'];
        $bank['nomor_lain'] = $data['nomor_asuransi'];
+       $bank['user_id'] = $user->id;
        $find_bank = BankAsuransi::where('nip',$data['nip'])->first();
        if($find_bank){
         $update_bank = BankAsuransi::where('nip',$data['nip'])->update($bank);
@@ -352,6 +355,7 @@ class PegawaiController extends Controller
          $bank->jiwasraya = $data['jiwasraya'];
          $bank->asuransi_lain = $data['nama_asuransi'];
          $bank->nomor_lain = $data['nomor_asuransi'];
+         $bank->user_id = $user->id;
        
         $bank->save();
       }
