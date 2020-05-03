@@ -97,55 +97,61 @@ class PermintaanController extends Controller
         $satuan = \Input::get('satuan');
         $keperluan = \Input::get('keperluan');
         $keterangan = \Input::get('keterangan');
+        if(\Input::get('jumlah_data') != 0){
 
-        $kodePermintaan = PermintaanController::randomKey();
-        $getKodePermintaan = LogPermintaanMaterial::where('kode_permintaan', $kodePermintaan)->get();
-        while (empty($getKodePermintaan)) {
             $kodePermintaan = PermintaanController::randomKey();
-        }
-
-        if(\Input::hasfile('file')){
-          $ori_file  = \Request::file('file');
-         $tujuan = "upload/permintaan";
-         $nama_file = $ori_file->getClientOriginalName();
-
-        $ori_file->move($tujuan,$nama_file);
-       }else{
-            $nama_file='';
-       }
-
-        $addPermintaan = new LogPermintaanMaterial;
-        $addPermintaan->kode_permintaan = $kodePermintaan;
-        $addPermintaan->tanggal = date('Y-m-d');
-        $addPermintaan->file = $nama_file;
-        $addPermintaan->user_id = \Auth::user()->id;
-        $addPermintaan->soft_delete = 0;
-        $addPermintaan->created_at = date('Y-m-d');
-
-        if ($addPermintaan->save()) {
-            $permintaanId = $addPermintaan->id;
-            $jmlPermintaan = \Input::get('jumlah_data');
-            for ($i = 0; $i < $jmlPermintaan; $i++) {
-                $addDetailPemintaanMaterial = new LogDetailPermintaanMaterial;
-                $addDetailPemintaanMaterial->permintaan_id = $permintaanId;
-                $addDetailPemintaanMaterial->material_id = $materialId[$i];
-                $addDetailPemintaanMaterial->no_part = $noPart[$i];
-                $addDetailPemintaanMaterial->volume = $volume[$i];
-                $addDetailPemintaanMaterial->satuan = $satuan[$i];
-                $addDetailPemintaanMaterial->keperluan = $keperluan[$i];
-                $addDetailPemintaanMaterial->keterangan = $keterangan[$i];
-                $addDetailPemintaanMaterial->user_id = \Auth::user()->id;
-                $addDetailPemintaanMaterial->soft_delete = 0;
-                $addDetailPemintaanMaterial->created_at = date('Y-m-d');
-
-                if ($addDetailPemintaanMaterial->save()) {
-                    $saveStatus = 1;
-                } else {
-                    $saveStatus = 0;
-                    die();
-                }
+            $getKodePermintaan = LogPermintaanMaterial::where('kode_permintaan', $kodePermintaan)->get();
+            while (empty($getKodePermintaan)) {
+                $kodePermintaan = PermintaanController::randomKey();
             }
-            return redirect('Logistik/user/permintaan');
+
+            if(\Input::hasfile('file')){
+              $ori_file  = \Request::file('file');
+             $tujuan = "upload/permintaan";
+             $nama_file = $ori_file->getClientOriginalName();
+
+            $ori_file->move($tujuan,$nama_file);
+           }else{
+                $nama_file='';
+           }
+
+            $addPermintaan = new LogPermintaanMaterial;
+            $addPermintaan->kode_permintaan = $kodePermintaan;
+            $addPermintaan->tanggal = date('Y-m-d');
+            $addPermintaan->file = $nama_file;
+            $addPermintaan->user_id = \Auth::user()->id;
+            $addPermintaan->soft_delete = 0;
+            $addPermintaan->created_at = date('Y-m-d');
+
+            if ($addPermintaan->save()) {
+                $permintaanId = $addPermintaan->id;
+                $jmlPermintaan = \Input::get('jumlah_data');
+                for ($i = 0; $i < $jmlPermintaan; $i++) {
+                    $addDetailPemintaanMaterial = new LogDetailPermintaanMaterial;
+                    $addDetailPemintaanMaterial->permintaan_id = $permintaanId;
+                    $addDetailPemintaanMaterial->material_id = $materialId[$i];
+                    $addDetailPemintaanMaterial->no_part = $noPart[$i];
+                    $addDetailPemintaanMaterial->volume = $volume[$i];
+                    $addDetailPemintaanMaterial->satuan = $satuan[$i];
+                    $addDetailPemintaanMaterial->keperluan = $keperluan[$i];
+                    $addDetailPemintaanMaterial->keterangan = $keterangan[$i];
+                    $addDetailPemintaanMaterial->user_id = \Auth::user()->id;
+                    $addDetailPemintaanMaterial->soft_delete = 0;
+                    $addDetailPemintaanMaterial->created_at = date('Y-m-d');
+
+                    if ($addDetailPemintaanMaterial->save()) {
+                        $saveStatus = 1;
+                    } else {
+                        $saveStatus = 0;
+                        die();
+                    }
+                }
+                return redirect('Logistik/user/permintaan');
+
+            }
+        }else{
+            $materials = LogMaterial::where('soft_delete', 0)->get();
+            return view('logistik.user.permintaan.create', ['materials' => $materials,'message'=>'Material Belum Diisi']);
         }
     }
 
