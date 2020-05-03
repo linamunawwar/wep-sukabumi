@@ -17,6 +17,12 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
+						@if(isset($message))
+							<div class="alert alert-danger not-found">
+							  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+							  	<strong>Perhatian!</strong> {{$message}}
+							</div>
+						@endif
 						<form id="demo-form2" data-parsley-validate  method="POST" enctype="multipart/form-data">
 							<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 							Permintaan Material
