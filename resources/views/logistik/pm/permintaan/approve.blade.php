@@ -39,6 +39,7 @@
 									<th>Volume</th>
 									<th>Satuan</th>
 									<th>Keperluan</th>
+									<th>Keterangan</th>
 								</tr>
 								<tbody>
 									<?php $i = 1;?>
@@ -50,6 +51,7 @@
 											<td>{{$detail->volume}}</td>
 											<td>{{$detail->satuan}}</td>
 											<td>{{$detail->keperluan}}</td>
+											<td>{{$detail->keterangan}}</td>
 										</tr>
 									@endforeach
 								</tbody>
