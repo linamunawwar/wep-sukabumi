@@ -43,6 +43,11 @@
                                 <a href="{{url('Logistik/pm/permintaan')}}">
                                     <i class="fa fa-list"></i>
                                     Permintaan Barang
+                                    @if(count(notifApprovePermintaanManager()) != 0)
+                                        <span class="badge bg" style="background-color: #1AAD19; ">
+                                            {{count(notifApprovePermintaanManager())}}
+                                        </span>
+                                    @endif
                                 </a>
                             </li>
                         @endif
