@@ -8,6 +8,7 @@ use PHPExcel_Worksheet_Drawing;
 use App\Gaji;
 use App\SlipGaji;
 use App\Pegawai;
+use App\Models\User;
 
 class GajiController extends Controller
 {
@@ -54,7 +55,7 @@ class GajiController extends Controller
         $data = \Input::all();
 
         $find_gaji = Gaji::where('id',$id)->first();
-
+        $user = User::where('pegawai_id',$find_gaji)->first();
        if($find_gaji){
            $gaji['gaji_pokok'] = $data['gaji_pokok'];
            $gaji['tunj_komunikasi'] = $data['tunj_komunikasi'];
@@ -64,7 +65,7 @@ class GajiController extends Controller
            $gaji['tunj_pph21'] = $data['tunj_pph21'];
            $gaji['ptkp'] = $data['ptkp'];
            $gaji['pph21'] = $data['pph21'];
-           $gaji['user_id'] = \Auth::user()->id;
+           $gaji['user_id'] = $user->id;
            $gaji['role_id'] = \Auth::user()->role_id;
             $update_gaji = Gaji::where('id',$id)->update($gaji);
 
