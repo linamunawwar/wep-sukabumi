@@ -20,7 +20,7 @@ class IzinController extends Controller
     public function getPengajuanIzin()
     {
     	//list cuti dari user yg login
-    	$izins = Izin::where('nip',\Auth::user()->pegawai_id)->where('soft_delete',0)->get();
+    	$izins = Izin::where('user_id',\Auth::user()->id)->where('soft_delete',0)->get();
 
         return view('admin.cuti_izin.izin.user.index',['izins'=>$izins]);
     }
@@ -33,6 +33,7 @@ class IzinController extends Controller
     public function postPengajuanIzinCreate(){
       $data = \Input::all();
       
+      $user = User::where('pegawai_id',$data['nip'])->first();
       $izin = new Izin;
       $izin->nip = $data['nip'];
       $izin->alasan = $data['alasan'];
@@ -47,7 +48,7 @@ class IzinController extends Controller
       $izin->is_verif_mngr = 0;
       $izin->verif_mngr_by = 0;
       $izin->verify_mngr_time = 0;
-      $izin->user_id = \Auth::user()->id;
+      $izin->user_id = $user->id;
       $izin->role_id = \Auth::user()->role_id;
 
       $izin->save();

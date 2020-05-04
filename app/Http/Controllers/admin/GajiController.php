@@ -15,7 +15,8 @@ class GajiController extends Controller
     public function index()
     {
     	$gajis = Gaji::whereHas('pegawai',function ($q){
-	            $q->where('is_active', 1);
+                $q->where('is_active', 1);
+	            $q->where('soft_delete', 0);
 	        })->get();
 
         return view('admin.gaji.index', ['gajis'=>$gajis]);
@@ -90,12 +91,13 @@ class GajiController extends Controller
     public function postSlipGajiCreate(){
         $data = \Input::all();
         
+        $user = User::where('pegawai_id',$data['nip'])->first();
         $slip_gaji = new SlipGaji;
         $slip_gaji->nip = $data['nip'];
         $slip_gaji->bulan = $data['bulan'];
         $slip_gaji->tahun = $data['tahun'];
         $slip_gaji->keperluan = $data['keperluan'];
-        $slip_gaji->user_id = \Auth::user()->id;
+        $slip_gaji->user_id = $user->id;
         $slip_gaji->role_id = \Auth::user()->role_id;
         
         $slip_gaji->save();
