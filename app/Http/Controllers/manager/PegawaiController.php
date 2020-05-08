@@ -102,9 +102,9 @@ class PegawaiController extends Controller
     public function getApprove($id)
     {
         $pegawai = Pegawai::find($id);
-        $bank= BankAsuransi::where('nip',$pegawai->nip)->first();
+        $bank= BankAsuransi::where('user_id',$pegawai->user_id)->first();
         $kode = KodeBagian::all();
-        $data_mcus = MCUPegawai::where('nip',$pegawai->nip)->where('soft_delete','0')->get();
+        $data_mcus = MCUPegawai::where('user_id',$pegawai->user_id)->where('soft_delete','0')->get();
 
         return view('manager.pegawai.approve_manager',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'data_mcus'=>$data_mcus]);
     }
@@ -160,6 +160,8 @@ class PegawaiController extends Controller
 
     public function postCreatePecat(){
       $data = \Input::all();
+
+      $user = User::where('pegawai_id',$data['nip'])->first();
       
       $pecat = new Pecat;
       $pecat->nip = $data['nip'];
@@ -177,8 +179,8 @@ class PegawaiController extends Controller
       $pecat->is_verif_pm = 0;
       $pecat->verif_pm_by = 0;
       $pecat->verify_pm_time = 0;
-      $pecat->user_id = \Auth::user()->id;
-      $pecat->role_id = \Auth::user()->role_id;
+      $pecat->user_id = $user->id;
+      $pecat->role_id = $user->role_id;
 
       $pecat->save();
 

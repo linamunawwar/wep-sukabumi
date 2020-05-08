@@ -28,14 +28,17 @@ class PeralatanController extends Controller
     public function postCreate()
     {
         $data = \Input::all();
+
+        $user = User::where('pegawai_id',$data['nip'])->first();
+
         $find = Inventori::where('kode_barang', $data['kode_barang'])->first();
         $alat = new Peralatan;
         $alat->nip = $data['nip'];
         $alat->kode_barang = $data['kode_barang'];
         $alat->tipe_barang = $find->tipe_barang;
         $alat->tanggal_pinjam = konversi_tanggal($data['tanggal_pinjam']);
-        $alat->user_id = \Auth::user()->id;
-        $alat->role_id = \Auth::user()->role_id;
+        $alat->user_id = $user->id;
+        $alat->role_id = $user->role_id;
         $pegawai = Pegawai::where('nip',$data['nip'])->first();
         $data['nama_barang'] = $find->nama_barang;
 

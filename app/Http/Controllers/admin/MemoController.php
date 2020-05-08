@@ -57,8 +57,8 @@ class MemoController extends Controller
     		$memop = new MemoPegawai;
     		$memop->memo_id = $memo->id;
     		$memop->pegawai_id = $pegawai->nip;
-    		$memop->user_id = $user->id;
-    		$memop->role_id = \Auth::user()->role_id;
+    		$memop->user_id = $pegawai->user_id;
+    		$memop->role_id = $pegawai->role_id;
 
     		$memop->save();
     	}

@@ -41,7 +41,7 @@ class HomeController extends Controller
         //admin
         if(Auth::user()->role_id == 1){
             $pegawai = Pegawai::where('is_verif_admin',0)->where('soft_delete',0)->count();
-            $memo = MemoPegawai::where('pegawai_id',Auth::user()->pegawai_id)->where('viewed_at',0)->where('soft_delete',0)->count();
+            $memo = MemoPegawai::where('user_id',Auth::user()->id)->where('viewed_at',0)->where('soft_delete',0)->count();
             $cuti = Cuti::where('is_verif_sdm',0)->where('soft_delete',0)->count();
             $spj = Spj::where('is_verif_sdm',0)->where('soft_delete',0)->count();
             $pecat = Pecat::where('is_verif_sdm',0)->where('soft_delete',0)->count();
@@ -61,7 +61,7 @@ class HomeController extends Controller
 
         //Manager
         if(Auth::user()->role_id == 3){
-            $memo = MemoPegawai::where('pegawai_id',Auth::user()->pegawai_id)->where('viewed_at',0)->where('soft_delete',0)->count();
+            $memo = MemoPegawai::where('user_id',Auth::user()->id)->where('viewed_at',0)->where('soft_delete',0)->count();
             $disposisi = DisposisiTugas::where('status','!=',1)->where('soft_delete',0)
                         ->where('posisi_id',\Auth::user()->pegawai->posisi_id)->count();
 
@@ -142,7 +142,7 @@ class HomeController extends Controller
 
         //Manager SDM
         if(Auth::user()->role_id == 4){
-            $memo = MemoPegawai::where('pegawai_id',Auth::user()->pegawai_id)->where('viewed_at',0)->where('soft_delete',0)->count();
+            $memo = MemoPegawai::where('user_id',Auth::user()->id)->where('viewed_at',0)->where('soft_delete',0)->count();
             // $cuti = Cuti::where('is_verif_mngr',0)->where('soft_delete',0)
             //         ->whereHas('pegawai',function ($q){
             //             $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
@@ -203,7 +203,7 @@ class HomeController extends Controller
         //Project Manager
         if(Auth::user()->role_id == 5){
             $pegawai = Pegawai::where('is_verif_admin',0)->where('soft_delete',0)->count();
-            $memo = MemoPegawai::where('pegawai_id',Auth::user()->pegawai_id)->where('viewed_at',0)->where('soft_delete',0)->count();
+            $memo = MemoPegawai::where('user_id',Auth::user()->id)->where('viewed_at',0)->where('soft_delete',0)->count();
             $cuti = Cuti::where('is_verif_pm',0)->where('soft_delete',0)->count();
             $pecat = Pecat::where('is_verif_pm',0)->where('soft_delete',0)->count();
             $resign = Resign::where('is_verif_pm',0)->where('soft_delete',0)->count();

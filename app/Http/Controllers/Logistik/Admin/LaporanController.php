@@ -132,7 +132,7 @@ class LaporanController extends Controller
             $tgl_mulai = date('Y-m-d',strtotime('+1 days',strtotime($tgl_mulai)));
         }
         
-    	$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
+        $splem = getManagerLaporan('SL',$tgl_mulai);
         if(!isset($data['proses'])){
             $data['proses'] = 0;
         }
@@ -395,7 +395,7 @@ class LaporanController extends Controller
             }
         }
 
-        $splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
+        $splem = getManagerLaporan('SL',$data['tanggal_mulai']);
         $admin = Pegawai::where('posisi_id', \Auth::user()->pegawai->posisi_id)->where('soft_delete', 0)->first();
 
         if(!isset($data['proses'])){
@@ -583,7 +583,7 @@ class LaporanController extends Controller
 			$dt[$i]['sisa'] = $dt[$i]['trs_terima'] - $dt[$i]['trs_keluar'];
 		}	
 
-		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
+		$splem = getManagerLaporan('SL',$data['tanggal_mulai']);
         if(!isset($data['proses'])){
             $data['proses'] = 0;
         }
@@ -731,7 +731,8 @@ class LaporanController extends Controller
 			$tgl_mulai = date('Y-m-d',strtotime('+1 days',strtotime($tgl_mulai)));
         }
 
-		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
+		$splem = getManagerLaporan('SL',$tgl_mulai);
+
         if(!isset($data['proses'])){
             $data['proses'] = 0;
         }
@@ -875,8 +876,8 @@ class LaporanController extends Controller
             }
         }        
 
-		$pm = Pegawai::where('posisi_id', 1)->where('soft_delete', 0)->first();
-		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
+        $splem = getManagerLaporan('SL',$tgl_mulai);
+        $pm = getPMLaporan($tgl_mulai);
 
         if(!isset($data['proses'])){
             $data['proses'] = 0;
