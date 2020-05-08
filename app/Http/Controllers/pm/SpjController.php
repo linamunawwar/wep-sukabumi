@@ -12,7 +12,7 @@ class SpjController extends Controller
 {
     public function index()
     {
-    	$spjs = Spj::where('nip',\Auth::user()->pegawai_id)->where('soft_delete',0)->get();
+    	$spjs = Spj::where('user_id',\Auth::user()->id)->where('soft_delete',0)->get();
 
         return view('pm.spj.index',['spjs'=>$spjs]);
     }

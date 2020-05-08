@@ -21,7 +21,9 @@ class SpjController extends Controller
     public function getCreate()
     {
     	$pegawais = Pegawai::where('is_active',1)->where('soft_delete',0)->get();
-      $pm = Pegawai::where('posisi_id',1)->first();
+      $pm = Pegawai::where('posisi_id',1)
+                      ->where('tanggal_keluar',null)
+                      ->first();
 
         return view('admin.spj.create',['pegawais'=>$pegawais,'pm'=>$pm]);
     }
@@ -67,7 +69,9 @@ class SpjController extends Controller
 
     	$spj = Spj::find($id);
         $pegawais = Pegawai::where('is_active',1)->where('soft_delete',0)->get();
-        $pm = Pegawai::where('posisi_id',1)->first();
+        $pm = Pegawai::where('posisi_id',1)
+                      ->where('tanggal_keluar',null)
+                      ->first();
 
         return view('admin.spj.approve',['spj'=>$spj,'pegawais'=>$pegawais,'pm'=>$pm]);
     }
