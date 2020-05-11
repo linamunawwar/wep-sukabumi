@@ -825,7 +825,7 @@ class LaporanController extends Controller
             foreach ($permintaans as $key => $permintaan) {
                 $getBulan = LaporanController::getWeek($permintaan->tanggal);
                 foreach ($permintaan->permintaanDetail as $key => $detail) {
-                    if (array_search($detail->material_id, array_column($materials,'material_id')) === false) {
+                    if ((array_search($detail->material_id, array_column($materials,'material_id')) === false) && ($detail->soft_delete != 1)) {
                         $materials[$count]['material_id'] = (int)$detail->material_id;
                         $materials[$count]['nama'] = $detail->detailPermintaanMaterial->nama;
                         $materials[$count]['satuan'] = $detail->detailPermintaanMaterial->satuan;
