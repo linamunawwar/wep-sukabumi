@@ -835,8 +835,10 @@ class LaporanController extends Controller
                         $materials[$count]['tidakSesuai'] = 0;
                         $count++;
                     }else{
-                        $index = array_search($detail->material_id,array_column($materials,'material_id'));
-                        $materials[$index]['rencana'] = (int)$materials[$index]['rencana'] + (int)$detail->volume;
+                        if($detail->soft_delete != 1){
+                            $index = array_search($detail->material_id,array_column($materials,'material_id'));
+                            $materials[$index]['rencana'] = (int)$materials[$index]['rencana'] + (int)$detail->volume;
+                        }
                     }
                 }
             }
