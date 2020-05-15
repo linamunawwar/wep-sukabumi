@@ -115,10 +115,10 @@
 							<table class="table table-bordered permintaan" id="table_permintaan">
 								<tr>
 									<th>Nama Material</th>
-									<th>Uraian Tugas Pokok</th>
-									<th>Persyaratan Jabatan</th>
-									<th>Jumlah Yang Dibutuhkan</th>
-									<th>Waktu Penempatan</th>
+									<th>No.Partype</th>
+									<th>Volume</th>
+									<th>Satuan</th>
+									<th>Untuk Keperluan</th>
 									<th>Keterangan</th>
 									<th>Action</th>
 								</tr>

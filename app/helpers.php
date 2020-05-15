@@ -444,6 +444,93 @@ function getPublicRelation($model,$data_id)
     return $hr;
 }
 
+function getPMLaporan($tanggal)
+{
+    $pms = Pegawai::where('posisi_id',1)
+                    ->get();
+
+        //cek apakah data dibuat ketika manager bukan yg sekarang
+        foreach ($pms as $key => $value) {
+            if($value->tanggal_keluar > $tanggal){
+                $nip_pm = $value->nip;
+                break;
+            }else{
+                $nip_pm = $value->nip;
+            }
+        }
+       
+        //iya, manager yg approve bukan manager yg skrg
+        if(isset($nip_pm)){
+            $pm = Pegawai::where('nip',$nip_pm)->first();
+        }else{
+            //tidak, manager yg approve adalah manager yg skrg
+            $pm = Pegawai::where('posisi_id',1)
+                            ->where('tanggal_keluar',null)
+                            ->first();
+        }
+    return $pm;
+}
+
+function getManagerLaporan($kode,$tanggal)
+{
+    
+
+    if($kode == 'SA'){
+        $managers = Pegawai::where('kode_bagian',$kode)
+                            ->where('posisi_id',6)
+                            ->get();
+
+        //cek apakah data dibuat ketika manager bukan yg sekarang
+        foreach ($managers as $key => $value) {
+            if($value->tanggal_keluar > $tanggal){
+                $nip_manager = $value->nip;
+                break;
+            }else{
+                $nip_manager = $value->nip;
+            }
+        }
+        //iya, manager yg approve bukan manager yg skrg
+        if(isset($nip_manager)){
+            $manager = Pegawai::where('nip',$nip_manager)->first();
+        }else{
+            //tidak, manager yg approve adalah manager yg skrg
+            $manager = Pegawai::where('kode_bagian',$kode)
+                            ->where('posisi_id',6)
+                            ->where('tanggal_keluar',null)
+                            ->first();
+        }
+    }else{
+
+        $managers = Pegawai::where('kode_bagian',$kode)
+                            ->where('role_id', 3)
+                            ->get();
+
+        //cek apakah data dibuat ketika manager bukan yg sekarang
+        foreach ($managers as $key => $value) {
+            if($value->tanggal_keluar > $tanggal){
+                $nip_manager = $value->nip;
+                break;
+            }else{
+                $nip_manager = $value->nip;
+            }
+        }
+        
+        
+        //iya, manager yg approve bukan manager yg skrg
+        if(isset($nip_manager)){
+            $manager = Pegawai::where('nip',$nip_manager)->first();
+        }else{
+            //tidak, manager yg approve adalah manager yg skrg
+            $manager = Pegawai::where('kode_bagian',$kode)
+                            ->where('posisi_id',3)
+                            ->where('tanggal_keluar',null)
+                            ->first();
+        }
+    }
+
+    return $manager;
+}
+
 function setEnvironmentValue($envKey, $envValue)
 {
     $envFile = app()->environmentFilePath();

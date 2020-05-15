@@ -11,6 +11,7 @@ use PHPExcel_Worksheet_Drawing;
 use App\Disposisi;
 use App\DisposisiTugas;
 use App\SuratMasuk;
+use App\Models\User;
 
 class DisposisiController extends Controller
 {

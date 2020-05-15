@@ -8,13 +8,15 @@ use PHPExcel_Worksheet_Drawing;
 use App\Gaji;
 use App\SlipGaji;
 use App\Pegawai;
+use App\Models\User;
 
 class GajiController extends Controller
 {
     public function index()
     {
     	$gajis = Gaji::whereHas('pegawai',function ($q){
-	            $q->where('is_active', 1);
+                $q->where('is_active', 1);
+	            $q->where('soft_delete', 0);
 	        })->get();
 
         return view('admin.gaji.index', ['gajis'=>$gajis]);
@@ -54,7 +56,7 @@ class GajiController extends Controller
         $data = \Input::all();
 
         $find_gaji = Gaji::where('id',$id)->first();
-
+        $user = User::where('pegawai_id',$find_gaji)->first();
        if($find_gaji){
            $gaji['gaji_pokok'] = $data['gaji_pokok'];
            $gaji['tunj_komunikasi'] = $data['tunj_komunikasi'];
@@ -64,7 +66,7 @@ class GajiController extends Controller
            $gaji['tunj_pph21'] = $data['tunj_pph21'];
            $gaji['ptkp'] = $data['ptkp'];
            $gaji['pph21'] = $data['pph21'];
-           $gaji['user_id'] = \Auth::user()->id;
+           $gaji['user_id'] = $user->id;
            $gaji['role_id'] = \Auth::user()->role_id;
             $update_gaji = Gaji::where('id',$id)->update($gaji);
 
@@ -89,12 +91,13 @@ class GajiController extends Controller
     public function postSlipGajiCreate(){
         $data = \Input::all();
         
+        $user = User::where('pegawai_id',$data['nip'])->first();
         $slip_gaji = new SlipGaji;
         $slip_gaji->nip = $data['nip'];
         $slip_gaji->bulan = $data['bulan'];
         $slip_gaji->tahun = $data['tahun'];
         $slip_gaji->keperluan = $data['keperluan'];
-        $slip_gaji->user_id = \Auth::user()->id;
+        $slip_gaji->user_id = $user->id;
         $slip_gaji->role_id = \Auth::user()->role_id;
         
         $slip_gaji->save();

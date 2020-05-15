@@ -24,7 +24,7 @@ class MemoController extends Controller
 
     	$data['viewed_at'] = date('Y-m-d H:i:s');
 
-    	$update = MemoPegawai::where('memo_id',$id)->where('pegawai_id',\Auth::user()->pegawai_id)->update($data);
+    	$update = MemoPegawai::where('memo_id',$id)->where('user_id',\Auth::user()->id)->update($data);
 
         return view('pm.memo.detail',['memo'=>$memo]);
     }

@@ -12,14 +12,14 @@ class GajiController extends Controller
 {
     public function index()
     {
-        $gaji = Gaji::where('nip',\Auth::user()->pegawai_id)->first();
+        $gaji = Gaji::where('user_id',\Auth::user()->id)->first();
 
         return view('user.gaji.index',['gaji'=>$gaji]);
     }
 
     public function slipGaji()
     {
-        $slip_gajis = SlipGaji::where('nip',\Auth::user()->pegawai_id)->where('soft_delete',0)->get();
+        $slip_gajis = SlipGaji::where('user_id',\Auth::user()->id)->where('soft_delete',0)->get();
 
         return view('user.gaji.index_slip',['slip_gajis'=>$slip_gajis]);
     }

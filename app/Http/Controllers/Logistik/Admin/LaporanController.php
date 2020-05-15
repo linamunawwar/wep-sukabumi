@@ -132,7 +132,7 @@ class LaporanController extends Controller
             $tgl_mulai = date('Y-m-d',strtotime('+1 days',strtotime($tgl_mulai)));
         }
         
-    	$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
+        $splem = getManagerLaporan('SL',$tgl_mulai);
         if(!isset($data['proses'])){
             $data['proses'] = 0;
         }
@@ -395,7 +395,7 @@ class LaporanController extends Controller
             }
         }
 
-        $splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
+        $splem = getManagerLaporan('SL',$data['tanggal_mulai']);
         $admin = Pegawai::where('posisi_id', \Auth::user()->pegawai->posisi_id)->where('soft_delete', 0)->first();
 
         if(!isset($data['proses'])){
@@ -583,7 +583,7 @@ class LaporanController extends Controller
 			$dt[$i]['sisa'] = $dt[$i]['trs_terima'] - $dt[$i]['trs_keluar'];
 		}	
 
-		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
+		$splem = getManagerLaporan('SL',$data['tanggal_mulai']);
         if(!isset($data['proses'])){
             $data['proses'] = 0;
         }
@@ -731,7 +731,8 @@ class LaporanController extends Controller
 			$tgl_mulai = date('Y-m-d',strtotime('+1 days',strtotime($tgl_mulai)));
         }
 
-		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
+		$splem = getManagerLaporan('SL',$tgl_mulai);
+
         if(!isset($data['proses'])){
             $data['proses'] = 0;
         }
@@ -824,7 +825,7 @@ class LaporanController extends Controller
             foreach ($permintaans as $key => $permintaan) {
                 $getBulan = LaporanController::getWeek($permintaan->tanggal);
                 foreach ($permintaan->permintaanDetail as $key => $detail) {
-                    if (array_search($detail->material_id, array_column($materials,'material_id')) === false) {
+                    if ((array_search($detail->material_id, array_column($materials,'material_id')) === false) && ($detail->soft_delete != 1)) {
                         $materials[$count]['material_id'] = (int)$detail->material_id;
                         $materials[$count]['nama'] = $detail->detailPermintaanMaterial->nama;
                         $materials[$count]['satuan'] = $detail->detailPermintaanMaterial->satuan;
@@ -834,8 +835,10 @@ class LaporanController extends Controller
                         $materials[$count]['tidakSesuai'] = 0;
                         $count++;
                     }else{
-                        $index = array_search($detail->material_id,array_column($materials,'material_id'));
-                        $materials[$index]['rencana'] = (int)$materials[$index]['rencana'] + (int)$detail->volume;
+                        if($detail->soft_delete != 1){
+                            $index = array_search($detail->material_id,array_column($materials,'material_id'));
+                            $materials[$index]['rencana'] = (int)$materials[$index]['rencana'] + (int)$detail->volume;
+                        }
                     }
                 }
             }
@@ -869,14 +872,14 @@ class LaporanController extends Controller
         }
         foreach ($materials as $key => $material) {
             if ($material['rencana'] <= $material['realisasi']) {
-                $material[$key]['sesuai'] = $material['realisasi'] - $material['rencana'];
+                $materials[$key]['sesuai'] = $material['realisasi'] - $material['rencana'];
             }elseif ($material['rencana'] >= $material['realisasi']) {
                 $materials[$key]['tidakSesuai'] = $material['rencana'] - $material['realisasi'];
             }
         }        
 
-		$pm = Pegawai::where('posisi_id', 1)->where('soft_delete', 0)->first();
-		$splem = Pegawai::where('posisi_id', 7)->where('soft_delete', 0)->first();
+        $splem = getManagerLaporan('SL',$tgl_mulai);
+        $pm = getPMLaporan($tgl_mulai);
 
         if(!isset($data['proses'])){
             $data['proses'] = 0;

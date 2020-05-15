@@ -41,7 +41,7 @@ class CutiController extends Controller
     public function getPengajuanCuti()
     {
       //list cuti dari user yg login
-      $cutis = Cuti::where('nip',\Auth::user()->pegawai_id)->where('soft_delete',0)->get();
+      $cutis = Cuti::where('user_id',\Auth::user()->id)->where('soft_delete',0)->get();
 
         return view('pm.cuti_izin.cuti.user.index',['cutis'=>$cutis]);
     }

@@ -10,6 +10,7 @@ use App\Models\LogMaterial;
 use App\Models\LogPenerimaanMaterial;
 use App\Models\LogPermintaanMaterial;
 use App\Models\LogDetailPermintaanMaterial;
+use App\Models\LogPengajuanMaterial;
 
 use PHPExcel_Worksheet_Drawing;
 use PHPExcel_Worksheet_PageSetup;
@@ -415,7 +416,7 @@ class PenerimaanController extends Controller
 
     public function getAllNotif()
     {
-        $penerimaans = LogPermintaanMaterial::where('soft_delete', 0)->where('status_penyerahan',1)->where('user_id',\Auth::user()->id)->get();
+        $penerimaans = LogPengajuanMaterial::where('soft_delete', 0)->where('status_penyerahan',1)->where('user_id',\Auth::user()->id)->get();
         foreach ($penerimaans as $penerimaan) {
             if($penerimaan->is_admin == 1){
                 $penerimaan->color = "#D63031";

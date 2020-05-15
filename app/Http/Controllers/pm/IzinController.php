@@ -18,7 +18,7 @@ class IzinController extends Controller
     public function getPengajuanIzin()
     {
     	//list cuti dari user yg login
-    	$izins = Izin::where('nip',\Auth::user()->pegawai_id)->where('soft_delete',0)->get();
+    	$izins = Izin::where('user_id',\Auth::user()->id)->where('soft_delete',0)->get();
 
         return view('pm.cuti_izin.izin.user.index',['izins'=>$izins]);
     }

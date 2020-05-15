@@ -1545,6 +1545,7 @@ $kode = KodeBagian::all();
 			                        </table>
 			                      </div>
 			                      <div id="step-3">
+			                      	<?php $pm = getPM('Pegawai',$pegawai->id); ?>
 			                        <h2 class="StepTitle" style="text-align: center;">PERJANJIAN KERJA WAKTU TERTENTU (PKWT)</h2>
 			                        <h4 style="text-align: center;">NOMOR : <input type="text" name="no_pkwt" required="required" placeholder="Nomor">{{$pegawai->no_pkwt}}</h4><br>
 			                        <?php
@@ -1567,7 +1568,7 @@ $kode = KodeBagian::all();
 												<br><br>
 												Dalam hal ini diwakili oleh
 												<ul style="list-style-type:none;">
-													<li>Nama	:	Mochamad Waskito Adi, ST</li>
+													<li>Nama	:	{{$pm->nama}}</li>
 													<li>Jabatan	:	Project Manager<br><br></li>
 												</ul>
 												<br>Dalam hal ini bertindak untuk dan atas nama PT. Waskita Karya (Persero) Tbk Proyek Pembangunan Jalan Tol Becakayu 2A Ujung, selanjutnya dalam Perjanjian Kerja Waktu Tertentu ini disebut sebagai PIHAK PERTAMA.

@@ -12,7 +12,7 @@ class MemoController extends Controller
 {
     public function index()
     {
-    	$memos = MemoPegawai::where('soft_delete',0)->where('pegawai_id',\Auth::user()->pegawai_id)->orderBy('created_at','desc')->get();
+    	$memos = MemoPegawai::where('soft_delete',0)->where('user_id',\Auth::user()->id)->orderBy('created_at','desc')->get();
 
         return view('user.memo.index',['memos'=>$memos]);
     }
@@ -24,7 +24,7 @@ class MemoController extends Controller
 
     	$data['viewed_at'] = date('Y-m-d H:i:s');
 
-    	$update = MemoPegawai::where('memo_id',$id)->where('pegawai_id',\Auth::user()->pegawai_id)->update($data);
+    	$update = MemoPegawai::where('memo_id',$id)->where('user_id',\Auth::user()->user_id)->update($data);
 
         return view('user.memo.detail',['memo'=>$memo]);
     }

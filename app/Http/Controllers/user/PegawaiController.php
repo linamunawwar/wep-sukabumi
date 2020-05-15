@@ -28,46 +28,46 @@ class PegawaiController extends Controller
 {
 	public function index()
     {
-        $pegawai = Pegawai::where('nip',\Auth::user()->pegawai_id)->where('soft_delete',0)->first(); 
-        $bank = BankAsuransi::where('nip',\Auth::user()->pegawai_id)->first();
+        $pegawai = Pegawai::where('user_id',\Auth::user()->id)->where('soft_delete',0)->first(); 
+        $bank = BankAsuransi::where('user_id',\Auth::user()->id)->first();
 
-        $pendidikan = Pendidikan::where('nip',$pegawai->nip)->get();
+        $pendidikan = Pendidikan::where('user_id',$pegawai->user_id)->get();
         $pendidikans = json_decode(json_encode($pendidikan), true);
 
-        $sertifikat = Sertifikat::where('nip',$pegawai->nip)->get();
+        $sertifikat = Sertifikat::where('user_id',$pegawai->user_id)->get();
         $sertifikats = json_decode(json_encode($sertifikat), true);
 
-        $pelatihan = PelatihanCV::where('nip',$pegawai->nip)->get();
+        $pelatihan = PelatihanCV::where('user_id',$pegawai->user_id)->get();
         $pelatihans = json_decode(json_encode($pelatihan), true);
 
-        $pengalaman = Pengalaman::where('nip',$pegawai->nip)->get();
+        $pengalaman = Pengalaman::where('user_id',$pegawai->user_id)->get();
         $pengalamans = json_decode(json_encode($pengalaman), true);
 
-        $penugasan = Penugasan::where('nip',$pegawai->nip)->get();
+        $penugasan = Penugasan::where('user_id',$pegawai->user_id)->get();
         $penugasans = json_decode(json_encode($penugasan), true);
 
-        $presentasi = KaryaIlmiah::where('nip',$pegawai->nip)->where('publikasi','presentasi')->get();
+        $presentasi = KaryaIlmiah::where('user_id',$pegawai->user_id)->where('publikasi','presentasi')->get();
         $presentasis = json_decode(json_encode($presentasi), true);
 
-        $nopresentasi = KaryaIlmiah::where('nip',$pegawai->nip)->where('publikasi','nopresentasi')->get();
+        $nopresentasi = KaryaIlmiah::where('user_id',$pegawai->user_id)->where('publikasi','nopresentasi')->get();
         $nopresentasis = json_decode(json_encode($nopresentasi), true);
 
-        $nopublikasi = KaryaIlmiah::where('nip',$pegawai->nip)->where('publikasi','nopublikasi')->get();
+        $nopublikasi = KaryaIlmiah::where('user_id',$pegawai->user_id)->where('publikasi','nopublikasi')->get();
         $nopublikasis = json_decode(json_encode($nopublikasi), true);
 
-        $pertemuan = Pertemuan::where('nip',$pegawai->nip)->get();
+        $pertemuan = Pertemuan::where('user_id',$pegawai->user_id)->get();
         $pertemuans = json_decode(json_encode($pertemuan), true);
 
-        $organisasi = Organisasi::where('nip',$pegawai->nip)->get();
+        $organisasi = Organisasi::where('user_id',$pegawai->user_id)->get();
         $organisasis = json_decode(json_encode($organisasi), true);
 
-        $publikasi = Publikasi::where('nip',$pegawai->nip)->get();
+        $publikasi = Publikasi::where('user_id',$pegawai->user_id)->get();
         $publikasis = json_decode(json_encode($publikasi), true);
 
-        $pengajar = TenagaPengajar::where('nip',$pegawai->nip)->get();
+        $pengajar = TenagaPengajar::where('user_id',$pegawai->user_id)->get();
         $pengajars = json_decode(json_encode($pengajar), true);
 
-        $penghargaan = Penghargaan::where('nip',$pegawai->nip)->get();
+        $penghargaan = Penghargaan::where('user_id',$pegawai->user_id)->get();
         $penghargaans = json_decode(json_encode($penghargaan), true);
         return view('user.pegawai.index',['pegawai'=>$pegawai,'bank'=>$bank,'pendidikans'=>$pendidikans,'sertifikats'=>$sertifikats,'pelatihans'=>$pelatihans,'pengalamans'=>$pengalamans,'penugasans'=>$penugasans,'presentasis'=>$presentasis, 'nopresentasis'=>$nopresentasis,'nopublikasis'=>$nopublikasis,'pertemuans'=>$pertemuans,'organisasis'=>$organisasis,'publikasis'=>$publikasis,'pengajars'=>$pengajars,'penghargaans'=>$penghargaans]);
     }
@@ -75,47 +75,47 @@ class PegawaiController extends Controller
     public function getEditCV($nip)
     {
       $pegawai = Pegawai::where('nip',$nip)->first();
-      $bank = BankAsuransi::where('nip',$nip)->first();
+      $bank = BankAsuransi::where('user_id',$pegawai->user_id)->first();
     	$mcus = MCU::where('soft_delete','0')->get();
       $kode = KodeBagian::all();
-      $data_mcus = MCUPegawai::where('nip',$nip)->where('soft_delete','0')->get();
-    	$pendidikan = Pendidikan::where('nip',$pegawai->nip)->get();
+      $data_mcus = MCUPegawai::where('user_id',$user_id)->where('soft_delete','0')->get();
+    	$pendidikan = Pendidikan::where('user_id',$pegawai->user_id)->get();
         $pendidikans = json_decode(json_encode($pendidikan), true);
 
-        $sertifikat = Sertifikat::where('nip',$pegawai->nip)->get();
+        $sertifikat = Sertifikat::where('user_id',$pegawai->user_id)->get();
         $sertifikats = json_decode(json_encode($sertifikat), true);
 
-        $pelatihan = PelatihanCV::where('nip',$pegawai->nip)->get();
+        $pelatihan = PelatihanCV::where('user_id',$pegawai->user_id)->get();
         $pelatihans = json_decode(json_encode($pelatihan), true);
 
-        $pengalaman = Pengalaman::where('nip',$pegawai->nip)->get();
+        $pengalaman = Pengalaman::where('user_id',$pegawai->user_id)->get();
         $pengalamans = json_decode(json_encode($pengalaman), true);
 
-        $penugasan = Penugasan::where('nip',$pegawai->nip)->get();
+        $penugasan = Penugasan::where('user_id',$pegawai->user_id)->get();
         $penugasans = json_decode(json_encode($penugasan), true);
 
-        $presentasi = KaryaIlmiah::where('nip',$pegawai->nip)->where('publikasi','presentasi')->get();
+        $presentasi = KaryaIlmiah::where('user_id',$pegawai->user_id)->where('publikasi','presentasi')->get();
         $presentasis = json_decode(json_encode($presentasi), true);
 
-        $nopresentasi = KaryaIlmiah::where('nip',$pegawai->nip)->where('publikasi','nopresentasi')->get();
+        $nopresentasi = KaryaIlmiah::where('user_id',$pegawai->user_id)->where('publikasi','nopresentasi')->get();
         $nopresentasis = json_decode(json_encode($nopresentasi), true);
 
-        $nopublikasi = KaryaIlmiah::where('nip',$pegawai->nip)->where('publikasi','nopublikasi')->get();
+        $nopublikasi = KaryaIlmiah::where('user_id',$pegawai->user_id)->where('publikasi','nopublikasi')->get();
         $nopublikasis = json_decode(json_encode($nopublikasi), true);
 
-        $pertemuan = Pertemuan::where('nip',$pegawai->nip)->get();
+        $pertemuan = Pertemuan::where('user_id',$pegawai->user_id)->get();
         $pertemuans = json_decode(json_encode($pertemuan), true);
 
-        $organisasi = Organisasi::where('nip',$pegawai->nip)->get();
+        $organisasi = Organisasi::where('user_id',$pegawai->user_id)->get();
         $organisasis = json_decode(json_encode($organisasi), true);
 
-        $publikasi = Publikasi::where('nip',$pegawai->nip)->get();
+        $publikasi = Publikasi::where('user_id',$pegawai->user_id)->get();
         $publikasis = json_decode(json_encode($publikasi), true);
 
-        $pengajar = TenagaPengajar::where('nip',$pegawai->nip)->get();
+        $pengajar = TenagaPengajar::where('user_id',$pegawai->user_id)->get();
         $pengajars = json_decode(json_encode($pengajar), true);
 
-        $penghargaan = Penghargaan::where('nip',$pegawai->nip)->get();
+        $penghargaan = Penghargaan::where('user_id',$pegawai->user_id)->get();
         $penghargaans = json_decode(json_encode($penghargaan), true);
 
         return view('user.pegawai.cv',['pegawai'=>$pegawai,'bank'=>$bank,'kode'=>$kode,'mcus'=>$mcus,'data_mcus'=>$data_mcus,'pendidikans'=>$pendidikans,'sertifikats'=>$sertifikats,'pelatihans'=>$pelatihans,'pengalamans'=>$pengalamans,'penugasans'=>$penugasans,'presentasis'=>$presentasis, 'nopresentasis'=>$nopresentasis,'nopublikasis'=>$nopublikasis,'pertemuans'=>$pertemuans,'organisasis'=>$organisasis,'publikasis'=>$publikasis,'pengajars'=>$pengajars,'penghargaans'=>$penghargaans]);
@@ -125,6 +125,8 @@ class PegawaiController extends Controller
     {
        $data = \Input::all();
        $db = Pegawai::where('nip',$nip)->first();
+
+       $user = User::where('pegawai_id',$nip)->first();
        
        $pegawai['nama'] = $data['nama'];
        $pegawai['no_ktp'] = $data['no_ktp'];
@@ -224,11 +226,13 @@ class PegawaiController extends Controller
        $bank->jiwasraya = $data['jiwasraya'];
        $bank->asuransi_lain = $data['nama_asuransi'];
        $bank->nomor_lain = $data['nomor_asuransi'];
+       $bank->user_id = $user->id;
+       $bank->role_id = $user->role_id;
 
        $bank->save();
 
        //-------------Pendidikan---------
-        $del_pendidikan = Pendidikan::where('nip',$data['nip'])->delete();
+        $del_pendidikan = Pendidikan::where('user_id',$user->id)->delete();
 
         $jenjang = \Input::get('jenjang');
         $asal_sekolah = \Input::get('asal_sekolah');
@@ -245,8 +249,8 @@ class PegawaiController extends Controller
           $pendidikan->jurusan = $jurusan[$i];
           $pendidikan->tahun_lulus = $tahun_lulus[$i];
           $pendidikan->no_ijazah = $no_ijazah[$i];
-          $pendidikan->user_id = \Auth::user()->id;
-          $pendidikan->role_id = \Auth::user()->role_id;
+          $pendidikan->user_id = $user->id;
+          $pendidikan->role_id = $user->role_id;
 
           if($pendidikan->jenjang != ''){
             $pendidikan->save();
@@ -254,7 +258,7 @@ class PegawaiController extends Controller
         }
 
         //-------------Sertifikat---------
-        $del_sertifikat = Sertifikat::where('nip',$data['nip'])->delete();
+        $del_sertifikat = Sertifikat::where('user_id',$user->id)->delete();
 
         $sertifikat_mulai = \Input::get('sertifikat_mulai');
         $sertifikat_akhir = \Input::get('sertifikat_akhir');
@@ -270,8 +274,8 @@ class PegawaiController extends Controller
           $sertifikat->sertifikat = $nama_sertifikat[$i];
           $sertifikat->no_sertifikat = $no_sertifikat[$i];
           $sertifikat->institusi = $institusi_sertifikat[$i];
-          $sertifikat->user_id = \Auth::user()->id;
-          $sertifikat->role_id = \Auth::user()->role_id;
+          $sertifikat->user_id = $user->id;
+          $sertifikat->role_id = $user->role_id;
 
           if($sertifikat->sertifikat != ''){
             $sertifikat->save();
@@ -279,7 +283,7 @@ class PegawaiController extends Controller
         }
 
         //-------------Pelatihan---------
-        $del_pelatihan = PelatihanCV::where('nip',$data['nip'])->delete();
+        $del_pelatihan = PelatihanCV::where('user_id',$user->id)->delete();
 
         $pelatihan_tanggal = \Input::get('pelatihan_tanggal');
         $nama_pelatihan = \Input::get('nama_pelatihan');
@@ -304,7 +308,7 @@ class PegawaiController extends Controller
         }
 
         //-------------Pengalaman Kerja---------
-        $del_pengalaman = Pengalaman::where('nip',$data['nip'])->delete();
+        $del_pengalaman = Pengalaman::where('user_id',$user->id)->delete();
 
         $mulai_kerja = \Input::get('mulai_kerja');
         $akhir_kerja = \Input::get('akhir_kerja');
@@ -329,7 +333,7 @@ class PegawaiController extends Controller
         }
 
         //-------------Penugasan---------
-        $del_penugasan= Penugasan::where('nip',$data['nip'])->delete();
+        $del_penugasan= Penugasan::where('user_id',$user->id)->delete();
 
         $mulai_tugas = \Input::get('mulai_tugas');
         $akhir_tugas = \Input::get('akhir_tugas');
@@ -368,7 +372,7 @@ class PegawaiController extends Controller
         }
 
         //-------------Karya Ilmiah Presentasi---------
-        $del_presentasi = KaryaIlmiah::where('nip',$data['nip'])->where('publikasi','presentasi')->delete();
+        $del_presentasi = KaryaIlmiah::where('user_id',$user->id)->where('publikasi','presentasi')->delete();
 
         $tanggal_presentasi = \Input::get('tanggal_presentasi');
         $judul_presentasi = \Input::get('judul_presentasi');
@@ -396,7 +400,7 @@ class PegawaiController extends Controller
         }
 
         //-------------Karya Ilmiah No Presentasi---------
-        $del_nopresentasi = KaryaIlmiah::where('nip',$data['nip'])->where('publikasi','nopresentasi')->delete();
+        $del_nopresentasi = KaryaIlmiah::where('user_id',$user->id)->where('publikasi','nopresentasi')->delete();
 
         $tanggal_nopresentasi = \Input::get('tanggal_nopresentasi');
         $judul_nopresentasi = \Input::get('judul_nopresentasi');
@@ -424,7 +428,7 @@ class PegawaiController extends Controller
         }
 
         //-------------Karya Ilmiah No Publikasi---------
-        $del_nopublikasi = KaryaIlmiah::where('nip',$data['nip'])->where('publikasi','nopublikasi')->delete();
+        $del_nopublikasi = KaryaIlmiah::where('user_id',$user->id)->where('publikasi','nopublikasi')->delete();
 
         $tanggal_nopublikasi = \Input::get('tanggal_nopublikasi');
         $judul_nopublikasi = \Input::get('judul_nopublikasi');
@@ -452,7 +456,7 @@ class PegawaiController extends Controller
         }
 
         //-------------Pertemuan---------
-        $del_pertemuan = Pertemuan::where('nip',$data['nip'])->delete();
+        $del_pertemuan = Pertemuan::where('user_id',$user->id)->delete();
 
         $tanggal_pertemuan = \Input::get('tanggal_pertemuan');
         $tema = \Input::get('tema');
@@ -481,7 +485,7 @@ class PegawaiController extends Controller
         }
 
         //-------------Organisasi---------
-        $del_organisasi = Organisasi::where('nip',$data['nip'])->delete();
+        $del_organisasi = Organisasi::where('user_id',$user->id)->delete();
 
         $tanggal_organisasi = \Input::get('tanggal_organisasi');
         $nama_organisasi = \Input::get('nama_organisasi');
@@ -508,7 +512,7 @@ class PegawaiController extends Controller
         }
 
         //-------------Publikasi---------
-        $del_publikasi = Publikasi::where('nip',$data['nip'])->delete();
+        $del_publikasi = Publikasi::where('user_id',$user->id)->delete();
 
         $tanggal_publikasi = \Input::get('tanggal_publikasi');
         $nama_publikasi = \Input::get('nama_publikasi');
@@ -535,7 +539,7 @@ class PegawaiController extends Controller
         }
 
         //-------------Tenaga Pengajar---------
-        $del_pengajar = TenagaPengajar::where('nip',$data['nip'])->delete();
+        $del_pengajar = TenagaPengajar::where('user_id',$user->id)->delete();
 
         $mulai_pengajar = \Input::get('mulai_pengajar');
         $materi = \Input::get('materi');
@@ -564,7 +568,7 @@ class PegawaiController extends Controller
         }
 
         //-------------Penghargaan---------
-        $del_penghargaan = Penghargaan::where('nip',$data['nip'])->delete();
+        $del_penghargaan = Penghargaan::where('user_id',$user->id)->delete();
 
         $tanggal_penghargaan = \Input::get('tanggal_penghargaan');
         $nama_penghargaan = \Input::get('nama_penghargaan');
@@ -590,7 +594,7 @@ class PegawaiController extends Controller
           }
         }
 
-       $find_mcu = MCUPegawai::where('nip',$data['nip'])->delete();
+       $find_mcu = MCUPegawai::where('user_id',$user_id)->delete();
 
         $pernyataan = $data['pernyataan'];
         $data_mcu = $data['mcu'];
@@ -640,7 +644,7 @@ class PegawaiController extends Controller
 
     public function getResign()
     {
-      $resigns = Resign::where('soft_delete',0)->where('nip',\Auth::user()->pegawai_id)->get();
+      $resigns = Resign::where('soft_delete',0)->where('user_id',\Auth::user()->id)->get();
       
       return view('user.pegawai.resign.index',['resigns'=>$resigns]);
     }

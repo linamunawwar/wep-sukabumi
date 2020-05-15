@@ -17,11 +17,17 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
+						@if(isset($message))
+							<div class="alert alert-danger not-found">
+							  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+							  	<strong>Perhatian!</strong> {{$message}}
+							</div>
+						@endif
 						<form id="demo-form2" data-parsley-validate  method="POST" enctype="multipart/form-data">
 							<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 							Permintaan Material
-							<span style="float:right;"> Tanggal Permintaan : {{ date('d F Y', strtotime($permintaan->tanggal)) }} </span>
-							<input type="hidden" name="tanggal" value="{{ date('d F Y', strtotime($permintaan->tanggal)) }}">
+							<span style="float:right;"> Tanggal : {{ date('d F Y') }} </span>
+							<input type="hidden" name="tanggal" value="{{ date('d F Y') }}">
 							<hr>
 							<div class="row"> 
 								<div class="col-md-12">
@@ -87,7 +93,7 @@
 									</div>
 								</div>
 							</div>
-							<br>
+							<br>	
 							<div class="row"> 								
 								<div class="col-md-6">
 									<div class="form-group">
@@ -97,7 +103,7 @@
 										</div>
 									</div>
 								</div>
-							</div>						
+							</div>					
 							
 							<div class="ln_solid"></div>
 							<div class="form-group" >
@@ -118,26 +124,14 @@
 									<th>Keterangan</th>
 									<th>Action</th>
 								</tr>
-								<tbody class="data">   
-                                    @foreach ($detail as $detail)    
-                                    <tr>                            
-										<td>{{ $detail->detailPermintaanMaterial->nama }} </td>
-										<td>{{ $detail->no_part }} </td>
-										<td>{{ $detail->volume }} </td>
-										<td>{{ $detail->satuan }} </td>
-										<td>{{ $detail->keperluan }} </td>
-										<td>{{ $detail->keterangan }} </td>
-										<td> 
-											<a href="{{url('Logistik/admin/permintaan/deleteDetail/'.$detail->id.'/'.$detail->permintaan_id.'')}}" class="btn btn-sm btn-block btn-danger" style="width:40px;"><span class="fa fa-trash"></span></a> 
-										</td>                                           
-                                    </tr>					
-                                    @endforeach	
+								<tbody class="data">
+									
 								</tbody>
 							</table>
 							<div class="ln_solid"></div>
-							<div class="form-group" style="margin-left:65em;">
+							<div class="form-group" style="margin-left:60em;">
 								<div class="col-md-12">
-									<a href="{{url('Logistik/admin/permintaan/')}}"><button class="btn btn-primary" type="button">Cancel</button></a>									
+									<button class="btn btn-primary" type="button">Cancel</button>
 									<button type="submit" class="btn btn-success">Submit</button>
 								</div>
 							</div>
@@ -175,7 +169,7 @@
 		$('.material').select2();
 		$(document).on("click", "button.tambah", function(e){
 			e.preventDefault();
-			var material = $('#material').val();    
+			var material = $('#material').val();
 			var nama_material = $('#material').find('option:selected').text();
 			var no_part = $('#no_part').val();
 			var volume = $('#volume').val();

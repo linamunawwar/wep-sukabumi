@@ -61,6 +61,7 @@
 									<th scope="col"> Volume </th>
 									<th scope="col"> Satuan </th>
 									<th scope="col"> Keperluan </th>
+									<th scope="col"> Keterangan </th>
 								</tr>
 							</thead>
 							<tbody>	
@@ -73,6 +74,7 @@
 									<td>{{ $detail->volume }}</td>
 									<td>{{ $detail->satuan }}</td>
 									<td>{{ $detail->keperluan }}</td>
+									<td>{{ $detail->keterangan }}</td>
 									</tr>
 								@endforeach							
 							</tbody>

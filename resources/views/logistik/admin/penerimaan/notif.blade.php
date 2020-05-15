@@ -56,7 +56,7 @@
 									<td>{{ date('d F Y', strtotime($penerimaan->tanggal)) }}</td>
 									<td style="text-align:center;">
 										@if (($penerimaan->status_penyerahan == 1) && (\Auth::user()->id == $penerimaan->user_id))
-											<a class="btn btn-default btn-xs" title="Edit" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/permintaan/konfirmasi/'.$penerimaan->id.'')}}">Konfirmasi Penyerahan </a>
+											<a class="btn btn-default btn-xs" title="Edit" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/pengajuan/konfirmasi/'.$penerimaan->id.'')}}">Konfirmasi Penyerahan </a>
 										@endif
 										
 									</td>
