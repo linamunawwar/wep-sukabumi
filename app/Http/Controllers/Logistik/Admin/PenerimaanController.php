@@ -344,10 +344,12 @@ class PenerimaanController extends Controller
     public function deletePenerimaan()
     {
         $dataDelete = \Input::all();
-        $deletePenerimaan = LogPenerimaanMaterial::where('id', $dataDelete['id_penerimaan'])->update(['soft_delete' => 1]);
+        // $deletePenerimaan = LogPenerimaanMaterial::where('id', $dataDelete['id_penerimaan'])->update(['soft_delete' => 1]);
+        $deletePenerimaan = LogPenerimaanMaterial::where('id', $dataDelete['id_penerimaan'])->delete();
 
         if ($deletePenerimaan) {
-            $deleteAllDetailPenerimaan = LogDetailPenerimaanMaterial::where('penerimaan_id', $dataDelete['id_penerimaan'])->update(['soft_delete' => 1]);
+            $deleteAllDetailPenerimaan = LogDetailPenerimaanMaterial::where('penerimaan_id', $dataDelete['id_penerimaan'])->delete();
+            // $deleteAllDetailPenerimaan = LogDetailPenerimaanMaterial::where('penerimaan_id', $dataDelete['id_penerimaan'])->update(['soft_delete' => 1]);
             return redirect('Logistik/admin/penerimaan');
         }
     }

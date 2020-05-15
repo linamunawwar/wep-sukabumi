@@ -335,7 +335,8 @@ class PermintaanController extends Controller
 
     public function deleteDetailPermintaanMaterial($detail, $permintaan)
     {
-        $deleteDetailPermintaan = LogDetailPermintaanMaterial::where('id', $detail)->update(['soft_delete' => 1]);
+        $deleteDetailPermintaan = LogDetailPermintaanMaterial::where('id', $detail)->delete();
+        // $deleteDetailPermintaan = LogDetailPermintaanMaterial::where('id', $detail)->update(['soft_delete' => 1]);
 
         return redirect('Logistik/manager/permintaan/edit/' . $permintaan . '');
 
@@ -344,10 +345,12 @@ class PermintaanController extends Controller
     public function deletePermintaan()
     {
         $dataDelete = \Input::all();
-        $deletePermintaan = LogPermintaanMaterial::where('id', $dataDelete['id_permintaan'])->update(['soft_delete' => 1]);
+        $deletePermintaan = LogPermintaanMaterial::where('id', $dataDelete['id_permintaan'])->delete();
+        // $deletePermintaan = LogPermintaanMaterial::where('id', $dataDelete['id_permintaan'])->update(['soft_delete' => 1]);
 
         if ($deletePermintaan) {
-            $deleteAllDetailPermintaan = LogDetailPermintaanMaterial::where('permintaan_id', $dataDelete['id_permintaan'])->update(['soft_delete' => 1]);
+            $deleteAllDetailPermintaan = LogDetailPermintaanMaterial::where('permintaan_id', $dataDelete['id_permintaan'])->delete();
+            // $deleteAllDetailPermintaan = LogDetailPermintaanMaterial::where('permintaan_id', $dataDelete['id_permintaan'])->update(['soft_delete' => 1]);
             return redirect('Logistik/manager/permintaan');
         }
     }
