@@ -47,4 +47,12 @@ class HomeController extends Controller
 
         }
     }
+
+    public function setPage($page){
+        session(['page'=>$page]);
+    }
+
+    public function setSessionProses(){
+        session(['proses'=>0]);
+    }
 }

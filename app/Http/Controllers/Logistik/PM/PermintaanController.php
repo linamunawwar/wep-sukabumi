@@ -211,6 +211,9 @@ class PermintaanController extends Controller
                $findPermintaan['nomor'] = $key+1;
            }
         }
+
+        session(['proses'=>1]);
+        
         return view('logistik.pm.permintaan.detail', ['details' => $details,'findPermintaan'=>$findPermintaan, 'notifPermintaan' => $notifPermintaan]);
     }
 
