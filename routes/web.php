@@ -18,6 +18,8 @@ Route::post('/password', 'PegawaiController@postReset');
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/', 'HomeController@index');
 	Route::get('/Logistik', 'Logistik\HomeController@index');
+	Route::get('/Logistik/setPage/{page}', 'Logistik\HomeController@setPage');
+	Route::get('/Logistik/setSessionProses', 'Logistik\HomeController@setSessionProses');
 
 	Route::group(['prefix' => '/admin'], function () {
 		// Route::get('/', ['as' => 'users.countdown', 'uses' => 'HomeController@countdown']);

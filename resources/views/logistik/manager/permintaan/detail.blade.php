@@ -22,7 +22,7 @@
 								<div class="btn btn-dark" title="Download" style="color:#FFFFFF;  padding:0.5em 0.7em 0.5em 0.7em; margin-top:0.3em; width:8em; opacity: 0.5;"> <b>Download</b> <i class="fa fa-download" style="font-size:15px;opacity: 0.5;"></i>  </div>
 								@endif
 							</li>
-							<li><a href="{{url('Logistik/admin/permintaan/')}}"><button class="btn btn-success"> Kembali </button></a></li><br>
+							<li><a href="{{url('Logistik/manager/permintaan/')}}"><button class="btn btn-success"> Kembali </button></a></li><br>
 							<li><button data-toggle="modal" title="Status Approval" data-target="#StatusApproval" id="status-approval" onclick='ApproveStatus("{{$details[0]->permintaan_id}}"' class="btn btn-default" style="margin-left:0em; width:14.3em; background-color:#FF9800; color:#FFF;"> Status Approval </button></li>
 							
 						</ul><br><br>

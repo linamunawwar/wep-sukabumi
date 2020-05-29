@@ -203,6 +203,7 @@ class PenerimaanController extends Controller
 
             $updatePenerimaan = LogPenerimaanMaterial::where('id',$id)->update($toUpdatePenerimaan);
         }
+        session(['proses'=>1]);
         return view('logistik.admin.penerimaan.detail', ['details' => $details]);
     }
 
