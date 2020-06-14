@@ -43,7 +43,7 @@
 						<div class="alert alert-danger alert-notif" style="display: none;">
 						  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
 						  <div class="isi">
-						  	<strong>Perhatian!</strong> Data dengan Kode penerimaan tersebut belum disetujui oleh SPLEM!
+						  	<strong>Perhatian!</strong> Data dengan Kode penerimaan tersebut belum mendapatkan persetujuan!
 						  </div>
 						</div>
 

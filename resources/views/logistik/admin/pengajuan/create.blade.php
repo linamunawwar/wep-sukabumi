@@ -47,7 +47,7 @@
 						<div class="alert alert-danger alert-notif" style="display: none;">
 						  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
 						  <div class="isi">
-						  	<strong>Perhatian!</strong> Data dengan Kode penerimaan tersebut belum disetujui oleh SPLEM!
+						  	<strong>Perhatian!</strong> Data dengan Kode penerimaan tersebut belum mendapatkan persetujuan!
 						  </div>
 						</div>
 
@@ -160,9 +160,10 @@
             },
             success: function(response){
             	var data = JSON.parse(response);
+            	console.log(data);
             	$('.kode_penerimaan_id').val(kode_penerimaan);
             	$('#kode_penerimaan_id').html(kode_penerimaan);
-            	if(data == 0){
+            	if(data === 0){
             		$('.alert-notif').show();
             		$('.not-found').hide();
             	}else{

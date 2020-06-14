@@ -210,8 +210,8 @@
 	$('#datatable').on('draw.dt', function() {
 	    info = table.page.info();
 	    currrent_page = info.page+1;
-	    $.get(url+"/logistik/setPage/"+currrent_page);
+	    $.get(url+"/Logistik/setPage/"+currrent_page);
 	});
-	
+
   </script>
  @endpush
