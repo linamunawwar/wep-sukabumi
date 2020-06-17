@@ -177,10 +177,11 @@
 			var keperluan = $('#keperluan').val();
 			var keterangan = $('#keterangan').val();
 			var jumlah_data = $('#jumlah_data').val();
-	        	jumlah_data++;
-	        $('#jumlah_data').val(jumlah_data);
+	        	
 	        
 			if((material != "Pilih Material / Bahan" || material != "") && satuan != ""){
+				jumlah_data++;
+	        	$('#jumlah_data').val(jumlah_data);
 				var table = "<tr  class='data_"+jumlah_data+"'>";
 					table += "<td>"+jumlah_data+"</td>";
 					table += "<td>"+nama_material+"<input type='hidden' name='material[]' value='"+material+"' id='material_"+jumlah_data+"'></td>";
@@ -193,11 +194,12 @@
 					table+="<a class='btn btn-sm btn-block btn-danger del' idsub='"+jumlah_data+"' style='width:40px;'><span class='fa fa-trash'></span></a>";
 					table+="</td>";
 					table += "</tr>";
+				$('#table_permintaan tbody.data').append(table);
 			}else{
 				alert("Material Tidak Boleh Kosong");
 			}
 				
-			$('#table_permintaan tbody.data').append(table);
+			
 			
 	        $('#material option[value=""]').attr('selected','selected');
 			$('#no_part').val('');
