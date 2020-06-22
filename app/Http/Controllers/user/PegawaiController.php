@@ -78,7 +78,7 @@ class PegawaiController extends Controller
       $bank = BankAsuransi::where('user_id',$pegawai->user_id)->first();
     	$mcus = MCU::where('soft_delete','0')->get();
       $kode = KodeBagian::all();
-      $data_mcus = MCUPegawai::where('user_id',$user_id)->where('soft_delete','0')->get();
+      $data_mcus = MCUPegawai::where('user_id',$pegawai->user_id)->where('soft_delete','0')->get();
     	$pendidikan = Pendidikan::where('user_id',$pegawai->user_id)->get();
         $pendidikans = json_decode(json_encode($pendidikan), true);
 
