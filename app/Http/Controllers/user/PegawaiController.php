@@ -595,7 +595,7 @@ class PegawaiController extends Controller
           }
         }
 
-       $find_mcu = MCUPegawai::where('user_id',$user_id)->delete();
+       $find_mcu = MCUPegawai::where('user_id',$user->id)->delete();
 
         $pernyataan = $data['pernyataan'];
         $data_mcu = $data['mcu'];
