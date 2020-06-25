@@ -23,6 +23,7 @@ use App\Organisasi;
 use App\Publikasi;
 use App\TenagaPengajar;
 use App\Penghargaan;
+use App\Models\User;
 
 class PegawaiController extends Controller
 {
