@@ -157,13 +157,13 @@ $kode = KodeBagian::all();
 												<?php $checked = ($pegawai->status_kawin == 'TK')? 'checked ': ''; ?>
 												<input type="radio" value="TK" name="status_kawin" {{$checked}} required="required" required> Belum Kawin </br>
 												<?php $checked = ($pegawai->status_kawin == 'K0')? 'checked ': ''; ?>
-												<input type="radio" value="K0" name="status_kawin" {{$checked}}> Kawin </br>
+												<input type="radio" value="K0" name="status_kawin" {{$checked}} required="required"> Kawin </br>
 												<?php $checked = ($pegawai->status_kawin == 'K1')? 'checked ': ''; ?>
-												<input type="radio" value="K1" name="status_kawin" {{$checked}}> Kawin Anak 1 </br>
+												<input type="radio" value="K1" name="status_kawin" {{$checked}} required="required"> Kawin Anak 1 </br>
 												<?php $checked = ($pegawai->status_kawin == 'K2')? 'checked ': ''; ?>
-												<input type="radio" value="K2" name="status_kawin" {{$checked}}> Kawin Anak 2 </br>
+												<input type="radio" value="K2" name="status_kawin" {{$checked}} required="required"> Kawin Anak 2 </br>
 												<?php $checked = ($pegawai->status_kawin == 'K3')? 'checked ': ''; ?>
-												<input type="radio" value="K3" name="status_kawin" {{$checked}}> Kawin Anak 3 atau lebih </br>
+												<input type="radio" value="K3" name="status_kawin" {{$checked}} required="required"> Kawin Anak 3 atau lebih </br>
 											</div>
 										</div>
 									</div>
@@ -1513,10 +1513,10 @@ $kode = KodeBagian::all();
 			                        					<input type="hidden" name="pernyataan[]" value="{{$mcu->id}}">
 			                        				</td>
 			                        				<td>
-			                        					<input type="radio" name="mcu[{{$key}}]" value="1"> Ya
+			                        					<input type="radio" name="mcu[{{$key}}]" value="1" required="required"> Ya
 			                        				</td>
 			                        				<td>
-			                        					<input type="radio" name="mcu[{{$key}}]" value="0"> Tidak
+			                        					<input type="radio" name="mcu[{{$key}}]" value="0" required="required"> Tidak
 			                        				</td>
 			                        			</tr>
 			                        			<?php $i++; ?>
