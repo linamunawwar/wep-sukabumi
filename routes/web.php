@@ -80,6 +80,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/cuti', 'admin\CutiController@index');
 		Route::get('/cuti/create', 'admin\CutiController@getCreate');
 		Route::post('/cuti/create', 'admin\CutiController@postCreate');
+		Route::get('/cuti/edit/{id}', 'admin\CutiController@getEdit');
+		Route::post('/cuti/edit/{id}', 'admin\CutiController@postEdit');
 		Route::delete('/cuti/delete', 'admin\CutiController@deletePengajuan');
 		Route::get('/cuti/surat_cuti/{id}', 'admin\CutiController@getSuratCuti');
 		Route::get('/pengajuan_cuti', 'admin\CutiController@getPengajuanCuti');

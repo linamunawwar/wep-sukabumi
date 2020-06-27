@@ -68,6 +68,47 @@ class CutiController extends Controller
       
     }
 
+    public function getEdit($id)
+    {
+      $cuti= Cuti::find($id);
+      $penggantis = Pegawai::where('is_active',1)->where('soft_delete',0)->get();
+
+        return view('admin.cuti_izin.cuti.edit',['cuti'=>$cuti,'penggantis'=>$penggantis]);
+    }
+
+    public function postEdit($id){
+      $data = \Input::all();
+      
+      $user = User::where('pegawai_id',$data['nip'])->first();
+
+   
+      $tanggal_mulai = explode('-',$data['tanggal_mulai']);
+      $data['tanggal_mulai'] = $tanggal_mulai[2].'-'.$tanggal_mulai[1].'-'.$tanggal_mulai[0];
+
+
+      $tanggal_selesai = explode('-',$data['tanggal_selesai']);
+      $data['tanggal_selesai'] = $tanggal_selesai[2].'-'.$tanggal_selesai[1].'-'.$tanggal_selesai[0];
+
+      $tanggal_mulai_terakhir = explode('-',$data['tanggal_mulai_terakhir']);
+      $data['tanggal_mulai_terakhir'] = $tanggal_mulai_terakhir[2].'-'.$tanggal_mulai_terakhir[1].'-'.$tanggal_mulai_terakhir[0];
+      unset($data['_token']);
+      
+      if(isset($data['approve'])){
+        $data['is_verif_admin'] = 1;
+        $data['verif_admin_by'] = \Auth::user()->pegawai_id;
+        $data['verify_admin_time'] = date('Y-m-d H:i:is');
+        unset($data['approve']);
+      }else{
+        unset($data['edit']);
+      }
+
+      $update = Cuti::where('id',$id)->update($data);
+
+
+      return redirect('/admin/cuti');
+      
+    }
+
     public function getSuratCuti($id)
     {
       $cuti = Cuti::find($id);

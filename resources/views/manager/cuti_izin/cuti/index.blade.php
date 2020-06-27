@@ -49,15 +49,21 @@
 												<span class="label label-default">Not Approved</span>
 											@elseif(($cuti->is_verif_pengganti == 1) && ($cuti->is_verif_mngr == 0) && ($cuti->is_verif_sdm == 0) && ($cuti->is_verif_pm == 0))
 												<span class="label label-primary">Approved by Pengganti</span>
+											@elseif(($cuti->is_verif_pengganti == 1) && ($cuti->is_verif_admin == 1) && ($cuti->is_verif_mngr == 0) && ($cuti->is_verif_sdm == 0) && ($cuti->is_verif_pm == 0))
+												<span class="label label-primary">Approved by Pengganti</span>
+												<span class="label label-warning">Approved by Admin</span>
 											@elseif(($cuti->is_verif_pengganti == 1) && ($cuti->is_verif_mngr == 1) && ($cuti->is_verif_sdm == 0) && ($cuti->is_verif_pm == 0))
 												<span class="label label-primary">Approved by Pengganti</span>
+												<span class="label label-warning">Approved by Admin</span>
 												<span class="label label-primary">Approved by Manager</span>
 											@elseif(($cuti->is_verif_sdm == 1) && ($cuti->is_verif_pm == 0))
 												<span class="label label-primary">Approved by Pengganti</span>
+												<span class="label label-warning">Approved by Admin</span>
 												<span class="label label-primary">Approved by Manager</span>	
 												<span class="label label-success">Approved by SDM</span>
 											@elseif($cuti->is_verif_pm == 1)
 												<span class="label label-primary">Approved by Pengganti</span>
+												<span class="label label-warning">Approved by Admin</span>
 												<span class="label label-primary">Approved by Manager</span>	
 												<span class="label label-success">Approved by SDM</span>
 												<span class="label label-success">Approved by PM</span>
@@ -66,7 +72,7 @@
 										<td style="text-align: center;">
 											@if(\Auth::user()->role_id == 4)
 												@if($cuti->pegawai->kode_bagian == 'SA')
-													@if(($cuti->is_verif_pengganti == 1) && ($cuti->is_verif_mngr == 0) && ($cuti->is_verif_sdm == 0) )
+													@if(($cuti->is_verif_pengganti == 1) && ($cuti->is_verif_admin == 1) && ($cuti->is_verif_mngr == 0) && ($cuti->is_verif_sdm == 0) )
 														<a class="btn btn-success btn-xs" href="{{url('manager/cuti/approve_sdm/'.$cuti->id.'')}}"><i class="fa fa-check" ></i>  Approve</a>
 													@else
 														<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>
@@ -79,7 +85,7 @@
 													@endif
 												@endif
 											@else
-												@if(($cuti->is_verif_pengganti == 1) && ($cuti->is_verif_mngr == 0))
+												@if(($cuti->is_verif_pengganti == 1) && ($cuti->is_verif_admin == 1) && ($cuti->is_verif_mngr == 0))
 													<a class="btn btn-success btn-xs" href="{{url('manager/cuti/approve/'.$cuti->id.'')}}"><i class="fa fa-check" ></i>  Approve</a>
 												@else
 													<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>

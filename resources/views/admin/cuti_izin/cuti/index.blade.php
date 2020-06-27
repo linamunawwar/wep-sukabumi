@@ -54,13 +54,21 @@
 												<span class="label label-default">Not Approved</span>
 											@elseif(($cuti->is_verif_pengganti == 1) && ($cuti->is_verif_mngr == 0) && ($cuti->is_verif_sdm == 0) && ($cuti->is_verif_pm == 0))
 												<span class="label label-primary">Approved by Pengganti</span>
-											@elseif(($cuti->is_verif_pengganti == 1) && ($cuti->is_verif_mngr == 1) && ($cuti->is_verif_sdm == 0) && ($cuti->is_verif_pm == 0))
+											@elseif(($cuti->is_verif_pengganti == 1) && ($cuti->is_verif_admin == 1) && ($cuti->is_verif_mngr == 0) && ($cuti->is_verif_sdm == 0) && ($cuti->is_verif_pm == 0))
 												<span class="label label-primary">Approved by Pengganti</span>
+												<span class="label label-warning">Approved by Admin</span>
+											@elseif(($cuti->is_verif_pengganti == 1) && ($cuti->is_verif_admin == 1) && ($cuti->is_verif_mngr == 1) && ($cuti->is_verif_sdm == 0) && ($cuti->is_verif_pm == 0))
+												<span class="label label-primary">Approved by Pengganti</span>
+												<span class="label label-warning">Approved by Admin</span>
 												<span class="label label-primary">Approved by Manager</span>
 											@elseif(($cuti->is_verif_sdm == 1) && ($cuti->is_verif_pm == 0))
+												<span class="label label-primary">Approved by Pengganti</span>
+												<span class="label label-warning">Approved by Admin</span>
 												<span class="label label-primary">Approved by Manager</span>	
 												<span class="label label-success">Approved by SDM</span>
 											@elseif($cuti->is_verif_pm == 1)
+												<span class="label label-primary">Approved by Pengganti</span>
+												<span class="label label-warning">Approved by Admin</span>
 												<span class="label label-primary">Approved by Manager</span>	
 												<span class="label label-success">Approved by SDM</span>
 												<span class="label label-success">Approved by PM</span>
@@ -71,7 +79,11 @@
 												<a href="{{'cuti/surat_cuti/'.$cuti->id.''}}" class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Surat Cuti</a>
 											@else
 												<a class="btn btn-dark btn-xs"><i class="fa fa-download"></i>  Surat Cuti</a>
-												<a class="btn btn-success btn-xs"><i class="fa fa-edit"></i>  Edit</a>
+												@if(($cuti->is_verif_admin == 0) && ($cuti->is_verif_mngr != 1))
+													<a href='{{ url("admin/cuti/edit/$cuti->id")}}' class="btn btn-success btn-xs"><i class="fa fa-check"></i>  Approve</a>
+												@else
+													<a href='{{ url("admin/cuti/edit/$cuti->id")}}' class="btn btn-success btn-xs"><i class="fa fa-edit"></i>  Edit</a>
+												@endif
 											@endif
 											<button data-toggle="modal"  id_cuti='{{$cuti->id}}' data-target="#DeleteModal" class="btn btn-xs btn-danger" id="modal-delete" onclick='deleteData("{{$cuti->id}}")'><i class="fa fa-trash"></i> Delete</button>
 										</td>
