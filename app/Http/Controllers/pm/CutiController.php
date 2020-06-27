@@ -75,6 +75,9 @@ class CutiController extends Controller
       $pecat->is_verif_pengganti = 0;
       $pecat->verif_pengganti_by = 0;
       $pecat->verify_pengganti_time = 0;
+      $pecat->is_verif_admin = 0;
+      $pecat->verif_admin_by = 0;
+      $pecat->verify_admin_time = 0;
       $pecat->is_verif_mngr = 0;
       $pecat->verif_mngr_by = 0;
       $pecat->verify_mngr_time = 0;
