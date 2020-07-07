@@ -1018,7 +1018,23 @@ class PegawaiController extends Controller
                // $query_pegawai = Pegawai::where('nip',$pegawai->nip)->update($dt_pegawai);
               \File::copyDirectory('upload/pegawai/'.$pegawai->nip, 'upload/pegawai/'.$dt_pegawai['nip']);
 
-            }
+            }else{
+            //kalau role staff biasa
+              // $nip = $kode_bagian.$dates[2].$dates[1].$tahun[1];
+              // $dt_user['pegawai_id'] = $nip;
+              // $dt_pegawai['nip'] = $nip;
+
+              // $dt_new = $pegawai->replicate();
+              // $dt_new->nip = $dt_pegawai['nip'];
+              // $dt_new->kode_bagian = $data['kode_bagian'];
+              // $dt_new->posisi_id = $data['posisi_id'];  
+              // $dt_new->user_id = $user->id;
+              // $dt_new->role_id = $data['role'];
+              // $dt_new->save();
+            $dt_pegawai_update['kode_bagian'] = $kode_bagian;
+            $dt_pegawai_update['posisi_id'] = $data['posisi_id'];
+
+          }
           }
           //kalau role ganti jadi PM
           elseif ($kode_bagian == 'PM') {
@@ -1041,20 +1057,6 @@ class PegawaiController extends Controller
               $dt_pegawai_update['tanggal_keluar'] = date('Y-m-d H:i:s');
 
             \File::copyDirectory('upload/pegawai/'.$pegawai->nip, 'upload/pegawai/'.$dt_pegawai['nip']);
-          }else{
-            //kalau role staff biasa
-              $nip = $kode_bagian.$dates[2].$dates[1].$tahun[1];
-              $dt_user['pegawai_id'] = $nip;
-              $dt_pegawai['nip'] = $nip;
-
-              $dt_new = $pegawai->replicate();
-              $dt_new->nip = $dt_pegawai['nip'];
-              $dt_new->kode_bagian = $data['kode_bagian'];
-              $dt_new->posisi_id = $data['posisi_id'];  
-              $dt_new->user_id = $user->id;
-              $dt_new->role_id = $data['role'];
-              $dt_new->save();
-
           }
           
           //update data yg lama
