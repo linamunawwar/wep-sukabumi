@@ -35,21 +35,21 @@
 									<td>{{konversi_tanggal($cuti->tanggal_mulai)}}</td>
 									<td>{{konversi_tanggal($cuti->tanggal_selesai)}}</td>
 									<td>
-										@if($cuti->is_verif_pengganti== 0)
-											<span class="label label-default">Not Approved</span>
-										@elseif(($cuti->is_verif_pengganti == 1) && ($cuti->is_verif_mngr == 0) && ($cuti->is_verif_sdm == 0) && ($cuti->is_verif_pm == 0))
-											<span class="label label-primary">Pending Approval {{$cuti->pegawaiPengganti->nama}}</span>
-										@elseif(($cuti->is_verif_pengganti == 1) && ($cuti->is_verif_mngr == 1) && ($cuti->is_verif_sdm == 0) && ($cuti->is_verif_pm == 0))
-											<span class="label label-primary">Pending Approval {{$cuti->pegawaiPengganti->nama}}</span>
-											<span class="label label-primary">Approved by Manager</span>
-										@elseif(($cuti->is_verif_sdm == 1) && ($cuti->is_verif_pm == 0))
-											<span class="label label-primary">Approved by Manager</span>	
-											<span class="label label-success">Approved by SDM</span>
-										@elseif($cuti->is_verif_pm == 1)
-											<span class="label label-primary">Approved by Manager</span>	
-											<span class="label label-success">Approved by SDM</span>
-											<span class="label label-success">Approved by PM</span>
-										@endif
+										@if($cuti->is_verif_pengganti == 1)
+												<span class="label label-primary">Approved by Pengganti</span>
+											@endif
+											@if($cuti->is_verif_admin == 1)
+												<span class="label label-warning">Approved by Admin</span>
+											@endif
+											@if($cuti->is_verif_mngr == 1)
+												<span class="label label-primary">Approved by Manager</span>
+											@endif
+											@if($cuti->is_verif_sdm == 1)	
+												<span class="label label-success">Approved by SDM</span>
+											@endif
+											@if($cuti->is_verif_pm == 1)
+												<span class="label label-success">Approved by PM</span>
+											@endif
 									</td>
 									<td style="text-align: center;">
 										@if($cuti->is_verif_pm == 1)

@@ -1,5 +1,6 @@
 <?php
 use App\Pegawai;
+use App\Cuti;
 use App\Models\LogPermintaanMaterial;
 use App\Models\LogPenerimaanMaterial;
 use App\Models\LogPengajuanMaterial;
@@ -108,6 +109,13 @@ function notifApprovePengajuanManager()
     }
 
     return $approveNotif;
+}
+
+function pengganti_cuti()
+{
+    $cuti = Cuti::where('pengganti',Auth::user()->pegawai_id)->where('is_verif_pengganti','!=',1)->get();
+          
+    return count($cuti);
 }
 
 function formatTanggalPanjang($tanggal) {

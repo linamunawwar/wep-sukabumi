@@ -142,6 +142,7 @@ Route::group(['middleware' => 'auth'], function () {
 		//surat keluar
 		Route::get('/surat_keluar', 'admin\SuratKeluarController@index');
 		Route::get('/surat_keluar/create', 'admin\SuratKeluarController@getCreate');
+		Route::get('/surat_keluar/get_nomor', 'admin\SuratKeluarController@getNomor');
 		Route::post('/surat_keluar/create', 'admin\SuratKeluarController@postCreate');
 		Route::get('/surat_keluar/edit/{id}', 'admin\SuratKeluarController@getEdit');
 		Route::post('/surat_keluar/edit/{id}', 'admin\SuratKeluarController@postEdit');
