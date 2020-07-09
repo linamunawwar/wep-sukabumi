@@ -54,7 +54,7 @@ class HomeController extends Controller
         //User
         if(Auth::user()->role_id == 2){
             $pegawai = Pegawai::find(Auth::user()->pegawai_id);
-            $cuti = Cuti::where('pengganti',Auth::user()->pegawai_id)->get();
+            $cuti = Cuti::where('pengganti',Auth::user()->pegawai_id)->where('is_verif_pengganti','!=',1)->get();
             session(['pengganti' =>count($cuti)]);
             return view('user.home_user',['pegawai'=>$pegawai,'cuti'=>$cuti]);
         }   
