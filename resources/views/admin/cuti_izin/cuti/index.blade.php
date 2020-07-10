@@ -50,9 +50,9 @@
 										</td>
 										<td>{{$cuti->pengganti}}<br>({{$cuti->pegawaiPengganti->nama}})</td>
 										<td>
-											<!-- @if($cuti->is_verif_pengganti == 0)
+											@if($cuti->is_verif_pengganti == 0)
 												<span class="label label-default">Not Approved</span>
-											@endif -->
+											@endif
 											@if($cuti->is_verif_pengganti == 1)
 												<span class="label label-primary">Approved by Pengganti</span>
 											@endif
