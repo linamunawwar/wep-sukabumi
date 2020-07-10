@@ -35,6 +35,9 @@
 									<td>{{konversi_tanggal($cuti->tanggal_mulai)}}</td>
 									<td>{{konversi_tanggal($cuti->tanggal_selesai)}}</td>
 									<td>
+										@if($cuti->is_verif_pengganti == 0)
+												<span class="label label-default">Not Approved</span>
+											@endif
 										@if($cuti->is_verif_pengganti == 1)
 												<span class="label label-primary">Approved by Pengganti</span>
 											@endif
