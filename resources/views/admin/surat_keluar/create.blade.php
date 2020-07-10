@@ -36,7 +36,7 @@
 								<div class="form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nomor Surat <span class="required">*</span>:</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input type="text" name="no_surat" id="no_surat" class="form-control col-md-7 col-xs-12" readonly>
+										<input type="text" name="no_surat" id="no_surat" class="form-control col-md-7 col-xs-12">
 									</div>
 								</div>
 								<div class="form-group">
@@ -118,9 +118,9 @@
 	                },
 	                success: function(response){
 	                	if(response != 0){
-		                    $('#tanggal_surat').attr('readonly','readonly');
-		                    $('#tanggal_surat').prop('disabled',true);
-		                    $('.input-group-addon').unbind('click');
+		                    // $('#tanggal_surat').attr('readonly','readonly');
+		                    // $('#tanggal_surat').prop('disabled',true);
+		                    // $('.input-group-addon').unbind('click');
 		                    $('#no_surat').val(response);
 		                    $('.next-form').show();
 		                    $('.message-error').hide();
