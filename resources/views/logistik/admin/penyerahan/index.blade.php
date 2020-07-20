@@ -177,5 +177,27 @@
 	table
 	    .order( [ 0, 'desc' ] )
 	    .draw();
+
+	var info, currrent_page;
+	var url = '<?php echo url('/'); ?>';
+	var session = '<?php echo \Session::get("page"); ?>';
+	var proses = '<?php echo \Session::get("proses"); ?>';
+	console.log(session);
+	if(!session){
+		session = 1;
+	}
+	if(proses == 1)
+	{
+		console.log(session);
+		console.log(proses);
+		table.page(session-1).draw( 'page' );
+		$.get(url+"/Logistik/setSessionProses");
+	}
+
+	$('#datatable').on('draw.dt', function() {
+	    info = table.page.info();
+	    currrent_page = info.page+1;
+	    $.get(url+"/Logistik/setPage/"+currrent_page);
+	});
   </script>
  @endpush

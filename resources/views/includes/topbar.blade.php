@@ -106,8 +106,8 @@
                     <li>
                         <a href="{{url('user/cuti/serah_tugas')}}" class="info-number" style="color: white!important;">
                             <i class="fa fa-user"></i>
-                            @if(session('pengganti') != 0)
-                            <span class="badge bg-green">{{session('pengganti')}}</span>
+                            @if(pengganti_cuti() != 0)
+                            <span class="badge bg-green">{{pengganti_cuti()}}</span>
                             @endif
                         </a>
                         <!-- <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">

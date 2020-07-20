@@ -112,6 +112,8 @@ class PengajuanController extends Controller
     public function getDetailByPengajuanId($id)
     {
         $details = LogDetailPengajuanMaterial::where(['pengajuan_id' => $id, 'soft_delete' => 0])->get();
+        session(['proses'=>1]);
+        
         return view('logistik.manager.pengajuan.detail', ['details' => $details]);
     }
 

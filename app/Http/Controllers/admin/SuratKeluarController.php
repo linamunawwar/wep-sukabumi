@@ -21,12 +21,58 @@ class SuratKeluarController extends Controller
         return view('admin.surat_keluar.create');
     }
 
+    public function getNomor()
+    {
+        date_default_timezone_set("Asia/Jakarta");
+
+        $tanggal = konversi_tanggal(\Input::get('tanggal'));
+        $cek_upload = SuratKeluar::where('user_id',\Auth::user()->id)->whereNull('file_surat')->get();
+        //cek file surat ada yg blm diupload gak, klo ada ngga bisa request nomor baru
+        if(count($cek_upload) == 0){
+            $bulan = bulanRomawi(date('m'));
+            if($tanggal == date('Y-m-d')){
+                $surat = SuratKeluar::where('soft_delete',0)->orderBy('tanggal_surat','desc')->orderBy('created_at','desc')->first();
+
+                $no_surat = explode('/',$surat->no_surat);
+                if(strpos($no_surat[0],'.')){
+                    $backdate = explode('.', $no_surat[0]);
+                    $no_surat[0] = $backdate[0];
+                }
+                $nomor_surat = $no_surat[0]+1;
+                return tigadigit($nomor_surat).'/WK/INF2/BCKY-2AU/'.$bulan.'/'.date('Y');
+            }elseif($tanggal < date('Y-m-d')){
+                //surat backdate
+                $surat = SuratKeluar::where('tanggal_surat','<=',$tanggal)->orderBy('tanggal_surat','desc')->orderBy('created_at','desc')->first();
+                if($surat){
+                    $no_surat = explode('/',$surat->no_surat);
+                    $nomor ='';
+                    if(strpos($no_surat[0],'.')){
+                        $backdate = explode('.', $no_surat[0]);
+                        $backdate[1]++;
+                        $nomor = $backdate[0].'.'.$backdate[1];
+                    }else{
+                        $nomor = $no_surat[0].'.1';
+                    }
+
+                    return $nomor.'/WK/INF2/BCKY-2AU/'.$bulan.'/'.date('Y');
+                }else{
+                    return 0;
+                }
+            }else{
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
     public function postCreate(Request $request)
     {
     	$file = $request->file('file_surat');
 
     	$data = \Input::all();
-
+        $nama_file='';
         if(\Input::hasfile('file_surat')){
             // $dt_lama = SuratMasuk::where('no_surat', $find_dispo->no_surat)->first();
             // if(file_exists('upload/surat_masuk/'.$dt_lama->file_surat)){

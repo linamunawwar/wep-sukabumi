@@ -193,7 +193,7 @@
                             </ul>
                         </li>
                     @endif
-                    @if((Auth::user()->role_id == 1) || (Auth::user()->pegawai_id == 'SE150795'))
+                    @if((Auth::user()->role_id == 1) || (Auth::user()->pegawai_id == 'SE150795') || (Auth::user()->pegawai_id == 'HS051096') || (Auth::user()->pegawai_id == 'SC110293') || (Auth::user()->pegawai_id == 'SO151294') || (Auth::user()->pegawai_id == 'SA180894') || (Auth::user()->pegawai_id == 'SC200891') || (Auth::user()->pegawai_id == 'HS190994'))
                      <li>
                         <a href="{{url('admin/surat_keluar')}}">
                             <i class="fa fa-envelope-o"></i>

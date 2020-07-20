@@ -84,7 +84,7 @@ class PengajuanController extends Controller
     public function cekData()
     {        
         $kode_penerimaan = \Input::get('kode_penerimaan');
-        $penerimaan = LogPenerimaanMaterial::where(['kode_penerimaan' => $kode_penerimaan, 'soft_delete' => 0,'is_splem'=>1])->first();
+        $penerimaan = LogPenerimaanMaterial::where(['kode_penerimaan' => $kode_penerimaan, 'soft_delete' => 0])->first();
         $penerimaans = LogPenerimaanMaterial::where(['kode_penerimaan' => $kode_penerimaan, 'soft_delete' => 0,'is_splem'=>1])->get();
         
         if ($penerimaan  && $penerimaan->is_splem == 1) {
@@ -192,6 +192,7 @@ class PengajuanController extends Controller
     public function getDetailByPengajuanId($id)
     {
         $details = LogDetailPengajuanMaterial::where(['pengajuan_id' => $id, 'soft_delete' => 0])->get();
+        session(['proses'=>1]);
         return view('logistik.admin.pengajuan.detail', ['details' => $details]);
     }
 

@@ -18,6 +18,8 @@ Route::post('/password', 'PegawaiController@postReset');
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/', 'HomeController@index');
 	Route::get('/Logistik', 'Logistik\HomeController@index');
+	Route::get('/Logistik/setPage/{page}', 'Logistik\HomeController@setPage');
+	Route::get('/Logistik/setSessionProses', 'Logistik\HomeController@setSessionProses');
 
 	Route::group(['prefix' => '/admin'], function () {
 		// Route::get('/', ['as' => 'users.countdown', 'uses' => 'HomeController@countdown']);
@@ -78,6 +80,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/cuti', 'admin\CutiController@index');
 		Route::get('/cuti/create', 'admin\CutiController@getCreate');
 		Route::post('/cuti/create', 'admin\CutiController@postCreate');
+		Route::get('/cuti/edit/{id}', 'admin\CutiController@getEdit');
+		Route::post('/cuti/edit/{id}', 'admin\CutiController@postEdit');
 		Route::delete('/cuti/delete', 'admin\CutiController@deletePengajuan');
 		Route::get('/cuti/surat_cuti/{id}', 'admin\CutiController@getSuratCuti');
 		Route::get('/pengajuan_cuti', 'admin\CutiController@getPengajuanCuti');
@@ -138,6 +142,7 @@ Route::group(['middleware' => 'auth'], function () {
 		//surat keluar
 		Route::get('/surat_keluar', 'admin\SuratKeluarController@index');
 		Route::get('/surat_keluar/create', 'admin\SuratKeluarController@getCreate');
+		Route::get('/surat_keluar/get_nomor', 'admin\SuratKeluarController@getNomor');
 		Route::post('/surat_keluar/create', 'admin\SuratKeluarController@postCreate');
 		Route::get('/surat_keluar/edit/{id}', 'admin\SuratKeluarController@getEdit');
 		Route::post('/surat_keluar/edit/{id}', 'admin\SuratKeluarController@postEdit');

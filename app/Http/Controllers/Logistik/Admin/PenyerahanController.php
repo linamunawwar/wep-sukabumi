@@ -49,7 +49,8 @@ class PenyerahanController extends Controller
         
             $details = LogDetailPengajuanMaterial::where(['pengajuan_id' => $penyerahan->id, 'soft_delete' => 0])
                                 ->get();
-
+        session(['proses'=>1]);
+        
         return view('logistik.admin.penyerahan.detail', ['details' => $details, 'penyerahan' => $penyerahan]);
     }
 

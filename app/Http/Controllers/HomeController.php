@@ -42,7 +42,7 @@ class HomeController extends Controller
         if(Auth::user()->role_id == 1){
             $pegawai = Pegawai::where('is_verif_admin',0)->where('soft_delete',0)->count();
             $memo = MemoPegawai::where('user_id',Auth::user()->id)->where('viewed_at',0)->where('soft_delete',0)->count();
-            $cuti = Cuti::where('is_verif_sdm',0)->where('soft_delete',0)->count();
+            $cuti = Cuti::where('is_verif_pengganti',1)->where('is_verif_admin',0)->where('soft_delete',0)->count();
             $spj = Spj::where('is_verif_sdm',0)->where('soft_delete',0)->count();
             $pecat = Pecat::where('is_verif_sdm',0)->where('soft_delete',0)->count();
             $resign = Resign::where('is_verif_sdm',0)->where('soft_delete',0)->count();
@@ -54,7 +54,7 @@ class HomeController extends Controller
         //User
         if(Auth::user()->role_id == 2){
             $pegawai = Pegawai::find(Auth::user()->pegawai_id);
-            $cuti = Cuti::where('pengganti',Auth::user()->pegawai_id)->get();
+            $cuti = Cuti::where('pengganti',Auth::user()->pegawai_id)->where('is_verif_pengganti','!=',1)->get();
             session(['pengganti' =>count($cuti)]);
             return view('user.home_user',['pegawai'=>$pegawai,'cuti'=>$cuti]);
         }   
@@ -66,12 +66,12 @@ class HomeController extends Controller
                         ->where('posisi_id',\Auth::user()->pegawai->posisi_id)->count();
 
             if(\Auth::user()->pegawai->kode_bagian == 'QHSE'){
-              $cutis_qc = Cuti::where('is_verif_mngr',0)->where('soft_delete',0)
+              $cutis_qc = Cuti::where('is_verif_admin',1)->where('is_verif_mngr',0)->where('soft_delete',0)
                                 ->whereHas('pegawai',function ($q){
                           $q->where('kode_bagian', 'QC');
                       })->count();
 
-              $cutis_hs = Cuti::where('is_verif_mngr',0)->where('soft_delete',0)
+              $cutis_hs = Cuti::where('is_verif_admin',1)->where('is_verif_mngr',0)->where('soft_delete',0)
                         ->whereHas('pegawai',function ($q){
                         $q->where('kode_bagian', 'HS');
                     })->count();
@@ -120,7 +120,7 @@ class HomeController extends Controller
               $resign = $resign_qc + $resign_hs;
 
             }else{
-                $cuti = Cuti::where('is_verif_mngr',0)->where('soft_delete',0)
+                $cuti = Cuti::where('is_verif_admin',1)->where('is_verif_mngr',0)->where('soft_delete',0)
                         ->whereHas('pegawai',function ($q){
                             $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
                         })->count();
@@ -148,6 +148,7 @@ class HomeController extends Controller
             //             $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
             //         })->count();
             $cuti = Cuti::where('is_verif_pengganti',1)
+                    ->where('is_verif_admin',1)
                     ->where('is_verif_mngr',1)
                     ->where('is_verif_sdm',0)
                     ->where('soft_delete',0)
@@ -204,7 +205,12 @@ class HomeController extends Controller
         if(Auth::user()->role_id == 5){
             $pegawai = Pegawai::where('is_verif_admin',0)->where('soft_delete',0)->count();
             $memo = MemoPegawai::where('user_id',Auth::user()->id)->where('viewed_at',0)->where('soft_delete',0)->count();
-            $cuti = Cuti::where('is_verif_pm',0)->where('soft_delete',0)->count();
+            $cuti = Cuti::where('is_verif_pm',0)
+                    ->where('is_verif_pengganti',1)
+                    ->where('is_verif_admin',1)
+                    ->where('is_verif_mngr',1)
+                    ->where('is_verif_sdm',1)
+                    ->where('soft_delete',0)->count();
             $pecat = Pecat::where('is_verif_pm',0)->where('soft_delete',0)->count();
             $resign = Resign::where('is_verif_pm',0)->where('soft_delete',0)->count();
             $disposisi = Disposisi::where('note_pm',null)->where('soft_delete',0)->count();

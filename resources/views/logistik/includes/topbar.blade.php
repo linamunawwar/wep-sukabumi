@@ -158,7 +158,23 @@
                     </a>
                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                         @foreach(notif_permintaan_diproses() as $key=>$permintaan)
-                            @if($permintaan->is_scarm == 1)
+                            @if(($permintaan->is_som == 0) || ($permintaan->is_slem == 0) || ($permintaan->is_scarm == 0))
+                                <li style="background-color: hsla(14, 100%, 53%, 0.6); color: white;">
+                                    <a href='{{url("Logistik/admin/permintaan/edit/$permintaan->id")}}'>
+                                        <span>
+                                          <span>{{$permintaan->kode_permintaan}}</span>
+                                          <?php
+                                            $tgl = explode(' ',$permintaan->updated_at);
+                                            $tgl[0] = konversi_tanggal($tgl[0]);
+                                          ?>
+                                          <span class="time">{{$tgl[0]}}  {{$tgl[1]}}</span>
+                                            <span class="message">
+                                              Kode Permintaan {{$permintaan->kode_permintaan}} telah ditolak
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>                                  
+                            @else
                                 <li>
                                     @if(\Auth::user()->role_id == 6)
                                         <a href='{{url("Logistik/admin/permintaan/notif/detail/$permintaan->id")}}'>
@@ -183,23 +199,6 @@
                                         </span>
                                     </a>
                                 </li>
-                            @elseif($permintaan->is_scarm == 0)
-                                <li style="background-color: hsla(14, 100%, 53%, 0.6); color: white;">
-                                    <a href='{{url("Logistik/admin/permintaan/edit/$permintaan->id")}}'>
-                                        <span>
-                                          <span>{{$permintaan->kode_permintaan}}</span>
-                                          <?php
-                                            $tgl = explode(' ',$permintaan->updated_at);
-                                            $tgl[0] = konversi_tanggal($tgl[0]);
-                                          ?>
-                                          <span class="time">{{$tgl[0]}}  {{$tgl[1]}}</span>
-                                            <span class="message">
-                                              Kode Permintaan {{$permintaan->kode_permintaan}} telah ditolak
-                                            </span>
-                                        </span>
-                                    </a>
-                                </li>                                  
-
                             @endif
                             @if($key == 4)
                                <?php break;?>

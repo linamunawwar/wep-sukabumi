@@ -9,6 +9,25 @@ $kode = KodeBagian::all();
 @push('stylesheets')
     <!-- Example -->
     <!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
+    <style type="text/css">
+	    .error{
+			display: none;
+			margin-left: 10px;
+		}		
+
+		.error_show{
+			color: red;
+			margin-left: 10px;
+		}
+
+		input.invalid, textarea.invalid{
+			border: 2px solid red;
+		}
+
+		input.valid, textarea.valid{
+			border: 2px solid green;
+		}
+	</style>
 @endpush
 
 @section('main_container')
@@ -36,11 +55,11 @@ $kode = KodeBagian::all();
 						<div class="alert alert-success">
 							Dimohon untuk tidak me-refresh atau memuat ulang halaman ini selama pengisian data, dikarenakan data yang sudah ditulis akan hilang.
 						</div>
-						<form class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data">
+						<form class="form-horizontal form-label-left" id="form_cv" method="POST" enctype="multipart/form-data">
 	                    <div id="wizard" class="form_wizard wizard_horizontal">
 	                      <ul class="wizard_steps">
 	                        <li>
-	                          <a href="#step-1">
+	                          <a class="wizard_1" href="#step-1">
 	                            <span class="step_no">1</span>
 	                            <span class="step_descr">
 	                                              Langkah 1<br />
@@ -49,7 +68,7 @@ $kode = KodeBagian::all();
 	                          </a>
 	                        </li>
 	                        <li>
-	                          <a href="#step-2">
+	                          <a class="wizard_2" href="#step-2">
 	                            <span class="step_no">2</span>
 	                            <span class="step_descr">
 	                                              Langkah 2<br />
@@ -58,7 +77,7 @@ $kode = KodeBagian::all();
 	                          </a>
 	                        </li>
 	                        <li>
-	                          <a href="#step-3">
+	                          <a class="wizard_3" href="#step-3">
 	                            <span class="step_no">3</span>
 	                            <span class="step_descr">
 	                                              Langkah 3<br />
@@ -155,15 +174,16 @@ $kode = KodeBagian::all();
 											<label class="control-label col-md-4 col-sm-4 col-xs-12" for="status_kawin">Status Perkawinan <span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
 												<?php $checked = ($pegawai->status_kawin == 'TK')? 'checked ': ''; ?>
-												<input type="radio" value="TK" name="status_kawin" {{$checked}} required="required"> Belum Kawin </br>
+												<input type="radio" value="TK" class="status_kawin" name="status_kawin" {{$checked}} required="required" required> Belum Kawin </br>
 												<?php $checked = ($pegawai->status_kawin == 'K0')? 'checked ': ''; ?>
-												<input type="radio" value="K0" name="status_kawin" {{$checked}}> Kawin </br>
+												<input type="radio" value="K0" class="status_kawin" name="status_kawin" {{$checked}} required> Kawin </br>
 												<?php $checked = ($pegawai->status_kawin == 'K1')? 'checked ': ''; ?>
-												<input type="radio" value="K1" name="status_kawin" {{$checked}}> Kawin Anak 1 </br>
+												<input type="radio" value="K1" class="status_kawin" name="status_kawin" {{$checked}} required> Kawin Anak 1 </br>
 												<?php $checked = ($pegawai->status_kawin == 'K2')? 'checked ': ''; ?>
-												<input type="radio" value="K2" name="status_kawin" {{$checked}}> Kawin Anak 2 </br>
+												<input type="radio" value="K2" class="status_kawin" name="status_kawin" {{$checked}} required> Kawin Anak 2 </br>
 												<?php $checked = ($pegawai->status_kawin == 'K3')? 'checked ': ''; ?>
-												<input type="radio" value="K3" name="status_kawin" {{$checked}}> Kawin Anak 3 atau lebih </br>
+												<input type="radio" value="K3" class="status_kawin" name="status_kawin" {{$checked}} required> Kawin Anak 3 atau lebih </br>
+												<span class="error_status_kawin error">Status Perkawinan harus diisi</span>
 											</div>
 										</div>
 									</div>
@@ -194,7 +214,7 @@ $kode = KodeBagian::all();
 										<div class="form-group">
 											<label for="alamat_tetap" class="control-label col-md-4 col-sm-4 col-xs-12">Alamat Rumah Tetap</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<textarea id="alamat_tetap" class="form-control col-md-7 col-xs-12 alamat_tetap" type="text" name="alamat_tetap"> {{$pegawai->alamat_tetap}}</textarea>
+												<textarea id="alamat_tetap" class="form-control col-md-7 col-xs-12 alamat_tetap" type="text" name="alamat_tetap" required> {{$pegawai->alamat_tetap}}</textarea>
 											</div>
 										</div>
 									</div>
@@ -1477,6 +1497,7 @@ $kode = KodeBagian::all();
 		                      <div id="step-2">
 		                        <h2 class="StepTitle">KUESIONER  PEMERIKSAAN  KESEHATAN (MCU) SEBELUM  BEKERJA</h2>
 		                        <div class="ln_solid"></div>
+		                        <span class="error_mcu error">Harap isi kuesioner dengan lengkap</span>
 		                        <table class="table table-striped">
 		                        	<thead>
 		                        		<th>No.</th>
@@ -1513,10 +1534,10 @@ $kode = KodeBagian::all();
 			                        					<input type="hidden" name="pernyataan[]" value="{{$mcu->id}}">
 			                        				</td>
 			                        				<td>
-			                        					<input type="radio" name="mcu[{{$key}}]" value="1"> Ya
+			                        					<input type="radio" name="mcu[{{$key}}]" value="1" required="required"> Ya
 			                        				</td>
 			                        				<td>
-			                        					<input type="radio" name="mcu[{{$key}}]" value="0"> Tidak
+			                        					<input type="radio" name="mcu[{{$key}}]" value="0" required="required"> Tidak
 			                        				</td>
 			                        			</tr>
 			                        			<?php $i++; ?>
@@ -1818,7 +1839,6 @@ $kode = KodeBagian::all();
 @endsection
 @push('scripts')
 <script type="text/javascript">
-	console.log('af');
 	// $('.daterangepicker').daterangepicker({
 	//     singleDatePicker: true,
 	//     showDropdowns: true,
@@ -1854,6 +1874,55 @@ $kode = KodeBagian::all();
             	$('#suami_istri'). removeAttr('readonly');
             }
          });
+
+
+      $("#form_cv").submit(function(e){
+			// var form_data=$("#form_cv").serializeArray();
+			var form_data = $('#form_cv').serializeArray().reduce(function(obj, item) {
+						    obj[item.name] = item.value;
+						    return obj;
+						}, {});
+			var error_free=true;
+			var element=$(".status_kawin");
+			var valid=element.val();
+			console.log(form_data);
+			console.log("status_kawin" in form_data);
+			console.log("gender" in form_data	);
+			if(!("status_kawin" in form_data)){
+				var error_element=$(".error_status_kawin");
+				error_element.removeClass("error").addClass("error_show");
+				$('#wizard').smartWizard("goToStep",1);
+				$('#step-3').hide();
+				$('#step-2').hide();
+				$('#step-1').css('display','block');
+				$('#wizard .wizard_steps .wizard_1').removeClass("done").addClass('selected').attr('isdone',0);
+				$('#wizard .wizard_steps .wizard_2').removeClass("done").addClass('disabled').attr('isdone',0);
+				$('#wizard .wizard_steps .wizard_3').removeClass("done").addClass('disabled').attr('isdone',0);
+				console.log('error_kawin');
+				e.preventDefault();
+				return false;
+			}
+			//check mcu
+			var mcu_valid = 1;
+			for (var i = 0; i < 16; i++) {
+			    if (document.querySelector('input[name="mcu[' + i + ']"]:checked') === null) {
+			      mcu_valid = 0;
+
+			    }
+
+  			}
+			
+			console.log(mcu_valid);
+			if(mcu_valid == 0)
+			{	
+				var error_element=$(".error_mcu");
+				error_element.removeClass("error").addClass("error_show");
+				$('#wizard').smartWizard("goToStep",2);
+				console.log('error_mcu');
+				e.preventDefault();
+			}
+			
+		});
   	});
 
 </script>
