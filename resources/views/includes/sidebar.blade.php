@@ -30,7 +30,7 @@
                         </a>
                     </li>
                     @endif
-                    <li><a><i class="fa fa-lock"></i>Menu & Permissions <span class="fa fa-chevron-down"></span></a>
+                    <li style="display: none;"><a><i class="fa fa-lock"></i>Menu & Permissions <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{url('admin/gaji')}}"><i class="fa fa-unlock-alt"></i>Master Menu</a></li>
                             <li><a href="{{url('admin/gaji/slip_gaji')}}"><i class="fa fa-unlock"></i>Permissions Pegawai</a></li>
