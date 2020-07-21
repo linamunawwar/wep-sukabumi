@@ -31,7 +31,7 @@
 					</a>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
-					<a href="{{url('manager/slip_gaji')}}">
+					<a href="{{url('manager/gaji/slip_gaji')}}">
 						<span class="count_top"><i class="fa fa-money"></i> Slip Gaji</span>
 						<div class="count green">{{$slip_gaji}}</div>
 						<span class="count_bottom"><i class="green">Need To be Approved</i></span>

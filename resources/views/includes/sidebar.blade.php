@@ -30,6 +30,12 @@
                         </a>
                     </li>
                     @endif
+                    <li style="display: none;"><a><i class="fa fa-lock"></i>Menu & Permissions <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{url('admin/gaji')}}"><i class="fa fa-unlock-alt"></i>Master Menu</a></li>
+                            <li><a href="{{url('admin/gaji/slip_gaji')}}"><i class="fa fa-unlock"></i>Permissions Pegawai</a></li>
+                        </ul>
+                    </li>
                     <li><a><i class="fa fa-users"></i> Pegawai <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             @if(Auth::user()->role_id == 1) 
