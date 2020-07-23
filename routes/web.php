@@ -23,6 +23,20 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::group(['prefix' => '/admin'], function () {
 		// Route::get('/', ['as' => 'users.countdown', 'uses' => 'HomeController@countdown']);
+		Route::get('/menu', 'admin\MenuController@index');
+		Route::get('/menu/create', 'admin\MenuController@create');
+		Route::post('/menu/create', 'admin\MenuController@store');
+		Route::get('/menu/update/{id}', 'admin\MenuController@edit');
+		Route::post('/menu/update/{id}', 'admin\MenuController@update');
+		Route::post('/menu/delete/{id}', 'admin\MenuController@delete');
+
+		Route::get('/permission', 'admin\PermissionController@index');
+		Route::get('/permission/create', 'admin\PermissionController@create');
+		Route::post('/permission/create', 'admin\PermissionController@store');
+		Route::get('/permission/update/{id}', 'admin\PermissionController@edit');
+		Route::post('/permission/update/{id}', 'admin\PermissionController@update');
+		Route::post('/permission/delete/{id}', 'admin\PermissionController@delete');
+
 		Route::get('/pegawai', 'admin\PegawaiController@index');
 		Route::get('/pegawai/create','admin\PegawaiController@getCreate');
 		Route::post('/pegawai/create','admin\PegawaiController@postCreate');
