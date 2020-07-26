@@ -12,4 +12,9 @@ class Menu extends Model
     protected $fillable = [
         'urutan','nama','alias','directori','icon','default_role'
     ];
+
+    public function role()
+    {
+        return $this->belongsTo('App\Roles','default_role','id');
+    }
 }

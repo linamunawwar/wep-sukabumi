@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Menu;
+use App\Roles;
+use App\Icon;
 
 class MenuController extends Controller
 {
@@ -20,8 +22,9 @@ class MenuController extends Controller
     {
         $menu = Menu::where('id_parent', 0)
                     ->get();
+        $roles = Roles::all();
         
-        return view('admin.admin_permission.menu.create', compact('menu'));
+        return view('admin.admin_permission.menu.create', compact('menu','roles'));
     }
 
     public function store()
@@ -59,8 +62,9 @@ class MenuController extends Controller
         $select = Menu::where('id_parent', 0)
                     ->get();
         $menu = Menu::find($id);
+        $roles = Roles::all();
         
-        return view('admin.admin_permission.menu.edit', compact('menu', 'select'));
+        return view('admin.admin_permission.menu.edit', compact('menu', 'select','roles'));
     }
 
     public function update($id)

@@ -131,4 +131,37 @@
 		</div>
 	</div>
 @endsection
+@push('scripts')
+  <script type="text/javascript">
+  	$(document).ready(function (){
+	   var table = $('#datatable').DataTable();
+
+	   // Handle form submission event
+	   $('#ApproveForm').on('submit', function(e){
+	      // Prevent actual form submission
+	      e.preventDefault();
+
+	      // Serialize form data
+	      var data = table.$('input,textarea').serializeArray();
+	      var id_penyerahan = $('#id_penyerahan').val();
+	      data.push({name: 'id_penyerahan', value: id_penyerahan});
+	      // Include extra data if necessary
+	      // data.push({'name': 'extra_param', 'value': 'extra_value'});
+
+	      // Submit form data via Ajax
+	      console.log('aaa');
+	      console.log(data);
+	      $.ajax({
+	      	 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+	      	 type:'POST',
+	         url: "{{ url('Logistik/admin/penyerahan/approve') }}",
+	         data: data,
+	         success: function (data) { location.href="{{ url('Logistik/admin/penyerahan') }}" },
+        	error: function (jqXHR, textStatus, errorThrown) { errorFunction(); }
+	      });
+	   });
+	});
+  </script>
+  @endpush
+
 

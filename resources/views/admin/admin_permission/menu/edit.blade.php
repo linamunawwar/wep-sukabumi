@@ -26,7 +26,7 @@
 										<option value=""> --- Parent --- </option>
 										@foreach ($select as $row)
 										<?php
-											$selected = ($menu->id_parent == $row->id_parent)? 'selected' : '';
+											$selected = ($menu->id_parent == $row->id)? 'selected' : '';
 										?>
 											<option value="{{ $row->id }}" {{$selected}}> {{ $row->nama }} </option>
 										@endforeach
@@ -60,7 +60,15 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label for="default_role">Default Role</label>
-									<input type="text" class="form-control" name="default_role" id="default_role" value="{{ $menu->default_role }}" placeholder="Default Role">
+									<select id="default_role" name="default_role" class="form-control col-md-7 col-xs-12 bagian">
+										<option value=""> --- Role --- </option>
+										@foreach ($roles as $role)
+										<?php
+											$selected = ($menu->default_role == $role->id)? 'selected' : '';
+										?>
+											<option value="{{ $role->id }}" {{$selected}}> {{ $role->name }} </option>
+										@endforeach
+									</select>
 								</div>
 							</div>	
 							<div class="form-row form-group">
