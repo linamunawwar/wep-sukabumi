@@ -95,6 +95,7 @@
         <!-- Custom Theme Scripts -->
         <!-- <script src="{{ asset("public/js/gentelella.min.js") }}"></script> -->
         <script src="{{ asset("public/js/custom.min.js") }}"></script>
+        <script src="{{ asset("public/js/bootbox.min.js") }}"></script>
         <script type="text/javascript">
             var laravel_base = <?php echo "'".url('/')."'"; ?>;
         </script>
