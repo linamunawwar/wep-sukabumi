@@ -30,11 +30,19 @@
 							<input type="hidden" name="tanggal" value="{{ date('d F Y') }}">
 							<hr>
 							<div class="row"> 
-								<div class="col-md-12">
+								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-3 col-sm-3 col-xs-12">Lampiran :</label>
+										<label class="control-label col-md-6 col-sm-6 col-xs-12">Lampiran :</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<input type="file" name="file" class="form-control col-md-7 col-xs-12">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="tgl_pakai" <span class="required">Tanggal Pemakaian Material :</label>
+										<div class="col-md-6 col-sm-6 col-xs-12">
+											<input type="date" id="tgl_pakai" name="tgl_pakai" class="tgl_pakai form-control col-md-7 col-xs-12">
 										</div>
 									</div>
 								</div>
@@ -56,8 +64,8 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-6 col-sm-6 col-xs-12" for="nama">No Part <span class="required">*</span>:</label>
-										<div class="col-md-4 col-sm-4 col-xs-12">
+										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">No Part <span class="required">*</span>:</label>
+										<div class="col-md-6 col-sm-6 col-xs-12">
 											<input type="text" id="no_part" name="no_part" class="no_part form-control col-md-7 col-xs-12">
 										</div>
 									</div>
@@ -75,8 +83,8 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-6 col-sm-6 col-xs-12" for="nama">Satuan <span class="required">*</span>:</label>
-										<div class="col-md-4 col-sm-4 col-xs-122">
+										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Satuan <span class="required">*</span>:</label>
+										<div class="col-md-6 col-sm-6 col-xs-122">
 											<input type="text" id="satuan" name="satuan" class="satuan form-control col-md-7 col-xs-12">
 										</div>
 									</div>
@@ -111,7 +119,6 @@
 									<button type="button" class="btn btn-success pull-right tambah"><i><span class="fa fa-plus"></span></i>  Tambah</button>
 								</div>
 							</div>
-
 							<input type="hidden" name="jumlah_data" class="jumlah_data" id="jumlah_data" value="0">
 							<table class="table table-bordered permintaan" id="table_permintaan">
 								<tr>
@@ -120,6 +127,7 @@
 									<th>No.Partype</th>
 									<th>Volume</th>
 									<th>Satuan</th>
+									<th>Tanggal Pakai</th>
 									<th>Untuk Keperluan</th>
 									<th>Keterangan</th>
 									<th>Action</th>
@@ -174,37 +182,40 @@
 			var no_part = $('#no_part').val();
 			var volume = $('#volume').val();
 			var satuan = $('#satuan').val();
+			var tgl_pakai = $('#tgl_pakai').val();
 			var keperluan = $('#keperluan').val();
 			var keterangan = $('#keterangan').val();
 			var jumlah_data = $('#jumlah_data').val();
 	        	jumlah_data++;
 	        $('#jumlah_data').val(jumlah_data);			
 
-			if((material != "Pilih Material / Bahan" || material != "") && satuan != ""){
+			if((material != "Pilih Material / Bahan" || material != "") && satuan != "" && tgl_pakai != ""){
 				var table = "<tr  class='data_"+jumlah_data+"'>";
 					table += "<td>"+jumlah_data+"</td>";
 					table += "<td>"+nama_material+"<input type='hidden' name='material[]' value='"+material+"' id='material_"+jumlah_data+"'></td>";
 					table += "<td>"+no_part+"<input type='hidden' name='no_part[]' value='"+no_part+"' id='no_part_"+jumlah_data+"'></td>";
 					table += "<td>"+volume+"<input type='hidden' name='volume[]' value='"+volume+"' id='volume_"+jumlah_data+"'></td>";
 					table += "<td>"+satuan+"<input type='hidden' name='satuan[]' value='"+satuan+"' id='satuan_"+jumlah_data+"'></td>";
+					table += "<td>"+tgl_pakai+"<input type='hidden' name='tgl_pakai[]' value='"+tgl_pakai+"' id='tgl_pakai_"+jumlah_data+"'></td>";
 					table += "<td>"+keperluan+"<input type='hidden' name='keperluan[]' value='"+keperluan+"' id='keperluan_"+jumlah_data+"'></td>";
 					table += "<td>"+keterangan+"<input type='hidden' name='keterangan[]' value='"+keterangan+"' id='keterangan_"+jumlah_data+"'></td>";
 					table+="<td>";
 					table+="<a class='btn btn-sm btn-block btn-danger del' idsub='"+jumlah_data+"' style='width:40px;'><span class='fa fa-trash'></span></a>";
 					table+="</td>";
 					table += "</tr>";
+
+				$('#material option[value=""]').attr('selected','selected');
+				$('#no_part').val('');
+				$('#volume').val('');
+				$('#satuan').val('');
+				$('#tgl_pakai').val('');
+				$('#keperluan').val('');
+				$('#keterangan').val('');
 			}else{
-				alert("Material Tidak Boleh Kosong");
+				alert("Material, Tanggal Pemakaian Tidak Boleh Kosong");
 			}
 				
 			$('#table_permintaan tbody.data').append(table);
-			
-	        $('#material option[value=""]').attr('selected','selected');
-			$('#no_part').val('');
-			$('#volume').val('');
-			$('#satuan').val('');
-			$('#keperluan').val('');
-			$('#keterangan').val('');
 		});
 
 		$(document).on("click", "a.del", function(e){
