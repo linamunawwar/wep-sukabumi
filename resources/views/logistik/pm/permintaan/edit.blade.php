@@ -21,8 +21,7 @@
 							<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 							<span style="float:right;"> Tanggal : {{ date('d F Y', strtotime($permintaan->tanggal)) }} </span>
 							<input type="hidden" name="tanggal" value="{{ date('d F Y', strtotime($permintaan->tanggal)) }}">
-							<br>
-							<br>
+							<br><br>
 							<div class="row"> 
 								<div class="col-md-6">
 									<div class="form-group">

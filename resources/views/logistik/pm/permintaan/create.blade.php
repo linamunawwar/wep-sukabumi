@@ -186,14 +186,11 @@
 			var tgl_pakai = $('#tgl_pakai').val();
 			var keperluan = $('#keperluan').val();
 			var keterangan = $('#keterangan').val();
-			var jumlah_data = $('#jumlah_data').val();
-				jumlah_data++;
-
-			console.log(tgl_pakai);
-
-	        $('#jumlah_data').val(jumlah_data);
+			var jumlah_data = $('#jumlah_data').val();	
 			
 			if((material != "Pilih Material / Bahan" || material != "") && satuan != "" && tgl_pakai != ""){
+				jumlah_data++;
+	        	$('#jumlah_data').val(jumlah_data);
 				var table = "<tr  class='data_"+jumlah_data+"'>";
 					table += "<td>"+jumlah_data+"</td>";
 					table += "<td>"+nama_material+"<input type='hidden' name='material[]' value='"+material+"' id='material_"+jumlah_data+"'></td>";
