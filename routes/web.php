@@ -464,7 +464,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pengajuan/create', 'Logistik\Admin\PengajuanController@beforePostPengajuan');
 		Route::get('/pengajuan/create/{kode}', 'Logistik\Admin\PengajuanController@beforePostPengajuanByCode');
 		Route::post('/pengajuan/cekData', 'Logistik\Admin\PengajuanController@cekData');
-		// Route::post('/pengajuan/pengajuanValidasi', 'Logistik\Admin\PengajuanController@pengajuanValidasi');
+		Route::post('/pengajuan/pengajuanValidasi', 'Logistik\Admin\PengajuanController@pengajuanValidasi');
 		Route::post('/pengajuan/create', 'Logistik\Admin\PengajuanController@postPengajuan');
 		Route::post('/pengajuan/create/{kode}', 'Logistik\Admin\PengajuanController@postPengajuan');
 		Route::get('/pengajuan/detail/{id}', 'Logistik\Admin\PengajuanController@getDetailByPengajuanId');

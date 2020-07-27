@@ -121,13 +121,23 @@ class PengajuanController extends Controller
         return json_encode($datas);
     }
     
-    // public function pengajuanValidasi()
-    // {
-    //     $penerimaans = LogPenerimaanMaterial::where(['kode_penerimaan' => $kode_penerimaan, 'soft_delete' => 0])->first();
-    //     $penerimaanDetails = LogDetailPenerimaanMaterial::where('penerimaan_id', $penerimaans->id)->where('soft_delete', 0)->get();
-
-    //     dd($penerimaanDetails);
-    // }
+    public function pengajuanValidasi()
+    {
+        $data = \Input::all();
+        $penerimaan = LogPenerimaanMaterial::where(['kode_penerimaan' => $data['kode_penerimaan'], 'soft_delete' => 0])->first();
+        $stocks = LogDetailPenerimaanMaterial::where('material_id', $data['material_id'])
+                                            ->whereHas('penerimaan',function ($q) use($penerimaan){
+                                              $q->where('kode_permintaan', $penerimaan->kode_permintaan);
+                                            })
+                                            ->where('soft_delete',0)
+                                            ->get();
+        $sisa_stok = 0;
+        foreach ($stocks as $key => $stock) {
+            $sisa_stok = $sisa_stok + $stock->sisa_stok;
+        }
+        
+        return $sisa_stok;
+    }
 
     public function postPengajuan()
     {
