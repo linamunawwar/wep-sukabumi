@@ -127,7 +127,7 @@
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 									<a class="btn btn-primary" href="{{url('/Logistik/admin/pengajuan')}}">Cancel</a>
-									<button type="submit" class="btn btn-success">Submit</button>
+									<button type="submit" class="btn btn-success submit">Submit</button>
 								</div>
 							</div>
 						</form>
@@ -201,6 +201,35 @@
 		                			nomor++;
 		                	}
 		                	$('#table_waste tbody.data').append(dt);
+
+		                	var kode_penerimaan = $('#kode_penerimaan').val();
+						  	var _token = $('#_token').val();
+							
+							$('.permintaan_jumlah').bind("change",function(){
+								var permintaanJumlah = $(this).val();
+								var id_data = $(this).attr('id_data');
+								var material_id = $('#material_'+id_data).val();
+								console.log(permintaanJumlah);
+
+								$.ajax({
+									type	: 'POST',
+									url 	: '{{ url('Logistik/admin/pengajuan/pengajuanValidasi') }}',
+									data: {
+										'permintaan_jumlah' : permintaanJumlah,
+										'material_id' : material_id,
+										'kode_penerimaan' : kode_penerimaan,
+										'_token': _token
+									},
+									success	: function(data){
+										if(permintaanJumlah > data){
+											alert('Jumlah permintaan melebihi sisa stok');
+											$('.submit').prop('disabled', true);
+										}else{
+											$('.submit').prop('disabled', false);
+										}
+									}
+								})
+							});
 		                }else{
 		                	$('.alert-danger').show();
 		                }
@@ -210,34 +239,12 @@
 	                }
 	            }
             }
-        });	  
+        });	 
+
+
 	});
 
-	/*$(document).ready(function(){
-		var kode_penerimaan = $('#kode_penerimaan').val();
-	  	var _token = $('#_token').val();
-		//var jumlah_data = $('#jumlah_data').val();
 		
-		console.log(data.length);
-		for(var i = 0; i < jumlah_data.length; i++){
-			$('#permintaan_jumlah_'+i).blur(function(){
-				var permintaanJumlah = $(this).val();
-	
-				$.ajax({
-					type	: 'POST',
-					url 	: '{{ url('Logistik/admin/pengajuan/pengajuanValidasi') }}',
-					data: {
-						'permintaan_jumlah' : permintaanJumlah,
-						'kode_penerimaan' : kode_penerimaan,
-						'_token': _token
-					},
-					success	: function(data){
-						$('#pesan').html(data);
-					}
-				})
-			});
-		}
-	});*/
 	
   </script>
 @endpush
