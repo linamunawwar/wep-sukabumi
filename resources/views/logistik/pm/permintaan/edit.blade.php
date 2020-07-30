@@ -21,8 +21,7 @@
 							<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 							<span style="float:right;"> Tanggal : {{ date('d F Y', strtotime($permintaan->tanggal)) }} </span>
 							<input type="hidden" name="tanggal" value="{{ date('d F Y', strtotime($permintaan->tanggal)) }}">
-							<br>
-							<br>
+							<br><br>
 							<div class="row"> 
 								<div class="col-md-6">
 									<div class="form-group">
@@ -198,31 +197,35 @@
 			var keperluan = $('#keperluan').val();
 			var keterangan = $('#keterangan').val();
 			var jumlah_data = $('#jumlah_data').val();
-	        	jumlah_data++;
-	        $('#jumlah_data').val(jumlah_data);
-	        
-			var table = "<tr  class='data_"+jumlah_data+"'>";
-				table += "<td>"+nama_material+"<input type='hidden' name='material[]' value='"+material+"' id='material_"+jumlah_data+"'></td>";
-				table += "<td>"+no_part+"<input type='hidden' name='no_part[]' value='"+no_part+"' id='no_part_"+jumlah_data+"'></td>";
-				table += "<td>"+volume+"<input type='hidden' name='volume[]' value='"+volume+"' id='volume_"+jumlah_data+"'></td>";
-				table += "<td>"+satuan+"<input type='hidden' name='satuan[]' value='"+satuan+"' id='satuan_"+jumlah_data+"'></td>";
-				table += "<td>"+tgl_pakai+"<input type='hidden' name='tgl_pakai[]' value='"+tgl_pakai+"' id='tgl_pakai_"+jumlah_data+"'></td>";
-				table += "<td>"+keperluan+"<input type='hidden' name='keperluan[]' value='"+keperluan+"' id='keperluan_"+jumlah_data+"'></td>";
-				table += "<td>"+keterangan+"<input type='hidden' name='keterangan[]' value='"+keterangan+"' id='keterangan_"+jumlah_data+"'></td>";
-				table+="<td>";
-				table+="<a class='btn btn-sm btn-block btn-danger del' idsub='"+jumlah_data+"' style='width:40px;'><span class='fa fa-trash'></span></a>";
-				table+="</td>";
-				table += "</tr>";
 				
-			$('#table_permintaan tbody.data').append(table);
-			
-	        $('#material option[value=""]').attr('selected','selected');
-			$('#no_part').val('');
-			$('#volume').val('');
-			$('#satuan').val('');
-			$('#tgl_pakai').val('');
-			$('#keperluan').val('');
-			$('#keterangan').val('');
+			if((material != "Pilih Material / Bahan" || material != "") && satuan != "" && tgl_pakai != ""){
+				jumlah_data++;
+				$('#jumlah_data').val(jumlah_data);
+				
+				var table = "<tr  class='data_"+jumlah_data+"'>";
+					table += "<td>"+nama_material+"<input type='hidden' name='material[]' value='"+material+"' id='material_"+jumlah_data+"'></td>";
+					table += "<td>"+no_part+"<input type='hidden' name='no_part[]' value='"+no_part+"' id='no_part_"+jumlah_data+"'></td>";
+					table += "<td>"+volume+"<input type='hidden' name='volume[]' value='"+volume+"' id='volume_"+jumlah_data+"'></td>";
+					table += "<td>"+satuan+"<input type='hidden' name='satuan[]' value='"+satuan+"' id='satuan_"+jumlah_data+"'></td>";
+					table += "<td>"+tgl_pakai+"<input type='hidden' name='tgl_pakai[]' value='"+tgl_pakai+"' id='tgl_pakai_"+jumlah_data+"'></td>";
+					table += "<td>"+keperluan+"<input type='hidden' name='keperluan[]' value='"+keperluan+"' id='keperluan_"+jumlah_data+"'></td>";
+					table += "<td>"+keterangan+"<input type='hidden' name='keterangan[]' value='"+keterangan+"' id='keterangan_"+jumlah_data+"'></td>";
+					table+="<td>";
+					table+="<a class='btn btn-sm btn-block btn-danger del' idsub='"+jumlah_data+"' style='width:40px;'><span class='fa fa-trash'></span></a>";
+					table+="</td>";
+					table += "</tr>";
+					
+				$('#table_permintaan tbody.data').append(table);
+				$('#no_part').val('');
+				$('#volume').val('');
+				$('#satuan').val('');
+				$('#tgl_pakai').val('');
+				$('#keperluan').val('');
+				$('#keterangan').val('');
+			}else{
+				alert("Material, Tanggal Pemakaian Tidak Boleh Kosong");
+			}	
+				$('#material option[value=""]').attr('selected','selected');
 		});
 
 		$(document).on("click", "a.del", function(e){

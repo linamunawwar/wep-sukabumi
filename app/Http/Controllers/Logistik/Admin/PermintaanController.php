@@ -145,6 +145,7 @@ class PermintaanController extends Controller
         $noPart = \Input::get('no_part');
         $volume = \Input::get('volume');
         $satuan = \Input::get('satuan');
+        $tgl_pakai = \Input::get('tgl_pakai');
         $keperluan = \Input::get('keperluan');
         $keterangan = \Input::get('keterangan');
 
@@ -183,6 +184,7 @@ class PermintaanController extends Controller
                     $addDetailPemintaanMaterial->no_part = $noPart[$i];
                     $addDetailPemintaanMaterial->volume = $volume[$i];
                     $addDetailPemintaanMaterial->satuan = $satuan[$i];
+                    $addDetailPemintaanMaterial->tgl_pakai = $tgl_pakai[$i];
                     $addDetailPemintaanMaterial->keperluan = $keperluan[$i];
                     $addDetailPemintaanMaterial->keterangan = $keterangan[$i];
                     $addDetailPemintaanMaterial->user_id = \Auth::user()->id;
@@ -409,6 +411,7 @@ class PermintaanController extends Controller
         $noPart = \Input::get('no_part');
         $volume = \Input::get('volume');
         $satuan = \Input::get('satuan');
+        $tgl_pakai = \Input::get('tgl_pakai');
         $keperluan = \Input::get('keperluan');
         $keterangan = \Input::get('keterangan');
         $cekKoreksi = \Input::get('koreksi');
@@ -446,6 +449,7 @@ class PermintaanController extends Controller
             $addDetailPemintaanMaterial->no_part = $noPart[$i];
             $addDetailPemintaanMaterial->volume = $volume[$i];
             $addDetailPemintaanMaterial->satuan = $satuan[$i];
+            $addDetailPemintaanMaterial->tgl_pakai = $tgl_pakai[$i];
             $addDetailPemintaanMaterial->keperluan = $keperluan[$i];
             $addDetailPemintaanMaterial->keterangan = $keterangan[$i];
             $addDetailPemintaanMaterial->user_id = \Auth::user()->id;
