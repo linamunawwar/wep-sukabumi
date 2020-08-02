@@ -50,9 +50,9 @@
 										<option value=""> --- Pegawai ---</option>
 										@foreach ($pegawai as $row)
 											@php
-												$s = $row->pegawai_id==$permission->id_user?'selected="selected"':'';
+												$s = $row->id==$permission->id_user?'selected="selected"':'';
 											@endphp
-											<option {{ $s }} value="{{ $row->pegawai_id }}"> {{ $row->name }} </option>
+											<option {{ $s }} value="{{ $row->id }}"> {{ $row->name }} </option>
 										@endforeach
 									</select>
 								</div>
