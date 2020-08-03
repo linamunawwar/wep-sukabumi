@@ -40,7 +40,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="tgl_pakai" <span class="required">Tanggal Pemakaian Material :</label>
+										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="tgl_pakai"> <span class="required">Tanggal Pemakaian Material :</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<input type="date" id="tgl_pakai" name="tgl_pakai" class="tgl_pakai form-control col-md-7 col-xs-12">
 										</div>
