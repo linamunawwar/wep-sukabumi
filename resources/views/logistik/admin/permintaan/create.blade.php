@@ -206,6 +206,8 @@
 					table += "</tr>";
 
 				$('#material option[value=""]').attr('selected','selected');
+				$('#material').val('');
+				$('#material').select2().trigger('change');
 				$('#no_part').val('');
 				$('#volume').val('');
 				$('#satuan').val('');
@@ -213,7 +215,7 @@
 				$('#keperluan').val('');
 				$('#keterangan').val('');
 			}else{
-				alert("Material, Tanggal Pemakaian Tidak Boleh Kosong");
+				alert("Material, Satuan, dan Tanggal Pemakaian Tidak Boleh Kosong");
 			}
 				
 			$('#table_permintaan tbody.data').append(table);

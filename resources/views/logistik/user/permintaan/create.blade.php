@@ -188,7 +188,7 @@
 			var keterangan = $('#keterangan').val();
 			var jumlah_data = $('#jumlah_data').val();
 	        	
-			
+			console.log(material);
 			if((material != "Pilih Material / Bahan" || material != "") && satuan != "" && tgl_pakai != ""){
 				jumlah_data++;
 				$('#jumlah_data').val(jumlah_data);
@@ -206,7 +206,9 @@
 					table+="</td>";
 					table += "</tr>";
 
-					$('#table_permintaan tbody.data').append(table);
+					$('#material option[value=""]').attr('selected','selected');
+					$('#material').val('');
+					$('#material').select2().trigger('change');
 					$('#no_part').val('');
 					$('#volume').val('');
 					$('#satuan').val('');
@@ -214,10 +216,11 @@
 					$('#keperluan').val('');
 					$('#keterangan').val('');
 			}else{
-				alert("Material Tidak Boleh Kosong");
+				alert("Material, Satuan, dan Tanggal Pemakaian Tidak Boleh Kosong");
 			}
 
-	        $('#material option[value=""]').attr('selected','selected');
+	        
+	        $('#table_permintaan tbody.data').append(table);
 		});
 
 		$(document).on("click", "a.del", function(e){
