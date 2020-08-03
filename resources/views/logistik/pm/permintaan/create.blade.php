@@ -40,7 +40,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="tgl_pakai" <span class="required">>Tanggal Pemakaian Material :</label>
+										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="tgl_pakai" <span class="required">Tanggal Pemakaian Material :</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<input type="date" id="tgl_pakai" name="tgl_pakai" class="tgl_pakai form-control col-md-7 col-xs-12">
 										</div>
@@ -186,14 +186,11 @@
 			var tgl_pakai = $('#tgl_pakai').val();
 			var keperluan = $('#keperluan').val();
 			var keterangan = $('#keterangan').val();
-			var jumlah_data = $('#jumlah_data').val();
-				jumlah_data++;
-
-			console.log(tgl_pakai);
-
-	        $('#jumlah_data').val(jumlah_data);
+			var jumlah_data = $('#jumlah_data').val();	
 			
 			if((material != "Pilih Material / Bahan" || material != "") && satuan != "" && tgl_pakai != ""){
+				jumlah_data++;
+	        	$('#jumlah_data').val(jumlah_data);
 				var table = "<tr  class='data_"+jumlah_data+"'>";
 					table += "<td>"+jumlah_data+"</td>";
 					table += "<td>"+nama_material+"<input type='hidden' name='material[]' value='"+material+"' id='material_"+jumlah_data+"'></td>";

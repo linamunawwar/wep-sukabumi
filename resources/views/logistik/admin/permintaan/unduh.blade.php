@@ -68,6 +68,7 @@
       <td style="border: 1px solid #000000; width: 27;" rowspan="2" align="center"> No.Part/Type </th>
       <td style="border: 1px solid #000000; width: 15;" rowspan="2" align="center"> Volume </th>
       <td style="border: 1px solid #000000; width: 14;" rowspan="2" align="center"> Satuan </th>
+      <td style="border: 1px solid #000000; width: 14;" rowspan="2" align="center"> Tanggal Pakai </th>
       <td style="border: 1px solid #000000; width: 40;" rowspan="2" align="center"> Untuk Keperluan </th>
     </tr>  
     <tr>
@@ -76,6 +77,7 @@
       <td style="border: 1px solid #000000;" align="center"></td>
       <td style="border: 1px solid #000000;" align="center"></td>
       <td style="border: 1px solid #000000;"  align="center" ></td>
+      <td style="border: 1px solid #000000;"  align="center"></td>
       <td style="border: 1px solid #000000;"  align="center"></td>
       <td style="border: 1px solid #000000;"  align="center"></td>
       <td style="border: 1px solid #000000;"  align="center"></td>
@@ -90,6 +92,7 @@
         <td style="border: 1px solid #000000;"  align="center" >{{ $detail->no_part }}</td>
         <td style="border: 1px solid #000000;"  align="center">{{ $detail->volume }}</td>
         <td style="border: 1px solid #000000;"  align="center">{{ $detail->satuan }}</td>
+        <td style="border: 1px solid #000000;"  align="center">{{ $detail->tgl_pakai }}</td>
         <td style="border: 1px solid #000000;"  align="center">{{ $detail->keperluan }}</td>
       </tr>      
       @endforeach
@@ -98,6 +101,7 @@
         <tr>
           <td></td>
           <td></td>
+          <td style="border: 1px solid #000000;" align="center"></td>
           <td style="border: 1px solid #000000;" align="center"></td>
           <td style="border: 1px solid #000000;" align="center"></td>
           <td style="border: 1px solid #000000;" align="center"></td>

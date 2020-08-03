@@ -559,6 +559,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/permintaan/create', 'Logistik\Manager\PermintaanController@beforePostPermintaan');
 		Route::post('/permintaan/create', 'Logistik\Manager\PermintaanController@postPermintaan');
 		Route::get('/permintaan/detail/{id}', 'Logistik\Manager\PermintaanController@getDetailByPermintaanId');
+		Route::get('/permintaan/notif/detail/{id}', 'Logistik\Admin\PermintaanController@getDetailNotifByPermintaanId');
 		Route::get('/permintaan/edit/{id}', 'Logistik\Manager\PermintaanController@getPermintaanById');
 		Route::post('/permintaan/edit/{id}', 'Logistik\Manager\PermintaanController@updatePermintaan');
 		Route::get('/permintaan/deleteDetail/{detailId}/{permintaanId}', 'Logistik\Manager\PermintaanController@deleteDetailPermintaanMaterial');
@@ -617,6 +618,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/permintaan/create', 'Logistik\PM\PermintaanController@beforePostPermintaan');
 		Route::post('/permintaan/create', 'Logistik\PM\PermintaanController@postPermintaan');
 		Route::get('/permintaan/detail/{id}', 'Logistik\PM\PermintaanController@getDetailByPermintaanId');
+		Route::get('/permintaan/notif/detail/{id}', 'Logistik\Admin\PermintaanController@getDetailNotifByPermintaanId');
 		Route::get('/permintaan/edit/{id}', 'Logistik\PM\PermintaanController@getPermintaanById');
 		Route::post('/permintaan/edit/{id}', 'Logistik\PM\PermintaanController@updatePermintaan');
 		Route::get('/permintaan/deleteDetail/{detailId}/{permintaanId}', 'Logistik\PM\PermintaanController@deleteDetailPermintaanMaterial');
@@ -665,6 +667,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/permintaan/create', 'Logistik\Pelaksana\PermintaanController@beforePostPermintaan');
 		Route::post('/permintaan/create', 'Logistik\Pelaksana\PermintaanController@postPermintaan');
 		Route::get('/permintaan/detail/{id}', 'Logistik\Pelaksana\PermintaanController@getDetailByPermintaanId');
+		Route::get('/permintaan/notif/detail/{id}', 'Logistik\Admin\PermintaanController@getDetailNotifByPermintaanId');
 		Route::get('/permintaan/edit/{id}', 'Logistik\Pelaksana\PermintaanController@getPermintaanById');
 		Route::post('/permintaan/edit/{id}', 'Logistik\Pelaksana\PermintaanController@updatePermintaan');
 		Route::get('/permintaan/deleteDetail/{detailId}/{permintaanId}', 'Logistik\Pelaksana\PermintaanController@deleteDetailPermintaanMaterial');

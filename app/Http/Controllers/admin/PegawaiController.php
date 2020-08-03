@@ -28,6 +28,8 @@ use App\Publikasi;
 use App\TenagaPengajar;
 use App\Penghargaan;
 use App\Pkwt;
+use App\Menu;
+use App\Permission;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -152,6 +154,17 @@ class PegawaiController extends Controller
         $data['is_verif_pm'] = 0;
         $data['user_id'] = $query_user;
         $query_pegawai = \DB::table('mst_pegawai')->insert($data);
+
+        //set permission menu
+        // $menus = Menu::where('default_role',$role)->where('active',1)->get();
+        // foreach ($menus as $key => $menu) {
+        //   $insert = new Permission;
+        //   $insert->id_menu = $menu->id;
+        //   $insert->id_user = $query_user;
+        //   if(!($insert->save())){
+        //     break;
+        //   }
+        // }
 
 
         if($query_user && $query_pegawai){
