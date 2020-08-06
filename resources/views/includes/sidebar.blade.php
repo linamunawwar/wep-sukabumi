@@ -30,6 +30,7 @@
                         </a>
                     </li>
                     @endif
+                    
                     <li style="display: none;"><a><i class="fa fa-lock"></i>Menu & Permissions <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{url('admin/menu')}}"><i class="fa fa-unlock-alt"></i>Master Menu</a></li>
