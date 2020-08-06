@@ -46,7 +46,7 @@
 									<select id="id_user" name="id_user" id="select" class="form-control col-md-7 col-xs-12 select">
 										<option value=""> --- Pegawai ---</option>
 										@foreach ($pegawai as $row)
-											<option value="{{ $row->pegawai_id }}"> {{ $row->name }} </option>
+											<option value="{{ $row->id }}"> {{ $row->name }} </option>
 										@endforeach
 									</select>
 								</div>

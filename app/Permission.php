@@ -17,6 +17,6 @@ class Permission extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User','id_user','pegawai_id');
+        return $this->belongsTo('App\Models\User','id_user','id');
     }
 }

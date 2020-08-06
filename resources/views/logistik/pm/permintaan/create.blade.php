@@ -206,6 +206,8 @@
 					table += "</tr>";
 
 				$('#material option[value=""]').attr('selected','selected');
+				$('#material').val('');
+				$('#material').select2().trigger('change');
 				$('#no_part').val('');
 				$('#volume').val('');
 				$('#satuan').val('');

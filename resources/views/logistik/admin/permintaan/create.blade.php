@@ -40,7 +40,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="tgl_pakai" <span class="required">Tanggal Pemakaian Material :</label>
+										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="tgl_pakai"> <span class="required">Tanggal Pemakaian Material :</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<input type="date" id="tgl_pakai" name="tgl_pakai" class="tgl_pakai form-control col-md-7 col-xs-12">
 										</div>
@@ -206,6 +206,8 @@
 					table += "</tr>";
 
 				$('#material option[value=""]').attr('selected','selected');
+				$('#material').val('');
+				$('#material').select2().trigger('change');
 				$('#no_part').val('');
 				$('#volume').val('');
 				$('#satuan').val('');
@@ -213,7 +215,7 @@
 				$('#keperluan').val('');
 				$('#keterangan').val('');
 			}else{
-				alert("Material, Tanggal Pemakaian Tidak Boleh Kosong");
+				alert("Material, Satuan, dan Tanggal Pemakaian Tidak Boleh Kosong");
 			}
 				
 			$('#table_permintaan tbody.data').append(table);

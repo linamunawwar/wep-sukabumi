@@ -32,7 +32,7 @@
 							<div class="row"> 
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-4 col-sm-4 col-xs-12">Lampiran :</label>
+										<label class="control-label col-md-6 col-sm-6 col-xs-12">Lampiran :</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<input type="file" name="file" class="form-control col-md-7 col-xs-12">
 										</div>
@@ -40,7 +40,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="tgl_pakai" <span class="required">>Tanggal Pemakaian Material :</label>
+										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="tgl_pakai"> <span class="required">Tanggal Pemakaian Material :</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<input type="date" id="tgl_pakai" name="tgl_pakai" class="tgl_pakai form-control col-md-7 col-xs-12">
 										</div>
@@ -64,7 +64,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-6 col-sm-6 col-xs-12" for="nama">No Part <span class="required">*</span>:</label>
+										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">No Part <span class="required">*</span>:</label>
 										<div class="col-md-4 col-sm-4 col-xs-12">
 											<input type="text" id="no_part" name="no_part" class="no_part form-control col-md-7 col-xs-12">
 										</div>
@@ -75,7 +75,7 @@
 							<div class="row"> 								
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Volume <span class="required">*</span>:</label>
+										<label class="control-label col-md-6 col-sm-6 col-xs-12" for="nama">Volume <span class="required">*</span>:</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<input type="text" id="volume" name="volume" class="volume form-control col-md-7 col-xs-12">
 										</div>
@@ -83,7 +83,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label col-md-6 col-sm-6 col-xs-12" for="nama">Satuan <span class="required">*</span>:</label>
+										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Satuan <span class="required">*</span>:</label>
 										<div class="col-md-4 col-sm-4 col-xs-122">
 											<input type="text" id="satuan" name="satuan" class="satuan form-control col-md-7 col-xs-12">
 										</div>
@@ -188,7 +188,7 @@
 			var keterangan = $('#keterangan').val();
 			var jumlah_data = $('#jumlah_data').val();
 	        	
-			
+			console.log(material);
 			if((material != "Pilih Material / Bahan" || material != "") && satuan != "" && tgl_pakai != ""){
 				jumlah_data++;
 				$('#jumlah_data').val(jumlah_data);
@@ -206,7 +206,9 @@
 					table+="</td>";
 					table += "</tr>";
 
-					$('#table_permintaan tbody.data').append(table);
+					$('#material option[value=""]').attr('selected','selected');
+					$('#material').val('');
+					$('#material').select2().trigger('change');
 					$('#no_part').val('');
 					$('#volume').val('');
 					$('#satuan').val('');
@@ -214,10 +216,11 @@
 					$('#keperluan').val('');
 					$('#keterangan').val('');
 			}else{
-				alert("Material Tidak Boleh Kosong");
+				alert("Material, Satuan, dan Tanggal Pemakaian Tidak Boleh Kosong");
 			}
 
-	        $('#material option[value=""]').attr('selected','selected');
+	        
+	        $('#table_permintaan tbody.data').append(table);
 		});
 
 		$(document).on("click", "a.del", function(e){
