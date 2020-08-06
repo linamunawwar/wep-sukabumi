@@ -6,6 +6,7 @@
         <?php
             use App\Permission;
             $menus = Permission::where('id_user', Auth::user()->id)->get();
+            $parent = array();
             foreach ($menus as $key => $value) {
                 if($value->menu->id_parent == 0){
                     $parent[$value->id_menu]['id_menu']=$value->id_menu;

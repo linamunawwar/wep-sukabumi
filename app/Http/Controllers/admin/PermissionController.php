@@ -53,6 +53,7 @@ class PermissionController extends Controller
         $subMenu = Menu::get();
         $pegawai = User::get();
         $permission = Permission::where('id', $id)->first();
+        // dd($permission);
         
         return view('admin.admin_permission.permission.edit', compact('labelMenu', 'subMenu', 'pegawai', 'permission'));
     }

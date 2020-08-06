@@ -31,14 +31,17 @@
 											@endphp
 											@foreach ($subMenu as $sub)
 												@if ($label->id == $sub->id_parent)
-													@php $check++; @endphp
-													<optgroup label=" {{ $label->nama }}">
+													@php 
+														$check++; 
+														$s = $sub->id==$permission->id_menu?'selected="selected"':'';
+													@endphp
+													<optgroup label=" {{ $label->nama }} {{ $check }}">
 													<option {{ $s }} value="{{ $sub->id }}">&nbsp;&nbsp; {{ $sub->nama }} </option>													
 												@endif
 											@endforeach
 
 											@if ($check == 0)
-												<optgroup label="">
+												<optgroup label="{{ $check }}">
 												<option {{ $s }} value="{{ $label->id }}"> {{ $label->nama }} </option>
 											@endif
 										@endforeach
