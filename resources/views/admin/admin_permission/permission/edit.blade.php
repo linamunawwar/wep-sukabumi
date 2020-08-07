@@ -1,4 +1,7 @@
 @extends('layouts.blank')
+<?php 
+	use App\Permission;
+?>
 
 @push('stylesheets')
     <!-- Example -->
@@ -21,31 +24,8 @@
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="form-row form-group">
 								<div class="form-group col-md-6">
-									<label for="id_menu">Menu Permission</label>
-									<select id="id_menu" name="id_menu" id="select" class="form-control col-md-7 col-xs-12 select">
-										<option value=""> --- Menu Permission ---</option>
-										@foreach ($labelMenu as $label)
-											@php 
-												$check = 0; 
-												$s = $label->id==$permission->id_menu?'selected="selected"':'';
-											@endphp
-											@foreach ($subMenu as $sub)
-												@if ($label->id == $sub->id_parent)
-													@php 
-														$check++; 
-														$s = $sub->id==$permission->id_menu?'selected="selected"':'';
-													@endphp
-													<optgroup label=" {{ $label->nama }} {{ $check }}">
-													<option {{ $s }} value="{{ $sub->id }}">&nbsp;&nbsp; {{ $sub->nama }} </option>													
-												@endif
-											@endforeach
-
-											@if ($check == 0)
-												<optgroup label="{{ $check }}">
-												<option {{ $s }} value="{{ $label->id }}"> {{ $label->nama }} </option>
-											@endif
-										@endforeach
-									</select>
+									<label for="id_menu">Menu Permission</label>									
+									{!! Permission::getSelectPermission($permission->id_menu) !!}										
 								</div>
 								<div class="form-group col-md-6">
 									<label for="urutan">Pegawai</label>

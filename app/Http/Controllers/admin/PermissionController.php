@@ -48,14 +48,16 @@ class PermissionController extends Controller
 
     public function edit($id)
     {   
-        $labelMenu = Menu::where('id_parent', 0)
-                    ->get();
-        $subMenu = Menu::get();
+        // $labelMenu = Menu::where('id_parent', 0)
+        //             ->get();
+        // $subMenu = Menu::get();
         $pegawai = User::get();
         $permission = Permission::where('id', $id)->first();
+        $menu = Permission::getSelectPermission($permission->id_menu);      
+
         // dd($permission);
         
-        return view('admin.admin_permission.permission.edit', compact('labelMenu', 'subMenu', 'pegawai', 'permission'));
+        return view('admin.admin_permission.permission.edit', compact('menu', 'pegawai', 'permission'));
     }
 
     public function update($id)
