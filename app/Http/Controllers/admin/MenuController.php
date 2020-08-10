@@ -12,7 +12,7 @@ class MenuController extends Controller
 {
     public function index()
     {
-        $menu = Menu::orderby('urutan', 'asc')
+        $menu = Menu::orderBy('urutan', 'asc')
                     ->get();
 
         return view('admin.admin_permission.menu.index', compact('menu'));
