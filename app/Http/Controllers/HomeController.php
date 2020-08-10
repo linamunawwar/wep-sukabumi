@@ -15,6 +15,9 @@ use App\Izin;
 use App\Disposisi;
 use App\DisposisiTugas;
 use App\SlipGaji;
+use App\Menu;
+use App\Permission;
+use App\Models\User;
 use App\Models\LogMaterial;
 use App\Models\LogPermintaanMaterial;
 use Illuminate\Http\Request;
@@ -227,6 +230,20 @@ class HomeController extends Controller
             ->count();
             
             return view('logistik.admin.home',['materials'=>$materials,'permintaan'=>$permintaan,'permintaan_disetujui'=>$permintaan_disetujui]);
+        }
+    }
+
+    public function insertPermission($role_id)
+    {
+        $menus = Menu::where('default_role',$role_id)->where('active',1)->get();
+        $users = User::where('role_id',$role_id)->get();
+        foreach ($users as $key => $user) {
+            foreach ($menus as $key => $menu) {
+                $permission = new Permission;
+                $permission->id_menu = $menu->id;
+                $permission->id_user = $user->id;
+                $permission->save();
+            }
         }
     }
 }
