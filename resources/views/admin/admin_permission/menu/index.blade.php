@@ -47,7 +47,7 @@
 											<td> {{ $item->alias }} </td>
 											<td> {{ $item->direktori }} </td>
 											<td> {{ $item->icon }} </td>
-											<td> {{ $item->role->name }} </td>
+											<td> {{ $item->default_role }} </td>
 											<td> 
 												<a href="{{url('admin/menu/update/'.$item->id.'')}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>  Edit</a>
 												<button type="button" var="{{ $item->id }}" class="btn btn-xs btn-danger" id="delete"><i class="fa fa-trash"></i> Delete </button>
@@ -60,7 +60,7 @@
 												<td> {{ $val->alias }} </td>
 												<td> {{ $val->direktori }} </td>
 												<td> {{ $val->icon }} </td>
-												<td> {{ $val->role->name }} </td>
+												<td> {{ $val->default_role }} </td>
 												<td> 
 													<a href="{{url('admin/menu/update/'.$val->id.'')}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>  Edit</a>
 													<button type="button" var="{{ $val->id }}" class="btn btn-xs btn-danger" id="delete"><i class="fa fa-trash"></i> Delete </button>
@@ -74,7 +74,7 @@
 											<td> {{ $item->alias }} </td>
 											<td> {{ $item->direktori }} </td>
 											<td> {{ $item->icon }} </td>
-											<td> {{ $item->role->name }} </td>
+											<td> {{ $item->default_role }} </td>
 											<td> 
 												<a href="{{url('admin/menu/update/'.$item->id.'')}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>  Edit</a>
 											<button type="button" var="{{ $item->id }}" class="btn btn-xs btn-danger" id="delete"><i class="fa fa-trash"></i> Delete </button>

@@ -15,6 +15,7 @@ Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/password', 'PegawaiController@showResetForm');
 Route::post('/password', 'PegawaiController@postReset');
+Route::get('/insertPermission/{role_id}', 'HomeController@insertPermission');
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/', 'HomeController@index');
 	Route::get('/Logistik', 'Logistik\HomeController@index');
