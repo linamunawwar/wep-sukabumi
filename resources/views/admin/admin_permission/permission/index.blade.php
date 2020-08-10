@@ -13,7 +13,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Master Menu </h2>
+						<h2>Master Permission </h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li><a href="{{url('admin/permission/create')}}"><button class="btn btn-success"> Tambah Data</button></a></li>
 						</ul>
@@ -32,20 +32,18 @@
 							</thead>
 							<tbody>
 								@php $no = 1; @endphp
-								@foreach ($permission as $item)									
-									@if ($item->menu->id_parent != 0)
-										<tr>
-											<td><span>{{$no}}</td>
-											<td> {{ $item->menu->nama }} </td>
-											<td> {{ $item->user->name }} </td>
-											<td> {{ $item->menu->default_role }} </td>
-											<td> 
-												<a href="{{url('admin/permission/update/'.$item->id.'')}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>  Edit</a>
-												<button type="button" var="{{ $item->id }}" class="btn btn-xs btn-danger" id="delete"><i class="fa fa-trash"></i> Delete </button>
-											</td>
-										</tr>
-										@php $no++; @endphp
-									@endif
+								@foreach ($permission as $item)			
+									<tr>
+										<td><span>{{$no}}</td>
+										<td> {{ $item->menu->nama }} </td>
+										<td> {{ $item->user->name }} </td>
+										<td> {{ $item->menu->default_role }} </td>
+										<td> 
+											<a href="{{url('admin/permission/update/'.$item->id.'')}}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>  Edit</a>
+											<button type="button" var="{{ $item->id }}" class="btn btn-xs btn-danger" id="delete"><i class="fa fa-trash"></i> Delete </button>
+										</td>
+									</tr>
+									@php $no++; @endphp
 								@endforeach
 							</tbody>
 						</table>
