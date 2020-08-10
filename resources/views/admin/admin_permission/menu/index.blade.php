@@ -34,7 +34,7 @@
 							</thead>
 							<tbody>
 								@php $no = 1; @endphp
-								@foreach ($menu->where('id_parent','=',NULL) as $item)
+								@foreach ($menu->where('id_parent','=',0) as $item)
 								@php
 									$html = "
 										
