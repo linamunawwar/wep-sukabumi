@@ -247,17 +247,17 @@ class PermintaanController extends Controller
                     $objDrawing->setWidth(45);
                     $objDrawing->setHeight(60);
                     $sheet->getStyle('C1')->getAlignment()->setIndent(1);
-                    $sheet->getStyle('A12:H40')->getAlignment()->setWrapText(true);
-                    $sheet->getStyle('A2:H36')->getFont()->setName('Tahoma');
-                    $sheet->getStyle('A13:H15')->getAlignment()->applyFromArray(
+                    $sheet->getStyle('A12:I40')->getAlignment()->setWrapText(true);
+                    $sheet->getStyle('A2:I36')->getFont()->setName('Tahoma');
+                    $sheet->getStyle('A10:H11')->getAlignment()->applyFromArray(
                         array('horizontal' => 'center')
                     );
-                    $sheet->cells('A9:H11', function ($cells) {
+                    $sheet->cells('A9:I11', function ($cells) {
                         $cells->setValignment('center');
                         $cells->setFontFamily('Tahoma');
                     });
 
-                    $sheet->cell('C9:H40', function ($cell) {
+                    $sheet->cell('C9:I40', function ($cell) {
                         $cell->setValignment('center');
                     });
                     $sheet->cell('C6', function ($cell) {
