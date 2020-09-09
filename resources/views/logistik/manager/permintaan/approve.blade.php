@@ -51,7 +51,7 @@
 											<td>{{$detail->no_part}}</td>
 											<td>{{$detail->volume}}</td>
 											<td>{{$detail->satuan}}</td>
-											<td>{{$detail->tgl_pakai}}</td>
+											<td>{{konversi_tanggal($detail->tgl_pakai)}}</td>
 											<td>{{$detail->keperluan}}</td>
 											<td>{{$detail->keterangan}}</td>
 										</tr>
