@@ -60,7 +60,7 @@
 									<th scope="col"> No Part </th>
 									<th scope="col"> Volume </th>
 									<th scope="col"> Satuan </th>
-									{{--  <th scope="col"> Tanggal Pakai </th>  --}}
+									<th scope="col"> Tanggal Pakai </th>
 									<th scope="col"> Keperluan </th>
 									<th scope="col"> Keterangan </th>
 								</tr>
@@ -74,7 +74,7 @@
 									<td>{{ $detail->no_part }}</td>
 									<td>{{ $detail->volume }}</td>
 									<td>{{ $detail->satuan }}</td>
-									{{--  <td>{{ $detail->tgl_pakai }}</td>  --}}
+									<td>{{ $detail->tgl_pakai }}</td>
 									<td>{{ $detail->keperluan }}</td>
 									<td>{{ $detail->keterangan }}</td>
 									</tr>

@@ -38,6 +38,7 @@
 									<th>No Part / Type</th>
 									<th>Volume</th>
 									<th>Satuan</th>
+									<th>Tanggal Pakai</th>
 									<th>Keperluan</th>
 									<th>Keterangan</th>
 								</tr>
@@ -50,6 +51,7 @@
 											<td>{{$detail->no_part}}</td>
 											<td>{{$detail->volume}}</td>
 											<td>{{$detail->satuan}}</td>
+											<td>{{$detail->tgl_pakai}}</td>
 											<td>{{$detail->keperluan}}</td>
 											<td>{{$detail->keterangan}}</td>
 										</tr>
