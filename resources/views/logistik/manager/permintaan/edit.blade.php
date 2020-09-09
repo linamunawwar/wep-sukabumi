@@ -23,9 +23,9 @@
 							<input type="hidden" name="tanggal" value="{{ date('d F Y', strtotime($permintaan->tanggal)) }}">
 							<br><br>
 							<div class="row"> 
-								<div class="col-md-6">
+								<div class="col-md-9">
 									<div class="form-group">
-										<label class="control-label col-md-6 col-sm-6 col-xs-12">Lampiran :</label>
+										<label class="control-label col-md-4 col-sm-4 col-xs-12">Lampiran :</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<input type="file" name="file" class="form-control col-md-7 col-xs-12">
 											@if((file_exists("upload/permintaan/$permintaan->file")) && $permintaan->file)
@@ -36,14 +36,14 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6">
+								{{--  <div class="col-md-6">
 									<div class="form-group">
 										<label class="control-label col-md-4 col-sm-4 col-xs-12">Tanggal Pemakaian Material :</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<input type="date" id="tgl_pakai" name="tgl_pakai" class="tgl_pakai form-control col-md-7 col-xs-12">
 										</div>
 									</div>
-								</div>
+								</div>  --}}
 							</div>
 							<hr>
 							<div class="row"> 
@@ -125,7 +125,7 @@
 									<th>No.Partype</th>
 									<th>Volume</th>
 									<th>Satuan</th>
-									<th>Tanggal Pakai</th>
+									{{--  <th>Tanggal Pakai</th>  --}}
 									<th>Untuk Keperluan</th>
 									<th>Keterangan</th>
 									<th>Action</th>
@@ -137,7 +137,7 @@
 										<td>{{ $detail->no_part }} </td>
 										<td>{{ $detail->volume }} </td>
 										<td>{{ $detail->satuan }} </td>
-										<td>{{ $detail->tgl_pakai }} </td>
+										{{--  <td>{{ $detail->tgl_pakai }} </td>  --}}
 										<td>{{ $detail->keperluan }} </td>
 										<td>{{ $detail->keterangan }} </td>
 										<td> 
@@ -193,13 +193,13 @@
 			var no_part = $('#no_part').val();
 			var volume = $('#volume').val();
 			var satuan = $('#satuan').val();
-			var tgl_pakai = $('#tgl_pakai').val();
+			{{--  var tgl_pakai = $('#tgl_pakai').val();  --}}
 			var keperluan = $('#keperluan').val();
 			var keterangan = $('#keterangan').val();
 			var jumlah_data = $('#jumlah_data').val();
 				
 			
-			if((material != "Pilih Material / Bahan" || material != "") && satuan != "" && tgl_pakai != ""){
+			if((material != "Pilih Material / Bahan" || material != "") && satuan != ""){
 				jumlah_data++;
 				$('#jumlah_data').val(jumlah_data);
 				
@@ -208,7 +208,7 @@
 					table += "<td>"+no_part+"<input type='hidden' name='no_part[]' value='"+no_part+"' id='no_part_"+jumlah_data+"'></td>";
 					table += "<td>"+volume+"<input type='hidden' name='volume[]' value='"+volume+"' id='volume_"+jumlah_data+"'></td>";
 					table += "<td>"+satuan+"<input type='hidden' name='satuan[]' value='"+satuan+"' id='satuan_"+jumlah_data+"'></td>";
-					table += "<td>"+tgl_pakai+"<input type='hidden' name='tgl_pakai[]' value='"+tgl_pakai+"' id='tgl_pakai_"+jumlah_data+"'></td>";
+					{{--  table += "<td>"+tgl_pakai+"<input type='hidden' name='tgl_pakai[]' value='"+tgl_pakai+"' id='tgl_pakai_"+jumlah_data+"'></td>";  --}}
 					table += "<td>"+keperluan+"<input type='hidden' name='keperluan[]' value='"+keperluan+"' id='keperluan_"+jumlah_data+"'></td>";
 					table += "<td>"+keterangan+"<input type='hidden' name='keterangan[]' value='"+keterangan+"' id='keterangan_"+jumlah_data+"'></td>";
 					table+="<td>";
@@ -220,7 +220,7 @@
 				$('#no_part').val('');
 				$('#volume').val('');
 				$('#satuan').val('');
-				$('#tgl_pakai').val('');
+				{{--  $('#tgl_pakai').val('');  --}}
 				$('#keperluan').val('');
 				$('#keterangan').val('');
 			}else{
