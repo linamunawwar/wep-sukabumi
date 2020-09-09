@@ -41,6 +41,7 @@
 							<thead>
 								<tr>
 									<th scope="col"> No </th>
+									<th scope="col"> Nama Material</th>
 									<th scope="col"> Kode penerimaan </th>
 									<th scope="col"> Kode permintaan </th>
 									<th scope="col"> Tanggal </th>
@@ -54,6 +55,7 @@
                                     <?php $no++; ?>
 									<tr>
 									<td>{{ $no }}</td>
+									<td>{!! tigamaterial($penerimaan->detailPenerimaan) !!}</td>
 									<td>{{ $penerimaan->kode_penerimaan }}</td>
 									<td>{{ $penerimaan->kode_permintaan }}</td>
 									<td data-sort="{{strtotime($penerimaan->tanggal)}}">{{ konversi_tanggal($penerimaan->tanggal) }}</td>

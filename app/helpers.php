@@ -560,4 +560,19 @@ function tigadigit($value){
         return '0'.$value;
     }
 }
+
+function tigamaterial($value){
+    $text ='';
+    foreach ($value as $key => $val) {
+        if($key < 3){
+            $text = $text.'<br>'.$val->material->nama.',';
+        }
+        if ($key>2){
+            $text =  $text.' dst';
+            break;
+        }
+    }
+
+    return $text;
+}
 ?>
