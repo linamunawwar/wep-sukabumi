@@ -251,10 +251,11 @@
 	        var butuh = $('#butuh').val();
 	        var waktu = $('#waktu').val();
 	        var jumlah_data = $('#jumlah_data').val();
-	        	jumlah_data++;
-	        $('#jumlah_data').val(jumlah_data);
+	        	
 
 	        if(unit_kerja != '' && kebutuhan != ''){
+	        	jumlah_data++;
+	        	$('#jumlah_data').val(jumlah_data);
 		        var table = "<tr  class='data_"+jumlah_data+"'>";
 		        	table += "<td>"+jumlah_data+"</td>";
 		        	table += "<td style='display:none;'>"+nama_unit_kerja+"<input type='hidden' name='unit_kerja[]' value='"+unit_kerja+"' id='unit_kerja_"+jumlah_data+"'></td>";
