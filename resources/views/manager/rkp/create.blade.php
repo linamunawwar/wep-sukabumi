@@ -232,6 +232,7 @@
 		$(document).on("click", "button.tambah", function(e){
 			e.preventDefault();
 			var unit_kerja = $('#unit_kerja').val();
+			var nama_unit_kerja = $('#unit_kerja').find('option:selected').text();
 			var kebutuhan = $('#kebutuhan').val();
 			var tersedia = $('#tersedia').val();
 			var kurang_lebih = $('#kurang_lebih').val();
@@ -240,6 +241,7 @@
 			var jumlah = $('#jumlah').val();
 			var rekrut = $('#rekrut').val();
 			var posisi = $('#unit_kerja').val();
+			var nama_posisi = $('#unit_kerja').find('option:selected').text();
 	        var tugas = $('#tugas').val();
 	        var pendidikan = $('#pendidikan').val();
 	        var tahun = $('#tahun').val();
@@ -251,50 +253,56 @@
 	        var jumlah_data = $('#jumlah_data').val();
 	        	jumlah_data++;
 	        $('#jumlah_data').val(jumlah_data);
-	        
-	        var table = "<tr  class='data_"+jumlah_data+"'>";
-	        	table += "<td>"+jumlah_data+"</td>";
-	        	table += "<td style='display:none;'>"+unit_kerja+"<input type='hidden' name='unit_kerja[]' value='"+unit_kerja+"' id='unit_kerja_"+jumlah_data+"'></td>";
-	        	table += "<td style='display:none;'>"+kebutuhan+"<input type='hidden' name='kebutuhan[]' value='"+kebutuhan+"' id='kebutuhan_"+jumlah_data+"'></td>";
-	        	table += "<td style='display:none;'>"+tersedia+"<input type='hidden' name='tersedia[]' value='"+tersedia+"' id='tersedia_"+jumlah_data+"'></td>";
-	        	table += "<td style='display:none;'>"+kurang_lebih+"<input type='hidden' name='kurang_lebih[]' value='"+kurang_lebih+"' id='kurang_lebih_"+jumlah_data+"'></td>";
-	        	table += "<td style='display:none;'>"+masuk+"<input type='hidden' name='masuk[]' value='"+masuk+"' id='masuk_"+jumlah_data+"'></td>";
-	        	table += "<td style='display:none;'>"+keluar+"<input type='hidden' name='keluar[]' value='"+keluar+"' id='keluar_"+jumlah_data+"'></td>";
-	        	table += "<td style='display:none;'>"+jumlah+"<input type='hidden' name='jumlah[]' value='"+jumlah+"' id='jumlah_"+jumlah_data+"'></td>";
-	        	table += "<td style='display:none;'>"+rekrut+"<input type='hidden' name='rekrut[]' value='"+rekrut+"' id='rekrut_"+jumlah_data+"'></td>";
-	        	table += "<td>"+posisi+"<input type='hidden' name='posisi[]' value='"+posisi+"' id='posisi_"+jumlah_data+"'></td>";
-	        	table += "<td>"+tugas+"<input type='hidden' name='tugas[]' value='"+tugas+"' id='tugas_"+jumlah_data+"'></td>";
-	        	table += "<td>"+pendidikan+"<input type='hidden' name='pendidikan[]' value='"+pendidikan+"' id='pendidikan_"+jumlah_data+"'></td>";
-	        	table += "<td>"+tahun+"<input type='hidden' name='tahun_kerja[]' value='"+tahun+"'' id='tahun_kerja_"+jumlah_data+"'></td>";
-	        	table += "<td>"+jenis_kerja+"<input type='hidden' name='jenis_kerja[]' value='"+jenis_kerja+"' id='jenis_kerja_"+jumlah_data+"'></td>";
-	        	table += "<td>"+tpa+"<input type='hidden' name='tpa[]' value='"+tpa+"' id='tpa_"+jumlah_data+"'></td>";
-	        	table += "<td>"+ept+"<input type='hidden' name='ept[]' value='"+ept+"' id='ept_"+jumlah_data+"'></td>";
-	        	table += "<td>"+butuh+"<input type='hidden' name='butuh[]' value='"+butuh+"' id='butuh_"+jumlah_data+"'></td>";
-	        	table += "<td>"+waktu+"<input type='hidden' name='waktu[]' value='"+waktu+"' id='waktu_"+jumlah_data+"'></td>";
-	        	table+="<td>";
-                table+="<a class='btn btn-sm btn-block btn-danger del' idsub='"+jumlah_data+"' style='width:40px;'><span class='fa fa-trash'></span></a>";
-                table+="</td>";
-	        	table += "</tr>";
 
-	        $('#table_rkp tbody.data').append(table);
+	        if(unit_kerja != '' && kebutuhan != ''){
+		        var table = "<tr  class='data_"+jumlah_data+"'>";
+		        	table += "<td>"+jumlah_data+"</td>";
+		        	table += "<td style='display:none;'>"+nama_unit_kerja+"<input type='hidden' name='unit_kerja[]' value='"+unit_kerja+"' id='unit_kerja_"+jumlah_data+"'></td>";
+		        	table += "<td style='display:none;'>"+kebutuhan+"<input type='hidden' name='kebutuhan[]' value='"+kebutuhan+"' id='kebutuhan_"+jumlah_data+"'></td>";
+		        	table += "<td style='display:none;'>"+tersedia+"<input type='hidden' name='tersedia[]' value='"+tersedia+"' id='tersedia_"+jumlah_data+"'></td>";
+		        	table += "<td style='display:none;'>"+kurang_lebih+"<input type='hidden' name='kurang_lebih[]' value='"+kurang_lebih+"' id='kurang_lebih_"+jumlah_data+"'></td>";
+		        	table += "<td style='display:none;'>"+masuk+"<input type='hidden' name='masuk[]' value='"+masuk+"' id='masuk_"+jumlah_data+"'></td>";
+		        	table += "<td style='display:none;'>"+keluar+"<input type='hidden' name='keluar[]' value='"+keluar+"' id='keluar_"+jumlah_data+"'></td>";
+		        	table += "<td style='display:none;'>"+jumlah+"<input type='hidden' name='jumlah[]' value='"+jumlah+"' id='jumlah_"+jumlah_data+"'></td>";
+		        	table += "<td style='display:none;'>"+rekrut+"<input type='hidden' name='rekrut[]' value='"+rekrut+"' id='rekrut_"+jumlah_data+"'></td>";
+		        	table += "<td>"+nama_posisi+"<input type='hidden' name='posisi[]' value='"+posisi+"' id='posisi_"+jumlah_data+"'></td>";
+		        	table += "<td>"+tugas+"<input type='hidden' name='tugas[]' value='"+tugas+"' id='tugas_"+jumlah_data+"'></td>";
+		        	table += "<td>"+pendidikan+"<input type='hidden' name='pendidikan[]' value='"+pendidikan+"' id='pendidikan_"+jumlah_data+"'></td>";
+		        	table += "<td>"+tahun+"<input type='hidden' name='tahun_kerja[]' value='"+tahun+"'' id='tahun_kerja_"+jumlah_data+"'></td>";
+		        	table += "<td>"+jenis_kerja+"<input type='hidden' name='jenis_kerja[]' value='"+jenis_kerja+"' id='jenis_kerja_"+jumlah_data+"'></td>";
+		        	table += "<td>"+tpa+"<input type='hidden' name='tpa[]' value='"+tpa+"' id='tpa_"+jumlah_data+"'></td>";
+		        	table += "<td>"+ept+"<input type='hidden' name='ept[]' value='"+ept+"' id='ept_"+jumlah_data+"'></td>";
+		        	table += "<td>"+butuh+"<input type='hidden' name='butuh[]' value='"+butuh+"' id='butuh_"+jumlah_data+"'></td>";
+		        	table += "<td>"+waktu+"<input type='hidden' name='waktu[]' value='"+waktu+"' id='waktu_"+jumlah_data+"'></td>";
+		        	table+="<td>";
+	                table+="<a class='btn btn-sm btn-block btn-danger del' idsub='"+jumlah_data+"' style='width:40px;'><span class='fa fa-trash'></span></a>";
+	                table+="</td>";
+		        	table += "</tr>";
 
-	        $('#unit_kerja option[value=""]').attr('selected','selected');
-			$('#kebutuhan').val('');
-			$('#tersedia').val('');
-			$('#kurang_lebih').val('');
-			$('#masuk').val('');
-			$('#keluar').val('');
-			$('#jumlah').val('');
-			$('#rekrut').val('');
-	        $('#posisi').val('');
-	        $('#tugas').val('');
-	        $('#pendidikan').val('SMA');
-	        $('#tahun').val('');
-	        $('#jenis_kerja').val('');
-	        $('#tpa').val('');
-	        $('#ept').val('');
-	        $('#butuh').val('');
-	        $('#waktu').val('');
+		        $('#table_rkp tbody.data').append(table);
+
+		        $('#unit_kerja option[value=""]').attr('selected','selected');
+		        $('#unit_kerja').val('');
+				$('#unit_kerja').select2().trigger('change');
+				$('#kebutuhan').val('');
+				$('#tersedia').val('');
+				$('#kurang_lebih').val('');
+				$('#masuk').val('');
+				$('#keluar').val('');
+				$('#jumlah').val('');
+				$('#rekrut').val('');
+		        $('#posisi').val('');
+		        $('#tugas').val('');
+		        $('#pendidikan').val('SMA');
+		        $('#tahun').val('');
+		        $('#jenis_kerja').val('');
+		        $('#tpa').val('');
+		        $('#ept').val('');
+		        $('#butuh').val('');
+		        $('#waktu').val('');
+		    }else{
+		    	alert('Unit Kerja dan atau Kebutuhan Belum Diisi!');
+		    }
 		});
 
 		$(document).on("click", "a.del", function(e){
