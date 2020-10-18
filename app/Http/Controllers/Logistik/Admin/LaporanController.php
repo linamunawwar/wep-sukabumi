@@ -819,7 +819,7 @@ class LaporanController extends Controller
         while ($tgl_mulai <= $tgl_selesai) {
             $permintaans = LogPermintaanMaterial::where('tanggal', '=', $tgl_mulai)
                                                 ->where('soft_delete', 0)
-                                                ->where('is_scarm',1)
+                                                ->where('is_scarm','!=',0)
                                                 ->get();
                                             
             foreach ($permintaans as $key => $permintaan) {
@@ -846,7 +846,7 @@ class LaporanController extends Controller
                     $penerimaans = LogDetailPenerimaanMaterial::where('soft_delete',0)
                                                             ->where('tanggal_terima', '=', $tgl_mulai)
                                                             ->whereHas('penerimaan',function ($q){
-                                                              $q->where('is_splem', 1);
+                                                              $q->where('is_splem','!=', 0);
                                                             })
                                                             ->get();
                     // var_dump(count($penerimaans).'tgl'.$tgl_mulai);
