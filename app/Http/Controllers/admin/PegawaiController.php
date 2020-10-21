@@ -1048,9 +1048,9 @@ class PegawaiController extends Controller
             $dt_pegawai_update['posisi_id'] = $data['posisi_id'];
 
           }
-          }
-          //kalau role ganti jadi PM
-          elseif ($kode_bagian == 'PM') {
+        }
+        //kalau role ganti jadi PM
+        elseif ($kode_bagian == 'PM') {
              $nip = 'PM'.$dates[2].$dates[1].$tahun[1];
               $dt_user['pegawai_id'] = $nip;
               $dt_pegawai['nip'] = $nip;
@@ -1070,7 +1070,7 @@ class PegawaiController extends Controller
               $dt_pegawai_update['tanggal_keluar'] = date('Y-m-d H:i:s');
 
             \File::copyDirectory('upload/pegawai/'.$pegawai->nip, 'upload/pegawai/'.$dt_pegawai['nip']);
-          }
+        }
           
           //update data yg lama
            $query_pegawai = Pegawai::where('nip',$pegawai->nip)->update($dt_pegawai_update);
@@ -1079,6 +1079,19 @@ class PegawaiController extends Controller
             $query_user = User::where('pegawai_id',$pegawai->nip)->update($dt_user);
            
             if($query_pegawai && $query_user){
+              //change menu dan permission
+              //hapus permission lama
+              $del_permission = Permission::where('id_user',$user->id)->delete();
+              // set permission baru
+              $menus = Menu::where('default_role',$data['role'])->where('active',1)->get();
+              foreach ($menus as $key => $menu) {
+                $insert = new Permission;
+                $insert->id_menu = $menu->id;
+                $insert->id_user = $user->id;
+                if(!($insert->save())){
+                  break;
+                }
+              }
               return redirect('admin/pegawai');
             }
           

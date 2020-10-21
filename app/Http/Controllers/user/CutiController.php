@@ -12,7 +12,7 @@ class CutiController extends Controller
     public function index()
     {
     	//list cuti dari user yg login
-    	$cutis = Cuti::where('nip',\Auth::user()->pegawai_id)->where('soft_delete',0)->get();
+    	$cutis = Cuti::where('user_id',\Auth::user()->id)->where('soft_delete',0)->get();
 
         return view('user.cuti_izin.cuti.index',['cutis'=>$cutis]);
     }
