@@ -132,20 +132,33 @@ class PegawaiController extends Controller
             $q->where('kode_bagian', 'QHSE');
         })->get();
 
+        $pecats = [];
+
+          foreach ($pecat_qhse as $key => $value) {
+            $pecats[] = $value;
+          }
+
         $pecat_qc = Pecat::where('is_verif_mngr',0)->where('soft_delete',0)
                   ->whereHas('pegawai',function ($q){
             $q->where('kode_bagian', 'QC');
         })->get();
+
+        $pecats = [];
+
+          foreach ($pecat_qc as $key => $value) {
+            $pecats[] = $value;
+          }
 
         $pecat_hs = Pecat::where('is_verif_mngr',0)->where('soft_delete',0)
                   ->whereHas('pegawai',function ($q){
             $q->where('kode_bagian', 'HS');
         })->get();
 
-        $pecats = $pecat_qhse->merge($pecat_qc);
-        $pecats = $pecats->all();
-        $pecats = $pecat->merge($pecat_hs);
-        $pecats = $pecats->all();
+        $pecats = [];
+
+          foreach ($pecat_hs as $key => $value) {
+            $pecats[] = $value;
+          }
       }else{
         $pecats = Pecat::whereHas('pegawai',function ($q){
             $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
