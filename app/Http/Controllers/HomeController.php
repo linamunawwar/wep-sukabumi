@@ -68,7 +68,7 @@ class HomeController extends Controller
             $disposisi = DisposisiTugas::where('status','!=',1)->where('soft_delete',0)
                         ->where('posisi_id',\Auth::user()->pegawai->posisi_id)->count();
 
-            if(\Auth::user()->pegawai->kode_bagian == 'QHSE'){
+            if((\Auth::user()->pegawai->kode_bagian == 'QHSE') || (\Auth::user()->pegawai->kode_bagian == 'QC') || (\Auth::user()->pegawai->kode_bagian == 'HS')){
               $cutis_qc = Cuti::where('is_verif_admin',1)->where('is_verif_mngr',0)->where('soft_delete',0)
                                 ->whereHas('pegawai',function ($q){
                           $q->where('kode_bagian', 'QC');
