@@ -143,8 +143,6 @@ class PegawaiController extends Controller
             $q->where('kode_bagian', 'QC');
         })->get();
 
-        $pecats = [];
-
           foreach ($pecat_qc as $key => $value) {
             $pecats[] = $value;
           }
@@ -153,8 +151,6 @@ class PegawaiController extends Controller
                   ->whereHas('pegawai',function ($q){
             $q->where('kode_bagian', 'HS');
         })->get();
-
-        $pecats = [];
 
           foreach ($pecat_hs as $key => $value) {
             $pecats[] = $value;
