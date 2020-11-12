@@ -39,7 +39,14 @@ class SuratKeluarController extends Controller
                     $no_surat[0] = $backdate[0];
                 }
                 $nomor_surat = $no_surat[0]+1;
-                return tigadigit($nomor_surat).'/WK/INF2/BCKY-2AU/'.$bulan.'/'.date('Y');
+
+                $nomor_surat_akhir = tigadigit($nomor_surat).'/WK/INF2/BCKY-2AU/'.$bulan.'/'.date('Y');
+                $cek = SuratKeluar::where('no_surat',$nomor_surat_akhir)->first();
+                if(count($cek)==0){
+                    return $nomor_surat_akhir;
+                }else {
+                    return 0;
+                }
             }elseif($tanggal < date('Y-m-d')){
                 //surat backdate
                 $surat = SuratKeluar::where('tanggal_surat','<=',$tanggal)->orderBy('tanggal_surat','desc')->orderBy('created_at','desc')->first();
@@ -54,7 +61,13 @@ class SuratKeluarController extends Controller
                         $nomor = $no_surat[0].'.1';
                     }
 
-                    return $nomor.'/WK/INF2/BCKY-2AU/'.$bulan.'/'.date('Y');
+                    $nomor_surat_akhir = $nomor.'/WK/INF2/BCKY-2AU/'.$bulan.'/'.date('Y');
+                    $cek = SuratKeluar::where('no_surat',$nomor_surat_akhir)->first();
+                    if(count($cek)==0){
+                        return $nomor_surat_akhir;
+                    }else {
+                        return 0;
+                    }
                 }else{
                     return 0;
                 }
