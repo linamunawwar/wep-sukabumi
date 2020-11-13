@@ -558,6 +558,8 @@ function tigadigit($value){
         return '00'.$value;
     }elseif($length == 2){
         return '0'.$value;
+    }elseif($length == 3){
+        return $value;
     }
 }
 
