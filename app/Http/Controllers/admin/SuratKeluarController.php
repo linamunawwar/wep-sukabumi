@@ -69,14 +69,14 @@ class SuratKeluarController extends Controller
                         return 0;
                     }
                 }else{
-                    return 0;
+                    return false;
                 }
             }else{
-                return 0;
+                return null;
             }
 
         }else{
-            return 0;
+            return false;
         }
     }
 
