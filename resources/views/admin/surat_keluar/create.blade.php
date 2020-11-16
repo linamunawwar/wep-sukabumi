@@ -117,7 +117,7 @@
 	                    'tanggal' : tanggal,
 	                },
 	                success: function(response){
-	                	if(response){
+	                	if((response != 0) && (response != null) && (response != false)){
 		                    // $('#tanggal_surat').attr('readonly','readonly');
 		                    // $('#tanggal_surat').prop('disabled',true);
 		                    // $('.input-group-addon').unbind('click');

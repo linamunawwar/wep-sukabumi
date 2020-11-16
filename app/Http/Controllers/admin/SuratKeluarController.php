@@ -49,14 +49,16 @@ class SuratKeluarController extends Controller
                 }
             }elseif($tanggal < date('Y-m-d')){
                 //surat backdate
-                $surat = SuratKeluar::where('tanggal_surat','<=',$tanggal)->orderBy('tanggal_surat','desc')->orderBy('created_at','desc')->first();
+                $surat = SuratKeluar::where('tanggal_surat','<=',$tanggal)->where('soft_delete',0)->orderBy('tanggal_surat','desc')->orderBy('created_at','desc')->first();
                 if($surat){
                     $no_surat = explode('/',$surat->no_surat);
                     $nomor ='';
+                    dd($surat);
                     if(strpos($no_surat[0],'.')){
                         $backdate = explode('.', $no_surat[0]);
                         $backdate[1]++;
                         $nomor = $backdate[0].'.'.$backdate[1];
+                        dd($surat);
                     }else{
                         $nomor = $no_surat[0].'.1';
                     }
