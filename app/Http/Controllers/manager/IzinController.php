@@ -112,6 +112,9 @@ class IzinController extends Controller
       $tanggal_selesai = explode('-',$data['tanggal_selesai']);
       $data['tanggal_selesai'] = $tanggal_selesai[2].'-'.$tanggal_selesai[1].'-'.$tanggal_selesai[0];
       $izin->tanggal_selesai =$data['tanggal_selesai'];
+      $izin->is_verif_admin = 1;
+      $izin->verif_admin_by = \Auth::user()->id;;
+      $izin->verify_admin_time = date('Y-m-d H:i:s');
       $izin->is_verif_mngr = 1;
       $izin->verif_mngr_by = \Auth::user()->id;;
       $izin->verify_mngr_time = date('Y-m-d H:i:s');

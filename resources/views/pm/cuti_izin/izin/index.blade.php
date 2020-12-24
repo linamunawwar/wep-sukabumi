@@ -45,8 +45,15 @@
 											{{konversi_tanggal($date[0])}}
 										</td>
 										<td>
-											@if($izin->is_verif_mngr == 1)
+											@if(($izin->is_verif_admin == 1) && ($izin->is_verif_mngr == 1) && ($izin->is_verif_sdm == 1))
+												<span class="label label-warning">Approved By Admin</span>
 												<span class="label label-primary">Approved By Manager</span>
+												<span class="label label-success">Approved By SDM</span>
+											@elseif(($izin->is_verif_admin == 1) && ($izin->is_verif_mngr == 1) && ($izin->is_verif_sdm == 0))
+												<span class="label label-warning">Approved By Admin</span>
+												<span class="label label-primary">Approved By Manager</span>
+											@elseif(($izin->is_verif_admin == 1) && ($izin->is_verif_mngr == 0) && ($izin->is_verif_sdm == 0))
+												<span class="label label-warning">Approved By Admin</span>
 											@else
 												<span class="label label-default">Not Approved</span>
 											@endif

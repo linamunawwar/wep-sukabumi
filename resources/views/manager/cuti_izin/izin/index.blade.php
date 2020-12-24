@@ -45,11 +45,15 @@
 											{{konversi_tanggal($date[0])}}
 										</td>
 										<td>
-											@if(($izin->is_verif_mngr == 1) && ($izin->is_verif_sdm == 1))
+											@if(($izin->is_verif_admin == 1) && ($izin->is_verif_mngr == 1) && ($izin->is_verif_sdm == 1))
+												<span class="label label-warning">Approved By Admin</span>
 												<span class="label label-primary">Approved By Manager</span>
 												<span class="label label-success">Approved By SDM</span>
-											@elseif(($izin->is_verif_mngr == 1) && ($izin->is_verif_sdm == 0))
+											@elseif(($izin->is_verif_admin == 1) && ($izin->is_verif_mngr == 1) && ($izin->is_verif_sdm == 0))
+												<span class="label label-warning">Approved By Admin</span>
 												<span class="label label-primary">Approved By Manager</span>
+											@elseif(($izin->is_verif_admin == 1) && ($izin->is_verif_mngr == 0) && ($izin->is_verif_sdm == 0))
+												<span class="label label-warning">Approved By Admin</span>
 											@else
 												<span class="label label-default">Not Approved</span>
 											@endif
@@ -57,20 +61,20 @@
 										<td style="text-align: left;">
 											@if(\Auth::user()->role_id == 4)
 												@if($izin->pegawai->kode_bagian == 'SA')
-													@if(($izin->is_verif_mngr == 0) && ($izin->is_verif_sdm == 0) )
+													@if(($izin->is_verif_admin == 1) && ($izin->is_verif_mngr == 0) && ($izin->is_verif_sdm == 0) )
 														<a class="btn btn-success btn-xs" href="{{url('manager/izin/approve_sdm/'.$izin->id.'')}}"><i class="fa fa-check" ></i>  Approve</a>
 													@else
 														<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>
 													@endif
 												@else
-													@if(($izin->is_verif_mngr == 1) && ($izin->is_verif_sdm == 0) )
+													@if(($izin->is_verif_admin == 1) && ($izin->is_verif_mngr == 1) && ($izin->is_verif_sdm == 0) )
 														<a class="btn btn-success btn-xs" href="{{url('manager/izin/approve_sdm/'.$izin->id.'')}}"><i class="fa fa-check" ></i>  Approve</a>
 													@else
 														<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>
 													@endif
 												@endif
 											@else
-												@if($izin->is_verif_mngr == 0)
+												@if(($izin->is_verif_admin == 1) && ($izin->is_verif_mngr == 0))
 													<a class="btn btn-success btn-xs" href="{{url('manager/izin/approve/'.$izin->id.'')}}"><i class="fa fa-check" ></i>  Approve</a>
 												@else
 													<button class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</button>

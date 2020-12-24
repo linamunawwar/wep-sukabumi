@@ -48,6 +48,9 @@ class IzinController extends Controller
       $izin->is_verif_mngr = 0;
       $izin->verif_mngr_by = 0;
       $izin->verify_mngr_time = 0;
+      $izin->is_verif_admin = 0;
+      $izin->verif_admin_by = 0;
+      $izin->verify_admin_time = 0;
       $izin->user_id = $user->id;
       $izin->role_id = \Auth::user()->role_id;
 
@@ -68,6 +71,26 @@ class IzinController extends Controller
       $pdf = PDF::loadView('admin.cuti_izin.izin.surat_izin',['izin' => $izin,'sdm'=>$sdm,'pm'=>$pm,'manager'=>$manager]);
       $pdf->setPaper('A4');
       return $pdf->download('Surat Izin_'.$izin->nip.'.pdf');
+    }
+
+    public function getApprove($id)
+    {
+      $izin = Izin::find($id);
+
+        return view('admin.cuti_izin.izin.approve',['izin'=>$izin]);
+    }
+
+    public function postApprove($id)
+    {
+      date_default_timezone_set("Asia/Jakarta");
+
+       $izin['is_verif_admin'] = 1;
+       $izin['verif_admin_by'] = \Auth::user()->id;
+       $izin['verify_admin_time'] = date('Y-m-d H:i:s');
+
+       $update = Izin::where('id',$id)->update($izin);
+       
+       return redirect('/admin/izin');
     }
 
     public function getDelete(){

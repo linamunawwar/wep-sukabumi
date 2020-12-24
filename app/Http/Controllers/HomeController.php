@@ -46,12 +46,13 @@ class HomeController extends Controller
             $pegawai = Pegawai::where('is_verif_admin',0)->where('soft_delete',0)->count();
             $memo = MemoPegawai::where('user_id',Auth::user()->id)->where('viewed_at',0)->where('soft_delete',0)->count();
             $cuti = Cuti::where('is_verif_pengganti',1)->where('is_verif_admin',0)->where('soft_delete',0)->count();
+            $izin = Izin::where('is_verif_admin',0)->where('soft_delete',0)->count();
             $spj = Spj::where('is_verif_sdm',0)->where('soft_delete',0)->count();
             $pecat = Pecat::where('is_verif_sdm',0)->where('soft_delete',0)->count();
             $resign = Resign::where('is_verif_sdm',0)->where('soft_delete',0)->count();
             $rkp = Rkp::where('soft_delete',0)->where('viewed_at',null)->count();
             $disposisi = Disposisi::where('note_pm','!=',null)->where('soft_delete',0)->count();
-            return view('admin.home_admin',['pegawai'=>$pegawai,'memo'=>$memo,'cuti'=>$cuti,'spj'=>$spj,'pecat'=>$pecat,'resign'=>$resign,'rkp'=>$rkp,'disposisi'=>$disposisi]);
+            return view('admin.home_admin',['pegawai'=>$pegawai,'memo'=>$memo,'cuti'=>$cuti,'izin'=>$izin,'spj'=>$spj,'pecat'=>$pecat,'resign'=>$resign,'rkp'=>$rkp,'disposisi'=>$disposisi]);
         }
         
         //User
@@ -88,17 +89,17 @@ class HomeController extends Controller
               
 
               //izin
-              $izin_qhse = Izin::where('is_verif_mngr',0)->where('soft_delete',0)
+              $izin_qhse = Izin::where('is_verif_admin',1)->where('is_verif_mngr',0)->where('soft_delete',0)
                         ->whereHas('pegawai',function ($q){
                   $q->where('kode_bagian', 'QHSE');
               })->count();
 
-              $izin_qc = Izin::where('is_verif_mngr',0)->where('soft_delete',0)
+              $izin_qc = Izin::where('is_verif_admin',1)->where('is_verif_mngr',0)->where('soft_delete',0)
                         ->whereHas('pegawai',function ($q){
                   $q->where('kode_bagian', 'QC');
               })->count();
 
-              $izin_hs = Izin::where('is_verif_mngr',0)->where('soft_delete',0)
+              $izin_hs = Izin::where('is_verif_admin',1)->where('is_verif_mngr',0)->where('soft_delete',0)
                         ->whereHas('pegawai',function ($q){
                   $q->where('kode_bagian', 'HS');
               })->count();
@@ -147,7 +148,7 @@ class HomeController extends Controller
                         ->whereHas('pegawai',function ($q){
                             $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
                         })->count();
-                $izin = Izin::where('is_verif_mngr',0)->where('soft_delete',0)
+                $izin = Izin::where('is_verif_admin',1)->where('is_verif_mngr',0)->where('soft_delete',0)
                         ->whereHas('pegawai',function ($q){
                             $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
                         })->count();
@@ -184,7 +185,8 @@ class HomeController extends Controller
                     })
                     ->count();
             // $cuti = $cuti + $cuti_sdm;
-            $izin = Izin::where('is_verif_mngr',1)
+            $izin = Izin::where('is_verif_admin',1)
+                    ->where('is_verif_mngr',1)
                     ->where('is_verif_sdm',0)
                     ->where('soft_delete',0)
                     ->orwhere('is_verif_mngr',0)
