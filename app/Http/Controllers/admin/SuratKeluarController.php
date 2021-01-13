@@ -53,12 +53,12 @@ class SuratKeluarController extends Controller
                 if($surat){
                     $no_surat = explode('/',$surat->no_surat);
                     $nomor ='';
-                    dd($surat);
+                    // dd($surat);
                     if(strpos($no_surat[0],'.')){
                         $backdate = explode('.', $no_surat[0]);
                         $backdate[1]++;
                         $nomor = $backdate[0].'.'.$backdate[1];
-                        dd($surat);
+                        // dd($surat);
                     }else{
                         $nomor = $no_surat[0].'.1';
                     }
