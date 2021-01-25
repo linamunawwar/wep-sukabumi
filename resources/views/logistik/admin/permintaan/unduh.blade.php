@@ -46,7 +46,7 @@
       <td></td>       
       <td colspan="7" style="text-align:center;">
         @php
-          $year = substr($details[0]->created_at, 2,2);
+          $year = substr($permintaan->created_at, 2,2);
         @endphp
         Nomor : {{$permintaan->nomor}}/BPM/WK/INF2/BCKY-2AU/{{$year}}
       </td>
