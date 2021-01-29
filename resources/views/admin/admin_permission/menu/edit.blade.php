@@ -22,7 +22,7 @@
 							<div class="form-row form-group">
 								<div class="form-group col-md-6">
 									<label for="id_parent">Parent</label>
-									<select id="id_parent" name="id_parent" class="form-control col-md-7 col-xs-12 bagian">
+									<select id="id_parent" name="id_parent" class="form-control col-md-7 col-xs-12 bagian" required="required">
 										<option value=""> --- Parent --- </option>
 										@foreach ($select as $row)
 										<?php
@@ -34,17 +34,17 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label for="urutan">Urutan</label>
-									<input type="text" class="form-control" name="urutan" id="urutan" value="{{ $menu->urutan }}" placeholder="Urutan">
+									<input type="text" class="form-control" name="urutan" id="urutan" value="{{ $menu->urutan }}" required="required" placeholder="Urutan">
 								</div>
 							</div>
 							<div class="form-row form-group">
 								<div class="form-group col-md-6">
 									<label for="nama">Nama</label>
-									<input type="text" class="form-control" name="nama" id="nama" value="{{ $menu->nama }}" placeholder="Nama">
+									<input type="text" class="form-control" name="nama" id="nama" value="{{ $menu->nama }}" placeholder="Nama" required="required">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="alias">Alias</label>
-									<input type="text" class="form-control" name="alias" id="alias" value="{{ $menu->alias }}" placeholder="alias">
+									<input type="text" class="form-control" name="alias" id="alias" value="{{ $menu->alias }}" placeholder="alias" required="required">
 								</div>
 							</div>
 							<div class="form-row form-group">
@@ -60,7 +60,7 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label for="default_role">Default Role</label>
-									<select id="default_role" name="default_role" class="form-control col-md-7 col-xs-12 bagian">
+									<select id="default_role" name="default_role" class="form-control col-md-7 col-xs-12 bagian" required="required">
 										<option value=""> --- Role --- </option>
 										@foreach ($roles as $role)
 										<?php
@@ -74,7 +74,7 @@
 							<div class="form-row form-group">
 								<div class="form-group col-md-6">
 									<?php $checked = ($menu->active == 1)? 'checked' : ''; ?>
-									<input type="checkbox" name="active" {{$checked}} id="active" value="1">
+									<input type="checkbox" name="active" {{$checked}} id="active" value="1" required="required">
 									<label for="active">Aktifkan Menu</label>
 								</div>								
 							</div>						

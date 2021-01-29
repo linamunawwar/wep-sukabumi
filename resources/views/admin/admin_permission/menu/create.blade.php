@@ -28,7 +28,7 @@
 							<div class="form-row form-group">
 								<div class="form-group col-md-6">
 									<label for="id_parent">Parent</label>
-									<select id="id_parent" name="id_parent" class="form-control col-md-7 col-xs-12 bagian">
+									<select id="id_parent" name="id_parent" class="form-control col-md-7 col-xs-12 bagian" required="required">
 										<option value=""> --- Parent ---</option>
 										@foreach ($menu as $row)
 											<option value="{{ $row->id }}"> {{ $row->nama }} </option>
@@ -37,17 +37,17 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label for="urutan">Urutan</label>
-									<input type="text" class="form-control" name="urutan" id="urutan" placeholder="Urutan">
+									<input type="text" class="form-control" name="urutan" id="urutan" placeholder="Urutan" required="required">
 								</div>
 							</div>
 							<div class="form-row form-group">
 								<div class="form-group col-md-6">
 									<label for="nama">Nama</label>
-									<input type="text" class="form-control" name="nama" id="nama" placeholder="Nama">
+									<input type="text" class="form-control" name="nama" id="nama" placeholder="Nama" required="required">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="alias">Alias</label>
-									<input type="text" class="form-control" name="alias" id="alias" placeholder="alias">
+									<input type="text" class="form-control" name="alias" id="alias" placeholder="alias" required="required">
 								</div>
 							</div>
 							<div class="form-row form-group">
@@ -821,7 +821,7 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label for="default_role">Default Role</label>
-									<select class="form-control" name="default_role" id="default_role">
+									<select class="form-control" name="default_role" id="default_role" required="required">
 										<option value="">--Pilih Role--</option>
 										@foreach($roles as $role)
 											<option value="{{$role->id}}">{{$role->name}}</option>
@@ -831,7 +831,7 @@
 							</div>	
 							<div class="form-row form-group">
 								<div class="form-group col-md-6">
-									<input type="checkbox" name="active" id="active" value="1">
+									<input type="checkbox" name="active" id="active" value="1" required="required">
 									<label for="active">Aktifkan Menu</label>
 								</div>								
 							</div>						
