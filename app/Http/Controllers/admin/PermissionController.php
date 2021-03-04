@@ -40,7 +40,7 @@ class PermissionController extends Controller
             //kalau belum ada create parent di permission dulu
             if(count($cek)==0){
                 $permissionParent= new Permission;
-                $permissionParent->id_menu = $id_menu;
+                $permissionParent->id_menu = $menu->id_parent;
                 $permissionParent->id_user = $id_user;
                 $query_permissionParent= $permissionParent->save();
             }
