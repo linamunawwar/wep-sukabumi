@@ -55,8 +55,8 @@
 							<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
 								<label style="display: inline-block;" for="nama">Kode Penerimaan :</label>
-								<p style="display: inline-block;" id="kode_penerimaan_id"></p>
-								<input type="hidden" name="kodePenerimaan" id="kode_penerimaan_id" class="kode_penerimaan_id">
+								<p style="display: inline-block;" id="kode_penerimaan_id">{{$kode_penerimaan}}</p>
+								<input type="hidden" name="kodePenerimaan" value="{{$kode_penerimaan}}" id="kode_penerimaan_id" class="kode_penerimaan_id">
 							</div>							
 							<div class="row">
 								<div class="col-md-3 col-sm-3 col-xs-3">
@@ -160,9 +160,6 @@
             },
             success: function(response){
             	var data = JSON.parse(response);
-            	console.log(data);
-            	$('.kode_penerimaan_id').val(kode_penerimaan);
-            	$('#kode_penerimaan_id').html(kode_penerimaan);
             	if(data === 0){
             		$('.alert-notif').show();
             		$('.not-found').hide();
