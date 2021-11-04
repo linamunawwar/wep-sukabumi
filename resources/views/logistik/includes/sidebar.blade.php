@@ -1,6 +1,6 @@
-<div class="col-md-3 left_col" style="width: 230px; ">
+<div class="col-md-3 left_col">
     <div class="left_col scroll-view" style="background: #00004E;">
-        <div class="navbar nav_title" style="border: 0; background: white; width: 100%; margin-bottom: 10px;">
+        <div class="navbar nav_title" style="border: 0; background: white; width: 100%; margin-bottom: 20px;">
             <a href="{{ url('/') }}" class="site_title"><img src="{{asset('public/img/Waskita-noback.png')}}" width="40px" height="25px" style="color: white!important;"> <span style="color: #172D44 !important;">WEP - Logistik WEP </span></a>
         </div>
         

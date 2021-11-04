@@ -6,7 +6,7 @@
                 <a id="menu_toggle" style="color: white!important;"><i class="fa fa-bars"></i></a>
             </div>
             
-            <ul class="nav navbar-nav navbar-right" style="color: white!important;">
+            <ul class="nav navbar-nav navbar-right" style="color: white!important; width:75%;">
                 <li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
                         <img src="{{ Gravatar::src(Auth::user()->email) }}">
@@ -20,7 +20,7 @@
                 </li>
                 <li>                      
                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
-                        <i class="fa fa-bell-o"></i> 
+                        <i class="fa fa-bell-o fa-5x" title="Notifikasi" alt="Notifikasi"></i> 
                         @if(count(notif_penerimaan_baru()) != 0)
                             <span class="badge bg" style="background-color: #1AAD19; ">
                                 {{count(notif_penerimaan_baru())}}
@@ -61,7 +61,7 @@
                 @if(\Auth::user()->role_id == 6)
                 <li>                      
                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
-                        Permintaan Penyerahan 
+                        <i class="fa fa-check-square-o" title="Permintaan Penyerahan"></i> 
                         @if(count(notif_permintaan_penyerahan()) != 0)
                             <span class="badge bg" style="background-color: #1AAD19; ">
                                 {{count(notif_permintaan_penyerahan())}}
@@ -102,7 +102,7 @@
                 @endif
                 <li>
                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
-                        Konfirmasi Penerimaan
+                        <i class="fa fa-list-alt" title="Konfirmasi Penerimaan"></i>
                         @if(count(notif_konfirmasi_penerimaan()) != 0)
                             <span class="badge bg" style="background-color: #1AAD19; ">
                                 {{count(notif_konfirmasi_penerimaan())}}
@@ -149,7 +149,7 @@
                 <!-- notifikasi permintaan diproses = notifikasi jika ada permintaan yg disetujui/ direject -->
                 <li>
                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="color: white!important;">
-                        Permintaan Diproses
+                        <i class="fa fa-tasks" title="Permintaan Diproses"></i>
                         @if(count(notif_permintaan_diproses()) != 0)
                             <span class="badge bg" style="background-color: #1AAD19; ">
                                 {{count(notif_permintaan_diproses())}}
