@@ -370,37 +370,27 @@ class PenerimaanController extends Controller
 	                        $sheet->loadView('logistik.admin.penerimaan.unduh',['penerimaan' => $find,'datas'=>$dt_penerimaan,'splem'=>$splem,'pm'=>$pm]);
 	                        $objDrawing = new PHPExcel_Worksheet_Drawing;
 	                        $objDrawing->setPath(public_path('img/Waskita.png'));
-	                        $objDrawing->setCoordinates('C1');
+	                        $objDrawing->setCoordinates('C4');
 	                        $objDrawing->setWorksheet($sheet);
 	                        $objDrawing->setResizeProportional(false);
 	                        // set width later
 	                        $objDrawing->setWidth(40);
 	                        $objDrawing->setHeight(35);
-	                        $sheet->getStyle('C1')->getAlignment()->setIndent(1);
+	                        $sheet->getStyle('C4')->getAlignment()->setIndent(1);
 
-	                        $sheet->getStyle('A11:K27')->getAlignment()->setWrapText(true);
-	                        $sheet->getStyle('A2:K36')->getFont()->setName('Tahoma');
-	                        $sheet->getStyle('A13:K15')->getAlignment()->applyFromArray(
+	                        $sheet->getStyle('A9:L27')->getAlignment()->setWrapText(true);
+	                        $sheet->getStyle('A2:L36')->getFont()->setName('Tahoma');
+	                        $sheet->getStyle('A13:L15')->getAlignment()->applyFromArray(
 	                            array('horizontal' => 'center')
 	                        );
 	                        $sheet->cells('A9:K11', function ($cells) {
 	                            $cells->setValignment('center');
 	                            $cells->setFontFamily('Tahoma');
 	                        });
+                            $sheet->setHeight(10, 50);
 	                        
-	                        $sheet->cell('D9:E11', function($cell){
+	                        $sheet->cell('C12:L28', function($cell){
 	                            $cell->setValignment('center');
-	                        });
-	                        $sheet->cell('D8:E8', function($cell){
-	                            $cell->setBorder('','','thin','');
-	                        });
-	                        $sheet->cell('C4', function($cell){
-	                            $cell->setBorder('thin','thin','thin','thin');
-	                        });
-	                        $sheet->cell('C6', function($cell){
-	                            $cell->setalignment('center');
-	                            $cell->setValignment('center');
-	                            $cell->setBorder('thin','thin','thin','thin');
 	                        });
 	                        // $sheet->cell('B14:E14', function($cell){
 	                        //     $cell->setBorder('','','','thin');
