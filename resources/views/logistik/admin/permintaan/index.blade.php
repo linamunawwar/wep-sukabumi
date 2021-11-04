@@ -45,7 +45,7 @@
 									<th scope="col"> Nama Peminta </th>
 									<th scope="col"> Tanggal </th>
 									<th scope="col"> Status </th>
-									<th scope="col"> Action </th>
+									<th scope="col" width="100"> Action </th>
 								</tr>
 							</thead>
 							<tbody>	
@@ -65,7 +65,7 @@
 										</td>
 											
 										<td style="text-align:center;">
-											<span style="margin-right:10px;"><a href="{{ url('Logistik/admin/permintaan/detail/'.$permintaan->id.'') }}" class="btn btn-default btn-xs" title="Detail" style="background-color :{{$permintaan->notifColor}}; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;"><i class="fa fa-th-list" style="font-size:15px;"></i></a> <sup style="{{$permintaan->notifStyle}}"> <i class="{{$permintaan->notifIcon}}" style='font-size:12px;'> </i> </sup>   </span>
+											<span style="margin-right:0px;"><a href="{{ url('Logistik/admin/permintaan/detail/'.$permintaan->id.'') }}" class="btn btn-default btn-xs" title="Detail" style="background-color :{{$permintaan->notifColor}}; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;"><i class="fa fa-th-list" style="font-size:15px;"></i></a> <sup style="{{$permintaan->notifStyle}}"> <i class="{{$permintaan->notifIcon}}" style='font-size:12px;'> </i> </sup>   </span>
 											@if(($permintaan->is_som === null) || ($permintaan->is_som === '0') || ($permintaan->is_scarm === '0'))
 												<a class="btn btn-default btn-xs" title="Edit" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/permintaan/edit/'.$permintaan->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i>  </a>
 												<button data-toggle="modal" title="Hapus"  id_permintaan='{{$permintaan->id}}' data-target="#DeleteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-delete" onclick='deleteData("{{$permintaan->id}}")'><i class="fa fa-trash" style="font-size:15px;"></i></button>

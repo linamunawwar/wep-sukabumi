@@ -96,7 +96,7 @@
 									<div class="form-group">
 										<label class="control-label col-md-6 col-sm-6 col-xs-12" for="nama">Keperluan <span class="required">*</span>:</label>
 										<div class="col-md-4 col-sm-4 col-xs-12">
-											<textarea id="keperluan" name="keperluan" rows="10" class="keperluan form-control col-md-7 col-xs-12" style="width:48.2em;"></textarea>
+											<textarea id="keperluan" name="keperluan" rows="10" cols="100" class="keperluan form-control"></textarea>
 										</div>
 									</div>
 								</div>
@@ -107,62 +107,69 @@
 									<div class="form-group">
 										<label class="control-label col-md-6 col-sm-6 col-xs-12" for="nama">Keterangan <sup>(Optional)</sup> :</label>
 										<div class="col-md-4 col-sm-4 col-xs-12">
-											<textarea id="keterangan" name="keterangan" rows="10" class="keterangan form-control col-md-7 col-xs-12" style="width:48.2em;"></textarea>
+											<textarea id="keterangan" name="keterangan" rows="10" cols="100" class="keterangan form-control"></textarea>
 										</div>
 									</div>
 								</div>
-							</div>					
-							
-							<div class="ln_solid"></div>
-							<div class="form-group" >
-								<div class="col-md-12" style="padding-right: 90px; margin-bottom:1.5em;">
-									<button type="button" class="btn btn-success pull-right tambah"><i><span class="fa fa-plus"></span></i>  Tambah</button>
-								</div>
 							</div>
+							
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12">
+							
+									<div class="ln_solid"></div>
+									<div class="form-group" >
+										<div class="col-md-12" style="padding-right: 90px; margin-bottom:1.5em;">
+											<button type="button" class="btn btn-success pull-right tambah"><i><span class="fa fa-plus"></span></i>  Tambah</button>
+										</div>
+									</div>
 
-							<input type="hidden" name="jumlah_data" class="jumlah_data" id="jumlah_data" value="0">
-							<table class="table table-bordered permintaan" id="table_permintaan">
-								<tr>
-									<th>Nama Material</th>
-									<th>No.Partype</th>
-									<th>Volume</th>
-									<th>Satuan</th>
-									<th>Tanggal Pakai</th>
-									<th>Untuk Keperluan</th>
-									<th>Keterangan</th>
-									<th>Action</th>
-								</tr>
-								<tbody class="data">   
-                                    @foreach ($detail as $detail)    
-                                    <tr>                            
-										<td>{{ $detail->detailPermintaanMaterial->nama }} </td>
-										<td>{{ $detail->no_part }} </td>
-										<td>{{ $detail->volume }} </td>
-										<td>{{ $detail->satuan }} </td>
-										<td>{{ $detail->tgl_pakai }} </td>
-										<td>{{ $detail->keperluan }} </td>
-										<td>{{ $detail->keterangan }} </td>
-										<td> 
-											<a href="{{url('Logistik/admin/permintaan/deleteDetail/'.$detail->id.'/'.$detail->permintaan_id.'')}}" class="btn btn-sm btn-block btn-danger" style="width:40px;"><span class="fa fa-trash"></span></a> 
-										</td>                                           
-                                    </tr>					
-                                    @endforeach	
-								</tbody>
-							</table>
-							<div class="ln_solid"></div>
-							<div class="form-group" style="margin-left:65em;">
-								<div class="col-md-12">
-									<a href="{{url('Logistik/admin/permintaan/')}}"><button class="btn btn-primary" type="button">Cancel</button></a>									
-									@if(
-										(($permintaan->is_som == 0) || ($permintaan->is_som == 1)) ||
-										(($permintaan->is_slem == 0) || ($permintaan->is_slem == 1)) ||
-										(($permintaan->is_scarm == 0) || ($permintaan->is_scarm == 1)) ||
-										(($permintaan->is_pm == 0) || ($permintaan->is_pm == 1))
-										)
-										<button type="submit" name="koreksi" class="btn btn-success">Koreksi</button>
-									@else
-										<button type="submit" class="btn btn-success">Submit</button>
-									@endif
+									<input type="hidden" name="jumlah_data" class="jumlah_data" id="jumlah_data" value="0">
+									<table class="table table-bordered permintaan" id="table_permintaan">
+										<thead>
+											<tr>
+												<th>Nama Material</th>
+												<th>No.Partype</th>
+												<th>Volume</th>
+												<th>Satuan</th>
+												<th>Tanggal Pakai</th>
+												<th>Untuk Keperluan</th>
+												<th>Keterangan</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody class="data">   
+											@foreach ($detail as $detail)    
+											<tr>                            
+												<td>{{ $detail->detailPermintaanMaterial->nama }} </td>
+												<td>{{ $detail->no_part }} </td>
+												<td>{{ $detail->volume }} </td>
+												<td>{{ $detail->satuan }} </td>
+												<td>{{ $detail->tgl_pakai }} </td>
+												<td>{{ $detail->keperluan }} </td>
+												<td>{{ $detail->keterangan }} </td>
+												<td> 
+													<a href="{{url('Logistik/admin/permintaan/deleteDetail/'.$detail->id.'/'.$detail->permintaan_id.'')}}" class="btn btn-sm btn-block btn-danger" style="width:40px;"><span class="fa fa-trash"></span></a> 
+												</td>                                           
+											</tr>					
+											@endforeach	
+										</tbody>
+									</table>
+									<div class="ln_solid"></div>
+									<div class="form-group" style="float:right;">
+										<div class="col-md-12">
+											<a href="{{url('Logistik/admin/permintaan/')}}"><button class="btn btn-primary" type="button">Cancel</button></a>									
+											@if(
+												(($permintaan->is_som == 0) || ($permintaan->is_som == 1)) ||
+												(($permintaan->is_slem == 0) || ($permintaan->is_slem == 1)) ||
+												(($permintaan->is_scarm == 0) || ($permintaan->is_scarm == 1)) ||
+												(($permintaan->is_pm == 0) || ($permintaan->is_pm == 1))
+												)
+												<button type="submit" name="koreksi" class="btn btn-success">Koreksi</button>
+											@else
+												<button type="submit" class="btn btn-success">Submit</button>
+											@endif
+										</div>
+									</div>
 								</div>
 							</div>
 						</form>
@@ -240,14 +247,16 @@
 		});
 
 		$(document).on("click", "a.del", function(e){
-        e.preventDefault();
-        var sub = $(this).attr('idsub');
-        var jumlahdata = $('#jumlah_data').val();
-        
-        jumlahdata--;
-        $('#jumlah_data').val(jumlahdata);
-        $('.data_'+sub+'').remove();
-    });
+			e.preventDefault();
+			var sub = $(this).attr('idsub');
+			var jumlahdata = $('#jumlah_data').val();
+			
+			jumlahdata--;
+			$('#jumlah_data').val(jumlahdata);
+			$('.data_'+sub+'').remove();
+		});
+
+		var table = $('#table_permintaan').DataTable();
 	});
 </script>
 @endpush
