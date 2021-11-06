@@ -216,7 +216,6 @@ function periodeTanggal($tanggal)
 function periode($periode)
 {
     $bulan = substr($periode, 4,6);
-    dd($bulan);
     $tahun = substr($periode, 0,4);
     switch ($bulan) {
         case '01':
