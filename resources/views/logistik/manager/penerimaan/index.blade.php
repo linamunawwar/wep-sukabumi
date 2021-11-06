@@ -61,7 +61,7 @@
 									<td data-sort="{{strtotime($penerimaan->tanggal)}}">{{ konversi_tanggal($penerimaan->tanggal) }}</td>
 									<td style="color:{{ $penerimaan->color }};">{{ $penerimaan->text }}</td>
 									<td style="text-align:center;">
-										<span style="margin-right:10px;">
+										<span style="margin-right:0px;">
 											<a class="btn btn-default btn-xs" title="Detail" style="background-color:#FF9800; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/manager/penerimaan/detail/'.$penerimaan->id.'')}}"><i class="fa fa-th-list" style="font-size:15px;"></i>
 											</a>
 											@if(($penerimaan->is_new == 1) && (\Auth::user()->id == $penerimaan->permintaan->user_id))
