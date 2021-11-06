@@ -378,8 +378,48 @@ class PenerimaanController extends Controller
 	                        $objDrawing->setHeight(35);
 	                        $sheet->getStyle('C4')->getAlignment()->setIndent(1);
 
-	                        $sheet->getStyle('A9:L27')->getAlignment()->setWrapText(true);
-	                        $sheet->getStyle('A2:L36')->getFont()->setName('Tahoma');
+                            //set image ttd pm
+                            // init drawing
+                            if(file_exists("upload/pegawai/$pm->nip/$pm->ttd")){
+                                $drawing1 = new PHPExcel_Worksheet_Drawing();
+                                // Set image
+                                $drawing1->setPath("upload/pegawai/$pm->nip/$pm->ttd");
+                                $drawing1->setWorksheet($sheet);
+                                $drawing1->setCoordinates('D40');
+                                $drawing1->setResizeProportional(false);
+                                $drawing1->setWidth(150);
+                                $drawing1->setHeight(100);
+                            }
+
+                            //set image ttd splem
+                            // init drawing
+                            if(file_exists("upload/pegawai/$splem->nip/$splem->ttd")){
+                                $drawing2 = new PHPExcel_Worksheet_Drawing();
+                                // Set image
+                                $drawing2->setPath("upload/pegawai/$splem->nip/$splem->ttd");
+                                $drawing2->setWorksheet($sheet);
+                                $drawing2->setCoordinates('F40');
+                                $drawing2->setResizeProportional(false);
+                                $drawing2->setWidth(150);
+                                $drawing2->setHeight(100);
+                            }
+
+                            //set image ttd penerima
+                            // init drawing
+                            if(file_exists("upload/pegawai/Auth::user()->pegawai_id/Auth::user()->pegawai->ttd")){
+                                $drawing3 = new PHPExcel_Worksheet_Drawing();
+                                // Set image
+                                $drawing3->setPath("upload/pegawai/Auth::user()->pegawai_id/Auth::user()->pegawai->ttd");
+                                $drawing3->setWorksheet($sheet);
+                                $drawing3->setCoordinates('J40');
+                                $drawing3->setResizeProportional(false);
+                                $drawing3->setWidth(150);
+                                $drawing3->setHeight(100);
+                            }
+
+
+	                        $sheet->getStyle('A9:L41')->getAlignment()->setWrapText(true);
+	                        $sheet->getStyle('A2:L41')->getFont()->setName('Tahoma');
 	                        $sheet->getStyle('A13:L15')->getAlignment()->applyFromArray(
 	                            array('horizontal' => 'center')
 	                        );
@@ -387,14 +427,49 @@ class PenerimaanController extends Controller
 	                            $cells->setValignment('center');
 	                            $cells->setFontFamily('Tahoma');
 	                        });
-                            $sheet->setHeight(10, 50);
+                            $sheet->setHeight(array(
+                                10     =>  50,
+                                31     =>  20,
+                                32     =>  25,
+                                33     =>  25,
+                                34     =>  25,
+                                35     =>  25,
+                                36     =>  25,
+                                37     =>  25,
+                                38     =>  30,
+                                41     =>  90
+                            ));
 	                        
+                            $sheet->setWidth(array(
+                                'A'     =>  1,
+                                'B'     =>  1,
+                                'C'     =>  6,
+                                'D'     =>  24,
+                                'E'     =>  5,
+                                'F'     =>  10,
+                                'G'     =>  7,
+                                'H'     =>  7,
+                                'I'     =>  7,
+                                'J'     =>  8,
+                                'K'     =>  8,
+                                'L'     => 10
+                            ));
+
 	                        $sheet->cell('C12:L28', function($cell){
 	                            $cell->setValignment('center');
 	                        });
-	                        // $sheet->cell('B14:E14', function($cell){
-	                        //     $cell->setBorder('','','','thin');
-	                        // });
+                            $sheet->cell('G32:I32', function($cell){
+                                $cell->setBorder('','','thin','');
+                            });
+                            $sheet->cell('G34:I34', function($cell){
+                                $cell->setBorder('','','thin','');
+                            });
+                            $sheet->cell('G36:I36', function($cell){
+                                $cell->setBorder('','','thin','');
+                            });
+                            $sheet->cell('C38:L38', function($cell){
+	                            $cell->setBorder('thin','','','');
+	                        });
 	                    });
 	                });
 	                 $styleArray = array(
