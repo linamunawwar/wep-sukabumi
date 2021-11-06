@@ -8,7 +8,7 @@
       <td></td>
       <td></td>
       <th></th>
-      <th colspan="4"><b style="font-weight: 3;">PT. WASKITA KARYA (Persero) Tbk</b></th>
+      <th colspan="4"></th>
       <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" colspan="3" align="center">FORMULIR LOGINV-02</td>
     </tr>
     <tr>
@@ -21,7 +21,24 @@
       <th></th>
       <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" colspan="2">Edisi : Mei 2020</td>
       <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;">Revisi : 01 </td>
-    
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <th></th>
+      <th></th>
+      <th colspan="4"><b style="font-weight: 3;">PT. WASKITA KARYA (Persero) Tbk</b></th>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <th></th>
+      <th></th>
+      <th colspan="4"><b style="font-weight: 3;">INDUSTRI KONSTRUKSI</b></th>
+    </tr>
+    <tr>
+      <td></td>
+    </tr>
     <tr>
       <td></td>
       <td></td>
@@ -90,13 +107,13 @@
     <tr class="thead-light" style="text-align: center;">
         <td></td>
         <td></td>
-        <td colspan="2" style="border: 1px solid #000000; font-size: 9" align="center">{{ $key }}</td>
-        <td style="border: 1px solid #000000; font-size: 9">{{ $val['jml_terima'] }}</td>
-        <td style="border: 1px solid #000000; font-size: 9">{{ $val['trs_terima'] }}</td>
-        <td style="border: 1px solid #000000; font-size: 9">{{ $val['jml_keluar'] }}</td>
-        <td style="border: 1px solid #000000; font-size: 9">{{ $val['trs_keluar'] }}</td>
-        <td style="border: 1px solid #000000; font-size: 9">{{ $val['sisa'] }}</td>
-        <td style="border: 1px solid #000000; font-size: 9"></td>
+        <td colspan="2" style="border: 1px solid #000000; font-size: 8" align="center">{{ $key }}</td>
+        <td style="border: 1px solid #000000; font-size: 8">{{ $val['jml_terima'] }}</td>
+        <td style="border: 1px solid #000000; font-size: 8">{{ $val['trs_terima'] }}</td>
+        <td style="border: 1px solid #000000; font-size: 8">{{ $val['jml_keluar'] }}</td>
+        <td style="border: 1px solid #000000; font-size: 8">{{ $val['trs_keluar'] }}</td>
+        <td style="border: 1px solid #000000; font-size: 8">{{ $val['sisa'] }}</td>
+        <td style="border: 1px solid #000000; font-size: 8"></td>
     </tr>
     @endforeach
     <tr></tr>
@@ -118,7 +135,9 @@
         <td></td>
         <td></td>
         <td></td>
-        <td colspan="2" style="text-align: center;"> Tanggal </td>
+        <td></td>
+        <td></td>
+        <td colspan="2" style="text-align: left;"> Tanggal </td>
         <td></td>
         <td></td>
     </tr>
@@ -127,6 +146,8 @@
         <td></td>
         <td></td>
         <td colspan="2" style="text-align: center;">Mengetahui</td>
+        <td></td>
+        <td></td>
         <td></td>
         <td colspan="2" style="text-align: center;"> Diisi Oleh, </td>
         <td></td>
@@ -137,6 +158,8 @@
         <td></td>
         <td></td>
         <td colspan="2" style="text-align: center;" align="center">SPLEM</td>
+        <td></td>
+        <td></td>
         <td></td>
         <td colspan="2" style="text-align: center;"> Petugas Gudang </td>
         <td></td>
@@ -159,8 +182,7 @@
     <tr>
       <td></td>
       <td></td>
-      <td></td>
-      <td> <b><u> Catatan : </u></b> </td>
+      <td colspan="2"> <b><u> Catatan : </u></b> </td>
       <td colspan="3" >Dibuat Rangkap 2</td>
       <td></td>
       <td></td>
