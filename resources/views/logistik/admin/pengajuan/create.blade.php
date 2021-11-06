@@ -59,7 +59,7 @@
 								<input type="hidden" name="kodePenerimaan" id="kode_penerimaan_id" class="kode_penerimaan_id">
 							</div>							
 							<div class="row">
-								<div class="col-md-3 col-sm-3 col-xs-3">
+								<div class="col-md-3 col-sm-12 col-xs-12">
 									<div class="form-group">
 										<label style="display: inline-block;" for="nama">Jenis Pekerjaan </label>
 										<p style="display: inline-block;">
@@ -72,7 +72,7 @@
 										</p>
 									</div>
 								</div>
-								<div class="col-md-3 col-sm-3 col-xs-3">
+								<div class="col-md-3 col-sm-12 col-xs-12">
 									<div class="form-group">
 										<label style="display: inline-block;" for="nama">Lokasi Pekerjaan </label>
 										<p style="display: inline-block;">
@@ -85,7 +85,7 @@
 										</p>
 									</div>
 								</div>
-								<div class="col-md-3 col-sm-3 col-xs-3">
+								<div class="col-md-3 col-sm-12 col-xs-12">
 									<div class="form-group">
 										<label style="display: inline-block;" for="nama">Volume </label>
 										<p style="display: inline-block;">
@@ -93,7 +93,7 @@
 										</p>
 									</div>
 								</div>
-								<div class="col-md-3 col-sm-3 col-xs-3">
+								<div class="col-md-3 col-sm-12 col-xs-12">
 									<div class="form-group">
 										<label style="display: inline-block;" for="nama">No. WBS </label>
 										<p style="display: inline-block;">
@@ -104,25 +104,29 @@
 							</div>
 							<br>
 							<input type="hidden" name="jumlah_data" class="jumlah_data" id="jumlah_data" value="0">
-							<table class="table table-bordered waste" id="table_waste">
-								<tr>
-									<th rowspan="2">No.</th>
-									<th rowspan="2" style="width: 200px;">Tanggal Pengajuan</th>
-									<th rowspan="2" style="width: 200px;">Element Activity</th>
-									<th rowspan="2" align="center" style="text-align: center;">Nama Material</th>
-									<th colspan="2" align="center" style="text-align: center;">Penerimaan Material</th>
-									<th colspan="2" align="center" style="text-align: center;">Permintaan</th>
-								</tr>
-								<tr>
-									<th>Jumlah</th>
-									<th>Satuan</th>
-									<th>Satuan</th>
-									<th>Jumlah</th>
-								</tr>
-								<tbody class="data">
-									
-								</tbody>
-							</table>
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12" style="overflow-y:auto; overflow-x:scroll;">
+									<table class="table table-bordered waste" id="table_waste">
+										<tr>
+											<th rowspan="2">No.</th>
+											<th rowspan="2" style="width: 200px;">Tanggal Pengajuan</th>
+											<th rowspan="2" style="width: 200px;">Element Activity</th>
+											<th rowspan="2" align="center" style="text-align: center;">Nama Material</th>
+											<th colspan="2" align="center" style="text-align: center;">Penerimaan Material</th>
+											<th colspan="2" align="center" style="text-align: center;">Permintaan</th>
+										</tr>
+										<tr>
+											<th>Jumlah</th>
+											<th>Satuan</th>
+											<th>Satuan</th>
+											<th>Jumlah</th>
+										</tr>
+										<tbody class="data">
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
 							<div class="ln_solid"></div>
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
