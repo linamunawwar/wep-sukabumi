@@ -43,7 +43,7 @@
       <td></td>
       <td></td>
       <td></td>
-      <td colspan="2" style="padding-left: 10px;">Business Unit</td>
+      <td colspan="2" style="padding-left: 10px;">   Business Unit</td>
       <td>:</td>
     </tr>
     <tr>
@@ -53,7 +53,7 @@
       <td></td>
       <td></td>
       <td></td>    
-      <td colspan="2">Proyek</td>
+      <td colspan="2">   Proyek</td>
       <td colspan="2">: </td>
       <td colspan="3" style="font-weight: bold;"> ID Project</td>
     </tr>
@@ -89,8 +89,8 @@
     <tr class="thead-light" >
       <td></td>
       <td></td>
-      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" colspan="4" align="center">PENERIMAAN</td>
-      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" colspan="2" align="center"> PENGELUARAN </td>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" colspan="4" align="center">PENERIMAAN (GR)</td>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" colspan="2" align="center"> PENGELUARAN (GI) </td>
       <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" rowspan="2" align="center"> Sisa </td>
       <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" rowspan="2" align="center"> Keterangan </td>
     </tr>
