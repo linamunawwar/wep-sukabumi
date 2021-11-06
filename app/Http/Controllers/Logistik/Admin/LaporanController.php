@@ -509,6 +509,7 @@ class LaporanController extends Controller
     	$data['tanggal_mulai'] = $data['tahun'].'-'.$data['bulan'].'-01';
 		$data['tanggal_selesai'] = $data['tahun'].'-'.$data['bulan'].'-31';
 		$bulan = array(1 => "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
+        $tahun = $data['tahun'];
 
 		for ($i=01; $i <= 12; $i++) { 
 			if ($i == $data['bulan']) {
@@ -600,11 +601,12 @@ class LaporanController extends Controller
 
         }elseif($data['unduh'] == 1){
             if(count($dt)!= 0){
-            	$excel = \Excel::create("Form Log-02 Laporan Kartu Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($getBulan, $getMaterial, $dt,$splem) {
+            	$excel = \Excel::create("Form Log-02 Laporan Kartu Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($getBulan, $getMaterial, $dt,$splem,$tahun) {
 
-                        $excel->sheet('New sheet', function ($sheet) use ($getBulan, $getMaterial, $dt,$splem) {
+                        $excel->sheet('New sheet', function ($sheet) use ($getBulan, $getMaterial, $dt,$splem,$tahun) {
 
-                            $sheet->loadView('logistik.admin.log02.unduh', ['data' => $dt, 'bulan' => $getBulan, 'material' => $getMaterial, 'splem' => $splem]);
+                            $sheet->loadView('logistik.admin.log02.unduh', ['data' => $dt, 'bulan' => $getBulan, 'tahun'=> $tahun,'material' => $getMaterial, 'splem' => $splem]);
+
                             $objDrawing = new PHPExcel_Worksheet_Drawing;
                             $objDrawing->setPath(public_path('img/Waskita.png'));
                             $objDrawing->setCoordinates('C1');
@@ -625,16 +627,12 @@ class LaporanController extends Controller
                             // $ttdImage->setWidth(20);
                             // $ttdImage->setHeight(35);
 
-                            $sheet->getStyle('D50')->getAlignment()->applyFromArray(
-                                array('horizontal' => 'center')
-                            );
-                            
                             $sheet->getStyle('A13:I33')->getAlignment()->setWrapText(true);
-                            $sheet->getStyle('A2:I2')->getFont()->setName('Tahoma');
-                            $sheet->getStyle('A13:I13')->getAlignment()->applyFromArray(
+                            $sheet->getStyle('A2:J45')->getFont()->setName('Tahoma');
+                            $sheet->getStyle('A13:J14')->getAlignment()->applyFromArray(
                                 array('horizontal' => 'center')
                             );
-                            $sheet->cells('A9:I9', function ($cells) {
+                            $sheet->cells('A9:J14', function ($cells) {
                                 $cells->setValignment('center');
                                 $cells->setFontFamily('Tahoma');
                             });
@@ -656,6 +654,19 @@ class LaporanController extends Controller
                             // $sheet->cell('B14:E14', function($cell){
                             //     $cell->setBorder('','','','thin');
                             // });
+
+                            $sheet->setWidth(array(
+                                'A'     =>  1,
+                                'B'     =>  1,
+                                'C'     =>  3,
+                                'D'     =>  5,
+                                'E'     =>  15,
+                                'F'     =>  10,
+                                'G'     =>  15,
+                                'H'     =>  10,
+                                'I'     =>  10,
+                                'J'     =>  12
+                            )); 
                         });
                     });
                     $styleArray = array(

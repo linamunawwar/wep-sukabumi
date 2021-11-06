@@ -2,14 +2,14 @@
     <tr>
       <td></td>
       <td></td>
-      <th style="width: 6;"></th>
+      <th></th>
     </tr>
     <tr>
       <td></td>
       <td></td>
       <th></th>
-      <th colspan="4"><b style="font-weight: 3; font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
-      <td style="border: 1px solid #000000;  " colspan="2" align="center">Formulir Log-02</td>
+      <th colspan="4"><b style="font-weight: 3;">PT. WASKITA KARYA (Persero) Tbk</b></th>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" colspan="3" align="center">FORMULIR LOGINV-02</td>
     </tr>
     <tr>
       <td></td>
@@ -19,14 +19,15 @@
       <th></th>
       <th></th>
       <th></th>
-      <td style="border: 1px solid #000000;">Edisi : Mei 2019 </b></td>
-      <td style="border: 1px solid #000000;">Revisi : 0 </td>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" colspan="2">Edisi : Mei 2020</td>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;">Revisi : 01 </td>
     
     <tr>
       <td></td>
       <td></td>
       <td></td>
-      <td style="padding-left: 10px;">Business Unit</td>
+      <td colspan="2" style="padding-left: 10px;">Business Unit</td>
+      <td>:</td>
     </tr>
     <tr>
       <td></td>
@@ -35,9 +36,9 @@
       <td></td>
       <td></td>
       <td></td>    
-      <td>Proyek</td>
+      <td colspan="2">Proyek</td>
       <td colspan="2">: </td>
-      <td colspan="3" style="font-weight: bold;"> No. AB</td>
+      <td colspan="3" style="font-weight: bold;"> ID Project</td>
     </tr>
   </table>
   
@@ -45,13 +46,24 @@
     <tr>
       <td></td>
       <td></td>
-      <td colspan="7" style="text-align: center;border: 1px solid #000000"><h4><b>KARTU GUDANG</b></h4></td>
+      <td colspan="8" style="text-align: center;border: 1px solid #000000"><h4><b>KARTU GUDANG / STOCK CARD</b></h4></td>
     </tr>
     <tr></tr>
     <tr>
         <td></td>
         <td></td>
-        <td colspan="3">Bulan : {{ $bulan }}</td>
+        <td colspan="2">Bulan </td>
+        <td>: {{ $tahun }}</td>
+        <td></td>
+        <td></td>
+        <td colspan="3">No.material :</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td colspan="2">Tahun </td>
+        <td>: {{ $bulan }}</td>
+        <td></td>
         <td></td>
         <td colspan="3">Nama Bahan :{{ $material->nama }}</td>
     </tr>
@@ -60,31 +72,31 @@
     <tr class="thead-light" >
       <td></td>
       <td></td>
-      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 13;" colspan="3" align="center">PENERIMAAN</td>
-      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 13;" colspan="2" align="center"> PENGELUARAN </td>
-      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 15;" rowspan="2" align="center"> Sisa </td>
-      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12;" rowspan="2" align="center"> Keterangan </td>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" colspan="4" align="center">PENERIMAAN</td>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" colspan="2" align="center"> PENGELUARAN </td>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" rowspan="2" align="center"> Sisa </td>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" rowspan="2" align="center"> Keterangan </td>
     </tr>
     <tr class="thead-light" style="text-align: center;">
       <td></td>
       <td></td>
-      <td style="border: 1px double #000000;font-weight: bold; font-size: 10;">Tanggal</td>
-      <td style="border: 1px double #000000; font-weight: bold; font-size: 10;">Jumlah</td>
-      <td style="border: 1px double #000000; font-weight: bold; font-size: 10;">Jumlah Terusan</td>
-      <td style="border: 1px double #000000; font-weight: bold; font-size: 10;">Jumlah</td>
-      <td style="border: 1px double #000000; font-weight: bold; font-size: 10;" >Jumlah Terusan</td>
+      <td colspan="2" style="border: 1px solid #000000;font-weight: bold; font-size: 10;" align="center">Tanggal</td>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;">Jumlah</td>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;">Jumlah Terusan</td>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;">Jumlah</td>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" >Jumlah Terusan</td>
     </tr>
     @foreach ($data as $key => $val)
     <tr class="thead-light" style="text-align: center;">
         <td></td>
         <td></td>
-        <td style="border: 1px double #000000;">{{ $key }}</td>
-        <td style="border: 1px double #000000;">{{ $val['jml_terima'] }}</td>
-        <td style="border: 1px double #000000;">{{ $val['trs_terima'] }}</td>
-        <td style="border: 1px double #000000;">{{ $val['jml_keluar'] }}</td>
-        <td style="border: 1px double #000000;">{{ $val['trs_keluar'] }}</td>
-        <td style="border: 1px double #000000;">{{ $val['sisa'] }}</td>
-        <td style="border: 1px double #000000;"></td>
+        <td colspan="2" style="border: 1px solid #000000; font-size: 9" align="center">{{ $key }}</td>
+        <td style="border: 1px solid #000000; font-size: 9">{{ $val['jml_terima'] }}</td>
+        <td style="border: 1px solid #000000; font-size: 9">{{ $val['trs_terima'] }}</td>
+        <td style="border: 1px solid #000000; font-size: 9">{{ $val['jml_keluar'] }}</td>
+        <td style="border: 1px solid #000000; font-size: 9">{{ $val['trs_keluar'] }}</td>
+        <td style="border: 1px solid #000000; font-size: 9">{{ $val['sisa'] }}</td>
+        <td style="border: 1px solid #000000; font-size: 9"></td>
     </tr>
     @endforeach
     <tr></tr>
@@ -124,25 +136,13 @@
         <td></td>
         <td></td>
         <td></td>
-        <td colspan="2" style="text-align: center;">SPLEM</td>
+        <td colspan="2" style="text-align: center;" align="center">SPLEM</td>
         <td></td>
         <td colspan="2" style="text-align: center;"> Petugas Gudang </td>
         <td></td>
         <td></td>
     </tr>
     <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td colspan="2" style="height:70;">
-          @if(file_exists('upload/pegawai/'.$splem->nip.'/'.$splem->ttd))
-            <img src="{{'upload/pegawai'.'/'.$splem->nip.'/'.$splem->ttd}}" style="width:50px; height:50px;">
-          @endif
-        </td>
-        <td></td>
-        <td colspan="2" align="center" style="height:70;">          
-        </td>
-        <td></td>
         <td></td>
     </tr>
     <tr>
