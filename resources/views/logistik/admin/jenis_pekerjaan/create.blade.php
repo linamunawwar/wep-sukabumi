@@ -28,7 +28,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Keterangan <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-                                    <textarea name="keterangan" rows="10" style="width:38.1em;"></textarea>
+                                    <textarea name="keterangan" rows="10" cols="100" class="keterangan form-control"></textarea>
 								</div>
 							</div>
 							
