@@ -23,9 +23,10 @@
 						<p>Nama Penerima : {{$details[0]->penerimaan->penerima}}</p>
 						<div class="clearfix"></div>
 					</div>
-					<div class="x_content">
+					<div class="x_content" style="overflow-y:auto; overflow-x:scroll;">
 						<table class="table table-bordered waste" id="table_waste">
-							<tr>
+							<thead>
+								<tr>
 									<th rowspan="2">No.</th>
 									<th rowspan="2" style="width: 180px;">Nama Material</th>
 									<th rowspan="2" style="width: 132px;">Tanggal Terima</th>
@@ -34,13 +35,14 @@
 									<th rowspan="2" style="width: 120px;">Harga Satuan</th>
 									<th rowspan="2" style="width: 120px;">Keterangan/ Uraian</th>
 								</tr>
-							<tr>
-								<th>Total Permintaan</th>
-								<th>sd. yang Lalu</th>
-								<th>Saat ini</th>
-								<th>sd. Saat ini</th>
-								<th>Sisa</th>
-							</tr>
+								<tr>
+									<th>Total Permintaan</th>
+									<th>sd. yang Lalu</th>
+									<th>Saat ini</th>
+									<th>sd. Saat ini</th>
+									<th>Sisa</th>
+								</tr>
+							</thead>
 							<tbody class="data">
 								<?php $no = 0;$i=0; ?>
                                 @foreach ($details as $detail)
