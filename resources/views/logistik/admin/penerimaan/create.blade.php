@@ -101,29 +101,36 @@
 									<input type="text" id="penerima" name="penerima" class="penerima form-control col-md-7 col-xs-12" required="required">
 								</div>
 							</div>
+
 							<input type="hidden" name="jumlah_data" class="jumlah_data" id="jumlah_data" value="0">
-							<table class="table table-bordered waste" id="table_waste">
-								<tr>
-									<th rowspan="2">No.</th>
-									<th rowspan="2" style="width: 150px;">Nama Material</th>
-									<th rowspan="2" style="width: 100px;">Tanggal Terima</th>
-									<th colspan="5" align="center" style="text-align: center;">VOLUME</th>
-									<th rowspan="2">Satuan</th>
-									<th rowspan="2" style="width: 100px;">Harga Satuan</th>
-									<th rowspan="2">Status (*)</th>
-									<th rowspan="2" style="width: 120px;">Keterangan/ Uraian</th>
-								</tr>
-								<tr>
-									<th>Total Permintaan</th>
-									<th>sd. yang Lalu</th>
-									<th>Saat ini</th>
-									<th>sd. Saat ini</th>
-									<th>Sisa</th>
-								</tr>
-								<tbody class="data">
-									
-								</tbody>
-							</table>
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12" style="overflow-y:auto; overflow-x:scroll;">
+									<table class="table table-bordered waste" id="table_waste">
+										<thead>
+											<tr>
+												<th rowspan="2">No.</th>
+												<th rowspan="2" style="width: 150px;">Nama Material</th>
+												<th rowspan="2" style="width: 100px;">Tanggal Terima</th>
+												<th colspan="5" align="center" style="text-align: center;">VOLUME</th>
+												<th rowspan="2">Satuan</th>
+												<th rowspan="2" style="width: 100px;">Harga Satuan</th>
+												<th rowspan="2">Status (*)</th>
+												<th rowspan="2" style="width: 120px;">Keterangan/ Uraian</th>
+											</tr>
+											<tr>
+												<th>Total Permintaan</th>
+												<th>sd. yang Lalu</th>
+												<th>Saat ini</th>
+												<th>sd. Saat ini</th>
+												<th>Sisa</th>
+											</tr>
+										</thead>
+										<tbody class="data">
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
 							<div class="ln_solid"></div>
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -242,8 +249,6 @@
 		var sisa = parseInt(vol_permintaan) - parseInt(jumlah);
 		$('#vol_jumlah_'+id_data).val(jumlah);
 		$('#vol_sisa_'+id_data).val(sisa);
-
-
 	});
 
 	

@@ -38,13 +38,13 @@
 								<p style="display: inline-block;" id="kode_penerimaan_id">{{$penerimaan->kode_penerimaan}}</p>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-2 col-sm-6 col-xs-12" style="text-align: left; padding: 0; width: 11%;" for="nama">Nama Supplier <span class="required">*</span>:</label>
+								<label class="control-label col-md-2 col-sm-6 col-xs-12" style="text-align: left; padding: 0;" for="nama">Nama Supplier <span class="required">*</span>:</label>
 								<div class="col-md-4 col-sm-4 col-xs-12">
 									<input type="text" id="supplier" name="supplier" class="supplier form-control col-md-7 col-xs-12" value="{{$penerimaan->supplier}}" required="required">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-2 col-sm-6 col-xs-12" style="text-align: left;padding: 0; width: 11%;" for="nama">Nama Penerima <span class="required">*</span>:</label>
+								<label class="control-label col-md-2 col-sm-6 col-xs-12" style="text-align: left;padding: 0;" for="nama">Nama Penerima <span class="required">*</span>:</label>
 								<div class="col-md-4 col-sm-4 col-xs-12">
 									<input type="text" id="penerima" name="penerima" class="penerima form-control col-md-7 col-xs-12" value="{{$penerimaan->penerima}}" required="required">
 								</div>
@@ -53,75 +53,79 @@
 								<p style="display: inline-block;">(*) Mohon Dicentang hanya saat <u>semua</u> material sudah diterima</p>
 							</div>
 							<input type="hidden" name="jumlah_data" class="jumlah_data" id="jumlah_data" value="{{count($details)}}">
-							<table class="table table-bordered waste" id="table_waste">
-								<tr>
-									<th rowspan="2">No.</th>
-									<th rowspan="2" style="width: 150px;">Nama Material</th>
-									<th rowspan="2">Tanggal Terima</th>
-									<th colspan="5" align="center" style="text-align: center;">VOLUME</th>
-									<th rowspan="2">Satuan</th>
-									<th rowspan="2" style="width: 100px;">Harga Satuan</th>
-									<th rowspan="2">Sesuai (*)</th>
-									<th rowspan="2" style="width: 100px;">Keterangan/ Uraian</th>
-								</tr>
-								<tr>
-									<th>Total Permintaan</th>
-									<th>sd. yang Lalu</th>
-									<th>Saat ini</th>
-									<th>sd. Saat ini</th>
-									<th>Sisa</th>
-								</tr>
-								<tbody class="data">
-									<?php $no = 0;$i=0; ?>
-	                                @foreach ($details as $detail)
-		                                <?php $no++; ?>
-		                                <tr  class='data_"+jumlah_data+"'>
-					                		<td>{{$no}}</td>
-					                		<td>{{$detail->material->nama}}
-					                		<input type='hidden' name='material[]' value="{{$detail->material_id}}" id="material_{{$no}}">
-					                		</td>
-					                		<td>
-	                							<div class='input-group date datepicker' id="tanggal_terima_{{$no}}">
-                            					<input type='date' value="{{$detail->tanggal_terima}}" name='tanggal_terima[]' class='form-control' required='required' placeholder='dd-mm-yyyy' style="width: 155px;" />
-                            					</div>	
-	                						</td>
-					                		<td>
-					                		<input type='text' class='form-control vol_permintaan' id_data="{{$no}}" name='vol_permintaan[]' value="{{$detail->penerimaan->permintaan->permintaanDetail[$i]->volume}}" id="vol_permintaan_{{$no}}">
-					                		</td>
-					                		<td><input type='text' class='form-control vol_lalu' id_data="{{$no}}" name='vol_lalu[]' value="{{$detail->vol_lalu}}" id="vol_lalu_{{$no}}">
-					                		</td>
-					                		<td><input type='text' class='form-control vol_saat_ini' id_data="{{$no}}" name='vol_saat_ini[]' id="vol_saat_ini_{{$no}}" value="{{$detail->vol_saat_ini}}">
-					                		</td>
-					                		<td><input type='text' class='form-control vol_jumlah' id_data="{{$no}}" name='vol_jumlah[]'  id='vol_jumlah_{{$no}}' value="{{$detail->vol_jumlah}}">
-					                		</td>
-					                		<td><input type='text' class='form-control vol_sisa' id_data="{{$no}}" name='vol_sisa[]' value="{{$detail->vol_sisa}}" id='vol_sisa_{{$no}}' >
-					                		</td>
-					                		<td>{{$detail->satuan}}
-					                		<input type='hidden' name='satuan[]' value='{{$detail->satuan}}' id='satuan_{{$no}}'>
-					                		</td>
-					                		<td>
-					                		<input type='text' name='harga_satuan[]' class='form-control' id='harga_satuan_{{$no}}' value="{{$detail->harga}}">
-					                		</td>
-					                		<td>
-					                		@if($detail->status == 1)
-					                		<?php
-					                			$checked = 'checked';
-					                		?>
-					                		@else
-					                		<?php
-					                			$checked='';
-					                		?>
-					                		@endif
-					                		<input type='checkbox' name='status[{{$i}}]' class='form-control' id='status_{{$no}}' {{$checked}} value='1'> Sesuai
-					                		</td>
-					                		<td>
-					                		<textarea  name='keterangan[]' class='form-control' id='keterangan_{{$no}}'>{{$detail->keterangan}}</textarea>
-					                		</td>
-			                			</tr>
-										<?php $i++?>
-									@endforeach		
-								</tbody>
-							</table>
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12" style="overflow-y:auto; overflow-x:scroll;">
+									<table class="table table-bordered waste" id="table_waste">
+										<tr>
+											<th rowspan="2">No.</th>
+											<th rowspan="2" style="width: 150px;">Nama Material</th>
+											<th rowspan="2">Tanggal Terima</th>
+											<th colspan="5" align="center" style="text-align: center;">VOLUME</th>
+											<th rowspan="2">Satuan</th>
+											<th rowspan="2" style="width: 100px;">Harga Satuan</th>
+											<th rowspan="2">Sesuai (*)</th>
+											<th rowspan="2" style="width: 100px;">Keterangan/ Uraian</th>
+										</tr>
+										<tr>
+											<th>Total Permintaan</th>
+											<th>sd. yang Lalu</th>
+											<th>Saat ini</th>
+											<th>sd. Saat ini</th>
+											<th>Sisa</th>
+										</tr>
+										<tbody class="data">
+											<?php $no = 0;$i=0; ?>
+											@foreach ($details as $detail)
+												<?php $no++; ?>
+												<tr  class='data_"+jumlah_data+"'>
+													<td>{{$no}}</td>
+													<td>{{$detail->material->nama}}
+													<input type='hidden' name='material[]' value="{{$detail->material_id}}" id="material_{{$no}}">
+													</td>
+													<td>
+														<div class='input-group date datepicker' id="tanggal_terima_{{$no}}">
+														<input type='date' value="{{$detail->tanggal_terima}}" name='tanggal_terima[]' class='form-control' required='required' placeholder='dd-mm-yyyy' style="width: 155px;" />
+														</div>	
+													</td>
+													<td>
+													<input type='text' class='form-control vol_permintaan' id_data="{{$no}}" name='vol_permintaan[]' value="{{$detail->penerimaan->permintaan->permintaanDetail[$i]->volume}}" id="vol_permintaan_{{$no}}">
+													</td>
+													<td><input type='text' class='form-control vol_lalu' id_data="{{$no}}" name='vol_lalu[]' value="{{$detail->vol_lalu}}" id="vol_lalu_{{$no}}">
+													</td>
+													<td><input type='text' class='form-control vol_saat_ini' id_data="{{$no}}" name='vol_saat_ini[]' id="vol_saat_ini_{{$no}}" value="{{$detail->vol_saat_ini}}">
+													</td>
+													<td><input type='text' class='form-control vol_jumlah' id_data="{{$no}}" name='vol_jumlah[]'  id='vol_jumlah_{{$no}}' value="{{$detail->vol_jumlah}}">
+													</td>
+													<td><input type='text' class='form-control vol_sisa' id_data="{{$no}}" name='vol_sisa[]' value="{{$detail->vol_sisa}}" id='vol_sisa_{{$no}}' >
+													</td>
+													<td>{{$detail->satuan}}
+													<input type='hidden' name='satuan[]' value='{{$detail->satuan}}' id='satuan_{{$no}}'>
+													</td>
+													<td>
+													<input type='text' name='harga_satuan[]' class='form-control' id='harga_satuan_{{$no}}' value="{{$detail->harga}}">
+													</td>
+													<td>
+													@if($detail->status == 1)
+													<?php
+														$checked = 'checked';
+													?>
+													@else
+													<?php
+														$checked='';
+													?>
+													@endif
+													<input type='checkbox' name='status[{{$i}}]' class='form-control' id='status_{{$no}}' {{$checked}} value='1'> Sesuai
+													</td>
+													<td>
+													<textarea  name='keterangan[]' class='form-control' id='keterangan_{{$no}}'>{{$detail->keterangan}}</textarea>
+													</td>
+												</tr>
+												<?php $i++?>
+											@endforeach		
+										</tbody>
+									</table>
+								</div>
+							</div>
 							<div class="ln_solid"></div>
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
