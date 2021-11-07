@@ -609,7 +609,7 @@ class LaporanController extends Controller
 
                             $objDrawing = new PHPExcel_Worksheet_Drawing;
                             $objDrawing->setPath(public_path('img/Waskita.png'));
-                            $objDrawing->setCoordinates('C1');
+                            $objDrawing->setCoordinates('C4');
                             $objDrawing->setWorksheet($sheet);
                             $objDrawing->setResizeProportional(false);
                             // set width later
@@ -627,33 +627,48 @@ class LaporanController extends Controller
                             // $ttdImage->setWidth(20);
                             // $ttdImage->setHeight(35);
 
-                            $sheet->getStyle('A13:I33')->getAlignment()->setWrapText(true);
-                            $sheet->getStyle('A2:J45')->getFont()->setName('Tahoma');
-                            $sheet->getStyle('A13:J14')->getAlignment()->applyFromArray(
+                            $sheet->getStyle('A13:J57')->getAlignment()->setWrapText(true);
+                            $sheet->getStyle('A2:J50')->getFont()->setName('Tahoma');
+                            $sheet->getStyle('A13:J17')->getAlignment()->applyFromArray(
                                 array('horizontal' => 'center')
                             );
-                            $sheet->cells('A9:J14', function ($cells) {
+                            $sheet->cells('A9:J17', function ($cells) {
                                 $cells->setValignment('center');
                                 $cells->setFontFamily('Tahoma');
                             });
 
-                            $sheet->cell('D9:E11', function ($cell) {
-                                $cell->setValignment('center');
-                            });
-                            $sheet->cell('D8:E8', function ($cell) {
-                                $cell->setBorder('', '', 'thin', '');
-                            });
-                            $sheet->cell('C4', function ($cell) {
+                            $sheet->cell('C7', function ($cell) {
                                 $cell->setBorder('thin', 'thin', 'thin', 'thin');
                             });
-                            $sheet->cell('C6', function ($cell) {
+                            $sheet->cell('C9', function ($cell) {
                                 $cell->setalignment('center');
                                 $cell->setValignment('center');
                                 $cell->setBorder('thin', 'thin', 'thin', 'thin');
                             });
-                            // $sheet->cell('B14:E14', function($cell){
-                            //     $cell->setBorder('','','','thin');
-                            // });
+                            // $sheet->mergeCells('C16:D17');
+                            $sheet->cell('C16:D16', function ($cell) {
+                                $cell->setBorder('thin', '', '', 'thin');
+                            });
+
+                            $sheet->cell('C17:D17', function($cell){
+                                $cell->setBorder('','thin','','thin');
+                            });
+
+                            //set image ttd splem
+                            // init drawing
+                            if(file_exists("upload/pegawai/$splem->nip/$splem->ttd")){
+                                $drawing2 = new PHPExcel_Worksheet_Drawing();
+                                // Set image
+                                $drawing2->setPath("upload/pegawai/$splem->nip/$splem->ttd");
+                                $drawing2->setWorksheet($sheet);
+                                $drawing2->setCoordinates('D54');
+                                $drawing2->setResizeProportional(false);
+                                $drawing2->setWidth(150);
+                                $drawing2->setHeight(100);
+                            }
+
+
+                            $sheet->setHeight(55,90);
 
                             $sheet->setWidth(array(
                                 'A'     =>  1,
@@ -661,10 +676,10 @@ class LaporanController extends Controller
                                 'C'     =>  3,
                                 'D'     =>  5,
                                 'E'     =>  15,
-                                'F'     =>  10,
+                                'F'     =>  15,
                                 'G'     =>  15,
-                                'H'     =>  10,
-                                'I'     =>  10,
+                                'H'     =>  15,
+                                'I'     =>  12,
                                 'J'     =>  12
                             )); 
                         });

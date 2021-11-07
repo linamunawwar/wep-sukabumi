@@ -8,8 +8,8 @@
       <td></td>
       <td></td>
       <th></th>
-      <th colspan="4"></th>
-      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" colspan="3" align="center">FORMULIR LOGINV-02</td>
+      <th colspan="5"></th>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" colspan="2" align="center">FORMULIR LOGINV-02</td>
     </tr>
     <tr>
       <td></td>
@@ -19,8 +19,9 @@
       <th></th>
       <th></th>
       <th></th>
-      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" colspan="2">Edisi : Mei 2020</td>
-      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;">Revisi : 01 </td>
+      <th></th>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 8;">Edisi : Mei 2020</td>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 8;">Revisi : 01 </td>
     </tr>
     <tr>
       <td></td>
@@ -43,7 +44,7 @@
       <td></td>
       <td></td>
       <td></td>
-      <td colspan="2" style="padding-left: 10px;">   Business Unit</td>
+      <td colspan="2" style="padding-left: 10px; font-weight: bold;">   Business Unit</td>
       <td>:</td>
     </tr>
     <tr>
@@ -53,9 +54,10 @@
       <td></td>
       <td></td>
       <td></td>    
-      <td colspan="2">   Proyek</td>
+      <td colspan="2" style="font-weight: bold;">   Proyek</td>
       <td colspan="2">: </td>
-      <td colspan="3" style="font-weight: bold;"> ID Project</td>
+      <td style="font-weight: bold;"> ID Project</td>
+      <td style="font-weight: bold;">:</td>
     </tr>
   </table>
   
@@ -70,26 +72,29 @@
         <td></td>
         <td></td>
         <td colspan="2">Bulan </td>
-        <td>: {{ $tahun }}</td>
+        <td align="left">: {{ $tahun }}</td>
         <td></td>
         <td></td>
-        <td colspan="3">No.material :</td>
+        <td align="left">No.material</td>
+        <td colspan="2">:</td>
     </tr>
     <tr>
         <td></td>
         <td></td>
         <td colspan="2">Tahun </td>
-        <td>: {{ $bulan }}</td>
+        <td align="left">: {{ $bulan }}</td>
         <td></td>
         <td></td>
-        <td colspan="3">Nama Bahan :{{ $material->nama }}</td>
+        <td align="left">Nama Bahan </td>
+        <td colspan="2">: {{ $material->nama }}</td>
     </tr>
   </table>
   <table class="table table-striped">
     <tr class="thead-light" >
       <td></td>
       <td></td>
-      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" colspan="4" align="center">PENERIMAAN (GR)</td>
+      <td colspan="2" style="font-weight: bold; font-size: 10;" align="center">Tanggal</td>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" colspan="2" align="center">PENERIMAAN (GR)</td>
       <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" colspan="2" align="center"> PENGELUARAN (GI) </td>
       <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" rowspan="2" align="center"> Sisa </td>
       <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" rowspan="2" align="center"> Keterangan </td>
@@ -97,7 +102,7 @@
     <tr class="thead-light" style="text-align: center;">
       <td></td>
       <td></td>
-      <td colspan="2" style="border: 1px solid #000000;font-weight: bold; font-size: 10;" align="center">Tanggal</td>
+      <td colspan="2"></td>
       <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;">Jumlah</td>
       <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;">Jumlah Terusan</td>
       <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;">Jumlah</td>
