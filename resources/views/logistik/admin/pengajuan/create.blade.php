@@ -55,8 +55,13 @@
 							<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
 								<label style="display: inline-block;" for="nama">Kode Penerimaan :</label>
-								<p style="display: inline-block;" id="kode_penerimaan_id">{{$kode_penerimaan}}</p>
-								<input type="hidden" name="kodePenerimaan" value="{{$kode_penerimaan}}" id="kode_penerimaan_id" class="kode_penerimaan_id">
+								@if(isset($kode_penerimaan))
+									<p style="display: inline-block;" id="kode_penerimaan_id">{{$kode_penerimaan}}</p>
+									<input type="hidden" name="kodePenerimaan" value="{{$kode_penerimaan}}" id="kode_penerimaan_id" class="kode_penerimaan_id">
+								@else
+									<p style="display: inline-block;" id="kode_penerimaan_id"></p>
+									<input type="hidden" name="kodePenerimaan" value="" id="kode_penerimaan_id" class="kode_penerimaan_id">
+								@endif
 							</div>							
 							<div class="row">
 								<div class="col-md-3 col-sm-3 col-xs-3">
