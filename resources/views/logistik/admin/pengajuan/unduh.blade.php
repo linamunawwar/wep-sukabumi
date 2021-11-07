@@ -8,9 +8,9 @@
       <td></td>
       <td></td>
       <th></th>
-      <th colspan="3"><b style="font-weight: 3; font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
+      <th colspan="3"></th>
       <th></th>
-      <td colspan="2" style="border: 1px solid #000000;" align="center">Formulir Log-04</td>
+      <td colspan="2" style="border: 1px solid #000000;" align="center">FORMULIR LOGINV-03</td>
     </tr>
     <tr>
       <th></th>
@@ -20,26 +20,46 @@
       <th></th>
       <th></th>
       <th></th>
-      <td style="border: 1px solid #000000;">Edisi : </b></td>
-      <td style="border: 1px solid #000000;">Revisi : </td>
+      <td style="border: 1px solid #000000;">Edisi : Mei 2020</b></td>
+      <td style="border: 1px solid #000000;">Revisi : 01</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <th></th>
+      <th colspan="3"><b style="font-weight: 3; font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
+      <th></th>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <th></th>
+      <th colspan="3"><b style="font-weight: 3; font-size:16px; ">INDUSTRI KONSTRUKSI</b></th>
+      <th></th>
+    </tr>
+    <tr>
+      <td></td>
     </tr>
     <tr>
       <td></td>
       <td></td>
       <td></td>   
-      <td colspan="2">Bussiness Unit :</td>
+      <td colspan="2" style="font-weight: bold;">Bussiness Unit :</td>
       <td></td>
       <td></td>
+      <td></td>
+    </tr>
+    <tr>
       <td></td>
     </tr>
     <tr>
         <td></td>
         <td></td>
         <td></td>   
-        <td colspan="2">Proyek :</td>
+        <td colspan="2" style="font-weight: bold;">Proyek :</td>
         <td></td>
         <td></td>
-        <td colspan="2">No. AB :</td>
+        <td colspan="2" style="font-weight: bold;">ID Proyek :</td>
     </tr>
   </table>
     
@@ -47,7 +67,7 @@
       <tr>
         <td></td>
         <td></td>
-        <td colspan="7" style="text-align: center;border: 1px solid #000000"><h4><b>BON PERMINTAAN / PENYERAHAN BAHAN DARI GUDANG</b></h4></td>
+        <td colspan="7" style="text-align: center;border: 1px solid #000000"><h4><b>BON PERMINTAAN / PENYERAHAN BAHAN DARI GUDANG /</b></h4></td>
       </tr>
       <tr>
         <td></td>
@@ -59,16 +79,6 @@
         <td></td>        
         <td></td> 
       </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>        
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
   </table>
   
     <table class="table table-striped">
@@ -76,7 +86,7 @@
         <td></td>
         <td></td>
         <td style="border: 1px solid #000000;" rowspan="2" align="center"><b>No.</b></th>
-        <td style="border: 1px solid #000000; width: 27;" rowspan="2" align="center"><b> Element Activity </b></th>
+        <td style="border: 1px solid #000000; width: 27;" rowspan="2" align="center"><b> WBS Element </b></th>
         <td style="border: 1px solid #000000; width: 27;" rowspan="2" align="center"><b> Material </b></th>
         <td style="border: 1px solid #000000; width: 15;" colspan="2" align="center"><b> Permintaan </b></th>
         <td style="border: 1px solid #000000; width: 14;" colspan="2" align="center"><b> Penyerahan </b></th>
@@ -98,8 +108,8 @@
           <td></td>
           <td></td>
           <td style="border: 1px solid #000000;" align="center"> {{ $no++ }} </td>
-          <td style="border: 1px solid #000000;" align="center"> {{ $detail->element_activity }} </td>
-          <td style="border: 1px solid #000000;" align="center"> {{ $detail->detailPengajuanMaterial->nama }} </td>
+          <td style="border: 1px solid #000000;" align="left"> {{ $detail->element_activity }} </td>
+          <td style="border: 1px solid #000000;" align="left"> {{ $detail->detailPengajuanMaterial->nama }} </td>
           <td style="border: 1px solid #000000;"  align="center"> {{ $detail->permintaan_satuan }} </td>
           <td style="border: 1px solid #000000;"  align="center"> {{ $detail->permintaan_jumlah }} </td>
           <td style="border: 1px solid #000000;"  align="center"> {{ $detail->penyerahan_satuan }} </td>

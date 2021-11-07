@@ -307,7 +307,7 @@ class PengajuanController extends Controller
                             'superintendent' => $superintendent]);
                     $objDrawing = new PHPExcel_Worksheet_Drawing;
                     $objDrawing->setPath(public_path('img/Waskita.png'));
-                    $objDrawing->setCoordinates('C1');
+                    $objDrawing->setCoordinates('C4');
                     $objDrawing->setWorksheet($sheet);
                     $objDrawing->setResizeProportional(false);
 
@@ -315,31 +315,23 @@ class PengajuanController extends Controller
                     $objDrawing->setWidth(40);
                     $objDrawing->setHeight(35);
                     $sheet->getStyle('C1')->getAlignment()->setIndent(1);
-                    $sheet->getStyle('A13:I30')->getAlignment()->setWrapText(true);
-                    $sheet->getStyle('A2:H36')->getFont()->setName('Tahoma');
-                    $sheet->getStyle('A13:H15')->getAlignment()->applyFromArray(
+                    $sheet->getStyle('A13:I40')->getAlignment()->setWrapText(true);
+                    $sheet->getStyle('A2:I40')->getFont()->setName('Arial');
+                    $sheet->getStyle('A13:I15')->getAlignment()->applyFromArray(
                         array('horizontal' => 'center')
                     );
-                    $sheet->cells('A9:H11', function ($cells) {
+                    $sheet->cells('A11:I16', function ($cells) {
                         $cells->setValignment('center');
-                        $cells->setFontFamily('Tahoma');
                     });
 
                     $sheet->cell('D9:E11', function ($cell) {
                         $cell->setValignment('center');
                     });
-                    $sheet->cell('D8:E8', function ($cell) {
-                        $cell->setBorder('', '', 'thin', '');
-                    });
-                    $sheet->cell('K2:K3', function ($cell) {
-                        $cell->setBorder('', '', '', 'thin');
-                    });
-                    $sheet->cell('C4', function ($cell) {
+                    
+                    $sheet->cell('C7', function ($cell) {
                         $cell->setBorder('thin', 'thin', 'thin', 'thin');
                     });
-                    $sheet->cell('C6', function ($cell) {
-                        $cell->setalignment('center');
-                        $cell->setValignment('center');
+                    $sheet->cell('C9', function ($cell) {
                         $cell->setBorder('thin', 'thin', 'thin', 'thin');
                     });
                 });
@@ -347,7 +339,7 @@ class PengajuanController extends Controller
             $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
             $styleArray = array(
                 'font' => array(
-                    'name' => 'Tahoma',
+                    'name' => 'Arial',
                 ));
             $excel->getDefaultStyle()
                 ->applyFromArray($styleArray);
