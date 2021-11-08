@@ -78,61 +78,65 @@
 								</div>
 							</div>
 							<input type="hidden" name="jumlah_data" class="jumlah_data" id="jumlah_data" value="0">
-							<table class="table table-bordered waste" id="table_waste">
-								<tr>
-									<th rowspan="2">No.</th>
-									<th colspan="2">Progres Pekerjaan</th>
-									<th rowspan="2" style="width: 20px;">Volume Bahan Sesuai Progres</th>
-									<th rowspan="2">Realisasi Pemakaian Bahan</th>
-									<th rowspan="2">Waste dalam Satuan Volume</th>
-									<th colspan="3">Waste Bahan (%)</th>
-									<th rowspan="2">Keterangan</th>
-									<th rowspan="2">Action</th>
-								</tr>
-								<tr>
-									<th>%</th>
-									<th>Volume</th>
-									<th>Renc.</th>
-									<th>Real.</th>
-									<th>Deviasi</th>
-								</tr>
-								<tr>
-									<td></td>
-									<td>
-										<input type="text" name="progress_persen" id="progress_persen" class="form-control col-md-7 col-xs-12">
-									</td>
-									<td>
-										<input type="text" name="progress_vol" id="progress_vol" class="form-control col-md-7 col-xs-12">
-									</td>
-									<td>
-										<input type="text" name="vol_bahan" id="vol_bahan" class="form-control col-md-7 col-xs-12">
-									</td>
-									<td>
-										<input type="text" name="real_pemakaian" id="real_pemakaian" class="form-control col-md-7 col-xs-12">
-									</td>
-									<td>
-										<input type="text" name="waste_vol" id="waste_vol" class="form-control col-md-7 col-xs-12">
-									</td>
-									<td>
-										<input type="text" name="waste_rencana" id="waste_rencana" class="form-control col-md-7 col-xs-12">
-									</td>
-									<td>
-										<input type="text" name="waste_real" id="waste_real" class="form-control col-md-7 col-xs-12">
-									</td>
-									<td>
-										<input type="text" name="waste_deviasi" id="waste_deviasi" class="form-control col-md-7 col-xs-12">
-									</td>
-									<td>
-										<input type="text" name="keterangan" id="keterangan" class="form-control">
-									</td>
-									<td>
-										<button type="button" class="btn btn-success tambah"><i><span class="fa fa-plus"></span></i></button>
-									</td>
-								</tr>
-								<tbody class="data">
-									
-								</tbody>
-							</table>
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12" style="overflow-y:auto; overflow-x:scroll;">
+									<table class="table table-bordered waste" id="table_waste">
+										<tr>
+											<th rowspan="2">No.</th>
+											<th colspan="2">Progres Pekerjaan</th>
+											<th rowspan="2" style="width: 20px;">Volume Bahan Sesuai Progres</th>
+											<th rowspan="2">Realisasi Pemakaian Bahan</th>
+											<th rowspan="2">Waste dalam Satuan Volume</th>
+											<th colspan="3">Waste Bahan (%)</th>
+											<th rowspan="2">Keterangan</th>
+											<th rowspan="2">Action</th>
+										</tr>
+										<tr>
+											<th>%</th>
+											<th>Volume</th>
+											<th>Renc.</th>
+											<th>Real.</th>
+											<th>Deviasi</th>
+										</tr>
+										<tr>
+											<td></td>
+											<td>
+												<input type="text" name="progress_persen" id="progress_persen" class="form-control col-md-7 col-xs-12">
+											</td>
+											<td>
+												<input type="text" name="progress_vol" id="progress_vol" class="form-control col-md-7 col-xs-12">
+											</td>
+											<td>
+												<input type="text" name="vol_bahan" id="vol_bahan" class="form-control col-md-7 col-xs-12">
+											</td>
+											<td>
+												<input type="text" name="real_pemakaian" id="real_pemakaian" class="form-control col-md-7 col-xs-12">
+											</td>
+											<td>
+												<input type="text" name="waste_vol" id="waste_vol" class="form-control col-md-7 col-xs-12">
+											</td>
+											<td>
+												<input type="text" name="waste_rencana" id="waste_rencana" class="form-control col-md-7 col-xs-12">
+											</td>
+											<td>
+												<input type="text" name="waste_real" id="waste_real" class="form-control col-md-7 col-xs-12">
+											</td>
+											<td>
+												<input type="text" name="waste_deviasi" id="waste_deviasi" class="form-control col-md-7 col-xs-12">
+											</td>
+											<td>
+												<input type="text" name="keterangan" id="keterangan" class="form-control">
+											</td>
+											<td>
+												<button type="button" class="btn btn-success tambah"><i><span class="fa fa-plus"></span></i></button>
+											</td>
+										</tr>
+										<tbody class="data">
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
 							<div class="ln_solid"></div>
 							<div class="form-group">
 								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
