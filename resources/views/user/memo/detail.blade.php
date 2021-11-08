@@ -25,7 +25,7 @@
 						<br>
 						@if($memo->nama_file)
 							<h4>Lampiran</h4>
-							<iframe src ="http://docs.google.com/viewer?url={{url('/')}}/upload/memo/{{$memo->nama_file}}&embedded=true" width='724' height='1024'	 allowfullscreen webkitallowfullscreen>
+							<iframe src ="https://docs.google.com/viewer?url={{url('/')}}/upload/memo/{{$memo->nama_file}}&embedded=true" width='724' height='1024'	 allowfullscreen webkitallowfullscreen>
 						@endif
 						<br>
 						<?php

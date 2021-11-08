@@ -31,6 +31,13 @@
 					</a>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
+					<a href="{{url('admin/izin')}}">
+						<span class="count_top"><i class="fa fa-sign-out"></i> Izin</span>
+						<div class="count green">{{$izin}}</div>
+						<span class="count_bottom"><i class="green">Need To be Approved</i></span>
+					</a>
+				</div>
+				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
 					<a href="{{url('admin/spj')}}">
 						<span class="count_top"><i class="fa fa-sign-out"></i> SPJ</span>
 						<div class="count green">{{$spj}}</div>

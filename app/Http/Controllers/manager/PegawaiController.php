@@ -126,6 +126,35 @@ class PegawaiController extends Controller
     {
       if(\Auth::user()->pegawai->kode_bagian == 'SA'){
         $pecats = Pecat::get();
+      }elseif((\Auth::user()->pegawai->kode_bagian == 'QHSE') || (\Auth::user()->pegawai->kode_bagian == 'QC') || (\Auth::user()->pegawai->kode_bagian == 'HS')){
+        $pecat_qhse = Pecat::where('is_verif_mngr',0)->where('soft_delete',0)
+                  ->whereHas('pegawai',function ($q){
+            $q->where('kode_bagian', 'QHSE');
+        })->get();
+
+        $pecats = [];
+
+          foreach ($pecat_qhse as $key => $value) {
+            $pecats[] = $value;
+          }
+
+        $pecat_qc = Pecat::where('is_verif_mngr',0)->where('soft_delete',0)
+                  ->whereHas('pegawai',function ($q){
+            $q->where('kode_bagian', 'QC');
+        })->get();
+
+          foreach ($pecat_qc as $key => $value) {
+            $pecats[] = $value;
+          }
+
+        $pecat_hs = Pecat::where('is_verif_mngr',0)->where('soft_delete',0)
+                  ->whereHas('pegawai',function ($q){
+            $q->where('kode_bagian', 'HS');
+        })->get();
+
+          foreach ($pecat_hs as $key => $value) {
+            $pecats[] = $value;
+          }
       }else{
         $pecats = Pecat::whereHas('pegawai',function ($q){
             $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);

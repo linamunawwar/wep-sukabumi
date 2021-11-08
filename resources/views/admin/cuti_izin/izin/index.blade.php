@@ -45,16 +45,25 @@
 											{{konversi_tanggal($date[0])}}
 										</td>
 										<td>
-											@if(($izin->is_verif_mngr == 1) && ($izin->is_verif_sdm == 1))
+											@if(($izin->is_verif_admin == 1) && ($izin->is_verif_mngr == 1) && ($izin->is_verif_sdm == 1))
+												<span class="label label-warning">Approved By Admin</span>
 												<span class="label label-primary">Approved By Manager</span>
 												<span class="label label-success">Approved By SDM</span>
-											@elseif(($izin->is_verif_mngr == 1) && ($izin->is_verif_sdm == 0))
+											@elseif(($izin->is_verif_admin == 1) && ($izin->is_verif_mngr == 1) && ($izin->is_verif_sdm == 0))
+												<span class="label label-warning">Approved By Admin</span>
 												<span class="label label-primary">Approved By Manager</span>
+											@elseif(($izin->is_verif_admin == 1) && ($izin->is_verif_mngr == 0) && ($izin->is_verif_sdm == 0))
+												<span class="label label-warning">Approved By Admin</span>
 											@else
 												<span class="label label-default">Not Approved</span>
 											@endif
 										</td>
 										<td style="text-align: left;">
+											@if($izin->is_verif_admin == 0)
+												<a href='{{ url("admin/izin/approve/$izin->id")}}' class="btn btn-primary btn-xs"><i class="fa fa-check"></i>  Approve</a>
+											@else
+												<a class="btn btn-dark btn-xs"><i class="fa fa-check"></i>  Approve</a>
+											@endif
 											@if($izin->is_verif_sdm == 1)
 												<a href="{{'izin/surat_izin/'.$izin->id.''}}" class="btn btn-success btn-xs"><i class="fa fa-download"></i>  Unduh</a>
 											@else

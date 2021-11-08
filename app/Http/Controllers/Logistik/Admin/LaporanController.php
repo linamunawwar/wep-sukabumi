@@ -509,6 +509,7 @@ class LaporanController extends Controller
     	$data['tanggal_mulai'] = $data['tahun'].'-'.$data['bulan'].'-01';
 		$data['tanggal_selesai'] = $data['tahun'].'-'.$data['bulan'].'-31';
 		$bulan = array(1 => "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
+        $tahun = $data['tahun'];
 
 		for ($i=01; $i <= 12; $i++) { 
 			if ($i == $data['bulan']) {
@@ -600,14 +601,15 @@ class LaporanController extends Controller
 
         }elseif($data['unduh'] == 1){
             if(count($dt)!= 0){
-            	$excel = \Excel::create("Form Log-02 Laporan Kartu Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($getBulan, $getMaterial, $dt,$splem) {
+            	$excel = \Excel::create("Form Log-02 Laporan Kartu Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($getBulan, $getMaterial, $dt,$splem,$tahun) {
 
-                        $excel->sheet('New sheet', function ($sheet) use ($getBulan, $getMaterial, $dt,$splem) {
+                        $excel->sheet('New sheet', function ($sheet) use ($getBulan, $getMaterial, $dt,$splem,$tahun) {
 
-                            $sheet->loadView('logistik.admin.log02.unduh', ['data' => $dt, 'bulan' => $getBulan, 'material' => $getMaterial, 'splem' => $splem]);
+                            $sheet->loadView('logistik.admin.log02.unduh', ['data' => $dt, 'bulan' => $getBulan, 'tahun'=> $tahun,'material' => $getMaterial, 'splem' => $splem]);
+
                             $objDrawing = new PHPExcel_Worksheet_Drawing;
                             $objDrawing->setPath(public_path('img/Waskita.png'));
-                            $objDrawing->setCoordinates('C1');
+                            $objDrawing->setCoordinates('C4');
                             $objDrawing->setWorksheet($sheet);
                             $objDrawing->setResizeProportional(false);
                             // set width later
@@ -625,37 +627,61 @@ class LaporanController extends Controller
                             // $ttdImage->setWidth(20);
                             // $ttdImage->setHeight(35);
 
-                            $sheet->getStyle('D50')->getAlignment()->applyFromArray(
+                            $sheet->getStyle('A13:J57')->getAlignment()->setWrapText(true);
+                            $sheet->getStyle('A2:J50')->getFont()->setName('Tahoma');
+                            $sheet->getStyle('A13:J17')->getAlignment()->applyFromArray(
                                 array('horizontal' => 'center')
                             );
-                            
-                            $sheet->getStyle('A13:I33')->getAlignment()->setWrapText(true);
-                            $sheet->getStyle('A2:I2')->getFont()->setName('Tahoma');
-                            $sheet->getStyle('A13:I13')->getAlignment()->applyFromArray(
-                                array('horizontal' => 'center')
-                            );
-                            $sheet->cells('A9:I9', function ($cells) {
+                            $sheet->cells('A9:J17', function ($cells) {
                                 $cells->setValignment('center');
                                 $cells->setFontFamily('Tahoma');
                             });
 
-                            $sheet->cell('D9:E11', function ($cell) {
-                                $cell->setValignment('center');
-                            });
-                            $sheet->cell('D8:E8', function ($cell) {
-                                $cell->setBorder('', '', 'thin', '');
-                            });
-                            $sheet->cell('C4', function ($cell) {
+                            $sheet->cell('C7', function ($cell) {
                                 $cell->setBorder('thin', 'thin', 'thin', 'thin');
                             });
-                            $sheet->cell('C6', function ($cell) {
+                            $sheet->cell('C9', function ($cell) {
                                 $cell->setalignment('center');
                                 $cell->setValignment('center');
                                 $cell->setBorder('thin', 'thin', 'thin', 'thin');
                             });
-                            // $sheet->cell('B14:E14', function($cell){
-                            //     $cell->setBorder('','','','thin');
-                            // });
+                            // $sheet->mergeCells('C16:D17');
+                            $sheet->cell('C16:D16', function ($cell) {
+                                $cell->setBorder('thin', '', '', 'thin');
+                            });
+
+                            $sheet->cell('C17:D17', function($cell){
+                                $cell->setBorder('','thin','','thin');
+                            });
+
+                            //set image ttd splem
+                            // init drawing
+                            if(file_exists("upload/pegawai/$splem->nip/$splem->ttd")){
+                                $drawing2 = new PHPExcel_Worksheet_Drawing();
+                                // Set image
+                                $drawing2->setPath("upload/pegawai/$splem->nip/$splem->ttd");
+                                $drawing2->setWorksheet($sheet);
+                                $drawing2->setCoordinates('D54');
+                                $drawing2->setResizeProportional(false);
+                                $drawing2->setWidth(150);
+                                $drawing2->setHeight(100);
+                            }
+
+
+                            $sheet->setHeight(55,90);
+
+                            $sheet->setWidth(array(
+                                'A'     =>  1,
+                                'B'     =>  1,
+                                'C'     =>  3,
+                                'D'     =>  5,
+                                'E'     =>  15,
+                                'F'     =>  15,
+                                'G'     =>  15,
+                                'H'     =>  15,
+                                'I'     =>  12,
+                                'J'     =>  12
+                            )); 
                         });
                     });
                     $styleArray = array(
@@ -819,7 +845,7 @@ class LaporanController extends Controller
         while ($tgl_mulai <= $tgl_selesai) {
             $permintaans = LogPermintaanMaterial::where('tanggal', '=', $tgl_mulai)
                                                 ->where('soft_delete', 0)
-                                                ->where('is_scarm',1)
+                                                ->where('is_scarm','!=',0)
                                                 ->get();
                                             
             foreach ($permintaans as $key => $permintaan) {
@@ -846,7 +872,7 @@ class LaporanController extends Controller
                     $penerimaans = LogDetailPenerimaanMaterial::where('soft_delete',0)
                                                             ->where('tanggal_terima', '=', $tgl_mulai)
                                                             ->whereHas('penerimaan',function ($q){
-                                                              $q->where('is_splem', 1);
+                                                              $q->where('is_splem','!=', 0);
                                                             })
                                                             ->get();
                     // var_dump(count($penerimaans).'tgl'.$tgl_mulai);

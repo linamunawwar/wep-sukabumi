@@ -32,7 +32,10 @@
 							@endif
 						</p>
 						<p>
-							Nomor : {{$findPermintaan['nomor']}}/BPM/WK/INF2/BCKY-2AU/20
+							@php
+								$year = substr($details[0]->created_at, 2,2);
+							@endphp
+							Nomor : {{$findPermintaan['nomor']}}/BPM/WK/INF2/BCKY-2AU/{{$year}}
 						</p>
 						<div class="form-group">
 							<label class="control-label col-md-1" style="padding: 0;">Lampiran :</label>
@@ -74,7 +77,7 @@
 									<td>{{ $detail->no_part }}</td>
 									<td>{{ $detail->volume }}</td>
 									<td>{{ $detail->satuan }}</td>
-									<td>{{ $detail->tgl_pakai }}</td>
+									<td>{{ konversi_tanggal($detail->tgl_pakai) }}</td>
 									<td>{{ $detail->keperluan }}</td>
 									<td>{{ $detail->keterangan }}</td>
 									</tr>

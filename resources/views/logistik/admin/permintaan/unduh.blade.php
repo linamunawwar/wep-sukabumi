@@ -44,7 +44,12 @@
     <tr>
       <td></td>
       <td></td>       
-      <td colspan="7" style="text-align:center;">Nomer: {{ $permintaan->nomor }}/BPM/WK/INF2/BCKY-2AU/20 </td>
+      <td colspan="7" style="text-align:center;">
+        @php
+          $year = substr($permintaan->created_at, 2,2);
+        @endphp
+        Nomor : {{$permintaan->nomor}}/BPM/WK/INF2/BCKY-2AU/{{$year}}
+      </td>
       <td></td>
     </tr>  
 </table>
@@ -122,7 +127,7 @@
       <td align="center">Menyetujui</td>
       <td align="center">Diperiksa</td>
       <td colspan="2" align="center">Yang Melaksanakan</td>
-      <td align="center">Yang Meninta</td>
+      <td align="center">Yang Meminta</td>
     </tr>
     <tr>
       <td></td>

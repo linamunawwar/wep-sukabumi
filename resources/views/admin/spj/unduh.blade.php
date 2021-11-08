@@ -24,12 +24,12 @@ body { margin-bottom: 10px; }
 		<tr>
 			<td style="border: 0.5px solid black; border-right: 0; margin-left: 10px; width: 180px;">Nama Lengkap</td>
 			<td style="border: 0.5px solid black; border-right: 0; border-left: 0; width: 5px;">:</td>
-			<td style="border: 0.5px solid black; border-left: 0;" colspan="7">{{$spj->pegawaiTugas->nama}}</td>
+			<td style="border: 0.5px solid black; border-left: 0;" colspan="7">{{$pm->nama}}</td>
 		</tr>
 		<tr>
 			<td style="border: 0.5px solid black; border-right: 0; margin-left: 5px;">Jabatan</td>
 			<td style="border: 0.5px solid black; border-right: 0; border-left: 0; width: 5px;">:</td>
-			<td style="border: 0.5px solid black; border-left: 0;" colspan="7">{{$spj->pegawaiTugas->posisi->posisi}}</td>
+			<td style="border: 0.5px solid black; border-left: 0;" colspan="7">Project Manager</td>
 		</tr>
 		<tr>
 			<td colspan="9" style="height: 5px;"></td>

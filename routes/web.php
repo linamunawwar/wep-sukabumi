@@ -88,6 +88,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/pengajuan_izin', 'admin\IzinController@getPengajuanIzin');
 		Route::get('/pengajuan_izin/create', 'admin\IzinController@getPengajuanIzinCreate');
 		Route::post('/pengajuan_izin/create', 'admin\IzinController@postPengajuanIzinCreate');
+		Route::get('/izin/approve/{id}', 'admin\IzinController@getApprove');
+		Route::post('/izin/approve/{id}', 'admin\IzinController@postApprove');
 		Route::get('/izin/surat_izin/{id}', 'admin\IzinController@getSuratIzin');
 		Route::delete('/izin/delete', 'admin\IzinController@getDelete');
 

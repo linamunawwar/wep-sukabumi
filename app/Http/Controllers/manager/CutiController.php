@@ -14,9 +14,9 @@ class CutiController extends Controller
     {
     	if(\Auth::user()->pegawai->kode_bagian == 'SA'){
 	        $cutis = Cuti::where('soft_delete',0)->get();
-	      }elseif(\Auth::user()->pegawai->kode_bagian == 'QHSE'){
+	      }elseif((\Auth::user()->pegawai->kode_bagian == 'QHSE')||(\Auth::user()->pegawai->kode_bagian == 'QC')||(\Auth::user()->pegawai->kode_bagian == 'HS')){
           $cutis_qhse = Cuti::whereHas('pegawai',function ($q){
-              $q->where('kode_bagian', 'QC');
+              $q->where('kode_bagian', 'QHSE');
           })->where('soft_delete',0)->get();
 
           $cutis = [];

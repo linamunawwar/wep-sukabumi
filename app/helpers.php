@@ -216,7 +216,6 @@ function periodeTanggal($tanggal)
 function periode($periode)
 {
     $bulan = substr($periode, 4,6);
-    dd($bulan);
     $tahun = substr($periode, 0,4);
     switch ($bulan) {
         case '01':
@@ -558,6 +557,8 @@ function tigadigit($value){
         return '00'.$value;
     }elseif($length == 2){
         return '0'.$value;
+    }elseif($length == 3){
+        return $value;
     }
 }
 

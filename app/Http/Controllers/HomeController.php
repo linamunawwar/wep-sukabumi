@@ -46,12 +46,13 @@ class HomeController extends Controller
             $pegawai = Pegawai::where('is_verif_admin',0)->where('soft_delete',0)->count();
             $memo = MemoPegawai::where('user_id',Auth::user()->id)->where('viewed_at',0)->where('soft_delete',0)->count();
             $cuti = Cuti::where('is_verif_pengganti',1)->where('is_verif_admin',0)->where('soft_delete',0)->count();
+            $izin = Izin::where('is_verif_admin',0)->where('soft_delete',0)->count();
             $spj = Spj::where('is_verif_sdm',0)->where('soft_delete',0)->count();
             $pecat = Pecat::where('is_verif_sdm',0)->where('soft_delete',0)->count();
             $resign = Resign::where('is_verif_sdm',0)->where('soft_delete',0)->count();
             $rkp = Rkp::where('soft_delete',0)->where('viewed_at',null)->count();
             $disposisi = Disposisi::where('note_pm','!=',null)->where('soft_delete',0)->count();
-            return view('admin.home_admin',['pegawai'=>$pegawai,'memo'=>$memo,'cuti'=>$cuti,'spj'=>$spj,'pecat'=>$pecat,'resign'=>$resign,'rkp'=>$rkp,'disposisi'=>$disposisi]);
+            return view('admin.home_admin',['pegawai'=>$pegawai,'memo'=>$memo,'cuti'=>$cuti,'izin'=>$izin,'spj'=>$spj,'pecat'=>$pecat,'resign'=>$resign,'rkp'=>$rkp,'disposisi'=>$disposisi]);
         }
         
         //User
@@ -68,7 +69,12 @@ class HomeController extends Controller
             $disposisi = DisposisiTugas::where('status','!=',1)->where('soft_delete',0)
                         ->where('posisi_id',\Auth::user()->pegawai->posisi_id)->count();
 
-            if(\Auth::user()->pegawai->kode_bagian == 'QHSE'){
+            if((\Auth::user()->pegawai->kode_bagian == 'QHSE') || (\Auth::user()->pegawai->kode_bagian == 'QC') || (\Auth::user()->pegawai->kode_bagian == 'HS')){
+              $cutis_qhse = Cuti::where('is_verif_admin',1)->where('is_verif_mngr',0)->where('soft_delete',0)
+                                ->whereHas('pegawai',function ($q){
+                          $q->where('kode_bagian', 'QHSE');
+                      })->count();
+
               $cutis_qc = Cuti::where('is_verif_admin',1)->where('is_verif_mngr',0)->where('soft_delete',0)
                                 ->whereHas('pegawai',function ($q){
                           $q->where('kode_bagian', 'QC');
@@ -79,23 +85,33 @@ class HomeController extends Controller
                         $q->where('kode_bagian', 'HS');
                     })->count();
 
-              $cuti= $cutis_qc + $cutis_hs;
+              $cuti= $cutis_qhse + $cutis_qc + $cutis_hs;
               
 
               //izin
-              $izin_qc = Izin::where('is_verif_mngr',0)->where('soft_delete',0)
+              $izin_qhse = Izin::where('is_verif_admin',1)->where('is_verif_mngr',0)->where('soft_delete',0)
+                        ->whereHas('pegawai',function ($q){
+                  $q->where('kode_bagian', 'QHSE');
+              })->count();
+
+              $izin_qc = Izin::where('is_verif_admin',1)->where('is_verif_mngr',0)->where('soft_delete',0)
                         ->whereHas('pegawai',function ($q){
                   $q->where('kode_bagian', 'QC');
               })->count();
 
-              $izin_hs = Izin::where('is_verif_mngr',0)->where('soft_delete',0)
+              $izin_hs = Izin::where('is_verif_admin',1)->where('is_verif_mngr',0)->where('soft_delete',0)
                         ->whereHas('pegawai',function ($q){
                   $q->where('kode_bagian', 'HS');
               })->count();
 
-                $izin = $izin_hs + $izin_qc;
+                $izin = $izin_qhse + $izin_hs + $izin_qc;
 
               //pecat
+              $pecat_qhse = Pecat::where('is_verif_mngr',0)->where('soft_delete',0)
+                        ->whereHas('pegawai',function ($q){
+                  $q->where('kode_bagian', 'QHSE');
+              })->count();
+
               $pecat_qc = Pecat::where('is_verif_mngr',0)->where('soft_delete',0)
                         ->whereHas('pegawai',function ($q){
                   $q->where('kode_bagian', 'QC');
@@ -106,9 +122,14 @@ class HomeController extends Controller
                   $q->where('kode_bagian', 'HS');
               })->count();
 
-                $pecat = $pecat_qc + $pecat_hs;
+                $pecat = $pecat_qhse + $pecat_qc + $pecat_hs;
 
               //resign
+              $resign_qhse = Resign::where('is_verif_mngr',0)->where('soft_delete',0)
+                        ->whereHas('pegawai',function ($q){
+                  $q->where('kode_bagian', 'QHSE');
+              })->count();
+
               $resign_qc = Resign::where('is_verif_mngr',0)->where('soft_delete',0)
                         ->whereHas('pegawai',function ($q){
                   $q->where('kode_bagian', 'QC');
@@ -120,14 +141,14 @@ class HomeController extends Controller
                   $q->where('kode_bagian', 'HS');
               })->count();
 
-              $resign = $resign_qc + $resign_hs;
+              $resign = $resign_qhse + $resign_qc + $resign_hs;
 
             }else{
                 $cuti = Cuti::where('is_verif_admin',1)->where('is_verif_mngr',0)->where('soft_delete',0)
                         ->whereHas('pegawai',function ($q){
                             $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
                         })->count();
-                $izin = Izin::where('is_verif_mngr',0)->where('soft_delete',0)
+                $izin = Izin::where('is_verif_admin',1)->where('is_verif_mngr',0)->where('soft_delete',0)
                         ->whereHas('pegawai',function ($q){
                             $q->where('kode_bagian', \Auth::user()->pegawai->kode_bagian);
                         })->count();
@@ -164,7 +185,8 @@ class HomeController extends Controller
                     })
                     ->count();
             // $cuti = $cuti + $cuti_sdm;
-            $izin = Izin::where('is_verif_mngr',1)
+            $izin = Izin::where('is_verif_admin',1)
+                    ->where('is_verif_mngr',1)
                     ->where('is_verif_sdm',0)
                     ->where('soft_delete',0)
                     ->orwhere('is_verif_mngr',0)

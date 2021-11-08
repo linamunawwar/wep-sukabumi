@@ -38,32 +38,47 @@ class SuratKeluarController extends Controller
                     $backdate = explode('.', $no_surat[0]);
                     $no_surat[0] = $backdate[0];
                 }
-                $nomor_surat = $no_surat[0]+1;
-                return tigadigit($nomor_surat).'/WK/INF2/BCKY-2AU/'.$bulan.'/'.date('Y');
+                $nomor_surat = (int)$no_surat[0]+1;
+                
+                $nomor_surat_akhir = tigadigit($nomor_surat).'/WK/INF2/BCKY-2AU/'.$bulan.'/'.date('Y');
+                $cek = SuratKeluar::where('no_surat',$nomor_surat_akhir)->get();
+                if(count($cek)==0){
+                    return $nomor_surat_akhir;
+                }else {
+                    return 0;
+                }
             }elseif($tanggal < date('Y-m-d')){
                 //surat backdate
-                $surat = SuratKeluar::where('tanggal_surat','<=',$tanggal)->orderBy('tanggal_surat','desc')->orderBy('created_at','desc')->first();
+                $surat = SuratKeluar::where('tanggal_surat','<=',$tanggal)->where('soft_delete',0)->orderBy('tanggal_surat','desc')->orderBy('created_at','desc')->first();
                 if($surat){
                     $no_surat = explode('/',$surat->no_surat);
                     $nomor ='';
+                    // dd($surat);
                     if(strpos($no_surat[0],'.')){
                         $backdate = explode('.', $no_surat[0]);
                         $backdate[1]++;
                         $nomor = $backdate[0].'.'.$backdate[1];
+                        // dd($surat);
                     }else{
                         $nomor = $no_surat[0].'.1';
                     }
 
-                    return $nomor.'/WK/INF2/BCKY-2AU/'.$bulan.'/'.date('Y');
+                    $nomor_surat_akhir = $nomor.'/WK/INF2/BCKY-2AU/'.$bulan.'/'.date('Y');
+                    $cek = SuratKeluar::where('no_surat',$nomor_surat_akhir)->get();
+                    if(count($cek)==0){
+                        return $nomor_surat_akhir;
+                    }else {
+                        return 0;
+                    }
                 }else{
-                    return 0;
+                    return false;
                 }
             }else{
-                return 0;
+                return null;
             }
 
         }else{
-            return 0;
+            return false;
         }
     }
 

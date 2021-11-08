@@ -32,7 +32,19 @@ class PermissionController extends Controller
         date_default_timezone_set("Asia/Jakarta");
         $id_menu = \Input::get('id_menu');
         $id_user = \Input::get('id_user');         
-        // $menu = Menu::where('id', $id_menu)->first();
+        
+        $menu = Menu::where('id', $id_menu)->first();
+        if($menu->id_parent != 0){
+            //cek parent udah ada blm di table permission
+            $cek = Permission::where('id_menu',$menu->id_parent)->where('id_user',$id_user)->first();
+            //kalau belum ada create parent di permission dulu
+            if(count($cek)==0){
+                $permissionParent= new Permission;
+                $permissionParent->id_menu = $menu->id_parent;
+                $permissionParent->id_user = $id_user;
+                $query_permissionParent= $permissionParent->save();
+            }
+        }
 
         $permission = new Permission;
         $permission->id_menu = $id_menu;

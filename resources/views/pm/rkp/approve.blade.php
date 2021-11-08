@@ -43,7 +43,7 @@
 									<?php $i=1; ?>
 									@foreach($dt_rkps as $dt_rkp)
 										<tr>
-											<td>{{$i}}</td>
+											<td>{{$i++}}</td>
 											<td>{{$dt_rkp->posisi->posisi}}</td>
 											<td>{{$dt_rkp->tugas}}</td>
 											<td>{{$dt_rkp->pendidikan}}</td>

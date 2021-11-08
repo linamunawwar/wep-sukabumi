@@ -7,7 +7,7 @@
             use App\Permission;
             $menus = Permission::where('id_user', Auth::user()->id)->whereHas('menu',function ($q){
                 $q->where('active',1);
-            })->get();
+            })->orderBy('id_menu')->get();
             $parent = array();
             foreach ($menus as $key => $value) {
                 if($value->menu->id_parent == 0){
@@ -18,14 +18,14 @@
                     $parent[$value->id_menu]['icon']=$value->menu->icon;
                     $i=0;
                 }else{
-                    if(array_key_exists($value->menu->id_parent, $parent)){
+                    // if(array_key_exists($value->menu->id_parent, $parent)){
                         $parent[$value->menu->id_parent]['sub'][$i]['id_menu'] = $value->id_menu;
                         $parent[$value->menu->id_parent]['sub'][$i]['nama'] = $value->menu->nama;
                         $parent[$value->menu->id_parent]['sub'][$i]['alias'] = $value->menu->alias;
                         $parent[$value->menu->id_parent]['sub'][$i]['direktori'] = $value->menu->direktori;
                         $parent[$value->menu->id_parent]['sub'][$i]['icon'] = $value->menu->icon;
                         $i++;
-                    }
+                    // }
                 }
             }
         ?>
