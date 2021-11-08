@@ -31,33 +31,37 @@
 								</div>
 							</div>
 							<input type="hidden" name="jumlah_data" class="jumlah_data" id="jumlah_data" value="0">
-							<table class="table table-bordered permintaan" id="table_permintaan">
-								<tr>
-									<th>No.</th>
-									<th>Nama Material</th>
-									<th>No Part / Type</th>
-									<th>Volume</th>
-									<th>Satuan</th>
-									<th>Tanggal Pakai</th>
-									<th>Keperluan</th>
-									<th>Keterangan</th>
-								</tr>
-								<tbody>
-									<?php $i = 1;?>
-									@foreach($details as $detail)
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12" style="overflow-y:auto; overflow-x:scroll;">
+									<table class="table table-bordered permintaan" id="table_permintaan">
 										<tr>
-											<td>{{$i++}}</td>
-											<td>{{$detail->detailPermintaanMaterial->nama}}</td>
-											<td>{{$detail->no_part}}</td>
-											<td>{{$detail->volume}}</td>
-											<td>{{$detail->satuan}}</td>
-											<td>{{$detail->tgl_pakai}}</td>
-											<td>{{$detail->keperluan}}</td>
-											<td>{{$detail->keterangan}}</td>
+											<th>No.</th>
+											<th>Nama Material</th>
+											<th>No Part / Type</th>
+											<th>Volume</th>
+											<th>Satuan</th>
+											<th>Tanggal Pakai</th>
+											<th>Keperluan</th>
+											<th>Keterangan</th>
 										</tr>
-									@endforeach
-								</tbody>
-							</table>
+										<tbody>
+											<?php $i = 1;?>
+											@foreach($details as $detail)
+												<tr>
+													<td>{{$i++}}</td>
+													<td>{{$detail->detailPermintaanMaterial->nama}}</td>
+													<td>{{$detail->no_part}}</td>
+													<td>{{$detail->volume}}</td>
+													<td>{{$detail->satuan}}</td>
+													<td>{{$detail->tgl_pakai}}</td>
+													<td>{{$detail->keperluan}}</td>
+													<td>{{$detail->keterangan}}</td>
+												</tr>
+											@endforeach
+										</tbody>
+									</table>
+								</div>
+							</div>
 							<div class="ln_solid"></div>
 								<div class="form-group">
 								<label class="control-label col-md-2 col-sm-2 col-xs-6">Note :</label>
@@ -75,8 +79,8 @@
 								</div>
 							</div>
 							<div class="ln_solid"></div>
-							<div class="form-group" style="float:right; margin-right:4em;">
-								<div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-3">
+							<div class="form-group" style="float:right;">
+								<div class="col-md-12 col-sm-12 col-xs-12">
 									<a class="btn btn-primary" href="{{url('/Logistik/pm/permintaan')}}">Cancel</a>
 									<button type="submit" name="reject" class="btn" style="background-color:#D63031; color:#FFFFFF;">Reject</button>
 									<button type="submit" name="approve" class="btn btn-success">Approve</button>

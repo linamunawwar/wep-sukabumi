@@ -23,7 +23,7 @@
 						<p>Nama Penerima : {{$details[0]->penerimaan->penerima}}</p>
 						<div class="clearfix"></div>
 					</div>
-					<div class="x_content">
+					<div class="x_content" style="overflow-y:auto; overflow-x:scroll;">
 						<table class="table table-bordered waste" id="table_waste">
 							<tr>
 									<th rowspan="2">No.</th>

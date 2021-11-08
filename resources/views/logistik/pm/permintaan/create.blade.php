@@ -96,7 +96,7 @@
 									<div class="form-group">
 										<label class="control-label col-md-6 col-sm-6 col-xs-12" for="nama">Keperluan <span class="required">*</span>:</label>
 										<div class="col-md-4 col-sm-4 col-xs-12">
-											<textarea id="keperluan" name="keperluan" rows="10" class="keperluan form-control col-md-7 col-xs-12" style="width:48.2em;"></textarea>
+											<textarea id="keperluan" name="keperluan" rows="10" cols="100" class="keperluan form-control col-md-7 col-xs-12"></textarea>
 										</div>
 									</div>
 								</div>
@@ -107,7 +107,7 @@
 									<div class="form-group">
 										<label class="control-label col-md-6 col-sm-6 col-xs-12" for="nama">Keterangan <sup>(Optional)</sup> :</label>
 										<div class="col-md-4 col-sm-4 col-xs-12">
-											<textarea id="keterangan" name="keterangan" rows="10" class="keterangan form-control col-md-7 col-xs-12" style="width:48.2em;"></textarea>
+											<textarea id="keterangan" name="keterangan" rows="10" cols="100" class="keterangan form-control col-md-7 col-xs-12"></textarea>
 										</div>
 									</div>
 								</div>
@@ -121,24 +121,28 @@
 							</div>
 
 							<input type="hidden" name="jumlah_data" class="jumlah_data" id="jumlah_data" value="0">
-							<table class="table table-bordered permintaan" id="table_permintaan">
-								<tr>
-									<th>No.</th>
-									<th>Nama Material</th>
-									<th>No.Partype</th>
-									<th>Volume</th>
-									<th>Satuan</th>
-									<th>Tanggal Pakai</th>
-									<th>Untuk Keperluan</th>
-									<th>Keterangan</th>
-									<th>Action</th>
-								</tr>
-								<tbody class="data">
-									
-								</tbody>
-							</table>
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12" style="overflow-y:auto; overflow-x:scroll;">
+									<table class="table table-bordered permintaan" id="table_permintaan">
+										<tr>
+											<th>No.</th>
+											<th>Nama Material</th>
+											<th>No.Partype</th>
+											<th>Volume</th>
+											<th>Satuan</th>
+											<th>Tanggal Pakai</th>
+											<th>Untuk Keperluan</th>
+											<th>Keterangan</th>
+											<th>Action</th>
+										</tr>
+										<tbody class="data">
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
 							<div class="ln_solid"></div>
-							<div class="form-group" style="margin-left:60em;">
+							<div class="form-group" style="float:right;">
 								<div class="col-md-12">
 									<button class="btn btn-primary" type="button">Cancel</button>
 									<button type="submit" class="btn btn-success">Submit</button>
