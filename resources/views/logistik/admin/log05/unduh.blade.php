@@ -52,7 +52,6 @@
       <td>Proyek</td>
       <td colspan="2">: </td>
       <td></td>
-      <td></td>
       <td colspan="2" style="font-weight: bold;"> ID Proyek</td>
     </tr>
   </table>
@@ -69,7 +68,10 @@
         <td></td>
         <td></td>
         <td>Bulan</td>
-        <td>: {{periode($data[1]['tanggal'])}}</td>
+        @php
+          $date = explode('-',$tanggal_mulai);
+        @endphp
+        <td>: {{bulan($date[1])}}</td>
         <td></td>
         <td></td>
     </tr>
@@ -78,7 +80,7 @@
         <td></td>
         <td></td>
         <td>Tahun</td>
-        <td>: </td>
+        <td>: {{$date[2]}}</td>
         <td></td>
         <td></td>
     </tr>
@@ -90,7 +92,7 @@
       <td style="border: 1px double #000000; font-weight: bold; font-size: 10;" align="center">No</td>
       <td style="border: 1px double #000000; font-weight: bold; font-size: 10;" align="center"> Tanggal </td>
       <td style="border: 1px double #000000; font-weight: bold; font-size: 10;" align="center"> Batch </td>
-      <td style="border: 1px double #000000; font-weight: bold; font-size: 10;" align="center"> Nama Bahan </td>
+      <td style="border: 1px double #000000; font-weight: bold; font-size: 10;" align="center"> Nomor /Nama Material </td>
       <td style="border: 1px double #000000; font-weight: bold; font-size: 10;" colspan="2" align="center"> Volume Masuk </td>
       <td style="border: 1px double #000000; font-weight: bold; font-size: 10;" colspan="2" align="center"> Volume Keluar </td>
     </tr>
@@ -150,7 +152,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td colspan="2" style="text-align: center;"> Tanggal </td>
+        <td colspan="2" style="text-align: center;"> Bekasi, {{$tanggal_selesai}} </td>
         <td></td>
         <td></td>
     </tr>
@@ -179,7 +181,7 @@
         <td></td>
     </tr>
     <tr>
-        <td></td>
+      <td></td>
     </tr>
     <tr>
         <td></td>
@@ -189,7 +191,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td colspan="2" style="text-align: center;"> {{ $splem->nama }} </td>
+        <td colspan="2" style="text-align: center;" height="35"> {{ $splem->nama }} </td>
         <td></td>
         <td></td>
     </tr>
