@@ -299,7 +299,7 @@ class LaporanController extends Controller
 	}
 
 
-
+    //log07= buku harian pengeluaran bahan
 	public function getLog07()
     {
         $jeniss = LogJenis::where('soft_delete',0)->get();
@@ -709,7 +709,8 @@ class LaporanController extends Controller
 		$tgl_selesai=konversi_tanggal($data['tanggal_selesai']);
 		$dt = [];
         $i = 1;      
-        
+        $baris_data =0;
+
 		while($tgl_mulai <= $tgl_selesai){
             $j = 0;	
             $dt[$i]['tanggal'] = '';	
@@ -747,6 +748,13 @@ class LaporanController extends Controller
                 }
             $j++;                
             }
+            //jika datanya kosong perhitungan baris ditab=mbah satu
+            if(count($penerimaanDetails) == 0){
+                $baris_data = $baris_data +$j+1;
+            }else{
+                $baris_data = $baris_data + $j;
+            }
+            
 
             // foreach ($pengajuanDetails as $key => $pengajuan) {                
             //     $dt[$i]['data'][$j]['material'] = $pengajuan->material->nama;
@@ -758,6 +766,9 @@ class LaporanController extends Controller
 			$i++;
 			$tgl_mulai = date('Y-m-d',strtotime('+1 days',strtotime($tgl_mulai)));
         }
+
+        //angka 22 di dapet dr itungan jumlah baris dr atas smpai tabel dan dr tabel sampe kolom untuk ttd
+        $baris_data = $baris_data+22;
 
 		$splem = getManagerLaporan('SL',$tgl_mulai);
 
@@ -774,11 +785,11 @@ class LaporanController extends Controller
         }elseif($data['unduh'] == 1){
             if(count($dt)!= 0){
 
-            	$excel = \Excel::create("Form Log-04 Laporan Harian Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($dt, $splem) {
+            	$excel = \Excel::create("Form Log-04 Laporan Harian Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($dt, $splem,$data, $baris_data) {
 
-                        $excel->sheet('New sheet', function ($sheet) use ($dt, $splem) {
+                        $excel->sheet('New sheet', function ($sheet) use ($dt, $splem,$data,$baris_data) {
 
-                            $sheet->loadView('logistik.admin.log05.unduh', ['data' => $dt, 'splem' => $splem]);
+                            $sheet->loadView('logistik.admin.log05.unduh', ['data' => $dt, 'splem' => $splem,'tanggal_mulai'=>$data['tanggal_mulai'], 'tanggal_selesai' => $data['tanggal_selesai'],'baris_data'=>$baris_data]);
                             $objDrawing = new PHPExcel_Worksheet_Drawing;
                             $objDrawing->setPath(public_path('img/Waskita.png'));
                             $objDrawing->setCoordinates('C4');
@@ -810,6 +821,21 @@ class LaporanController extends Controller
                                 $cell->setBorder('thin', 'thin', 'thin', 'thin');
                             });
                             
+                            //set image ttd splem
+                            // init drawing
+                            if(file_exists("upload/pegawai/$splem->nip/$splem->ttd")){
+                                $drawing = new PHPExcel_Worksheet_Drawing();
+                                // Set image
+                                $drawing->setPath("upload/pegawai/$splem->nip/$splem->ttd");
+                                $drawing->setWorksheet($sheet);
+                                $drawing->setCoordinates('H'.$baris_data);
+                                $drawing->setResizeProportional(false);
+                                $drawing->setWidth(120);
+                                $drawing->setHeight(90);
+                            }
+
+                            $sheet->setHeight($baris_data,90);
+
                             $sheet->setWidth(array(
                                 'A'     =>  1,
                                 'B'     =>  1,
@@ -818,9 +844,9 @@ class LaporanController extends Controller
                                 'E'     =>  12,
                                 'F'     =>  25,
                                 'G'     =>  10,
-                                'H'     =>  12,
+                                'H'     =>  8,
                                 'I'     =>  10,
-                                'J'     =>  13
+                                'J'     =>  8
                             )); 
                         });
                     });
