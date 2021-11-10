@@ -34,7 +34,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Evaluasi Pemakaian Material (Log-06) </h2>
+						<h2>Evaluasi Pemakaian Material (Log-05) </h2>
 						<ul class="nav navbar-right panel_toolbox">
 						</ul>
 						<div class="clearfix"></div>
@@ -91,7 +91,7 @@
 									    <th colspan="4"><b style="font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
 									    <td></td>
 									    <td></td>
-									    <td style="border: 1px solid #000000;  " colspan="2" align="center"><b>Formulir Log-06</b></td>
+									    <td style="border: 1px solid #000000;  " colspan="2" align="center"><b>Formulir Log-05</b></td>
 									  </tr>
 									  <tr>
 									    <!-- <td style="font-size: 14px;">Periode</td>

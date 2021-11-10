@@ -2,7 +2,6 @@
   <tr>
     <td></td>
     <td></td>
-    <th style="width: 6;"></th>
   </tr>
   <tr>
     <td></td>
@@ -10,7 +9,7 @@
     <th></th>
     <th colspan="4"></th>
     <td></td>
-    <td style="border: 1px solid #000000; font-weight: bold;" colspan="2" align="center">Formulir Log-06</td>
+    <td style="border: 1px solid #000000; font-weight: bold;" colspan="2" align="center">FORMULIR LOGINV-05</td>
   </tr>
   <tr>
     <td></td>
@@ -21,8 +20,8 @@
     <th></th>
     <th></th>
     <th></th>
-    <td style="border: 1px solid #000000;">Edisi : Mei 2019</b></td>
-    <td style="border: 1px solid #000000;">Revisi : 0 </td>
+    <td style="border: 1px solid #000000; font-size: 10;">Edisi : Mei 2020</b></td>
+    <td style="border: 1px solid #000000; font-size: 10;">Revisi : 01 </td>
   </tr>
   <tr>
     <td></td>
@@ -32,13 +31,18 @@
   </tr>
   <tr>
     <td></td>
+    <td></td>
+    <th></th>
+    <th colspan="4"><b style="font-weight: bold; font-size:16px; ">INDUSTRI KONSTRUKSI</b></th>
+  </tr>
+  <tr>
+    <td></td>
   </tr>
   <tr>
     <td></td>
     <td></td>
     <td></td>
-    <td style="padding-left: 10px; font-weight: bold;">Business Unit </td>
-    <td style="font-weight: bold;">:</td>
+    <td style="padding-left: 10px; font-weight: bold; font-size: 10">Business Unit :</td>
   </tr>
   <tr>
     <td style="height: 5;"></td>
@@ -47,9 +51,8 @@
     <td></td>
     <td></td>
     <td></td>    
-    <td style="font-weight: bold;">Proyek   </td>
-    <td colspan="4"><div style="font-weight: bold;">:</div> Proyek Jalan Tol Becakayu Seksi 2A Ujung</td>
-    <td colspan="3" style="font-weight: bold;"> No. AB</td>
+    <td colspan="5" style="font-weight: bold; font-size: 10;"> Proyek : Proyek Jalan Tol Becakayu Seksi 2A Ujung</td>
+    <td colspan="3" style="font-weight: bold;"> ID Proyek :</td>
   </tr>
 </table>
 
@@ -57,40 +60,44 @@
   <tr>
     <td></td>
     <td></td>
-    <td colspan="8" style="text-align: center;border: 2px solid #000000; height: 18;"><b>LAPORAN EVALUASI PEMAKAIAN BAHAN</b></td>
+    <td colspan="8" style="text-align: center;border: 2px solid #000000; height: 18;"><b>LAPORAN EVALUASI PEMAKAIAN MATERIAL</b></td>
   </tr>
 </table>
 <table class="table table-striped">
   <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td colspan="2" style="font-size: 10;">Halaman : ...dari...</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      @php
+        $date = explode('-',$dt['tanggal_mulai']);
+      @endphp
+      <td>Bulan : {{bulan($date[1])}}</td>
+  </tr>
+  <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Tahun: {{$date[2]}}</td>
   </tr>
   <tr class="thead-light" >
     <td></td>
     <td></td>
-    <td style="font-weight: bold; font-size: 10; width: 8;" rowspan="2" align="center">Asal Bahan *)</td>
-    <td style="font-weight: bold; font-size: 10; width: 22;" rowspan="2" align="center">JENIS BAHAN</td>
-    <td style="font-weight: bold; font-size: 10; width: 12; height: 20;" colspan="3" align="center">VOLUME BAHAN</td>
-    <td style="font-weight: bold; font-size: 10; width: 12;" colspan="3" align="center">SISA STOCK (FIFO)</td>
+    <td style="font-weight: bold; font-size: 10;" rowspan="2" align="center">Asal Material *)</td>
+    <td style="font-weight: bold; font-size: 10;" rowspan="2" align="center">Nomor / Nama Material</td>
+    <td style="font-weight: bold; font-size: 10;" colspan="3" align="center">Volume Material</td>
+    <td style="font-weight: bold; font-size: 10;" colspan="3" align="center">Sisa Stock dalam SAP
   </tr>
   <tr class="thead-light" style="text-align: center;">
     <td></td>
     <td></td>
     <td></td>
     <td></td>
-    <td style="font-weight: bold; font-size: 10;">KEBUTUHAN</td>
-    <td style="font-weight: bold; font-size: 10; width: 10;">MASUK</td>
-    <td style="font-weight: bold; font-size: 10;">TERPAKAI</td>
-    <td style="font-weight: bold; font-size: 10;">JUMLAH</td>
-    <td style="font-weight: bold; font-size: 10;width: 14;" >HRG_SAT</td>
-    <td style="font-weight: bold; font-size: 10;" >JML_HRG</td>
+    <td style="font-weight: bold; font-size: 10;">Volume Koreksi</td>
+    <td style="font-weight: bold; font-size: 10;">Masuk</td>
+    <td style="font-weight: bold; font-size: 10;">Terpakai</td>
+    <td style="font-weight: bold; font-size: 10;">Jumlah Sisa</td>
+    <td style="font-weight: bold; font-size: 10;" >Harga Satuan (Rupiah)</td>
+    <td style="font-weight: bold; font-size: 10;" >Jumlah Harga (Rupiah)</td>
   </tr>
   <tr class="thead-light" style="text-align: center;">
     <td></td>
