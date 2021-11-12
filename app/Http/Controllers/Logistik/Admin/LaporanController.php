@@ -526,6 +526,7 @@ class LaporanController extends Controller
 		$dt = [];
         $trs_keluar = 0;
         $trs_terima = 0;
+        $tgl_terakhir = 0;
 		for ($i=1; $i <=31 ; $i++) { 
 			$dt[$i]['jml_terima'] = 0;
 			$dt[$i]['jml_keluar'] = 0;
@@ -560,6 +561,10 @@ class LaporanController extends Controller
     					$trs_terima = $trs_terima + $dt[$i]['jml_terima'];
                         $dt[$i]['trs_terima'] = $trs_terima;
     				}
+                    $d = date('d',strtotime($value->tanggal_terima));
+                    if($tgl_terakhir<$d){
+                        $tgl_terakhir = $d;
+                    }
                 }else{
                     $dt[$i]['trs_terima'] = $trs_terima;
                 }
@@ -577,12 +582,16 @@ class LaporanController extends Controller
                         $trs_keluar = $trs_keluar + $dt[$i]['jml_keluar'];
 						$dt[$i]['trs_keluar'] = $trs_keluar;
 					}
+                    $d = date('d',strtotime($value->tanggal_pengajuan));
+                    if($tgl_terakhir<$d){
+                        $tgl_terakhir = $d;
+                    }
 				}else{
                     $dt[$i]['trs_keluar'] = $trs_keluar;
                 }
 
 			$dt[$i]['sisa'] = $dt[$i]['trs_terima'] - $dt[$i]['trs_keluar'];
-		}	
+		}
 
 		$splem = getManagerLaporan('SL',$data['tanggal_mulai']);
         if(!isset($data['proses'])){
@@ -592,6 +601,7 @@ class LaporanController extends Controller
             $data['unduh'] = 0;
         }
         
+        $data['tgl_terakhir'] = $tgl_terakhir;
         if($data['proses'] == 1){
             $namaBulan = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
             $idBulan = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
@@ -601,11 +611,11 @@ class LaporanController extends Controller
 
         }elseif($data['unduh'] == 1){
             if(count($dt)!= 0){
-            	$excel = \Excel::create("Form Log-02 Laporan Kartu Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($getBulan, $getMaterial, $dt,$splem,$tahun) {
+            	$excel = \Excel::create("Form Log-02 Laporan Kartu Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($getBulan, $getMaterial, $dt,$data,$splem,$tahun) {
 
-                        $excel->sheet('New sheet', function ($sheet) use ($getBulan, $getMaterial, $dt,$splem,$tahun) {
+                        $excel->sheet('New sheet', function ($sheet) use ($getBulan, $getMaterial, $dt,$data,$splem,$tahun) {
 
-                            $sheet->loadView('logistik.admin.log02.unduh', ['data' => $dt, 'bulan' => $getBulan, 'tahun'=> $tahun,'material' => $getMaterial, 'splem' => $splem]);
+                            $sheet->loadView('logistik.admin.log02.unduh', ['data' => $dt,'data2'=>$data, 'bulan' => $getBulan,'material' => $getMaterial, 'splem' => $splem]);
 
                             $objDrawing = new PHPExcel_Worksheet_Drawing;
                             $objDrawing->setPath(public_path('img/Waskita.png'));
