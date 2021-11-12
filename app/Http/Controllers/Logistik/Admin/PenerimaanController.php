@@ -418,8 +418,8 @@ class PenerimaanController extends Controller
                             }
 
 
-	                        $sheet->getStyle('A9:L41')->getAlignment()->setWrapText(true);
-	                        $sheet->getStyle('A2:L41')->getFont()->setName('Tahoma');
+	                        $sheet->getStyle('A9:M50')->getAlignment()->setWrapText(true);
+	                        $sheet->getStyle('A2:M50')->getFont()->setName('Tahoma');
 	                        $sheet->getStyle('A13:L15')->getAlignment()->applyFromArray(
 	                            array('horizontal' => 'center')
 	                        );

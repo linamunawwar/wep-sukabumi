@@ -67,7 +67,7 @@
     <td style="border: 1px solid #000000; font-weight: bold; font-size: 9;">sd. Saat ini</td>
     <td style="border: 1px solid #000000; font-weight: bold; font-size: 9;" >Sisa</td>
   </tr>
-  <?php $i =1; ?>
+  <?php $i =1;$j1=0;$j2=0; ?>
   @foreach($datas as $key=> $data)
     <tr>
       <td></td>
@@ -88,6 +88,10 @@
       <td style="border: 1px solid #000000; font-size: 9"  align="right">{{$jumlah_saat_ini}}</td>
       <td style="border: 1px solid #000000; font-size: 9"  align="right">{{$jumlah}}</td>
     </tr>
+    @php
+      $j1 = (int)$j1+ (int)$jumlah_saat_ini;
+      $j2 = (int)$j2+ (int)$jumlah;
+    @endphp
   @endforeach
   @if(count($datas) < 14)
     <?php
@@ -113,7 +117,20 @@
   <tr>
     <td></td>
     <td></td>
-    <td style="border: 1px solid #000000;" colspan="9" align="right" ><b>Jumlah<b></td>
+    <td style="border: 1px solid #000000; font-size: 10;" colspan="9" align="right" ><b>Jumlah  =  </b></td>
+    <td style="border: : 1px solid #000;">{{$j1}}</td>
+    <td style="border: : 1px solid #000;">{{$j2}}</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td style="border: 1px solid #000000; font-size: 10" colspan="9" align="right" >PPN 10%  =  </td>
+    <td style="border: : 1px solid #000;"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td style="border: 1px solid #000000; font-size: 10" colspan="9" align="right" ><b>Total  =  <b></td>
     <td style="border: : 1px solid #000;"></td>
   </tr>
   <tr>
