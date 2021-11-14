@@ -20,9 +20,9 @@
 								
 							</li>
 						</ul><br><br>
-						<p> Kode Material : </p>
-						<p> Nama Material : </p>
-						<p> Total Stok : </p>
+						<p> Kode Material : {{ $material->material->kode_material }}</p>
+						<p> Nama Material : {{ $material->material->nama }} &nbsp;&nbsp;&nbsp; <span style="font-weight: bold">({{ $material->material->satuan }})</span></p>
+						<p> Total Stok : {{ $material->sisa_stok }} </p>
 						
 						<div class="clearfix"></div>
 					</div>
@@ -30,52 +30,68 @@
 						<div class="row">
 							<div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 2em; color:#000; font-weight: bold">
 								<p>
-									<h2>Laporan Barang Masuk</h2>
+									<h2>Laporan Barang Masuk & Keluar</h2>
 								</p>
 							</div>
 							<div class="col-md-12 col-sm-12 col-xs-12">
-								<table id="materialMasuk" class="table table-striped table-bordered">
+								<table id="materialMasuk" class="table table-striped table-bordered" style="text-align: center">
 									<thead>
 										<tr>
-											<th scope="col"> No </th>
-											<th scope="col"> Tanggal Masuk </th>
-											<th scope="col"> Tanggal Keluar </th>
-											<th scope="col"> Jumlah </th>
-											<th scope="col"> Keterangan </th>
+											<th scope="col" style="text-align: center"> No </th>
+											<th scope="col" style="text-align: center"> Tanggal Masuk </th>
+											<th scope="col" style="text-align: center"> Tanggal Keluar </th>
+											<th scope="col" style="text-align: center"> Keterangan </th>
+											<th scope="col" style="text-align: center"> Jumlah </th>
+											<th scope="col" style="text-align: center"> Penerima </th>
 										</tr>
 									</thead>
 									<tbody>	
-																	
+											<?php $no = 0; ?>
+											@for ($i = 0; $i < count($details); $i++)
+											<?php $no++; ?>
+												<tr>
+													<td scope="col"> {{ $no }} </td>
+													<td scope="col"> 
+														@if (isset($details[$i]['penerimaan_id']))
+															<span style="color: #27ae60">{{ date("d M Y", strtotime($details[$i]['tanggal_terima'])) }}</span>
+														@else
+															-
+														@endif	
+													</td>
+													<td scope="col"> 
+														@if (isset($details[$i]['pengajuan_id']))
+															<span style="color: #e74c3c">{{ date("d M Y", strtotime($details[$i]['tanggal_keluar'])) }}</span>
+														@else
+															-
+														@endif	
+													</td>
+													<td scope="col"> 
+														@if (isset($details[$i]['penerimaan_id']))
+															{{ $details[$i]['keterangan']!=''?$details[$i]['keterangan']:'-' }}
+														@else
+															-
+														@endif
+													</td>
+													<td scope="col"> 
+														@if (isset($details[$i]['penerimaan_id']))
+															{{ $details[$i]['vol_saat_ini'] }}
+														@elseif(isset($details[$i]['pengajuan_id']))
+															{{ $details[$i]['pemyerahan_jumlah'] }}
+														@endif	
+													</td>
+													<td scope="col"> 
+														@if (isset($details[$i]['penerimaan_id']))
+															{{ $details[$i]['penerimaMasuk'] }}
+														@elseif(isset($details[$i]['pengajuan_id']))
+															{{ $details[$i]['penerimaKeluar'] }}
+														@endif	
+													</td>
+												</tr>
+											@endfor						
 									</tbody>
 								</table>
 							</div>
 						</div>
-					</div>
-					<div class="x_content">
-						<div class="row">
-							<div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 2em; margin-bottom: 2em; color:#000; font-weight: bold">
-								<p>
-									<h2>Laporan Barang Keluar</h2>
-								</p>
-							</div>
-							<div class="col-md-12 col-sm-12 col-xs-12">
-								<table id="materialKeluar" class="table table-striped table-bordered">
-									<thead>
-										<tr>
-											<th scope="col"> No </th>
-											<th scope="col"> Tanggal Masuk </th>
-											<th scope="col"> Tanggal Keluar </th>
-											<th scope="col"> Jumlah </th>
-											<th scope="col"> Keterangan </th>
-										</tr>
-									</thead>
-									<tbody>	
-																	
-									</tbody>
-								</table>
-							</div>
-						</div>
-												
 					</div>
 				</div>
 			</div>

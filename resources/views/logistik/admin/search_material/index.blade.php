@@ -72,7 +72,7 @@
 	
 @endsection
 @push('scripts')
-  <script type="text/javascript">
+<script type="text/javascript">
     $('#SearchMaterial').DataTable({
         "aLengthMenu": [ [100, 200, 300, 400], [100, 200, 300, 400] ],
         "iDisplayLength" : 100,    
