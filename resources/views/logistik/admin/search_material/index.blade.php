@@ -5,6 +5,24 @@
     <!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
 @endpush
 
+<style>
+	#SearchMaterial thead tr th {
+		text-align: center;
+		vertical-align: middle;
+		font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
+		font-size: 13px;
+		font-weight: 400;
+	}
+
+	#SearchMaterial tbody tr td {
+		text-align: center;
+		vertical-align: middle;
+		font-family: "Helvetica Neue",Roboto,Arial,"Droid Sans",sans-serif;
+		font-size: 13px;
+		font-weight: 400;
+	}
+</style>
+
 @section('main_container')
 
     <!-- page content -->
@@ -19,7 +37,7 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
-						<table id="datatable" class="table table-striped table-bordered" style="text-align: center">
+						<table id="SearchMaterial" class="table table-striped table-bordered" style="text-align: center">
 							<thead>
 								<tr>
 									<th style="text-align: center"> Kode Material </th>
@@ -55,9 +73,9 @@
 @endsection
 @push('scripts')
   <script type="text/javascript">
-     var table = $('#datatable').DataTable();		
-	table
-	    .order( [ 5, 'desc' ] )
-	    .draw();
+    $('#SearchMaterial').DataTable({
+        "aLengthMenu": [ [100, 200, 300, 400], [100, 200, 300, 400] ],
+        "iDisplayLength" : 100,    
+    });
   </script>
  @endpush
