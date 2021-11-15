@@ -1,14 +1,25 @@
+<?php
+ $hari   = date('l', microtime($penerimaan->tanggal));
+ $hari_indonesia = array('Monday'  => 'Senin',
+    'Tuesday'  => 'Selasa',
+    'Wednesday' => 'Rabu',
+    'Thursday' => 'Kamis',
+    'Friday' => 'Jumat',
+    'Saturday' => 'Sabtu',
+    'Sunday' => 'Minggu');
+ $nama_hari = $hari_indonesia[$hari];
+?>
 <table>
   <tr>
     <td></td>
     <td></td>
   </tr>
   <tr>
-    <td colspan="9"></td>
+    <td colspan="10"></td>
     <td style="border: 1px solid #000000;font-size: 9; " colspan="3" align="center">Formulir Log-01</td>
   </tr>
   <tr>
-    <td colspan="9"></td>
+    <td colspan="10"></td>
     <td style="border: 1px solid #000000; font-size: 9;" colspan="2">Edisi : {{bulan(date("m",strtotime($penerimaan->updated_at)))}} {{date("Y",strtotime($penerimaan->updated_at))}}</b></td>
     <td style="border: 1px solid #000000; font-size: 9;">Revisi : 01</td>
   </tr>
@@ -18,13 +29,19 @@
     <th></th>
     <th colspan="4"><b style="font-weight: 3; font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
   </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <th></th>
+    <th colspan="4"><b style="font-weight: 3; font-size:16px; ">INDUSTRI KONSTRUKSI</b></th>
+  </tr>
 </table>
 
 <table class="table table-striped" style="text-align: center;">
   <tr>
     <td></td>
     <td></td>
-    <td colspan="10" style="text-align: center;"><h4><b>BERITA ACARA PENERIMAAN BAHAN</b></h4></td>
+    <td colspan="11" style="text-align: center;"><h3><b>BERITA ACARA PENERIMAAN BAHAN</b></h3></td>
   </tr>
   <tr>
     <td></td>
@@ -32,7 +49,14 @@
   <tr>
     <td></td>
     <td></td>
-    <td colspan="10" style="text-align: center;"><h4><b>No. : .................</b></h4></td>
+    <td colspan="4" style="text-align: right;"><b>Nomor :</b></td>
+    <td colspan="4" align="left"><b>.................</b></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td colspan="4" style="text-align: right;"><b>Nomor GR : </b></td>
+    <td colspan="4" align="left"><b>.................</b></td>
   </tr>
   <tr>
     <td></td>
@@ -40,7 +64,10 @@
   <tr>
     <td></td>
     <td></td>
-    <td colspan="10" style="font-size: 9;">Pada hari ini {{'senin'}}, tanggal {{$penerimaan->updated_at}} telah diadakan serah terima bahan sesuai SPM No. ……………...… tanggal ……………………… kepada PT Waskita Karya (Persero) Tbk  Divisi….…………….. untuk ……………………… Proyek ………………………, dengan rincian sebagai berikut :</td>
+    @php
+      $exploded = explode('-',$penerimaan->tanggal);
+    @endphp
+    <td colspan="11" style="font-size: 10.5;">Pada hari ini '{{$nama_hari}}', tanggal '{{terbilang($exploded[2])}}'  Bulan '{{bulan($exploded[1])}}' Tahun '{{terbilang($exploded[0])}} ( {{konversi_tanggal($penerimaan->tanggal)}} ) ' telah diadakan serah terima bahan sesuai SPM No. ……………...… tanggal ……………………… kepada PT. Waskita Karya Infrastructure 2 Division untuk Proyek Pembangunan Jalan Tol Becakayu Seksi 2A Ujung, No. AB :  D32C19009, Sebagai berikut :</td>
   </tr>
 </table>
 <table class="table table-striped">
@@ -121,31 +148,50 @@
     <td style="border: : 1px solid #000;">{{$j1}}</td>
     <td style="border: : 1px solid #000;">{{$j2}}</td>
   </tr>
+  @php
+    $ppn1 = $j1/10;
+    $ppn2 = $j2/10;
+    $tot1 = $j1+$ppn1;
+    $tot2 = $j2+$ppn2;
+    if($j1 != 0) {
+      $p_dgn_ini = $j2/$j1;
+      $p_lalu = 0/$j1;
+      $p_saat_ini = $j1/$j1;
+    }else{
+      $p_dgn_ini = 0;
+      $p_lalu = 0;
+      $p_saat_ini = 0;
+    }
+
+  @endphp
   <tr>
     <td></td>
     <td></td>
     <td style="border: 1px solid #000000; font-size: 10" colspan="9" align="right" >PPN 10%  =  </td>
-    <td style="border: : 1px solid #000;"></td>
+    <td style="border: : 1px solid #000;">{{$ppn1}}</td>
+    <td style="border: : 1px solid #000;">{{$ppn2}}</td>
   </tr>
   <tr>
     <td></td>
     <td></td>
     <td style="border: 1px solid #000000; font-size: 10" colspan="9" align="right" ><b>Total  =  <b></td>
-    <td style="border: : 1px solid #000;"></td>
+    <td style="border: : 1px solid #000;">{{$tot1}}</td>
+    <td style="border: : 1px solid #000;">{{$tot2}}</td>
   </tr>
   <tr>
     <td></td>
     <td></td>
-    <td colspan="5">Terbilang : </td>
+    <td colspan="11"><b><i>Terbilang : ==  {{terbilang($tot1)}} rupiah ==</i></b></td>
   </tr>
   <tr>
     <td></td>
     <td></td>
-    <td colspan="2">Prestasi s.d saat ini</td>
+    <td colspan="2">Progress s.d saat ini</td>
     <td></td>
     <td></td>
-    <td colspan="3">Rp.</td>
+    <td colspan="2" align="right">Rp. {{$j2}}</td>
     <td colspan="2"> x 100% = </td>
+    <td>{{$p_dgn_ini * 100}}%</td>
   </tr>
   <tr>
     <td></td>
@@ -153,16 +199,20 @@
     <td colspan="2"></td>
     <td></td>
     <td></td>
-    <td colspan="4">Rp.</td>
+    <td colspan="2" align="right">Rp. {{$j1}}</td>
+  </tr>
+  <tr>
+    <td></td>
   </tr>
   <tr>
     <td></td>
     <td></td>
-    <td colspan="2">Prestasi yang lalu</td>
+    <td colspan="2">Progress yang lalu</td>
     <td></td>
     <td></td>
-    <td colspan="3">Rp.</td>
+    <td colspan="2" align="right">Rp. 0</td>
     <td colspan="2"> x 100% = </td>
+    <td>{{$p_lalu * 100}} %</td>
   </tr>
   <tr>
     <td></td>
@@ -170,16 +220,20 @@
     <td colspan="2"></td>
     <td></td>
     <td></td>
-    <td colspan="4">Rp.</td>
+    <td colspan="2" align="right">Rp. {{$j1}}</td>
+  </tr>
+  <tr>
+    <td></td>
   </tr>
   <tr>
     <td></td>
     <td></td>
-    <td colspan="2">Prestasi saat ini</td>
+    <td colspan="2">Progress saat ini</td>
     <td></td>
     <td></td>
-    <td colspan="3">Rp.</td>
+    <td colspan="2" align="right">Rp. {{$j1}}</td>
     <td colspan="2"> x 100% = </td>
+    <td>{{$p_saat_ini * 100}}%</td>
   </tr>
   <tr>
     <td></td>
@@ -187,12 +241,19 @@
     <td colspan="2"></td>
     <td></td>
     <td></td>
-    <td colspan="4">Rp.</td>
+    <td colspan="2" align="right">Rp. {{$j1}}</td>
   </tr>
   <tr>
     <td></td>
-    <td>Demikian Berita Acara Penerimaan Material ini dibuat agar dapat dipergunakan sebagaimana mestinya.
-</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td colspan="11">Demikian Berita Acara Penerimaan Material ini dibuat agar dapat dipergunakan sebagaimana mestinya.
+    </td>
+  </tr>
+  <tr>
+    <td></td>
   </tr>
   <tr>
     <td></td>

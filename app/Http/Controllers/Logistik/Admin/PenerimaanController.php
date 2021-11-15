@@ -385,7 +385,7 @@ class PenerimaanController extends Controller
                                 // Set image
                                 $drawing1->setPath("upload/pegawai/$pm->nip/$pm->ttd");
                                 $drawing1->setWorksheet($sheet);
-                                $drawing1->setCoordinates('D40');
+                                $drawing1->setCoordinates('D48');
                                 $drawing1->setResizeProportional(false);
                                 $drawing1->setWidth(150);
                                 $drawing1->setHeight(100);
@@ -398,7 +398,7 @@ class PenerimaanController extends Controller
                                 // Set image
                                 $drawing2->setPath("upload/pegawai/$splem->nip/$splem->ttd");
                                 $drawing2->setWorksheet($sheet);
-                                $drawing2->setCoordinates('F40');
+                                $drawing2->setCoordinates('F48');
                                 $drawing2->setResizeProportional(false);
                                 $drawing2->setWidth(150);
                                 $drawing2->setHeight(100);
@@ -411,7 +411,7 @@ class PenerimaanController extends Controller
                                 // Set image
                                 $drawing3->setPath("upload/pegawai/Auth::user()->pegawai_id/Auth::user()->pegawai->ttd");
                                 $drawing3->setWorksheet($sheet);
-                                $drawing3->setCoordinates('J40');
+                                $drawing3->setCoordinates('J48');
                                 $drawing3->setResizeProportional(false);
                                 $drawing3->setWidth(150);
                                 $drawing3->setHeight(100);
@@ -428,16 +428,22 @@ class PenerimaanController extends Controller
 	                            $cells->setFontFamily('Tahoma');
 	                        });
                             $sheet->setHeight(array(
-                                10     =>  50,
-                                31     =>  20,
-                                32     =>  25,
-                                33     =>  25,
-                                34     =>  25,
+                                12     =>  50,
+                                32     =>  20,
+                                33     =>  20,
+                                34     =>  20,
                                 35     =>  25,
-                                36     =>  25,
+                                36     =>  30,
                                 37     =>  25,
-                                38     =>  30,
-                                41     =>  90
+                                38     =>  10,
+                                39     =>  25,
+                                40     =>  25,
+                                41     =>  10,
+                                42     =>  25,
+                                43     =>  25,
+                                44     =>  10,
+                                46     =>  30,
+                                48     =>  90
                             ));
 	                        
                             $sheet->setWidth(array(
@@ -458,18 +464,25 @@ class PenerimaanController extends Controller
 	                        $sheet->cell('C12:L28', function($cell){
 	                            $cell->setValignment('center');
 	                        });
-                            $sheet->cell('G32:I32', function($cell){
+                            $sheet->cell('G37', function($cell){
+                                $cell->setValignment('top');
+                            });
+                            $sheet->cell('G40', function($cell){
+                                $cell->setValignment('top');
+                            });
+                            $sheet->cell('G43', function($cell){
+                                $cell->setValignment('top');
+                            });
+                            $sheet->cell('G36:H36', function($cell){
                                 $cell->setBorder('','','thin','');
                             });
-                            $sheet->cell('G34:I34', function($cell){
+                            $sheet->cell('G39:H39', function($cell){
                                 $cell->setBorder('','','thin','');
                             });
-                            $sheet->cell('G36:I36', function($cell){
+                            $sheet->cell('G42:H42', function($cell){
                                 $cell->setBorder('','','thin','');
                             });
-                            $sheet->cell('C38:L38', function($cell){
-	                            $cell->setBorder('thin','','','');
-	                        });
+
 	                    });
 	                });
 	                 $styleArray = array(
