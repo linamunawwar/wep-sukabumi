@@ -274,6 +274,7 @@
                                 <li><a href="{{url('Logistik/pm/harian_pakai')}}">Harian Pemakaian Material</a></li>
                             @endif
                             @if(Auth::user()->role_id == 6)
+                                <li><a href="{{url('Logistik/admin/search_material')}}">Laporan Penggunaan Material</a></li>
                                 <li><a href="{{url('Logistik/admin/kartu_gudang')}}">Kartu Gudang</a></li>
                                 <li><a href="{{url('Logistik/admin/eval_mingguan')}}">Evaluasi Mingguan Pengadaan</a></li>
                                 <li><a href="{{url('Logistik/admin/harian_gudang')}}">Harian Gudang</a></li>

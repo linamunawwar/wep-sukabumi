@@ -516,6 +516,11 @@ Route::group(['middleware' => 'auth'], function () {
 		//LAPORAN EVALUASI MINGGUAN PENGADAAN BAHAN
 		Route::get('/eval_mingguan', 'Logistik\Admin\LaporanController@getLog03');
 		Route::post('/eval_mingguan', 'Logistik\Admin\LaporanController@postLog03');
+
+		//Laporan Search MATERIAL
+		Route::get('/search_material', 'Logistik\Admin\SearchMaterialController@index');
+		Route::get('/search_material/detail/{id}', 'Logistik\Admin\SearchMaterialController@getDetailBySearchMaterialId');
+
 	});
 
 	Route::group(['prefix' => '/Logistik/pelaksana'], function () {
