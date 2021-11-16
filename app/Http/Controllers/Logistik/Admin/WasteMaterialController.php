@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\LogWaste;
 use App\Models\LogWasteDetail;
 use App\Models\LogWastePengajuan;
+use App\Models\LogPengajuanMaterial;
+use App\Models\LogDetailPengajuanMaterial;
 use App\Models\LogMaterial;
 use App\Models\LogJenis;
 use App\Models\LogLokasi;
@@ -22,7 +24,6 @@ class WasteMaterialController extends Controller
 
     public function beforePostWaste()
     {
-    	$materials = LogMaterial::where('soft_delete',0)->get();
     	$jenis_kerjas = Logjenis::where('soft_delete',0)->get();
     	$lokasis = LogLokasi::where('soft_delete',0)->get();
     	$pelaksanas = Pegawai::where('soft_delete',0)
@@ -32,7 +33,7 @@ class WasteMaterialController extends Controller
                                 ->where('soft_delete',0)
                                 ->where('is_active',1)
                                 ->get();
-        return view('logistik.admin.waste.create',['materials'=>$materials,'jenis_kerjas'=>$jenis_kerjas,'lokasis'=>$lokasis,'pelaksanas'=>$pelaksanas]);
+        return view('logistik.admin.waste.create',['jenis_kerjas'=>$jenis_kerjas,'lokasis'=>$lokasis,'pelaksanas'=>$pelaksanas]);
     }
 
     public function cekData()
@@ -40,21 +41,32 @@ class WasteMaterialController extends Controller
     	$bulan = \Input::get('bulan');
     	$tahun = \Input::get('tahun');
     	$periode = $tahun.$bulan;
-    	$material_id = \Input::get('material');
-    	$jenis_id = \Input::get('jenis_kerja');
-    	$waste = LogWaste::where('periode',$periode)->where('material_id',$material_id)->where('jenis_pekerjaan_id',$jenis_id)->first();
-    	if($waste){
-    		$datas = LogWasteDetail::where('waste_id',$waste->id)->where('soft_delete',0)->get();
-    	}else{
-    		$datas = null;
-    	}
-    	if($datas){
-	    	foreach ($datas as $key => $data) {
-	    		$data->pelaksana_nama = $data->pelaksanaPegawai->nama;
-	    		$data->lokasi = $data->wasteLokasi->nama;
-	    	}
-	    }	
-    	return json_encode($datas);
+    	$lokasi_id = \Input::get('lokasi');
+    	$jenis_id = \Input::get('jenis_kerja');    
+
+        $details = LogDetailPengajuanMaterial::whereHas('detailPengajuan',function ($q) use ($bulan,$jenis_id,$lokasi_id){
+                                                                  $q->whereMonth('tanggal','=',$bulan);
+                                                                  $q->where('jenis_pekerjaan_id',$jenis_id);
+                                                                  $q->where('lokasi_kerja_id',$lokasi_id);
+                                                                  $q->where('soft_delete',0);
+                                                                })
+                                                                ->get();
+        $materials = [];
+        $count = count($materials);
+        foreach ($details as $key => $value) {
+            if(array_search($value->material_id, array_column($materials,'material_id')) !== false){
+                $index = array_search($value->material_id, array_column($materials,'material_id'));
+                $materials[$index]['pemakaian'] = (int)$materials[$index]['pemakaian'] + (int)$value->pemyerahan_jumlah;
+            }else{
+                $materials[$count]['material_id'] = $value->material_id;
+                $materials[$count]['material'] = $value->detailPengajuanMaterial->nama;
+                $materials[$count]['sat'] = $value->detailPengajuanMaterial->satuan;
+                $materials[$count]['pemakaian'] = $value->pemyerahan_jumlah;
+                $count++;
+            }
+           
+        }
+    	return json_encode($materials);
     }
 
     public function postWaste()
