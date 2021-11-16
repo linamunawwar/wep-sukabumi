@@ -461,7 +461,7 @@ class PenerimaanController extends Controller
                                 'L'     => 10
                             ));
 
-	                        $sheet->cell('C12:L28', function($cell){
+	                        $sheet->cell('C16:M31', function($cell){
 	                            $cell->setValignment('center');
 	                        });
                             $sheet->cell('G37', function($cell){
