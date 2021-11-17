@@ -137,7 +137,6 @@
 									<th rowspan="2">Pemakaian Material di Lapangan</th>
 									<th rowspan="2">Deviasi Volume</th>
 									<th colspan="3" style="text-align: center;">Waste (%)</th>
-									<th rowspan="2">Action</th>
 								</tr>
 								<tr>
 									<th>Deviasi terhadap rencana</th>
@@ -211,26 +210,26 @@
 					        dt += "<tr  class='data_"+jumlah_data+"'>";
 	                		dt += "<td>"+nomor+"</td>";
 	                		dt +=  "<td style='width:250px;'>"+data[i].material;
-	                		dt +=  "<input type='hidden' name='material[]' value='"+data[i].material_id+"' id='material_"+jumlah_data+"' jml-data='"+jumlah_data+"'>";
+	                		dt +=  "<input type='hidden' name='material[]' value='"+data[i].material_id+"' id='material_"+jumlah_data+"' jml_data='"+jumlah_data+"'>";
 	                		dt +=  '</td>';
 	                		dt +=  "<td>"+data[i].sat;
-	                		dt +=  "<input type='hidden' name='satuan[]' value='"+data[i].sat+"' id='satuan_"+jumlah_data+"' jml-data='"+jumlah_data+"'>";
+	                		dt +=  "<input type='hidden' name='satuan[]' value='"+data[i].sat+"' id='satuan_"+jumlah_data+"' jml_data='"+jumlah_data+"'>";
 	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' name='vol_app[]' value='' id='vol_app_"+jumlah_data+"' class='vol_app width-60' jml-data='"+jumlah_data+"'>";
+	                		dt +=  "<td><input type='text' name='vol_app[]' value='' id='vol_app_"+jumlah_data+"' class='vol_app width-60' jml_data='"+jumlah_data+"'>";
 	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' name='progress_persen[]' value='' id='progress_persen_"+jumlah_data+"' class='progress_persen width-60' jml-data='"+jumlah_data+"'>";
+	                		dt +=  "<td><input type='text' name='progress_persen[]' value='' id='progress_persen_"+jumlah_data+"' class='progress_persen width-60' jml_data='"+jumlah_data+"'>";
 	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' name='vol_progress[]' value='' id='vol_progress_"+jumlah_data+"' class='width-60' jml-data='"+jumlah_data+"' disabled>";
+	                		dt +=  "<td><input type='text' name='vol_progress[]' value='' id='vol_progress_"+jumlah_data+"' class='width-60' jml_data='"+jumlah_data+"' disabled>";
 	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' name='pemakaian[]' value='"+data[i].pemakaian+"' id='pemakaian_"+jumlah_data+"' class='width-60' jml-data='"+jumlah_data+"' disabled>";
+	                		dt +=  "<td><input type='text' name='pemakaian[]' value='"+data[i].pemakaian+"' id='pemakaian_"+jumlah_data+"' class='width-60' jml_data='"+jumlah_data+"' disabled>";
 	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' name='deviasi_vol[]' value='' id='deviasi_vol_"+jumlah_data+"' class='width-60' jml-data='"+jumlah_data+"' disabled>";
+	                		dt +=  "<td><input type='text' name='deviasi_vol[]' value='' id='deviasi_vol_"+jumlah_data+"' class='width-60' jml_data='"+jumlah_data+"' disabled>";
 	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' name='deviasi[]' value='' id='deviasi_"+jumlah_data+"' class='width-60' jml-data='"+jumlah_data+"' disabled>";
+	                		dt +=  "<td><input type='text' name='deviasi[]' value='' id='deviasi_"+jumlah_data+"' class='width-60' jml_data='"+jumlah_data+"' disabled>";
 	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' name='rencana_waste[]' value='' id='rencana_waste_"+jumlah_data+"' class='rencana_waste jml-data='"+jumlah_data+"' width-60'>";
+	                		dt +=  "<td><input type='text' name='rencana_waste[]' value='' id='rencana_waste_"+jumlah_data+"' class='rencana_waste width-60' jml_data='"+jumlah_data+"'>";
 	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' name='realisasi[]' value='' id='realisasi_"+jumlah_data+"' class='width-60' jml-data='"+jumlah_data+"' disabled>";
+	                		dt +=  "<td><input type='text' name='realisasi[]' value='' id='realisasi_"+jumlah_data+"' class='width-60' jml_data='"+jumlah_data+"' disabled>";
 	                		dt +=  '</td>';
 	                		// dt +=  '<td>'
 	                		// dt += "<a class='btn btn-sm btn-block btn-danger del' idsub='"+jumlah_data+"' style='width:40px;'><span class='fa fa-trash'></span></a>"
@@ -248,12 +247,57 @@
 	  
 	});
 
-
-
-	$(document).on("change", "tbody.td.vol_app", function(e){
-        var val = $(this).val();
+	$(document).on("change", ".vol_app", function(e){
+        var vol_app = $(this).val();
         var jml_data = $(this).attr('jml_data');
-        console.log(val,jml_data); 
-       });
+        var progress = $('#progress_persen_'+jml_data).val();
+        var pemakaian = $('#pemakaian_'+jml_data).val();
+
+        if(vol_app.length !== 0 && progress.length !== 0){
+        	var vol_progress = (parseFloat(vol_app) * parseFloat(progress)) / 100;
+        	var deviasi_vol = parseFloat(vol_progress) - parseFloat(pemakaian);
+        	var deviasi = parseFloat(deviasi_vol) / parseFloat(vol_progress);
+        }else{
+        	var vol_progress=0;
+        	var deviasi_vol=0;
+        	var deviasi = 0;
+        }
+        $('#vol_progress_'+jml_data).val(vol_progress);
+        $('#deviasi_vol_'+jml_data).val(deviasi_vol);
+        $('#deviasi_'+jml_data).val(deviasi);
+    });
+
+    $(document).on("change", ".progress_persen", function(e){
+        var progress = $(this).val();
+        var jml_data = $(this).attr('jml_data');
+        var vol_app = $('#vol_app_'+jml_data).val();
+        var pemakaian = $('#pemakaian_'+jml_data).val();
+
+        if(vol_app.length !== 0 && progress.length !== 0){
+        	var vol_progress = (parseFloat(vol_app) * parseFloat(progress)) / 100;
+        	var deviasi_vol = parseFloat(vol_progress) - parseFloat(pemakaian);
+        	var deviasi = parseFloat(deviasi_vol) / parseFloat(vol_progress);
+        }else{
+        	var vol_progress=0;
+        	var deviasi_vol=0;
+        	var deviasi = 0;
+        }
+        $('#vol_progress_'+jml_data).val(vol_progress);
+        $('#deviasi_vol_'+jml_data).val(deviasi_vol);
+        $('#deviasi_'+jml_data).val(deviasi);
+    });
+
+    $(document).on("change", ".rencana_waste", function(e){
+        var rencana_waste = $(this).val();
+        var jml_data = $(this).attr('jml_data');
+        var deviasi = $('#deviasi_'+jml_data).val();
+        console.log(deviasi);
+        if(rencana_waste.length !== 0 && deviasi.length !== 0){
+        	var realisasi = parseFloat(deviasi) * parseFloat(rencana_waste);
+        }else{
+        	var realisasi=0;
+        }
+        $('#realisasi_'+jml_data).val(realisasi);
+    });
   </script>
 @endpush
