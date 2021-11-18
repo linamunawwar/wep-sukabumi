@@ -492,10 +492,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/waste/create', 'Logistik\Admin\WasteMaterialController@beforePostWaste');
 		Route::post('/waste/cekData', 'Logistik\Admin\WasteMaterialController@cekData');
 		Route::post('/waste/create', 'Logistik\Admin\WasteMaterialController@postWaste');
-		Route::get('/waste/ajukan/{id}', 'Logistik\Admin\WasteMaterialController@getAjukan');
+		Route::get('/waste/edit/{id}', 'Logistik\Admin\WasteMaterialController@getWasteById');
+		Route::post('/waste/edit/{id}', 'Logistik\Admin\WasteMaterialController@updateWaste');
 		Route::delete('/waste/delete', 'Logistik\Admin\WasteMaterialController@deleteWaste');
-		Route::get('/waste/pengajuan', 'Logistik\Admin\WasteMaterialController@indexPengajuan');
-		Route::delete('/waste/pengajuan/delete', 'Logistik\Admin\WasteMaterialController@deleteWastePengajuan');
 		Route::get('/waste/unduh/{id}', 'Logistik\Manager\WasteMaterialController@getUnduh');
 
 		//Laporan Evaluasi Pemakaian Material		

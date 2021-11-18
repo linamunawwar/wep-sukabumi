@@ -140,7 +140,7 @@
 								</tr>
 								<tr>
 									<th>Deviasi terhadap rencana</th>
-									<th>Rencana waste di APP</th>
+									<th>Rencana waste di APP (dalam %)</th>
 									<th>Realisasi</th>
 								</tr>
 								<tbody class="data">
@@ -257,6 +257,9 @@
         	var vol_progress = (parseFloat(vol_app) * parseFloat(progress)) / 100;
         	var deviasi_vol = parseFloat(vol_progress) - parseFloat(pemakaian);
         	var deviasi = parseFloat(deviasi_vol) / parseFloat(vol_progress);
+        	vol_progress = parseFloat(vol_progress).toFixed(2);
+        	deviasi_vol = parseFloat(deviasi_vol).toFixed(2);
+        	deviasi = parseFloat(deviasi).toFixed(2);
         }else{
         	var vol_progress=0;
         	var deviasi_vol=0;
@@ -277,6 +280,9 @@
         	var vol_progress = (parseFloat(vol_app) * parseFloat(progress)) / 100;
         	var deviasi_vol = parseFloat(vol_progress) - parseFloat(pemakaian);
         	var deviasi = parseFloat(deviasi_vol) / parseFloat(vol_progress);
+        	vol_progress = parseFloat(vol_progress).toFixed(2);
+        	deviasi_vol = parseFloat(deviasi_vol).toFixed(2);
+        	deviasi = parseFloat(deviasi).toFixed(2);
         }else{
         	var vol_progress=0;
         	var deviasi_vol=0;
@@ -293,7 +299,7 @@
         var deviasi = $('#deviasi_'+jml_data).val();
         console.log(deviasi);
         if(rencana_waste.length !== 0 && deviasi.length !== 0){
-        	var realisasi = parseFloat(deviasi) * parseFloat(rencana_waste);
+        	var realisasi = parseFloat(deviasi) + parseFloat(rencana_waste);
         }else{
         	var realisasi=0;
         }

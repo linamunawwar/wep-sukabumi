@@ -12,12 +12,13 @@ class LogLokasi extends Model
 
     public function lokasiWaste()
     {
-        return $this->hasMany('App\Models\LogWasteDetail','id','lokasi_kerja_id');
+        return $this->hasMany('App\Models\LogWaste','id','lokasi_id');
     }
 
     public function lokasiPengajuan()
     {
         return $this->hasMany('App\Models\Log PengajuanMaterial','id','lokasi_kerja_id');
     }
+
     
 }

@@ -74,68 +74,165 @@ class WasteMaterialController extends Controller
         date_default_timezone_set("Asia/Jakarta");
     	$jml = \Input::get('jumlah_data');
 
-        $material_id = \Input::get('material_id');
         $jenis_pekerjaan_id = \Input::get('jenis_kerja_id');
-        $volume_pekerjaan = \Input::get('volume_pekerjaan');
+        $lokasi_id = \Input::get('lokasi_id');
         $bulan = \Input::get('bulan');
         $tahun = \Input::get('tahun');
         $periode = $tahun.$bulan;
-        $lokasi = \Input::get('lokasi');
-        $pelaksana = \Input::get('pelaksana');
+
+        $material = \Input::get('material');
+        $satuan = \Input::get('satuan');
+        $vol_app = \Input::get('vol_app');
         $progress_persen = \Input::get('progress_persen');
-        $progress_vol = \Input::get('progress_vol');
-        $vol_bahan = \Input::get('vol_bahan');
-        $real_pemakaian = \Input::get('real_pemakaian');
-        $waste_vol = \Input::get('waste_vol');
-        $waste_rencana = \Input::get('waste_rencana');
-    	$waste_real = \Input::get('waste_real');
-        $waste_deviasi = \Input::get('waste_deviasi');
-        $keterangan = \Input::get('keterangan');
+        $vol_progress = \Input::get('vol_progress');
+        $pemakaian = \Input::get('pemakaian');
+        $deviasi_vol = \Input::get('deviasi_vol');
+        $deviasi = \Input::get('deviasi');
+    	$rencana_waste = \Input::get('rencana_waste');
+        $realisasi = \Input::get('realisasi');
 
-        $find = LogWaste::where('periode',$periode)->where('material_id',$material_id)->where('jenis_pekerjaan_id',$jenis_pekerjaan_id)->first();
-        if(!$find){
-        	$logWaste = new LogWaste;
-	        $logWaste->material_id = $material_id;
-	        $logWaste->periode = $periode;
-	        $logWaste->jenis_pekerjaan_id = $jenis_pekerjaan_id;
-	        $logWaste->volume_pekerjaan = $volume_pekerjaan;
-	        $logWaste->user_id = \Auth::user()->id;
-	        $logWaste->save();
-	        $logWasteID = $logWaste->id;
-        }else{
-        	$logWasteID = $find->id;
-        }
+        
+    	$logWaste = new LogWaste;
+        $logWaste->material_id = $material_id;
+        $logWaste->periode = $periode;
+        $logWaste->jenis_pekerjaan_id = $jenis_pekerjaan_id;
+        $logWaste->volume_pekerjaan = $volume_pekerjaan;
+        $logWaste->user_id = \Auth::user()->id;
+        
+        if($logWaste->save()){
+            $logWasteID = $logWaste->id;
+        	for($i=0;$i< $jml;$i++){
+                $data = new LogWasteDetail;
 
-        $find_detail = LogWasteDetail::where('waste_id',$logWasteID)->where('soft_delete',0)->get();
-        if($find_detail){
-        	$delete = LogWasteDetail::where('waste_id',$logWasteID)->update(['soft_delete'=>1]);
-        }
-    	for($i=0;$i< $jml;$i++){
-            $data = new LogWasteDetail;
-
-        	$data->waste_id= $logWasteID;
-            $data->lokasi_kerja_id= $lokasi[$i];
-            $data->pelaksana= $pelaksana[$i];
-            $data->progress_persen= $progress_persen[$i];
-            $data->progress_vol= $progress_vol[$i];
-            $data->vol_bahan= $vol_bahan[$i];
-            $data->real_pemakaian= $real_pemakaian[$i];
-            $data->waste_vol= $waste_vol[$i];
-            $data->waste_rencana= $waste_rencana[$i];
-        	$data->waste_real= $waste_real[$i];
-        	$data->waste_deviasi= $waste_deviasi[$i];
-        	$data->keterangan= $keterangan[$i];;
-        	$data->soft_delete= 0;
-            $data->user_id = \Auth::user()->id;
-        	
-        	if($data->save()){
-                $simpan = 1;
-            }else{
-                $simpan = 0;
-                die();
+            	$data->waste_id= $logWasteID;
+                $data->material_id= $material[$i];
+                $data->satuan= $satuan[$i];
+                $data->vol_app= $vol_app[$i];
+                $data->progress_persen= $progress_persen[$i];
+                $data->vol_progress= $vol_progress[$i];
+                $data->pemakaian= $pemakaian[$i];
+                $data->deviasi_vol= $deviasi_vol[$i];
+                $data->deviasi= $deviasi[$i];
+            	$data->rencana_waste= $rencana_waste[$i];
+            	$data->realisasi= $realisasi[$i];
+            	$data->soft_delete= 0;
+                $data->user_id = \Auth::user()->id;
+            	
+            	if($data->save()){
+                    $simpan = 1;
+                }else{
+                    $simpan = 0;
+                    die();
+                }
             }
         }
         return redirect('Logistik/admin/waste');
+    }
+
+    public function getWasteById($id)
+    {
+        $waste = LogWaste::where('id', $id)->where('soft_delete',0)->first();
+        
+        $datas = LogWasteDetail::where(['waste_id' => $id, 'soft_delete' => 0])->get();
+        
+        return view('logistik.admin.waste.edit', ['waste' => $waste, 'datas' => $datas]);
+    }
+
+    public function updateWaste($id)
+    {
+
+        $toUpdatePenerimaan['updated_at'] = date('Y-m-d');
+        $updatedPenerimaan = LogPenerimaanMaterial::where('id', $id)->update($toUpdatePenerimaan);
+        $kode_permintaan = \Input::get('kode_permintaan');
+        $kode_penerimaan = \Input::get('kode_penerimaan');
+        $supplier = \Input::get('supplier');
+        $penerima = \Input::get('penerima');
+        $jmlPermintaan = \Input::get('jumlah_data');
+        date_default_timezone_set("Asia/Jakarta");
+        $materialId = \Input::get('material');
+        $tanggal_terima = \Input::get('tanggal_terima');
+        $vol_lalu = \Input::get('vol_lalu');
+        $vol_saat_ini = \Input::get('vol_saat_ini');
+        $vol_jumlah = \Input::get('vol_jumlah');
+        $vol_sisa = \Input::get('vol_sisa');
+        $satuan = \Input::get('satuan');
+        $harga_satuan = \Input::get('harga_satuan');
+        $status = \Input::get('status');
+        $keterangan = \Input::get('keterangan');
+        $kode_permintaan = \Input::get('kode_permintaan');
+        $find_permintaan = LogPermintaanMaterial::where('kode_permintaan',$kode_permintaan)->where('soft_delete',0)->first();
+        //delete data lama
+        $delete = LogDetailPenerimaanMaterial::where('penerimaan_id',$id)->where('soft_delete',0)->delete();
+        if ($delete) {
+            $jmlPenerimaann = \Input::get('jumlah_data');
+            for ($i = 0; $i < $jmlPenerimaann; $i++) {
+                //if(($vol_saat_ini[$i] != '') || ($vol_saat_ini[$i] != 0)){
+                    $addDetail = new LogDetailPenerimaanMaterial;
+                    $addDetail->penerimaan_id = $id;
+                    $addDetail->material_id = $materialId[$i];
+                    $addDetail->tanggal_terima = $tanggal_terima[$i];
+                    $addDetail->vol_lalu = $vol_lalu[$i];
+                    if($vol_saat_ini[$i] == ''){
+                        $vol_saat_ini[$i] =0;
+                    }
+                    $addDetail->vol_saat_ini = $vol_saat_ini[$i];
+                    $addDetail->vol_jumlah = $vol_jumlah[$i];
+                    $addDetail->vol_sisa = $vol_sisa[$i];
+                    $addDetail->sisa_stok = $vol_jumlah[$i];
+                    $addDetail->harga = $harga_satuan[$i];
+                    $addDetail->satuan = $satuan[$i];
+                    $addDetail->user_id = \Auth::user()->id;
+                    $addDetail->soft_delete = 0;
+                    $addDetail->created_at = date('Y-m-d');
+
+                    if ($addDetail->save()) {
+                        $saveStatus = 1;
+                    } else {
+                        $saveStatus = 0;
+                        die();
+                    }
+                //}
+                
+                if($status && array_key_exists($i, $status)){
+                    if($status[$i] == 1){
+                        $update = LogDetailPermintaanMaterial::where('material_id',$materialId[$i])->where('permintaan_id',$find_permintaan->id)->update(['is_sesuai'=> 1,'is_sesuai_at'=>date('Y-m-d H:i:s')]);
+                    }else{
+                        $update = LogDetailPermintaanMaterial::where('material_id',$materialId[$i])->where('permintaan_id',$find_permintaan->id)->update(['is_sesuai'=> 0,'is_sesuai_at'=>'0000-00-00 00:00:00']);
+                    }
+                }else{
+                    $update = LogDetailPermintaanMaterial::where('material_id',$materialId[$i])->where('permintaan_id',$find_permintaan->id)->update(['is_sesuai'=> 0,'is_sesuai_at'=>date('0000-00-00 00:00:00')]);
+                }
+            }
+
+            //cek apakah ini edit atau koreksi
+            $cekKoreksi = \Input::get('koreksi');
+            if (isset($cekKoreksi)) {
+                $dt['is_admin'] = 1;
+                $dt['is_admin_at'] = date('Y-m-d H:i:s');
+                $dt['is_splem'] = null;
+                $koreksi = LogPenerimaanMaterial::where('kode_penerimaan',$kode_penerimaan)->where('soft_delete',0)->update($dt);
+            }
+            //cek apakah semua barang permintaan sudah sesuai
+            $all_detail_permintaan = LogDetailPermintaanMaterial::where('permintaan_id',$find_permintaan->id)->where('soft_delete',0)->get();
+            $semua_sesuai = 0;
+            foreach ($all_detail_permintaan as $key => $dt) {
+                if(($dt->is_sesuai == null) || ($dt->is_sesuai == 0) || ($dt->is_sesuai == '')){
+                    $semua_sesuai = 0;
+                    break;
+                }else{
+                    $semua_sesuai = 1;
+                }
+            }
+
+            $update_penerimaan = LogPenerimaanMaterial::where('kode_penerimaan',$kode_penerimaan)->where('soft_delete',0)->update(['supplier'=>$supplier,'penerima'=>$penerima]);
+
+            if($semua_sesuai == 1){
+                $update_permintaan = LogPermintaanMaterial::where('id',$find_permintaan->id)->where('soft_delete',0)->update(['is_sesuai'=> 1,'is_sesuai_at'=>date('Y-m-d H:i:s')]);
+            }else{
+                $update_permintaan = LogPermintaanMaterial::where('id',$find_permintaan->id)->where('soft_delete',0)->update(['is_sesuai'=> 0,'is_sesuai_at'=>'0000-00-00 00:00:00']);
+            }
+        }
+        return redirect('Logistik/admin/penerimaan');
     }
 
     public function deleteWaste()
@@ -146,48 +243,9 @@ class WasteMaterialController extends Controller
     	if($find){
     		$update_waste = LogWaste::where('id',$id)->update(['soft_delete'=>1]);
     		$update_detail_waste = LogWasteDetail::where('waste_id',$id)->update(['soft_delete'=>1]);
-    		$update_waste_pengajuan = LogWastePengajuan::where('waste_id',$id)->update(['soft_delete'=>1]);
     	}
 
     	return redirect('Logistik/admin/waste');
     }
 
-    public function getAjukan($id)
-    {
-    	$find = LogWaste::find($id);
-    	$ada = 0;
-    	if($find){
-    		$cek = LogWastePengajuan::where('waste_id',$id)->where('soft_delete',0)->get();
-    		if(count($cek) == 0){
-    			$pengajuan = new LogWastePengajuan;
-    			$pengajuan->waste_id = $id;
-    			$pengajuan->is_splem = 0;
-    			$pengajuan->is_sem = 0;
-    			$pengajuan->is_scarm = 0;
-    			$pengajuan->is_pm = 0;
-    			$pengajuan->user_id = \Auth::user()->id;
-    			if($pengajuan->save()){
-    				$ada = 1;
-    			}
-    		}
-    	}
-    	return $ada;
-    }
-
-    public function indexPengajuan()
-    {
-        $wastes = LogWastePengajuan::where('soft_delete', 0)->get();
-        return view('logistik.admin.waste.pengajuan.index', ['wastes' => $wastes]);
-    }
-
-    public function deleteWastePengajuan()
-    {
-    	$id = \Input::get('id_waste');
-    	$find = LogWastePengajuan::find($id);
-    	if($find){
-    		$update_waste = LogWastePengajuan::where('id',$id)->update(['soft_delete'=>1]);
-    	}
-
-    	return redirect('Logistik/admin/waste/pengajuan');
-    }
 }

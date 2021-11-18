@@ -242,11 +242,7 @@
                             </li>
                         @endif
                         @if(Auth::user()->role_id == 6)
-                            <li><a><i class="fa fa-trash"></i> Waste Material <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="{{url('Logistik/admin/waste')}}"> Data Waste Material</a></li>
-                                    <li><a href="{{url('Logistik/admin/waste/pengajuan')}}"> Pengajuan Data Waste Material</a></li>
-                                </ul>
+                            <li><a href="{{url('Logistik/admin/waste')}}"><i class="fa fa-trash"></i> Waste Material </a>
                             </li>
                         @endif
                         <!------------------------------------------------------>
