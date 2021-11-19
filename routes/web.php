@@ -520,6 +520,7 @@ Route::group(['middleware' => 'auth'], function () {
 		//Laporan Search MATERIAL
 		Route::get('/search_material', 'Logistik\Admin\SearchMaterialController@index');
 		Route::get('/search_material/detail/{id}', 'Logistik\Admin\SearchMaterialController@getDetailBySearchMaterialId');
+		Route::get('/search_material/unduh/{id}', 'Logistik\Admin\SearchMaterialController@getUnduhSearchMaterial');
 
 	});
 

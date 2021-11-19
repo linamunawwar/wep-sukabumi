@@ -13,11 +13,10 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Permintaan Material </h2>
+						<h2>Detail Laporan Material </h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li>
-								<div class="btn btn-default" title="Download" style="background-color:#0984E3; color:#FFFFFF;  padding:0.5em 0.7em 0.5em 0.7em; margin-top:0.3em; width:8em;"> <b>Download</b> <i class="fa fa-download" style="font-size:15px;"></i>  </div>
-								
+								<a href="{{ url('Logistik/admin/search_material/unduh/'.$material->material_id.'') }}" class="btn btn-default" title="Download" style="background-color:#0984E3; color:#FFFFFF;  padding:0.5em 0.7em 0.5em 0.7em; margin-top:0.3em; width:8em;"> <b>Download</b> <i class="fa fa-download" style="font-size:15px;"></i>  </a>
 							</li>
 						</ul><br><br>
 						<p> Kode Material : {{ $material->material->kode_material }}</p>
