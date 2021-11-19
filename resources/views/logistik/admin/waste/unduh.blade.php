@@ -2,30 +2,31 @@
   <tr>
     <td></td>
     <td></td>
-    <th style="width: 6;"></th>
   </tr>
+  <tr>
+      <th colspan="11"></th>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" colspan="2" align="center">FORMULIR LOGINV-06</td>
+    </tr>
+    <tr>
+      <td colspan="11"></td>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 8;">Edisi : Mei 2020</td>
+      <td style="border: 1px solid #000000; font-weight: bold; font-size: 8;">Revisi : 01 </td>
+    </tr>
   <tr>
     <td></td>
     <td></td>
     <th></th>
     <th colspan="7"><b style="font-weight: 3; font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
-    <td></td>
-    <td style="border: 1px solid #000000;  " colspan="3" align="center">Formulir Log-08</td>
   </tr>
   <tr>
     <td></td>
     <td></td>
     <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <td style="border: 1px solid #000000;" colspan="2">Edisi : {{$waste->bulan}} {{$waste->tahun}}</b></td>
-    <td style="border: 1px solid #000000;">Revisi : </td>
+    <th colspan="7"><b style="font-weight: 3; font-size:16px; ">INDUSTRI KONSTRUKSI</b></th>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
   <tr>
     <td></td>
     <td></td>
@@ -40,20 +41,16 @@
     <td></td>
     <td></td>    
     <td>Proyek</td>
-    <td colspan="3">: Proyek Jalan Tol Becakayu Seksi 2A Ujung</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td colspan="3" style="font-weight: bold;"> No. AB</td>
-  </tr>
+    <td colspan="4">: </td>
+    <td colspan="3" style="font-weight: bold;"> ID Project :</td>
+  </tr> 
 </table>
 
 <table class="table table-striped" style="text-align: center;">
   <tr>
     <td></td>
     <td></td>
-    <td colspan="12" style="text-align: center;border: 1px solid #000000"><h4><b>EVALUASI "WASTE MATERIAL"</b></h4></td>
+    <td colspan="11" style="text-align: center;border: 1px solid #000000"><h4><b>EVALUASI "WASTE MATERIAL"</b></h4></td>
   </tr>
   <tr>
     <td></td>
@@ -61,21 +58,15 @@
   <tr>
     <td></td>
     <td></td>
-    <td colspan="4">Nama Bahan : {{$waste->wasteMaterial->nama}}</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td colspan="2">Bulan : {{$waste->bulan}}</td>
-    <td></td>
+    <td colspan="4">Bulan : {{bulan($waste->bulan)}}</td>
     <td colspan="2">Tahun : {{$waste->tahun}}</td>
   </tr>
   <tr>
     <td></td>
     <td></td>
-    <td colspan="5">Jenis Pekerjaan : {{$waste->wasteJenisKerja->nama}}</td>
-    <td></td>
-    <td></td>
-    <td colspan="3">Volume Pekerjaan : {{$waste->volume_pekerjaan}}</td>
+    <td colspan="4">Jenis Pekerjaan : {{$waste->wasteJenisKerja->nama}}</td>
+    <td colspan="3">Lokasi : {{$waste->wasteLokasi->nama}}</td>
+    <td colspan="3">Progress Pekerjaan :</td>
   </tr>
 </table>
 <table class="table table-striped">
@@ -83,14 +74,14 @@
     <td></td>
     <td></td>
     <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" rowspan="2" align="center">No.</td>
-    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10; width: 20;" rowspan="2" align="center">Lokasi Pekerjaan</td>
-    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10; width: 20;" rowspan="2" align="center">Kalap/ Pelaksana</td>
-    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10; width: 12;" colspan="2" align="center">Progress Pekerjaan</td>
-    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10; width: 15; text-align: center;" rowspan="2" align="center" >Volume Bahan Sesuai Progress</td>
-    <td style="border: 1px solid #000000; font-weight: bold; font-size: 9; width: 16;" rowspan="2" align="center">Realisasi Pemakaian Bahan</td>
-    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;width: 16;" rowspan="2" align="center">Waste dalam Satuan Volume</td>
-    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10; width: 12;"  colspan="3"align="center" >Waste Bahan (%)</td>
-    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10; width: 12;" rowspan="2" align="center">Keterangan</td>
+    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" rowspan="2" align="center">Jenis Material</td>
+    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" rowspan="2" align="center">Sat</td>
+    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" rowspan="2" align="center">Vol (APP)</td>
+    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" rowspan="2" align="center">Progress (%)</td>
+    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" rowspan="2" align="center">Vol APP sesuai Progress</td>
+    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" rowspan="2" align="center">Pemakaian Material di Lapangan</td>
+    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" rowspan="2" align="center" >Deviasi Volume</td>
+    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;"  colspan="3"align="center" >Waste (%)</td>
   </tr>
   <tr class="thead-light" style="text-align: center;">
     <td></td>
@@ -98,56 +89,51 @@
     <td></td>
     <td></td>
     <td></td>
-    <td style="border: 1px solid #000000;font-weight: bold; font-size: 10;">%</td>
-    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;">Volume</td>
-    <td></th>
     <td></td>
-    <td ></td>
-    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;">Renc</td>
-    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;">Real</td>
-    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" >Deviasi</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;">Deviasi Terhadap Rencana</td>
+    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;">Rencana Waste di APP</td>
+    <td style="border: 1px solid #000000; font-weight: bold; font-size: 10;" >Realisasi</td>
   </tr>
-  <tr class="thead-light" style="text-align: center;">
+  <tr>
     <td></td>
     <td></td>
-    <td colspan="3" style="border: 1px double #000000; font-weight: bold; font-size: 10;" align="center">Jumlah Sampai dengan Bulan lalu</td>
-    <td style="border: 1px double #000000;" align="right">{{$jml_progress_persen}}</td>
-    <td style="border: 1px double #000000;" align="right">{{$jml_progress_vol}}</td>
-    <td style="border: 1px double #000000;" align="right">{{$jml_vol_bahan}}</td>
-    <td style="border: 1px double #000000;" align="right">{{$jml_real_pemakaian}}</td>
-    <td style="border: 1px double #000000;" align="right">{{$jml_waste_vol}}</td>
-    <td style="border: 1px double #000000;" align="right"></td>
-    <td style="border: 1px double #000000;" align="right"></td>
-    <td style="border: 1px double #000000;" align="right"></td>
-    <td style="border: 1px double #000000;" align="right"></td>
+    <td style="border: 1px solid #000000; color: #FF0000; font-weight: bold;font-size: 9;">1</td>
+    <td style="border: 1px solid #000000; color: #FF0000; font-weight: bold;font-size: 9;">2</td>
+    <td style="border: 1px solid #000000; color: #FF0000; font-weight: bold;font-size: 9;">3</td>
+    <td style="border: 1px solid #000000; color: #FF0000; font-weight: bold;font-size: 9;">4</td>
+    <td style="border: 1px solid #000000; color: #FF0000; font-weight: bold;font-size: 9;">5</td>
+    <td style="border: 1px solid #000000; color: #FF0000; font-weight: bold;font-size: 9;">6 = 4 x 5</td>
+    <td style="border: 1px solid #000000; color: #FF0000; font-weight: bold;font-size: 9;">7</td>
+    <td style="border: 1px solid #000000; color: #FF0000; font-weight: bold;font-size: 9;">8 = 6 - 7</td>
+    <td style="border: 1px solid #000000; color: #FF0000; font-weight: bold;font-size: 9;">9 = 8 / 6</td>
+    <td style="border: 1px solid #000000; color: #FF0000; font-weight: bold;font-size: 9;">10</td>
+    <td style="border: 1px solid #000000; color: #FF0000; font-weight: bold;font-size: 9;">11 = 9 + 10</td>
   </tr>
-  <?php $i =1; $progress_vol=0; $progress_persen=0; $vol_bahan=0; $real_pemakaian=0; $waste_vol=0; ?>
-  @foreach($datas as $data)
+  @php $i=1; @endphp
+  @foreach($details as $data)
     <tr>
       <td></td>
       <td></td>
       <td style="border: 1px solid #000000;" align="center">{{$i++}}</td>
-      <td style="border: 1px solid #000000;"  align="left" >{{$data->wasteLokasi->nama}}</td>
-      <td style="border: 1px solid #000000;"  align="center">{{$data->pelaksanaPegawai->nama}}</td>
+      <td style="border: 1px solid #000000;"  align="left" >{{$data->wasteMaterial->nama}}</td>
+      <td style="border: 1px solid #000000;"  align="center">{{$data->satuan}}</td>
+      <td style="border: 1px solid #000000;"  align="right">{{$data->vol_app}}</td>
       <td style="border: 1px solid #000000;"  align="right">{{$data->progress_persen}}</td>
-      <?php $progress_persen = $progress_persen + $data->progress_persen;?>
-      <td style="border: 1px solid #000000;"  align="right">{{$data->progress_vol}}</td>
-      <?php $progress_vol = $progress_vol + $data->progress_vol;?>
-      <td style="border: 1px solid #000000;"  align="right">{{$data->vol_bahan}}</td>
-      <?php $vol_bahan = $vol_bahan + $data->vol_bahan;?>
-      <td style="border: 1px solid #000000;"  align="right">{{$data->real_pemakaian}}</td>
-      <?php $real_pemakaian = $real_pemakaian + $data->real_pemakaian;?>
-      <td style="border: 1px solid #000000;"  align="right">{{$data->waste_vol}}</td>
-      <?php $waste_vol = $waste_vol + $data->waste_vol;?>
-      <td style="border: 1px solid #000000;"  align="right">{{$data->waste_rencana}}</td>
-      <td style="border: 1px solid #000000;"  align="right">{{$data->waste_real}}</td>
-      <td style="border: 1px solid #000000;"  align="right">{{$data->waste_deviasi}}</td>
-      <td style="border: 1px solid #000000;"  align="center">{{$data->keterangan}}</td>
+      <td style="border: 1px solid #000000;"  align="right">{{$data->vol_progress}}</td>
+      <td style="border: 1px solid #000000;"  align="right">{{$data->pemakaian}}</td>
+      <td style="border: 1px solid #000000;"  align="right">{{$data->deviasi_vol}}</td>
+      <td style="border: 1px solid #000000;"  align="right">{{$data->deviasi}}</td>
+      <td style="border: 1px solid #000000;"  align="right">{{$data->rencana_waste}}</td>
+      <td style="border: 1px solid #000000;"  align="right">{{$data->realisasi}}</td>
     </tr>
   @endforeach
-  @if(count($datas) < 18)
+  @if(count($details) < 18)
     <?php
-      for($i=count($datas);$i<=18;$i++){
+      for($i=count($details);$i<=18;$i++){
         echo '<tr>
               <td></td>
               <td></td>
@@ -162,52 +148,15 @@
               <td style="border: 1px solid #000000;"  align="center"></td>
               <td style="border: 1px solid #000000;"  align="center"></td>
               <td style="border: 1px solid #000000;"  align="center"></td>
-              <td style="border: 1px solid #000000;"  align="center"></td>
             </tr>';
       }
     ?>
   @endif
-  <tr>
-    <td></td>
-    <td></td>
-    <td colspan="3" style="border: 1px solid #000000; font-weight: bold; font-size: 10;" align="center">Jumlah Bulan ini</td>
-    <td style="border: 1px solid #000000;" align="right">{{$progress_persen}}</td>
-    <td style="border: 1px solid #000000;" align="right">{{$progress_vol}}</td>
-    <td style="border: 1px solid #000000;" align="right">{{$vol_bahan}}</td>
-    <td style="border: 1px solid #000000;" align="right">{{$real_pemakaian}}</td>
-    <td style="border: 1px solid #000000;" align="right">{{$waste_vol}}</td>
-    <td style="border: 1px solid #000000;"></td>
-    <td style="border: 1px solid #000000;"></td>
-    <td style="border: 1px solid #000000;"></td>
-    <td style="border: 1px solid #000000;"></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td colspan="3" style="border: 1px solid #000000; font-weight: bold; font-size: 10;" align="center">Jumlah Sampai Dengan Bulan ini</td>
-    <td style="border: 1px solid #000000;" align="right">{{$jml_progress_persen + $progress_persen}}</td>
-    <td style="border: 1px solid #000000;" align="right">{{$jml_progress_vol + $progress_vol}}</td>
-    <td style="border: 1px solid #000000;" align="right">{{$jml_vol_bahan + $vol_bahan}}</td>
-    <td style="border: 1px solid #000000;" align="right">{{$jml_real_pemakaian + $real_pemakaian}}</td>
-    <td style="border: 1px solid #000000;" align="right">{{$jml_waste_vol + $waste_vol}}</td>
-    <td style="border: 1px solid #000000;"></td>
-    <td style="border: 1px solid #000000;"></td>
-    <td style="border: 1px solid #000000;"></td>
-    <td style="border: 1px solid #000000;"></td>
-  </tr>
-  <tr></tr>
   <tr></tr>
   <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td colspan="11">*Catatan : Vol. APP sudah termasuk volume waste rencana</td>
   </tr>
+  <tr></tr>
   <tr>
     <td></td>
     <td></td>
@@ -217,8 +166,7 @@
     <td></td>
     <td></td>
     <td></td>
-    <td></td>
-    <td>Dibuat Oleh</td>
+    <td colspan="2" align="center">Dibuat Oleh</td>
   </tr>
   <tr>
     <td></td>
@@ -226,42 +174,14 @@
     <td></td>
     <td align="center">Project Manager</td>
     <td></td>
+    <td colspan="2" align="center" >SPLEM</td>
     <td></td>
+    <td colspan="2" align="center" >SEM</td>
     <td></td>
-    <td></td>
-    <td></td>
-    <td align="center" >SPLEM</td>
-    <td colspan="2"  >SEM</td>
-    <td colspan="2" >SCARM</td>
+    <td colspan="2" align="center" >SCARM</td>
   </tr>
   <tr>
     <td></td>
-    <td></td>
-    <td></td>
-    <td style="text-align: center; height: 15;" height="15" colspan="2">
-      @if(file_exists("upload/pegawai/$pm->nip/$pm->ttd"))
-        <img src="upload/pegawai/{{$pm->nip}}/{{$pm->ttd}}" width="100" align="center">
-      @endif
-    </td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td style="text-align: center;">
-      @if(file_exists("upload/pegawai/$splem->nip/$splem->ttd"))
-        <img src="upload/pegawai/{{$splem->nip}}/{{$splem->ttd}}" width="100" align="center">
-      @endif
-    </td>
-    <td style="text-align: center;" colspan="2">
-      @if(file_exists("upload/pegawai/$sem->nip/$sem->ttd"))
-        <img src="upload/pegawai/{{$sem->nip}}/{{$sem->ttd}}" width="100" align="center" style="margin-left: 10; padding: 10;">
-      @endif
-    </td>
-    <td style="text-align: center;" colspan="2">
-      @if(file_exists("upload/pegawai/$scarm->nip/$scarm->ttd"))
-        <img src="upload/pegawai/{{$scarm->nip}}/{{$scarm->ttd}}" width="100" align="center">
-      @endif
-    </td>
   </tr>
   <tr>
     <td></td>
@@ -269,13 +189,11 @@
     <td></td>
     <td align="center">{{$pm->nama}}</td>
     <td></td>
+    <td colspan="2" align="center">{{$splem->nama}}</td>
     <td></td>
+    <td colspan="2" align="center">{{$sem->nama}}</td>
     <td></td>
-    <td></td>
-    <td></td>
-    <td align="center">{{$splem->nama}}</td>
-    <td colspan="2">{{$sem->nama}}</td>
-    <td colspan="2">{{$scarm->nama}}</td>
+    <td colspan="2" align="center">{{$scarm->nama}}</td>
   </tr>
 </table>
   

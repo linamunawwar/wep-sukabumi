@@ -92,6 +92,13 @@
 							<br>
 							<button class="btn btn-primary pull-right" id="search">Search</button>
 						</div>
+						<br><br><br>
+						<div class="alert alert-danger" style="display: none;">
+						  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+						  <div class="isi">
+						  	<strong>Perhatian!</strong> Data sudah pernah diinput! Silahkan tekan tombol edit untuk mengubah data.
+						  </div>
+						</div>
 
 						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"method="POST" style="display: none;">
 							<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
@@ -197,9 +204,9 @@
             	$('#jenis_kerja_id').val(jenis_kerja);
             	$('#bulan').val(bulan);
             	$('#tahun').val(tahun);
-                $('#demo-form2').show();
-                $('#form1').hide();
                 if(data != null){
+                	$('#demo-form2').show();
+                	$('#form1').hide();
 	                if(data.length != 0){
 	                	var dt;
 	                	var nomor = 1;
@@ -219,17 +226,17 @@
 	                		dt +=  '</td>';
 	                		dt +=  "<td><input type='text' name='progress_persen[]' value='' id='progress_persen_"+jumlah_data+"' class='progress_persen width-60' jml_data='"+jumlah_data+"'>";
 	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' name='vol_progress[]' value='' id='vol_progress_"+jumlah_data+"' class='width-60' jml_data='"+jumlah_data+"' disabled>";
+	                		dt +=  "<td><input type='text' name='vol_progress[]' value='' id='vol_progress_"+jumlah_data+"' class='width-60' jml_data='"+jumlah_data+"' readonly='readonly'>";
 	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' name='pemakaian[]' value='"+data[i].pemakaian+"' id='pemakaian_"+jumlah_data+"' class='width-60' jml_data='"+jumlah_data+"' disabled>";
+	                		dt +=  "<td><input type='text' name='pemakaian[]' value='"+data[i].pemakaian+"' id='pemakaian_"+jumlah_data+"' class='width-60' jml_data='"+jumlah_data+"' readonly='readonly'>";
 	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' name='deviasi_vol[]' value='' id='deviasi_vol_"+jumlah_data+"' class='width-60' jml_data='"+jumlah_data+"' disabled>";
+	                		dt +=  "<td><input type='text' name='deviasi_vol[]' value='' id='deviasi_vol_"+jumlah_data+"' class='width-60' jml_data='"+jumlah_data+"' readonly='readonly'>";
 	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' name='deviasi[]' value='' id='deviasi_"+jumlah_data+"' class='width-60' jml_data='"+jumlah_data+"' disabled>";
+	                		dt +=  "<td><input type='text' name='deviasi[]' value='' id='deviasi_"+jumlah_data+"' class='width-60' jml_data='"+jumlah_data+"' readonly='readonly'>";
 	                		dt +=  '</td>';
 	                		dt +=  "<td><input type='text' name='rencana_waste[]' value='' id='rencana_waste_"+jumlah_data+"' class='rencana_waste width-60' jml_data='"+jumlah_data+"'>";
 	                		dt +=  '</td>';
-	                		dt +=  "<td><input type='text' name='realisasi[]' value='' id='realisasi_"+jumlah_data+"' class='width-60' jml_data='"+jumlah_data+"' disabled>";
+	                		dt +=  "<td><input type='text' name='realisasi[]' value='' id='realisasi_"+jumlah_data+"' class='width-60' jml_data='"+jumlah_data+"' readonly='readonly'>";
 	                		dt +=  '</td>';
 	                		// dt +=  '<td>'
 	                		// dt += "<a class='btn btn-sm btn-block btn-danger del' idsub='"+jumlah_data+"' style='width:40px;'><span class='fa fa-trash'></span></a>"
@@ -241,6 +248,8 @@
 	                }else{
 	                	$('#volume_pekerjaan').show();
 	                }
+	            }else{
+	            	$('.alert-danger').show();
 	            }
             }
         });

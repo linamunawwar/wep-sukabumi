@@ -28,7 +28,7 @@
 					<div class="x_content">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"method="POST">
+						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
 							<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 							<div class="row">
 								<div class="col-md-6">
@@ -81,37 +81,37 @@
 								<tbody class="data">
 									@php $jml_data = 1; @endphp
 									@foreach($datas as $key => $data)
-										<tr  class='data_{{jumlah_data}}'>
+										<tr  class='data_{{$jml_data}}'>
 	                						<td>{{$jml_data}}</td>
-	                						<td style='width:250px;'>{{$data->material_id}}
-	                							<input type='hidden' name='material[]' value="{{$data->material_id}}" id="material_{{$jml_data}}" jml_data="{{$jml_data}}">";
+	                						<td style='width:250px;'>{{$data->wasteMaterial->nama}}
+	                							<input type='hidden' name='material[{{$data->id}}]' value="{{$data->material_id}}" id="material_{{$jml_data}}" jml_data="{{$jml_data}}">
 	                						</td>
 	                						<td>{{$data->satuan}}
-	                							<input type='hidden' name='satuan[]' value="{{$data->satuan}}" id="satuan_{{$jumlah_data}}" jml_data="{{$jml_data}}">
+	                							<input type='hidden' name='satuan[{{$data->id}}]' value="{{$data->satuan}}" id="satuan_{{$jml_data}}" jml_data="{{$jml_data}}">
 	                						</td>
 	                						<td>
-	                							<input type='text' name='vol_app[]' value="{{$data->vol_app}}" id="vol_app_{{$jml_data}}" class='vol_app width-60' jml_data="{{$jml_data}}">
+	                							<input type='text' name='vol_app[{{$data->id}}]' value="{{$data->vol_app}}" id="vol_app_{{$jml_data}}" class='vol_app width-60' jml_data="{{$jml_data}}">
 	                						</td>
 	                						<td>
-	                							<input type='text' name='progress_persen[]' value="{{$data->progress_persen}}" id="progress_persen_{{$jml_data}}" class='progress_persen width-60' jjml_data="{{$jml_data}}">";
+	                							<input type='text' name='progress_persen[{{$data->id}}]' value="{{$data->progress_persen}}" id="progress_persen_{{$jml_data}}" class='progress_persen width-60' jml_data="{{$jml_data}}">
 	                						</td>
 	                						<td>
-	                							<input type='text' name='vol_progress[]' value="{{$data->vol_progress}}" id="vol_progress_{{$jml_data}}" class='width-60' jml_data="{{$jml_data}}" disabled>";
+	                							<input type='text' name='vol_progress[{{$data->id}}]' value="{{$data->vol_progress}}" id="vol_progress_{{$jml_data}}" class='width-60' jml_data="{{$jml_data}}" readonly="readonly">
 	                						</td>
 	                						<td>
-	                							<input type='text' name='pemakaian[]' value="{{$data->pemakaian}}" id='pemakaian_"+jumlah_data+"' class='width-60' jml_data="{{$jml_data}}" disabled>";
+	                							<input type='text' name='pemakaian[{{$data->id}}]' value="{{$data->pemakaian}}" id="pemakaian_{{$jml_data}}" class='width-60' jml_data="{{$jml_data}}" readonly="readonly">
 	                						</td>
 	                						<td>
-	                							<input type='text' name='deviasi_vol[]' value="{{$data->deviasi_vol}}" id="deviasi_vol_{{$jml_data}}" class='width-60' jml_data="{{$jml_data}}" disabled>";
+	                							<input type='text' name='deviasi_vol[{{$data->id}}]' value="{{$data->deviasi_vol}}" id="deviasi_vol_{{$jml_data}}" class='width-60' jml_data="{{$jml_data}}" readonly="readonly">
 	                						</td>
 	                						<td>
-	                							<input type='text' name='deviasi[]' value="{{$data->deviasi}}" id="deviasi_{{$jml_data}}" class='width-60' jml_data="{{$jml_data}}" disabled>
+	                							<input type='text' name='deviasi[{{$data->id}}]' value="{{$data->deviasi}}" id="deviasi_{{$jml_data}}" class='width-60' jml_data="{{$jml_data}}" readonly="readonly">
 	                						</td>
 	                						<td>
-	                							<input type='text' name='rencana_waste[]' value="{{$data->rencana_waste}}" id="rencana_waste_{{$jml_data}}" class='rencana_waste width-60' jml_data="{{$jml_data}}">
+	                							<input type='text' name='rencana_waste[{{$data->id}}]' value="{{$data->rencana_waste}}" id="rencana_waste_{{$jml_data}}" class='rencana_waste width-60' jml_data="{{$jml_data}}">
 	                						</td>
 	                						<td>
-	                							<input type='text' name='realisasi[]' value="{{$data->realisasi}}" id="realisasi_{{$jumlah_data}}" class='width-60' jml_data="{{$jumlah_data}}"disabled>
+	                							<input type='text' name='realisasi[{{$data->id}}]' value="{{$data->realisasi}}" id="realisasi_{{$jml_data}}" class='width-60' jml_data="{{$jml_data}}" readonly="readonly">
 	                						</td>
 	                						@php $jml_data++; @endphp
 									@endforeach
@@ -141,14 +141,15 @@
         var jml_data = $(this).attr('jml_data');
         var progress = $('#progress_persen_'+jml_data).val();
         var pemakaian = $('#pemakaian_'+jml_data).val();
-
-        if(vol_app.length !== 0 && progress.length !== 0){
+        console.log(vol_app,progress);
+        if(vol_app !== undefined && progress !== undefined){
         	var vol_progress = (parseFloat(vol_app) * parseFloat(progress)) / 100;
         	var deviasi_vol = parseFloat(vol_progress) - parseFloat(pemakaian);
         	var deviasi = parseFloat(deviasi_vol) / parseFloat(vol_progress);
         	vol_progress = parseFloat(vol_progress).toFixed(2);
         	deviasi_vol = parseFloat(deviasi_vol).toFixed(2);
         	deviasi = parseFloat(deviasi).toFixed(2);
+        	console.log(vol_progress,pemakaian,deviasi);
         }else{
         	var vol_progress=0;
         	var deviasi_vol=0;
@@ -164,14 +165,15 @@
         var jml_data = $(this).attr('jml_data');
         var vol_app = $('#vol_app_'+jml_data).val();
         var pemakaian = $('#pemakaian_'+jml_data).val();
-
-        if(vol_app.length !== 0 && progress.length !== 0){
+        console.log(vol_app,progress);
+        if(vol_app !== undefined && progress !== undefined){
         	var vol_progress = (parseFloat(vol_app) * parseFloat(progress)) / 100;
         	var deviasi_vol = parseFloat(vol_progress) - parseFloat(pemakaian);
         	var deviasi = parseFloat(deviasi_vol) / parseFloat(vol_progress);
         	vol_progress = parseFloat(vol_progress).toFixed(2);
         	deviasi_vol = parseFloat(deviasi_vol).toFixed(2);
         	deviasi = parseFloat(deviasi).toFixed(2);
+        	console.log(vol_progress,deviasi_vol,deviasi);
         }else{
         	var vol_progress=0;
         	var deviasi_vol=0;
