@@ -253,6 +253,7 @@
                         <li><a><i class="fa fa-sign-out"></i> Laporan <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             @if(Auth::user()->role_id == 2)
+                                <li><a href="{{url('Logistik/admin/search_material')}}">Laporan Penggunaan Material</a></li>
                                 <li><a href="{{url('Logistik/user/kartu_gudang')}}">Kartu Gudang</a></li>
                                 <li><a href="{{url('Logistik/user/eval_mingguan')}}">Evaluasi Mingguan Pengadaan</a></li>
                                 <li><a href="{{url('Logistik/user/harian_gudang')}}">Harian Gudang</a></li>
@@ -260,6 +261,7 @@
                                 <li><a href="{{url('Logistik/user/harian_pakai')}}">Harian Pemakaian Material</a></li>
                             @endif
                             @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4)) 
+                                <li><a href="{{url('Logistik/admin/search_material')}}">Laporan Penggunaan Material</a></li>
                                 <li><a href="{{url('Logistik/manager/kartu_gudang')}}">Kartu Gudang</a></li>
                                 <li><a href="{{url('Logistik/manager/eval_mingguan')}}">Evaluasi Mingguan Pengadaan</a></li>
                                 <li><a href="{{url('Logistik/manager/harian_gudang')}}">Harian Gudang</a></li>
@@ -267,6 +269,7 @@
                                 <li><a href="{{url('Logistik/manager/harian_pakai')}}">Harian Pemakaian Material</a></li>
                             @endif
                             @if(Auth::user()->role_id == 5)
+                                <li><a href="{{url('Logistik/admin/search_material')}}">Laporan Penggunaan Material</a></li>
                                 <li><a href="{{url('Logistik/pm/kartu_gudang')}}">Kartu Gudang</a></li>
                                 <li><a href="{{url('Logistik/pm/eval_mingguan')}}">Evaluasi Mingguan Pengadaan</a></li>
                                 <li><a href="{{url('Logistik/pm/harian_gudang')}}">Harian Gudang</a></li>
