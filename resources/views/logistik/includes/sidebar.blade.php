@@ -251,34 +251,26 @@
                             @if(Auth::user()->role_id == 2)
                                 <li><a href="{{url('Logistik/admin/search_material')}}">Laporan Penggunaan Material</a></li>
                                 <li><a href="{{url('Logistik/user/kartu_gudang')}}">Kartu Gudang</a></li>
-                                <li><a href="{{url('Logistik/user/eval_mingguan')}}">Evaluasi Mingguan Pengadaan</a></li>
                                 <li><a href="{{url('Logistik/user/harian_gudang')}}">Harian Gudang</a></li>
                                 <li><a href="{{url('Logistik/user/eval_pakai')}}">Evaluasi Pemakaian Material</a></li>
-                                <li><a href="{{url('Logistik/user/harian_pakai')}}">Harian Pemakaian Material</a></li>
                             @endif
                             @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4)) 
                                 <li><a href="{{url('Logistik/admin/search_material')}}">Laporan Penggunaan Material</a></li>
                                 <li><a href="{{url('Logistik/manager/kartu_gudang')}}">Kartu Gudang</a></li>
-                                <li><a href="{{url('Logistik/manager/eval_mingguan')}}">Evaluasi Mingguan Pengadaan</a></li>
                                 <li><a href="{{url('Logistik/manager/harian_gudang')}}">Harian Gudang</a></li>
                                 <li><a href="{{url('Logistik/manager/eval_pakai')}}">Evaluasi Pemakaian Material</a></li>
-                                <li><a href="{{url('Logistik/manager/harian_pakai')}}">Harian Pemakaian Material</a></li>
                             @endif
                             @if(Auth::user()->role_id == 5)
                                 <li><a href="{{url('Logistik/admin/search_material')}}">Laporan Penggunaan Material</a></li>
                                 <li><a href="{{url('Logistik/pm/kartu_gudang')}}">Kartu Gudang</a></li>
-                                <li><a href="{{url('Logistik/pm/eval_mingguan')}}">Evaluasi Mingguan Pengadaan</a></li>
                                 <li><a href="{{url('Logistik/pm/harian_gudang')}}">Harian Gudang</a></li>
                                 <li><a href="{{url('Logistik/pm/eval_pakai')}}">Evaluasi Pemakaian Material</a></li>
-                                <li><a href="{{url('Logistik/pm/harian_pakai')}}">Harian Pemakaian Material</a></li>
                             @endif
                             @if(Auth::user()->role_id == 6)
                                 <li><a href="{{url('Logistik/admin/search_material')}}">Laporan Penggunaan Material</a></li>
                                 <li><a href="{{url('Logistik/admin/kartu_gudang')}}">Kartu Gudang</a></li>
-                                <li><a href="{{url('Logistik/admin/eval_mingguan')}}">Evaluasi Mingguan Pengadaan</a></li>
                                 <li><a href="{{url('Logistik/admin/harian_gudang')}}">Harian Gudang</a></li>
                                 <li><a href="{{url('Logistik/admin/eval_pakai')}}">Evaluasi Pemakaian Material</a></li>
-                                <li><a href="{{url('Logistik/admin/harian_pakai')}}">Harian Pemakaian Material</a></li>
                             @endif
                         </ul>
                         <!------------------------- MASTER ---------------------------->
