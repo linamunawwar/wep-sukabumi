@@ -71,7 +71,7 @@
       <tr>
         <td></td>
         <td></td>
-        <td colspan="2">Nomor : </td>
+        <td colspan="2">Nomor : BCKY2AU/{{date("Y", strtotime($pengajuan->created_at))}}/{{$pengajuan->id}} </td>
         <td colspan="2">Tgl Permintaan : {{date('d-m-Y',strtotime($pengajuan->created_at))}}</td>      
         <td colspan="3">Tgl Penyerahan : {{date('d-m-Y',strtotime($pengajuan->updated_at))}}</td>        
         <td></td>        
@@ -185,10 +185,10 @@
     <tr>
         <td></td>
         <td></td>
-        <td colspan="2" align="center" style="font-size: 11;"><b>( {{$superintendent->nama}} )</b></td>
-        <td align="center" style="font-size: 11;"><b>( {{$som->nama}} )</b></td>
-        <td colspan="2" align="center" style="font-size: 11;"><b> ( {{$splem->nama}} )</b> </td>
-        <td colspan="2" align="center" style="font-size: 11;"><b> ( {{$superintendent->nama}} )</b></td>
+        <td colspan="2" align="center" style="font-size: 11;font-weight: bold;">( {{$superintendent->nama}} )<</td>
+        <td align="center" style="font-size: 11;font-weight: bold;">( {{$som->nama}} )</td>
+        <td colspan="2" align="center" style="font-size: 11; font-weight: bold;"> ( {{$splem->nama}} ) </td>
+        <td colspan="2" align="center" style="font-size: 11; font-weight: bold;"> ( {{$superintendent->nama}} )</td>
     </tr>
     <tr>
         <td></td>
