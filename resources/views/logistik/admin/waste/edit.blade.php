@@ -33,14 +33,24 @@
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label style="display: inline-block;" for="nama">Jenis Pekerjaan : {{$waste->wasteJenisKErja->nama}}</label>
+										<label style="display: inline-block;" for="nama">
+											@php 
+                                            ($waste->jenis_pekerjaan_id === '') ? $jenis = 'Semua Jenis Pekerjaan' : $jenis = $waste->wasteJenisKerja->nama;
+                                        @endphp
+											Jenis Pekerjaan : {{$jenis}}
+										</label>
 										<p style="display: inline-block;" id="jenis_kerja"></p>
 										<input type="hidden" name="jenis_kerja_id" id="jenis_kerja_id" value="{{$waste->jenis_kerja_id}}">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label style="display: inline-block;" for="nama">Lokasi : {{$waste->wasteLokasi->nama}}</label>
+										<label style="display: inline-block;" for="nama">
+											@php 
+	                                            ($waste->lokasi_id === '') ? $lokasi = 'Semua Lokasi' : $lokasi = $waste->wasteLokasi->nama;
+	                                        @endphp
+											Lokasi : {{$lokasi}}
+										</label>
 										<p style="display: inline-block;" id="lokasi_kerja"></p>
 										<input type="hidden" name="lokasi_id" id="lokasi_id" value="{{$waste->lokasi_id}}">
 									</div>
@@ -74,9 +84,9 @@
 									<th colspan="3" style="text-align: center;">Waste (%)</th>
 								</tr>
 								<tr>
-									<th>Deviasi terhadap rencana</th>
+									<th>Deviasi terhadap rencana (dalam %)</th>
 									<th>Rencana waste di APP (dalam %)</th>
-									<th>Realisasi</th>
+									<th>Realisasi (dalam %)</th>
 								</tr>
 								<tbody class="data">
 									@php $jml_data = 1; @endphp
@@ -145,7 +155,7 @@
         if(vol_app !== undefined && progress !== undefined){
         	var vol_progress = (parseFloat(vol_app) * parseFloat(progress)) / 100;
         	var deviasi_vol = parseFloat(vol_progress) - parseFloat(pemakaian);
-        	var deviasi = parseFloat(deviasi_vol) / parseFloat(vol_progress);
+        	var deviasi = (parseFloat(deviasi_vol) / parseFloat(vol_progress)) * 100;
         	vol_progress = parseFloat(vol_progress).toFixed(2);
         	deviasi_vol = parseFloat(deviasi_vol).toFixed(2);
         	deviasi = parseFloat(deviasi).toFixed(2);
@@ -169,7 +179,7 @@
         if(vol_app !== undefined && progress !== undefined){
         	var vol_progress = (parseFloat(vol_app) * parseFloat(progress)) / 100;
         	var deviasi_vol = parseFloat(vol_progress) - parseFloat(pemakaian);
-        	var deviasi = parseFloat(deviasi_vol) / parseFloat(vol_progress);
+        	var deviasi = (parseFloat(deviasi_vol) / parseFloat(vol_progress)) * 100;
         	vol_progress = parseFloat(vol_progress).toFixed(2);
         	deviasi_vol = parseFloat(deviasi_vol).toFixed(2);
         	deviasi = parseFloat(deviasi).toFixed(2);

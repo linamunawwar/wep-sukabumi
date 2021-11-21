@@ -64,8 +64,18 @@
   <tr>
     <td></td>
     <td></td>
-    <td colspan="4">Jenis Pekerjaan : {{$waste->wasteJenisKerja->nama}}</td>
-    <td colspan="3">Lokasi : {{$waste->wasteLokasi->nama}}</td>
+    <td colspan="4">
+      @php 
+          ($waste->jenis_pekerjaan_id === '') ? $jenis = 'Semua Jenis Pekerjaan' : $jenis = $waste->wasteJenisKerja->nama;
+      @endphp
+      Jenis Pekerjaan : {{$jenis}}
+    </td>
+    <td colspan="3">
+      @php 
+          ($waste->lokasi_id === '') ? $lokasi = 'Semua Lokasi' : $lokasi = $waste->wasteLokasi->nama;
+      @endphp
+      Lokasi : {{$lokasi}}
+    </td>
     <td colspan="3">Progress Pekerjaan :</td>
   </tr>
 </table>
@@ -122,13 +132,13 @@
       <td style="border: 1px solid #000000;"  align="left" >{{$data->wasteMaterial->nama}}</td>
       <td style="border: 1px solid #000000;"  align="center">{{$data->satuan}}</td>
       <td style="border: 1px solid #000000;"  align="right">{{$data->vol_app}}</td>
-      <td style="border: 1px solid #000000;"  align="right">{{$data->progress_persen}}</td>
+      <td style="border: 1px solid #000000;"  align="right">{{$data->progress_persen}}%</td>
       <td style="border: 1px solid #000000;"  align="right">{{$data->vol_progress}}</td>
       <td style="border: 1px solid #000000;"  align="right">{{$data->pemakaian}}</td>
       <td style="border: 1px solid #000000;"  align="right">{{$data->deviasi_vol}}</td>
-      <td style="border: 1px solid #000000;"  align="right">{{$data->deviasi}}</td>
-      <td style="border: 1px solid #000000;"  align="right">{{$data->rencana_waste}}</td>
-      <td style="border: 1px solid #000000;"  align="right">{{$data->realisasi}}</td>
+      <td style="border: 1px solid #000000;"  align="right">{{$data->deviasi}}%</td>
+      <td style="border: 1px solid #000000;"  align="right">{{$data->rencana_waste}}%</td>
+      <td style="border: 1px solid #000000;"  align="right">{{$data->realisasi}}%</td>
     </tr>
   @endforeach
   @if(count($details) < 18)

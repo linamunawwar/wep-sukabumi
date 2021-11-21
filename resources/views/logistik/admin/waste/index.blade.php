@@ -63,8 +63,18 @@
 							<tbody>								
 								@foreach ($wastes as $waste)
 									<tr>
-									<td>{{ $waste->wasteLokasi->nama }}</td>
-									<td>{{ $waste->wasteJenisKerja->nama }}</td>
+									<td>
+                                        @php 
+                                            ($waste->lokasi_id === '') ? $lokasi = 'Semua Lokasi' : $lokasi = $waste->wasteLokasi->nama;
+                                        @endphp
+                                        {{ $lokasi }}
+                                    </td>
+									<td>
+                                        @php 
+                                            ($waste->jenis_pekerjaan_id === '') ? $jenis = 'Semua Jenis Pekerjaan' : $jenis = $waste->wasteJenisKerja->nama;
+                                        @endphp
+                                        {{ $jenis }}
+                                    </td>
 									<td>{{ periode($waste->tahun.$waste->bulan)}}</td>
 									<td style="text-align:center;">
 										<a class="btn btn-default btn-xs" href="{{url('Logistik/admin/waste/edit/'.$waste->id.'')}}"><i class="fa fa-edit"></i>  Edit</a>

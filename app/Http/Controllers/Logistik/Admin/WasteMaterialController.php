@@ -50,13 +50,22 @@ class WasteMaterialController extends Controller
         $cekWaste = LogWaste::where('bulan',$bulan)->where('tahun',$tahun)->where('jenis_pekerjaan_id',$jenis_id)->where('lokasi_id',$lokasi_id)->where('soft_delete',0)->first();
         if(!$cekWaste){
 
-            $details = LogDetailPengajuanMaterial::whereHas('detailPengajuan',function ($q) use ($bulan,$jenis_id,$lokasi_id){
-                                                                      $q->whereMonth('tanggal','=',$bulan);
-                                                                      $q->where('jenis_pekerjaan_id',$jenis_id);
-                                                                      $q->where('lokasi_kerja_id',$lokasi_id);
-                                                                      $q->where('soft_delete',0);
-                                                                    })
-                                                                    ->get();
+            $details = LogDetailPengajuanMaterial::whereHas('detailPengajuan',function ($q) use ($bulan,$tahun,$jenis_id,$lokasi_id){
+                    if($bulan !== ''){
+                        $q->whereMonth('tanggal','=',$bulan);
+                    }
+                    if($tahun !== ''){
+                        $q->whereYear('tanggal','=',$tahun);
+                    }
+                    if($lokasi_id !== ''){
+                        $q->where('lokasi_id',$lokasi_id);
+                    }
+                    if($jenis_id !== ''){
+                        $q->where('jenis_pekerjaan_id',$jenis_id);
+                    }
+                     $q->where('soft_delete',0);
+                })->get();
+
             $materials = [];
             $count = count($materials);
             foreach ($details as $key => $value) {

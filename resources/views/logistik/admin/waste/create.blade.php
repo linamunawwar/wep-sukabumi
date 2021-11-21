@@ -67,7 +67,7 @@
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Jenis Pekerjaan :</label>
 										<div class="col-md-8 col-sm-8 col-xs-12">
 											<select class="form-control jenis" name="jenis" required="required" id="jenis">
-												<option value="">Pilih Jenis Pekerjaan</option>
+												<option value="">Semua Jenis Pekerjaan</option>
 												@foreach($jenis_kerjas as $jenis_kerja)
 													<option value="{{$jenis_kerja->id}}">{{$jenis_kerja->nama}}</option>
 												@endforeach
@@ -80,7 +80,7 @@
 										<label class="control-label col-md-4 col-sm-4 col-xs-12" for="nama">Lokasi :</label>
 										<div class="col-md-8 col-sm-8 col-xs-12">
 											<select class="form-control lokasi" name="lokasi" required="required" id="lokasi">
-												<option value="">Pilih Lokasi</option>
+												<option value="">Semua Lokasi</option>
 												@foreach($lokasis as $lokasi)
 													<option value="{{$lokasi->id}}">{{$lokasi->nama}}</option>
 												@endforeach
@@ -92,8 +92,7 @@
 							<br>
 							<button class="btn btn-primary pull-right" id="search">Search</button>
 						</div>
-						<br><br><br>
-						<div class="alert alert-danger" style="display: none;">
+						<div class="alert alert-danger" style="display: none; margin-top: 50px;">
 						  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
 						  <div class="isi">
 						  	<strong>Perhatian!</strong> Data sudah pernah diinput! Silahkan tekan tombol edit untuk mengubah data.
@@ -146,9 +145,9 @@
 									<th colspan="3" style="text-align: center;">Waste (%)</th>
 								</tr>
 								<tr>
-									<th>Deviasi terhadap rencana</th>
+									<th>Deviasi terhadap rencana (dalam %)</th>
 									<th>Rencana waste di APP (dalam %)</th>
-									<th>Realisasi</th>
+									<th>Realisasi (dalam %)</th>
 								</tr>
 								<tbody class="data">
 									
@@ -205,6 +204,7 @@
             	$('#bulan').val(bulan);
             	$('#tahun').val(tahun);
                 if(data != null){
+                	$('.alert-danger').hide();
                 	$('#demo-form2').show();
                 	$('#form1').hide();
 	                if(data.length != 0){
@@ -265,7 +265,7 @@
         if(vol_app.length !== 0 && progress.length !== 0){
         	var vol_progress = (parseFloat(vol_app) * parseFloat(progress)) / 100;
         	var deviasi_vol = parseFloat(vol_progress) - parseFloat(pemakaian);
-        	var deviasi = parseFloat(deviasi_vol) / parseFloat(vol_progress);
+        	var deviasi = (parseFloat(deviasi_vol) / parseFloat(vol_progress)) * 100;
         	vol_progress = parseFloat(vol_progress).toFixed(2);
         	deviasi_vol = parseFloat(deviasi_vol).toFixed(2);
         	deviasi = parseFloat(deviasi).toFixed(2);
@@ -288,7 +288,7 @@
         if(vol_app.length !== 0 && progress.length !== 0){
         	var vol_progress = (parseFloat(vol_app) * parseFloat(progress)) / 100;
         	var deviasi_vol = parseFloat(vol_progress) - parseFloat(pemakaian);
-        	var deviasi = parseFloat(deviasi_vol) / parseFloat(vol_progress);
+        	var deviasi = (parseFloat(deviasi_vol) / parseFloat(vol_progress)) * 100;
         	vol_progress = parseFloat(vol_progress).toFixed(2);
         	deviasi_vol = parseFloat(deviasi_vol).toFixed(2);
         	deviasi = parseFloat(deviasi).toFixed(2);
