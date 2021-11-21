@@ -299,7 +299,7 @@ class LaporanController extends Controller
 	}
 
 
-
+    //log07= buku harian pengeluaran bahan
 	public function getLog07()
     {
         $jeniss = LogJenis::where('soft_delete',0)->get();
@@ -494,6 +494,7 @@ class LaporanController extends Controller
         }
     }
 	
+    //kartu gudang
 	public function getLog02()
     {
         $namaBulan = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
@@ -708,6 +709,7 @@ class LaporanController extends Controller
         }
 	}
 
+    //buku harian gudang, nama file log04
 	public function getLog05()
     {
         return view('logistik.admin.log05.index',['show'=>0]);
@@ -720,7 +722,8 @@ class LaporanController extends Controller
 		$tgl_selesai=konversi_tanggal($data['tanggal_selesai']);
 		$dt = [];
         $i = 1;      
-        
+        $baris_data =0;
+
 		while($tgl_mulai <= $tgl_selesai){
             $j = 0;	
             $dt[$i]['tanggal'] = '';	
@@ -758,6 +761,13 @@ class LaporanController extends Controller
                 }
             $j++;                
             }
+            //jika datanya kosong perhitungan baris ditab=mbah satu
+            if(count($penerimaanDetails) == 0){
+                $baris_data = $baris_data +$j+1;
+            }else{
+                $baris_data = $baris_data + $j;
+            }
+            
 
             // foreach ($pengajuanDetails as $key => $pengajuan) {                
             //     $dt[$i]['data'][$j]['material'] = $pengajuan->material->nama;
@@ -769,6 +779,9 @@ class LaporanController extends Controller
 			$i++;
 			$tgl_mulai = date('Y-m-d',strtotime('+1 days',strtotime($tgl_mulai)));
         }
+
+        //angka 22 di dapet dr itungan jumlah baris dr atas smpai tabel dan dr tabel sampe kolom untuk ttd
+        $baris_data = $baris_data+22;
 
 		$splem = getManagerLaporan('SL',$tgl_mulai);
 
@@ -785,54 +798,74 @@ class LaporanController extends Controller
         }elseif($data['unduh'] == 1){
             if(count($dt)!= 0){
 
-            	$excel = \Excel::create("Form Log-05 Laporan Harian Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($dt, $splem) {
+            	$excel = \Excel::create("Form Log-04 Laporan Harian Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($dt, $splem,$data, $baris_data) {
 
-                        $excel->sheet('New sheet', function ($sheet) use ($dt, $splem) {
+                        $excel->sheet('New sheet', function ($sheet) use ($dt, $splem,$data,$baris_data) {
 
-                            $sheet->loadView('logistik.admin.log05.unduh', ['data' => $dt, 'splem' => $splem]);
+                            $sheet->loadView('logistik.admin.log05.unduh', ['data' => $dt, 'splem' => $splem,'tanggal_mulai'=>$data['tanggal_mulai'], 'tanggal_selesai' => $data['tanggal_selesai'],'baris_data'=>$baris_data]);
                             $objDrawing = new PHPExcel_Worksheet_Drawing;
                             $objDrawing->setPath(public_path('img/Waskita.png'));
-                            $objDrawing->setCoordinates('C1');
+                            $objDrawing->setCoordinates('C4');
                             $objDrawing->setWorksheet($sheet);
                             $objDrawing->setResizeProportional(false);
                             // set width later
                             $objDrawing->setWidth(40);
                             $objDrawing->setHeight(35);
 
-                            $sheet->getStyle('C1')->getAlignment()->setIndent(1);
+                            $sheet->getStyle('C4')->getAlignment()->setIndent(1);
 
                             $sheet->getStyle('A13:J63')->getAlignment()->setWrapText(true);
-                            $sheet->getStyle('A2:J36')->getFont()->setName('Tahoma');
-                            $sheet->getStyle('A13:J15')->getAlignment()->applyFromArray(
-                                array('horizontal' => 'center')
-                            );
+                            $sheet->getStyle('A2:J36')->getFont()->setName('Arial');
+                          
                             $sheet->cells('A1:J100', function ($cells) {
                                 $cells->setValignment('center');
-                                $cells->setFontFamily('Tahoma');
+                                $cells->setFontFamily('Arial');
                             });
 
                             $sheet->cell('D9:E11', function ($cell) {
                                 $cell->setValignment('center');
                             });
-                            $sheet->cell('D8:E8', function ($cell) {
-                                $cell->setBorder('', '', 'thin', '');
-                            });
-                            $sheet->cell('C4', function ($cell) {
+                            $sheet->cell('C7', function ($cell) {
                                 $cell->setBorder('thin', 'thin', 'thin', 'thin');
                             });
-                            $sheet->cell('C6', function ($cell) {
+                            $sheet->cell('C9', function ($cell) {
                                 $cell->setalignment('center');
                                 $cell->setValignment('center');
                                 $cell->setBorder('thin', 'thin', 'thin', 'thin');
                             });
-                            // $sheet->cell('B14:E14', function($cell){
-                            //     $cell->setBorder('','','','thin');
-                            // });
+                            
+                            //set image ttd splem
+                            // init drawing
+                            if(file_exists("upload/pegawai/$splem->nip/$splem->ttd")){
+                                $drawing = new PHPExcel_Worksheet_Drawing();
+                                // Set image
+                                $drawing->setPath("upload/pegawai/$splem->nip/$splem->ttd");
+                                $drawing->setWorksheet($sheet);
+                                $drawing->setCoordinates('H'.$baris_data);
+                                $drawing->setResizeProportional(false);
+                                $drawing->setWidth(120);
+                                $drawing->setHeight(90);
+                            }
+
+                            $sheet->setHeight($baris_data,90);
+
+                            $sheet->setWidth(array(
+                                'A'     =>  1,
+                                'B'     =>  1,
+                                'C'     =>  6,
+                                'D'     =>  12,
+                                'E'     =>  12,
+                                'F'     =>  25,
+                                'G'     =>  10,
+                                'H'     =>  8,
+                                'I'     =>  10,
+                                'J'     =>  8
+                            )); 
                         });
                     });
                     $styleArray = array(
                         'font' => array(
-                            'name' => 'Tahoma',
+                            'name' => 'Arial',
                         ));
                     $excel->getDefaultStyle()
                         ->applyFromArray($styleArray);
