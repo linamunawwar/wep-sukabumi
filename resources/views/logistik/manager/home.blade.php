@@ -17,21 +17,21 @@
 					</a>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
-					<a href="{{url('manager/spj/pengajuan')}}">
+					<a href="{{url('Logistik/manager/permintaan')}}">
 						<span class="count_top"><i class="fa fa-exchange"></i> Permintaan Material</span>
 						<div class="count">{{count(notifApprovePermintaanManager())}}</div>
 						<span class="count_bottom"><i class="green">Need To be Approved</i></span>
 					</a>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
-					<a href="{{url('manager/spj/pengajuan')}}">
+					<a href="{{url('Logistik/manager/penerimaan')}}">
 						<span class="count_top"><i class="fa fa-exchange"></i> Penerimaan Material</span>
 						<div class="count">{{count(notifApprovePenerimaanManager())}}</div>
 						<span class="count_bottom"><i class="green">Need To be Approved</i></span>
 					</a>
 				</div>
 				<div class="col-md-3 col-sm-5 col-xs-7 tile_stats_count">
-					<a href="{{url('manager/spj/pengajuan')}}">
+					<a href="{{url('Logistik/manager/pengajuan')}}">
 						<span class="count_top"><i class="fa fa-exchange"></i> Pengajuan Material</span>
 						<div class="count">{{count(notifApprovePengajuanManager())}}</div>
 						<span class="count_bottom"><i class="green">Need To be Approved</i></span>
