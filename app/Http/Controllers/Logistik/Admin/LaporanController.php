@@ -601,6 +601,9 @@ class LaporanController extends Controller
             $data['unduh'] = 0;
         }
         
+        if($tgl_terakhir == 0){
+            $tgl_terakhir = '01';
+        }
         $data['tgl_terakhir'] = $tgl_terakhir;
         if($data['proses'] == 1){
             $namaBulan = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
