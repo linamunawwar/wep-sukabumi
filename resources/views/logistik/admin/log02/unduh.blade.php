@@ -72,7 +72,7 @@
         <td></td>
         <td></td>
         <td colspan="2">Bulan </td>
-        <td align="left">: {{ $tahun }}</td>
+        <td align="left">: {{ $bulan }}</td>
         <td></td>
         <td></td>
         <td align="left">No.material</td>
@@ -82,7 +82,7 @@
         <td></td>
         <td></td>
         <td colspan="2">Tahun </td>
-        <td align="left">: {{ $bulan }}</td>
+        <td align="left">: {{ $data2['tahun'] }}</td>
         <td></td>
         <td></td>
         <td align="left">Nama Bahan </td>
@@ -142,7 +142,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td colspan="2" style="text-align: left;"> Tanggal </td>
+        <td colspan="2" style="text-align: center;"> Bekasi, {{$data2['tgl_terakhir'].'-'.$data2['bulan'].'-'.$data2['tahun']}} </td>
         <td></td>
         <td></td>
     </tr>
