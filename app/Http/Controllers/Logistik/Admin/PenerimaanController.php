@@ -370,41 +370,119 @@ class PenerimaanController extends Controller
 	                        $sheet->loadView('logistik.admin.penerimaan.unduh',['penerimaan' => $find,'datas'=>$dt_penerimaan,'splem'=>$splem,'pm'=>$pm]);
 	                        $objDrawing = new PHPExcel_Worksheet_Drawing;
 	                        $objDrawing->setPath(public_path('img/Waskita.png'));
-	                        $objDrawing->setCoordinates('C1');
+	                        $objDrawing->setCoordinates('C4');
 	                        $objDrawing->setWorksheet($sheet);
 	                        $objDrawing->setResizeProportional(false);
 	                        // set width later
 	                        $objDrawing->setWidth(40);
 	                        $objDrawing->setHeight(35);
-	                        $sheet->getStyle('C1')->getAlignment()->setIndent(1);
+	                        $sheet->getStyle('C4')->getAlignment()->setIndent(1);
 
-	                        $sheet->getStyle('A11:K27')->getAlignment()->setWrapText(true);
-	                        $sheet->getStyle('A2:K36')->getFont()->setName('Tahoma');
-	                        $sheet->getStyle('A13:K15')->getAlignment()->applyFromArray(
+                            //set image ttd pm
+                            // init drawing
+                            if(file_exists("upload/pegawai/$pm->nip/$pm->ttd")){
+                                $drawing1 = new PHPExcel_Worksheet_Drawing();
+                                // Set image
+                                $drawing1->setPath("upload/pegawai/$pm->nip/$pm->ttd");
+                                $drawing1->setWorksheet($sheet);
+                                $drawing1->setCoordinates('D48');
+                                $drawing1->setResizeProportional(false);
+                                $drawing1->setWidth(150);
+                                $drawing1->setHeight(100);
+                            }
+
+                            //set image ttd splem
+                            // init drawing
+                            if(file_exists("upload/pegawai/$splem->nip/$splem->ttd")){
+                                $drawing2 = new PHPExcel_Worksheet_Drawing();
+                                // Set image
+                                $drawing2->setPath("upload/pegawai/$splem->nip/$splem->ttd");
+                                $drawing2->setWorksheet($sheet);
+                                $drawing2->setCoordinates('F48');
+                                $drawing2->setResizeProportional(false);
+                                $drawing2->setWidth(150);
+                                $drawing2->setHeight(100);
+                            }
+
+                            //set image ttd penerima
+                            // init drawing
+                            if(file_exists("upload/pegawai/Auth::user()->pegawai_id/Auth::user()->pegawai->ttd")){
+                                $drawing3 = new PHPExcel_Worksheet_Drawing();
+                                // Set image
+                                $drawing3->setPath("upload/pegawai/Auth::user()->pegawai_id/Auth::user()->pegawai->ttd");
+                                $drawing3->setWorksheet($sheet);
+                                $drawing3->setCoordinates('J48');
+                                $drawing3->setResizeProportional(false);
+                                $drawing3->setWidth(150);
+                                $drawing3->setHeight(100);
+                            }
+
+
+	                        $sheet->getStyle('A9:M50')->getAlignment()->setWrapText(true);
+	                        $sheet->getStyle('A2:M50')->getFont()->setName('Tahoma');
+	                        $sheet->getStyle('A13:L15')->getAlignment()->applyFromArray(
 	                            array('horizontal' => 'center')
 	                        );
 	                        $sheet->cells('A9:K11', function ($cells) {
 	                            $cells->setValignment('center');
 	                            $cells->setFontFamily('Tahoma');
 	                        });
+                            $sheet->setHeight(array(
+                                12     =>  50,
+                                32     =>  20,
+                                33     =>  20,
+                                34     =>  20,
+                                35     =>  25,
+                                36     =>  30,
+                                37     =>  25,
+                                38     =>  10,
+                                39     =>  25,
+                                40     =>  25,
+                                41     =>  10,
+                                42     =>  25,
+                                43     =>  25,
+                                44     =>  10,
+                                46     =>  30,
+                                48     =>  90
+                            ));
 	                        
-	                        $sheet->cell('D9:E11', function($cell){
+                            $sheet->setWidth(array(
+                                'A'     =>  1,
+                                'B'     =>  1,
+                                'C'     =>  6,
+                                'D'     =>  24,
+                                'E'     =>  5,
+                                'F'     =>  10,
+                                'G'     =>  7,
+                                'H'     =>  7,
+                                'I'     =>  7,
+                                'J'     =>  8,
+                                'K'     =>  8,
+                                'L'     => 10
+                            ));
+
+	                        $sheet->cell('C16:M31', function($cell){
 	                            $cell->setValignment('center');
 	                        });
-	                        $sheet->cell('D8:E8', function($cell){
-	                            $cell->setBorder('','','thin','');
-	                        });
-	                        $sheet->cell('C4', function($cell){
-	                            $cell->setBorder('thin','thin','thin','thin');
-	                        });
-	                        $sheet->cell('C6', function($cell){
-	                            $cell->setalignment('center');
-	                            $cell->setValignment('center');
-	                            $cell->setBorder('thin','thin','thin','thin');
-	                        });
-	                        // $sheet->cell('B14:E14', function($cell){
-	                        //     $cell->setBorder('','','','thin');
-	                        // });
+                            $sheet->cell('G37', function($cell){
+                                $cell->setValignment('top');
+                            });
+                            $sheet->cell('G40', function($cell){
+                                $cell->setValignment('top');
+                            });
+                            $sheet->cell('G43', function($cell){
+                                $cell->setValignment('top');
+                            });
+                            $sheet->cell('G36:H36', function($cell){
+                                $cell->setBorder('','','thin','');
+                            });
+                            $sheet->cell('G39:H39', function($cell){
+                                $cell->setBorder('','','thin','');
+                            });
+                            $sheet->cell('G42:H42', function($cell){
+                                $cell->setBorder('','','thin','');
+                            });
+
 	                    });
 	                });
 	                 $styleArray = array(
