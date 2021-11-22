@@ -44,6 +44,7 @@ class LaporanController extends Controller
         return $retWeek;
     }
 
+    //log 06 berubah jadi log 05
     public function getLog06()
     {
     	return view('logistik.admin.log06.index',['show'=>0]);
@@ -146,7 +147,7 @@ class LaporanController extends Controller
         }elseif($data['unduh'] == 1){
             if(count($materials)!= 0){
                 $path = base_path();
-            	$excel = \Excel::create("Form Log-06 Laporan Evaluasi Pemakaian Bahan " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($data,$materials,$splem,$path) {
+            	$excel = \Excel::create("Form Log-05 Laporan Evaluasi Pemakaian Bahan " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($data,$materials,$splem,$path) {
 
                         $excel->sheet('New sheet', function ($sheet) use ($data,$materials,$splem,$path) {
 
@@ -169,7 +170,7 @@ class LaporanController extends Controller
                             $path2 = str_replace('public','upload',$path);
                             $path3 = str_replace('laravel','public_html',$path2);
                             $objDrawing->setPath($path3.'/pegawai/'.$splem->nip."/".$splem->ttd);
-                            $objDrawing->setCoordinates('I55');
+                            $objDrawing->setCoordinates('I57');
                             $objDrawing->setWorksheet($sheet);
                             $objDrawing->setResizeProportional(false);
                             // set width later
@@ -177,83 +178,83 @@ class LaporanController extends Controller
                             $objDrawing->setHeight(75);
                             $sheet->getStyle('I55')->getAlignment()->setIndent(5);
 
-                            $sheet->getStyle('C13:J13')->applyFromArray(array(
+                            $sheet->getStyle('C15:J15')->applyFromArray(array(
                                                             'borders' => array(
                                                                 'allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
                                                             )
                                                         ));
 
-                            $sheet->getStyle('C13:J13')->applyFromArray(array(
+                            $sheet->getStyle('C15:J15')->applyFromArray(array(
                                                             'borders' => array(
                                                                 'top' => array('style' => PHPExcel_Style_Border::BORDER_DOUBLE)
                                                             )
                                                         ));
-                            $sheet->getStyle('C14:J14')->applyFromArray(array(
+                            $sheet->getStyle('C16:J16')->applyFromArray(array(
                                                             'borders' => array(
                                                                 'allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
                                                             )
                                                         ));
-                            $sheet->getStyle('C15:J15')->applyFromArray(array(
+                            $sheet->getStyle('C17:J17')->applyFromArray(array(
                                                             'borders' => array(
                                                                 'allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
                                                             )
                                                         ));
-                            $sheet->getStyle('C15:J15')->applyFromArray(array(
+                            $sheet->getStyle('C17:J17')->applyFromArray(array(
                                                             'borders' => array(
                                                                 'bottom' => array('style' => PHPExcel_Style_Border::BORDER_DOUBLE)
                                                             )
                                                         ));
-                            $sheet->getStyle('C16:C50')->applyFromArray(array(
+                            $sheet->getStyle('C18:C52')->applyFromArray(array(
                                                             'borders' => array(
                                                                 'right' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
                                                                 'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
                                                             )
                                                         ));
-                            $sheet->getStyle('D16:D50')->applyFromArray(array(
+                            $sheet->getStyle('D18:D52')->applyFromArray(array(
                                                             'borders' => array(
                                                                 'right' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
                                                                 'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
                                                             )
                                                         ));
-                            $sheet->getStyle('E16:E50')->applyFromArray(array(
+                            $sheet->getStyle('E18:E52')->applyFromArray(array(
                                                             'borders' => array(
                                                                 'right' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
                                                                 'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
                                                             )
                                                         ));
-                            $sheet->getStyle('F16:F50')->applyFromArray(array(
+                            $sheet->getStyle('F18:F52')->applyFromArray(array(
                                                             'borders' => array(
                                                                 'right' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
                                                                 'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
                                                             )
                                                         ));
-                            $sheet->getStyle('G16:G50')->applyFromArray(array(
+                            $sheet->getStyle('G18:G52')->applyFromArray(array(
                                                             'borders' => array(
                                                                 'right' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
                                                                 'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
                                                             )
                                                         ));
-                            $sheet->getStyle('H16:H50')->applyFromArray(array(
+                            $sheet->getStyle('H18:H52')->applyFromArray(array(
                                                             'borders' => array(
                                                                 'right' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
                                                                 'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
                                                             )
                                                         ));
-                            $sheet->getStyle('I16:I50')->applyFromArray(array(
+                            $sheet->getStyle('I18:I52')->applyFromArray(array(
                                                             'borders' => array(
                                                                 'right' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
                                                                 'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
                                                             )
                                                         ));
-                            $sheet->getStyle('J16:J50')->applyFromArray(array(
+                            $sheet->getStyle('J18:J52')->applyFromArray(array(
                                                             'borders' => array(
                                                                 'right' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
                                                                 'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
                                                             )
                                                         ));
                             $sheet->getStyle('A10:J70')->getAlignment()->setWrapText(true);
-                            $sheet->getStyle('A2:J36')->getFont()->setName('Tahoma');
-                            $sheet->getStyle('A13:J15')->getAlignment()->applyFromArray(
+                            $sheet->getStyle('A2:J70')->getFont()->setName('Tahoma');
+                            $sheet->getStyle('A15:J17')->getAlignment()->applyFromArray(
                                 array('horizontal' => 'center')
                             );
                             $sheet->cells('A9:J60', function ($cells) {
@@ -266,22 +267,28 @@ class LaporanController extends Controller
                             });
                             
 
-                            $sheet->cell('C6', function ($cell) {
+                            $sheet->cell('C7', function ($cell) {
                                 $cell->setBorder('thin', 'thin', 'thin', 'thin');
                             });
-                            $sheet->cell('C8', function ($cell) {
+                            $sheet->cell('C9', function ($cell) {
                                 $cell->setalignment('center');
                                 $cell->setValignment('center');
                                 $cell->setBorder('thin', 'thin', 'thin', 'thin');
                             });
-                            // $sheet->cell('B14:E14', function($cell){
-                            //     $cell->setBorder('','','','thin');
-                            // // });
-                            // $sheet->getStyle('J61:K64')->getAlignment()->setWrapText(true);
-                            // $sheet->cell('J61:K64', function ($cell) {
-                            //     $cell->setalignment('center');
-                            //     $cell->setValignment('center');
-                            // });
+
+
+                            $sheet->setWidth(array(
+                                'A'     =>  1,
+                                'B'     =>  1,
+                                'C'     =>  8,
+                                'D'     =>  25,
+                                'E'     =>  8,
+                                'F'     =>  8,
+                                'G'     =>  8,
+                                'H'     =>  8,
+                                'I'     =>  12,
+                                'J'     =>  12
+                            ));
                         });
                     });
                     $styleArray = array(
@@ -299,7 +306,7 @@ class LaporanController extends Controller
 	}
 
 
-
+    //log07= buku harian pengeluaran bahan
 	public function getLog07()
     {
         $jeniss = LogJenis::where('soft_delete',0)->get();
@@ -494,6 +501,7 @@ class LaporanController extends Controller
         }
     }
 	
+    //kartu gudang
 	public function getLog02()
     {
         $namaBulan = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
@@ -526,6 +534,7 @@ class LaporanController extends Controller
 		$dt = [];
         $trs_keluar = 0;
         $trs_terima = 0;
+        $tgl_terakhir = 0;
 		for ($i=1; $i <=31 ; $i++) { 
 			$dt[$i]['jml_terima'] = 0;
 			$dt[$i]['jml_keluar'] = 0;
@@ -560,6 +569,10 @@ class LaporanController extends Controller
     					$trs_terima = $trs_terima + $dt[$i]['jml_terima'];
                         $dt[$i]['trs_terima'] = $trs_terima;
     				}
+                    $d = date('d',strtotime($value->tanggal_terima));
+                    if($tgl_terakhir<$d){
+                        $tgl_terakhir = $d;
+                    }
                 }else{
                     $dt[$i]['trs_terima'] = $trs_terima;
                 }
@@ -577,12 +590,16 @@ class LaporanController extends Controller
                         $trs_keluar = $trs_keluar + $dt[$i]['jml_keluar'];
 						$dt[$i]['trs_keluar'] = $trs_keluar;
 					}
+                    $d = date('d',strtotime($value->tanggal_pengajuan));
+                    if($tgl_terakhir<$d){
+                        $tgl_terakhir = $d;
+                    }
 				}else{
                     $dt[$i]['trs_keluar'] = $trs_keluar;
                 }
 
 			$dt[$i]['sisa'] = $dt[$i]['trs_terima'] - $dt[$i]['trs_keluar'];
-		}	
+		}
 
 		$splem = getManagerLaporan('SL',$data['tanggal_mulai']);
         if(!isset($data['proses'])){
@@ -592,6 +609,10 @@ class LaporanController extends Controller
             $data['unduh'] = 0;
         }
         
+        if($tgl_terakhir == 0){
+            $tgl_terakhir = '01';
+        }
+        $data['tgl_terakhir'] = $tgl_terakhir;
         if($data['proses'] == 1){
             $namaBulan = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
             $idBulan = array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
@@ -601,11 +622,11 @@ class LaporanController extends Controller
 
         }elseif($data['unduh'] == 1){
             if(count($dt)!= 0){
-            	$excel = \Excel::create("Form Log-02 Laporan Kartu Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($getBulan, $getMaterial, $dt,$splem,$tahun) {
+            	$excel = \Excel::create("Form Log-02 Laporan Kartu Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($getBulan, $getMaterial, $dt,$data,$splem,$tahun) {
 
-                        $excel->sheet('New sheet', function ($sheet) use ($getBulan, $getMaterial, $dt,$splem,$tahun) {
+                        $excel->sheet('New sheet', function ($sheet) use ($getBulan, $getMaterial, $dt,$data,$splem,$tahun) {
 
-                            $sheet->loadView('logistik.admin.log02.unduh', ['data' => $dt, 'bulan' => $getBulan, 'tahun'=> $tahun,'material' => $getMaterial, 'splem' => $splem]);
+                            $sheet->loadView('logistik.admin.log02.unduh', ['data' => $dt,'data2'=>$data, 'bulan' => $getBulan,'material' => $getMaterial, 'splem' => $splem]);
 
                             $objDrawing = new PHPExcel_Worksheet_Drawing;
                             $objDrawing->setPath(public_path('img/Waskita.png'));
@@ -695,6 +716,7 @@ class LaporanController extends Controller
         }
 	}
 
+    //buku harian gudang, nama file log04
 	public function getLog05()
     {
         return view('logistik.admin.log05.index',['show'=>0]);
@@ -707,7 +729,8 @@ class LaporanController extends Controller
 		$tgl_selesai=konversi_tanggal($data['tanggal_selesai']);
 		$dt = [];
         $i = 1;      
-        
+        $baris_data =0;
+
 		while($tgl_mulai <= $tgl_selesai){
             $j = 0;	
             $dt[$i]['tanggal'] = '';	
@@ -745,6 +768,13 @@ class LaporanController extends Controller
                 }
             $j++;                
             }
+            //jika datanya kosong perhitungan baris ditab=mbah satu
+            if(count($penerimaanDetails) == 0){
+                $baris_data = $baris_data +$j+1;
+            }else{
+                $baris_data = $baris_data + $j;
+            }
+            
 
             // foreach ($pengajuanDetails as $key => $pengajuan) {                
             //     $dt[$i]['data'][$j]['material'] = $pengajuan->material->nama;
@@ -756,6 +786,9 @@ class LaporanController extends Controller
 			$i++;
 			$tgl_mulai = date('Y-m-d',strtotime('+1 days',strtotime($tgl_mulai)));
         }
+
+        //angka 22 di dapet dr itungan jumlah baris dr atas smpai tabel dan dr tabel sampe kolom untuk ttd
+        $baris_data = $baris_data+22;
 
 		$splem = getManagerLaporan('SL',$tgl_mulai);
 
@@ -772,54 +805,74 @@ class LaporanController extends Controller
         }elseif($data['unduh'] == 1){
             if(count($dt)!= 0){
 
-            	$excel = \Excel::create("Form Log-05 Laporan Harian Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($dt, $splem) {
+            	$excel = \Excel::create("Form Log-04 Laporan Harian Gudang " . konversi_tanggal($data['tanggal_mulai']) . "- " . konversi_tanggal($data['tanggal_selesai']), function ($excel) use ($dt, $splem,$data, $baris_data) {
 
-                        $excel->sheet('New sheet', function ($sheet) use ($dt, $splem) {
+                        $excel->sheet('New sheet', function ($sheet) use ($dt, $splem,$data,$baris_data) {
 
-                            $sheet->loadView('logistik.admin.log05.unduh', ['data' => $dt, 'splem' => $splem]);
+                            $sheet->loadView('logistik.admin.log05.unduh', ['data' => $dt, 'splem' => $splem,'tanggal_mulai'=>$data['tanggal_mulai'], 'tanggal_selesai' => $data['tanggal_selesai'],'baris_data'=>$baris_data]);
                             $objDrawing = new PHPExcel_Worksheet_Drawing;
                             $objDrawing->setPath(public_path('img/Waskita.png'));
-                            $objDrawing->setCoordinates('C1');
+                            $objDrawing->setCoordinates('C4');
                             $objDrawing->setWorksheet($sheet);
                             $objDrawing->setResizeProportional(false);
                             // set width later
                             $objDrawing->setWidth(40);
                             $objDrawing->setHeight(35);
 
-                            $sheet->getStyle('C1')->getAlignment()->setIndent(1);
+                            $sheet->getStyle('C4')->getAlignment()->setIndent(1);
 
                             $sheet->getStyle('A13:J63')->getAlignment()->setWrapText(true);
-                            $sheet->getStyle('A2:J36')->getFont()->setName('Tahoma');
-                            $sheet->getStyle('A13:J15')->getAlignment()->applyFromArray(
-                                array('horizontal' => 'center')
-                            );
+                            $sheet->getStyle('A2:J36')->getFont()->setName('Arial');
+                          
                             $sheet->cells('A1:J100', function ($cells) {
                                 $cells->setValignment('center');
-                                $cells->setFontFamily('Tahoma');
+                                $cells->setFontFamily('Arial');
                             });
 
                             $sheet->cell('D9:E11', function ($cell) {
                                 $cell->setValignment('center');
                             });
-                            $sheet->cell('D8:E8', function ($cell) {
-                                $cell->setBorder('', '', 'thin', '');
-                            });
-                            $sheet->cell('C4', function ($cell) {
+                            $sheet->cell('C7', function ($cell) {
                                 $cell->setBorder('thin', 'thin', 'thin', 'thin');
                             });
-                            $sheet->cell('C6', function ($cell) {
+                            $sheet->cell('C9', function ($cell) {
                                 $cell->setalignment('center');
                                 $cell->setValignment('center');
                                 $cell->setBorder('thin', 'thin', 'thin', 'thin');
                             });
-                            // $sheet->cell('B14:E14', function($cell){
-                            //     $cell->setBorder('','','','thin');
-                            // });
+                            
+                            //set image ttd splem
+                            // init drawing
+                            if(file_exists("upload/pegawai/$splem->nip/$splem->ttd")){
+                                $drawing = new PHPExcel_Worksheet_Drawing();
+                                // Set image
+                                $drawing->setPath("upload/pegawai/$splem->nip/$splem->ttd");
+                                $drawing->setWorksheet($sheet);
+                                $drawing->setCoordinates('H'.$baris_data);
+                                $drawing->setResizeProportional(false);
+                                $drawing->setWidth(120);
+                                $drawing->setHeight(90);
+                            }
+
+                            $sheet->setHeight($baris_data,90);
+
+                            $sheet->setWidth(array(
+                                'A'     =>  1,
+                                'B'     =>  1,
+                                'C'     =>  6,
+                                'D'     =>  12,
+                                'E'     =>  12,
+                                'F'     =>  25,
+                                'G'     =>  10,
+                                'H'     =>  8,
+                                'I'     =>  10,
+                                'J'     =>  8
+                            )); 
                         });
                     });
                     $styleArray = array(
                         'font' => array(
-                            'name' => 'Tahoma',
+                            'name' => 'Arial',
                         ));
                     $excel->getDefaultStyle()
                         ->applyFromArray($styleArray);

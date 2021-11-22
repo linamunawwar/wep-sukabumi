@@ -55,8 +55,13 @@
 							<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 							<div class="form-group">
 								<label style="display: inline-block;" for="nama">Kode Penerimaan :</label>
-								<p style="display: inline-block;" id="kode_penerimaan_id">{{$kode_penerimaan}}</p>
+								<p style="display: inline-block;" id="kode_penerimaan_text"></p>
+									<?php
+										if(!isset($kode_penerimaan)) $kode_penerimaan = '';
+										echo $kode_penerimaan;
+									?>
 								<input type="hidden" name="kodePenerimaan" value="{{$kode_penerimaan}}" id="kode_penerimaan_id" class="kode_penerimaan_id">
+								
 							</div>							
 							<div class="row">
 								<div class="col-md-3 col-sm-12 col-xs-12">
@@ -76,8 +81,8 @@
 									<div class="form-group">
 										<label style="display: inline-block;" for="nama">Lokasi Pekerjaan </label>
 										<p style="display: inline-block;">
-											<select class="form-control lokasiPekerjaan" name="lokasiPekerjaan" id="lokasiPekerjaan" style="width: 130%; !important" required='required'>
-												<option value="">Pilih lokasiPekerjaan</option>
+											<select class="form-control lokasiPekerjaan" name="lokasiPekerjaan" id="lokasiPekerjaan" style="width: 110%; !important" required='required'>
+												<option value="">Pilih lokasi Pekerjaan</option>
 												@foreach($lokasiPekerjaans as $lokasiPekerjaan)
 													<option value="{{$lokasiPekerjaan->id}}">{{$lokasiPekerjaan->nama}}</option>
 												@endforeach
@@ -164,6 +169,8 @@
             },
             success: function(response){
             	var data = JSON.parse(response);
+            	$('#kode_penerimaan_id').val($('#kode_penerimaan').val());
+            	$('#kode_penerimaan_text').html($('#kode_penerimaan').val());
             	if(data === 0){
             		$('.alert-notif').show();
             		$('.not-found').hide();

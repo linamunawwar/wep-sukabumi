@@ -34,7 +34,7 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Evaluasi Pemakaian Material (Log-06) </h2>
+						<h2>Evaluasi Pemakaian Material (Log-05) </h2>
 						<ul class="nav navbar-right panel_toolbox">
 						</ul>
 						<div class="clearfix"></div>
@@ -85,59 +85,71 @@
 							@else
 								<button type="submit" name="unduh" value="1" class="btn btn-primary pull-right">Download</button>
 								<div class="Laporan">
-									<table class="table" cellspacing="0" style="font-size: 12;">
+									<table class="table" cellspacing="0" cellpadding="0" border="0" style="font-size: 12;">
 									  <tr>
-									    <th><img src="../../public/img/Waskita.png" width="30" height="30"></th>
-									    <th colspan="4"><b style="font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
+									    <th></th>
+									    <th colspan="4"></th>
 									    <td></td>
 									    <td></td>
-									    <td style="border: 1px solid #000000;  " colspan="2" align="center"><b>Formulir Log-06</b></td>
+									    <td style="border: 1px solid #000000;  " colspan="2" align="center"><b>FORMULIR LOGINV-05</b></td>
 									  </tr>
 									  <tr>
 									    <!-- <td style="font-size: 14px;">Periode</td>
 									  	<td style="font-size: 14px;">: {{$data['tanggal_mulai']}} s.d {{$data['tanggal_selesai']}}</td> -->
-									    <th></th>
-									    <th></th>
-									    <th></th>
-									    <th></th>
-									    <th></th>
-									    <th></th>
-									    <th></th>
-									    <td style="border: 1px solid #000000;">Edisi : Mei 2019</b></td>
-									    <td style="border: 1px solid #000000;">Revisi : 0 </td>
+									    <th colspan="7"></th>
+									    <td style="border: 1px solid #000000;">Edisi : Mei 2020</b></td>
+									    <td style="border: 1px solid #000000;">Revisi : 01 </td>
+									  </tr>
 									  <tr>
+									    <th><img src="../../public/img/Waskita.png" width="50" height="50"></th>
+									    <th colspan="4"><b style="font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk<br> INDUSTRI KONSTURKSI</b></th>
+									    <td></td>
+									    <td></td>
+									  </tr>
+									  <tr>
+									  	<td></td>
 									    <td style="padding-left: 10px; font-size: 14px;">Business Unit</td>
+									    <td>:</td>
 									  </tr>
 									  <tr>   
+									  	<td></td>
 									    <td style="font-size: 14px;">Proyek</td>
 									    <td colspan="3" style="font-size: 14px;">: Proyek Jalan Tol Becakayu Seksi 2A Ujung</td>
 									    <td></td>
-									    <td colspan="3" style="font-weight: bold;"> No. AB</td>
+									    <td colspan="3" style="font-weight: bold;"> ID Proyek :</td>
 									  </tr>
-									</table>
-
-									<table class="table table-striped" style="text-align: center;">
+									  <tr>
+									  	<td></td>
+									  </tr>
 									  <tr>
 									    <td colspan="9" style="text-align: center;border: 1px solid #000000"><h4><b>LAPORAN EVALUASI PEMAKAIAN BAHAN</b></h4></td>
 									  </tr>
 									  <tr>
-									    <td></td>
+									      <td></td>
+									      @php
+									        $date = explode('-',$data['tanggal_mulai']);
+									      @endphp
+									      <td>Bulan : {{bulan($date[1])}}</td>
+									  </tr>
+									  <tr>
+									      <td></td>
+									      <td>Tahun: {{$date[2]}}</td>
 									  </tr>
 									</table>
 									<table class="table table-striped" style="table-layout:fixed;">
 									  <tr class="thead-light" >
-									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11; width: 100px;" rowspan="2" align="center">Asal Bahan *)</td>
-									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11; width: 300px;" width="27" rowspan="2" align="center">JENIS BAHAN</td>
-									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11; width: 300px;" colspan="3" align="center">VOLUME BAHAN</td>
-									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11; width: 300;" colspan="3" align="center">SISA STOCK (FIFO)</td>
+									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11; width: 100px; vertical-align: middle;" rowspan="2" align="center">Asal Material *)</td>
+									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11; width: 300px; vertical-align: middle;" width="27" rowspan="2" align="center">Nomor / Nama Material</td>
+									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11; width: 300px;" colspan="3" align="center">Volume Material</td>
+									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11; width: 300;" colspan="3" align="center">Sisa Stock dalam SAP</td>
 									  </tr>
 									  <tr class="thead-light" style="text-align: center;">
-									    <td style="border: 1px double #000000;font-weight: bold; font-size: 11;">KEBUTUHAN</td>
-									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11;">MASUK</td>
-									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11;">TERPAKAI</td>
-									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11;">JUMLAH</td>
-									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11; width: 10px;" >HRG_SAT</td>
-									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11;" >JML_HRG</td>
+									    <td style="border: 1px double #000000;font-weight: bold; font-size: 11; vertical-align: middle;">Volume Koreksi</td>
+									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11; vertical-align: middle;">Masuk</td>
+									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11; vertical-align: middle;">Terpakai</td>
+									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11; vertical-align: middle;">Jumlah Sisa</td>
+									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11; width: 10px;" >Harga Satuan (Rupiah)</td>
+									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11; vertical-align: middle;" >Jumlah Harga (Rupiah)</td>
 									  </tr>
 									  <tr class="thead-light" style="text-align: center;">
 									    <td style="border: 1px double #000000;font-weight: bold; font-size: 11;">1</td>
@@ -150,16 +162,16 @@
 									    <td style="border: 1px double #000000; font-weight: bold; font-size: 11;" >8 = 6x7</td>
 									  </tr>
 									  <?php $i =1; ?>
-									  @foreach($materials as $key=> $data)
+									  @foreach($materials as $key=> $dt)
 									    <tr>
 									      <td style="border: 1px solid #000000;font-size: 12"  align="left" ></td>
-									      <td style="border: 1px solid #000000;font-size: 12"  align="left" >{{$data['nama']}}</td>
-									      <td style="border: 1px solid #000000;font-size: 12"  align="left">{{$data['kebutuhan']}}</td>
-									      <td style="border: 1px solid #000000;font-size: 12"  align="right">{{$data['masuk']}}</td>
-									      <td style="border: 1px solid #000000;font-size: 12"  align="right">{{$data['terpakai']}}</td>
-									      <td style="border: 1px solid #000000;font-size: 12"  align="right">{{$data['masuk'] - $data['terpakai']}}</td>
-									      <td style="border: 1px solid #000000;font-size: 12"  align="right">{{$data['harga']}}</td>
-									      <td style="border: 1px solid #000000;font-size: 12"  align="right">{{($data['masuk'] - $data['terpakai'])*$data['harga']}}</td>
+									      <td style="border: 1px solid #000000;font-size: 12"  align="left" >{{$dt['nama']}}</td>
+									      <td style="border: 1px solid #000000;font-size: 12"  align="left">{{$dt['kebutuhan']}}</td>
+									      <td style="border: 1px solid #000000;font-size: 12"  align="right">{{$dt['masuk']}}</td>
+									      <td style="border: 1px solid #000000;font-size: 12"  align="right">{{$dt['terpakai']}}</td>
+									      <td style="border: 1px solid #000000;font-size: 12"  align="right">{{$dt['masuk'] - $dt['terpakai']}}</td>
+									      <td style="border: 1px solid #000000;font-size: 12"  align="right">{{$dt['harga']}}</td>
+									      <td style="border: 1px solid #000000;font-size: 12"  align="right">{{($dt['masuk'] - $dt['terpakai'])*$dt['harga']}}</td>
 									    </tr>
 									    <?php $i++; ?>
 									  @endforeach
@@ -214,8 +226,7 @@
 									    <td></td>
 									    <td></td>
 									    <td></td>
-									    <td></td>
-									    <td style="font-size: 12;" colspan="2">Bekasi, {{date('d-m-Y')}}</td>
+									    <td style="font-size: 12;" colspan="2" align="center">Bekasi, {{$data['tanggal_selesai']}}</td>
 									  </tr>
 									  <tr>
 									    <td></td>
@@ -223,8 +234,7 @@
 									    <td></td>
 									    <td></td>
 									    <td></td>
-									    <td></td>
-									    <td align="center" style="font-size: 12;" >SPLEM</td>
+									    <td colspan="2" align="center" style="font-size: 12;" >SPLEM</td>
 									  </tr>
 									  <tr>
 									    <td></td>
@@ -232,15 +242,13 @@
 									    <td></td>
 									    <td></td>
 									    <td></td>
-									    <td></td>
-									    <td style="text-align: center;">
+									    <td colspan="2" style="text-align: center;">
 									      @if(file_exists('upload/pegawai/'.$splem->nip.'/'.$splem->ttd))
 									        <img src="{{url('upload/pegawai').'/'.$splem->nip.'/'.$splem->ttd}}" width="100" align="center">
 									      @endif
 									    </td>
 									  </tr>
 									  <tr>
-									    <td></td>
 									    <td></td>
 									    <td></td>
 									    <td></td>

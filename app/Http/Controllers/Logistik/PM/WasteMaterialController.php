@@ -15,8 +15,9 @@ class WasteMaterialController extends Controller
 {
     public function index()
     {
-        $wastes = LogWastePengajuan::where('soft_delete', 0)->get();
-        return view('logistik.pm.waste.index', ['wastes' => $wastes]);
+        $wastes = LogWaste::where('soft_delete', 0)->get();
+        //view maager dan pm sama
+        return view('logistik.manager.waste.index', ['wastes' => $wastes]);
     }
 
     public function getApprove($id)

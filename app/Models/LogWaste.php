@@ -10,9 +10,9 @@ class LogWaste extends Model
     protected $table = "log_tr_waste";
     public $timestamps = true;
 
-    public function wasteMaterial()
+    public function wasteLokasi()
     {
-        return $this->belongsTo('App\Models\LogMaterial','material_id','id');
+        return $this->belongsTo('App\Models\LogLokasi','lokasi_id','id');
     }
 
     public function wasteJenisKerja()

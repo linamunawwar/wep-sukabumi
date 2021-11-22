@@ -2,7 +2,25 @@
     <tr>
       <td></td>
       <td></td>
-      <th style="width: 6;"></th>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <th></th>
+      <th colspan="3"></th>
+      <th></th>
+      <td colspan="2" style="border: 1px solid #000000; font-size: 10;" align="center">FORMULIR LOGINV-03</td>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <td style="border: 1px solid #000000; font-size: 8;">Edisi : Mei 2020</b></td>
+      <td style="border: 1px solid #000000; font-size: 8;">Revisi : 01</td>
     </tr>
     <tr>
       <td></td>
@@ -10,36 +28,37 @@
       <th></th>
       <th colspan="3"><b style="font-weight: 3; font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
       <th></th>
-      <td colspan="2" style="border: 1px solid #000000;" align="center">Formulir Log-04</td>
     </tr>
     <tr>
+      <td></td>
+      <td></td>
       <th></th>
+      <th colspan="3"><b style="font-weight: 3; font-size:16px; ">INDUSTRI KONSTRUKSI</b></th>
       <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <td style="border: 1px solid #000000;">Edisi : </b></td>
-      <td style="border: 1px solid #000000;">Revisi : </td>
+    </tr>
+    <tr>
+      <td></td>
     </tr>
     <tr>
       <td></td>
       <td></td>
       <td></td>   
-      <td colspan="2">Bussiness Unit :</td>
+      <td colspan="2" style="font-weight: bold;">Bussiness Unit :</td>
       <td></td>
       <td></td>
+      <td></td>
+    </tr>
+    <tr>
       <td></td>
     </tr>
     <tr>
         <td></td>
         <td></td>
         <td></td>   
-        <td colspan="2">Proyek :</td>
+        <td colspan="2" style="font-weight: bold;">Proyek :</td>
         <td></td>
         <td></td>
-        <td colspan="2">No. AB :</td>
+        <td colspan="2" style="font-weight: bold;">ID Proyek :</td>
     </tr>
   </table>
     
@@ -47,27 +66,16 @@
       <tr>
         <td></td>
         <td></td>
-        <td colspan="7" style="text-align: center;border: 1px solid #000000"><h4><b>BON PERMINTAAN / PENYERAHAN BAHAN DARI GUDANG</b></h4></td>
+        <td colspan="7" style="text-align: center;border: 1px solid #000000"><h4><b>BON PERMINTAAN / PENYERAHAN BAHAN DARI GUDANG /</b></h4></td>
       </tr>
       <tr>
         <td></td>
         <td></td>
-        <td></td>
-        <td>Nomor : </td>
-        <td>Tgl Permintaan :</td>        
-        <td colspan="2">Tgl Penyerahan :</td>        
+        <td colspan="2">Nomor : BCKY2AU/{{date("Y", strtotime($pengajuan->created_at))}}/{{$pengajuan->id}} </td>
+        <td colspan="2">Tgl Permintaan : {{date('d-m-Y',strtotime($pengajuan->created_at))}}</td>      
+        <td colspan="3">Tgl Penyerahan : {{date('d-m-Y',strtotime($pengajuan->updated_at))}}</td>        
         <td></td>        
         <td></td> 
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>        
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
       </tr>
   </table>
   
@@ -76,10 +84,10 @@
         <td></td>
         <td></td>
         <td style="border: 1px solid #000000;" rowspan="2" align="center"><b>No.</b></th>
-        <td style="border: 1px solid #000000; width: 27;" rowspan="2" align="center"><b> Element Activity </b></th>
-        <td style="border: 1px solid #000000; width: 27;" rowspan="2" align="center"><b> Material </b></th>
-        <td style="border: 1px solid #000000; width: 15;" colspan="2" align="center"><b> Permintaan </b></th>
-        <td style="border: 1px solid #000000; width: 14;" colspan="2" align="center"><b> Penyerahan </b></th>
+        <td style="border: 1px solid #000000;" rowspan="2" align="center"><b> WBS Element </b></th>
+        <td style="border: 1px solid #000000;" rowspan="2" align="center"><b> Material </b></th>
+        <td style="border: 1px solid #000000;" colspan="2" align="center"><b> Permintaan </b></th>
+        <td style="border: 1px solid #000000;" colspan="2" align="center"><b> Penyerahan </b></th>
       </tr>  
       <tr>
         <td></td>
@@ -98,8 +106,8 @@
           <td></td>
           <td></td>
           <td style="border: 1px solid #000000;" align="center"> {{ $no++ }} </td>
-          <td style="border: 1px solid #000000;" align="center"> {{ $detail->element_activity }} </td>
-          <td style="border: 1px solid #000000;" align="center"> {{ $detail->detailPengajuanMaterial->nama }} </td>
+          <td style="border: 1px solid #000000;" align="left"> {{ $detail->element_activity }} </td>
+          <td style="border: 1px solid #000000;" align="left"> {{ $detail->detailPengajuanMaterial->nama }} </td>
           <td style="border: 1px solid #000000;"  align="center"> {{ $detail->permintaan_satuan }} </td>
           <td style="border: 1px solid #000000;"  align="center"> {{ $detail->permintaan_jumlah }} </td>
           <td style="border: 1px solid #000000;"  align="center"> {{ $detail->penyerahan_satuan }} </td>
@@ -107,7 +115,7 @@
         </tr>      
         @endforeach
           @if(count($detailPengajuan) < 3)
-          @for ($i=count($detailPengajuan);$i<=4;$i++)
+          @for ($i=count($detailPengajuan);$i<=8;$i++)
           <tr>
             <td></td>
             <td></td>
@@ -141,17 +149,6 @@
         <td></td>
         <td colspan="7">Lokasi Pekerjaan : {{ $pengajuan->pengajuanLokasiPekerjaan->nama }}</td>
     </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td colspan="4">SOM / Superintenden : </td>
-        <td colspan="3">Nomor WBS : </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td colspan="7">No. Buku Harian Pemakaian Bahan (Form Log 07) : </td>
-    </tr>
     @for ($i=0;$i<=1;$i++)*/
     <tr>
         <td></td>
@@ -172,8 +169,7 @@
     <tr>
         <td></td>
         <td></td>
-        <td></td>
-        <td align="center"> Diminta </td>
+        <td colspan="2" align="center"> Diminta </td>
         <td align="center"> Disetujui </td>
         <td colspan="2" align="center"> Diserahkan </td>
         <td colspan="2" align="center"> Diterima </td>
@@ -182,41 +178,22 @@
         <td></td>
         <td></td>
         <td></td>
-        <td style="height:70;" align="center">
-          @if(file_exists("upload/pegawai/$superintendent->nip/$superintendent->ttd"))
-            <img src="upload/pegawai/{{$superintendent->nip}}/{{$superintendent->ttd}}" width="100" align="center">
-          @endif
-        </td>
-        <td style="height:70;" align="center">
-          @if(file_exists("upload/pegawai/$som->nip/$som->ttd"))
-            <img src="upload/pegawai/{{$som->nip}}/{{$som->ttd}}" width="100" align="center">
-          @endif
-        </td>
-        <td colspan="2" style="height:70;" align="center">
-          @if(file_exists("upload/pegawai/$splem->nip/$splem->ttd"))
-            <img src="upload/pegawai/{{$splem->nip}}/{{$splem->ttd}}" width="100" align="center">
-          @endif
-        </td>
-        <td colspan="2" style="height:70;" align="center">
-          @if(file_exists("upload/pegawai/$superintendent->nip/$superintendent->ttd"))
-            <img src="upload/pegawai/{{$superintendent->nip}}/{{$superintendent->ttd}}" width="100" align="center">
-          @endif
-        </td>
+        <td></td>
+        <td></td>
+        <td colspan="2"></td>
     </tr>
     <tr>
         <td></td>
         <td></td>
-        <td></td>
-        <td align="center"><b>( {{$superintendent->nama}} )</b></td>
-        <td align="center"><b>( {{$som->nama}} )</b></td>
-        <td colspan="2" align="center"><b> ( {{$splem->nama}} )</b> </td>
-        <td colspan="2" align="center"><b> ( {{$superintendent->nama}} )</b></td>
+        <td colspan="2" align="center" style="font-size: 11;font-weight: bold;">( {{$superintendent->nama}} )<</td>
+        <td align="center" style="font-size: 11;font-weight: bold;">( {{$som->nama}} )</td>
+        <td colspan="2" align="center" style="font-size: 11; font-weight: bold;"> ( {{$splem->nama}} ) </td>
+        <td colspan="2" align="center" style="font-size: 11; font-weight: bold;"> ( {{$superintendent->nama}} )</td>
     </tr>
     <tr>
         <td></td>
         <td></td>
-        <td></td>
-        <td align="center">
+        <td colspan="2" align="center">
           @if($user->role_id != 2)
             Logistik
           @else

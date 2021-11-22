@@ -110,57 +110,63 @@
 									  </div>
 									</div>
 								@else
-									<button type="submit" name="unduh" value="1" class="btn btn-primary pull-right">Download</button>
+									<button type="submit" name="unduh" value="1" class="btn btn-primary pull-right" style="margin-right: 80px;">Download</button>
 									<div class="Laporan">
-										<table class="table" style="font-size: 12px;">
+										<table class="table" style="font-size: 12px; width: 80%;">
 										    <tr>
-										      <th><img src="../../public/img/Waskita.png" width="30" height="30"></th>
-										      <th colspan="2"><b style="font-weight: 3; font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk</b></th>
-										      <td></td>
-										      <td></td>
-										      <td style="border: 1px solid #000000;  " colspan="2" align="center">Formulir Log-02</td>
+										      <th colspan="5"></th>
+										      <td style="border: 1px solid #000000;  " colspan="2" align="center">FORMULIR LOGINV-02</td>
 										    </tr>
 										    <tr>
-										      <th></th>
-										      <th></th>
-										      <th></th>
-										      <th></th>
-										      <th></th>
-										      <td style="border: 1px solid #000000;">Edisi : Mei 2019 </b></td>
-										      <td style="border: 1px solid #000000;">Revisi : 0 </td>
-										    
+										      <th colspan="5"></th>
+										      <td style="border: 1px solid #000000;">Edisi : Mei 2020 </b></td>
+										      <td style="border: 1px solid #000000;">Revisi : 01 </td>
+										    </tr>
 										    <tr>
-										      <td style="padding-left: 10px;">Business Unit</td>
+										      <th><img src="../../public/img/Waskita.png" width="30" height="30"></th>
+										      <th colspan="3"><b style="font-weight: 3; font-size:16px; ">PT. WASKITA KARYA (Persero) Tbk<br> INDUSTRI KONSTRUKSI</b></th>
+										    </tr>
+										    <tr>
+										      <td>Business Unit</td>
+										      <td align="left">:</td>
 										    </tr>
 										    <tr>  
 										      <td>Proyek</td>
-										      <td>: </td>
+										      <td align="left">: </td>
 										      <td> </td>
 										      <td> </td>
-										      <td colspan="2" style="font-weight: bold;"> No. AB</td>
+										      <td colspan="2" style="font-weight: bold;"> ID Proyek :</td>
 										    </tr>
 										    <tr>
-										      <td colspan="7" style="text-align: center;border: 1px solid #000000; background-color: #ddd5;"><h4><b>KARTU GUDANG</b></h4></td>
+										      <td colspan="7" style="text-align: center;border: 1px solid #000000; background-color: #ddd5;"><h4><b>KARTU GUDANG / STOCK CARD</b></h4></td>
 										    </tr>
-										    <tr></tr>
+										    <tr>
+										    	<td></td>
+										    </tr>
 										    <tr>
 										        <th colspan="3">Bulan : {{ $bulanIni }}</th>
+										        <td></td>
+										        <th colspan="3">No. Material :  
+										        </th>
+										    </tr>
+										    <tr>
+										        <th colspan="3">Tahun : {{ $data2['tahun'] }}</th>
 										        <td></td>
 										        <th colspan="3">Nama Bahan :  {{ $material->nama }}
 										        </th>
 										    </tr>
 										    <tr class="thead-light" >
-										      <td style="border: 1px double #000000; font-weight: bold;  width: 13;" colspan="3" align="center">PENERIMAAN</td>
-										      <td style="border: 1px double #000000; font-weight: bold;width: 13;" colspan="2" align="center"> PENGELUARAN </td>
-										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12;" rowspan="2" align="center"> Sisa </td>
-										      <td style="border: 1px double #000000; font-weight: bold; font-size: 10; width: 12;" rowspan="2" align="center"> Keterangan </td>
+										      <td style="border: 1px double #000000; font-weight: bold;  width: 10%; vertical-align: middle;" align="center" rowspan="2">Tanggal</td>
+										      <td style="border: 1px double #000000; font-weight: bold; " colspan="2" align="center">PENERIMAAN (GR)</td>
+										      <td style="border: 1px double #000000; font-weight: bold;" colspan="2" align="center"> PENGELUARAN (GI) </td>
+										      <td style="border: 1px double #000000; font-weight: bold; width: 10%; vertical-align: middle;" rowspan="2" align="center"> Sisa </td>
+										      <td style="border: 1px double #000000; font-weight: bold; vertical-align: middle; width: 15%;" rowspan="2" align="center"> Keterangan </td>
 										    </tr>
 										    <tr class="thead-light" style="text-align: center;">
-										      <td style="border: 1px double #000000;font-weight: bold;">Tanggal</td>
-										      <td style="border: 1px double #000000; font-weight: bold;">Jumlah</td>
-										      <td style="border: 1px double #000000; font-weight: bold;">Jumlah Terusan</td>
-										      <td style="border: 1px double #000000; font-weight: bold;">Jumlah</td>
-										      <td style="border: 1px double #000000; font-weight: bold;" >Jumlah Terusan</td>
+										      <td style="border: 1px double #000000; font-weight: bold; width: 10%;">Jumlah</td>
+										      <td style="border: 1px double #000000; font-weight: bold;width: 10%;">Jumlah Terusan</td>
+										      <td style="border: 1px double #000000; font-weight: bold;width: 10%;">Jumlah</td>
+										      <td style="border: 1px double #000000; font-weight: bold;width: 10%;" >Jumlah Terusan</td>
 										    </tr>
 										    @foreach ($data as $key => $val)
 										    <tr class="thead-light" style="text-align: center;">
@@ -173,7 +179,9 @@
 										        <td style="border: 1px double #000000;"></td>
 										    </tr>
 										    @endforeach
-										    <tr></tr>
+										    <tr>
+										    	<td></td>
+										    </tr>
 										    <tr>
 										      <td></td>
 										      <td></td>
@@ -188,7 +196,7 @@
 										        <td></td>
 										        <td></td>
 										        <td></td>
-										        <td colspan="2" style="text-align: center;"> Tanggal </td>
+										        <td colspan="2" style="text-align: center;">Bekasi, {{$data2['tgl_terakhir'].'-'.$data2['bulan'].'-'.$data2['tahun']}} </td>
 										        <td></td>
 										    </tr>
 										    <tr>

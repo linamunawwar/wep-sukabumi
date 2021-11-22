@@ -54,7 +54,7 @@
 						<table id="datatable" class="table table-striped table-bordered">
 							<thead>
 								<tr>
-									<th scope="col"> Nama Material </th>
+									<th scope="col"> Lokasi </th>
 									<th scope="col"> Jenis Pekerjaan </th>
 									<th scope="col"> Periode </th>
 									<th scope="col"> Action </th>
@@ -63,12 +63,22 @@
 							<tbody>								
 								@foreach ($wastes as $waste)
 									<tr>
-									<td>{{ $waste->wasteMaterial->nama }}</td>
-									<td>{{ $waste->wasteJenisKerja->nama }}</td>
-									<td>{{ periode($waste->periode)}}</td>
+									<td>
+                                        @php 
+                                            ($waste->lokasi_id === '') ? $lokasi = 'Semua Lokasi' : $lokasi = $waste->wasteLokasi->nama;
+                                        @endphp
+                                        {{ $lokasi }}
+                                    </td>
+									<td>
+                                        @php 
+                                            ($waste->jenis_pekerjaan_id === '') ? $jenis = 'Semua Jenis Pekerjaan' : $jenis = $waste->wasteJenisKerja->nama;
+                                        @endphp
+                                        {{ $jenis }}
+                                    </td>
+									<td>{{ periode($waste->tahun.$waste->bulan)}}</td>
 									<td style="text-align:center;">
-										<!-- <a class="btn btn-default btn-xs" href="{{url('logistik/admin/waste/edit/'.$waste->id.'')}}"><i class="fa fa-edit"></i>  Edit</a> -->
-										<button class="btn btn-success btn-xs" id_waste='{{$waste->id}}' id="ajukan"><i class="fa fa-arrow-up"></i>  Ajukan</button>
+										<a class="btn btn-default btn-xs" href="{{url('Logistik/admin/waste/edit/'.$waste->id.'')}}"><i class="fa fa-edit"></i>  Edit</a>
+										<a class="btn btn-success btn-xs" href="{{url('Logistik/admin/waste/unduh/'.$waste->id.'')}}"><i class="fa fa-download"></i>  Unduh</a>
 										<button data-toggle="modal"  id_waste='{{$waste->id}}' data-target="#DeleteModal" class="btn btn-xs btn-danger" id="modal-delete" onclick='deleteData("{{$waste->id}}")'><i class="fa fa-trash"></i> Delete</button><br>
 									</td>
 									</tr>
