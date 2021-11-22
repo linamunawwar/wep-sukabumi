@@ -103,13 +103,8 @@ class PengajuanController extends Controller
                                             })
                                             ->where('soft_delete',0)
                                             ->get();
-                $sisa_stok = 0;
-                foreach ($stocks as $key => $stock) {
-                    $sisa_stok = $sisa_stok + $stock->sisa_stok;
-                }
                 $data->material_nama = $data->material->nama;
                 $data->material_satuan = $data->material->satuan;
-                $data->sisa_stok = $sisa_stok;
                 if ($penerimaans) {
                     foreach ($penerimaans as $key => $penerimaan) {
                         $material = LogDetailPenerimaanMaterial::where('penerimaan_id', $penerimaan->id)->where('material_id', $data->material_id)->where('soft_delete', 0)->first();
@@ -133,7 +128,7 @@ class PengajuanController extends Controller
                                             ->get();
         $sisa_stok = 0;
         foreach ($stocks as $key => $stock) {
-            $sisa_stok = $sisa_stok + $stock->sisa_stok;
+            $sisa_stok = $sisa_stok + $stock->vol_saat_ini;
         }
         
         return $sisa_stok;

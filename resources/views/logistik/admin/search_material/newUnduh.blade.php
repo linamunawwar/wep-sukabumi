@@ -58,7 +58,7 @@
         <td></td>
         <td></td>
         <td>Jumlah Stok Tersisa :</td>
-        <td style="text-align:left;">{{ $material->sisa_stok }}</td>
+        <td style="text-align:left;">{{ $stok }}</td>
         <td></td>
         <td></td>
         <td></td>

@@ -20,14 +20,35 @@ class SearchMaterialController extends Controller
     {
         $materials = LogMaterial::where('soft_delete', 0)->get();
         foreach ($materials as $key => $val) {
-            $detailPermintaan = LogDetailPenerimaanMaterial::where(['material_id' => $val->id, 'soft_delete' => 0])
-                                                    ->orderBy('id', 'desc')
-                                                    ->first();
-            if ($detailPermintaan) {
-                $val->jumlahStok = $detailPermintaan->sisa_stok;
-            }else{
-                $val->jumlahStok = 0;
+            $detailLaporanMasuk = LogDetailPenerimaanMaterial::
+                where(['material_id' => $val->id, 'soft_delete' => 0])
+                ->select('penerimaan_id', 'vol_saat_ini')
+                ->orderBy('log_tr_penerimaan_detail.id', 'ASC')
+                ->get()
+                ->toArray();
+
+            $detailLaporanKeluar = LogDetailPengajuanMaterial::
+                where(['material_id' =>  $val->id, 'soft_delete' => 0])
+                ->select('pengajuan_id', 'pemyerahan_jumlah')
+                ->orderBy('log_tr_pengajuan_detail.id', 'ASC')
+                ->get()
+                ->toArray();
+
+            $detailLaporanMaterial = array_merge($detailLaporanMasuk, $detailLaporanKeluar);
+
+            $stok = 0;
+
+            for ($i=0; $i < count($detailLaporanMaterial); $i++) { 
+                if (isset($detailLaporanMaterial[$i]['penerimaan_id'])) {
+                    $stok += $detailLaporanMaterial[$i]['vol_saat_ini'];
+                }
+
+                if (isset($detailLaporanMaterial[$i]['pengajuan_id'])) {
+                    $stok -= $detailLaporanMaterial[$i]['pemyerahan_jumlah'];
+                }
             }
+
+            $val->jumlahStok = $stok;
         }
         return view('logistik.admin.search_material.index', ['materials' => $materials]);
     }
@@ -57,40 +78,64 @@ class SearchMaterialController extends Controller
         
         $detailLaporanMaterial = array_merge($detailLaporanMasuk, $detailLaporanKeluar);
 
-        // dd($detailLaporanMaterial);
-        return view('logistik.admin.search_material.detail', ['material' => $detailMaterial, 'details' => $detailLaporanMaterial]);
+        $stok = 0;
+
+        for ($i=0; $i < count($detailLaporanMaterial); $i++) { 
+            if (isset($detailLaporanMaterial[$i]['penerimaan_id'])) {
+                $stok += $detailLaporanMaterial[$i]['vol_saat_ini'];
+            }
+
+            if (isset($detailLaporanMaterial[$i]['pengajuan_id'])) {
+                $stok -= $detailLaporanMaterial[$i]['pemyerahan_jumlah'];
+            }
+        }
+
+        return view('logistik.admin.search_material.detail', ['material' => $detailMaterial, 'stok' => $stok, 'details' => $detailLaporanMaterial]);
     }
 
     public function getUnduhSearchMaterial($id)
     {   
         $detailMaterial = LogDetailPenerimaanMaterial::where(['material_id' => $id, 'soft_delete' => 0])
-                ->select('material_id', 'sisa_stok')
-                ->orderBy('id', 'desc')
-                ->first();
-
+                                                    ->select('material_id', 'sisa_stok')
+                                                    ->orderBy('id', 'desc')
+                                                    ->first();
+        
         $detailLaporanMasuk = LogDetailPenerimaanMaterial::
-                    join('users', 'users.id', '=', 'log_tr_penerimaan_detail.user_id')
-                    ->where(['material_id' => $id, 'soft_delete' => 0])
-                    ->select('*','users.name as penerimaMasuk')
-                    ->orderBy('log_tr_penerimaan_detail.id', 'ASC')
-                    ->get()
-                    ->toArray();
+                                                        join('users', 'users.id', '=', 'log_tr_penerimaan_detail.user_id')
+                                                        ->where(['material_id' => $id, 'soft_delete' => 0])
+                                                        ->select('*','users.name as penerimaMasuk')
+                                                        ->orderBy('log_tr_penerimaan_detail.id', 'ASC')
+                                                        ->get()
+                                                        ->toArray();
 
         $detailLaporanKeluar = LogDetailPengajuanMaterial::
-                    join('users', 'users.id', '=', 'log_tr_pengajuan_detail.user_id')
-                    ->where(['material_id' => $id, 'soft_delete' => 0])
-                    ->select('*','log_tr_pengajuan_detail.updated_at as tanggal_keluar', 'users.name as penerimaKeluar')
-                    ->orderBy('log_tr_pengajuan_detail.id', 'ASC')
-                    ->get()
-                    ->toArray();
-
+                                                        join('users', 'users.id', '=', 'log_tr_pengajuan_detail.user_id')
+                                                        ->where(['material_id' => $id, 'soft_delete' => 0])
+                                                        ->select('*','log_tr_pengajuan_detail.updated_at as tanggal_keluar', 'users.name as penerimaKeluar')
+                                                        ->orderBy('log_tr_pengajuan_detail.id', 'ASC')
+                                                        ->get()
+                                                        ->toArray();
+        
         $detailLaporanMaterial = array_merge($detailLaporanMasuk, $detailLaporanKeluar);
+
+        $stok = 0;
+
+        for ($i=0; $i < count($detailLaporanMaterial); $i++) { 
+            if (isset($detailLaporanMaterial[$i]['penerimaan_id'])) {
+                $stok += $detailLaporanMaterial[$i]['vol_saat_ini'];
+            }
+
+            if (isset($detailLaporanMaterial[$i]['pengajuan_id'])) {
+                $stok -= $detailLaporanMaterial[$i]['pemyerahan_jumlah'];
+            }
+        }
                 
-        $excel = \Excel::create('Formulir_Laporan_Penggunaan_Material', function ($excel) use ($detailMaterial, $detailLaporanMaterial) {
-            $excel->sheet('New Sheet', function ($sheet) use ($detailMaterial, $detailLaporanMaterial) {
+        $excel = \Excel::create('Formulir_Laporan_Penggunaan_Material', function ($excel) use ($detailMaterial, $stok, $detailLaporanMaterial) {
+            $excel->sheet('New Sheet', function ($sheet) use ($detailMaterial, $stok, $detailLaporanMaterial) {
                 $sheet->loadview('logistik.admin.search_material.newUnduh',
                     [
                         'material' => $detailMaterial,
+                        'stok' => $stok,
                         'details' => $detailLaporanMaterial
                     ]);
                 $objDrawing = new PHPExcel_Worksheet_Drawing;

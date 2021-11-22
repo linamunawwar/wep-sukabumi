@@ -21,7 +21,7 @@
 						</ul><br><br>
 						<p> Kode Material : {{ $material->material->kode_material }}</p>
 						<p> Nama Material : {{ $material->material->nama }} &nbsp;&nbsp;&nbsp; <span style="font-weight: bold">({{ $material->material->satuan }})</span></p>
-						<p> Total Stok : {{ $material->sisa_stok }} </p>
+						<p> Total Stok : {{ $stok }} </p>
 						
 						<div class="clearfix"></div>
 					</div>

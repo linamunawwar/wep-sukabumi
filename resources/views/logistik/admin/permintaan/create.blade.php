@@ -122,24 +122,28 @@
 									</div>
 
 									<input type="hidden" name="jumlah_data" class="jumlah_data" id="jumlah_data" value="0">
-									<table class="table table-bordered table-striped" id="table_permintaan">
-										<thead>
-											<tr>
-												<th>No.</th>
-												<th>Nama Material</th>
-												<th>No.Partype</th>
-												<th>Volume</th>
-												<th>Satuan</th>
-												<th>Tanggal Pakai</th>
-												<th>Untuk Keperluan</th>
-												<th>Keterangan</th>
-												<th>Action</th>
-											</tr>
-										</thead>
-										<tbody class="data">
-											
-										</tbody>
-									</table>
+									<div class="row">
+										<div class="col-md-12 col-sm-12 col-xs-12" style="overflow-y:auto; overflow-x:scroll;">
+											<table class="table table-bordered table-striped" id="table_permintaan">
+												<thead>
+													<tr>
+														<th>No.</th>
+														<th>Nama Material</th>
+														<th>No.Partype</th>
+														<th>Volume</th>
+														<th>Satuan</th>
+														<th>Tanggal Pakai</th>
+														<th>Untuk Keperluan</th>
+														<th>Keterangan</th>
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody class="data">
+													
+												</tbody>
+											</table>
+										</div>
+									</div>
 									<div class="ln_solid"></div>
 									<div class="form-group" style="float:right;">
 										<div class="col-md-12">
@@ -236,7 +240,6 @@
 			$('.data_'+sub+'').remove();
 		});
 
-		var table = $('#table_permintaan').DataTable();
 	});
 
 </script>
