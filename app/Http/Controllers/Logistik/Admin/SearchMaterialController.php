@@ -40,11 +40,11 @@ class SearchMaterialController extends Controller
 
             for ($i=0; $i < count($detailLaporanMaterial); $i++) { 
                 if (isset($detailLaporanMaterial[$i]['penerimaan_id'])) {
-                    $stok += $detailLaporanMaterial[$i]['vol_saat_ini'];
+                    $stok += floatval($detailLaporanMaterial[$i]['vol_saat_ini']);
                 }
 
                 if (isset($detailLaporanMaterial[$i]['pengajuan_id'])) {
-                    $stok -= $detailLaporanMaterial[$i]['pemyerahan_jumlah'];
+                    $stok -= floatval($detailLaporanMaterial[$i]['pemyerahan_jumlah']);
                 }
             }
 
@@ -71,6 +71,7 @@ class SearchMaterialController extends Controller
         $detailLaporanKeluar = LogDetailPengajuanMaterial::
                                                         join('users', 'users.id', '=', 'log_tr_pengajuan_detail.user_id')
                                                         ->where(['material_id' => $id, 'soft_delete' => 0])
+                                                        ->whereNotNull('pemyerahan_jumlah')
                                                         ->select('*','log_tr_pengajuan_detail.updated_at as tanggal_keluar', 'users.name as penerimaKeluar')
                                                         ->orderBy('log_tr_pengajuan_detail.id', 'ASC')
                                                         ->get()
@@ -82,11 +83,11 @@ class SearchMaterialController extends Controller
 
         for ($i=0; $i < count($detailLaporanMaterial); $i++) { 
             if (isset($detailLaporanMaterial[$i]['penerimaan_id'])) {
-                $stok += $detailLaporanMaterial[$i]['vol_saat_ini'];
+                $stok += floatval($detailLaporanMaterial[$i]['vol_saat_ini']);
             }
 
             if (isset($detailLaporanMaterial[$i]['pengajuan_id'])) {
-                $stok -= $detailLaporanMaterial[$i]['pemyerahan_jumlah'];
+                $stok -= floatval($detailLaporanMaterial[$i]['pemyerahan_jumlah']);
             }
         }
 
@@ -122,11 +123,11 @@ class SearchMaterialController extends Controller
 
         for ($i=0; $i < count($detailLaporanMaterial); $i++) { 
             if (isset($detailLaporanMaterial[$i]['penerimaan_id'])) {
-                $stok += $detailLaporanMaterial[$i]['vol_saat_ini'];
+                $stok += floatval($detailLaporanMaterial[$i]['vol_saat_ini']);
             }
 
             if (isset($detailLaporanMaterial[$i]['pengajuan_id'])) {
-                $stok -= $detailLaporanMaterial[$i]['pemyerahan_jumlah'];
+                $stok -= floatval($detailLaporanMaterial[$i]['pemyerahan_jumlah']);
             }
         }
                 
