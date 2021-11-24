@@ -114,8 +114,8 @@
           <td style="border: 1px solid #000000;"  align="center"> {{ $detail->pemyerahan_jumlah }} </td>
         </tr>      
         @endforeach
-          @if(count($detailPengajuan) < 3)
-          @for ($i=count($detailPengajuan);$i<=8;$i++)
+          @if(count($detailPengajuan) < 18)
+          @for ($i=count($detailPengajuan);$i<=18;$i++)
           <tr>
             <td></td>
             <td></td>
