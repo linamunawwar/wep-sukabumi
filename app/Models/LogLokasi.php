@@ -17,7 +17,7 @@ class LogLokasi extends Model
 
     public function lokasiPengajuan()
     {
-        return $this->hasMany('App\Models\Log PengajuanMaterial','id','lokasi_kerja_id');
+        return $this->hasMany('App\Models\LogPengajuanMaterial','id','lokasi_kerja_id');
     }
 
     
