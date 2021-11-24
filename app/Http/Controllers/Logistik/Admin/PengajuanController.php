@@ -373,7 +373,7 @@ class PengajuanController extends Controller
                     //set image ttd pelaksana
                     // init drawing
                     if(file_exists("upload/pegawai/$superintendent->nip/$superintendent->ttd")){
-                        $drawing = new PHPExcel_Worksheet_Drawing();
+                        $drawing4 = new PHPExcel_Worksheet_Drawing();
                         // Set image
                         $drawing4->setPath("upload/pegawai/$superintendent->nip/$superintendent->ttd");
                         $drawing4->setWorksheet($sheet);
