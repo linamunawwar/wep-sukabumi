@@ -246,7 +246,7 @@
 		var vol_permintaan = $('#vol_permintaan_'+id_data).val();
 		var vol_lalu = $('#vol_lalu_'+id_data).val();
 		var jumlah = parseInt(vol_lalu) + parseInt(vol_saat_ini);
-		var sisa = parseInt(vol_permintaan) - parseInt(jumlah);
+		var sisa =  parseInt(jumlah) - parseInt(vol_permintaan);
 		$('#vol_jumlah_'+id_data).val(jumlah);
 		$('#vol_sisa_'+id_data).val(sisa);
 	});
