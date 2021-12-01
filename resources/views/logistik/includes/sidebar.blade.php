@@ -9,10 +9,18 @@
             <div class="menu_section">
                 <ul class="nav side-menu">
                     @if((Auth::user()->pegawai->kode_bagian == 'SL') || (Auth::user()->role_id == 2) || (Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 5))
+                        @if(Auth::user()->role_id !== 6)
+                        <li>
+                            <a href="{{url('/')}}">
+                                <i class="fa fa-laptop"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        @endif
                         <li>
                             <a href="{{url('/Logistik')}}">
                                 <i class="fa fa-laptop"></i>
-                                Dashboard
+                                Dashboard Logistik
                             </a>
                         </li>
                         

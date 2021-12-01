@@ -58,7 +58,7 @@ class WasteMaterialController extends Controller
                         $q->whereYear('tanggal','=',$tahun);
                     }
                     if($lokasi_id !== ''){
-                        $q->where('lokasi_id',$lokasi_id);
+                        $q->where('lokasi_kerja_id',$lokasi_id);
                     }
                     if($jenis_id !== ''){
                         $q->where('jenis_pekerjaan_id',$jenis_id);
