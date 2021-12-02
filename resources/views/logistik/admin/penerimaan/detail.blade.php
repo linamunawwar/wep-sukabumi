@@ -53,7 +53,7 @@
 										<td>{{ $detail->vol_lalu }}</td>
 										<td>{{ $detail->vol_saat_ini }}</td>
 										<td>{{ $detail->vol_jumlah }}</td>
-										<td>{{ $detail->vol_sisia }}</td>
+										<td>{{ $detail->vol_sisa }}</td>
 										<td>{{ $detail->satuan }}</td>
 										<td>{{ $detail->harga }}</td>
 										<td>{{ $detail->keterangan }}</td>

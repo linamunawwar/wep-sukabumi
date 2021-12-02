@@ -310,8 +310,8 @@ class PengajuanController extends Controller
                     $objDrawing->setWidth(40);
                     $objDrawing->setHeight(35);
                     $sheet->getStyle('C1')->getAlignment()->setIndent(1);
-                    $sheet->getStyle('A13:I40')->getAlignment()->setWrapText(true);
-                    $sheet->getStyle('A2:I40')->getFont()->setName('Arial');
+                    $sheet->getStyle('A13:I50')->getAlignment()->setWrapText(true);
+                    $sheet->getStyle('A2:I50')->getFont()->setName('Arial');
                     $sheet->getStyle('A13:I15')->getAlignment()->applyFromArray(
                         array('horizontal' => 'center')
                     );
@@ -337,7 +337,7 @@ class PengajuanController extends Controller
                         // Set image
                         $drawing->setPath("upload/pegawai/$superintendent->nip/$superintendent->ttd");
                         $drawing->setWorksheet($sheet);
-                        $drawing->setCoordinates('D27');
+                        $drawing->setCoordinates('D43');
                         $drawing->setResizeProportional(false);
                         $drawing->setWidth(150);
                         $drawing->setHeight(90);
@@ -350,7 +350,7 @@ class PengajuanController extends Controller
                         // Set image
                         $drawing2->setPath("upload/pegawai/$som->nip/$som->ttd");
                         $drawing2->setWorksheet($sheet);
-                        $drawing2->setCoordinates('E27');
+                        $drawing2->setCoordinates('E43');
                         $drawing2->setResizeProportional(false);
                         $drawing2->setWidth(150);
                         $drawing2->setHeight(90);
@@ -364,7 +364,7 @@ class PengajuanController extends Controller
                         // Set image
                         $drawing3->setPath("upload/pegawai/$splem->nip/$splem->ttd");
                         $drawing3->setWorksheet($sheet);
-                        $drawing3->setCoordinates('F27');
+                        $drawing3->setCoordinates('F43');
                         $drawing3->setResizeProportional(false);
                         $drawing3->setWidth(150);
                         $drawing3->setHeight(90);
@@ -373,19 +373,19 @@ class PengajuanController extends Controller
                     //set image ttd pelaksana
                     // init drawing
                     if(file_exists("upload/pegawai/$superintendent->nip/$superintendent->ttd")){
-                        $drawing = new PHPExcel_Worksheet_Drawing();
+                        $drawing4 = new PHPExcel_Worksheet_Drawing();
                         // Set image
                         $drawing4->setPath("upload/pegawai/$superintendent->nip/$superintendent->ttd");
                         $drawing4->setWorksheet($sheet);
-                        $drawing4->setCoordinates('H27');
+                        $drawing4->setCoordinates('H43');
                         $drawing4->setResizeProportional(false);
                         $drawing4->setWidth(150);
                         $drawing4->setHeight(90);
                     }
 
-                    $sheet->setHeight(27,70);
-                    $sheet->setHeight(28,35);
-                    $sheet->setHeight(12,20);
+                    $sheet->setHeight(43,70);
+                    $sheet->setHeight(44,35);
+                    $sheet->setHeight(28,20);
 
                     $sheet->setWidth(array(
                         'A'     =>  1,
