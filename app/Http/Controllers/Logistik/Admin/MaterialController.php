@@ -49,6 +49,7 @@ class MaterialController extends Controller
 
         $addMaterial = new logMaterial;
         $addMaterial->kode_material = $data['kode_material'];
+        $addMaterial->is_SAP = $data['kategoriMaterial'];
         $addMaterial->nama = $data['nama'];
         $addMaterial->satuan = $data['satuan'];
         $addMaterial->keterangan = $data['keterangan'];
@@ -73,7 +74,9 @@ class MaterialController extends Controller
         $getMaterial = LogMaterial::find($id);
 
         $data = \Input::all();
+        dd($data);
         $material['kode_material'] = $data['kode_material'];
+        $material['is_SAP'] = $data['kategoriMaterial'];
         $material['nama'] = $data['nama'];
         $material['satuan'] = $data['satuan'];
         $material['keterangan'] = $data['keterangan'];

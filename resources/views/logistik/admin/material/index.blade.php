@@ -38,8 +38,8 @@
 									<td>{{ $material->satuan }}</td>
 									<td>{{ $material->keterangan }}</td>
 									<td style="text-align:center;">
-										<a class="btn btn-default btn-xs" href="{{url('Logistik/admin/material/edit/'.$material->id.'')}}"><i class="fa fa-edit"></i>  Edit</a>
-										<button data-toggle="modal"  id_material='{{$material->id}}' data-target="#DeleteModal" class="btn btn-xs btn-danger" id="modal-delete" onclick='deleteData("{{$material->id}}")'><i class="fa fa-trash"></i> Delete</button>
+										<a class="btn btn-default btn-xs" title="Edit" style="background-color:#1AAD19; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" href="{{url('Logistik/admin/material/edit/'.$material->id.'')}}"><i class="fa fa-pencil" style="font-size:15px;"></i></a>
+										<button data-toggle="modal"  id_material='{{$material->id}}' data-target="#DeleteModal" class="btn btn-danger btn-xs" style="background-color:#D63031; color:#FFFFFF; padding:0.5em 0.7em 0.5em 0.7em;" id="modal-delete" onclick='deleteData("{{$material->id}}")'><i class="fa fa-trash" style="font-size:15px;"></i></button>
 									</td>
 									</tr>
 								@endforeach								
