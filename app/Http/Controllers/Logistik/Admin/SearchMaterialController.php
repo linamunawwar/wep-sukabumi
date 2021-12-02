@@ -70,9 +70,10 @@ class SearchMaterialController extends Controller
 
         $detailLaporanKeluar = LogDetailPengajuanMaterial::
                                                         join('users', 'users.id', '=', 'log_tr_pengajuan_detail.user_id')
-                                                        ->where(['material_id' => $id, 'soft_delete' => 0])
+                                                        ->join('log_mst_lokasi', 'log_mst_lokasi.id', '=', 'log_tr_pengajuan_detail.pengajuan_id')
+                                                        ->where(['material_id' => $id, 'log_tr_pengajuan_detail.soft_delete' => 0])
                                                         ->whereNotNull('pemyerahan_jumlah')
-                                                        ->select('*','log_tr_pengajuan_detail.updated_at as tanggal_keluar', 'users.name as penerimaKeluar')
+                                                        ->select('*','log_tr_pengajuan_detail.updated_at as tanggal_keluar', 'users.name as penerimaKeluar', 'log_mst_lokasi.nama as lokasi')
                                                         ->orderBy('log_tr_pengajuan_detail.id', 'ASC')
                                                         ->get()
                                                         ->toArray();

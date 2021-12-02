@@ -42,6 +42,7 @@
 											<th scope="col" style="text-align: center"> Keterangan </th>
 											<th scope="col" style="text-align: center"> Jumlah </th>
 											<th scope="col" style="text-align: center"> Penerima </th>
+											<th scope="col" style="text-align: center"> Lokasi </th>
 										</tr>
 									</thead>
 									<tbody>	
@@ -83,6 +84,13 @@
 															{{ $details[$i]['penerimaMasuk'] }}
 														@elseif(isset($details[$i]['pengajuan_id']))
 															{{ $details[$i]['penerimaKeluar'] }}
+														@endif	
+													</td>
+													<td scope="col"> 
+														@if (isset($details[$i]['penerimaan_id']))
+															-
+														@elseif(isset($details[$i]['pengajuan_id']))
+															{{ $details[$i]['lokasi'] }}
 														@endif	
 													</td>
 												</tr>

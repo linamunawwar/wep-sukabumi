@@ -274,7 +274,7 @@
                             @endif
                         </ul>
                         <!------------------------- MASTER ---------------------------->
-                        @if((Auth::user()->role_id == 3) || (Auth::user()->role_id == 4) || (Auth::user()->role_id == 6))
+                        @if(Auth::user()->role_id == 6)
                             <li><a><i class="fa fa-sign-out"></i> Tabel Master <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                                     <li><a href="{{url('Logistik/admin/material/')}}">Material</a></li>
