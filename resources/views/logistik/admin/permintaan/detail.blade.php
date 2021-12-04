@@ -1,4 +1,4 @@
-@extends('logistik.layouts.blank')
+	@extends('logistik.layouts.blank')
 
 @push('stylesheets')
     <!-- Example -->
@@ -36,6 +36,9 @@
 								$year = substr($details[0]->created_at, 2,2);
 							@endphp
 							Nomor : {{$findPermintaan['nomor']}}/BPM/WK/INF2/BCKY-2AU/{{$year}}
+						</p>
+						<p>
+							Pelaksana / Peminta : {{$details[0]->detailPermintaan->permintaanUser->name}}
 						</p>
 						<div class="form-group">
 							<label class="control-label col-md-1" style="padding: 0;">Lampiran :</label>
