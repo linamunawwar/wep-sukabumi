@@ -130,6 +130,12 @@
 										<input type="text" style="padding: 5px;" name="volume_pekerjaan" id="volume_pekerjaan" placeholder="..................................................">
 									</div>
 								</div>
+								<div class="alert alert-danger alert-not-found col-md-12" style="display: none;">
+								  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+								  <div class="isi">
+								  	<strong>Perhatian!</strong> Data Tidak Ditemukan.
+								  </div>
+								</div>
 							</div>
 							<input type="hidden" name="jumlah_data" class="jumlah_data" id="jumlah_data" value="0">
 							<table class="table table-bordered waste" id="table_waste">
@@ -228,6 +234,9 @@
 	                		dt +=  '</td>';
 	                		dt +=  "<td><input type='text' name='vol_progress[]' value='' id='vol_progress_"+jumlah_data+"' class='width-60' jml_data='"+jumlah_data+"' readonly='readonly'>";
 	                		dt +=  '</td>';
+	                		if(data[i].pemakaian == 0 || data[i].pemakaian == null){
+	                			data[i].pemakaian = 0;
+	                		}
 	                		dt +=  "<td><input type='text' name='pemakaian[]' value='"+data[i].pemakaian+"' id='pemakaian_"+jumlah_data+"' class='width-60' jml_data='"+jumlah_data+"' readonly='readonly'>";
 	                		dt +=  '</td>';
 	                		dt +=  "<td><input type='text' name='deviasi_vol[]' value='' id='deviasi_vol_"+jumlah_data+"' class='width-60' jml_data='"+jumlah_data+"' readonly='readonly'>";
@@ -247,6 +256,8 @@
 	                	$('#table_waste tbody.data').append(dt);
 	                }else{
 	                	$('#volume_pekerjaan').show();
+	                	$('.alert-not-found').show();
+	                	$('#table_waste').hide();
 	                }
 	            }else{
 	            	$('.alert-danger').show();
