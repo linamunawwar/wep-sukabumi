@@ -30,7 +30,7 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Kategori Material <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="radio" name="kategoriMaterial" id="SAP" value="1" required="required" checked/> Sesuai SAP <br>
-                                    <input type="radio" name="kategoriMaterial" id="NonSAP" value="0" required="required" /> Keterangan Di Lapangan
+                                    <input type="radio" name="kategoriMaterial" id="NonSAP" value="2" required="required" /> Keterangan Di Lapangan
 								</div>
 							</div>
 							<div class="form-group">

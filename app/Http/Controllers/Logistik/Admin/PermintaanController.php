@@ -124,7 +124,7 @@ class PermintaanController extends Controller
     public function beforePostPermintaan()
     {
 
-        $materials = LogMaterial::where('soft_delete', 0)->where('is_SAP',1)->get();
+        $materials = LogMaterial::where('soft_delete', 0)->where('is_SAP','!=',0)->get();
         return view('logistik.admin.permintaan.create', ['materials' => $materials]);
     }
 
