@@ -40,7 +40,12 @@
 							<div class="form-group" style="display: none;">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Pemberi Tugas <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type='text' name='pemberi_tugas' class='form-control' required="required" placeholder="" readonly="readonly" value="{{$pm->nip}}" />
+									<select name='pemberi_tugas' class='form-control' required="required">
+										<option>Pilih Pemberi Tugas</option>
+										@foreach($pemberi_tugas as $user)
+											<option value="{{$user->nip}}">{{$user->nip}} {{$user->nama}}</option>
+										@endforeach
+									</select>
 								</div>
 							</div>
 							<div class="form-group">

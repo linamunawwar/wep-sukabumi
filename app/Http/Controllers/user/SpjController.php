@@ -22,8 +22,11 @@ class SpjController extends Controller
     {
     	$pegawais = Pegawai::where('is_active',1)->where('soft_delete',0)->get();
       $pm = Pegawai::where('posisi_id',1)->first();
+      $pemberi_tugas = Pegawai::where('role_id',5)
+                                ->orwhere('role_id',4)
+                                ->orwhere('role_id',3)->get();
 
-        return view('user.spj.create',['pegawais'=>$pegawais,'pm'=>$pm]);
+        return view('user.spj.create',['pegawais'=>$pegawais,'pm'=>$pm, 'pemberi_tugas'=>$pemberi_tugas]);
     }
 
     public function postCreate()
@@ -101,8 +104,11 @@ class SpjController extends Controller
     {
         $pegawais = Pegawai::where('is_active',1)->where('soft_delete',0)->get();
         $spj = Spj::find($id);
+        $pemberi_tugas = Pegawai::where('role_id',5)
+                                ->orwhere('role_id',4)
+                                ->orwhere('role_id',3)->get();
 
-        return view('user.spj.edit',['pegawais'=>$pegawais,'spj'=>$spj]);
+        return view('user.spj.edit',['pegawais'=>$pegawais,'spj'=>$spj, 'pemberi_tugas'=>$pemberi_tugas]);
     }
 
     public function postEdit($id)

@@ -24,8 +24,11 @@ class SpjController extends Controller
       $pm = Pegawai::where('posisi_id',1)
                       ->where('tanggal_keluar',null)
                       ->first();
+      $pemberi_tugas = Pegawai::where('role_id',5)
+                                ->orwhere('role_id',4)
+                                ->orwhere('role_id',3)->get();
 
-        return view('admin.spj.create',['pegawais'=>$pegawais,'pm'=>$pm]);
+        return view('admin.spj.create',['pegawais'=>$pegawais,'pm'=>$pm, 'pemberi_tugas'=>$pemberi_tugas]);
     }
 
     public function postCreate()

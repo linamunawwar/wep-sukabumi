@@ -1,5 +1,6 @@
 @extends('layouts.blank')
 
+
 @push('stylesheets')
     <!-- Example -->
     <!--<link href=" <link href="{{ asset("css/myFile.min.css") }}" rel="stylesheet">" rel="stylesheet">-->
@@ -40,7 +41,12 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Pemberi Tugas <span class="required">*</span>:</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input type='text' name='pemberi_tugas' class='form-control' required="required" placeholder="" readonly="readonly" value="{{$pm->nip}}" />
+									<select name='pemberi_tugas' class='form-control' required="required">
+										<option>Pilih Pemberi Tugas</option>
+										@foreach($pemberi_tugas as $user)
+											<option value="{{$user->nip}}">{{$user->nama}} ({{$user->nip}})</option>
+										@endforeach
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
