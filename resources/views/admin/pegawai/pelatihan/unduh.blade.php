@@ -29,7 +29,7 @@
 		<td align="center">√</td>
 		<td>PROYEK</td>
 		<td>:</td>
-		<td colspan="3">Proyek Pembangunan Jalan Tol Becakayu Seksi 2A Ujung</td>
+		<td colspan="3">Proyek Pembangunan Jalan Tol CIAWI SUKABUMI SEKSI 3</td>
 	</tr>
 	<tr></tr>
 	<tdead>

@@ -68,7 +68,7 @@
 </div>
   
 <br><br>
-Dengan ini kami dari PT. Waskita Karya (Persero), Tbk Proyek Jalan Tol Becakayu Seksi 2A Ujung menyatakan bahwa: <br>
+Dengan ini kami dari PT. Waskita Karya (Persero), Tbk Proyek Jalan Tol CIAWI SUKABUMI SEKSI 3 menyatakan bahwa: <br>
 
 <table style="margin: 8px;">
   <tr>
@@ -89,7 +89,7 @@ Dengan ini kami dari PT. Waskita Karya (Persero), Tbk Proyek Jalan Tol Becakayu 
   <tr>
     <td>Penugasan</td>
     <td>:</td>
-    <td>Jalan Tol Becakayu Seksi 2A Ujung</td>
+    <td>Jalan Tol CIAWI SUKABUMI SEKSI 3</td>
   </tr>
   <tr>
     <td>Tanggal Masuk Kerja</td>
@@ -111,7 +111,7 @@ Dengan ini kami dari PT. Waskita Karya (Persero), Tbk Proyek Jalan Tol Becakayu 
   </tr>
 </table>
 <br>
-Benar-benar telah bekerja di PT. Waskita Karya (Persero), Tbk Proyek Jalan Tol Becakayu Seksi 2A Ujung dalam kurun waktu:
+Benar-benar telah bekerja di PT. Waskita Karya (Persero), Tbk Proyek Jalan Tol CIAWI SUKABUMI SEKSI 3 dalam kurun waktu:
 <br><br>
 {{konversi_tanggal($pecat->pegawai->tanggal_masuk)}} sampai dengan {{konversi_tanggal($pecat->pegawai->tanggal_keluar)}}
 <br><br>
@@ -120,7 +120,7 @@ Kami berterima kasih atas semua kerjasama yang telah diberikan selama ini dan se
 Demikian surat ini dibuat untuk dipergunakan sebagaimana mestinya. <br>
 <br><br>
 Project Manager<br>
-Jalan Tol Becakayu Seksi 2A Ujung
+Jalan Tol CIAWI SUKABUMI SEKSI 3
 <br><br>
 <img src="{{asset('upload/pegawai/'.$pm->nip.'/'.$pm->ttd.'')}}" style="width: 220px; height: 60px;">
 <br>

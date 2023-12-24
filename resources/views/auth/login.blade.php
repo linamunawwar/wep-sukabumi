@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link href="{{asset('public/img/Waskita.png')}}" rel='icon' type='image/x-icon'/>
-    <title>WEP - Becakayu 2A Ujung	</title>
+    <title>WEP - Ciawi Sukabumi Seksi 3	</title>
     
     <!-- Bootstrap -->
     <link href="{{ asset("public/css/bootstrap.min.css") }}" rel="stylesheet">

@@ -27,7 +27,7 @@
     <td></td>
     <td></td>
     <td></td>   
-    <td colspan="3">Proyek Jalan Tol Becakayu Seksi 2A Ujung</td>
+    <td colspan="3">Proyek Jalan Tol CIAWI SUKABUMI SEKSI 3</td>
     <td></td>
     <td></td>
     <td></td>

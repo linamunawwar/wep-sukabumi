@@ -114,7 +114,7 @@
 									  <tr>   
 									  	<td></td>
 									    <td style="font-size: 14px;">Proyek</td>
-									    <td colspan="3" style="font-size: 14px;">: Proyek Jalan Tol Becakayu Seksi 2A Ujung</td>
+									    <td colspan="3" style="font-size: 14px;">: Proyek Jalan Tol CIAWI SUKABUMI SEKSI 3</td>
 									    <td></td>
 									    <td colspan="3" style="font-weight: bold;"> ID Proyek :</td>
 									  </tr>

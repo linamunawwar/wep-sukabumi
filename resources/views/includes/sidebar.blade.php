@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col" style="width: 240px;">
     <div class="left_col scroll-view" style="background: #00004E;">
         <div class="navbar nav_title" style="border: 0; background: white; width: 100%; margin-bottom: 10px;">
-            <a href="{{ url('/') }}" class="site_title"><img src="{{asset('public/img/Waskita-noback.png')}}" width="40px" height="25px" style="color: white!important;"> <span style="color: #172D44 !important;">WEP -  Becakayu 2A</span></a>
+            <a href="{{ url('/') }}" class="site_title"><img src="{{asset('public/img/Waskita-noback.png')}}" width="40px" height="25px" style="color: white!important;"> <span style="color: #172D44 !important;">WEP -  Ciawi Sukabumi Seksi 3</span></a>
         </div>
         <?php
             use App\Permission;
@@ -33,14 +33,14 @@
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu" style="background: #00004E;">
             <div class="menu_section">
                 <ul class="nav side-menu">
-                    @if((Auth::user()->pegawai->posisi_id == 45) || (Auth::user()->pegawai->posisi_id == 46) || (\Auth::user()->role_id == 3) || (\Auth::user()->role_id == 4) || (\Auth::user()->role_id == 5))
+                   <!--  @if((Auth::user()->pegawai->posisi_id == 45) || (Auth::user()->pegawai->posisi_id == 46) || (\Auth::user()->role_id == 3) || (\Auth::user()->role_id == 4) || (\Auth::user()->role_id == 5))
                         <li>
                             <a href="{{url('/Logistik')}}">
                                 <i class="fa fa-laptop"></i>
                                 LOGISTIK
                             </a>
                         </li>
-                    @endif
+                    @endif -->
                     <li>
                         <a href="{{url('/')}}">
                             <i class="fa fa-laptop"></i>

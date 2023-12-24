@@ -7,7 +7,7 @@
 	<div>
 		<img src="{{asset('public/img/kop.png')}}" style="width: 400px; margin: 10	px; ">
 	</div>
-	<h4 align="center" style="margin-top: 5px; padding-top: 5px;">PROYEK JALAN TOL BECAKAYU SEKSI 2A UJUNG</h4>
+	<h5 align="center" style="margin-top: 5px; padding-top: 5px;">PROYEK JALAN TOL CIAWI SUKABUMI SEKSI 3</h5>
 
 	<table cellspacing="2" style="font-size: 11px;">
 		<tr>

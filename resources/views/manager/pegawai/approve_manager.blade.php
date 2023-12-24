@@ -723,7 +723,7 @@ $kode = KodeBagian::all();
 										<ol type="1">
 											<li>Pihak Perusahaan 
 												<ul style="list-style-type:none;">
-													<li>Nama Perusahaan 	:	PT. Waskita Karya (Persero), Tbk. Proyek Pembangunan Jalan Tol Becakayu 2A Ujung</li>
+													<li>Nama Perusahaan 	:	PT. Waskita Karya (Persero), Tbk. Proyek Pembangunan Jalan Tol Ciawi Sukabumi Seksi 3</li>
 													<li>Alamat Perusahaan	:	Jl. Ahmad Yani Ruko Mutiara Bekasi Center Blok A9 nomor 7, Bekasi Utara, Bekasi, Jawa Barat</li>
 												</ul>
 												<br><br>
@@ -732,7 +732,7 @@ $kode = KodeBagian::all();
 													<li>Nama	:	Mochamad Waskito Adi, ST</li>
 													<li>Jabatan	:	Kepala Proyek<br><br></li>
 												</ul>
-												<br>Dalam hal ini bertindak untuk dan atas nama PT. Waskita Karya (Persero) Tbk Proyek Pembangunan Jalan Tol Becakayu 2A Ujung, selanjutnya dalam Perjanjian Kerja Waktu Tertentu ini disebut sebagai PIHAK PERTAMA.
+												<br>Dalam hal ini bertindak untuk dan atas nama PT. Waskita Karya (Persero) Tbk Proyek Pembangunan Jalan Tol Ciawi Sukabumi Seksi 3, selanjutnya dalam Perjanjian Kerja Waktu Tertentu ini disebut sebagai PIHAK PERTAMA.
 											</li>
 											<li>Pihak Pekerja<br>
 												<ul style="list-style-type:none;">
@@ -763,7 +763,7 @@ $kode = KodeBagian::all();
 										</div>
 										<ol type="1">
 											<li>
-												Yang dimaksud Perusahaan dalam perjanjian ini adalah PT. Waskita Karya (Persero) Tbk Proyek Pembangunan Tol Becakayu 2A Ujung.
+												Yang dimaksud Perusahaan dalam perjanjian ini adalah PT. Waskita Karya (Persero) Tbk Proyek Pembangunan Tol Ciawi Sukabumi Seksi 3.
 											</li>
 											<li>
 												Perjanjian Kerja Waktu Tertentu (yang selanjutnya disebut PKWT) dalam perjanjian ini adalah perjanjian kerja antara Perusahaan dengan Pegawai yang dibuat secara tertulis untuk jangka waktu tertentu.
@@ -775,7 +775,7 @@ $kode = KodeBagian::all();
 										</div>
 										<ol type="1">
 											<li>
-												PIHAK PERTAMA akan mempekerjakan PIHAK KEDUA sebagai pekerja PT. WaskitaKarya (Persero) Tbk Proyek Jalan Tol Becakayu 2A Ujung, dengan status / kedudukan sebagai pekerja waktu tertentu (tidak tetap) dan ditempatkan sebagai ………………………..
+												PIHAK PERTAMA akan mempekerjakan PIHAK KEDUA sebagai pekerja PT. WaskitaKarya (Persero) Tbk Proyek Jalan Tol Ciawi Sukabumi Seksi 3, dengan status / kedudukan sebagai pekerja waktu tertentu (tidak tetap) dan ditempatkan sebagai ………………………..
 											</li>
 											<li>
 												PIHAK KEDUA bersedia menerima dan melaksankan tugas pekerjaannya dengan sebaik-baiknya dan penuh rasa tanggungjawab.
@@ -802,10 +802,10 @@ $kode = KodeBagian::all();
 										</div>
 										<ol type="1">
 											<li>
-												PIHAK KEDUA bersedia mengikuti jam kerja yang diatur oleh PT. Waskita Karya (Persero) Tbk Proyek Jalan Tol Becakayu 2A Ujung.
+												PIHAK KEDUA bersedia mengikuti jam kerja yang diatur oleh PT. Waskita Karya (Persero) Tbk Proyek Jalan Tol Ciawi Sukabumi Seksi 3.
 											</li>
 											<li>
-												Sesuai dengan kebutuhan pelaksanaan pekerjaan di PT. Waskita Karya (Persero) Tbk Proyek Jalan Tol Becakayu 2A Ujung, PIHAK KEDUA bersedia bekerja secara bergiliran (shift) apabila diperlukan.
+												Sesuai dengan kebutuhan pelaksanaan pekerjaan di PT. Waskita Karya (Persero) Tbk Proyek Jalan Tol Ciawi Sukabumi Seksi 3, PIHAK KEDUA bersedia bekerja secara bergiliran (shift) apabila diperlukan.
 											</li>
 										</ol>
 										<div style="text-align: center;">
@@ -861,7 +861,7 @@ $kode = KodeBagian::all();
 										</div>
 										<ol type="1">
 											<li>PIHAK KEDUA wajib melaksanakan tugas dengan penuh tanggungjawab dan sebaik-baiknya sesuai dengan petunjuk PIHAK PERTAMA dan atau perintah atasannya.</li>
-											<li>PIHAK KEDUA wajib untuk mentaati dan melaksanakan semua peraturan dan tata tertib PIHAK PERTAMA maupun yang berlaku di lokasi kerja PT. Waskita Karya (Persero) Tbk Proyek Jalan Tol Becakayu 2A Ujung.</li>
+											<li>PIHAK KEDUA wajib untuk mentaati dan melaksanakan semua peraturan dan tata tertib PIHAK PERTAMA maupun yang berlaku di lokasi kerja PT. Waskita Karya (Persero) Tbk Proyek Jalan Tol Ciawi Sukabumi Seksi 3.</li>
 											<li>.PIHAK KEDUA wajib mengganti kerugian yang diderita oleh PIHAK PERTAMA ataupun PT. Waskita Karya (Persero) Tbk, atas kehilangan dan / atau kerusakan barang ataupun asset yang terbukti dilakukan dan diakibatkan oleh kelalaian PIHAK KEDUA.</li>
 											<li>PIHAK KEDUA tidak diperkenankan bekerja pada Perusahaan lain dengan cara atau maksud apapun tanpa seijint tertulis dari PIHAK PERTAMA selama jangka waktu pelaksanaan perjanjian ini.</li>
 											<li>PIHAK KEDUA tidak menuntut fasilitas / hak / kesejahteraan lain selain yang telah ditentukan / ditetapkan oleh PIHAK PERTAMA dan / atau PT. Waskita Karya (Persero) Tbk.</li>
@@ -923,7 +923,7 @@ $kode = KodeBagian::all();
 										</div>
 										<ol type="1">
 											<li>Bahwa setelah membaca, mengerti dan memahami seluruh isi dan maksud yang terkandung dalam passal - pasal PKWT ini, maka PIHAK KEDUA setuju dan sepakat untuk mengikat kan diri dengan menandatangani PKWT ini.</li>
-											<li>Perusahaan dan PIHAK KEDUA menyatakan bahwa tidak ada janji-janji lainnya selain kesepakatan yang tertulis dalam pasal-pasal PKWT ini, kecuali surat-surat edaran dan kebijakan-kebijakan yang telah disepakati bersama oleh kedua belah pihak selama bertugas di proyek Pembangunan Jalan Tol Becakayu 2A Ujung.</li>
+											<li>Perusahaan dan PIHAK KEDUA menyatakan bahwa tidak ada janji-janji lainnya selain kesepakatan yang tertulis dalam pasal-pasal PKWT ini, kecuali surat-surat edaran dan kebijakan-kebijakan yang telah disepakati bersama oleh kedua belah pihak selama bertugas di proyek Pembangunan Jalan Tol Ciawi Sukabumi Seksi 3.</li>
 										</ol>
 										<div style="text-align: center;">
 											Pasal 16<br>

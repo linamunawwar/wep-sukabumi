@@ -41,7 +41,7 @@
     <td></td>
     <td></td>
     <td>PROYEK</td>    
-    <td>: PROYEK JALAN TOL BECAKAYU SEKSI 2A UJUNG</td>
+    <td>: PROYEK JALAN TOL CIAWI SUKABUMI SEKSI 3</td>
   </tr>
   <tr>
     <td></td>

@@ -44,7 +44,7 @@ PEGAWAI KANTOR PUSAT</h3>
           $status = 'Harian';
         }
       ?>
-      <td>{{$status}} / Becakayu Seksi 2A Ujung</td>
+      <td>{{$status}} / Ciawi Sukabumi Seksi 3</td>
     </tr>
     <tr>
       <td></td>

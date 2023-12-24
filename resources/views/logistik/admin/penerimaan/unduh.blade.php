@@ -67,7 +67,7 @@
     @php
       $exploded = explode('-',$penerimaan->tanggal);
     @endphp
-    <td colspan="11" style="font-size: 10.5;">Pada hari ini '{{$nama_hari}}', tanggal '{{terbilang($exploded[2])}}'  Bulan '{{bulan($exploded[1])}}' Tahun '{{terbilang($exploded[0])}} ( {{konversi_tanggal($penerimaan->tanggal)}} ) ' telah diadakan serah terima bahan sesuai SPM No. ……………...… tanggal ……………………… kepada PT. Waskita Karya Infrastructure 2 Division untuk Proyek Pembangunan Jalan Tol Becakayu Seksi 2A Ujung, No. AB :  D32C19009, Sebagai berikut :</td>
+    <td colspan="11" style="font-size: 10.5;">Pada hari ini '{{$nama_hari}}', tanggal '{{terbilang($exploded[2])}}'  Bulan '{{bulan($exploded[1])}}' Tahun '{{terbilang($exploded[0])}} ( {{konversi_tanggal($penerimaan->tanggal)}} ) ' telah diadakan serah terima bahan sesuai SPM No. ……………...… tanggal ……………………… kepada PT. Waskita Karya Infrastructure 2 Division untuk Proyek Pembangunan Jalan Tol CIAWI SUKABUMI SEKSI 3, No. AB :  D32C19009, Sebagai berikut :</td>
   </tr>
 </table>
 <table class="table table-striped">

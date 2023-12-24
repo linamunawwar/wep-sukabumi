@@ -50,7 +50,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td colspan="5"><b>Proyek Jalan Tol Becakayu Seksi 2A Ujung</b></td>
+		<td colspan="5"><b>Proyek Jalan Tol CIAWI SUKABUMI SEKSI 3</b></td>
 	</tr>
 	<tr>
 		<td></td>

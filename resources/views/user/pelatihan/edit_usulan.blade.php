@@ -50,7 +50,7 @@
 										<input type="checkbox" name="kapro[]" > Kepala Unit Bisnis : DIVISI I
 									</div>
 									<div class="col-md-7 col-xs-12">
-										<input type="checkbox" name="kapro[]" checked="checked" > Kepala Proyek : Becakayu 2A
+										<input type="checkbox" name="kapro[]" checked="checked" > Kepala Proyek : Ciawi Sukabumi Seksi 3
 									</div>
 								</div>
 							</div>

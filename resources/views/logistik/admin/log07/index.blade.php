@@ -251,7 +251,7 @@
 										    for($i=0; $i<$loop;$i++){
 										    ?>   
 										    <td >Proyek</td>
-										    <td colspan="4">: Proyek Jalan Tol Becakayu Seksi 2A Ujung</td>
+										    <td colspan="4">: Proyek Jalan Tol CIAWI SUKABUMI SEKSI 3</td>
 										    <td colspan="3" style="font-weight: bold;"> No. AB</td>
 										    <td></td>
 										    <td></td>

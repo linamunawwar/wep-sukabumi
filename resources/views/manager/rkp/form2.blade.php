@@ -40,7 +40,7 @@
     <td></td>
     <td><b>V</b></td>    
     <td>Unit Kerja/Bisnis/Proyek</td>
-    <td>: Proyek Jalan Tol Becakayu Seksi 2A Ujung</td>
+    <td>: Proyek Jalan Tol CIAWI SUKABUMI SEKSI 3</td>
   </tr>
 </table>
 

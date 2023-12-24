@@ -7,7 +7,7 @@
 <img src="{{ asset("public/img/Waskita.png") }}" style="width: 80px; height: 60px;"/>
 <div style="text-align: center;">
   <h3 style="font-family: 'Times New Roman';padding: 0;margin: 0;">SURAT IZIN TIDAK MASUK KERJA<br>
-PEGAWAI PROYEK BECAKAYU SEKSI 2A UJUNG</h3>
+PEGAWAI PROYEK CIAWI SUKABUMI SEKSI 3</h3>
   <div style="border-top: 1px solid black;width: 480px; float: center; margin: 0 auto;padding: 0;"></div>
   <h4 style="font-family: 'Times New Roman';padding: 0;margin: 0;margin-left: 150px; text-align: left;">Nomor  :       </h4>
   <br>
@@ -37,7 +37,7 @@ PEGAWAI PROYEK BECAKAYU SEKSI 2A UJUNG</h3>
           $status = 'Harian';
         }
       ?>
-      <td>{{$status}} / Becakayu Seksi 2A Ujung</td>
+      <td>{{$status}} / Ciawi Sukabumi Seksi 3</td>
     </tr>
     <tr>
       <td></td>

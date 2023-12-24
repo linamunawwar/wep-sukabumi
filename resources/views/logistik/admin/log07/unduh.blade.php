@@ -73,7 +73,7 @@
     ?>
     <td style="border: 1px solid #000000; width: 6;"></td>    
     <td style="width: 17;font-weight: bold;">Proyek</td>
-    <td colspan="3">: Proyek Jalan Tol Becakayu Seksi 2A Ujung</td>
+    <td colspan="3">: Proyek Jalan Tol CIAWI SUKABUMI SEKSI 3</td>
     <td colspan="2" style="font-weight: bold;"> No. AB</td>
     <?php
       }
