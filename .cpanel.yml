@@ -1,0 +1,5 @@
+---
+deployment:
+ tasks:
+ - export DEPLOYPATH=/home/waskita3/wep-sukabumi
+ - /usr/bin/rsync -Paz * $DEPLOYPATH --delete
