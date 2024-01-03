@@ -2,4 +2,4 @@
 deployment:
  tasks:
  - export DEPLOYPATH=/home/waskita3/public_html
- - /bin/cp -R * $DEPLOYPATH --delete
+ - /usr/bin/rsync -Paz * $DEPLOYPATH --delete
