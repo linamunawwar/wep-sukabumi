@@ -1,12 +1,13 @@
 ---
 deployment:
- tasks:
- - export DEPLOYPATH=/home/waskita3/public_html
- - /usr/bin/rsync -Paz * $DEPLOYPATH --delete
- - /bin/cp -R .vscode $DEPLOYPATH
- - /bin/cp -R assets $DEPLOYPATH
- - /bin/cp -R css $DEPLOYPATH
- - /bin/cp -R fonts $DEPLOYPATH
- - /bin/cp -R img $DEPLOYPATH
- - /bin/cp -R js $DEPLOYPATH
-/bin/cp index.html $DEPLOYPATH
+  tasks:
+    - export DEPLOYPATH=/home/waskita3/public_html
+    - export REPOPATH=/home/USER/repositories/wep-sukabumi
+    - /usr/bin/rsync -Paz --exclude '.git' --exclude '.well-known' $REPOPATH/ $DEPLOYPATH --delete
+    - /bin/cp -R .vscode $DEPLOYPATH
+    - /bin/cp -R assets $DEPLOYPATH
+    - /bin/cp -R css $DEPLOYPATH
+    - /bin/cp -R fonts $DEPLOYPATH
+    - /bin/cp -R img $DEPLOYPATH
+    - /bin/cp -R js $DEPLOYPATH
+    /bin/cp index.html $DEPLOYPATH
